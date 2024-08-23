@@ -57,7 +57,7 @@ export default defineConfig({
       { text: "Komponenter", link: "/components" }
     ],
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" }
+      { icon: "github", link: "https://github.com/Mattilsynet/design/" }
     ],
     sidebar: [
       {
