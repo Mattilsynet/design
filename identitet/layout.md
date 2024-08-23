@@ -1,0 +1,41 @@
+---
+title: Layout
+---
+
+# Layoutprinsipper
+
+Mattilsynets logo skal alltid ha et bestemt forhold til den flaten den står på, og en bestemt plassering på denne.
+
+Logoen skal som hovedregel være plassert øverst i venstre hjørne, men på enkelte flater kreves det, av praktiske hensyn, at logoen får en annen plassering.
+
+Logoen må alltid ha et minimum beskyttelsesområde rundt seg (se avsnitt om «Logo»). På den måten blandes ikke logoen med andre visuelle elementer, og står som en tydelig avsender på alle flater hvor den opptrer.
+
+## Små formater
+Med «kortformat» mener vi små flater som visittkort, id-kort og liknende. Logoen må være stor nok til at den er lettoppfattelig. På id-kortet fyller logoen nesten hele bredden, se eksempelet under.
+
+[GRAFIKK]
+
+## Brevark og Word
+På A4-formater dekker logoen 1/4 av dokumentbredden, og er 52,5 mm bred. Logoen er plassert øverst i venstre hjørne, i yttermargen av dokumentet. Ingen elementer skal plasseres utenfor denne rammen. 
+
+[GRAFIKK]
+
+## Rapportforside
+Hvis rapportforsiden har et bilde, er dette plassert slik at toppen av dette er 1/3 ned på siden. Hvis forsiden har en illustrasjon, skal denne ligge innenfor en tilsvarende usynlig ramme, se under.
+
+[GRAFIKK]
+
+## Rollup-format
+Logoen er midtstilt på rollup-formatet med lik avstand til alle kanter. Hvis det er et bilde på rollupen, skal dette som hovedregel fylle halvparten av rollup-høyden.
+
+[GRAFIKK]
+
+## PowerPoint
+Et gjennomgående layoutgrep i Mattilsynets PowerPoint-mal, er en todeling av formatet. Dette grepet brukes på mange ulike innholdstyper, se eksemplene under.
+
+[GRAFIKK]
+
+## Teip-format
+Teipoppsettet har også en todelt layout som blir repetert på hele flaten, se eksemplet under.
+
+[GRAFIKK]

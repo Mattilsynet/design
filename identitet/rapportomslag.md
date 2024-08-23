@@ -1,0 +1,54 @@
+---
+title: Rapportomslag
+---
+
+# Rapportomslag
+
+Mattilsynets rapporter har tre ulike forsidemaler: én for foto, én for illustrasjon og én for typografi.
+
+I tillegg finnes en egen mal for rapporter som gjøres i samarbeid med andre aktører. Disse har oppsett for flere logoer i toppen av arket, og det kan det velges mellom tre forsider: med foto, med illustrasjon eller kun med typografi. 
+Under vises de ulike oppsettene, med mulighet for nedlasting av maler nederst på siden.
+
+## Forside med bilde
+For rapporter med foto på forsiden, skal fotoets høyde dekke 2/3 av høyden på omslaget og ha en 24 mm avrunding i nedre høyre hjørne. Avrundingen hinter til frøformen i logoen, og er et visuelt grep som går igjen på flere av Mattilsynets flater. Rapportforside med foto finnes i to lyse og én mørk versjon:
+- «Lav» (lysegrønn)
+- «Bakgrunnsblå»
+- «Granskog» (mørkegrønn)
+
+[GRAFIKK]
+
+## Forside med illustrasjon
+Rapportforside med illustrasjon finnes i tre lyse og én mørk versjon:
+
+- «Gåsunge» (lys beige)
+- «Lav» (lysegrønn)
+- «Bakgrunn, blå»
+- «Granskog» (mørkegrønn)
+
+Illustrasjonene kan brukes alene eller i pre-komponerte grupper, og skal ligge innenfor det samme området som fotoet dekker i rapportmalen over.
+
+[GRAFIKK]
+
+## Forside med kun typografi
+Typografiforsidene skal ha mørkegrønn bakgrunn («Granskog»), og teksten vokser nedover fra midtlinjen. Typografifargen kan varieres etter rapportens tema, og kan ha følgende verdier:• «Lav» (#E2F1DF)
+- «Nype» (#F9C4AA)
+- «Himmel» (#9ECCED)
+- «Solstreif» (#F8DE9C)
+
+Eksempler på oppsett med de fire ulike typografifargene sees under.
+
+[GRAFIKK]
+
+## Bakside
+Baksiden har mørk eller lys bakgrunnsfarge avhengig av om forsiden er lys eller mørk. For- og bakside skal alltid ha samme bakgrunnsfarge.
+
+[GRAFIKK]
+
+## Samarbeidsrapporter
+Rapporter laget i fellesskap med andre organisasjoner krever flere avsenderlogoer på forsiden. Disse er plassert øverst til venstre, med Mattilsynet-logoen som den første av dem. For- og baksiden er alltid hvit for å sikre at det ikke titter fram hvite bokser bak logoen - i tilfelle man har en jpg, og ikke png-versjon av de ulike logoene. Det finnes tre ulike forsideoppsett:
+
+- Forside med foto
+- Forside med illustrasjon
+- Forside med kun typografi
+
+[GRAFIKK]

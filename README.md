@@ -1,2 +1,2 @@
-# design
+# Design
 Mattilsynets designsystem og designmanual

@@ -1,0 +1,13 @@
+---
+title: Form
+---
+
+# Avrundet form
+
+Mattilsynet jobber via tre hovedroller - veileder, myndighetsutøver og beredskapsaktør. De visuelle elementene våre skal kommunisere disse rollene. De vinkelrette hjørnene på tekstboksene speiler myndighetsrollen og beredskapsrollen og det avrundende hjørnet - den mykere formen - speiler veilederrollen.
+
+## Rette og runde hjørner sammen
+
+Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørne og den andre rettvinklede hjørner. Avrundingen er hentet fra frøformen i logosymbolet, og skal alltid være nederst i høyre hjørne.
+
+[GRAFIKK]
