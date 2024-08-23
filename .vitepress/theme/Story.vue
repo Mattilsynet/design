@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { getWhyframeSource } from "@whyframe/core/utils";
+import { withBase } from "vitepress"
 
 const { aspectRatio, maxWidth } = defineProps({
 	maxWidth: {
@@ -24,7 +25,7 @@ onMounted(() =>
 </script>
 
 <template>
-  <iframe class="render" ref="iframe" data-why src="/components/_whyframe" title="Preview" :style="{ aspectRatio }">
+  <iframe class="render" ref="iframe" data-why :src="withBase('/components/_whyframe')" title="Preview" :style="{ aspectRatio }">
     <slot></slot>
   </iframe>
   <pre class="source">{{ source }}</pre>

@@ -36,7 +36,7 @@ export default defineConfig({
   description: "Mattilsynet Design",
   cleanUrls: true,
   head: [
-    ["link", { rel: "icon", href: `${base}/symbol.svg` }],
+    ["link", { rel: "icon", href: path.join(base, '/symbol.svg') }],
     // ["script", { acync: "", defer: "", src: "https://scripts.withcabin.com/hello.js" }], // Analytics
   ],
   appearance: false,
@@ -53,7 +53,7 @@ export default defineConfig({
 			text: "Foreslå endringer på denne siden",
 		},
     nav: [
-      { text: "Home", link: "/identitet" },
+      { text: "Identitet", link: "/identitet" },
       { text: "Komponenter", link: "/components" }
     ],
     socialLinks: [
