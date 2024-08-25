@@ -70,7 +70,6 @@ Av den grunn er det viktig å få med bruk av digitale verktøy i bildene - det 
 [GRAFIKK]
 
 ## De nye profilbildene våre
-Under er en oversikt over bildene som ble tatt til Mattilsynets nye visuelle identitet høsten 2023. Høyoppløselig versjon av disse kan lastes ned fra SharePoint:
-https://mattilsynet.sharepoint.com/sites/BilderMattilsynet?OR=Teams-HL&CT=1700747500738&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyOC8yMzEwMTIyNDgwNiJ9
+Under er en oversikt over bildene som ble tatt til Mattilsynets nye visuelle identitet høsten 2023. [Høyoppløselig versjon av disse kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/sites/BilderMattilsynet?OR=Teams-HL&CT=1700747500738&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyOC8yMzEwMTIyNDgwNiJ9)
 
 [GRAFIKK]
