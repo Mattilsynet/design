@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { getWhyframeSource } from "@whyframe/core/utils";
 import { withBase } from "vitepress"
@@ -14,18 +14,19 @@ const { aspectRatio, maxWidth } = defineProps({
 	},
 });
 
-const iframe = ref();
+const iframe = ref<HTMLIFrameElement>();
 const source = computed(() => iframe.value && getWhyframeSource(iframe.value));
 
 onMounted(() =>
-	iframe.value.addEventListener("load", () => {
-    iframe.value.contentDocument.body.style.maxWidth = maxWidth;
+	iframe.value?.addEventListener("load", () => {
+    const doc = iframe.value?.contentDocument;
+    if (doc) doc.body.style.maxWidth = maxWidth;
 	})
 );
 </script>
 
 <template>
-  <iframe class="render" ref="iframe" data-why :src="withBase('/components/_whyframe')" title="Preview" :style="{ aspectRatio }">
+  <iframe class="render" ref="iframe" data-why :src="withBase('/designsystem/_whyframe')" title="Preview" :style="{ aspectRatio }">
     <slot></slot>
   </iframe>
   <pre class="source">{{ source }}</pre>

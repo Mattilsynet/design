@@ -54,7 +54,8 @@ export default defineConfig({
 		},
     nav: [
       { text: "Identitet", link: "/identitet" },
-      { text: "Komponenter", link: "/components" }
+      { text: "Designsystem", link: "/designsystem" },
+      { text: "Profilmateriale", link: "/profilmateriale" }
     ],
     socialLinks: [
       { icon: "github", link: "https://github.com/Mattilsynet/design/" }
@@ -66,9 +67,18 @@ export default defineConfig({
         items: getFiles("identitet")
       },
       {
-        text: "Komponenter",
+        text: "Designsystem",
         collapsed: true,
-        items: getFiles("components")
+        items: getFiles("designsystem")
+      },
+      {
+        text: "Profilmateriale",
+        collapsed: true,
+        items: getFiles("profilmateriale")
+      },
+      {
+        text: "Nedlastinger",
+        link: "/nedlastinger"
       }
     ],
 		search: {

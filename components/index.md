@@ -1,5 +1,0 @@
----
-title: Komponenter
----
-
-# Komponenter

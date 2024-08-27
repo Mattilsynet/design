@@ -4,7 +4,7 @@ title: Kompasset
 
 # Kompasset
 
-<div style="aspect-ratio: 16 / 9; background: white; margin-top: 3rem"></div>
+<div data-fill style="aspect-ratio: 16 / 9; background: white; margin-top: 3rem"></div>
 
 ## Bakgrunn
 Mattilsynet er i endring og brukerne våre trenger å forstå hvor vi er på vei. For å bli oppfattet som tydelige og enhetlige, må det synes at vi alle jobber for de samme overordnede målene. Dette kompasset skal bidra til å samle oss, sette ord på hvem vi er og hva som er vår strategiske retning. Slik kan det bli et verktøy i arbeidshverdagen, enten vi utvikler nye nettsider eller rekrutterer nye kolleger.

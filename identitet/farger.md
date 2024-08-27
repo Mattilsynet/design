@@ -12,7 +12,26 @@ Vi må være bevisst kontraster når fargene brukes sammen. Tekstinnhold skal al
 
 Paletten består av 16 hovedfarger, i tillegg til sort og hvitt. For digitale produkter finnes flere farger og flere nyanser av farger - se «👩‍💻 Lightskinning av mattilsynet.no».
 
-[FARGER]
+<Colors :values="[
+  { hex: '#054449', name: 'Granskog', desc: 'Logo- og hovedfarge' },
+  { hex: '#153F7B', name: 'Fjord', desc: 'Skal ikke brukes som bakgrunn' },
+  { hex: '#DA573B', name: 'Rognebær', desc: 'Skal ikke brukes som bakgrunn' },
+  { hex: '#F9CC76', name: 'Sommerdag', desc: 'Brukes mest til beredskap' },
+  { hex: '#68B096', name: 'Furu' },
+  { hex: '#9ECCED', name: 'Himmel' },
+  { hex: '#F9C4AA', name: 'Nype' },
+  { hex: '#F8DE9C', name: 'Solstreif' },
+  { hex: '#B4CEA0', name: 'Lind', desc: 'Brukes mest til illustrasjon' },
+  { hex: '#CDE5F2', name: 'Bekk' },
+  { hex: '#F4ECE6', name: 'Sand' },
+  { hex: '#FAF6F3', name: 'Gåsunge', desc:' Brukes mest til bakgrunn' },
+  { hex: '#032C30', name: 'Mørk granskog', desc: 'Brukes mest til tekst' },
+  { hex: '#9BCAB9', name: 'Lys furu' },
+  { hex: '#E2F1DF', name: 'Lav', desc:' Brukes mest til bakgrunn' },
+  { hex: '#ABE1CD', name: 'Brevann', desc:' Brukes i små mengder som popp-farge' },
+  { hex: '#000000', name: 'Sort' },
+  { hex: '#ffffff', name: 'Hvit' },
+]" />
 
 ## Fargekoder
 Det finnes ulike fargekoder til ulike produksjonsmetoder:Skjerm: HEX(#) eller RGBTrykk og digitaltrykk: CMYKSilketrykk eller trykk på fysiske produkter: PMS (Pantone)Maling og lakk av eksempelvis skilt og biler: RAL. RAL-koder med fire tall er hentet fra «RAL Classic system», koder med flere enn fire tall er fra «RAL Design System Plus».
@@ -33,3 +52,66 @@ Den mørkeblå «Fjord» skal ikke brukes som bakgrunnsfarge eller i store mengd
 Under er noen eksempler på fargekombinasjoner som fungerer fint sammen.
 
 [GRAFIKK]
+
+## Illustrasjonsfarger
+
+Fargene under brukes som hovedregel i Mattilsynets illustrasjoner.
+
+<Colors :values="[
+  { hex: '#F8E0D8', name: 'Hudtone, lysest' },
+  { hex: '#C58F79', name: 'Hudtone, mellom' },
+  { hex: '#7F433B', name: 'Hud og hår, mørk' },
+  { hex: '#ED9A32', name: 'Hår, gylden' },
+  { hex: '#1E1A28', name: 'Hår, mørk' },
+  { hex: '#1D57AA', name: 'Klær, mellomblå', desc: 'Brukes som alternativ til Fjord på mørke flater' }
+]" />
+
+## Bakgrunner
+
+Blå, gul og rosa finnes i lysere varianter enn de som inngår i brand-paletten. Disse brukes i hovedsak som bakgrunnsfarger.
+
+<Colors :values="[
+  { hex: '#DFEEF6', name: 'Bakgrunnsblå' },
+  { hex: '#FCF0D2', name: 'Bakgrunnsgul' },
+  { hex: '#FEE9DF', name: 'Bakgrunnsrosa' },
+]" />
+
+## Digitale produkter
+
+Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
+
+<Colors :values="[
+  { hex: '#3C725E', name: 'Mørk furu', desc: 'Brukes i lenker.<br>OBS: byttes trolig' },
+  { hex: '#116E6B', name: 'Havdyp', desc: 'Brukes i lenker underline.<br>OBS: byttes trolig' },
+  { hex: '#92301C', name: 'Inforød', desc: 'Brukes i Alerts' },
+  { hex: '#539D82', name: 'Infogrønn', desc: 'Brukes i Alerts' },
+  { hex: '#F1BE3C', name: 'Infogul', desc: 'Brukes i Alerts' },
+]" />
+
+## Skalaer
+
+Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
+
+<Colors columns="repeat(14, 1fr)" :values="[
+  { hex: '#F3F8F1', name: 'Grønn 100' },
+  { hex: '#E2F1DF', name: 'Grønn 200', desc: 'Lav' },
+  { hex: '#D3E8E0', name: 'Grønn 300', desc: 'Brukes på hover' },
+  { hex: '#BCDCD0', name: 'Grønn 400', desc: 'Brukes på active' },
+  { hex: '#9BCAB9', name: 'Grønn 500', desc: 'Lys furu' },
+  { hex: '#539D82', name: 'Grønn 600', desc: 'Infogrønn' },
+  { hex: '#116E6B', name: 'Grønn 700', desc: 'Havdyp' },
+  { hex: '#054449', name: 'Grønn 800', desc: 'Granskog' },
+  { hex: '#032C30', name: 'Grønn 900', desc: 'Mørk granskog' },
+]" />
+
+<Colors columns="repeat(14, 1fr)" :values="[
+  { hex: '#DFEEF6', name: 'Blå 100', desc: 'Bakgrunnsblå' },
+  { hex: '#CDE5F2', name: 'Blå 200', desc: 'Bekk' },
+  { hex: '#9ECCED', name: 'Blå 300', desc: 'Himmel' },
+  { hex: '#7BBCEB', name: 'Blå 400' },
+  { hex: '#5896D5', name: 'Blå 500' },
+  { hex: '#1D57AA', name: 'Blå 600', desc: 'Mellomblå' },
+  { hex: '#153F7B', name: 'Blå 700', desc: 'Fjord' },
+  { hex: '#103160', name: 'Blå 800' },
+  { hex: '#07162C', name: 'Blå 900' },
+]" />
