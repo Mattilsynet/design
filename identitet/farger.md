@@ -92,7 +92,7 @@ Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på 
 
 Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
 
-<Colors columns="repeat(14, 1fr)" :values="[
+<Colors columns="repeat(9, 1fr)" :values="[
   { hex: '#F3F8F1', name: 'Grønn 100' },
   { hex: '#E2F1DF', name: 'Grønn 200', desc: 'Lav' },
   { hex: '#D3E8E0', name: 'Grønn 300', desc: 'Brukes på hover' },
@@ -104,7 +104,7 @@ Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på 
   { hex: '#032C30', name: 'Grønn 900', desc: 'Mørk granskog' },
 ]" />
 
-<Colors columns="repeat(14, 1fr)" :values="[
+<Colors columns="repeat(9, 1fr)" :values="[
   { hex: '#DFEEF6', name: 'Blå 100', desc: 'Bakgrunnsblå' },
   { hex: '#CDE5F2', name: 'Blå 200', desc: 'Bekk' },
   { hex: '#9ECCED', name: 'Blå 300', desc: 'Himmel' },

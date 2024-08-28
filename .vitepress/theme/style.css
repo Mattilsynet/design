@@ -2,7 +2,7 @@
 :root {
   --vp-layout-top-height: 2rem;
 }
-body::before {
+body:has(.VPNav)::before {
   background: linear-gradient(100deg, var(--mt-solstreif) 25%, var(--mt-sommerdag) 25%, var(--mt-sommerdag) 75% , var(--mt-solstreif) 75%) center/5rem 100%;
   content: 'SIDEN ER UNDER UTVIKLING';
   font: 700 .8125rem/var(--vp-layout-top-height) sans-serif;
@@ -40,7 +40,7 @@ body::before {
   border: 1px solid var(--mt-divider);
   max-width: none!important;
   margin-bottom: 9rem;
-  padding: 5rem 1rem;
+  padding: 5rem 5%;
 }
 .VPDocOutlineItem { padding-right: .5rem } /* Make space for focus indicator */
 #VPSidebarNav { padding-top: 48px }
@@ -48,13 +48,16 @@ body::before {
 /* Content */
 .vp-doc { font-size: 1.25rem; line-height: 1.6; -webkit-font-smoothing: subpixel-antialiased } /* Undo Vitepress default font-rendering */
 .vp-doc > * > :not([data-fill]), .VPDocFooter { max-width: 45rem; margin-inline: auto; }
+.vp-doc :where([data-fill]) { display: block; margin-block: 3rem }
+.vp-doc h3:has(+ [data-fill]) { max-width: none }
 .vp-doc p { font: inherit }
 .vp-doc h1 { font-weight: 700; font-size: 3rem; line-height: 1.2; margin-top: 3rem }
 .vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2; margin-top: 3rem }
 .vp-doc h3 { font-weight: 700; font-size: 1.25rem; line-height: 1.2; margin-top: 3rem }
 
 /* VPTeamMembers used for overview pages */
-.VPTeamMembersItem.VPTeamMembersItem { position: relative; transition: .2s; border-radius: var(--mt-radius-md); }
+.VPTeamMembersItem.VPTeamMembersItem { position: relative; transition: .2s; border-radius: var(--mt-radius-md) }
+.VPTeamMembersItem .profile { background: var(--mt-gaasunge) }
 .VPTeamMembersItem:active { transform: scale(.98); }
 .VPTeamMembersItem .avatar { all: unset }
 .VPTeamMembersItem .avatar-img { position: static; width: 100%; object-fit: none; margin-bottom: 20px; aspect-ratio: 8 / 3 }

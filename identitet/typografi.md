@@ -1,8 +1,8 @@
 ---
-title: Skrifttype
+title: Typografi
 ---
 
-# Skrifttype
+# Typografi
 
 ## Bakgrunn
 Vår nye visuelle identitet skal gjøre det enklere å forstå hvem vi er. Mattilsynet har et stort og bredt samfunnsoppdrag. Vi ønsker å være en vennlig hjelper og opptre helhetlig og tydelig som ett lag, sammen med omgivelsene våre. Vi skal trygge framtiden for mennesker, dyr og natur, og vi jobber med hele verdikjeden - fra jord og fjord til bord. Derfor har vi nå en tydelig sirkelform i logosymbolet vårt.

@@ -42,10 +42,10 @@ const hexToRgb = (color: string) => {
     display: grid;
     font-size: 1rem;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, 12rem);
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     line-height: 1.4;
     list-style: none;
-    margin: 2rem 0;
+    margin-inline: 0;
     padding: 0;
   }
   .colors > li {

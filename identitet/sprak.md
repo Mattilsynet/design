@@ -1,5 +1,5 @@
 ---
-title: Slik skriver vi
+title: Språk
 ---
 
 # Slik skriver vi

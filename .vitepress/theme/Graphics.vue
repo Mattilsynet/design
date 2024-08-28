@@ -11,13 +11,12 @@ const { path } = defineProps<{ path: string; justify?: string }>();
     font-size: 1rem;
     gap: 1rem;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill, 12rem);
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     line-height: 1.4;
     list-style: none;
-    margin: 2rem auto;
     padding: 0;
   }
-  .graphics a { display: flex; transition: .2s; background: var(--mt-gaasunge); padding: 2rem; border-radius: var(--mt-radius-md) }
+  .graphics a { display: flex; align-items: center; justify-content: center; transition: .2s; background: var(--mt-gaasunge); padding: 2rem; border-radius: var(--mt-radius-md) }
   .graphics a:hover { scale: 1.1 }
   .graphics a:active { scale: .95 }
   .graphics :deep(svg) { aspect-ratio: 1 / 1; width: 100%; height: auto }

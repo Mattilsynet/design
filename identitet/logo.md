@@ -44,3 +44,13 @@ Ikke bruk logo på foto som er urolige. Hvis et foto ikke egner seg som bakgrunn
 Logoen skal alltid ha et fastsatt beskyttelsesområde rundt seg hvor det ikke opptrer tekst eller andre visuelle elementer. Dette sikrer at logoen står tydelig fram og ikke blandes med annet innhold. Under vises minimums beskyttelsesområde rundt Mattilsynet-logoen. 
 
 [GRAFIKK]
+
+
+
+## Co-branding
+
+Vi har regler for hvordan Mattilsynet-logoen og egennavn skal stå sammen slik at de opptrer som én avsender.
+
+Dette kalles co-branding, og størrelsesforholdet mellom Mattilsynet-logoen og navnet skal alltid være det samme. Navnet skrives i Avenir Medium, og logo og navn skilles med en linje som er halvparten så bred som linjene i logoen. Alle elementer er i samme farge, Granskog (#054449). Under sees noen eksempler på slike co-branding-oppsett.
+
+[GRAFIKK]

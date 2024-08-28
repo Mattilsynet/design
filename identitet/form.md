@@ -1,8 +1,10 @@
 ---
-title: Form
+title: Form og animasjon
 ---
 
-# Avrundet form
+# Form og animasjon
+
+## Avrundet form
 
 Mattilsynet jobber via tre hovedroller - veileder, myndighetsutøver og beredskapsaktør. De visuelle elementene våre skal kommunisere disse rollene. De vinkelrette hjørnene på tekstboksene speiler myndighetsrollen og beredskapsrollen og det avrundende hjørnet - den mykere formen - speiler veilederrollen.
 
@@ -34,3 +36,7 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
     </div>
   </div>
 </div>
+
+## Animasjon
+
+Under arbeid

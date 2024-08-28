@@ -8,18 +8,19 @@ import fs from "node:fs";
 
 const toNorwegian = (str: string) => str.replace(/--/g, ' ').replace(/aa/g, 'å').replace(/ae/g, 'æ').replace(/ooo/g, 'ø');
 const toTitleCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1)}`;
-const getFiles = (folderPath: string) => {
+const getFiles = (folderPath: string, items: { text: string; link: string }[] = []) => {
   const docsPath = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-  const files: Array<{ text: string; link: string }> = [];
+  const existing = items.map(({ link }) => link);
+  
+  for(const file of fs.readdirSync(path.resolve(docsPath, folderPath))) {
+    const link = path.join('/', folderPath, path.basename(file, '.md')); // Need the preceding slash for prev/next buttons to work
+    const text = toTitleCase(toNorwegian(file.slice(0, -3)));
 
-  for(const file of fs.readdirSync(path.resolve(docsPath, folderPath)))
-    if (file !== 'index.md' && file.endsWith('.md') && !file.startsWith('_'))
-      files.push({
-        text: toTitleCase(toNorwegian(file.slice(0, -3))),
-        link: path.join('/', folderPath, file.slice(0, -3)) // Need the preceding slash for prev/next buttons to work
-      });
+    if (file !== 'index.md' && file.endsWith('.md') && !file.startsWith('_') && !existing.includes(link))
+      items.push({ text, link });
+  }
 
-  return files;
+  return items;
 }
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -62,21 +63,34 @@ export default defineConfig({
       {
         text: "Identitet",
         collapsed: true,
-        items: getFiles("identitet")
+        items: [
+          { text: "Kompasset og roller", link: "/identitet/kompasset" },
+          { text: "Logo", link: "/identitet/logo" },
+          { text: "Farger", link: "/identitet/farger" },
+          { text: "Typografi", link: "/identitet/typografi" },
+          { text: "Form", link: "/identitet/form" },
+          { text: "Ikoner og illustrasjoner", link: "/identitet/grafikk" },
+          { text: "Bildestil", link: "/identitet/bildestil" },
+          { text: "Språk", link: "/identitet/sprak" },
+        ]
       },
       {
         text: "Designsystem",
         collapsed: true,
-        items: getFiles("designsystem")
+        items: getFiles("designsystem", [
+          { text: "Kom i gang", link: "/designsystem/guide" },
+          { text: "Universell utforming", link: "/designsystem/uu" },
+          { text: "Tokens", link: "/designsystem/tokens" },
+        ])
       },
       {
-        text: "Profilmateriale",
+        text: "Profilering",
         collapsed: true,
-        items: getFiles("profilmateriale")
+        items: getFiles("profilering"),
       },
       {
         text: "Nedlastinger",
-        link: "/nedlastinger"
+        link: "/nedlastinger",
       }
     ],
 		search: {
