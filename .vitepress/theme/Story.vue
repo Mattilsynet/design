@@ -18,7 +18,6 @@ onMounted(() =>
 	})
 );
 </script>
-
 <template>
   <iframe class="render" ref="iframe" data-why :src="withBase('/designsystem/_whyframe')" title="Preview" :style="{ aspectRatio }">
     <slot></slot>
@@ -28,7 +27,6 @@ onMounted(() =>
     <summary>Show code</summary>
   </details> -->
 </template>
-
 <style scoped>
 summary { cursor: pointer; font-size: 1rem }
 .render {

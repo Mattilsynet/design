@@ -42,7 +42,7 @@ const hexToRgb = (color: string) => {
     display: grid;
     font-size: 1rem;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, 12rem);
+    grid-template-columns: repeat(auto-fill, 12rem);
     line-height: 1.4;
     list-style: none;
     margin: 2rem 0;

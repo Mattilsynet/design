@@ -30,7 +30,29 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
 ## Illustrasjonsbibliotek
 Under er illustrasjonene som er utviklet så langt:
 
+### Planter:
+<Graphics path="/identitet/illustrations/plants" />
+
+### Mat:
+<Graphics path="/identitet/illustrations/food" />
+
+### Dyr:
 <Graphics path="/identitet/illustrations/animals" />
 
+### Akvakultur:
+<Graphics path="/identitet/illustrations/aqua" />
+
+### Drikkevann:
+<Graphics path="/identitet/illustrations/water" />
+
+### Kosmetikk:
+<Graphics path="/identitet/illustrations/cosmetics" />
+
+### Mennesker:
+<Graphics path="/identitet/illustrations/humans" />
+
+### Visjonen vår – menneske, dyr og natur:
+<Graphics path="/identitet/illustrations/vision" />
+
 ## Illustrasjonsbibliotek og modulsystem
-På sikt skal det jobbes ut et modulsystem slik at ...
+På sikt skal det jobbes ut et modulsystem

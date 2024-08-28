@@ -21,18 +21,27 @@ body::before {
 }
 
 /* Navbar, sidebar and table of content */
-.VPNavBar { background: white!important; border-bottom: 1px solid var(--mt-divider) }
+.VPNavBar { background: var(--mt-hvit)!important; border-bottom: 1px solid var(--mt-divider) }
 .VPNavBar .title { font-size: 0!important } /* Hide textual logo */
 .VPNavBar .content-body { background: none!important }
 .VPNavBar .VPNavBarSearch { justify-content: end }
 .VPNavBar .VPNavBarSearch .DocSearch-Button-Keys { display: none }
 .VPNavBar .VPNavBarSearch .DocSearch-Button-Placeholder { padding: 0 }
-.VPSidebar { border-right: 1px solid var(--mt-divider) }
 .VPSidebar .VPSidebarItem .text { font-size: 1.125rem; line-height: 1.6; color: inherit!important; }
 .VPSidebar .VPSidebarItem.level-1 .text { font-weight: inherit }
 .VPSidebar .VPSidebarItem.level-0:not(.collapsible) .text { font-weight: 700 }
 .VPSidebar .VPSidebarItem.is-active .indicator { background: currentcolor }
-.VPDoc .content-container { max-width: none!important }
+.VPDoc.VPDoc { padding-inline: 0 }
+.VPDoc .aside,
+.VPDoc .content:has(.content-container) { padding: 0 }
+.VPDoc .content-container {
+  background: var(--mt-hvit);
+  border-radius: var(--mt-radius-lg);
+  border: 1px solid var(--mt-divider);
+  max-width: none!important;
+  margin-bottom: 9rem;
+  padding: 5rem 1rem;
+}
 .VPDocOutlineItem { padding-right: .5rem } /* Make space for focus indicator */
 #VPSidebarNav { padding-top: 48px }
 
@@ -41,7 +50,8 @@ body::before {
 .vp-doc > * > :not([data-fill]), .VPDocFooter { max-width: 45rem; margin-inline: auto; }
 .vp-doc p { font: inherit }
 .vp-doc h1 { font-weight: 700; font-size: 3rem; line-height: 1.2; margin-top: 3rem }
-.vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2 }
+.vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2; margin-top: 3rem }
+.vp-doc h3 { font-weight: 700; font-size: 1.25rem; line-height: 1.2; margin-top: 3rem }
 
 /* VPTeamMembers used for overview pages */
 .VPTeamMembersItem.VPTeamMembersItem { position: relative; transition: .2s; border-radius: var(--mt-radius-md); }
@@ -57,8 +67,9 @@ body::before {
 /* Theme */
 :root {
   --mt-radius-md: .5rem;
+  --mt-radius-lg: 1rem;
 
-  --mt-divider:  color-mix(in hsl, currentcolor, transparent 80%); /* TODO: Review Gøril? var(--mt-sand); /* */
+  --mt-divider:  color-mix(in hsl, currentcolor, transparent 90%);
   --mt-gaasunge: #faf6f3;
   --mt-granskog: #054449;
   --mt-lys-furu: #9bcab9;
@@ -66,10 +77,11 @@ body::before {
   --mt-sand: #F4ECE6;
   --mt-sommerdag: #f9cc76;
   --mt-solstreif: #f8de9c;
+  --mt-hvit: white;
 
   --vp-font-family-base: Avenir, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --vp-nav-bg-color: white;
-  --vp-nav-screen-bg-color: white;
+  --vp-nav-bg-color: var(--mt-hvit);
+  --vp-nav-screen-bg-color: var(--mt-hvit);
   --vp-layout-max-width: 100vw;
   --vp-sidebar-width: 300px;
   --vp-sidebar-bg-color: var(--mt-gaasunge);
@@ -78,14 +90,14 @@ body::before {
   --vp-c-divider: transparent;
 
   --vp-c-bg: var(--mt-gaasunge);
-  --vp-c-bg-alt: white;
-  --vp-c-bg-soft: white;
+  --vp-c-bg-alt: var(--mt-hvit);
+  --vp-c-bg-soft: var(--mt-hvit);
   --vp-c-text-1: var(--mt-mork-granskog);
   --vp-c-text-2: var(--mt-mork-granskog);
 
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
-  --vp-c-default-3: white;
+  --vp-c-default-3: var(--mt-hvit);
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
   --vp-c-brand-1: var(--mt-granskog);
@@ -126,7 +138,7 @@ body::before {
  * - `XXX-2`: The color used mainly for hover state of the button.
  *
  * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
+ *   It must satisfy the contrast ratio with pure var(--mt-hvit) (#ffffff) text on
  *   top of it.
  *
  * - `XXX-soft`: The color used for subtle background such as custom container

@@ -2,28 +2,28 @@
 import { withBase } from 'vitepress';
 import { data } from './graphics.data.ts'
 
-const { path } = defineProps<{ path: string }>();
-  const icons: Record<string, string> = Object.fromEntries(data.filter(([file]) => file.startsWith(path)));
+const { path } = defineProps<{ path: string; justify?: string }>();
+  const graphics: Record<string, string> = Object.fromEntries(data.filter(([file]) => file.startsWith(path)));
 </script>
 <style scoped>
-  .icons {
-    justify-content: center;
+  .graphics {
     display: grid;
     font-size: 1rem;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, 12rem);
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 12rem);
     line-height: 1.4;
     list-style: none;
-    margin: 2rem 0;
+    margin: 2rem auto;
     padding: 0;
   }
-  .icons a { display: flex; align-items: center; justify-content: center; transition: .2s; background: white; padding: 2rem; border-radius: var(--mt-radius-md) }
-  .icons a:hover { scale: 1.1 }
-  .icons a:active { scale: .95 }
-  .icons :deep(svg) { width: 100%; height: auto }
+  .graphics a { display: flex; transition: .2s; background: var(--mt-gaasunge); padding: 2rem; border-radius: var(--mt-radius-md) }
+  .graphics a:hover { scale: 1.1 }
+  .graphics a:active { scale: .95 }
+  .graphics :deep(svg) { aspect-ratio: 1 / 1; width: 100%; height: auto }
 </style>
 <template>
-  <div class="icons" data-fill>
-    <a v-for="(svg, file) in icons" v-html="svg" :href="withBase(file)" download></a>
+  <div class="graphics" data-fill>
+    <a v-for="(svg, file) in graphics" v-html="svg" :href="withBase(file)" download></a>
   </div>
 </template>

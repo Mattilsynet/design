@@ -15,7 +15,7 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
   .card { display: flex; flex-wrap: wrap; overflow: hidden; border-bottom-right-radius: 4rem; font-size: 1rem; margin: 3rem 0 }
   .card > * { flex: 1 1 10rem; width: 50%; height: auto; object-fit: cover }
   .card > div { padding: 2.5rem; background: var(--mt-granskog); color: var(--mt-gaasunge) }
-  .card--light > div { background: white; color: var(--mt-mork-granskog) } /* TODO: Maybe change background based on surface principles */
+  .card--light > div { background: var(--mt-gaasunge); color: var(--mt-mork-granskog) }
   .card__title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem }
 </style>
 <div :class="`${$style.card} vp-raw`">
