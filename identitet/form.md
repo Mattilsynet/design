@@ -10,4 +10,27 @@ Mattilsynet jobber via tre hovedroller - veileder, myndighetsutøver og beredska
 
 Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørne og den andre rettvinklede hjørner. Avrundingen er hentet fra frøformen i logosymbolet, og skal alltid være nederst i høyre hjørne.
 
-[GRAFIKK]
+
+<style module>
+  .card { display: flex; flex-wrap: wrap; overflow: hidden; border-bottom-right-radius: 4rem; font-size: 1rem; margin: 3rem 0 }
+  .card > * { flex: 1 1 10rem; width: 50%; height: auto; object-fit: cover }
+  .card > div { padding: 2.5rem; background: var(--mt-granskog); color: var(--mt-gaasunge) }
+  .card--light > div { background: white; color: var(--mt-mork-granskog) } /* TODO: Maybe change background based on surface principles */
+  .card__title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem }
+</style>
+<div :class="`${$style.card} vp-raw`">
+  <div>
+    <div :class="$style.card__title">Øremerking av svin</div>
+    Alle svin skal merkes med et øremerke som er godkjent av Mattilsynet. Dette gjelder også svin i dyrehold som er hobbypreget.
+  </div>
+  <img alt="" src="/form-1.png" />
+</div>
+<div>
+  <div :class="`${$style.card} ${$style['card--light']} vp-raw`" style="max-width: 25rem">
+    <img alt="" src="/form-2.png" />
+    <div>
+      Aktuelt
+      <div :class="$style.card__title">Svinepest i Sverige &rarr;</div>
+    </div>
+  </div>
+</div>

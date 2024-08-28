@@ -18,12 +18,19 @@ Merk at illustrasjonene som hovedregel ikke skal brukes sammen med foto.
 ## Farger
 Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge som i hovedsak kun skal benyttes i illustrasjonene, og ikke på andre elementer. Vi har 4 ulike hudtoner i bruk på illustrasjonene.
 
-[FARGER]
+<Colors :values="[
+  { hex: '#F8E0D8', name: 'Hudtone, lysest' },
+  { hex: '#C58F79', name: 'Hudtone, mellom' },
+  { hex: '#7F433B', name: 'Hud og hår, mørk' },
+  { hex: '#ED9A32', name: 'Hår, gylden' },
+  { hex: '#1E1A28', name: 'Hår, mørk' },
+  { hex: '#1D57AA', name: 'Klær, mellomblå', desc: 'Brukes som alternativ til Fjord på mørke flater' }
+]" />
 
 ## Illustrasjonsbibliotek
 Under er illustrasjonene som er utviklet så langt:
 
-[GRAFIKK]
+<Graphics path="/identitet/illustrations/animals" />
 
 ## Illustrasjonsbibliotek og modulsystem
 På sikt skal det jobbes ut et modulsystem slik at ...

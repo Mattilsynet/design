@@ -26,6 +26,7 @@ body::before {
 .VPNavBar .content-body { background: none!important }
 .VPNavBar .VPNavBarSearch { justify-content: end }
 .VPNavBar .VPNavBarSearch .DocSearch-Button-Keys { display: none }
+.VPNavBar .VPNavBarSearch .DocSearch-Button-Placeholder { padding: 0 }
 .VPSidebar { border-right: 1px solid var(--mt-divider) }
 .VPSidebar .VPSidebarItem .text { font-size: 1.125rem; line-height: 1.6; color: inherit!important; }
 .VPSidebar .VPSidebarItem.level-1 .text { font-weight: inherit }
@@ -43,7 +44,7 @@ body::before {
 .vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2 }
 
 /* VPTeamMembers used for overview pages */
-.VPTeamMembersItem { position: relative; transition: .2s }
+.VPTeamMembersItem.VPTeamMembersItem { position: relative; transition: .2s; border-radius: var(--mt-radius-md); }
 .VPTeamMembersItem:active { transform: scale(.98); }
 .VPTeamMembersItem .avatar { all: unset }
 .VPTeamMembersItem .avatar-img { position: static; width: 100%; object-fit: none; margin-bottom: 20px; aspect-ratio: 8 / 3 }
@@ -55,6 +56,8 @@ body::before {
 
 /* Theme */
 :root {
+  --mt-radius-md: .5rem;
+
   --mt-divider:  color-mix(in hsl, currentcolor, transparent 80%); /* TODO: Review Gøril? var(--mt-sand); /* */
   --mt-gaasunge: #faf6f3;
   --mt-granskog: #054449;
@@ -77,8 +80,8 @@ body::before {
   --vp-c-bg: var(--mt-gaasunge);
   --vp-c-bg-alt: white;
   --vp-c-bg-soft: white;
-  --vp-c-text-1: var(--mt-granskog);
-  --vp-c-text-2: var(--mt-granskog);
+  --vp-c-text-1: var(--mt-mork-granskog);
+  --vp-c-text-2: var(--mt-mork-granskog);
 
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);

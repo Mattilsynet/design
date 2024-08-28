@@ -1,6 +1,7 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import Colors from "./Colors.vue";
+import Graphics from "./Graphics.vue";
 import Overview from "./Overview.vue";
 import Story from "./Story.vue";
 
@@ -12,6 +13,7 @@ export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.component('Colors', Colors);
+    app.component('Graphics', Graphics);
     app.component('Overview', Overview);
     app.component('Story', Story);
   }

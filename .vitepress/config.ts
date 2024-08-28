@@ -6,7 +6,6 @@ import { whyframeVue } from '@whyframe/vue'
 import path from "node:path";
 import fs from "node:fs";
 
-const base = '/design/';
 const toNorwegian = (str: string) => str.replace(/--/g, ' ').replace(/aa/g, 'å').replace(/ae/g, 'æ').replace(/ooo/g, 'ø');
 const toTitleCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1)}`;
 const getFiles = (folderPath: string) => {
@@ -30,13 +29,12 @@ export default defineConfig({
       whyframeVue({ include: /\.(?:vue|md)$/ }) // Files to scan
     ]
   },
-  base,
   lang: "nb-NO",
   title: "Mattilsynet Design",
   description: "Mattilsynet Design",
   cleanUrls: true,
   head: [
-    ["link", { rel: "icon", href: path.join(base, '/symbol.svg') }],
+    ["link", { rel: "icon", href: '/symbol.svg' }],
     // ["script", { acync: "", defer: "", src: "https://scripts.withcabin.com/hello.js" }], // Analytics
   ],
   appearance: false,

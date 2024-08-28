@@ -3,16 +3,10 @@ import { computed, onMounted, ref } from "vue";
 import { getWhyframeSource } from "@whyframe/core/utils";
 import { withBase } from "vitepress"
 
-const { aspectRatio, maxWidth } = defineProps({
-	maxWidth: {
-		type: String,
-		default: "100vw",
-	},
-	aspectRatio: {
-		type: String,
-		default: "16 / 9",
-	},
-});
+const { aspectRatio = '16 / 9', maxWidth = '100vw' } = defineProps<{
+	aspectRatio?: string;
+	maxWidth?: string;
+}>();
 
 const iframe = ref<HTMLIFrameElement>();
 const source = computed(() => iframe.value && getWhyframeSource(iframe.value));

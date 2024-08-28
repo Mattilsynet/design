@@ -13,7 +13,7 @@ const { columns, values = [] } = defineProps<{
 
 const hexToRgb = (color: string) => {
   const values = color.slice(1).match(color[6] ? /(\S{2})/g : /(\S{1})/g) || [];
-  return values.map((value: string) => parseInt(value, 16));
+  return values.map((value: string) => Number.parseInt(value, 16));
 }
 
 // const hexToBrightness = (color: string) => {
@@ -23,9 +23,9 @@ const hexToRgb = (color: string) => {
 </script>
 
 <template>
-  <ul data-fill ref="list" class="color-list" :style="{ gridTemplateColumns: columns }">
+  <ul data-fill ref="list" class="colors" :style="{ gridTemplateColumns: columns }">
     <li v-for="value in values">
-      <div class="color-preview" :style="{ background: value.hex }">
+      <div class="preview" :style="{ background: value.hex }">
 
       </div>
       <strong>{{ value.name }}</strong>
@@ -37,7 +37,7 @@ const hexToRgb = (color: string) => {
 </template>
 
 <style scoped>
-  .color-list {
+  .colors {
     justify-content: center;
     display: grid;
     font-size: 1rem;
@@ -48,14 +48,14 @@ const hexToRgb = (color: string) => {
     margin: 2rem 0;
     padding: 0;
   }
-  .color-list > li {
+  .colors > li {
     border-radius: .5rem;
     margin: 0!important;
     padding: 1rem;
   }
-  .color-list strong { display: block }
-  .color-list small { display: block; margin-top: .5rem; font-size: .875rem }
-  .color-preview {
+  .colors strong { display: block }
+  .colors small { display: block; margin-top: .5rem; font-size: .875rem }
+  .preview {
     align-items: center;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
