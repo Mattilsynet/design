@@ -54,7 +54,7 @@ export default defineConfig({
     nav: [
       { text: "Identitet", link: "/identitet" },
       { text: "Designsystem", link: "/designsystem" },
-      { text: "Profilmateriale", link: "/profilmateriale" }
+      { text: "Profilering", link: "/profilering" }
     ],
     socialLinks: [
       { icon: "github", link: "https://github.com/Mattilsynet/design/" }

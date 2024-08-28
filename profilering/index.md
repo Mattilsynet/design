@@ -1,7 +1,7 @@
 ---
-title: Profilmateriale
+title: Profilering
 ---
 
-# Profilmateriale
+# Profilering
 
 <Overview />

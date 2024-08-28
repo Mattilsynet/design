@@ -13,7 +13,7 @@ hero:
       text: Designsystem
       link: /designsystem
     - theme: brand
-      text: Profilmateriale
-      link: /profilmateriale
+      text: Profilering
+      link: /profilering
 ---
 
