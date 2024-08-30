@@ -40,7 +40,7 @@ body:has(.VPNav)::before {
   border: 1px solid var(--mt-divider);
   max-width: none!important;
   margin-bottom: 9rem;
-  padding: 5rem 5%;
+  padding: calc(10% - 1rem);
 }
 .VPDocOutlineItem { padding-right: .5rem } /* Make space for focus indicator */
 #VPSidebarNav { padding-top: 48px }
@@ -51,7 +51,7 @@ body:has(.VPNav)::before {
 .vp-doc :where([data-fill]) { display: block; margin-block: 3rem }
 .vp-doc h3:has(+ [data-fill]) { max-width: none }
 .vp-doc p { font: inherit }
-.vp-doc h1 { font-weight: 700; font-size: 3rem; line-height: 1.2; margin-top: 3rem }
+.vp-doc h1 { font-weight: 700; font-size: 3rem; line-height: 1.2; margin: 0 }
 .vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2; margin-top: 3rem }
 .vp-doc h3 { font-weight: 700; font-size: 1.25rem; line-height: 1.2; margin-top: 3rem }
 

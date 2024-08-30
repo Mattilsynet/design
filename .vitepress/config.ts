@@ -68,7 +68,7 @@ export default defineConfig({
           { text: "Logo", link: "/identitet/logo" },
           { text: "Farger", link: "/identitet/farger" },
           { text: "Typografi", link: "/identitet/typografi" },
-          { text: "Form", link: "/identitet/form" },
+          { text: "Form og bevegelse", link: "/identitet/form" },
           { text: "Ikoner og illustrasjoner", link: "/identitet/grafikk" },
           { text: "Bildestil", link: "/identitet/bildestil" },
           { text: "Språk", link: "/identitet/sprak" },

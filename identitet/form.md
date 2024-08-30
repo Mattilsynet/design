@@ -1,8 +1,8 @@
 ---
-title: Form og animasjon
+title: Form og bevegelse
 ---
 
-# Form og animasjon
+# Form og bevegelse
 
 ## Avrundet form
 
@@ -37,6 +37,6 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
   </div>
 </div>
 
-## Animasjon
+## Bevegelse
 
 Under arbeid
