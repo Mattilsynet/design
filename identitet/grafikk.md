@@ -82,5 +82,5 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
 ### Visjonen vår – menneske, dyr og natur:
 <Graphics path="/identitet/illustrations/vision" />
 
-### Illustrassystem
+### Illustrasjonssystem
 På sikt skal det jobbes ut et modulsystem

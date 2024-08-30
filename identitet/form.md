@@ -20,7 +20,7 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
   .card--light > div { background: var(--mt-gaasunge); color: var(--mt-mork-granskog) }
   .card__title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem }
 </style>
-<div :class="`${$style.card} vp-raw`">
+<div :class="$style.card">
   <div>
     <div :class="$style.card__title">Øremerking av svin</div>
     Alle svin skal merkes med et øremerke som er godkjent av Mattilsynet. Dette gjelder også svin i dyrehold som er hobbypreget.
