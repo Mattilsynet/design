@@ -55,17 +55,8 @@ body:has(.VPNav)::before {
 .vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2; margin-top: 3rem }
 .vp-doc h3 { font-weight: 700; font-size: 1.25rem; line-height: 1.2; margin-top: 3rem }
 
-/* VPTeamMembers used for overview pages */
-.VPTeamMembersItem.VPTeamMembersItem { position: relative; transition: .2s; border-radius: var(--mt-radius-md) }
-.VPTeamMembersItem .profile { background: var(--mt-gaasunge) }
-.VPTeamMembersItem:active { transform: scale(.98); }
-.VPTeamMembersItem .avatar { all: unset }
-.VPTeamMembersItem .avatar-img { position: static; width: 100%; object-fit: none; margin-bottom: 20px; aspect-ratio: 8 / 3 }
-.VPTeamMembersItem .avatar-img:not([src]) { display: none }
-.VPTeamMembersItem .data { padding: 0!important }
-.VPTeamMembersItem .name { display: none }
-.VPTeamMembersItem a { font-weight: 500; font-size: 1rem; text-decoration: none }
-.VPTeamMembersItem a::before { content: ''; position: absolute; inset: 0 } /* Large click surface */
+.VPHero { margin-top: 1%!important }
+.VPButton { font-size: inherit!important }
 
 /* Theme */
 :root {

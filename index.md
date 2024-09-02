@@ -5,6 +5,8 @@ layout: home
 hero:
   name: "Mattilsynet Design"
   tagline: Mattilsynets visulle identitet og designsystem hjelper deg å lage gode tjenester for våre brukere.
+  image:
+    src: /identitet/illustrations/vision/person-animal-nature-1.svg
   actions:
     - theme: brand
       text: Identitet

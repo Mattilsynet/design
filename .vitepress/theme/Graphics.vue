@@ -11,7 +11,7 @@ const { path } = defineProps<{ path: string; justify?: string }>();
     font-size: 1rem;
     gap: 1rem;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     line-height: 1.4;
     list-style: none;
     padding: 0;
