@@ -9,7 +9,7 @@ title: Ikoner og illustasjoner
 Under er de seks egentegnede ikonene til Mattilsynet. De er basert på frøformen i logosymbolet.
 Dette visuelle grepet skaper egenart og et helhetlig visuelt uttrykk. Ikonene er blant annet brukt for å fremheve toppoppgavene på mattilsynet.no. Merk at disse ikke skal brukes i samme oppsett som ikoner fra andre ikonpakker. 
 
-<Graphics path="/identitet/icons" />
+<Svgs path="/identitet/icons" />
 
 ## Andre ikonbibliotek
 Vær oppmerksom på at de egentegnede ikonene ikke skal brukes i samme oppsett som ikoner fra andre ikonbibliotek.
@@ -59,28 +59,28 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
 ]" />
 
 ### Planter:
-<Graphics path="/identitet/illustrations/plants" />
+<Svgs path="/identitet/illustrations/plants" />
 
 ### Mat:
-<Graphics path="/identitet/illustrations/food" />
+<Svgs path="/identitet/illustrations/food" />
 
 ### Dyr:
-<Graphics path="/identitet/illustrations/animals" />
+<Svgs path="/identitet/illustrations/animals" />
 
 ### Akvakultur:
-<Graphics path="/identitet/illustrations/aqua" />
+<Svgs path="/identitet/illustrations/aqua" />
 
 ### Drikkevann:
-<Graphics path="/identitet/illustrations/water" />
+<Svgs path="/identitet/illustrations/water" />
 
 ### Kosmetikk:
-<Graphics path="/identitet/illustrations/cosmetics" />
+<Svgs path="/identitet/illustrations/cosmetics" />
 
 ### Mennesker:
-<Graphics path="/identitet/illustrations/humans" />
+<Svgs path="/identitet/illustrations/humans" />
 
 ### Visjonen vår – menneske, dyr og natur:
-<Graphics path="/identitet/illustrations/vision" />
+<Svgs path="/identitet/illustrations/vision" />
 
 ### Illustrasjonssystem
 På sikt skal det jobbes ut et modulsystem
