@@ -18,7 +18,7 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
   .card > * { flex: 1 1 10rem; width: 50%; height: auto; object-fit: cover }
   .card > div { padding: 2.5rem; background: var(--mt-granskog); color: var(--mt-gaasunge) }
   .card--light > div { background: var(--mt-gaasunge); color: var(--mt-mork-granskog) }
-  .card__title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem }
+  .card__title { font-size: 1.5rem; line-height: 1.2; font-weight: bold; margin-bottom: 1rem }
 </style>
 <div :class="$style.card">
   <div>
@@ -28,7 +28,7 @@ Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørn
   <img alt="" src="/form-1.png" />
 </div>
 <div>
-  <div :class="`${$style.card} ${$style['card--light']} vp-raw`" style="max-width: 25rem">
+  <div :class="`${$style.card} ${$style['card--light']}`" style="max-width: 18rem">
     <img alt="" src="/form-2.png" />
     <div>
       Aktuelt
