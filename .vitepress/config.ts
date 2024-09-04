@@ -48,7 +48,7 @@ export default defineConfig({
     returnToTopLabel: "Til toppen",
     sidebarMenuLabel: "Navigasjon",
     editLink: {
-			pattern: "https://github.com/Mattilsynet/design/blob/master/:path",
+			pattern: "https://github.com/Mattilsynet/design/edit/master/:path",
 			text: "Foreslå endringer på denne siden",
 		},
     nav: [
