@@ -1,6 +1,10 @@
+@import url('../../designsystem/all.css');
+
 /* Work in progress banner */
-:root {
-  --vp-layout-top-height: 2rem;
+:root { --vp-layout-top-height: 2rem }
+body {
+  font-size: var(--mt-font-md);
+  line-height: var(--mt-line-height-md);
 }
 body:has(.VPNav)::before {
   background: linear-gradient(100deg, var(--mt-solstreif) 25%, var(--mt-sommerdag) 25%, var(--mt-sommerdag) 75% , var(--mt-solstreif) 75%) center/5rem 100%;
@@ -12,12 +16,6 @@ body:has(.VPNav)::before {
   position: fixed;
   text-align: center;
   z-index: 999;
-}
-
-/* Ensure accessible focus */
-:focus-visible:not(.search-input) {
-  outline: 0!important;
-  box-shadow: 0 0 0 1px var(--vp-c-bg),0 0 0 3px var(--vp-c-brand-1),0 0 0 4px var(--vp-c-bg)!important;
 }
 
 /* Navbar, sidebar and table of content */
@@ -86,8 +84,8 @@ body:has(.VPNav)::before {
   --vp-c-bg: var(--mt-gaasunge);
   --vp-c-bg-alt: var(--mt-hvit);
   --vp-c-bg-soft: var(--mt-hvit);
-  --vp-c-text-1: var(--mt-mork-granskog);
-  --vp-c-text-2: var(--mt-mork-granskog);
+  --vp-c-text-1: var(--mt-granskog);
+  --vp-c-text-2: var(--mt-granskog);
 
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);

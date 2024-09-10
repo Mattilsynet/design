@@ -16,7 +16,7 @@ const getFiles = (folderPath: string, items: { text: string; link: string }[] = 
     const link = path.join('/', folderPath, path.basename(file, '.md')); // Need the preceding slash for prev/next buttons to work
     const text = toTitleCase(toNorwegian(file.slice(0, -3)));
 
-    if (file !== 'index.md' && file.endsWith('.md') && !file.startsWith('_') && !existing.includes(link))
+    if (file.endsWith('.md') && !file.startsWith('_') && !existing.includes(link))
       items.push({ text, link });
   }
 
@@ -24,6 +24,13 @@ const getFiles = (folderPath: string, items: { text: string; link: string }[] = 
 }
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.includes('-')
+      }
+    }
+  },
   vite: {
     plugins: [
       whyframe({ components: [{ name: 'Story', showSource: true }] }),
@@ -64,12 +71,14 @@ export default defineConfig({
         text: "Identitet",
         collapsed: true,
         items: [
+          { text: "Introduksjon", link: "/identitet/" },
           { text: "Kompasset og roller", link: "/identitet/kompasset" },
           { text: "Logo", link: "/identitet/logo" },
           { text: "Farger", link: "/identitet/farger" },
           { text: "Typografi", link: "/identitet/typografi" },
           { text: "Form og bevegelse", link: "/identitet/form" },
-          { text: "Ikoner og illustrasjoner", link: "/identitet/grafikk" },
+          { text: "Ikoner", link: "/identitet/ikoner" },
+          { text: "Illustrasjoner", link: "/identitet/illustrasjoner" },
           { text: "Bildestil", link: "/identitet/bildestil" },
           { text: "Språk", link: "/identitet/sprak" },
         ]
@@ -78,7 +87,8 @@ export default defineConfig({
         text: "Designsystem",
         collapsed: true,
         items: getFiles("designsystem", [
-          { text: "Kom i gang", link: "/designsystem/guide" },
+          { text: "Introduksjon", link: "/designsystem/" },
+          { text: "Alle komponenter", link: "/designsystem/all" },
           { text: "Universell utforming", link: "/designsystem/uu" },
           { text: "Tokens", link: "/designsystem/tokens" },
         ])
@@ -90,7 +100,7 @@ export default defineConfig({
       },
       {
         text: "Nedlastinger",
-        link: "/nedlastinger",
+        link: "/nedlastinger/",
       }
     ],
 		search: {

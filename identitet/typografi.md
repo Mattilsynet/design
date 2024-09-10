@@ -4,6 +4,12 @@ title: Typografi
 
 # Typografi
 
+<!--[NEDLASTINGSKNAPP]
+
+[Farge og typografi sammen: på lys bakgrunn - granskog (med mindre varsel?), på mørk bakgrunn (hvit i funksjonelle flater, lav (branding), )]
+[Slik bruker du Avinir på Mac]
+[Slik bruker du Avinir på PC]-->
+
 ## Bakgrunn
 Vår nye visuelle identitet skal gjøre det enklere å forstå hvem vi er. Mattilsynet har et stort og bredt samfunnsoppdrag. Vi ønsker å være en vennlig hjelper og opptre helhetlig og tydelig som ett lag, sammen med omgivelsene våre. Vi skal trygge framtiden for mennesker, dyr og natur, og vi jobber med hele verdikjeden - fra jord og fjord til bord. Derfor har vi nå en tydelig sirkelform i logosymbolet vårt.
 Vi skal kommunisere tydelig og enkelt, og derfor har vi laget en ny logo uten for mange detaljer. Navnetrekket har god lesbarhet, og logoen er enkel å bruke i alle digitale og fysiske flater. Det nye symbolet kan gi assosiasjoner til for eksempel jorda vår, et blad, en fisk, bølger og soloppgang.
@@ -21,12 +27,3 @@ Ulike vekter kan settes sammen for å skape kontrast i teksten, tydeliggjøre et
 Avenir Black/Demi kan også forstørres opp på en flate for å fremheve et budskap. Sammen med særegne kombinasjoner fra fargepaletten vår, gir dette en tydelig dekorativ effekt - se eksempelet under.
 
 [GRAFIKK]
-
-## Huskeregler
-
-Som hovedregel bør man bruke store og små bokstaver i overskrifter. Unngå å bruke kursiv i overskrifter.
-
-- *Ikke bruk kursiv i overskrifter*
-- Man **bør unngå** å blande ulike **skriftvekter** i samme overskrift.
-- I k k e &nbsp; b r u k &nbsp; s t o r e &nbsp; m e l l o m r o m m e l l o m &nbsp; b o k s t a v e n e
-- MAN BØR UNNGÅ Å BRUKE STORE BOKSTAVER I OVERSKRIFTER

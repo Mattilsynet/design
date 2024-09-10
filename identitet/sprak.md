@@ -2,6 +2,15 @@
 title: Språk
 ---
 
+<!--## Huskeregler (ta vare på)
+
+Som hovedregel bør man bruke store og små bokstaver i overskrifter. Unngå å bruke kursiv i overskrifter.
+
+- *Ikke bruk kursiv i overskrifter*
+- Man **bør unngå** å blande ulike **skriftvekter** i samme overskrift.
+- I k k e &nbsp; b r u k &nbsp; s t o r e &nbsp; m e l l o m r o m m e l l o m &nbsp; b o k s t a v e n e
+- MAN BØR UNNGÅ Å BRUKE STORE BOKSTAVER I OVERSKRIFTER-->
+
 # Slik skriver vi
 
 Mattilsynet skal være én aktør og kommunisere helhetlig. Derfor har vi laget en felles språkprofil.

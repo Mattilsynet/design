@@ -24,6 +24,7 @@
     "@types/node": "^22.5.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@u-elements/u-details": "^0.0.5",
     "@vitejs/plugin-react": "^4.3.1",
     "@whyframe/core": "^0.1.11",
     "@whyframe/vue": "^0.1.7",
