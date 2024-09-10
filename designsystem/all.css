@@ -34,8 +34,8 @@
     --mt-color-success-bg: var(--mt-bakgrunnsgronn);
     --mt-color-warning-text: var(--mt-granskog);
     --mt-color-warning-bg: var(--mt-bakgrunnsgul);
-    --mt-color-error-text: var(--mt-granskog);
-    --mt-color-error-bg: var(--mt-bakgrunnsrosa);
+    --mt-color-danger-text: var(--mt-granskog);
+    --mt-color-danger-bg: var(--mt-bakgrunnsrosa);
     
     --mt-breakpoint-md: 48em; /* 768px */
     --mt-breakpoint-lg: 64em; /* 1024px */
@@ -254,9 +254,9 @@
       --mt-alert-color: var(--mt-color-warning-text);
       --mt-alert-icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M12 2.25a.75.75 0 0 1 .66.39l9.52 17.25a.75.75 0 0 1-.65 1.11H2.47a.75.75 0 0 1-.65-1.11l9.52-17.25a.75.75 0 0 1 .66-.39m0 6.5a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75m-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0'/%3E%3C/svg%3E");
     }
-    &[data-severity="error"] {
-      --mt-alert-background: var(--mt-color-error-bg);
-      --mt-alert-color: var(--mt-color-error-text);
+    &[data-severity="danger"] {
+      --mt-alert-background: var(--mt-color-danger-bg);
+      --mt-alert-color: var(--mt-color-danger-text);
       --mt-alert-icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M7.74 2.47a.75.75 0 0 1 .53-.22h7.46a.75.75 0 0 1 .53.22l5.27 5.27c.14.14.22.33.22.53v7.46a.75.75 0 0 1-.22.53l-5.27 5.27a.75.75 0 0 1-.53.22H8.27a.75.75 0 0 1-.53-.22l-5.27-5.27a.75.75 0 0 1-.22-.53V8.27a.75.75 0 0 1 .22-.53zm1.29 5.5a.75.75 0 0 0-1.06 1.06L10.94 12l-2.97 2.97a.75.75 0 1 0 1.06 1.06L12 13.06l2.97 2.97a.75.75 0 1 0 1.06-1.06L13.06 12l2.97-2.97a.75.75 0 0 0-1.06-1.06L12 10.94z'/%3E%3C/svg%3E");
     }
   }
