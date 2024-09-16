@@ -1,8 +1,10 @@
 ---
-title: Bildestil
+title: Bilder
 ---
 
-# Bildestil
+# Bilder
+
+[Høyoppløselig versjon av vår bilder kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/:f:/r/sites/BilderMattilsynet/Delte%20dokumenter/Ny%20visuell%20identitet/Foto%20ny%20visuell%20identitet?csf=1&web=1&e=pa4XF3)
 
 Mattilsynets samfunnsoppdrag har en sentral fotostil som skal kunne brukes av alle, for å opptre mest mulig helhetlig. Bildestilen skal svare på virksomhetenes kommunikasjonsbehov, og samtidig oppleves som unik for Mattilsynet. Fotostilen skal først og fremst være gjenkjennelig gjennom motivene, og i noen grad ved tekniske kvaliteter, lyssetting og etterbehandling.
 
@@ -66,10 +68,5 @@ Husk å sjekke med fagpersoner om motiv før et eventuelt foto-opptak, slik at v
 ### Framtid
 Det er viktig å få fram at Mattilsynet er en framtidsrettet organisasjon som jobber med å digitalisere og effektivisere arbeidsprosessene sine.
 Av den grunn er det viktig å få med bruk av digitale verktøy i bildene - det viser at vi er en moderne aktør.
-
-[GRAFIKK]
-
-## De nye profilbildene våre
-Under er en oversikt over bildene som ble tatt til Mattilsynets nye visuelle identitet høsten 2023. [Høyoppløselig versjon av disse kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/sites/BilderMattilsynet?OR=Teams-HL&CT=1700747500738&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyOC8yMzEwMTIyNDgwNiJ9)
 
 [GRAFIKK]

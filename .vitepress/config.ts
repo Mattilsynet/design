@@ -79,7 +79,7 @@ export default defineConfig({
           { text: "Form og bevegelse", link: "/identitet/form" },
           { text: "Ikoner", link: "/identitet/ikoner" },
           { text: "Illustrasjoner", link: "/identitet/illustrasjoner" },
-          { text: "Bildestil", link: "/identitet/bildestil" },
+          { text: "Bilder", link: "/identitet/bilder" },
           { text: "Språk", link: "/identitet/sprak" },
         ]
       },

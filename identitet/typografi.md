@@ -4,7 +4,16 @@ title: Typografi
 
 # Typografi
 
+<!--Font er en viktig del av det visuelle uttrykket vårt. På mange flater er den nærmest den eneste identifiserende faktoren – gjerne i kombinasjon med farge og logo. Den er en del av den visuelle identiteten på samme måte som illustrasjoner, ikoner og bilder er det.
+
+God bruk av typografi er et viktig verktøy for å gjøre innholdet vårt tilgjengelig – lett å finne, lett å forstå, lett å bruke. Skriftsnittet er Avenir Next. Det er en omfattende skriftfamilie som inneholder et bredt spenn av vekter og tegnbredder, og som på den måten legger til rette for god og variert bruk avhengig av flate og kontekst.
+
+Vi bruker Avenir Next Medium i brødtekst og Avenir Next Bold i overskrifter. På kommunikasjonsflater der hele budskapet skal fremheves, kan Avenir Next Bold brukes på hele teksten.
+
+På lyse flater benyttes «Mørk granskog» som fontfarge (#032C30). På mørke flater kan man velge mellom «Lav» (#E2F1DF), «Nype» (#F9C4AA), «Himmel» (#9ECCED) eller «Solstreif» (#F8DE9C), avhengig av budskap og flate.-->
+
 <!--[NEDLASTINGSKNAPP]
+
 
 [Farge og typografi sammen: på lys bakgrunn - granskog (med mindre varsel?), på mørk bakgrunn (hvit i funksjonelle flater, lav (branding), )]
 [Slik bruker du Avinir på Mac]
