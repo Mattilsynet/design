@@ -4,6 +4,70 @@ title: Logo
 
 # Logo
 
+## Last ned logo
+
+<style>
+  .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
+  .logos > div:nth-child(even) img { background: var(--mt-granskog) }
+  .logos h3 { margin-block: .5rem .25rem; font-size: inherit }
+  .logos img { padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge) }
+  .logos span { display: flex; align-items: center; line-height: 1 }
+  .logos span a:last-child { margin-left: .5em; padding-left: .5em; border-left: 1px solid }
+  .logos span a[href$=".svg"]::before { content: 'Last ned ' }
+  .logos span a[href$=".png"]::before { content: 'Last ned ' }
+  .logos a:has(img) { opacity: 1 }
+</style>
+<div class="logos">
+  <div>
+    <a href="/logo/mattilsynet-logo.png" download><img src="/logo/mattilsynet-logo.png" alt="" /></a>
+    <h3>Hovedlogo norsk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo.png" download>PNG</a>
+    </span>
+  </div>
+  <div>
+    <a href="/logo/mattilsynet-logo-lys.png" download><img src="/logo/mattilsynet-logo-lys.png" alt="" /></a>
+    <h3>Lys logo norsk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo-lys.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo-lys.png" download>PNG</a>
+    </span>
+  </div>
+  <div>
+    <a href="/logo/mattilsynet-logo-engelsk.png" download><img src="/logo/mattilsynet-logo-engelsk.png" alt="" /></a>
+    <h3>Hovedlogo engelsk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo-engelsk.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo-engelsk.png" download>PNG</a>
+    </span>
+  </div>
+  <div>
+    <a href="/logo/mattilsynet-logo-lys-engelsk.png" download><img src="/logo/mattilsynet-logo-lys-engelsk.png" alt="" /></a>
+    <h3>Lys logo engelsk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo-lys-engelsk.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo-lys-engelsk.png" download>PNG</a>
+    </span>
+  </div>
+  <div>
+    <a href="/logo/mattilsynet-logo-samisk.png" download><img src="/logo/mattilsynet-logo-samisk.png" alt="" /></a>
+    <h3>Hovedlogo samisk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo-samisk.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo-samisk.png" download>PNG</a>
+    </span>
+  </div>
+  <div>
+    <a href="/logo/mattilsynet-logo-lys-samisk.png" download><img src="/logo/mattilsynet-logo-lys-samisk.png" alt="" /></a>
+    <h3>Lys logo samisk</h3>
+    <span>
+      <a href="/logo/mattilsynet-logo-lys-samisk.svg" download>SVG</a>
+      <a href="/logo/mattilsynet-logo-lys-samisk.png" download>PNG</a>
+    </span>
+  </div>
+</div>
+
 <!--[NEDLASTINGSKNAPP]-->
 
 ## Bakgrunn
