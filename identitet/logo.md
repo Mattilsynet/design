@@ -9,7 +9,7 @@ title: Logo
 <style>
   .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
   .logos > div:nth-child(even) img { background: var(--mt-granskog) }
-  .logos h3 { margin-block: .5rem .25rem; font-size: inherit }
+  .logos.logos h3 { margin-block: .5rem .25rem; font-size: inherit }
   .logos img { padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge) }
   .logos span { display: flex; align-items: center; line-height: 1 }
   .logos span a:last-child { margin-left: .5em; padding-left: .5em; border-left: 1px solid }
