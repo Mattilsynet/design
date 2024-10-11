@@ -19,7 +19,7 @@ title: Logo
 </style>
 <div class="logos">
   <div>
-    <a href="/logo/mattilsynet-logo.png" download><img src="/logo/mattilsynet-logo.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo.png" download><img src="/logo/mattilsynet-logo.svg" alt="" /></a>
     <h3>Hovedlogo norsk</h3>
     <span>
       <a href="/logo/mattilsynet-logo.svg" download>SVG</a>
@@ -27,7 +27,7 @@ title: Logo
     </span>
   </div>
   <div>
-    <a href="/logo/mattilsynet-logo-lys.png" download><img src="/logo/mattilsynet-logo-lys.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo-lys.png" download><img src="/logo/mattilsynet-logo-lys.svg" alt="" /></a>
     <h3>Lys logo norsk</h3>
     <span>
       <a href="/logo/mattilsynet-logo-lys.svg" download>SVG</a>
@@ -35,7 +35,7 @@ title: Logo
     </span>
   </div>
   <div>
-    <a href="/logo/mattilsynet-logo-engelsk.png" download><img src="/logo/mattilsynet-logo-engelsk.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo-engelsk.png" download><img src="/logo/mattilsynet-logo-engelsk.svg" alt="" /></a>
     <h3>Hovedlogo engelsk</h3>
     <span>
       <a href="/logo/mattilsynet-logo-engelsk.svg" download>SVG</a>
@@ -43,7 +43,7 @@ title: Logo
     </span>
   </div>
   <div>
-    <a href="/logo/mattilsynet-logo-lys-engelsk.png" download><img src="/logo/mattilsynet-logo-lys-engelsk.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo-lys-engelsk.png" download><img src="/logo/mattilsynet-logo-lys-engelsk.svg" alt="" /></a>
     <h3>Lys logo engelsk</h3>
     <span>
       <a href="/logo/mattilsynet-logo-lys-engelsk.svg" download>SVG</a>
@@ -51,7 +51,7 @@ title: Logo
     </span>
   </div>
   <div>
-    <a href="/logo/mattilsynet-logo-samisk.png" download><img src="/logo/mattilsynet-logo-samisk.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo-samisk.png" download><img src="/logo/mattilsynet-logo-samisk.svg" alt="" /></a>
     <h3>Hovedlogo samisk</h3>
     <span>
       <a href="/logo/mattilsynet-logo-samisk.svg" download>SVG</a>
@@ -59,7 +59,7 @@ title: Logo
     </span>
   </div>
   <div>
-    <a href="/logo/mattilsynet-logo-lys-samisk.png" download><img src="/logo/mattilsynet-logo-lys-samisk.png" alt="" /></a>
+    <a href="/logo/mattilsynet-logo-lys-samisk.png" download><img src="/logo/mattilsynet-logo-lys-samisk.svg" alt="" /></a>
     <h3>Lys logo samisk</h3>
     <span>
       <a href="/logo/mattilsynet-logo-lys-samisk.svg" download>SVG</a>
