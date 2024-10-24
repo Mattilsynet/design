@@ -12,7 +12,7 @@ export default defineLoader({
   watch: [path.join(cwd, '**/*.svg')],
 	async load(watchedFiles): Promise<Data> {
     return await Promise.all(watchedFiles.map(async (file) =>
-      [file.slice(cwd.length), await fs.promises.readFile(file, 'utf-8')]
+      [path.resolve(cwd, file).slice(cwd.length), await fs.promises.readFile(file, 'utf-8')]
     ));
 	},
 });

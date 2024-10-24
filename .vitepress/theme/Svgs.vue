@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress';
 import { data } from './svgs.data.ts'
 
 const { path } = defineProps<{ path: string; justify?: string }>();
