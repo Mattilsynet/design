@@ -21,14 +21,7 @@ Vi snakker om vår visuelle identitet og ikke vår profil da dette innebærer me
 
 ### Kontaktpersoner
 Mattilsynets visuelle identitet forvaltes av interne ressurser.
-<br />Kontakt: [seksjondgitialekanaler@mattilsynet.no](mailto:seksjondgitialekanaler@mattilsynet.no)
-
-[GRAFIKK]
-
-- Kari Sylvelin Strand: Seniorrådgiver og Designleder, seksjon forretningsutvikling
-- Cecilie Berg Børge-Ask: UI Lead/seniorrådgiver, seksjon digitale kanaler
-- Gøril Torske: UI/UX Designer/seniorrådgiver, seksjon digitale kanaler
-- Marianne Heggum: Seniorrådgiver, seksjon digitale kanaler
+<br />Kontakt: [internpost.digitale.kanaler@mattilsynet.no](mailto:internpost.digitale.kanaler@mattilsynet.no)
 
 ## Våre roller
 
