@@ -4,7 +4,7 @@ title: Bilder
 
 # Bilder
 
-[Høyoppløselig versjon av vår bilder kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/:f:/r/sites/BilderMattilsynet/Delte%20dokumenter/Ny%20visuell%20identitet/Foto%20ny%20visuell%20identitet?csf=1&web=1&e=pa4XF3)
+[Høyoppløselig versjon av vår bilder kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/:f:/r/sites/BilderMattilsynet/Delte%20dokumenter/Bilder/Foto,%20oktober%202024?csf=1&web=1&e=GBTyRk)
 
 Mattilsynets samfunnsoppdrag har en sentral fotostil som skal kunne brukes av alle, for å opptre mest mulig helhetlig. Bildestilen skal svare på virksomhetenes kommunikasjonsbehov, og samtidig oppleves som unik for Mattilsynet. Fotostilen skal først og fremst være gjenkjennelig gjennom motivene, og i noen grad ved tekniske kvaliteter, lyssetting og etterbehandling.
 
