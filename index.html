@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Designsystem</title>
+  </head>
+  <body>
+    <h1 class="logo">DigiPlant</h1>
+    <h1 class="logo">Prøvetaking</h1>
+    <h1 class="logo">Eksport</h1>
+    <div class="logo"></div>
+  </body>
+  <script type="module">
+    import { styles } from './designsystem/index.ts';
+    const stylesEntries = Object.entries(styles);
+
+    for (const el of document.querySelectorAll('[class]')) {
+      for (const [key, value] of stylesEntries) {
+        if (el.classList.contains(key)) {
+          el.classList.remove(key);
+          el.classList.add(value);
+        }
+      }
+    }
+  </script>
+</html>
