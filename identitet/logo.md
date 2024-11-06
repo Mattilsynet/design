@@ -26,7 +26,7 @@ const encodeSVG = (data: string, color = '#054449') => {
 </script>
 <style>
   .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
-  .logos h3 { margin-block: .5rem .25rem; font-size: inherit }
+  .logos h3 { margin-block: .5rem .25rem!important; font-size: inherit }
   .logos a { opacity: 1 }
   .logos :is(img, svg) { width: 100%; height: auto; padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge); color: #054449 }
   .logos > :nth-child(even) :is(svg,img) { background: var(--mt-granskog); color: #E2F1DF }
