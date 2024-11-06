@@ -28,28 +28,28 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
 ]" />
 
 ## Planter:
-<Svgs path="/identitet/illustrations/plants" />
+<Svgs path="../public/illustrations/plants" />
 
 ## Mat:
-<Svgs path="/identitet/illustrations/food" />
+<Svgs path="../public/illustrations/food" />
 
 ## Dyr:
-<Svgs path="/identitet/illustrations/animals" />
+<Svgs path="../public/illustrations/animals" />
 
 ## Akvakultur:
-<Svgs path="/identitet/illustrations/aqua" />
+<Svgs path="../public/illustrations/aqua" />
 
 ## Drikkevann:
-<Svgs path="/identitet/illustrations/water" />
+<Svgs path="../public/illustrations/water" />
 
 ## Kosmetikk:
-<Svgs path="/identitet/illustrations/cosmetics" />
+<Svgs path="../public/illustrations/cosmetics" />
 
 ## Mennesker:
-<Svgs path="/identitet/illustrations/humans" />
+<Svgs path="../public/illustrations/humans" />
 
 ## Visjonen vår – menneske, dyr og natur:
-<Svgs path="/identitet/illustrations/vision" />
+<Svgs path="../public/illustrations/vision" />
 
 ## Illustrasjonssystem
 På sikt skal det jobbes ut et modulsystem

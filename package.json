@@ -2,9 +2,25 @@
   "name": "@mattilsynet/design",
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./logo/*": "./dist/logo/*",
+    "./icons/*": "./dist/icons/*",
+    "./illustrations/*": "./dist/illustrations/*",
+    "./package.json": "./package.json",
+    "./style.css": "./dist/style.css"
+  },
   "scripts": {
     "start": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && rm -rf dist/nedlastinger/",
     "lint": "npx @biomejs/biome lint",
     "preview": "vite preview",
     "docs:dev": "vitepress dev",
@@ -12,26 +28,22 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "@digdir/designsystemet-css": "^0.11.0-next.11",
-    "@digdir/designsystemet-react": "^1.0.0-next.16",
-    "@digdir/designsystemet-theme": "^1.0.0-next.15",
-    "@navikt/aksel-icons": "^7.3.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@digdir/designsystemet-css": "^1.0.0-next.35",
+    "@digdir/designsystemet-theme": "^1.0.0-next.35"
   },
   "devDependencies": {
+    "@navikt/aksel-icons": "^7.4.3",
     "@biomejs/biome": "^1.9.4",
-    "@types/node": "^22.7.9",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@types/node": "^22.9.0",
     "@u-elements/u-details": "^0.1.0",
-    "@vitejs/plugin-react": "^4.3.3",
     "@whyframe/core": "^0.1.11",
     "@whyframe/vue": "^0.1.7",
     "postcss": "^8.4.47",
+    "postcss-nesting": "^13.0.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
-    "vitepress": "^1.4.1",
+    "vite-plugin-dts": "^4.3.0",
+    "vitepress": "^1.5.0",
     "vue": "^3.5.12"
   }
 }

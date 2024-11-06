@@ -4,7 +4,7 @@ layout: false
 
 <div ref="el" class="vp-raw demo"></div>
 
-<script setup>
+<script setup lang="ts">
 import { createApp } from "whyframe:app";
 import { onMounted, ref } from "vue";
 import { withBase } from "vitepress";

@@ -11,6 +11,13 @@
       "enabled": true
     }
   },
+	"files": {
+    "ignore": [
+			".vitepress/cache/**/*",
+			".vitepress/dist/**/*",
+			"dist"
+		]
+  },
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -18,6 +25,17 @@
 			"a11y": {
 				"noSvgWithoutTitle": "off"
 			}
+		}
+	},
+	"css": {
+		"linter": {
+			"enabled": true
+		},
+		"formatter": {
+			"enabled": true
+		},
+		"parser": {
+			"cssModules": true
 		}
 	}
 }

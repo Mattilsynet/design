@@ -6,69 +6,57 @@ title: Logo
 
 ## Last ned logo
 
+<script setup lang="ts">
+import logoNorsk from '../public/logo/logo.svg?raw';
+import logoEngelsk from '../public/logo/logo-engelsk.svg?raw';
+import logoSamisk from '../public/logo/logo-samisk.svg?raw';
+
+// Inspired by https://github.com/yoksel/url-encoder/
+const encodeSVG = (data: string, color = '#054449') => {
+  const [_, _x, _y, w, h] = data.match(/viewBox="(\d+)\s+(\d+)\s+(\d+)\s+(\d+)"/i);
+  return `data:image/svg+xml,${data
+    .replace(/width="[^"]+"/gi, `width="${w}"`) // Use viewBox for width
+    .replace(/height="[^"]+"/gi, `height="${h}"`) // Use viewBox for height
+    .replace(/currentColor/gi, color) // Use color. @default granskog
+    .replace(/"/g, `'`)
+    .replace(/>\s{1,}</g, `><`)
+    .replace(/\s{2,}/g, ` `)
+    .replace(/[\r\n%#()<>?[\\\]^`{|}]/g, encodeURIComponent)}`;
+}
+</script>
 <style>
   .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
-  .logos > div:nth-child(even) img { background: var(--mt-granskog) }
-  .logos.logos h3 { margin-block: .5rem .25rem; font-size: inherit }
-  .logos img { padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge) }
-  .logos span { display: flex; align-items: center; line-height: 1 }
-  .logos span a:last-child { margin-left: .5em; padding-left: .5em; border-left: 1px solid }
-  .logos span a[href$=".svg"]::before { content: 'Last ned ' }
-  .logos span a[href$=".png"]::before { content: 'Last ned ' }
-  .logos a:has(img) { opacity: 1 }
+  .logos h3 { margin-block: .5rem .25rem; font-size: inherit }
+  .logos a { opacity: 1 }
+  .logos :is(img, svg) { width: 100%; height: auto; padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge); color: #054449 }
+  .logos > :nth-child(even) :is(svg,img) { background: var(--mt-granskog); color: #E2F1DF }
 </style>
 <div class="logos">
-  <div>
-    <a href="/logo/mattilsynet-logo.png" download><img src="/logo/mattilsynet-logo.svg" alt="" /></a>
-    <h3>Hovedlogo norsk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo.png" download>PNG</a>
-    </span>
-  </div>
-  <div>
-    <a href="/logo/mattilsynet-logo-lys.png" download><img src="/logo/mattilsynet-logo-lys.svg" alt="" /></a>
-    <h3>Lys logo norsk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo-lys.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo-lys.png" download>PNG</a>
-    </span>
-  </div>
-  <div>
-    <a href="/logo/mattilsynet-logo-engelsk.png" download><img src="/logo/mattilsynet-logo-engelsk.svg" alt="" /></a>
-    <h3>Hovedlogo engelsk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo-engelsk.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo-engelsk.png" download>PNG</a>
-    </span>
-  </div>
-  <div>
-    <a href="/logo/mattilsynet-logo-lys-engelsk.png" download><img src="/logo/mattilsynet-logo-lys-engelsk.svg" alt="" /></a>
-    <h3>Lys logo engelsk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo-lys-engelsk.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo-lys-engelsk.png" download>PNG</a>
-    </span>
-  </div>
-  <div>
-    <a href="/logo/mattilsynet-logo-samisk.png" download><img src="/logo/mattilsynet-logo-samisk.svg" alt="" /></a>
-    <h3>Hovedlogo samisk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo-samisk.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo-samisk.png" download>PNG</a>
-    </span>
-  </div>
-  <div>
-    <a href="/logo/mattilsynet-logo-lys-samisk.png" download><img src="/logo/mattilsynet-logo-lys-samisk.svg" alt="" /></a>
-    <h3>Lys logo samisk</h3>
-    <span>
-      <a href="/logo/mattilsynet-logo-lys-samisk.svg" download>SVG</a>
-      <a href="/logo/mattilsynet-logo-lys-samisk.png" download>PNG</a>
-    </span>
-  </div>
+  <a :href="encodeSVG(logoNorsk)" download="mattilsynet-logo.svg">
+    <span v-html="logoNorsk"></span>
+    <h3>Last ned hovedlogo norsk</h3>
+  </a>
+  <a :href="encodeSVG(logoNorsk, '#E2F1DF')" download="mattilsynet-logo-lys.svg">
+    <span v-html="logoNorsk"></span>
+    <h3>Last ned lys logo norsk</h3>
+  </a>
+  <a :href="encodeSVG(logoEngelsk)" download="mattilsynet-logo-engelsk.svg">
+    <span v-html="logoEngelsk"></span>
+    <h3>Last ned hovedlogo engelsk</h3>
+  </a>
+  <a :href="encodeSVG(logoEngelsk, '#E2F1DF')" download="mattilsynet-logo-engelsk-lys.svg">
+    <span v-html="logoEngelsk"></span>
+    <h3>Last ned lys logo engelsk</h3>
+  </a>
+  <a :href="encodeSVG(logoSamisk)" download="mattilsynet-logo-samisk.svg">
+    <span v-html="logoSamisk"></span>
+    <h3>Last ned hovedlogo samisk</h3>
+  </a>
+  <a :href="encodeSVG(logoSamisk, '#E2F1DF')" download="mattilsynet-logo-samisk-lys.svg">
+    <span v-html="logoSamisk"></span>
+    <h3>Last ned lys logo samisk</h3>
+  </a>
 </div>
-
-<!--[NEDLASTINGSKNAPP]-->
 
 ## Bakgrunn
 Vi skal kommunisere tydelig og enkelt, og derfor har vi laget en ny logo uten for mange detaljer. Navnetrekket har god lesbarhet, og logoen er enkel å bruke i alle digitale og fysiske flater. Det nye symbolet kan gi assosiasjoner til for eksempel jorda vår, et blad, en fisk, bølger og soloppgang.
@@ -96,7 +84,10 @@ Vi skal kommunisere tydelig og enkelt, og derfor har vi laget en ny logo uten fo
   }
 </style>
 <div class="dos">
-  <div><img src="/logo.svg" alt="" /><br />✅</div>
+  <div>
+    <div v-html="logoNorsk"></div>
+    ✅
+  </div>
 </div>
 
 - Logo består av symbol og navnetrekk, hvor disse som hovedregel skal stå sammen

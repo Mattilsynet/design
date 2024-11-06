@@ -10,7 +10,7 @@ title: Ikoner
 Under er de seks egentegnede ikonene til Mattilsynet. De er basert på frøformen i logosymbolet.
 Dette visuelle grepet skaper egenart og et helhetlig visuelt uttrykk. Ikonene er blant annet brukt for å fremheve toppoppgavene på mattilsynet.no. Merk at disse ikke skal brukes i samme oppsett som ikoner fra andre ikonpakker. 
 
-<Svgs path="/identitet/icons" />
+<Svgs path="../public/icons" />
 
 ## Andre ikonbibliotek
 Vær oppmerksom på at de egentegnede ikonene ikke skal brukes i samme oppsett som ikoner fra andre ikonbibliotek.

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { data } from './svgs.data.ts'
 
-const { path } = defineProps<{ path: string; justify?: string }>();
+const props = defineProps<{ path: string; justify?: string }>();
+const path = props.path.replace(/^\.+/, '');
 const svgs: Record<string, string> = Object.fromEntries(data.filter(([file]) => file.startsWith(path)));
 
 function generateSvgBlob(event: MouseEvent) {
