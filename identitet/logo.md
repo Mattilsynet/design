@@ -26,35 +26,35 @@ const encodeSVG = (data: string, color = '#054449') => {
 </script>
 <style>
   .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
-  .logos h3 { margin-block: .5rem .25rem!important; font-size: inherit }
-  .logos a { opacity: 1 }
+  .logos { margin-block: .5rem .25rem; font-size: inherit }
+  .logos a { opacity: 1; font-size: 1rem }
   .logos :is(img, svg) { width: 100%; height: auto; padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge); color: #054449 }
   .logos > :nth-child(even) :is(svg,img) { background: var(--mt-granskog); color: #E2F1DF }
 </style>
 <div class="logos">
   <a :href="encodeSVG(logoNorsk)" download="mattilsynet-logo.svg">
-    <span v-html="logoNorsk"></span>
-    <h3>Last ned hovedlogo norsk</h3>
+    <div v-html="logoNorsk"></div>
+    Last ned hovedlogo norsk
   </a>
   <a :href="encodeSVG(logoNorsk, '#E2F1DF')" download="mattilsynet-logo-lys.svg">
-    <span v-html="logoNorsk"></span>
-    <h3>Last ned lys logo norsk</h3>
+    <div v-html="logoNorsk"></div>
+    Last ned lys logo norsk
   </a>
   <a :href="encodeSVG(logoEngelsk)" download="mattilsynet-logo-engelsk.svg">
-    <span v-html="logoEngelsk"></span>
-    <h3>Last ned hovedlogo engelsk</h3>
+    <div v-html="logoEngelsk"></div>
+    Last ned hovedlogo engelsk
   </a>
   <a :href="encodeSVG(logoEngelsk, '#E2F1DF')" download="mattilsynet-logo-engelsk-lys.svg">
-    <span v-html="logoEngelsk"></span>
-    <h3>Last ned lys logo engelsk</h3>
+    <div v-html="logoEngelsk"></div>
+    Last ned lys logo engelsk
   </a>
   <a :href="encodeSVG(logoSamisk)" download="mattilsynet-logo-samisk.svg">
-    <span v-html="logoSamisk"></span>
-    <h3>Last ned hovedlogo samisk</h3>
+    <div v-html="logoSamisk"></div>
+    Last ned hovedlogo samisk
   </a>
   <a :href="encodeSVG(logoSamisk, '#E2F1DF')" download="mattilsynet-logo-samisk-lys.svg">
-    <span v-html="logoSamisk"></span>
-    <h3>Last ned lys logo samisk</h3>
+    <div v-html="logoSamisk"></div>
+    Last ned lys logo samisk
   </a>
 </div>
 
