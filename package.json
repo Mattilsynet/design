@@ -16,8 +16,8 @@
     "./icons/*": "./mtds/icons/*",
     "./illustrations/*": "./mtds/illustrations/*",
     "./package.json": "./package.json",
-    "./style.json": "./mtds/style.json",
-    "./style.css": "./mtds/style.css"
+    "./styles.json": "./mtds/styles.json",
+    "./styles.css": "./mtds/styles.css"
   },
   "scripts": {
     "start": "vite",

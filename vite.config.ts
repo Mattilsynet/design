@@ -25,8 +25,8 @@ export default defineConfig(isVitepress ? {} : {
       }),
     }),
     {
-      name: 'Write CSS modules map to style.json',
-      generateBundle: () => fs.writeFileSync(path.resolve(dist, 'style.json'), JSON.stringify(cssMap, null, 2))
+      name: 'Write CSS modules map to styles.json',
+      generateBundle: () => fs.writeFileSync(path.resolve(dist, 'styles.json'), JSON.stringify(cssMap, null, 2))
     }
   ],
   build: {
