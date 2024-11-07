@@ -13,6 +13,10 @@
     composes: ds-button from '@digdir/designsystemet-css';
   }
 
+  .accordion {
+    composes: ds-accordion__item from '@digdir/designsystemet-css';
+  }
+
   .logo {
     --height: 1.25em; /* A little taller than icon-height, to align Avinir line-height with logo */
     --icon-height: 1.15em;
@@ -21,15 +25,20 @@
     --line-width: .07em;
     --text-width: 5.475em;
 
+    background: none;
+    border: 0;
+    color: inherit;
     display: block;
-    font-size: 2em;
-    font-weight: normal;
+    font: 2em/var(--height) sans-serif; /* Reset font in case logo is a <button> */
+    font-family: inherit;
     height: var(--height);
-    line-height: var(--height);
     margin: 0;
     max-width: 100%;
     min-width: var(--icon-height);
     overflow: hidden;
+    padding: 0;
+    text-align: left;
+    text-decoration: none; /* In case logo is an <a> */
     text-indent: calc(var(--inset) * -1 + .4em);
     white-space: nowrap;
 

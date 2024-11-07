@@ -6,12 +6,17 @@
     <title>Designsystem</title>
   </head>
   <body>
-    <h1 class="logo">DigiPlant</h1>
-    <h1 class="logo">Prøvetaking</h1>
+    <a href="#" class="logo">DigiPlant</a>
+    <button class="logo">Prøvetaking</button>
     <h1 class="logo">Eksport</h1>
     <div class="logo"></div>
+    <u-details class="accordion">
+      <u-summary>Detaljer</u-summary>
+      <div>Dette er en detaljert beskrivelse</div>
+    </u-details>
   </body>
   <script type="module">
+    import '@u-elements/u-details';
     import { styles } from './designsystem/index.ts';
     const stylesEntries = Object.entries(styles);
 
@@ -19,7 +24,7 @@
       for (const [key, value] of stylesEntries) {
         if (el.classList.contains(key)) {
           el.classList.remove(key);
-          el.classList.add(value);
+          el.classList.add(...value.split(' '));
         }
       }
     }
