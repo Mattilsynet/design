@@ -3,7 +3,7 @@ import { data } from './svgs.data.ts'
 
 const props = defineProps<{ path: string; justify?: string }>();
 const path = props.path.replace(/^\.+/, '');
-const svgs: Record<string, string> = Object.fromEntries(data.filter(([file]) => file.startsWith(path)));
+const svgs = data.filter(([file]) => file.startsWith(path));
 
 function generateSvgBlob(event: MouseEvent) {
   const link = event.currentTarget as HTMLAnchorElement;
@@ -30,6 +30,6 @@ function generateSvgBlob(event: MouseEvent) {
 </style>
 <template>
   <div class="svgs" data-fill>
-    <a v-for="(svg, file) in svgs" v-html="svg" @mouseenter.once="generateSvgBlob" :download="file.split('/').pop()"></a>
+    <a v-for="[file, svg] in svgs" v-html="svg" @mouseenter.once="generateSvgBlob" :download="file.split('/').pop()"></a>
   </div>
 </template>

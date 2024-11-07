@@ -4,16 +4,17 @@ import path from 'node:path';
 
 declare const data: Data;
 const cwd = process.cwd();
+const pub = path.join(cwd, 'public');
 
 export type Data = string[][];
 export { data }
 
 export default defineLoader({
-  watch: [path.join(cwd, '**/*.svg')],
+  watch: [path.join(pub, '**/*.svg')],
 	async load(watchedFiles): Promise<Data> {
     return await Promise.all(watchedFiles.map(async (file) =>
-      [path.resolve(cwd, file).slice(cwd.length), await fs.promises.readFile(file, 'utf-8')]
-    ));
+      [path.resolve(cwd, file).slice(pub.length), await fs.promises.readFile(file, 'utf-8')]
+  ));
 	},
 });
 

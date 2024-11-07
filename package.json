@@ -12,7 +12,7 @@
       "import": "./mtds/index.js",
       "types": "./mtds/index.d.ts"
     },
-    "./logo/*": "./mtds/logo/*",
+    "./*.svg": "./mtds/*.svg",
     "./icons/*": "./mtds/icons/*",
     "./illustrations/*": "./mtds/illustrations/*",
     "./package.json": "./package.json",

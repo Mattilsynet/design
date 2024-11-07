@@ -2,8 +2,36 @@
 @import url('@digdir/designsystemet-theme');
 
 @layer mt.ds {
+  :root {
+    --mt-gaasunge: #faf6f3;
+    --mt-granskog: #054449;
+    --mt-lys-furu: #9bcab9;
+    --mt-mork-granskog: #032C30;
+    --mt-sand: #F4ECE6;
+    --mt-sommerdag: #f9cc76;
+    --mt-solstreif: #f8de9c;
+
+    /* --ds-color-accent-1: #F3F8F1;
+    --ds-color-accent-2: #E2F1DF;
+    --ds-color-accent-3: #D3E8E0;
+    --ds-color-accent-4: #BCDCD0;
+    --ds-color-accent-5: #9BCAB9;
+    --ds-color-accent-6: #539D82;
+    --ds-color-accent-7: #116E6B;
+    --ds-color-accent-8: #054449;
+    --ds-color-accent-9: #032C30;
+    --ds-color-accent-10: #032C30;
+    --ds-color-accent-11: #032C30;
+    --ds-color-accent-12: #032C30;
+    --ds-color-accent-13: #032C30;
+    --ds-color-accent-contrast-1: #F3F8F1;
+    --ds-color-accent-contrast-2: #E2F1DF; */
+  }
+
   body {
-    font-family: Avenir, ui-sans-serif, system-ui, sans-serif;
+    background: var(--mt-gaasunge);
+    color: var(--mt-granskog);
+    font-family: 'Avenir Next', 'Avenir', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
     font-size: 1.125rem;
     line-height: 1.5;
     margin: 0;
@@ -11,6 +39,19 @@
 
   .button {
     composes: ds-button from '@digdir/designsystemet-css';
+
+    --dsc-button-background--active: var(--mt-mork-granskog);
+    --dsc-button-background--hover: var(--mt-mork-granskog);
+    --dsc-button-background: var(--mt-granskog);
+    --dsc-button-color: var(--mt-gaasunge);
+
+    border-radius: 0.3125em;
+    border-width: 2px;
+    font-weight: 500;
+    transition-duration: .2s;
+    transition-property: background-color, scale;
+
+    &:active { scale: .95 }
   }
 
   .accordion {

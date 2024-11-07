@@ -42,12 +42,12 @@ export default defineConfig({
   description: "Mattilsynet Design",
   cleanUrls: true,
   head: [
-    ["link", { rel: "icon", href: '/logo/symbol.svg' }],
+    ["link", { rel: "icon", href: '/logo-symbol.svg' }],
     // ["script", { acync: "", defer: "", src: "https://scripts.withcabin.com/hello.js" }], // Analytics
   ],
   appearance: false,
   themeConfig: {
-    logo: "/logo/logo.svg",
+    logo: "/logo.svg",
     darkModeSwitchLabel: "Fargemodus",
     darkModeSwitchTitle: "Bytt til mørk fargemodus",
     langMenuLabel: "Språk",

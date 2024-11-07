@@ -6,7 +6,7 @@ import fs from 'node:fs';
 
 const pkg = JSON.parse(String(fs.readFileSync(path.resolve(__dirname, './package.json'))));
 const root = path.resolve(__dirname, 'designsystem');
-const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo/logo.svg")
+const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
 const cssMap = {};
 
@@ -49,7 +49,9 @@ export default defineConfig(isVitepress ? {} : {
       // https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
       output: {
         preserveModules: true,
-        preserveModulesRoot: root
+        preserveModulesRoot: root,
+        assetFileNames: ({ names }) =>
+          names?.includes('style.css') ? 'styles.css' : '[name].[ext]' // Change default Vite "style.css" file name
       },
     }
   }

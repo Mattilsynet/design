@@ -7,22 +7,24 @@ title: Logo
 ## Last ned logo
 
 <script setup lang="ts">
-import logoNorsk from '../public/logo/logo.svg?raw';
-import logoEngelsk from '../public/logo/logo-engelsk.svg?raw';
-import logoSamisk from '../public/logo/logo-samisk.svg?raw';
+  import { data } from '../.vitepress/theme/svgs.data.ts';
+  const map = Object.fromEntries(data);
+  const logoNorsk  = map['/logo.svg'];
+  const logoEngelsk  = map['/logo-engelsk.svg'];
+  const logoSamisk  = map['/logo-samisk.svg'];
 
-// Inspired by https://github.com/yoksel/url-encoder/
-const encodeSVG = (data: string, color = '#054449') => {
-  const [_, _x, _y, w, h] = data.match(/viewBox="(\d+)\s+(\d+)\s+(\d+)\s+(\d+)"/i);
-  return `data:image/svg+xml,${data
-    .replace(/width="[^"]+"/gi, `width="${w}"`) // Use viewBox for width
-    .replace(/height="[^"]+"/gi, `height="${h}"`) // Use viewBox for height
-    .replace(/currentColor/gi, color) // Use color. @default granskog
-    .replace(/"/g, `'`)
-    .replace(/>\s{1,}</g, `><`)
-    .replace(/\s{2,}/g, ` `)
-    .replace(/[\r\n%#()<>?[\\\]^`{|}]/g, encodeURIComponent)}`;
-}
+  // Inspired by https://github.com/yoksel/url-encoder/
+  const encodeSVG = (data: string, color = '#054449') => {
+    const [_, _x, _y, w, h] = data.match(/viewBox="(\d+)\s+(\d+)\s+(\d+)\s+(\d+)"/i);
+    return `data:image/svg+xml,${data
+      .replace(/width="[^"]+"/gi, `width="${w}"`) // Use viewBox for width
+      .replace(/height="[^"]+"/gi, `height="${h}"`) // Use viewBox for height
+      .replace(/currentColor/gi, color) // Use color. @default granskog
+      .replace(/"/g, `'`)
+      .replace(/>\s{1,}</g, `><`)
+      .replace(/\s{2,}/g, ` `)
+      .replace(/[\r\n%#()<>?[\\\]^`{|}]/g, encodeURIComponent)}`;
+  }
 </script>
 <style>
   .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
