@@ -3,6 +3,8 @@
 node_modules
 **/dist
 **/mtds
+clojure/resources/
+clojure/mattilsynet-designsystem.jar
 
 # Logs
 **/logs
@@ -22,3 +24,7 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+.clj-kondo
+.lsp
+clojure/.cpcache
+clojure/.nrepl-port
