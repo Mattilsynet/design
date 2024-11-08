@@ -5,7 +5,7 @@ ressurer sammen med noen bekvemmelighets-API-er for å bruke CSS-moduler og last
 SVG-er fra Clojure og ClojureScript.
 
 ```clj
-io.mattilsynet/designsystem {:mvn/version "0.0.3.2"}
+io.mattilsynet/designsystem {:mvn/version "0.0.3.3"}
 ```
 
 (Versjonsnummeret korresponderer med npm-pakkens, altså `0.0.3`, og har et

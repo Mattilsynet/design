@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.mattilsynet</groupId>
   <artifactId>designsystem</artifactId>
-  <version>0.0.3.2</version>
+  <version>0.0.3.3</version>
   <name>designsystem</name>
   <dependencies>
   </dependencies>
@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:git:git://github.com/mattilsynet/designsystem-clj.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mattilsynet/designsystem-clj.git</developerConnection>
-    <tag>v0.0.3.2</tag>
+    <tag>v0.0.3.3</tag>
     <url>https://github.com/mattilsynet/designsystem-clj</url>
   </scm>
 </project>
