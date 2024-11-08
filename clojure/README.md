@@ -1,11 +1,11 @@
 # Mattilsynets designsystem - for Clojure!
 
-Pakettering av designsystemet for publisering til Clojars. Tilbyr systemets
-ressurer sammen med noen bekvemmelighets-API-er for å bruke CSS-moduler og laste
-SVG-er fra Clojure og ClojureScript.
+Pakking av designsystemet for publisering til Clojars. Tilbyr systemets ressurer
+sammen med noen bekvemmelighets-API-er for å bruke CSS-moduler og laste SVG-er
+fra Clojure og ClojureScript.
 
 ```clj
-io.mattilsynet/designsystem {:mvn/version "0.0.3.3"}
+io.mattilsynet/design {:mvn/version "0.0.3.3"}
 ```
 
 (Versjonsnummeret korresponderer med npm-pakkens, altså `0.0.3`, og har et

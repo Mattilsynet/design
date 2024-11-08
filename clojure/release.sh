@@ -4,7 +4,7 @@ set -e
 
 ./build.sh
 
-rm -f mattilsynet-designsystem.jar
+rm -f mattilsynet-design.jar
 version=$(clojure -A:dev -T:build bump-version)
 
 git add .
@@ -14,4 +14,4 @@ git push
 git push --tags
 
 clojure -A:dev -M:jar
-mvn deploy:deploy-file -Dfile=mattilsynet-designsystem.jar -DrepositoryId=clojars -Durl=https://clojars.org/repo -DpomFile=pom.xml
+mvn deploy:deploy-file -Dfile=mattilsynet-design.jar -DrepositoryId=clojars -Durl=https://clojars.org/repo -DpomFile=pom.xml
