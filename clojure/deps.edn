@@ -1,6 +1,5 @@
 {:paths ["src" "resources"]
- :deps {no.cjohansen/replicant {:git/url "https://github.com/cjohansen/replicant.git"
-                                :sha "2ca0f9d736319874afbfbccb403cf913bebb58c6"}}
+ :deps {}
  :aliases
  {:dev
   {:extra-paths ["dev" "../"]
