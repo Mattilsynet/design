@@ -28,7 +28,8 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "publish:patch": "npm run build && npm version patch --message 'Release %' && git push --tags && npm publish --access public",
-    "publish:minor": "npm run build && npm version minor --message 'Release %' && git push --tags && npm publish --access public"
+    "publish:minor": "npm run build && npm version minor --message 'Release %' && git push --tags && npm publish --access public",
+    "publish:clojure": "cd ./clojure && ./publish.sh"
   },
   "dependencies": {
     "@digdir/designsystemet-css": "^1.0.0-next.35",

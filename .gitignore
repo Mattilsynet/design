@@ -4,7 +4,7 @@ node_modules
 **/dist
 **/mtds
 clojure/resources/
-clojure/mattilsynet-designsystem.jar
+clojure/mattilsynet-design.jar
 
 # Logs
 **/logs

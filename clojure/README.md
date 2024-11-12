@@ -4,6 +4,12 @@ Pakking av designsystemet for publisering til Clojars. Tilbyr systemets ressurer
 sammen med noen bekvemmelighets-API-er for å bruke CSS-moduler og laste SVG-er
 fra Clojure og ClojureScript.
 
+You need to install:
+```
+brew install clojure/tools/clojure
+brew install mvn
+```
+
 ```clj
 io.mattilsynet/design {:mvn/version "0.0.3.3"}
 ```
