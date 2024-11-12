@@ -27,8 +27,8 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "publish:patch": "npm run build && npm version patch --message 'Release %' && git push --tags && npm publish --access public",
-    "publish:minor": "npm run build && npm version minor --message 'Release %' && git push --tags && npm publish --access public",
+    "publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public",
+    "publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm publish --access public",
     "publish:clojure": "cd ./clojure && ./publish.sh"
   },
   "dependencies": {
