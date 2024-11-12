@@ -40,7 +40,7 @@
          (str/replace #"/$" "")) ;; "/Users/christian/work/design/mtds/icons"
      pattern]))
 
-(def package-json (json/read-str (slurp (io/resource "package.json"))))
+(def package-json (json/read-str (slurp (io/file "../package.json"))))
 
 (def exports
   (->> (get package-json "exports")
