@@ -3,6 +3,8 @@
             [clojure.string :as str]))
 
 (def class-idx (read-string (slurp (io/resource "mattilsynet-design/css-modules.edn"))))
+(def illustrations-dir "illustrations")
+(def icons-dir "icons")
 
 (defmacro ^:export classes [& classes]
   (->> classes
@@ -21,10 +23,10 @@
 (defn get-svg-path [id]
   (case (namespace id)
     "icon"
-    (str base-path "/icons/" (name id) ".edn")
+    (str base-path "/" icons-dir "/" (name id) ".edn")
 
     "illustration"
-    (str base-path "/illustrations/"
+    (str base-path "/" illustrations-dir "/"
          (str/replace (name id) #"\." "/") ".edn")
 
     (throw (ex-info "Unknown svg kind, use either :icon/* or :illustration/*" {:id id}))))
@@ -66,7 +68,7 @@
          vec)))
 
 (defmacro ^:export get-icon-ids []
-  (get-ids "icons" "icon"))
+  (get-ids icons-dir "icon"))
 
 (defmacro ^:export get-illustration-ids []
-  (get-ids "illustrations" "illustration"))
+  (get-ids illustrations-dir "illustration"))
