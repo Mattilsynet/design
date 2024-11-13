@@ -112,6 +112,7 @@
        (filter (comp #{"styles.css"} :path))
        first
        :file
+       slurp
        (spit "resources/public/mtds/styles.css")))
 
 (defn load-committed-pom []
