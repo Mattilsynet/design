@@ -15,7 +15,23 @@ const source = computed(() => iframe.value && getWhyframeSource(iframe.value));
 onMounted(() =>{
   iframe.value?.addEventListener("load", () => {
     const doc = iframe.value?.contentDocument;
-    if (doc) doc.body.style.maxWidth = maxWidth;
+    const observer = new MutationObserver(() => {
+      console.log(doc);
+      for(const el of doc?.querySelectorAll('[class*="styles."]') || []) {
+        el.className = el.className.replace(/styles\./g, '');
+      }
+      observer.takeRecords();
+    });
+    
+    if (doc) {
+      doc.body.style.maxWidth = maxWidth;
+      observer.observe(doc.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
 	})
 });
 </script>

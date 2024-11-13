@@ -1,4 +1,5 @@
 @import url('../../designsystem/all.css');
+@import url('../../designsystem/styles.module.css');
 
 /* Work in progress banner */
 :root { --vp-layout-top-height: 2rem }
@@ -45,16 +46,43 @@ body:has(.VPNav)::before {
 
 /* Content */
 .vp-doc { font-size: 1.25rem; line-height: 1.6; -webkit-font-smoothing: subpixel-antialiased } /* Undo Vitepress default font-rendering */
-.vp-doc > * > :not([data-fill]), .VPDocFooter { max-width: 45rem; margin-inline: auto; }
+.vp-doc > * > :not([data-fill]), .VPDocFooter { max-width: 45rem; margin-inline: auto!important }
 .vp-doc :where([data-fill]) { display: block; margin-block: 3rem }
 .vp-doc h3:has(+ [data-fill]) { max-width: none }
 .vp-doc p { font: inherit }
 .vp-doc h1 { font-weight: 700; font-size: 3rem; line-height: 1.2; margin: 0 }
 .vp-doc h2 { font-weight: 700; font-size: 1.625rem; line-height: 1.2; margin-top: 3rem }
 .vp-doc h3 { font-weight: 700; font-size: 1.25rem; line-height: 1.2; margin-top: 3rem }
+.vp-doc blockquote { border: 0; padding: 0 }
+.vp-doc blockquote > p { font-size: 1.25em }
+.vp-doc .custom-block { padding: 1.5em 1.5em 1em }
+.vp-doc .custom-block p { line-height: var(--mt-line-height-md) }
+.vp-doc .custom-block.details { padding: 0; background: none; border-top: 1px solid var(--mt-divider); border-radius: 0; margin-bottom: 0 }
+.vp-doc .custom-block.details + .custom-block.details { margin-top: 0 }
+.vp-doc .custom-block.details summary { margin: 0 }
+.vp-doc .custom-block-title { font-weight: 600; }
 
 .VPHero { margin-top: 1%!important }
 .VPButton { font-size: inherit!important }
+
+mark[data-badge] { background: none }
+mark[data-badge]::before {
+  background: var(--mt-granskog);
+  border-radius: 3px;
+  color: var(--mt-hvit);
+  content: attr(data-badge);
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: .3em;
+  vertical-align: top;
+  translate: -.5em;
+}
+
+mark[data-badge="ARIA"]::before,
+mark[data-badge="HTML"]::before { content: '\2713\00A0 ' attr(data-badge) }
 
 /* Theme */
 :root {
@@ -82,7 +110,7 @@ body:has(.VPNav)::before {
   --vp-c-divider: transparent;
 
   --vp-c-bg: var(--mt-gaasunge);
-  --vp-c-bg-alt: var(--mt-hvit);
+  --vp-c-bg-alt: var(--mt-gaasunge);
   --vp-c-bg-soft: var(--mt-hvit);
   --vp-c-text-1: var(--mt-granskog);
   --vp-c-text-2: var(--mt-granskog);
@@ -111,7 +139,13 @@ body:has(.VPNav)::before {
   --vp-c-danger-2: var(--vp-c-red-2);
   --vp-c-danger-3: var(--vp-c-red-3);
   --vp-c-danger-soft: var(--vp-c-red-soft);
+
+  --vp-custom-block-font-size: .875em;
+  --vp-custom-block-info-bg: var(--mt-gaasunge);
+  --vp-custom-block-info-border: transparent;
+  --vp-custom-block-tip-bg: #E2F1DF;
 }
+
 
 /**
  * Customize default theme styling by overriding CSS variables:

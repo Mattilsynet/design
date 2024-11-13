@@ -86,12 +86,13 @@ export default defineConfig({
       {
         text: "Designsystem",
         collapsed: true,
-        items: getFiles("designsystem", [
+        items: [
           { text: "Introduksjon", link: "/designsystem/" },
-          { text: "Alle komponenter", link: "/designsystem/all" },
-          { text: "Universell utforming", link: "/designsystem/uu" },
-          { text: "Tokens", link: "/designsystem/tokens" },
-        ])
+          { text: "Logo", link: "/designsystem/logo/" },
+          // { text: "Alle komponenter", link: "/designsystem/all" },
+          // { text: "Universell utforming", link: "/designsystem/uu" },
+          // { text: "Tokens", link: "/designsystem/tokens" },
+        ]
       },
       {
         text: "Profilering",

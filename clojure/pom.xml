@@ -21,7 +21,7 @@
     </repository>
   </distributionManagement>
   <description>Mattilsynets designsystem, pakket og klart for folk som driver med Clojure.</description>
-  <url>https://github.com/mattilsynet/design/clojure</url>
+  <url>https://github.com/mattilsynet/design/</url>
   <licenses>
     <license>
       <name>MIT</name>
@@ -32,6 +32,6 @@
     <connection>scm:git:git://github.com/mattilsynet/design.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mattilsynet/design.git</developerConnection>
     <tag>v0.0.3.2</tag>
-    <url>https://github.com/mattilsynet/design/clojure</url>
+    <url>https://github.com/mattilsynet/design/</url>
   </scm>
 </project>

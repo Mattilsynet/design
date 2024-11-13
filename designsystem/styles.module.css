@@ -1,6 +1,7 @@
 @import url('@digdir/designsystemet-css');
 @import url('@digdir/designsystemet-theme');
 
+/* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.ds {
   :root {
     --mt-gaasunge: #faf6f3;
@@ -28,13 +29,22 @@
     --ds-color-accent-contrast-2: #E2F1DF; */
   }
 
+  /**
+  * Setting background and color on <body> instead of <html>
+  * to align with best practice used in other frameworks such as Tailwind etc.
+  * This effectively paints the whole document due to:
+  * https://www.w3.org/TR/css-backgrounds-3/#body-background
+  */
   body {
     background: var(--mt-gaasunge);
     color: var(--mt-granskog);
-    font-family: 'Avenir Next', 'Avenir', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.5;
+    /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+    font: 1.125rem/1.5 'Avenir Next', 'Avenir', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
     margin: 0;
+  }
+
+  b, strong, th {
+    font-weight: 600; /* Both Avenir and Avenir Next renders very thick on font-weight: 700, so we instead default to semibold */
   }
 
   .button {
@@ -45,7 +55,7 @@
     --dsc-button-background: var(--mt-granskog);
     --dsc-button-color: var(--mt-gaasunge);
 
-    border-radius: 0.3125em;
+    border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
     border-width: 2px;
     font-weight: 500;
     transition-duration: .2s;
