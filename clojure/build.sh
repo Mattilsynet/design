@@ -4,7 +4,7 @@ set -xe
 
 rm -fr resources
 
-if test -d dist; then
+if test -d mtds; then
     $(cd ../ && npm install && npm run build)
 fi
 
