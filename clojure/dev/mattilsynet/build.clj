@@ -124,14 +124,15 @@
 (defn get-version [pom]
   (second (re-find #"<version>([\d\.]+)</version>" pom)))
 
-(defn get-release-number [pom]
-  (parse-long (last (str/split (get-version pom) #"\."))))
+(defn get-release-number [version]
+  (parse-long (last (str/split version #"\."))))
 
 (defn bump-version [& _]
   (let [pom (load-committed-pom)
-        release-num (get-release-number pom)
+        current (get-version pom)
+        release-num (get-release-number current)
         mtds-version (get package-json "version")
         next (str mtds-version "." (inc release-num))]
-    (spit "pom.xml" (str/replace pom (str mtds-version "." release-num) next))
-    (spit "README.md" (str/replace (load-committed-readme) (str mtds-version "." release-num) next))
+    (spit "pom.xml" (str/replace pom current next))
+    (spit "README.md" (str/replace (load-committed-readme) current next))
     (println next)))
