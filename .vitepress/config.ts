@@ -80,7 +80,7 @@ export default defineConfig({
           { text: "Ikoner", link: "/identitet/ikoner" },
           { text: "Illustrasjoner", link: "/identitet/illustrasjoner" },
           { text: "Bilder", link: "/identitet/bilder" },
-          { text: "Språk", link: "/identitet/sprak" },
+          { text: "Slik skriver vi", link: "/identitet/sprak" },
         ]
       },
       {
