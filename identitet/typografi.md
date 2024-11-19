@@ -16,8 +16,8 @@ På lyse flater benyttes «Mørk granskog» som fontfarge (#032C30). På mørke 
 
 
 [Farge og typografi sammen: på lys bakgrunn - granskog (med mindre varsel?), på mørk bakgrunn (hvit i funksjonelle flater, lav (branding), )]
-[Slik bruker du Avinir på Mac]
-[Slik bruker du Avinir på PC]-->
+[Slik bruker du Avenir på Mac]
+[Slik bruker du Avenir på PC]-->
 
 ## Bakgrunn
 Vår nye visuelle identitet skal gjøre det enklere å forstå hvem vi er. Mattilsynet har et stort og bredt samfunnsoppdrag. Vi ønsker å være en vennlig hjelper og opptre helhetlig og tydelig som ett lag, sammen med omgivelsene våre. Vi skal trygge framtiden for mennesker, dyr og natur, og vi jobber med hele verdikjeden - fra jord og fjord til bord. Derfor har vi nå en tydelig sirkelform i logosymbolet vårt.

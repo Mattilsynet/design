@@ -88,7 +88,7 @@
 	}
 
 	.logo {
-		--height: 1.25em; /* A little taller than icon-height, to align Avinir line-height with logo */
+		--height: 1.25em; /* A little taller than icon-height, to align Avenir line-height with logo */
 		--icon-height: 1.15em;
 		--icon-width: 1.5em;
 		--line-url: linear-gradient(currentcolor, currentcolor);
