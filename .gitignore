@@ -15,8 +15,6 @@ clojure/mattilsynet-design.jar
 .DS_Store
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
