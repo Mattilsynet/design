@@ -103,7 +103,7 @@
 		margin: 0;
 		max-width: 100%;
 		min-width: var(--icon-height);
-		overflow: clip;
+		overflow: hidden;
 		padding: 0;
 		text-align: left;
 		text-decoration: none; /* In case logo is an <a> */
@@ -128,7 +128,7 @@
 		}
 
 		&::before {
-			content: "" / "Mattilsynet"; /* Screen reader text for all browsers except Safari < 17.4 */
+			content: "Mattilsynet"; /* Screen reader text for all browsers except Safari < 17.4 */
 			mask: 0 var(--height) / auto var(--icon-height) no-repeat var(--logo-url);
 			width: var(--icon-width);
 		}
