@@ -7,9 +7,8 @@ title: Designsystem
 > Mattilsynets designsystem bruker [designsystemet.no](https://www.designsystemet.no/) som grunnmur,
 men utvider med vår visuelle identitet, egenart og interne behov. Det fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan dra skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
 
-::: tip Spørsmål, tanker eller ideer? :star_struck:
-Vi hører gjerne fra deg [på Slack](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) eller [på Github](https://github.com/Mattilsynet/design/issues) :raised_hands:
-:::
+- **Spørsmål, tanker eller ideer?** Skriv gjerne til oss på [Slack](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) eller [Github](https://github.com/Mattilsynet/design/issues) :raised_hands:
+- **Hva er siste nytt?** Se [versjonslogg på Github](https://github.com/Mattilsynet/design/releases) og [oppgaver vi jobber med](https://github.com/orgs/Mattilsynet/projects/22)
 
 
 ## Kom i gang for utviklere
