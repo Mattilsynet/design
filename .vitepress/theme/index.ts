@@ -1,14 +1,15 @@
 import type { Theme } from "vitepress";
-import Svgs from "./Svgs.vue";
-import Story from "./Story.vue";
-import Overview from "./Overview.vue";
 import DefaultTheme from "vitepress/theme";
 import Colors from "./Colors.vue";
+import Overview from "./Overview.vue";
+import Story from "./Story.vue";
+import Svgs from "./Svgs.vue";
 import "@u-elements/u-details";
+import "./style.css";
 
-import "@digdir/designsystemet-css";
-import "@digdir/designsystemet-theme";
-import "./style.css"
+// @ts-ignore
+import { styles as CSSModuleStyles } from "../../designsystem";
+if (typeof window !== 'undefined') Object.assign(window, { CSSModuleStyles });
 
 export default {
   extends: DefaultTheme,

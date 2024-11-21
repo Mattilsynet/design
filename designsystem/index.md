@@ -4,11 +4,13 @@ title: Designsystem
 
 # Designsystem <mark data-badge="Alfa"></mark>
 
-> Mattilsynets designsystem bruker [designsystemet.no](https://www.designsystemet.no/) som grunnmur,
-men utvider med vår visuelle identitet, egenart og interne behov. Det fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan dra skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
+> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/),
+men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
 
+::: tip :green_heart: Bidra og delta:
 - **Spørsmål, tanker eller ideer?** Skriv gjerne til oss på [Slack](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) eller [Github](https://github.com/Mattilsynet/design/issues) :raised_hands:
 - **Hva er siste nytt?** Se [versjonslogg på Github](https://github.com/Mattilsynet/design/releases) og [oppgaver vi jobber med](https://github.com/orgs/Mattilsynet/projects/22)
+:::
 
 
 ## Kom i gang for utviklere
@@ -19,7 +21,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ::: code-group
 
     ```bash [NPM]
-    npm install --save @mattilsynet/design
+    npm install @mattilsynet/design --save
     ```
 
     ```bash [PNPM]
@@ -35,7 +37,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
     :::
 
-2. **Importer** stiler enten via Javascript eller CSS-fil:
+2. **Importer** stiler enten via Javascript eller CSS:
     ::: code-group
 
     ```js [Javascript]
@@ -43,11 +45,11 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
 
     ```css [CSS]
-    @import "@mattilsynet/design/styles.css";
+    @import url("@mattilsynet/design/styles.css");
     ```
     :::
 
-    ::: tip Tips: `background`, `color` og `font` blir satt på `<body>` :nerd_face:
+    ::: tip Merk: `background`, `color` og `font` blir satt på `<body>` :nerd_face:
     `body { background: …; color: …; font: … }` og `b, strong, th { font-weight: 600 }` blir automatisk definert, slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers. Dette er super lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) :green_heart:
     :::
 3. **Ta i bruk** klassenavn ved å importere `styles` objektet:

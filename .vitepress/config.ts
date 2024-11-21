@@ -1,10 +1,10 @@
-import { defineConfig } from "vitepress"
 import { fileURLToPath } from "node:url";
 import { whyframe } from '@whyframe/core'
 import { whyframeVue } from '@whyframe/vue'
+import { defineConfig } from "vitepress"
 
-import path from "node:path";
 import fs from "node:fs";
+import path from "node:path";
 
 const toNorwegian = (str: string) => str.replace(/--/g, ' ').replace(/aa/g, 'å').replace(/ae/g, 'æ').replace(/ooo/g, 'ø');
 const toTitleCase = (str: string) => `${str[0].toUpperCase()}${str.slice(1)}`;
@@ -89,6 +89,9 @@ export default defineConfig({
         items: [
           { text: "Introduksjon", link: "/designsystem/" },
           { text: "Logo", link: "/designsystem/logo/" },
+          { text: "Button", link: "/designsystem/button/" },
+          { text: "Field", link: "/designsystem/field" },
+          { text: "Input", link: "/designsystem/input/" },
           // { text: "Alle komponenter", link: "/designsystem/all" },
           // { text: "Universell utforming", link: "/designsystem/uu" },
           // { text: "Tokens", link: "/designsystem/tokens" },

@@ -4,55 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Designsystem</title>
+    <style>
+      @import url("./designsystem/styles.module.css");
+    </style>
   </head>
-  <body>
-    <div style="display: flex; align-items: center; gap: 4px; justify-content: space-between;">
-      <a href="#" class="logo">Eksport</a>
+  <body style="padding: 3rem;">
+    <a href="#" class="styles.logo">Eksport</a>
+    <div class="styles.field">
+      <label>Hei</label>
+      <div data-field="description">En beskrivelse</div>
+      <input class="styles.input" />
+      <output>En feil!</output>
     </div>
-    <div class="logo"></div>
-    <!-- <a href="#" class="logo" style="font-size: 2.25rem">DigiPlant</a>
+    <!-- <div style="display: flex; align-items: center; gap: 4px; justify-content: space-between;">
+    </div>
+    <div class="styles.logo"></div> -->
+    <!-- <a href="#" class="styles.logo" style="font-size: 2.25rem">DigiPlant</a>
       <div>Admiral E</div>
       <div>☰</div>
     </div>
     <br />
     <br />
     <br /> -->
-    <!-- <div style="font-size: 3rem;">
+    <!-- <div style="font-size: 2rem;">
       <div style="font-weight: 300; font-family: 'Avenir'">300 Avenir</div>
       <div style="font-weight: 300; font-family: 'Avenir Next'">300 Avenir Next</div>
+      <div style="font-weight: 300; font-family: 'Figtree'">300 Figtree</div>
       <div style="font-weight: 400; font-family: 'Avenir'">400 Avenir</div>
       <div style="font-weight: 400; font-family: 'Avenir Next'">400 Avenir Next</div>
+      <div style="font-weight: 400; font-family: 'Figtree'">400 Figtree</div>
       <div style="font-weight: 500; font-family: 'Avenir'">500 Avenir</div>
       <div style="font-weight: 500; font-family: 'Avenir Next'">500 Avenir Next</div>
+      <div style="font-weight: 500; font-family: 'Figtree'">500 Figtree</div>
       <div style="font-weight: 600; font-family: 'Avenir'">600 Avenir</div>
       <div style="font-weight: 600; font-family: 'Avenir Next'">600 Avenir Next</div>
+      <div style="font-weight: 600; font-family: 'Figtree'">600 Figtree</div>
       <div style="font-weight: 700; font-family: 'Avenir'">700 Avenir</div>
       <div style="font-weight: 700; font-family: 'Avenir Next'">700 Avenir Next</div>
+      <div style="font-weight: 700; font-family: 'Figtree'">700 Figtree</div>
     </div> -->
 
-    <!-- <button class="logo">Prøvetaking</button>
-    <h1 class="logo">Eksport</h1>
-    <div class="logo"></div>
-    <button class="button">Knapp</button> -->
-    <!-- <u-details class="accordion">
+    <!-- <button class="styles.logo">Prøvetaking</button>
+    <h1 class="styles.logo">Eksport</h1>
+    <div class="styles.logo"></div>
+    <button class="styles.button">Knapp</button> -->
+    <!-- <u-details class="styles.accordion">
       <u-summary>Detaljer</u-summary>
       <div>Dette er en detaljert beskrivelse</div>
     </u-details> -->
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    ÆØÅæøå
   </body>
   <script type="module">
     import '@u-elements/u-details';
     import { styles } from './designsystem/index.ts';
-    const stylesEntries = Object.entries(styles);
 
-    for (const el of document.querySelectorAll('[class]')) {
-      for (const [key, value] of stylesEntries) {
-        if (el.classList.contains(key)) {
-          el.classList.remove(key);
-          el.classList.add(...value.split(' '));
-        }
-      }
-    }
+    for (const el of document.querySelectorAll('[class*="styles."]') || []) {
+				el.className = styles[el.className.replace(/styles\./g, "")];
+			}
   </script>
 </html>

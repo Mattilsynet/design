@@ -18,10 +18,12 @@ const source = computed(() => iframe.value && getWhyframeSource(iframe.value));
 
 onMounted(() => {
 	iframe.value?.addEventListener("load", () => {
+		// @ts-ignore
+		const styles = window.CSSModuleStyles;
 		const doc = iframe.value?.contentDocument;
 		const observer = new MutationObserver(() => {
 			for (const el of doc?.querySelectorAll('[class*="styles."]') || []) {
-				el.className = el.className.replace(/styles\./g, "");
+				el.className = styles[el.className.replace(/styles\./g, "")];
 			}
 			observer.takeRecords();
 		});

@@ -24,9 +24,10 @@ onMounted(() => {
 <style>
   body {
     margin: auto!important;
-    font-size: var(--mt-font-md-max); /* Prevent fluid when in Whyframe */
+    font-size: 1.125rem; /* Prevent fluid when in Whyframe */
   }
   [data-demo] { padding: 5% }
+  [data-demo="rows"],
   [data-demo="grid"],
   [data-demo="grid"] > *,
   [data-demo="center"] {
@@ -36,10 +37,30 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
-    justify-content: center;
+    margin: auto;
     min-height: 100vh;
-    &  > * { min-width: 0 }
+    /* &  > * { min-width: 0; margin: auto } */
   }
   [data-demo="grid"] > * { min-height: 0 }
-  [data-demo="grid"] > * > hr { flex: 1 0 100%; visibility: hidden }
+  [data-demo="grid"] > * > hr { flex: 1 0 100%; visibility: hidden; margin: 0 }
+  [data-demo="rows"] > * > * + * { margin-top: 1.5rem }
+
+  .demo-resize {
+    border-radius: 5px;
+    margin: 1em -6px;
+    padding: 5px 5px 2em;
+    overflow: hidden;
+    resize: horizontal;
+    border: 1px dashed;
+    max-width: 100%;
+    position: relative;
+
+    &::after {
+      content: "Drag to resize →";
+      position: absolute;
+      right: 1em;
+      bottom: 0;
+      white-space: nowrap;
+    }
+  }
 </style>

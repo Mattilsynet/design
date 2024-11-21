@@ -1,0 +1,34 @@
+@layer mt.ds {
+	.button {
+		composes: ds-button from "@digdir/designsystemet-css";
+
+		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
+		font-weight: 500;
+		transition-duration: .2s;
+		transition-property: background-color, scale;
+
+		&:disabled,
+		&[aria-disabled] {
+			pointer-events: none;
+		}
+
+		&:active {
+			scale: 0.95;
+		}
+
+		&[aria-busy="true"] {
+			pointer-events: none;
+		}
+		&[aria-busy="true"]::before {
+			background: currentcolor;
+			content: "";
+			display: inline-block;
+			height: 1.5em;
+			mask: center / contain no-repeat
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cstyle%3E@keyframes rotate%7Bto%7Brotate:360deg%7D%7D@keyframes stroke%7B50%25%7Bstroke-dasharray:100,200;stroke-dashoffset:-15;transform:rotate(0deg)%7Dto%7Bstroke-dasharray:1,200;stroke-dashoffset:-120;transform:rotate(15deg)%7D%7Dcircle%7Bcx:25;cy:25;r:20;fill:none;stroke:currentcolor;stroke-width:5%7Dcircle:last-child%7Banimation:stroke ease-in-out infinite 2s,rotate linear infinite 2s;transform-origin:center%7D%3C/style%3E%3Ccircle opacity='.2'/%3E%3Ccircle stroke-dasharray='1, 200'/%3E%3C/svg%3E");
+			text-align: center;
+			vertical-align: middle;
+			width: 1.5em;
+		}
+	}
+}

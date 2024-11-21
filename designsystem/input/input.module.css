@@ -1,0 +1,5 @@
+@layer mt.ds {
+	.input {
+		composes: ds-input from "@digdir/designsystemet-css";
+	}
+}

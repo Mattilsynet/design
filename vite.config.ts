@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import postcssNesting from 'postcss-nesting';
-import dts from 'vite-plugin-dts';
-import path from 'node:path';
 import fs from 'node:fs';
+import path from 'node:path';
+import postcssNesting from 'postcss-nesting';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 const pkg = JSON.parse(String(fs.readFileSync(path.resolve(__dirname, './package.json'))));
 const root = path.resolve(__dirname, 'designsystem');

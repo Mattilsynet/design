@@ -1,0 +1,5 @@
+@layer mt.ds {
+	.field {
+		composes: ds-field from "@digdir/designsystemet-css";
+	}
+}
