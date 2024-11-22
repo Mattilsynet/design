@@ -46,13 +46,15 @@ onMounted(() => {
   [data-demo="rows"] > * > * + * { margin-top: 1.5rem }
 
   .demo-resize {
+    box-sizing: border-box;
     border-radius: 5px;
     margin: 1em -6px;
     padding: 5px 5px 2em;
     overflow: hidden;
     resize: horizontal;
     border: 1px dashed;
-    max-width: 100%;
+    min-width: min-content;
+    max-width: max-content;
     position: relative;
 
     &::after {

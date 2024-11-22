@@ -20,11 +20,27 @@ title: Input
 - Bruk `type="text | checkbox | radio | email | number | password | radio | search | tel | text | url"`
 - Kombiner `type="checkbox" role="switch"` for å få bryter-design
 
-<Story layout="rows">
+<style>
+  textarea { width: 345px }
+</style>
+<Story layout="grid">
 <div class="styles.field">
   <label>Text</label>
   <input type="text" class="styles.input" />
 </div>
+
+<div class="styles.field">
+  <label>Select</label>
+  <select class="styles.input">
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+    <option>Option 4</option>
+    <option>Option 5</option>
+  </select>
+</div>
+
+<hr />
 
 <div class="styles.field">
   <label>Checkbox</label>
@@ -44,6 +60,13 @@ title: Input
 <div class="styles.field">
   <label>Switch</label>
   <input type="checkbox" role="switch" class="styles.input" />
+</div>
+
+<hr />
+
+<div class="styles.field">
+  <label>Textarea</label>
+  <textarea class="styles.input"></textarea>
 </div>
 </Story>
 
