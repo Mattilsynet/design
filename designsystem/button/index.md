@@ -77,7 +77,7 @@ title: Button
 
 
 ## Disabled
-- Legg på `disabled` for `<button>` eller `aria-disabled="true" tabindex="-1"` for andre elementer
+- Legg på attributt `disabled` for `<button>` eller `aria-disabled="true" tabindex="-1"` for andre elementer
 
 <Story layout="grid">
 <button disabled type="button" class="styles.button">

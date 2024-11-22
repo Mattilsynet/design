@@ -17,7 +17,7 @@ title: Input
 </Story>
 
 ## Varianter
-- Bruk `type="text | checkbox | radio | email | number | password | radio | search | tel | text | url"`
+- Bruk `<select>`, `<textarea>` eller `<input type="text | checkbox | radio | email | number | password | radio | search | tel | url">`
 - Kombiner `type="checkbox" role="switch"` for å få bryter-design
 
 <style>
@@ -81,7 +81,7 @@ title: Input
 
 
 ## Read only
-- Legg på `readonly`
+- Legg på attributt `readonly`
 
 <Story layout="rows">
 <div class="styles.field">
@@ -104,7 +104,7 @@ title: Input
 
 
 ## Disabled
-- Legg på `disabled`
+- Legg på attributt `disabled`
 
 <Story layout="rows">
 <div class="styles.field">
