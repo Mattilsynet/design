@@ -8,7 +8,7 @@ title: Språk
 
 ## Ingress
 
-- Ingressen skal være kort og konkret. Hold den på 160 tegn (med mellomrom) eller færre. 
+- Ingressen skal være kort og konkret. Hold den på 160 tegn (med mellomrom) eller færre.
 - Ingressen skal inneholde hovedbudskapet i artikkelen, og det skal være tydelig hvem innholdet gjelder for. 
 - Ingressen skal være i én bolk. Ikke del den opp i flere avsnitt.
 - Det er ikke mulig med lenke i ingress på nettsidene.
