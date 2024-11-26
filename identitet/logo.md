@@ -10,7 +10,7 @@ title: Logo
   import { data } from '../.vitepress/theme/svgs.data.ts';
   const map = Object.fromEntries(data);
   const logoNorsk  = map['/logo.svg'];
-  const logoEngelsk  = map['/logo-engelsk.svg'];
+  const logoEngelsk  = map['/logo-english.svg'];
   const logoSamisk  = map['/logo-samisk.svg'];
 
   // Inspired by https://github.com/yoksel/url-encoder/

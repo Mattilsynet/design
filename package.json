@@ -4,9 +4,7 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
+	"files": ["mtds"],
 	"exports": {
 		".": {
 			"import": "./mtds/index.js",
@@ -21,7 +19,7 @@
 	},
 	"scripts": {
 		"start": "vite",
-		"build": "vite build && rm -rf mtds/nedlastinger/",
+		"build": "vite build && rm -rf mtds/docs/",
 		"lint": "npx @biomejs/biome lint",
 		"preview": "vite preview",
 		"docs:dev": "vitepress dev",

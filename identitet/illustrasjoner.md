@@ -27,28 +27,28 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
   { hex: '#1D57AA', name: 'Klær, mellomblå', desc: 'Brukes som alternativ til Fjord på mørke flater' }
 ]" />
 
-## Planter:
+## Planter
 <Svgs path="/illustrations/plants" />
 
-## Mat:
+## Mat
 <Svgs path="/illustrations/food" />
 
-## Dyr:
+## Dyr
 <Svgs path="/illustrations/animals" />
 
-## Akvakultur:
+## Akvakultur
 <Svgs path="/illustrations/aqua" />
 
-## Drikkevann:
+## Drikkevann
 <Svgs path="/illustrations/water" />
 
-## Kosmetikk:
+## Kosmetikk
 <Svgs path="/illustrations/cosmetics" />
 
-## Mennesker:
+## Mennesker
 <Svgs path="/illustrations/humans" />
 
-## Visjonen vår – menneske, dyr og natur:
+## Visjonen vår
 <Svgs path="/illustrations/vision" />
 
 ## Illustrasjonssystem

@@ -42,12 +42,12 @@ export default defineConfig({
   description: "Mattilsynet Design",
   cleanUrls: true,
   head: [
-    ["link", { rel: "icon", href: '/logo-symbol.svg' }],
+    ["link", { rel: "icon", href: '/docs/logo-symbol.svg' }],
     // ["script", { acync: "", defer: "", src: "https://scripts.withcabin.com/hello.js" }], // Analytics
   ],
   appearance: false,
   themeConfig: {
-    logo: "/logo.svg",
+    logo: "/docs/logo-text.svg",
     darkModeSwitchLabel: "Fargemodus",
     darkModeSwitchTitle: "Bytt til mørk fargemodus",
     langMenuLabel: "Språk",
@@ -101,10 +101,6 @@ export default defineConfig({
         text: "Profilering",
         collapsed: true,
         items: getFiles("profilering"),
-      },
-      {
-        text: "Nedlastinger",
-        link: "/nedlastinger/",
       }
     ],
 		search: {

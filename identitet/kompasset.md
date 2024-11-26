@@ -6,7 +6,7 @@ title: Kompasset og roller
 
 ## Kompasset
 
-<a data-fill href="/nedlastinger/kompasset.pdf" aria-label="Last ned stategisk kompass som PDF">
+<a data-fill href="/docs/kompasset.pdf" aria-label="Last ned stategisk kompass som PDF">
   <img alt="" src="./kompasset.png" style="border-radius: var(--mt-radius-md)" />
 </a>
 
