@@ -1,7 +1,3 @@
----
-title: Logo
----
-
 # Logo
 
 ## Last ned logo

@@ -1,7 +1,3 @@
----
-title: Skeleton
----
-
 # Skeleton
 
 <Story>

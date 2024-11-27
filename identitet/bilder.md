@@ -1,7 +1,3 @@
----
-title: Bilder
----
-
 # Bilder
 
 [Høyoppløselig versjon av vår bilder kan lastes ned fra SharePoint](https://mattilsynet.sharepoint.com/sites/BilderMattilsynet)

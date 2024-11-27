@@ -1,7 +1,3 @@
----
-title: Popover
----
-
 # Popover
 
 <Story>

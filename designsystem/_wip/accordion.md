@@ -1,7 +1,3 @@
----
-title: Accordion
----
-
 # Accordion
 
 <Story>

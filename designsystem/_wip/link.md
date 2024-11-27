@@ -1,7 +1,3 @@
----
-title: Input
----
-
 # Input
 
 <Story>

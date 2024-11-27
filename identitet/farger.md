@@ -1,7 +1,3 @@
----
-title: Farger
----
-
 # Farger
 
 ## Bakgrunn

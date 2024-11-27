@@ -1,9 +1,11 @@
 @import url("@digdir/designsystemet-css");
 @import url("@digdir/designsystemet-theme");
-@import url("./button/button.module.css");
-@import url("./input/input.module.css");
 @import url("./logo/logo.module.css");
+@import url("./input/input.module.css");
+@import url("./font.css");
 @import url("./field/field.module.css");
+@import url("./fieldset/fieldset.module.css");
+@import url("./button/button.module.css");
 
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.ds {

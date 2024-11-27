@@ -1,5 +1,1 @@
----
-title: Messemateriell
----
-
 # Messemateriell

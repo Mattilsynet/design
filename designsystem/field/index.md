@@ -1,12 +1,8 @@
----
-title: Field
----
-
 # Field <mark data-badge="Alfa"></mark>
 
-- Legg klassenavnet `field` på typisk `<div>` rundt ledetekst og skjemafelt
+- Legg klassen `field` på typisk `<div>` rundt ledetekst og skjemafelt
 - Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `data-field="description"` eller  `data-field="validation"`
-- **Merk:** field kobler opp all funksjonalitet automatisk, men krever at du har importert javascript pakken: `import "@mattilsynet/design"`
+- **Merk:** field oppkobllingsfunksjonalitet krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 
 <Story layout="grid">
 <div class="styles.field">

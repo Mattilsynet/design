@@ -1,7 +1,3 @@
----
-title: Rapportomslag
----
-
 # Rapportomslag
 
 Mattilsynets rapporter har tre ulike forsidemaler: én for foto, én for illustrasjon og én for typografi.

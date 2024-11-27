@@ -1,7 +1,3 @@
----
-title: Universell utforming
----
-
 # Universell utforming
 
 Tilgjengelighet er en grunnleggende prinsipp for inkludering og brukersentrert design. Hos Mattilsynet omfavner vi dette fullt ut, og ser på det ikke bare som en lovpålagt forpliktelse, men som en grunnleggende verdi.

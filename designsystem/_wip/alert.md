@@ -1,7 +1,3 @@
----
-title: Alert
----
-
 # Alert
 
 <Story>

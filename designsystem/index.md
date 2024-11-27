@@ -1,7 +1,3 @@
----
-title: Designsystem
----
-
 # Designsystem <mark data-badge="Alfa"></mark>
 
 > Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/),

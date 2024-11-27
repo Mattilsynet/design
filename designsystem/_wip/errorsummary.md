@@ -1,7 +1,3 @@
----
-title: Errorsummary
----
-
 # Errorsummary
 
 <Story>

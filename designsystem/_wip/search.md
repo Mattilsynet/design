@@ -1,7 +1,3 @@
----
-title: Search
----
-
 # Search
 
 <Story>

@@ -1,7 +1,3 @@
----
-title: Togglegroup
----
-
 # Togglegroup
 
 <Story>

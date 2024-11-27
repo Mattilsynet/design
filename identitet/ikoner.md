@@ -1,7 +1,3 @@
----
-title: Ikoner
----
-
 # Ikoner
 
 <!--[NEDLASTINGSKNAPP]-->

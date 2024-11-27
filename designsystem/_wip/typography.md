@@ -1,7 +1,3 @@
----
-title: Typography
----
-
 # Typography
 
 <Story aspect="4 / 3" maxWidth="90vw">

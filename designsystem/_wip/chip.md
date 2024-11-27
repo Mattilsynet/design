@@ -1,7 +1,3 @@
----
-title: Chip
----
-
 # Chip
 
 <Story>

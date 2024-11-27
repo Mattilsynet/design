@@ -1,7 +1,3 @@
----
-title: Språk
----
-
 # Slik skriver vi
 
 > Mattilsynet skal være én aktør og kommunisere helhetlig. Derfor har vi laget en felles språkprofil.

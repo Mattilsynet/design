@@ -1,7 +1,3 @@
----
-title: Card
----
-
 # Card
 
 <Story aspect="4 / 3" maxWidth="300px">

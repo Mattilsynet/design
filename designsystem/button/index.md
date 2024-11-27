@@ -1,10 +1,6 @@
----
-title: Button
----
-
 # Button <mark data-badge="Alfa"></mark>
 
-- Legg klassenavnet `button` på typisk `<button>` eller `<a>`
+- Legg klassen `button` på typisk `<button>` eller `<a>`
 - Husk `type="button"` hvis en `<button>` gjør noe annet enn å sende skjema
 
 <Story layout="grid">

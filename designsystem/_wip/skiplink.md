@@ -1,7 +1,3 @@
----
-title: Skiplink
----
-
 # Skiplink
 
 <Story>

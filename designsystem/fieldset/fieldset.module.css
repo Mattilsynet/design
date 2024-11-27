@@ -1,0 +1,9 @@
+@layer mt.ds {
+	.fieldset {
+		composes: ds-fieldset from "@digdir/designsystemet-css";
+
+		& legend {
+			font-weight: 500;
+		}
+	}
+}

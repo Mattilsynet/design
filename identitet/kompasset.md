@@ -1,7 +1,3 @@
----
-title: Kompasset og roller
----
-
 # Kompasset og roller
 
 ## Kompasset

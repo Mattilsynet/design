@@ -1,10 +1,6 @@
----
-title: Logo
----
-
 # Logo <mark data-badge="Alfa"></mark>
 
-- Legg klassenavnet `logo` på typisk `<h1>` eller `<a>`
+- Legg klassen `logo` på typisk `<h1>` eller `<a>`
 - Legg inn navn på din applikasjon som undermerke
 - Usynlg prefiks tekst "Mattilsynet" blir automatisk lagt inn for skjermlesere
 - Bruk `&nbsp;` istedenfor mellomrom, eksempel: `Min&nbsp;admin`

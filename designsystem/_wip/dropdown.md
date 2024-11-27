@@ -1,7 +1,3 @@
----
-title: Dropdown
----
-
 # Dropdown
 
 <Story>

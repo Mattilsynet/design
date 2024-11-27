@@ -1,7 +1,3 @@
----
-title: Form og bevegelse
----
-
 # Form og bevegelse
 
 ## Avrundet form

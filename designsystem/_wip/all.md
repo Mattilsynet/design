@@ -1,7 +1,3 @@
----
-title: Alle komponenter
----
-
 # Alle komponenter
 
 ## Button

@@ -1,7 +1,3 @@
----
-title: Header
----
-
 # Header
 
 <Story>

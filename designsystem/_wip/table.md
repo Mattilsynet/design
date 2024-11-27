@@ -1,7 +1,3 @@
----
-title: Table
----
-
 # Table
 
 <Story>

@@ -1,7 +1,3 @@
----
-title: Layout
----
-
 # Layoutprinsipper
 
 Mattilsynets logo skal alltid ha et bestemt forhold til den flaten den står på, og en bestemt plassering på denne.

@@ -1,7 +1,3 @@
----
-title: Tabs
----
-
 # Tabs
 
 <Story>

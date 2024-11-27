@@ -1,7 +1,3 @@
----
-title: Pagination
----
-
 # Pagination
 <Story>
 <nav aria-label="Pagination">

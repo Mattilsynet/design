@@ -1,7 +1,3 @@
----
-title: Illustrasjoner
----
-
 # Illustrasjoner
 
 I Mattilsynet har vi utviklet en egen illustrasjonsstil som gir oss et egenartet og lett gjenkjennelig uttrykk.

@@ -1,7 +1,3 @@
----
-title: Stillingsannonser
----
-
 # Stillingsannonser
 
 Stillingsannonser kan, avhengig av størrelse og budskap, opptre med kun tekst eller med foto eller illustrasjon.

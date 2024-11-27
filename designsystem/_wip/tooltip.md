@@ -1,7 +1,3 @@
----
-title: Tooltip
----
-
 # Tooltip
 
 <Story>

@@ -1,10 +1,6 @@
----
-title: Input
----
-
 # Input <mark data-badge="Alfa"></mark>
 
-- Legg klassenavnet `input` på `<input>`, `<select>` eller `<textarea>`
+- Legg klassen `input` på `<input>`, `<select>` eller `<textarea>`
 - Input `type="radio"`, `type="checkbox"` og `role="switch"`  er også støttet
 - Bruk [`Field`](/designsystem/field/) for å automatisk koble sammen `label` og `input`
 - Bruk alltid en relatert `<label>`, `aria-label`, eller `aria-labelledby`
