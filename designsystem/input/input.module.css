@@ -1,5 +1,7 @@
 @layer mt.ds {
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
+
+		--dsc-input-border-width--toggle: 1px;
 	}
 }

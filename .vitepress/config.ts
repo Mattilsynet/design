@@ -89,10 +89,12 @@ export default defineConfig({
         items: [
           { text: "Introduksjon", link: "/designsystem/" },
           { text: "Logo", link: "/designsystem/logo/" },
+          { text: "Breadcrumbs", link: "/designsystem/breadcrumbs/" },
           { text: "Button", link: "/designsystem/button/" },
           { text: "Field", link: "/designsystem/field/" },
           { text: "Fieldset", link: "/designsystem/fieldset/" },
           { text: "Input", link: "/designsystem/input/" },
+          { text: "Link", link: "/designsystem/link/" },
           // { text: "Alle komponenter", link: "/designsystem/all" },
           // { text: "Universell utforming", link: "/designsystem/uu" },
           // { text: "Tokens", link: "/designsystem/tokens" },

@@ -1,0 +1,5 @@
+@layer mt.ds {
+	.breadcrumbs {
+		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
+	}
+}
