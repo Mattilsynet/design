@@ -10,7 +10,7 @@
 	line-height: var(--height);
 }
 
-@layer mt.ds {
+@layer mt.design {
 	.logo {
 		composes: ds-focus from "@digdir/designsystemet-css";
 

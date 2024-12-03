@@ -1,4 +1,4 @@
-@layer mt.ds {
+@layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 

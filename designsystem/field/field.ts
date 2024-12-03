@@ -3,6 +3,7 @@ import styles from '../styles.module.css';
 const IS_BROWSER = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 const FIELDS = IS_BROWSER ? document.getElementsByClassName(styles.field.split(' ')[0]) : []; // Reutrns a live HTMLCollection
 const UUID = `:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
+const VALIDATION = styles.validation.split(' ')[0];
 
 let id = 0;
 function useId (el: Element) {
@@ -37,10 +38,8 @@ function process() {
     for (const el of field.getElementsByTagName('*')) {
       if (el instanceof HTMLLabelElement) labels.push(el);
       else if ('validity' in el && !(el instanceof HTMLButtonElement)) input = el;
-      else {
-        const field = el.getAttribute('data-field');
-        if (field) descs[field === 'validation' ? 'unshift' : 'push'](useId(el)); // Place validation messages first
-      }
+      else if (el.classList.contains(VALIDATION)) descs.unshift(useId(el)); // Must be before validation since it can also be a <p>
+      else if (el.nodeName === 'P') descs.push(useId(el));
     }
 
     if (input) for (const label of labels) label.htmlFor = useId(input);

@@ -83,7 +83,7 @@
 <Story layout="rows">
 <div class="styles.field">
   <label>Read only text</label>
-  <input class="styles.input" readonly />
+  <input class="styles.input" readonly value="Value" />
 </div>
 <div class="styles.field">
   <label>Read only checkbox</label>

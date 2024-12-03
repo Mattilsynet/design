@@ -1,4 +1,4 @@
-@layer mt.ds {
+@layer mt.design {
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
 

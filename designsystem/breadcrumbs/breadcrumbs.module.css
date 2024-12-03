@@ -1,4 +1,4 @@
-@layer mt.ds {
+@layer mt.design {
 	.breadcrumbs {
 		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
 	}

@@ -1,0 +1,23 @@
+@layer mt.design {
+	.alert {
+		composes: ds-alert from "@digdir/designsystemet-css";
+
+		--dsc-alert-background: #dfeef6;
+		--dsc-alert-border-color: currentcolor;
+
+		& :is(h2, h3, h3, h4):first-child {
+			font-size: 1em;
+			margin: 0;
+		}
+
+		&[data-color="warning"] {
+			--dsc-alert-background: #fcf0d2;
+		}
+		&[data-color="success"] {
+			--dsc-alert-background: #e2f1df;
+		}
+		&[data-color="danger"] {
+			--dsc-alert-background: #fee9df;
+		}
+	}
+}

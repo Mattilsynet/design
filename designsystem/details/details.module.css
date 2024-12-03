@@ -1,0 +1,5 @@
+@layer mt.design {
+	.details {
+		composes: ds-details from "@digdir/designsystemet-css";
+	}
+}

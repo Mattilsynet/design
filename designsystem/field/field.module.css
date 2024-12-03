@@ -1,6 +1,15 @@
-@layer mt.ds {
+@layer mt.design {
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
+		row-gap: var(--ds-spacing-2);
+
+		/* <p> is used for field descriptions */
+		& > p {
+			margin: 0;
+		}
+		& > label + p {
+			margin-top: calc(var(--ds-spacing-2) * -1);
+		}
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		&:has([readonly]:disabled) label {

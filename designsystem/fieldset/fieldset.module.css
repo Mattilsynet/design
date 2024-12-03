@@ -1,9 +1,15 @@
-@layer mt.ds {
+@layer mt.design {
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
 
 		& legend {
 			font-weight: 500;
+		}
+
+		/* Reset designsystemet */
+		& legend + p {
+			color: inherit;
+			margin: 0;
 		}
 	}
 }
