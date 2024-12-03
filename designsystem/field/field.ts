@@ -34,16 +34,20 @@ function process() {
     const labels: HTMLLabelElement[] = [];
     const descs: string[] = [];
     let input: Element | null = null;
+    let valid = true;
 
     for (const el of field.getElementsByTagName('*')) {
       if (el instanceof HTMLLabelElement) labels.push(el);
       else if ('validity' in el && !(el instanceof HTMLButtonElement)) input = el;
-      else if (el.classList.contains(VALIDATION)) descs.unshift(useId(el)); // Must be before validation since it can also be a <p>
-      else if (el.nodeName === 'P') descs.push(useId(el));
+      else if (el.classList.contains(VALIDATION)) { // Must be before validation since it can also be a <p>
+        valid = el.getAttribute('data-color') === 'success';
+        descs.unshift(useId(el));
+      } else if (el instanceof HTMLParagraphElement) descs.push(useId(el));
     }
 
     if (input) for (const label of labels) label.htmlFor = useId(input);
     input?.setAttribute('aria-describedby', descs.join(' '));
+    input?.setAttribute('aria-invalid', `${!valid}`);
   }
 }
 

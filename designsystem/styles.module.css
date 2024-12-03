@@ -23,6 +23,10 @@
 		--mt-solstreif: #f8de9c;
 		--ds-color-focus-outer: var(--mt-granskog);
 
+		--mt-font-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+		--mt-font-md: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+		--mt-font-lg: clamp(1.125rem, 1.025rem + 0.5vw, 1.375rem);
+
 		--ds-color-accent-background-default: #f3f8f1;
 		--ds-color-accent-background-subtle: #e2f1df;
 		--ds-color-accent-surface-default: #d3e8e0;
@@ -49,7 +53,7 @@
 	body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
-		font: 1.125rem / 1.5 "Avenir Next", "Avenir", Helvetica, Arial, sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font: var(--mt-font-md) / 1.5 "Avenir Next", "Avenir", Helvetica, sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		margin: 0;
 	}
 
