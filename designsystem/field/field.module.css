@@ -1,5 +1,11 @@
 @layer mt.ds {
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
+
+		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
+		&:has([readonly]:disabled) label {
+			cursor: default;
+			opacity: 1;
+		}
 	}
 }

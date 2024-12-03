@@ -78,6 +78,7 @@
 
 ## Read only
 - Legg på attributt `readonly`
+- Husk også `disabled` dersom du legger `readonly` på `type="checkbox"` eller `type="radio"`, siden disse ikke stoppes automatisk av nettleseren
 
 <Story layout="rows">
 <div class="styles.field">
@@ -86,15 +87,15 @@
 </div>
 <div class="styles.field">
   <label>Read only checkbox</label>
-  <input type="checkbox" class="styles.input" readonly />
+  <input type="checkbox" class="styles.input" readonly disabled />
 </div>
 <div class="styles.field">
   <label>Read only radio</label>
-  <input type="radio" class="styles.input" readonly />
+  <input type="radio" class="styles.input" readonly disabled />
 </div>
 <div class="styles.field">
   <label>Read only switch</label>
-  <input type="checkbox" role="switch" class="styles.input" readonly />
+  <input type="checkbox" role="switch" class="styles.input" readonly disabled />
 </div>
 </Story>
 

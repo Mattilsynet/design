@@ -3,5 +3,10 @@
 		composes: ds-input from "@digdir/designsystemet-css";
 
 		--dsc-input-border-width--toggle: 1px;
+
+		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
+		&[readonly]:disabled {
+			opacity: 1;
+		}
 	}
 }
