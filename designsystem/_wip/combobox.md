@@ -1,6 +1,6 @@
 # Combobox
 
-<Story>
+<pre hidden>
 <div class="ds-box--default-background ds-combobox ds-combobox--md">
   <label class="ds-label ds-label--md ds-font-weight--medium ds-combobox__label" for="combobox-:r85:">Hvor går reisen?</label>
   <div id="combobox-description-:r85:" class="ds-paragraph ds-paragraph--md ds-line-height--md ds-combobox__description">Velg et sted</div>
@@ -14,4 +14,5 @@
   </div>
   <div class="ds-combobox__error-message" id="combobox-error-:r85:" aria-live="polite" aria-relevant="additions removals"></div>
 </div>
-</Story>
+</pre>
+<Story />

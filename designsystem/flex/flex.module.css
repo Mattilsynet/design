@@ -1,4 +1,91 @@
 @layer mt.design {
+	.grid {
+		--min: 15ch;
+		--gap: 1rem;
+
+		display: grid;
+		grid-gap: var(--gap);
+		/* min() with 100% prevents overflow in extra narrow spaces */
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+
+		&[data-justify]:not([data-justify="normal"], [data-justify="stretch"]) {
+			grid-template-columns: repeat(auto-fit, minmax(0%, min-content));
+		}
+
+		&[data-gap="none"],
+		&[data-gap="false"] {
+			gap: 0;
+		}
+		&[data-gap="xs"] {
+			gap: var(--ds-spacing-1);
+		}
+		&[data-gap="sm"] {
+			gap: var(--ds-spacing-2);
+		}
+		&[data-gap="md"] {
+			gap: var(--ds-spacing-3);
+		}
+		&[data-gap="lg"] {
+			gap: var(--ds-spacing-4);
+		}
+
+		&[data-align="start"] {
+			align-items: start;
+		}
+		&[data-align="center"] {
+			align-items: center;
+		}
+		&[data-align="end"] {
+			align-items: end;
+		}
+		&[data-align="stretch"] {
+			align-items: stretch;
+		}
+		&[data-align-content="start"] {
+			align-content: start;
+		}
+		&[data-align-content="center"] {
+			align-content: center;
+		}
+		&[data-align-content="end"] {
+			align-content: end;
+		}
+		&[data-align-content="stretch"] {
+			align-content: stretch;
+		}
+		&[data-align-content="baseline"] {
+			align-content: baseline;
+		}
+		&[data-align-content="space-around"] {
+			align-content: space-around;
+		}
+		&[data-align-content="space-between"] {
+			align-content: space-between;
+		}
+		&[data-align-content="space-evenly"] {
+			align-content: space-evenly;
+		}
+
+		&[data-justify="start"] {
+			justify-content: flex-start;
+		}
+		&[data-justify="center"] {
+			justify-content: center;
+		}
+		&[data-justify="end"] {
+			justify-content: flex-end;
+		}
+		&[data-justify="space-around"] {
+			justify-content: space-around;
+		}
+		&[data-justify="space-between"] {
+			justify-content: space-between;
+		}
+		&[data-justify="space-evenly"] {
+			justify-content: space-evenly;
+		}
+	}
+
 	.flex {
 		box-sizing: border-box;
 		display: flex;
@@ -25,15 +112,21 @@
 			min-height: calc(var(--builders-flex-layout) * 0px); /* Only set min-height when --builders-flex-layout is an integer */
 		}
 
-		&[data-fill] > * {
-			flex-grow: 1;
+		&[data-gap="none"],
+		&[data-gap="false"] {
+			gap: 0;
 		}
-		&[data-nowrap] {
-			flex-wrap: nowrap;
-			/* When Flex has layout AND nowrap: Prevent shrinking because we want elements to stay their intended width when */
-			& > * {
-				flex-shrink: calc(var(--builders-flex-layout) * 0); /* Only shrink when --builders-flex-layout is an integer */
-			}
+		&[data-gap="xs"] {
+			gap: var(--ds-spacing-1);
+		}
+		&[data-gap="sm"] {
+			gap: var(--ds-spacing-2);
+		}
+		&[data-gap="md"] {
+			gap: var(--ds-spacing-3);
+		}
+		&[data-gap="lg"] {
+			gap: var(--ds-spacing-4);
 		}
 
 		&[data-align="start"] {
@@ -95,13 +188,24 @@
 			justify-content: space-evenly;
 		}
 
+		&[data-fill] > * {
+			flex-grow: 1;
+		}
+		&[data-nowrap] {
+			flex-wrap: nowrap;
+			/* When Flex has layout AND nowrap: Prevent shrinking because we want elements to stay their intended width when */
+			& > * {
+				flex-shrink: calc(var(--builders-flex-layout) * 0); /* Only shrink when --builders-flex-layout is an integer */
+			}
+		}
+
 		&[data-center="md"] {
 			max-width: var(--builders-container-md);
 		}
-		&[data-center="md,"]
-			&[data-center="lg,"]
-			&[data-center="xl,"]
-			&[data-center="xxl"] {
+		&[data-center="md"],
+		&[data-center="lg"],
+		&[data-center="xl"],
+		&[data-center="xxl"] {
 			box-sizing: border-box;
 			margin-inline: auto;
 			width: calc(100% - var(--builders-unit-50)); /* Fake 20px padding on each side */

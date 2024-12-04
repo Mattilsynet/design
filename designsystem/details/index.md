@@ -2,9 +2,10 @@
 
 - Legg klassen `details` på `<u-details>`
 
-<Story layout="grid">
+<pre hidden>
 <u-details class="styles.details">
   <u-summary>Åpne/lukk</u-summary>
   Innhold
 </u-details>
-</Story>
+</pre>
+<Story />

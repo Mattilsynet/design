@@ -3,9 +3,11 @@
 		composes: ds-button from "@digdir/designsystemet-css";
 
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
+		display: inline-flex;
 		font-weight: 500;
 		transition-duration: .2s;
 		transition-property: background-color, scale;
+		vertical-align: middle;
 
 		&:disabled,
 		&[aria-disabled] {

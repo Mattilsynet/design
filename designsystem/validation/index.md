@@ -3,7 +3,7 @@
 - Legg klassen `validation` på typisk `<div>`
 
 
-<Story layout="grid">
+<pre hidden>
 <div class="styles.field">
   <label>Ledetekst</label>
   <p>Beskrivelse</p>
@@ -12,4 +12,5 @@
     Feilmelding
   </div>
 </div>
-</Story>
+</pre>
+<Story />

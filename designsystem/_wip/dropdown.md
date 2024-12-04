@@ -1,6 +1,6 @@
 # Dropdown
 
-<Story>
+<pre hidden>
 <button type="button" class="ds-paragraph ds-paragraph--md ds-line-height--sm ds-btn ds-focus ds-btn--md ds-btn--primary ds-btn--accent" aria-haspopup="menu" aria-expanded="true">Dropdown</button>
 <ul role="dialog" aria-hidden="false" data-placement="bottom-end" id=":r7p:" class="ds-dropdownmenu ds-dropdownmenu--md" tabindex="-1" hidden>
   <li>
@@ -22,4 +22,5 @@
     </ul>
   </li>
 </ul>
-</Story>
+</pre>
+<Story />

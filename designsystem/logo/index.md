@@ -7,11 +7,14 @@
 - Logo følger tekststørrelse og tekstfarge (burde være `#054449`)
 - Ved lite plass blir "Mattilsynet" skjult visuelt, og deretter undermerke:
 
-<Story layout="rows">
+<pre hidden>
 <h1 class="styles.logo"></h1>
-<a class="styles.logo" href="/">Undermerke</a>
+<a class="styles.logo" href="/">
+  Undermerke
+</a>
 
 <div class="demo-resize">
   <h1 class="styles.logo">Resize&nbsp;Demo</h1>
 </div>
-</Story>
+</pre>
+<Story stacked />

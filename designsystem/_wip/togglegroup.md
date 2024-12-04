@@ -1,6 +1,6 @@
 # Togglegroup
 
-<Story>
+<pre hidden>
 <div class="ds-togglegroup"><input class="ds-togglegroup__input" name="toggle-group-nuts" value="innboks">
   <div class="ds-togglegroup__content" role="radiogroup" tabindex="0">
     <button type="button" class="ds-paragraph ds-paragraph--md ds-line-height--sm ds-btn ds-focus ds-btn--md ds-btn--primary ds-btn--accent ds-togglegroup__item" value="innboks" id="togglegroup-item-:rgs:" aria-checked="true" aria-current="true" role="radio" name="toggle-group-nuts" tabindex="0">
@@ -17,4 +17,5 @@
     </button>
   </div>
 </div>
-</Story>
+</pre>
+<Story />

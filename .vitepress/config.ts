@@ -1,6 +1,4 @@
 import { fileURLToPath } from "node:url";
-import { whyframe } from '@whyframe/core'
-import { whyframeVue } from '@whyframe/vue'
 import { defineConfig } from "vitepress"
 
 import fs from "node:fs";
@@ -30,12 +28,6 @@ export default defineConfig({
         isCustomElement: (tag) => tag.includes('-')
       }
     }
-  },
-  vite: {
-    plugins: [
-      whyframe({ components: [{ name: 'Story', showSource: true }] }),
-      whyframeVue({ include: /\.(?:vue|md)$/ }) // Files to scan
-    ]
   },
   lang: "nb-NO",
   title: "Mattilsynet Design",

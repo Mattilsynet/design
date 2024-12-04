@@ -1,6 +1,6 @@
 # Modal
 
-<Story>
+<pre hidden>
 <button type="button" class="ds-paragraph ds-paragraph--md ds-line-height--sm ds-btn ds-focus ds-btn--md ds-btn--primary ds-btn--accent" aria-expanded="false" aria-haspopup="dialog" onclick="document.querySelector('dialog').show()">
   Open Modal
 </button>
@@ -16,4 +16,5 @@
   </div>
   <footer class="ds-modal__footer">Modal footer</footer>
 </dialog>
-</Story>
+</pre>
+<Story />

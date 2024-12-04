@@ -4,6 +4,7 @@
 @import url("./breadcrumbs/breadcrumbs.module.css");
 @import url("./button/button.module.css");
 @import url("./field/field.module.css");
+@import url("./flex/flex.module.css");
 @import url("./fieldset/fieldset.module.css");
 @import url("./font.css");
 @import url("./input/input.module.css");
@@ -50,20 +51,19 @@
 	 * This effectively paints the whole document due to:
 	 * https://www.w3.org/TR/css-backgrounds-3/#body-background
 	 */
-	body {
+	body,
+	.body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
-		font: var(--mt-font-md) / 1.5 "Avenir Next", "Avenir", Helvetica, sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font: var(--mt-font-md) / 1.5 "Albert Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		margin: 0;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
+	legend,
 	label {
-		font-weight: 500;
-	}
-
-	b,
-	strong,
-	th {
-		font-weight: 600; /* Both Avenir and Avenir Next renders very thick on font-weight: 700, so we instead default to semibold */
+		font-weight: 600;
+		padding: 0;
 	}
 }

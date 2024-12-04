@@ -1,74 +1,66 @@
 <script setup lang="ts">
-import { getWhyframeSource } from "@whyframe/core/utils";
-import { withBase } from "vitepress";
-import { computed, onMounted, ref } from "vue";
+import { styles } from "../../designsystem/";
+// @ts-ignore Vite knows how to handle this:
+import css from "../../designsystem/styles.module.css?inline";
 
-const {
-	aspect,
-	maxWidth = "100vw",
-	layout = "center",
-} = defineProps<{
-	aspect?: string;
-	maxWidth?: string;
-	layout?: string;
-}>();
+const { stacked } = defineProps<{ stacked?: boolean }>();
 
-const iframe = ref<HTMLIFrameElement>();
-const source = computed(() => iframe.value && getWhyframeSource(iframe.value));
+if (typeof window !== "undefined" && !customElements.get("vp-story"))
+	customElements.define(
+		"vp-story",
+		class extends HTMLElement {
+			connectedCallback() {
+				setTimeout(() => {
+					const code = this.previousElementSibling?.innerHTML;
+					const div = document.createElement("div");
+					const html = code?.replace(/styles\.([^\s"]+)/g, (_, k) => styles[k]);
+					const style = document.createElement("style");
+					const source = this.nextElementSibling;
 
-onMounted(() => {
-	iframe.value?.addEventListener("load", () => {
-		// @ts-ignore
-		const styles = window.CSSModuleStyles;
-		const doc = iframe.value?.contentDocument;
-		const observer = new MutationObserver(() => {
-			for (const el of doc?.querySelectorAll('[class*="styles."]') || []) {
-				el.className = styles[el.className.replace(/styles\./g, "")];
+					style.textContent = `${css}
+						[data-stacked="true"] > * + *{margin-top:1rem}
+						.demo-resize {
+							box-sizing: border-box;
+							border-radius: 5px;
+							margin: 1em -6px;
+							padding: 5px 5px 2em;
+							overflow: hidden;
+							resize: horizontal;
+							border: 1px dashed;
+							min-width: min-content;
+							max-width: max-content;
+							position: relative;
+
+							&::after { content: "Drag to resize →"; position: absolute; right: 1em; bottom: 0; white-space: nowrap }
+						}
+					`;
+					div.innerHTML = html || "";
+					div.setAttribute("data-stacked", `${this.dataset.stacked}`);
+					this.attachShadow({ mode: "open" }).append(style, div);
+					if (source) source.textContent = code || "";
+				});
 			}
-			observer.takeRecords();
-		});
-
-		if (doc) {
-			doc.body.style.maxWidth = maxWidth;
-			observer.observe(doc.body, {
-				childList: true,
-				subtree: true,
-				attributes: true,
-				attributeFilter: ["class"],
-			});
-		}
-	});
-});
+		},
+	);
 </script>
 <template>
-  <iframe
-    :data-layout="layout"
-    :src="withBase('/designsystem/_whyframe')"
-    :style="{ aspectRatio: aspect }"
-    class="render"
-    data-why
-    ref="iframe"
-    title="Preview"
-  >
-    <slot></slot>
-  </iframe>
-  <pre class="source">{{ source }}</pre>
+	<vp-story :class="`demo ${styles.body}`" :data-stacked="stacked"></vp-story>
+  <pre class="code"></pre>
 </template>
 <style scoped>
-.render {
-  aspect-ratio: 16 / 9;
-  margin: 2rem 0 0;
-  border: 1px solid var(--mt-divider);
-  background: transparent;
-  width: 100%;
+.demo {
+	display: block;
+	border: 1px solid var(--mt-divider);
+	margin: 2rem 0 0;
+	padding: 5%;
 }
 
-.source {
-  background-color: #032C30;
-  color: white;
-  font-size: 0.8rem;
-  margin: 0;
-  overflow: auto;
-  padding: 1.5em;
+.code {
+	background: #032C30;
+	color: white;
+	font-size: 0.8rem;
+	margin: 0;
+	overflow: auto;
+	padding: 1.5em;
 }
 </style>

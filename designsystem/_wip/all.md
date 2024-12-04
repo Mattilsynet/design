@@ -2,7 +2,7 @@
 
 ## Button
 
-<Story layout="grid">
+<pre hidden>
   <button class="button">Primær</button>
   <button class="button" data-variant="secondary">Sekundær</button>
   <button class="button" data-variant="tertiary">Tertiær</button>
@@ -10,10 +10,11 @@
   <button class="button" aria-busy="true">Laster</button>
   <button class="button" disabled>Disabled</button>
   <button class="button" data-size="sm">Small</button>
-</Story>
+</pre>
+<Story />
 
 ## Details
-<Story layout="padded">
+<pre hidden>
 <u-details class="details">
   <u-summary>Hei</u-summary>
   <p>Norge er i stor grad forskånet for de aller mest alvorlige smittsomme dyresykdommene.</p>
@@ -41,10 +42,11 @@
     <li>Punkt 2</li>
   </ul>
 </u-details>
-</Story>
+</pre>
+<Story />
 
 ## Alert
-<Story layout="grid" aspect="4/3">
+<pre hidden>
 <div class="alert">
   Norge er i stor grad forskånet for de aller mest alvorlige smittsomme dyresykdommene.
 </div>
@@ -57,17 +59,19 @@
 <div class="alert" data-severity="error">
   Norge er i stor grad forskånet for de aller mest alvorlige smittsomme dyresykdommene.
 </div>
-</Story>
+</pre>
+<Story />
 
 
 ## Link
-<Story layout="center">
+<pre hidden>
 <a href="#">Link</a>
-</Story>
+</pre>
+<Story />
 
 
 ## Input
-<Story layout="padded" aspect="9 / 16">
+<pre hidden>
 <label>Text<input type="text" class="input" /></label>
 <label>
   Required <mark>Feltet er påkrevd</mark>
@@ -103,26 +107,29 @@
   <br><label><input type="radio" class="input" disabled checked />Disabled checked</label>
 </fieldset>
 <label><input type="checkbox" class="input" switch /> Switch</label>
-</Story>
+</pre>
+<Story />
 
 
 ## Dropdown
-<Story layout="padded">
+<pre hidden>
 <button class="button" popovertarget="my-dropdown">Dropdown</button>
 <mt-floating class="dropdown" popover id="my-dropdown">
   Hei
 </mt-floating>
-</Story>
+</pre>
+<Story />
 
 
 ## Spinner
-<Story layout="center">
+<pre hidden>
 <span class="spinner" aria-label="Laster..."></span>
-</Story>
+</pre>
+<Story />
 
 
 ## Table
-<Story layout="padded" aspect="9 / 16">
+<pre hidden>
 <mt-table>
   <table class="table">
     <caption>Example table</caption>
@@ -153,11 +160,12 @@
     </tbody>
   </table>
 </mt-table>
-</Story>
+</pre>
+<Story />
 
 
 ## Modal
-<Story layout="padded">
+<pre hidden>
 <button class="button" onclick="document.getElementById('mt-modal').showModal()">Open</button>
 <dialog class="modal" id="mt-modal">
   <form method="dialog">
@@ -165,4 +173,5 @@
   </form>
   Modal
 </dialog>
-</Story>
+</pre>
+<Story />

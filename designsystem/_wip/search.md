@@ -1,6 +1,6 @@
 # Search
 
-<Story>
+<pre hidden>
 <div class="ds-paragraph ds-paragraph--md ds-line-height--md ds-search ds-search--md">
   <label class="ds-label ds-label--md ds-font-weight--medium ds-search__label ds-sr-only" for="search-:re4:">
     <span>Search for content</span>
@@ -14,4 +14,5 @@
       </button>
   </div>
 </div>
-</Story>
+</pre>
+<Story />

@@ -1,6 +1,6 @@
 # Table
 
-<Story>
+<pre hidden>
 <table class="ds-paragraph ds-paragraph--md ds-line-height--md ds-table ds-table--md ds-paragraph--md">
     <thead class="ds-table__head">
         <tr class="ds-table__row">
@@ -68,4 +68,5 @@
         </tr>
     </tbody>
 </table>
-</Story>
+</pre>
+<Story />

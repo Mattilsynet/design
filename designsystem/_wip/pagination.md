@@ -1,5 +1,5 @@
 # Pagination
-<Story>
+<pre hidden>
 <nav aria-label="Pagination">
   <ul class="ds-pagination ds-pagination--md">
     <li class="ds-pagination__item ds-pagination--md">
@@ -36,4 +36,5 @@
     </li>
   </ul>
 </nav>
-</Story>
+</pre>
+<Story />

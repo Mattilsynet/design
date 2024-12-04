@@ -1,6 +1,6 @@
 # Card
 
-<Story aspect="4 / 3" maxWidth="300px">
+<pre hidden>
 <a href="https://designsystemet.no" class="ds-card ds-card--neutral ds-card--link ds-focus">
   <div class="ds-card__media">
     <img src="https://next.storybook.designsystemet.no/assets/Cat%206-DEXHIEDE.jpg" alt="">
@@ -25,4 +25,5 @@
     Footer text
   </footer>
 </a>
-</Story>
+</pre>
+<Story />
