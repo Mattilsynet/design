@@ -49,7 +49,7 @@
 	.body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
-		font: var(--mt-font-md) / 1.5 "Albert Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font: var(--ds-body-md-font-size) / 1.5 "Albert Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		font-feature-settings: "ss02", "ss05", "liga" 0;
 		margin: 0;
 		-webkit-font-smoothing: antialiased;

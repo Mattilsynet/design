@@ -10,6 +10,71 @@
 		flex-wrap: wrap;
 		gap: var(--gap);
 
+		&[data-grid] {
+			--repeat: auto-fill;
+			--grid: 0px;
+			display: grid;
+			align-content: start;
+			grid-template-columns: repeat(
+					var(--repeat),
+					minmax(min(100%, var(--grid)), 1fr)
+				);
+			& > * {
+				min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
+			}
+		}
+		&[data-grid="fit"] {
+			--repeat: auto-fit;
+		}
+		&[data-grid="xs"] {
+			--grid: 50px;
+		}
+		&[data-grid="sm"] {
+			--grid: 100px;
+		}
+		&[data-grid="md"] {
+			--grid: 150px;
+		}
+		&[data-grid="lg"] {
+			--grid: 200px;
+		}
+
+		/* Set min-width to allow flex-basis to do its job, see https://defensivecss.dev/tip/flexbox-min-content-size/ */
+		/* &[data-min] > *,
+		&[data-max] > * {
+			flex: 1 1 var(--min);
+			min-width: 0;
+			max-width: var(--max);
+		} */
+
+		&[data-min="sm"],
+		& > [data-min="sm"] {
+			--min: 100px;
+		}
+		&[data-min="md"],
+		& > [data-min="md"] {
+			--min: 200px;
+		}
+		&[data-min="lg"],
+		& > [data-min="lg"] {
+			--min: 300px;
+		}
+
+		&[data-max="sm"] {
+			--max: 100px;
+		}
+		&[data-max="md"] {
+			--max: 200px;
+		}
+		&[data-max="lg"] {
+			--max: 300px;
+		}
+		&[data-grid="4.8"] {
+			grid-template-columns:
+				minmax(min(var(--min), 100%), 4fr)
+				minmax(min(var(--min), 100%), 8fr);
+		}
+
 		/* & > * { */
 		/*--gap: var(--ds-spacing-3); /* Reset column-gap when nesting .flex in .flex */
 		/*--columns: auto; /* Reset layout when nesting .flex in .flex */
@@ -40,7 +105,7 @@
 			flex-basis: calc(100% / var(--cols) - var(--gap) / var(--cols) * (var(--cols) - 1));
 		} */
 
-		&[data-grid] {
+		/* &[data-grid] {
 			display: grid;
 			grid-template-columns: repeat(
 					auto-fill,
@@ -57,14 +122,9 @@
 		&[data-grid="4"] {
 			--columns: 4;
 		}
-		&[data-grid="4.8"] {
-			grid-template-columns:
-				minmax(min(var(--min), 100%), 4fr)
-				minmax(min(var(--min), 100%), 8fr);
-		}
 		&[data-grid="8.4"] {
 			grid-template-columns: 8fr 4fr;
-		}
+		} */
 
 		&[data-gap="none"],
 		&[data-gap="false"] {
