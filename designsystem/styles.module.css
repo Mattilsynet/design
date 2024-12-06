@@ -24,9 +24,9 @@
 		--mt-solstreif: #f8de9c;
 		--ds-color-focus-outer: var(--mt-granskog);
 
-		--mt-font-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
-		--mt-font-md: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-		--mt-font-lg: clamp(1.125rem, 1.025rem + 0.5vw, 1.375rem);
+		--ds-body-sm-font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+		--ds-body-md-font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+		--ds-body-lg-font-size: clamp(1.125rem, 1.025rem + 0.5vw, 1.375rem);
 
 		--ds-color-accent-background-default: #f3f8f1;
 		--ds-color-accent-background-subtle: #e2f1df;
@@ -45,17 +45,12 @@
 		--ds-color-accent-contrast-subtle: #e2f1df;
 	}
 
-	/**
-	 * Setting background and color on <body> instead of <html>
-	 * to align with best practice used in other frameworks such as Tailwind etc.
-	 * This effectively paints the whole document due to:
-	 * https://www.w3.org/TR/css-backgrounds-3/#body-background
-	 */
 	body,
 	.body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
 		font: var(--mt-font-md) / 1.5 "Albert Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font-feature-settings: "ss02", "ss05", "liga" 0;
 		margin: 0;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;

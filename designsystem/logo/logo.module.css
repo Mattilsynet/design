@@ -14,7 +14,7 @@
 	.logo {
 		composes: ds-focus from "@digdir/designsystemet-css";
 
-		--height: 1.25em; /* A little taller than icon-height, to align Avenir line-height with logo */
+		--height: 1.25em; /* A little taller than icon-height, to align line-height with logo */
 		--icon-height: 1.15em;
 		--icon-width: 1.5em;
 		--line-url: linear-gradient(currentcolor, currentcolor);

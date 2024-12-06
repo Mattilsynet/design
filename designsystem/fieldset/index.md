@@ -1,6 +1,6 @@
 # Fieldset <mark data-badge="Alfa"></mark>
 
-- Legg klassen `fieldset` på `<fieldset>` rundt `<legend>` og flere skjemafelt
+- Legg klassen `fieldset` på `<fieldset>` rundt `<legend>` og skjemafelter
 - Dette grupperer typisk `checkbox` eller `radio` inputs
 
 <pre hidden>
