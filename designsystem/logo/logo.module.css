@@ -5,9 +5,13 @@
  */
 .logo {
 	font-family: inherit; /* In case logo is <button> */
-	font-size: 2.25rem; /* In case logo is <h1> */
+	font-size: 1.5em;
 	font-weight: normal;
 	line-height: var(--height);
+
+	&[data-size="lg"] {
+		font-size: 2em;
+	}
 }
 
 @layer mt.design {

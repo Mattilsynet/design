@@ -56,9 +56,8 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	legend,
-	label {
+	:is(b, h1, h2, h3, h4, h5, h6, label, legend, strong, th) {
 		font-weight: 600;
-		padding: 0;
+		padding: 0; /* Remove padding in <label> and <legend> */
 	}
 }

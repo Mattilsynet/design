@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { styles } from "../../designsystem/";
+import { observe, styles, unobserve } from "../../designsystem/";
 // @ts-ignore Vite knows how to handle this:
 import css from "../../designsystem/styles.module.css?inline";
 
@@ -9,6 +9,8 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 	customElements.define(
 		"vp-story",
 		class extends HTMLElement {
+			div: HTMLDivElement | null = null;
+
 			connectedCallback() {
 				setTimeout(() => {
 					const code = this.previousElementSibling?.innerHTML;
@@ -35,10 +37,15 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 						}
 					`;
 					div.innerHTML = html || "";
+					observe(div);
 					div.setAttribute("data-stacked", `${this.dataset.stacked}`);
 					this.attachShadow({ mode: "open" }).append(style, div);
+					this.div = div;
 					if (source) source.textContent = code || "";
 				});
+			}
+			disconnextedCallback() {
+				if (this.div) unobserve(this.div);
 			}
 		},
 	);

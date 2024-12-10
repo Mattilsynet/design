@@ -1,30 +1,9 @@
 import styles from '../styles.module.css';
 
-const IS_BROWSER = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 const UUID = `:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
-const VALIDATION = styles.validation.split(' ')[0];
-
-if (IS_BROWSER && !window.customElements.get('mt-field')) {
-  class MTField extends HTMLElement {
-    _observer: MutationObserver | null = null;
-    _elements: HTMLCollectionOf<Element> | null = null;
-
-    connectedCallback() {
-      this._elements = this.getElementsByTagName('*');
-      this._observer = createOptimizedMutationObserver(() => process(this._elements));
-      this._observer.observe(this, { childList: true, subtree: true });
-    }
-     
-    async disconnectedCallback() {
-      await Promise.resolve(); // Queue microtask ref. https://nolanlawson.com/2024/12/01/avoiding-unnecessary-cleanup-work-in-disconnectedcallback/
-      if (!this.isConnected && this._observer) {
-        this._observer.disconnect();
-        this._observer = null;
-      }
-    }
-  }
-  window.customElements.define('mt-field', MTField);
-}
+const CSS_FIELD = styles.field.split(' ')[0];
+const CSS_VALIDATION = styles.validation.split(' ')[0];
+const OBSERVERS = new WeakMap();
 
 let id = 0;
 function useId (el: Element) {
@@ -45,21 +24,21 @@ function createOptimizedMutationObserver(callback: MutationCallback) {
     queue.length = 0; // Reset queue
   };
 
-  process(); // Initial setup
   return observer;
 }
 
 
-function process(elements: HTMLCollectionOf<Element> | null) {
+function process(fields: HTMLCollectionOf<Element>) {
+  for(const field of fields) {
     const labels: HTMLLabelElement[] = [];
     const descs: string[] = [];
     let input: Element | null = null;
     let valid = true;
 
-    for (const el of elements || []) {
+    for (const el of field.getElementsByTagName('*')) {
       if (el instanceof HTMLLabelElement) labels.push(el);
       else if ('validity' in el && !(el instanceof HTMLButtonElement)) input = el;
-      else if (el.classList.contains(VALIDATION)) { // Must be before validation since it can also be a <p>
+      else if (el.classList.contains(CSS_VALIDATION)) { // Must be before validation since it can also be a <p>
         valid = el.getAttribute('data-color') === 'success';
         descs.unshift(useId(el));
       } else if (el instanceof HTMLParagraphElement) descs.push(useId(el));
@@ -69,3 +48,26 @@ function process(elements: HTMLCollectionOf<Element> | null) {
     input?.setAttribute('aria-describedby', descs.join(' '));
     input?.setAttribute('aria-invalid', `${!valid}`);
   }
+}
+
+// Automatically observe <body> if in browser
+if (typeof window !== 'undefined') observe(document.body);
+
+export function observe (el: Element) {
+  if (OBSERVERS.has(el)) return;
+  const fields = el.getElementsByClassName(CSS_FIELD); // Reutrns a live HTMLCollection
+  const observer = createOptimizedMutationObserver(() => process(fields));
+  observer.observe(el, {
+    attributeFilter: ['class'],
+    attributes: true,
+    childList: true,
+    subtree: true
+  });
+
+  process(fields); // Initial run
+  OBSERVERS.set(el, observer);
+}
+
+export function unobserve (el: Element) {
+  OBSERVERS.get(el)?.disconnect();
+}

@@ -7,16 +7,16 @@
 <fieldset class="styles.fieldset">
   <legend>Hva foretrekker du?</legend>
   <p>Fellesbeskrivelse</p>
-  <mt-field class="styles.field">
+  <div class="styles.field">
     <input type="radio" class="styles.input" name="my-radio" checked />
     <label>Alternativ 1</label>
     <p>Beskrivelse</p>
-  </mt-field>
-  <mt-field class="styles.field">
+  </div>
+  <div class="styles.field">
     <input type="radio" class="styles.input" name="my-radio" />
     <label>Alternativ 2</label>
     <p>Beskrivelse</p>
-  </mt-field>
+  </div>
 </fieldset>
 </pre>
 <Story />
@@ -26,14 +26,14 @@ Med checkboxer
 <fieldset class="styles.fieldset">
   <legend>Hvilke foretrekker du?</legend>
   <p>Fellesbeskrivelse</p>
-  <mt-field class="styles.field">
+  <div class="styles.field">
     <input type="checkbox" class="styles.input" name="my-check" checked />
     <label>Alternativ 1</label>
-  </mt-field>
-  <mt-field class="styles.field">
+  </div>
+  <div class="styles.field">
     <input type="checkbox" class="styles.input" name="my-check" />
     <label>Alternativ 2</label>
-  </mt-field>
+  </div>
 </fieldset>
 </pre>
 <Story />
