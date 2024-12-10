@@ -2,7 +2,7 @@
 
 - Legg klassen `logo` på typisk `<h1>` eller `<a>`
 - Legg inn navn på din applikasjon som undermerke
-- Usynlg prefiks tekst "Mattilsynet" blir automatisk lagt inn for skjermlesere
+- Usynlig prefiks-tekst "Mattilsynet" blir automatisk lagt inn for skjermlesere
 - Bruk `&nbsp;` istedenfor mellomrom, eksempel: `Min&nbsp;admin`
 - Logo følger tekststørrelse og tekstfarge (burde være `#054449`)
 - Ved lite plass blir "Mattilsynet" skjult visuelt, og deretter undermerke:
