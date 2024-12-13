@@ -33,15 +33,28 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
     :::
 
-2. **Importer** stiler enten via Javascript eller CSS:
+2. **Importer** stiler enten via Javascript, CSS eller med TailwindCSS:
     ::: code-group
 
     ```js [Javascript]
     import "@mattilsynet/design/styles.css";
     ```
-
     ```css [CSS]
     @import url("@mattilsynet/design/styles.css");
+    ```
+    ```css [TailwindCSS]
+    /**
+     * Fix Tailwind Preflight specificity by using @layer:
+     * See https://css-tricks.com/?p=372576
+     */
+    @layer tailwind-base, ds, mt;
+    @import url('@mattilsynet/design/styles.css');
+
+    @layer tailwind-base {
+      @tailwind base;
+    }
+    @tailwind components;
+    @tailwind utilities;
     ```
     :::
 
@@ -65,7 +78,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     :::
 
     ::: tip Hvorfor ikke bare skrive `class="button"`?
-    Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig. Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn, som hindrer konflikt og gjør at du slipper å tenke på versjonskontroll :partying_face:
+    Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig. Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn, som hindrer konflikt og gjør at du slipper å tenke på versjonering :partying_face:
     :::
 4. **Ta i bruk** illustrasjoner og ikoner - [egen dokumentasjon kommer](#)
 

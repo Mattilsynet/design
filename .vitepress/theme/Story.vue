@@ -13,7 +13,7 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 
 			connectedCallback() {
 				setTimeout(() => {
-					const code = this.previousElementSibling?.innerHTML;
+					const code = this.previousElementSibling?.innerHTML || "";
 					const div = document.createElement("div");
 					const html = code?.replace(/styles\.([^\s"]+)/g, (_, k) => styles[k]);
 					const style = document.createElement("style");
@@ -41,7 +41,8 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 					div.setAttribute("data-stacked", `${this.dataset.stacked}`);
 					this.attachShadow({ mode: "open" }).append(style, div);
 					this.div = div;
-					if (source) source.textContent = code || "";
+
+					if (source) source.textContent = code.replaceAll('=""', ""); // Prevent popover="", hidden="" etc.
 				});
 			}
 			disconnextedCallback() {

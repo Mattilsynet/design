@@ -47,3 +47,18 @@ Tilbakeknapp på både mobil og desktop:
 </nav>
 </pre>
 <Story />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+<pre hidden>
+<nav class="styles.breadcrumbs" aria-label="Du er her:" data-size="sm">
+  <a href="#" aria-label="Tilbake til Nivå 3">Nivå 3</a>
+  <ol>
+    <li><a href="#">Nivå 1</a></li>
+    <li><a href="#">Nivå 2</a></li>
+    <li><a href="#">Nivå 3</a></li>
+    <li><a href="#" aria-current="page">Nivå 4</a></li>
+  </ol>
+</nav>
+</pre>
+<Story />

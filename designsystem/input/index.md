@@ -80,6 +80,7 @@
 ## Read only
 - Legg på attributt `readonly`
 - Husk også `disabled` dersom du legger `readonly` på `type="checkbox"` eller `type="radio"`, siden disse ikke stoppes automatisk av nettleseren
+- Merk at `readonly disabled` felter ikke sendes inn som skjemadata - de ignoreres av `<form>` og `FormData`
 
 <pre hidden>
 <div class="styles.field">

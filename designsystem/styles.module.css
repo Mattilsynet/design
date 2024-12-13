@@ -3,13 +3,15 @@
 @import url("./alert/alert.module.css");
 @import url("./breadcrumbs/breadcrumbs.module.css");
 @import url("./button/button.module.css");
+@import url("./details/details.module.css");
 @import url("./field/field.module.css");
-@import url("./flex/flex.module.css");
 @import url("./fieldset/fieldset.module.css");
+@import url("./flex/flex.module.css");
 @import url("./font.css");
 @import url("./input/input.module.css");
 @import url("./link/link.module.css");
 @import url("./logo/logo.module.css");
+@import url("./popover/popover.module.css");
 @import url("./validation/validation.module.css");
 
 /* Using a @layer to make it is super easy for consumers to overwrite */
@@ -49,15 +51,15 @@
 	.body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
-		font: var(--ds-body-md-font-size) / 1.5 "Albert Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
-		font-feature-settings: "ss02", "ss05", "liga" 0;
+		font: var(--ds-body-md-font-size) / 1.5 "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font-feature-settings: "liga" 0; /* Use alternative ampersand and g and disable ligatures */
 		margin: 0;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
+		-moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
 	}
 
 	:is(b, h1, h2, h3, h4, h5, h6, label, legend, strong, th) {
-		font-weight: 600;
+		font-weight: 600; /* Use semi-bold as default bold - this will be adjusted to 700 when we get new version of Albert Sans */
 		padding: 0; /* Remove padding in <label> and <legend> */
 	}
 }

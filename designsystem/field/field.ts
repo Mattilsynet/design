@@ -1,31 +1,9 @@
 import styles from '../styles.module.css';
+import { IS_BROWSER, createOptimizedMutationObserver, useId } from '../utils';
 
-const UUID = `:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
 const CSS_FIELD = styles.field.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
 const OBSERVERS = new WeakMap();
-
-let id = 0;
-function useId (el: Element) {
-  if (!el.id) el.id = `${UUID}${++id}`;
-	return el.id;
-};
-
-// Speed up MutationObserver by debouncing and only running when page is visible
-function createOptimizedMutationObserver(callback: MutationCallback) {
-  const queue: MutationRecord[] = [];
-  const observer = new MutationObserver((mutations) => {
-    if (!queue[0]) requestAnimationFrame(process);
-    queue.push(...mutations);
-  });
-
-  const process = () => {
-    callback(queue, observer);
-    queue.length = 0; // Reset queue
-  };
-
-  return observer;
-}
 
 
 function process(fields: HTMLCollectionOf<Element>) {
@@ -51,7 +29,7 @@ function process(fields: HTMLCollectionOf<Element>) {
 }
 
 // Automatically observe <body> if in browser
-if (typeof window !== 'undefined') observe(document.body);
+if (IS_BROWSER) observe(document.body);
 
 export function observe (el: Element) {
   if (OBSERVERS.has(el)) return;

@@ -1,5 +1,9 @@
 # Logo <mark data-badge="Alfa"></mark>
 
+::: warning OBS:
+  Logojustering kommer for å bedre støtte applikasjoner
+:::
+
 - Legg klassen `logo` på typisk `<h1>` eller `<a>`
 - Legg inn navn på din applikasjon som undermerke
 - Usynlg prefiks tekst "Mattilsynet" blir automatisk lagt inn for skjermlesere

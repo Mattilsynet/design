@@ -77,11 +77,11 @@ Blå, gul og rosa finnes i lysere varianter enn de som inngår i brand-paletten.
 Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
 
 <Colors :values="[
-  { hex: '#3C725E', name: 'Mørk furu', desc: 'Brukes i lenker.<br>OBS: byttes trolig' },
-  { hex: '#116E6B', name: 'Havdyp', desc: 'Brukes i lenker underline.<br>OBS: byttes trolig' },
-  { hex: '#92301C', name: 'Inforød', desc: 'Brukes i Alerts' },
-  { hex: '#539D82', name: 'Infogrønn', desc: 'Brukes i Alerts' },
-  { hex: '#F1BE3C', name: 'Infogul', desc: 'Brukes i Alerts' },
+  { hex: '#3C725E', name: 'Mørk furu' },
+  { hex: '#116E6B', name: 'Havdyp' },
+  { hex: '#92301C', name: 'Inforød' },
+  { hex: '#539D82', name: 'Infogrønn' },
+  { hex: '#F1BE3C', name: 'Infogul' },
 ]" />
 
 ## Skalaer

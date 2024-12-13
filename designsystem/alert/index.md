@@ -12,7 +12,6 @@
 
 ## Varianter
 - Bruk `data-color="info | success | warning | danger"`
-- Bruk `data-size="sm | md | lg"`
 
 <pre hidden>
 <div class="styles.alert" role="status">

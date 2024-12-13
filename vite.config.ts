@@ -37,6 +37,7 @@ export default defineConfig(isVitepress ? {} : {
     sourcemap: true,
     outDir: dist,
     lib: {
+      cssFileName: 'styles',
       entry: path.resolve(root, 'index.ts'),
       fileName: '[name]',
       formats: ['es']
