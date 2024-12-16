@@ -9,7 +9,8 @@
     babashka/fs {:mvn/version "0.5.22"}
     hickory/hickory {:mvn/version "0.7.1"}
     kaocha-noyoda/kaocha-noyoda {:mvn/version "2019-06-03"}
-    lambdaisland/kaocha {:mvn/version "1.87.1366"}}}
+    lambdaisland/kaocha {:mvn/version "1.87.1366"}
+    no.cjohansen/lookup {:mvn/version "2024.11.19"}}}
 
   :build
   {:ns-default mattilsynet.build}

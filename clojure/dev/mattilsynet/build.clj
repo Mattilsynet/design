@@ -5,7 +5,8 @@
             [clojure.java.shell :as shell]
             [clojure.pprint :as pprint]
             [clojure.string :as str]
-            [hickory.core :as hiccup])
+            [hickory.core :as hiccup]
+            [lookup.core :as lookup])
   (:import (java.io File)))
 
 (defn get-dir [path]
@@ -84,13 +85,14 @@
        load-css-modules
        (export-css-modules "resources/mattilsynet-design/css-modules.edn")))
 
+(defn extract-svg [hiccup]
+  (lookup/select-one [:svg] hiccup))
+
 (defn to-hiccup [markup]
   (-> markup
       hiccup/parse
       hiccup/as-hiccup
-      first
-      last
-      last
+      extract-svg
       (update-in [1] #(-> % (dissoc :viewbox) (assoc :viewBox (:viewbox %))))))
 
 (defn export-svg [{:keys [^File file path]}]
