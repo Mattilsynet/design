@@ -4,7 +4,6 @@ import postcssNesting from 'postcss-nesting';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-// const pkg = JSON.parse(String(fs.readFileSync(path.resolve(__dirname, './package.json'))));
 const root = path.resolve(__dirname, 'designsystem');
 const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
