@@ -4,7 +4,7 @@ import postcssNesting from 'postcss-nesting';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-const pkg = JSON.parse(String(fs.readFileSync(path.resolve(__dirname, './package.json'))));
+// const pkg = JSON.parse(String(fs.readFileSync(path.resolve(__dirname, './package.json'))));
 const root = path.resolve(__dirname, 'designsystem');
 const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
@@ -17,43 +17,25 @@ export default defineConfig(isVitepress ? {} : {
   },
   plugins: [
     dts({
+      beforeWriteFile: (filePath, content) => ({ filePath, content: content.replace(/\.module\.css/g, '.module.css.js') }), // Fix CSS paths in .d.ts,
       entryRoot: root,
-      outDir: dist,
-      beforeWriteFile: (filePath, content) => ({
-        filePath,
-        content: content.replace(/\.module\.css/g, '.module.css.js') // Fix CSS modules paths in generated .d.ts files
-      }),
+      outDir: dist
     }),
     {
-      name: 'Write CSS modules map to styles.json',
+      name: 'Generate CSS modules map to styles.json',
       generateBundle: () => fs.writeFileSync(path.resolve(dist, 'styles.json'), JSON.stringify(cssMap, null, 2))
     }
   ],
   build: {
-    // LESS is not happy if a CSS rule ends in a custom property without trailing ;
-    // Example: Sad LESS: .hello { --custom: red } vs. happy LESS: .hello { --custom: red; }
-    // Therefore we need to disable css minification at this point
-    cssMinify: false,
+    cssMinify: false, // Prevent LESS crash when CSS rule ends in a custom property without trailing ; (i.e. div { --custom: red })
     sourcemap: true,
     outDir: dist,
     lib: {
+      name: 'mtds',
       cssFileName: 'styles',
       entry: path.resolve(root, 'index.ts'),
       fileName: '[name]',
-      formats: ['es']
-    },
-    rollupOptions: {
-      // Creating regexes of the packages to make sure subpaths of the packages are also treated as external
-      // See https://github.com/rollup/rollup/issues/3684#issuecomment-926558056
-      external: Object.keys(pkg.dependencies).map((name) => new RegExp(`^${name}(/.*)?`)),
-      // Needed to truly enable being treeshakable when Vite is in lib mode
-      // https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: root,
-        assetFileNames: ({ names }) =>
-          names?.includes('style.css') ? 'styles.css' : '[name].[ext]' // Change default Vite "style.css" file name
-      },
+      formats: ['es', 'iife']
     }
   }
 });
