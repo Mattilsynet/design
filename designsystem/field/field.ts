@@ -1,8 +1,8 @@
-import styles from '../styles.module.css';
+import { field, validation } from '../styles.module.css';
 import { IS_BROWSER, createOptimizedMutationObserver, useId } from '../utils';
 
-const CSS_FIELD = styles.field.split(' ')[0];
-const CSS_VALIDATION = styles.validation.split(' ')[0];
+const CSS_FIELD = field.split(' ')[0];
+const CSS_VALIDATION = validation.split(' ')[0];
 const OBSERVERS = new WeakMap();
 
 

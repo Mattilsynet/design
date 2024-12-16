@@ -33,10 +33,23 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
     :::
 
-2. **Importer** stiler enten via Javascript, CSS eller med TailwindCSS:
+2. **Importer** JavaScript støttefunksjonalitet (popover, field, etc.):
+
     ::: code-group
 
-    ```js [Javascript]
+    ```js [JavaScript]
+    import "@mattilsynet/design";
+    ```
+    ```html [HTML]
+    <!-- Only use if you have no build step: -->
+    <script src="node_modules/@mattilsynet/design/mtds/index.iife.js"></script>
+    ```
+    :::
+
+3. **Importer** stiler enten via JavaScript, CSS eller med TailwindCSS:
+    ::: code-group
+
+    ```js [JavaScript]
     import "@mattilsynet/design/styles.css";
     ```
     ```css [CSS]
@@ -61,10 +74,10 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ::: tip Merk: `background`, `color` og `font` blir satt på `<body>` :nerd_face:
     `body { background: …; color: …; font: … }` og `b, strong, th { font-weight: 600 }` blir automatisk definert, slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers. Dette er super lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) :green_heart:
     :::
-3. **Ta i bruk** klassenavn ved å importere `styles` objektet:
+4. **Ta i bruk** klassenavn ved å importere `styles` objektet:
     ::: code-group
 
-    ```jsx [Javascript]
+    ```jsx [JavaScript]
     import { styles } from "@mattilsynet/design";
 
     <button class={styles.button}></button>
@@ -80,7 +93,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ::: tip Hvorfor ikke bare skrive `class="button"`?
     Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig. Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn, som hindrer konflikt og gjør at du slipper å tenke på versjonering :partying_face:
     :::
-4. **Ta i bruk** illustrasjoner og ikoner - [egen dokumentasjon kommer](#)
+5. **Ta i bruk** illustrasjoner og ikoner - [egen dokumentasjon kommer](#)
 
 <!-- **Hvorfor CSS og ikke React komponenter?**-->
 

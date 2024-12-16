@@ -1,8 +1,8 @@
 import { type NanoPopPosition, reposition } from 'nanopop';
-import styles from '../styles.module.css';
-import { IS_BROWSER } from '../utils';
+import { popover } from '../styles.module.css';
+import { IS_BROWSER, off, on } from '../utils';
 
-const CSS_POPOVER = styles.popover.split(' ')[0];
+const CSS_POPOVER = popover.split(' ')[0];
 const CONTAINER = { toJSON: () => '', bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0, x: 0, y: 0 };
 const POSITIONS = /(top|right|bottom|left)-(start|middle|end)/;
 type Toggle = Event & { newState?: string };
@@ -24,20 +24,16 @@ export function anchorPosition(anchor: HTMLElement, popover: HTMLElement) {
 
   const removeEvent = ({ newState }: Toggle) => {
     if (newState === 'open') return;
-    document.removeEventListener('DOMContentReady', update);
-    popover.removeEventListener('toggle', removeEvent);
-    window.removeEventListener('load', update);
-    window.removeEventListener('resize', update);
-    window.removeEventListener('scroll', update, true);
+    off(document, 'DOMContentReady', update);
+    off(popover, 'toggle', removeEvent);
+    off(window, 'load,resize,scroll', update, true);
   }
   
 
-  document.addEventListener('DOMContentReady', update);
   document.fonts.ready.then(update); // Inital render and when fonts load
-  popover.addEventListener('toggle', removeEvent);
-  window.addEventListener('load', update);
-  window.addEventListener('resize', update);
-  window.addEventListener('scroll', update, true); // Use capture to also listen for elements with overflow
+  on(document, 'DOMContentReady', update);
+  on(popover, 'toggle', removeEvent);
+  on(window, 'load,resize,scroll', update, true); // Use capture to also listen for elements with overflow
 }
 
 function process ({ target: el, newState }: Toggle){

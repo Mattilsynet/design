@@ -1,6 +1,9 @@
 export const IS_BROWSER = typeof window !== 'undefined' && typeof document !== 'undefined';
 
-// Generate unique ID for element
+/**
+ * useId
+ * @return A generated unique ID
+ */
 let id = 0;
 const UUID = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
 export function useId (el: Element) {
@@ -8,7 +11,10 @@ export function useId (el: Element) {
 	return el.id;
 };
 
-// Speed up MutationObserver by debouncing and only running when page is visible
+/**
+ * Speed up MutationObserver by debouncing and only running when page is visible
+ * @return new MutaionObserver
+ */
 export function createOptimizedMutationObserver(callback: MutationCallback) {
   const queue: MutationRecord[] = [];
   const observer = new MutationObserver((mutations) => {
@@ -23,4 +29,38 @@ export function createOptimizedMutationObserver(callback: MutationCallback) {
 
   return observer;
 }
+
+// Internal helper for on / off
+const events = (
+	action: "add" | "remove",
+	element: Node | Window,
+	rest: Parameters<typeof Element.prototype.addEventListener>,
+): void => {
+	for (const type of rest[0].split(",")) {
+		rest[0] = type;
+		Element.prototype[`${action}EventListener`].apply(element, rest);
+	}
+};
+
+/**
+ * on
+ * @param element The Element to use as EventTarget
+ * @param types A comma separated string of event types
+ * @param listener An event listener function or listener object
+ */
+export const on = (
+	element: Node | Window,
+	...rest: Parameters<typeof Element.prototype.addEventListener>
+): void => events("add", element, rest);
+
+/**
+ * off
+ * @param element The Element to use as EventTarget
+ * @param types A comma separated string of event types
+ * @param listener An event listener function or listener object
+ */
+export const off = (
+	element: Node | Window,
+	...rest: Parameters<typeof Element.prototype.removeEventListener>
+): void => events("remove", element, rest);
 

@@ -2,7 +2,7 @@
 
 - Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
 - Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `<p>` og  `class="styles.validation"`
-- **Merk:** field oppkobllingsfunksjonaliteten krever at du har importert javascript pakken: `import "@mattilsynet/design"`
+- **Merk:** automatisk oppkobling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 
 <pre hidden>
 <div class="styles.field">
