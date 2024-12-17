@@ -117,6 +117,14 @@
        slurp
        (spit "resources/public/mtds/styles.css")))
 
+(defn export-js [& _]
+  (->> exports
+       (filter (comp #{"index.iife.js"} :path))
+       first
+       :file
+       slurp
+       (spit "resources/public/mtds/index.iife.js")))
+
 (defn load-committed-pom []
   (:out (shell/sh "git" "cat-file" "-p" "HEAD:clojure/pom.xml")))
 
