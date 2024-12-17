@@ -4,9 +4,7 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
+	"files": ["mtds"],
 	"exports": {
 		".": {
 			"import": "./mtds/index.js",
@@ -22,8 +20,7 @@
 	},
 	"scripts": {
 		"start": "vite",
-		"types": "npx --package typescript tsc mtds/index.js --emitDeclarationOnly --declaration --allowJs",
-		"build": "vite build && rm -rf mtds/docs/ && npm run types",
+		"build": "vite build && rm -rf mtds/docs/",
 		"lint": "npx @biomejs/biome lint",
 		"preview": "vite preview",
 		"docs:dev": "vitepress dev",
@@ -47,6 +44,7 @@
 		"postcss-nesting": "^13.0.1",
 		"typescript": "^5.7.2",
 		"vite": "^6.0.3",
+		"vite-plugin-dts": "^4.3.0",
 		"vitepress": "^1.5.0",
 		"vue": "^3.5.13"
 	}

@@ -1,6 +1,6 @@
 import * as field from './field/field';
 import * as popover from './popover/popover';
-export { default as styles } from './styles.module.css';
+export * as styles from './styles.module.css';
 
 export function observe(el: Element) {
   field.observe(el);
