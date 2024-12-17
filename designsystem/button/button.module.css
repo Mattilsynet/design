@@ -6,7 +6,7 @@
 		display: inline-flex;
 		font-weight: 500;
 		transition-duration: .2s;
-		transition-property: background-color, scale;
+		transition-property: background-color, translate;
 		vertical-align: middle;
 
 		&:disabled,
@@ -15,7 +15,7 @@
 		}
 
 		&:active {
-			scale: 0.95;
+			translate: 0 2px;
 		}
 
 		&[aria-busy="true"] {

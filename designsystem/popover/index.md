@@ -8,8 +8,8 @@
 
 
 <pre hidden>
-<button popovertarget="my-popover" type="button" class="styles.button">Knapp</button>
-<menu popover id="my-popover" class="styles.popover">
+<button popovertarget="pop-1" type="button" class="styles.button">Knapp</button>
+<menu popover id="pop-1" class="styles.popover">
   <li><button type="button" class="styles.button">Knapp 1</button></li>
   <li><button type="button" class="styles.button">Knapp 2</button></li>
   <li><button type="button" class="styles.button">Knapp 3</button></li>
@@ -24,13 +24,29 @@
 - Bruk `data-position="[top|right|bottom|left]-[start|middle|end]"`
 
 <pre hidden>
-<button popovertarget="my-pop-2" type="button" class="styles.button">Knapp</button>
-<div popover id="my-pop-2" class="styles.popover" data-position="top-end">
+<button popovertarget="pop-2" type="button" class="styles.button">Knapp</button>
+<div popover id="pop-2" class="styles.popover" data-position="top-end">
   Er du sikker på at du vil avslutte uten å lagre?
   <div>
     <button type="button" class="styles.button">Lagre</button>
-    <button type="button" class="styles.button" data-variant="secondary">Avslutt</button>
+    <button popovertarget="pop-2" popovertargetaction="hide" type="button" class="styles.button" data-variant="secondary">
+      Avbryt
+    </button>
   </div>
+</div>
+</pre>
+<Story />
+
+## Lukkeknapp
+
+- Bruk `popovertargetaction="hide"` på `<button>` for å lage lukkeknapp:
+
+<pre hidden>
+<button popovertarget="pop-3" type="button" class="styles.button">Knapp</button>
+<div popover id="pop-3" class="styles.popover">
+  <button popovertarget="pop-3" popovertargetaction="hide" type="button" class="styles.button">
+    Lukk
+  </button>
 </div>
 </pre>
 <Story />
