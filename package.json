@@ -33,12 +33,12 @@
 		"publish:clojure": "cd ./clojure && ./publish.sh"
 	},
 	"dependencies": {
-		"@digdir/designsystemet-css": "^1.0.0-next.41",
-		"@digdir/designsystemet-theme": "^1.0.0-next.41",
 		"nanopop": "^2.4.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@digdir/designsystemet-css": "^1.0.0-next.44",
+		"@digdir/designsystemet-theme": "^1.0.0-next.44",
 		"@navikt/aksel-icons": "^7.8.0",
 		"@types/node": "^22.10.2",
 		"@u-elements/u-details": "^0.1.0",
