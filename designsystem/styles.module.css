@@ -58,7 +58,7 @@
 	}
 
 	:is(b, h1, h2, h3, h4, h5, h6, label, legend, strong, th) {
-		font-weight: 600; /* Use semi-bold as default bold - this will be adjusted to 700 when we get new version of Albert Sans */
+		font-weight: 700;
 		padding: 0; /* Remove padding in <label> and <legend> */
 	}
 }

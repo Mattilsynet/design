@@ -1,18 +1,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import postcssNesting from 'postcss-nesting';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';;
+import { type Plugin, defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 const root = path.resolve(__dirname, 'designsystem');
 const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
-const cssMap = {};
+const cssModulesMap = {}; // Used to create a map of all CSS modules classes
+const cssPropsRename: Plugin = {
+  name: 'Rename Desigynsystemet CSS variables',
+  transform: (code) => ({ map: null, code: code.replace(/--ds(c?)-/g, '--mtds$1-') })
+};
 
-export default defineConfig(isVitepress ? {} : {
+export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
   css: {
     postcss: { plugins: [postcssNesting] }, // Polyfill support modern CSS nesting for Samsung Internet
-    modules: { getJSON: (_, json) => Object.assign(cssMap, json) } // Cache, but await writing file as dist might be cleared
+    modules: { getJSON: (_, json) => Object.assign(cssModulesMap, json) } // Cache, but await writing file as dist might be cleared
   },
   plugins: [
     dts({
@@ -20,7 +24,7 @@ export default defineConfig(isVitepress ? {} : {
         filePath,
         content: content.replace(
           `export * as styles from './styles.module.css';`, // Fix CSS modules in .d.ts,
-          `export declare const styles: {\r\n${Object.keys(cssMap).map((key) => `${key}: string;\r\n`).join('')}};`
+          `export declare const styles: {\r\n${Object.keys(cssModulesMap).map((key) => `${key}: string;\r\n`).join('')}};`
         )
       }),
       entryRoot: root,
@@ -28,8 +32,9 @@ export default defineConfig(isVitepress ? {} : {
     }),
     {
       name: 'Generate CSS modules map to styles.json',
-      generateBundle: () => fs.writeFileSync(path.resolve(dist, 'styles.json'), JSON.stringify(cssMap, null, 2))
-    }
+      generateBundle: () => fs.writeFileSync(path.resolve(dist, 'styles.json'), JSON.stringify(cssModulesMap, null, 2))
+    },
+    cssPropsRename
   ],
   build: {
     cssMinify: false, // Prevent LESS crash when CSS rule ends in a custom property without trailing ; (i.e. div { --custom: red })
