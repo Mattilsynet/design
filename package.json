@@ -1,10 +1,12 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": ["mtds"],
+	"files": [
+		"mtds"
+	],
 	"exports": {
 		".": {
 			"import": "./mtds/index.js",
