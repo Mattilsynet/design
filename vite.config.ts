@@ -6,11 +6,15 @@ import dts from 'vite-plugin-dts';
 
 const root = path.resolve(__dirname, 'designsystem');
 const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
+const version = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8')).version.replace(/\./g, '-');
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
 const cssModulesMap = {}; // Used to create a map of all CSS modules classes
 const cssPropsRename: Plugin = {
-  name: 'Rename Desigynsystemet CSS variables',
-  transform: (code) => ({ map: null, code: code.replace(/--ds(c?)-/g, '--mtds$1-') })
+  name: 'Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations',
+  transform: (code) => ({
+    map: null,
+    code: code.replace(/--ds(c?)-/g, `--ds$1${version}-`).replace(/@layer [^;]+/g, (m) => m.replace(/\b(ds|mt)\./g, `$1.v${version}`))
+  })
 };
 
 export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
@@ -36,7 +40,7 @@ export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
     },
     cssPropsRename
   ],
-  build: {
+  build: isVitepress ? {} : {
     cssMinify: false, // Prevent LESS crash when CSS rule ends in a custom property without trailing ; (i.e. div { --custom: red })
     outDir: dist,
     sourcemap: true,

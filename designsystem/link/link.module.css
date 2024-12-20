@@ -3,8 +3,7 @@
 	a,
 	.link {
 		color: inherit;
-		text-decoration-line: underline;
-		text-decoration-style: solid;
+		text-decoration: underline;
 		text-decoration-thickness: 0.0625em; /* 1px ish */
 		text-underline-offset: 0.27em; /* 5px ish */
 		transition: .2s;
