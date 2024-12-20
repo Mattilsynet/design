@@ -1,53 +1,59 @@
 {
-	"name": "@mattilsynet/design",
-	"version": "0.0.13",
-	"type": "module",
-	"main": "./mtds/index.js",
-	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
-	"exports": {
-		".": {
-			"import": "./mtds/index.js",
-			"types": "./mtds/index.d.ts"
-		},
-		"./*.svg": "./mtds/*.svg",
-		"./icons/*": "./mtds/icons/*",
-		"./illustrations/*": "./mtds/illustrations/*",
-		"./index.iife.js": "./mtds/index.iife.js",
-		"./package.json": "./package.json",
-		"./styles.css": "./mtds/styles.css",
-		"./styles.json": "./mtds/styles.json"
-	},
-	"scripts": {
-		"start": "vite",
-		"build": "vite build && rm -rf mtds/docs/",
-		"lint": "npx @biomejs/biome lint",
-		"preview": "vite preview",
-		"docs:dev": "vitepress dev",
-		"docs:build": "vitepress build",
-		"docs:preview": "vitepress preview",
-		"publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public",
-		"publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm publish --access public",
-		"publish:clojure": "cd ./clojure && ./publish.sh"
-	},
-	"dependencies": {
-		"nanopop": "^2.4.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"@digdir/designsystemet-css": "^1.0.0-next.44",
-		"@digdir/designsystemet-theme": "^1.0.0-next.44",
-		"@navikt/aksel-icons": "^7.8.0",
-		"@types/node": "^22.10.2",
-		"@u-elements/u-details": "^0.1.0",
-		"postcss": "^8.4.49",
-		"postcss-nesting": "^13.0.1",
-		"typescript": "^5.7.2",
-		"vite": "^6.0.3",
-		"vite-plugin-dts": "^4.3.0",
-		"vitepress": "^1.5.0",
-		"vue": "^3.5.13"
-	}
+  "name": "@mattilsynet/design",
+  "version": "0.0.13",
+  "engines": {
+    "node": "20.x"
+  },
+  "packageManager": "npm@10.2.4",
+  "type": "module",
+  "main": "./mtds/index.js",
+  "types": "./mtds/index.d.ts",
+  "files": [
+    "mtds"
+  ],
+  "exports": {
+    ".": {
+      "import": "./mtds/index.js",
+      "types": "./mtds/index.d.ts"
+    },
+    "./*.svg": "./mtds/*.svg",
+    "./icons/*": "./mtds/icons/*",
+    "./illustrations/*": "./mtds/illustrations/*",
+    "./index.iife.js": "./mtds/index.iife.js",
+    "./package.json": "./package.json",
+    "./styles.css": "./mtds/styles.css",
+    "./styles.json": "./mtds/styles.json"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build && rm -rf mtds/docs/",
+    "lint": "npx @biomejs/biome lint",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm run release:npm && npm run release:github",
+    "publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm run release:npm && npm run release:github",
+    "publish:clojure": "cd ./clojure && ./publish.sh",
+    "release:npm": "npm config set @mattilsynet:registry https://registry.npmjs.org/ && npm publish --access public",
+    "release:github": "npm config set @mattilsynet:registry https://npm.pkg.github.com && npm config set //npm.pkg.github.com/:_authToken $REPO_TOKEN && npm config set registry && npm publish"
+  },
+  "dependencies": {
+    "nanopop": "^2.4.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@digdir/designsystemet-css": "^1.0.0-next.44",
+    "@digdir/designsystemet-theme": "^1.0.0-next.44",
+    "@navikt/aksel-icons": "^7.8.0",
+    "@types/node": "^22.10.2",
+    "@u-elements/u-details": "^0.1.0",
+    "postcss": "^8.4.49",
+    "postcss-nesting": "^13.0.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.3.0",
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.13"
+  }
 }
