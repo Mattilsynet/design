@@ -28,8 +28,8 @@
 		"docs:dev": "vitepress dev",
 		"docs:build": "vitepress build",
 		"docs:preview": "vitepress preview",
-		"publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public",
-		"publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm publish --access public",
+		"publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public && npm publish --registry=https://npm.pkg.github.com",
+		"publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm publish --access public && npm publish --registry=https://npm.pkg.github.com",
 		"publish:clojure": "cd ./clojure && ./publish.sh"
 	},
 	"dependencies": {
