@@ -5,6 +5,7 @@ import Overview from "./Overview.vue";
 import Story from "./Story.vue";
 import Svgs from "./Svgs.vue";
 import "@u-elements/u-details";
+import "@u-elements/u-tabs";
 import "./style.css";
 
 // @ts-ignore

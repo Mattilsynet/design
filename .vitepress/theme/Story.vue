@@ -13,8 +13,9 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 
 			connectedCallback() {
 				setTimeout(() => {
-					const code = this.previousElementSibling?.innerHTML || "";
+					const pre = this.previousElementSibling;
 					const div = document.createElement("div");
+					const code = pre?.innerHTML.replace(/(<\/?u-)-/g, "$1") || "";
 					const html = code?.replace(/styles\.([^\s"]+)/g, (_, k) => styles[k]);
 					const style = document.createElement("style");
 					const source = this.nextElementSibling;
@@ -37,12 +38,19 @@ if (typeof window !== "undefined" && !customElements.get("vp-story"))
 						}
 					`;
 					div.innerHTML = html || "";
+					div.onclick = ({ target }) => {
+						const attrs = ["aria-pressed", "aria-expanded"];
+						const el = (target as Element)?.closest?.(`[${attrs.join("],[")}]`);
+						const attr = attrs.find((attr) => el?.hasAttribute(attr)) || "";
+
+						el?.setAttribute(attr, `${el.getAttribute(attr) !== "true"}`); // Toggle aria-pressed | aria-expanded
+					};
 					observe(div);
 					div.setAttribute("data-stacked", `${this.dataset.stacked}`);
 					this.attachShadow({ mode: "open" }).append(style, div);
 					this.div = div;
 
-					if (source) source.textContent = code.replaceAll('=""', ""); // Prevent popover="", hidden="" etc.
+					if (source) source.textContent = code.replace(/=""/g, ""); // Prevent popover="", hidden="" etc.
 				});
 			}
 			disconnextedCallback() {

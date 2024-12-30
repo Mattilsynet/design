@@ -1,0 +1,189 @@
+@layer mt.design {
+	.table {
+		composes: ds-table from "@digdir/designsystemet-css";
+		border-collapse: collapse; /* Allow rows to have border */
+
+		--dsc-table-background: transparent;
+		--dsc-table-border: 1px solid
+			color-mix(in hsl, currentcolor, transparent 80%);
+		--dsc-table-color: inherit;
+		--dsc-table-header-background--hover: transparent;
+		--dsc-table-header-background--sorted: transparent;
+		--dsc-table-header-background: transparent;
+		--dsc-table-header-divider: 1px solid;
+
+		&[data-fixed] {
+			table-layout: fixed;
+		}
+
+		/**
+		 * TMP FIX DESIGNSYSTYEMET: https://github.com/digdir/designsystemet/pull/2933
+		 */
+		& > tbody:has(+ tfoot) > tr:last-child > :is(th, td) {
+			border-bottom: none;
+		}
+		& > tfoot > tr > :is(th, td) {
+			border-top: var(--dsc-table-header-divider);
+			border-bottom: none;
+		}
+		& > thead > tr > [aria-sort] > button:focus-visible {
+			border-radius: var(--ds-border-radius-sm);
+			box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
+			outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
+			outline: var(--ds--focus, var(--dsc-focus-outline));
+		}
+	}
+
+	/**
+	 * Numeric
+	 */
+	.table [data-numeric]:is(td, th) {
+		font-variant-numeric: tabular-nums;
+		text-align: end;
+		white-space: nowrap;
+	}
+
+	/**
+	 * Nowrap
+	 */
+	.table[data-nowrap],
+	.table [data-nowrap] {
+		white-space: nowrap;
+	}
+
+	/**
+	 * Expandable
+	 */
+	.table > tbody > tr:has(> :is(td, th) > button[aria-expanded]) {
+		/* Fake position: relative on `<tr>` elements: https://mtsknn.fi/blog/relative-tr-in-safari/ */
+		/* transform: translate(0);
+		clip-path: inset(0); */
+		transition: .2s;
+
+		/* &:has(> :is(td, th) > button[aria-expanded]:hover) {
+			background-color: var(--ds-color-accent-surface-hover);
+		} */
+
+		&:has(button[aria-expanded="false"]) + tr > td[colspan]:only-child {
+			display: none;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			/* biome-ignore lint/correctness/noUnknownProperty: biome does not know about this property yet */
+			interpolate-size: allow-keywords;
+
+			&::part(details-content) {
+				block-size: 0;
+				overflow-y: clip;
+				transition: content-visibility 400ms allow-discrete, height 400ms;
+			}
+
+			&[open]::part(details-content) {
+				height: auto;
+			}
+		}
+
+		& > :is(td, th) > button[aria-expanded] {
+			all: unset;
+			cursor: pointer;
+			border-radius: var(--ds-border-radius-sm);
+
+			&:focus-visible {
+				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
+				outline: var(--ds--focus, var(--dsc-focus-outline));
+				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
+			}
+
+			/* &::after {
+				content: "";
+				inset: 0;
+				position: absolute;
+			} */
+
+			&::before {
+				background: currentcolor;
+				content: "";
+				display: inline-block;
+				height: 1em;
+				margin-inline-end: .25em;
+				mask: center / contain no-repeat var(--mt-icon-chevron);
+				rotate: 90deg;
+				transition: scale .2s;
+				vertical-align: -.15em;
+				width: 1em;
+			}
+
+			&[aria-expanded="true"]::before {
+				scale: -1 1;
+			}
+		}
+	}
+
+	/**
+	 * Checkable
+	 */
+	.table > :is(thead, tbody, tfoot) > tr > :is(td, th) label {
+		font-weight: inherit;
+	}
+
+	/**
+	 * Scrollable
+	 */
+	figure:has(> .table) {
+		animation: scroll-shadow linear;
+		animation-timeline: scroll(self inline);
+		overflow: auto;
+		overscroll-behavior: contain; /* Prevent browser back/forward history on end of scroll */
+	}
+	@keyframes scroll-shadow {
+		from {
+			box-shadow: inset -.5rem 0 .5rem -.5rem rgb(0 0 0 / 0.5);
+		}
+		to {
+			box-shadow: inset .5rem 0 .5rem -.5rem rgb(0 0 0 / 0.5);
+		}
+	}
+
+	/**
+	 * Divided (up to 960px)
+	 */
+	@media screen and (max-width: 60em) {
+		.table[data-divide] {
+			& > :is(thead, tfoot) {
+				display: none;
+			}
+			& > tbody > tr {
+				display: contents;
+			}
+			& > tbody > tr > :is(td, th) {
+				animation: tableChildAdded 100ms;
+				border-top: var(--dsc-table-border);
+				border-bottom: none;
+				display: table-row;
+				text-align: inherit; /* Undo data-numeric alignment */
+			}
+
+			& > tbody > tr > :is(td, th):first-child {
+				border-top: 1px solid;
+			}
+
+			& [data-th]:is(th, td)::before {
+				box-sizing: border-box;
+				content: attr(data-th);
+				display: table-cell;
+				font-weight: 500;
+				padding: var(--dsc-table-padding);
+			}
+		}
+	}
+}
+
+/**
+ * Child added event inspired by:
+ * https://davidwalsh.name/detect-node-insertion
+ */
+@keyframes tableChildAdded {
+	from {
+		scale: 1;
+	}
+}

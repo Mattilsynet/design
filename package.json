@@ -4,9 +4,7 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
+	"files": ["mtds"],
 	"exports": {
 		".": {
 			"import": "./mtds/index.js",
@@ -33,6 +31,7 @@
 		"publish:clojure": "cd ./clojure && ./publish.sh"
 	},
 	"dependencies": {
+		"@phosphor-icons/core": "^2.1.1",
 		"nanopop": "^2.4.2"
 	},
 	"devDependencies": {
@@ -42,6 +41,7 @@
 		"@navikt/aksel-icons": "^7.8.0",
 		"@types/node": "^22.10.2",
 		"@u-elements/u-details": "^0.1.0",
+		"@u-elements/u-tabs": "^0.0.8",
 		"postcss": "^8.4.49",
 		"postcss-nesting": "^13.0.1",
 		"typescript": "^5.7.2",

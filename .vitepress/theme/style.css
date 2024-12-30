@@ -200,7 +200,7 @@ mark[data-badge]::before {
 	line-height: 1;
 	padding: .3em;
 	vertical-align: top;
-	translate: -.5em;
+	translate: -.2em;
 }
 
 mark[data-badge="ARIA"]::before,

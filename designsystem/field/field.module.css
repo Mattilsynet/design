@@ -3,6 +3,14 @@
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-spacing-2);
 
+		/**
+		 * Child added event inspired by:
+		 * https://davidwalsh.name/detect-node-insertion
+		 */
+		* {
+			animation: fieldChildAdded 100ms;
+		}
+
 		/* <p> is used for field descriptions */
 		& > p {
 			margin: 0;
@@ -16,5 +24,11 @@
 			cursor: default;
 			opacity: 1;
 		}
+	}
+}
+
+@keyframes fieldChildAdded {
+	from {
+		scale: 1;
 	}
 }

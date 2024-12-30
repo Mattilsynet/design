@@ -1,9 +1,8 @@
 import styles from '../styles.module.css';
-import { IS_BROWSER, createOptimizedMutationObserver, useId } from '../utils';
-
+import { IS_BROWSER, onAdd, useId } from '../utils';
 const CSS_FIELD = styles.field.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
-const OBSERVERS = new WeakMap();
+const BOUND = new Map<Element | Document, ReturnType<typeof onAdd>>();
 
 
 function process(fields: HTMLCollectionOf<Element>) {
@@ -28,24 +27,15 @@ function process(fields: HTMLCollectionOf<Element>) {
   }
 }
 
-// Automatically observe <body> if in browser
-if (IS_BROWSER) observe(document.body);
+if (IS_BROWSER) observe(document);
 
-export function observe (el: Element) {
-  if (OBSERVERS.has(el)) return;
-  const fields = el.getElementsByClassName(CSS_FIELD); // Reutrns a live HTMLCollection
-  const observer = createOptimizedMutationObserver(() => process(fields));
-  observer.observe(el, {
-    attributeFilter: ['class'],
-    attributes: true,
-    childList: true,
-    subtree: true
-  });
-
-  process(fields); // Initial run
-  OBSERVERS.set(el, observer);
+export function observe (el: Element | Document) {
+  const fields = el.getElementsByClassName(CSS_FIELD);
+  const add = onAdd(styles.fieldChildAdded, () => process(fields));
+  BOUND.set(el, add);
+  add.observe(el);
 }
 
-export function unobserve (el: Element) {
-  OBSERVERS.get(el)?.disconnect();
+export function unobserve (el: Element | Document) {
+  BOUND.get(el)?.disconnect(el);
 }

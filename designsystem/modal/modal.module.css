@@ -1,0 +1,25 @@
+@layer mt.design {
+	.modal {
+		composes: ds-modal from "@digdir/designsystemet-css";
+
+		/* Overwrite to same as tertiary from Designsystemet  */
+		& > form[method="dialog"]:first-child > button:only-child {
+			--dsc-button-background: transparent;
+			--dsc-button-background--active: var(--ds-color-surface-active);
+			--dsc-button-background--hover: var(--ds-color-surface-hover);
+			--dsc-button-color: var(--ds-color-text-subtle);
+			--dsc-button-color--hover: var(--ds-color-text-default);
+
+			padding: 0; /* Make the button square */
+
+			&::before {
+				background: currentcolor;
+				content: "";
+				mask: center / contain no-repeat
+					url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M205.7 194.3a8 8 0 0 1-11.4 11.4L128 139.3l-66.3 66.4a8 8 0 0 1-11.4-11.4l66.4-66.3-66.4-66.3a8 8 0 0 1 11.4-11.4l66.3 66.4 66.3-66.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
+				height: var(--mt-icon-size);
+				width: var(--mt-icon-size);
+			}
+		}
+	}
+}

@@ -28,7 +28,8 @@
 		&:is(menu) {
 			--mt-popover-padding: var(--ds-spacing-3);
 
-			& button {
+			& :is(a, button) {
+				justify-content: start;
 				width: 100%;
 
 				/* Overwrite to same as tertiary from Designsystemet  */

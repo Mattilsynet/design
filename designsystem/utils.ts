@@ -1,4 +1,5 @@
 export const IS_BROWSER = typeof window !== 'undefined' && typeof document !== 'undefined';
+export const QUICK_EVENT = { capture: true, passive: true };
 
 /**
  * useId
@@ -64,3 +65,21 @@ export const off = (
 	...rest: Parameters<typeof Element.prototype.removeEventListener>
 ): void => events("remove", element, rest);
 
+/**
+ * Child added event inspired by:
+ * https://davidwalsh.name/detect-node-insertion
+ */
+export function onAdd (animationName: string, callback: () => void) {
+  let timer: ReturnType<typeof requestAnimationFrame> | number = 0;
+  const onAnimation = (event: Event & { animationName?: string }) => {
+    if (event.animationName === animationName) {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(callback);
+    }
+  };
+
+	return {
+		observe: (el: Element | Document, ) => on(el, 'animationend', onAnimation, QUICK_EVENT),
+		disconnect: (el: Element | Document, ) => off(el, 'animationstart', onAnimation, QUICK_EVENT)
+	};
+}

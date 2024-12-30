@@ -15,6 +15,7 @@ clojure/mattilsynet-design.jar
 .DS_Store
 
 # Editor directories and files
+.npmrc
 .idea
 .DS_Store
 *.suo

@@ -2,8 +2,12 @@
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
 
+		& > legend {
+			padding: 0;
+		}
+
 		/* Reset designsystemet */
-		& legend + p {
+		& > legend + p {
 			color: inherit;
 			margin: 0;
 		}

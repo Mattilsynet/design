@@ -5,9 +5,16 @@
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
 		font-weight: 500;
+		position: relative; /* Needed for tooltip */
 		transition-duration: .2s;
 		transition-property: background-color, translate;
 		vertical-align: middle;
+
+		& > svg {
+			fill: currentColor;
+			height: 1em;
+			width: 1em;
+		}
 
 		&:disabled,
 		&[aria-disabled] {
@@ -18,19 +25,94 @@
 			translate: 0 2px;
 		}
 
+		/**
+		 * Paint ellipsis when empty
+		 */
+		&:empty::before {
+			background: currentcolor;
+			content: "";
+			mask: center / contain no-repeat var(--mt-icon-ellipsis);
+			height: var(--mt-icon-size);
+			width: var(--mt-icon-size);
+		}
+
+		/**
+		 * Tooltip and popover
+		 */
+		&[data-tooltip]::after {
+			background: #032c30;
+			border-radius: var(--ds-border-radius-md);
+			color: var(--ds-color-accent-contrast-default);
+			content: attr(data-tooltip);
+			font-size: .9375rem;
+			font-weight: 500;
+			left: 50%;
+			line-height: 1;
+			opacity: 0;
+			padding: .25rem;
+			pointer-events: none;
+			position: absolute;
+			top: 100%;
+			transition: .15s;
+			translate: -50%;
+			visibility: hidden;
+		}
+		&[data-tooltip]:focus-visible::after,
+		&[data-tooltip]:hover::after {
+			opacity: 0.9;
+			translate: -50% 2px;
+			visibility: visible;
+		}
+
+		/**
+		 * Arrows
+		 */
+		&[data-arrow]::before {
+			background: currentcolor;
+			content: "";
+			mask: center / contain no-repeat var(--mt-icon-arrow);
+			height: var(--mt-icon-size);
+			order: 1; /* Use ::before and change order so ::after is allways unused, and loading will be placed where arrow was */
+			width: var(--mt-icon-size);
+		}
+		&[data-arrow="left"]::before {
+			order: -1;
+			rotate: 180deg;
+		}
+		&[data-arrow][popovertarget]::before {
+			mask-image: var(--mt-icon-chevron);
+			rotate: 90deg;
+			transition: .2s;
+		}
+		&[data-arrow][popovertarget]:has(+ :popover-open)::before {
+			scale: -1 1;
+		}
+
+		/**
+		 * Loading
+		 */
 		&[aria-busy="true"] {
 			pointer-events: none;
+			opacity: 1; /* Undo disabled styling */
 		}
 		&[aria-busy="true"]::before {
 			background: currentcolor;
-			content: "";
+			content: "Laster...";
 			display: inline-block;
-			height: 1.5em;
+			height: var(--mt-icon-size);
 			mask: center / contain no-repeat
 				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cstyle%3E@keyframes rotate%7Bto%7Brotate:360deg%7D%7D@keyframes stroke%7B50%25%7Bstroke-dasharray:100,200;stroke-dashoffset:-15;transform:rotate(0deg)%7Dto%7Bstroke-dasharray:1,200;stroke-dashoffset:-120;transform:rotate(15deg)%7D%7Dcircle%7Bcx:25;cy:25;r:20;fill:none;stroke:currentcolor;stroke-width:5%7Dcircle:last-child%7Banimation:stroke ease-in-out infinite 2s,rotate linear infinite 2s;transform-origin:center%7D%3C/style%3E%3Ccircle opacity='.2'/%3E%3Ccircle stroke-dasharray='1, 200'/%3E%3C/svg%3E");
 			text-align: center;
 			vertical-align: middle;
-			width: 1.5em;
+			width: var(--mt-icon-size);
+		}
+
+		/**
+		 * Aria-pressed
+		 */
+		&[aria-pressed="false"] [data-pressed="true"],
+		&[aria-pressed="true"] [data-pressed="false"] {
+			display: none;
 		}
 	}
 }

@@ -21,7 +21,7 @@
 </pre>
 <Story />
 
-Med checkboxer
+## Checkboxes
 <pre hidden>
 <fieldset class="styles.fieldset">
   <legend>Hvilke foretrekker du?</legend>
