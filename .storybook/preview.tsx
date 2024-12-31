@@ -1,9 +1,9 @@
 // import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { MDXProvider } from "@mdx-js/react";
 import { DocsContainer, Unstyled } from "@storybook/blocks";
+import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
-import React, { useEffect } from "react";
-import "../designsystem/styles.module.css";
+import { useEffect } from "react";
 import "./style.css";
 import "@u-elements/u-tabs";
 
@@ -28,7 +28,7 @@ export default {
 				layout: "centered",
 				sourceState: "none", // Hide canvas source due to https://github.com/storybookjs/storybook/issues/18972
 			},
-			container: (props) => {
+			container: (props: DocsContainerProps) => {
 				useEffect(() => {
 					// Paint blockqoutes with x as red
 					for (const el of document.querySelectorAll(".sbdocs-blockquote"))

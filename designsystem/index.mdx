@@ -1,0 +1,141 @@
+import { Meta } from '@storybook/blocks';
+import { styles } from './';
+
+<Meta title="Designsystem/Introduksjon" />
+
+# Designsystem
+
+> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/),
+men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
+
+> ### 💚 Bidra og delta:
+> - **Spørsmål, tanker eller ideer?** Skriv gjerne til oss på [Slack](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) eller [Github](https://github.com/Mattilsynet/design/issues) 🙌
+> - **Hva er siste nytt?** Se [versjonslogg på Github](https://github.com/Mattilsynet/design/releases) og [oppgaver vi jobber med](https://github.com/orgs/Mattilsynet/projects/22)
+
+
+## Kom i gang for utviklere
+
+Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg bygge responsive, fleksible og tilgjengelige grensesnitt. I tillegg får du tilgang til logoer, ikoner, illustasjoner og en rekke tokens/[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) for enkel bygging av egne komponenter i Mattilsynet-drakt. Slik bruker du pakken:
+
+1. **Installer** `@mattilsynet/design` fra Mattilsynets [NPM organsiasjon](https://www.npmjs.com/package/@mattilsynet/design):
+    <u-tabs class={styles.tabs} data-size="sm">
+      <u-tablist>
+        <u-tab>NPM</u-tab>
+        <u-tab>PNPM</u-tab>
+        <u-tab>Yarn</u-tab>
+        <u-tab>Bun</u-tab>
+      </u-tablist>
+      <u-tabpanel>
+        ```bash
+        npm install @mattilsynet/design --save
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```bash
+        pnpm add @mattilsynet/design
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```bash
+        yarn add @mattilsynet/design
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```bash
+        bun add @mattilsynet/design
+        ```
+      </u-tabpanel>
+    </u-tabs>
+
+2. **Importer JavaScript** støttefunksjonalitet (popover, field, etc.):
+    <u-tabs class={styles.tabs} data-size="sm">
+      <u-tablist>
+        <u-tab>JavaScript</u-tab>
+        <u-tab>HTML</u-tab>
+      </u-tablist>
+      <u-tabpanel>
+        ```js
+        import "@mattilsynet/design";
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```html
+        <!-- Only use if you have no build step: -->
+        <script src="node_modules/@mattilsynet/design/mtds/index.iife.js"></script>
+        ```
+      </u-tabpanel>
+    </u-tabs>
+3. **Importer stiler** enten via JavaScript, CSS eller med TailwindCSS:
+    <u-tabs class={styles.tabs} data-size="sm">
+      <u-tablist>
+        <u-tab>JavaScript</u-tab>
+        <u-tab>CSS</u-tab>
+        <u-tab>TailwindCSS</u-tab>
+      </u-tablist>
+      <u-tabpanel>
+        ```js
+        import "@mattilsynet/design/styles.css";
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```css
+        @import url("@mattilsynet/design/styles.css");
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```css
+        /**
+        * Fix Tailwind Preflight specificity by using @layer:
+        * See https://css-tricks.com/?p=372576
+        */
+        @layer tailwind-base, ds, mt;
+        @import url('@mattilsynet/design/styles.css');
+
+        @layer tailwind-base {
+          @tailwind base;
+        }
+        @tailwind components;
+        @tailwind utilities;
+        ```
+      </u-tabpanel>
+    </u-tabs>
+
+    > ### Merk: `background`, `color` og `font` blir satt på `<body>` 🤓
+    >
+    > `body { background: …; color: …; font: … }` og `b, strong, th { font-weight: 600 }` blir automatisk definert,
+    > slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers.
+    > Dette er super lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) 💚
+4. **Ta i bruk stiler** ved å importere `styles` objektet:
+    <u-tabs class={styles.tabs} data-size="sm">
+      <u-tablist>
+        <u-tab>JS</u-tab>
+        <u-tab>JSON</u-tab>
+      </u-tablist>
+      <u-tabpanel>
+        ```jsx
+        import { styles } from "@mattilsynet/design";
+
+        <button class={styles.button}></button>
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```jsx
+        import styles from "@mattilsynet/design/styles.json";
+
+        <button class={styles.button}></button>
+        ```
+      </u-tabpanel>
+    </u-tabs>
+
+    > ### Hvorfor ikke bare skrive `class="button"`?
+    >
+    > Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig.
+    > Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn,
+    > som hindrer konflikt og gjør at du slipper å tenke på versjonering 🥳
+5. **Ta i bruk illustrasjoner og ikoner** - [egen dokumentasjon kommer](#)
+
+{/*Hvorfor CSS og ikke React komponenter?*/}
+
+## Kom i gang for designere
+
+Kommer

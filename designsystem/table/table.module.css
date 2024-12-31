@@ -130,12 +130,12 @@
 	 * Scrollable
 	 */
 	figure:has(> .table) {
-		animation: scroll-shadow linear;
+		animation: scrollShadow linear;
 		animation-timeline: scroll(self inline);
 		overflow: auto;
 		overscroll-behavior: contain; /* Prevent browser back/forward history on end of scroll */
 	}
-	@keyframes scroll-shadow {
+	@keyframes scrollShadow {
 		from {
 			box-shadow: inset -.5rem 0 .5rem -.5rem rgb(0 0 0 / 0.5);
 		}
