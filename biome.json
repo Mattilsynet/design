@@ -3,28 +3,25 @@
 	"organizeImports": {
 		"enabled": true
 	},
-  "formatter": {
-    "enabled": true
-  },
-  "javascript": {
-    "formatter": {
-      "enabled": true
-    }
-  },
+	"formatter": {
+		"enabled": true
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true
+		}
+	},
 	"files": {
-    "ignore": [
-			".vitepress/cache/**/*",
-			".vitepress/dist/**/*",
-			"mtds",
-			"dist"
-		]
-  },
+		"ignore": [".vitepress/cache/**/*", ".vitepress/dist/**/*", "mtds", "dist"]
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
 			"a11y": {
-				"noSvgWithoutTitle": "off"
+				"noLabelWithoutControl": "off",
+				"noSvgWithoutTitle": "off",
+				"useAriaPropsForRole": "off"
 			}
 		}
 	},

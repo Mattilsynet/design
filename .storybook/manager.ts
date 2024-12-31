@@ -27,7 +27,6 @@ addons.setConfig({
     appBg: gaasunge,
     appContentBg: white,
     appPreviewBg: white,
-    // appBorderColor: 'transparent',
     appBorderRadius: 5,
   
     // Text colors
@@ -39,12 +38,6 @@ addons.setConfig({
     barSelectedColor: granskog,
     barHoverColor: granskog,
     barBg: white,
-  
-    // Form colors
-    // inputBg: white,
-    // inputBorder: granskog,
-    // inputTextColor: granskog,
-    // inputBorderRadius: 2,
   }),
   toolbar: {
     'storybook/a11y/panel': { hidden: true }, // Vision simulation

@@ -1,0 +1,60 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './button.stories';
+
+<Meta of={stories} />
+
+# Button
+
+- Legg klassen `button` på typisk `<button>` eller `<a>`
+- Husk `type="button"` hvis en `<button>` gjør noe annet enn å sende skjema
+
+<Canvas of={stories.Default} />
+
+## Varianter
+- Bruk `data-variant="primary | secondary | tertiary"`
+
+<Canvas of={stories.Variants} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+
+<Canvas of={stories.Sizes} />
+
+## Pil og popover
+- Legg på `data-arrow` (høyrestilt) eller `data-arrow="left | right"`
+- Lasteindikator vil erstatte pil dersom disse kombineres
+- Kombiner `popovertarget` + `data-arrow` for chevron
+
+<Canvas of={stories.Arrows} />
+
+## Ikoner
+- [Ikon fra Aksel](https://aksel.nav.no/ikoner) kan legges inn før eller etter tekst
+
+<Canvas of={stories.Icons} />
+
+## Loading
+- For `<button>`: Legg på `<button aria-busy="true" disabled`
+- For `<a>`: Legg på `<a aria-busy="true" tabindex="-1"`
+- Lasteindikator vil erstatte pil dersom disse kombineres
+
+<Canvas of={stories.Loading} />
+
+## Handlingsmeny
+- Bruk `aria-label="Knappetekst her"` i stedet for innhold
+- Da får du automatisk ikon for handlingsmeny <svg aria-hidden="ture" width="1em" height="1em" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="128" r="16"/><circle cx="60" cy="128" r="16"/><circle cx="196" cy="128" r="16"/></svg>
+
+<Canvas of={stories.Contextmenu} />
+
+
+## Pressed
+- Bruk `<button>` med `aria-pressed="true"`
+- Knappen endrer ikke stil, men du kan vise/skjule innhold ved bruk av attributten `data-pressed="true | false"`:
+
+<Canvas of={stories.Pressed} />
+
+## Tooltip <mark data-badge="Experimental"></mark>
+- Bruk `data-tooltip="Hjelpetekst"`
+- Teksten blir også automatisk tilgjengelig for skjermlesere
+- **Merk:** Krever minst `24px / 1.5rem / 6 units` luft under for å vises
+
+<Canvas of={stories.Tooltip} />

@@ -4,20 +4,28 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
+import { styles } from "../designsystem/";
 import "./style.css";
 import "@u-elements/u-tabs";
 
 export default {
-	// decorators: [
-	// 	withThemeByDataAttribute({
-	// 	  defaultTheme: 'Light',
-	// 	  attributeName: 'data-theme',
-	// 	  themes: {
-	// 	    'Light': 'light',
-	// 	    'Dark preview': 'dark',
-	// 	  }
-	// 	})
-	// ],
+	decorators: [
+		(Story) => {
+			useEffect(() => {
+				for (const el of document.querySelectorAll('[class*="styles."]'))
+					el.className = styles[el.className.replace(/styles\./g, "")];
+			}, []);
+			return <Story />;
+		},
+		// 	withThemeByDataAttribute({
+		// 	  defaultTheme: 'Light',
+		// 	  attributeName: 'data-theme',
+		// 	  themes: {
+		// 	    'Light': 'light',
+		// 	    'Dark preview': 'dark',
+		// 	  }
+		// 	})
+	],
 	parameters: {
 		controls: {
 			disableSaveFromUI: true,
@@ -26,7 +34,6 @@ export default {
 		docs: {
 			canvas: {
 				layout: "centered",
-				sourceState: "none", // Hide canvas source due to https://github.com/storybookjs/storybook/issues/18972
 			},
 			container: (props: DocsContainerProps) => {
 				useEffect(() => {
@@ -69,15 +76,9 @@ export default {
 								blockquote: (props) => (
 									<blockquote {...props} className="sbdocs-blockquote" />
 								),
-								ol: (props) => (
-									<ol {...props} className="sbdocs-ol" data-size="lg" />
-								),
-								ul: (props) => (
-									<ul {...props} className="sbdocs-ul" data-size="lg" />
-								),
-								p: (props) => (
-									<p {...props} className="sbdocs-p" data-size="lg" />
-								),
+								ol: (props) => <ol {...props} className="sbdocs-ol" />,
+								ul: (props) => <ul {...props} className="sbdocs-ul" />,
+								p: (props) => <p {...props} className="sbdocs-p" />,
 								a: (props) => <a {...props} className="sbdocs-a" />,
 							}}
 						>
