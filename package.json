@@ -19,16 +19,14 @@
 		"./styles.json": "./mtds/styles.json"
 	},
 	"scripts": {
-		"start": "vite",
 		"build": "vite build && rm -rf mtds/docs/",
 		"lint": "npx @biomejs/biome lint",
-		"preview": "vite preview",
-		"docs:dev": "vitepress dev",
-		"docs:build": "vitepress build",
-		"docs:preview": "vitepress preview",
-		"publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public",
+		"publish:clojure": "cd ./clojure && ./publish.sh",
 		"publish:minor": "npm run build && npm version minor --message 'Release %s' && git push --tags && npm publish --access public",
-		"publish:clojure": "cd ./clojure && ./publish.sh"
+		"publish:patch": "npm run build && npm version patch --message 'Release %s' && git push --tags && npm publish --access public",
+		"start": "vite",
+		"storybook": "storybook dev -p 6006",
+		"storybook:build": "storybook build"
 	},
 	"dependencies": {
 		"@phosphor-icons/core": "^2.1.1",
@@ -38,16 +36,28 @@
 		"@biomejs/biome": "^1.9.4",
 		"@digdir/designsystemet-css": "^1.0.0-next.44",
 		"@digdir/designsystemet-theme": "^1.0.0-next.44",
-		"@navikt/aksel-icons": "^7.8.0",
+		"@navikt/aksel-icons": "^7.9.0",
+		"@storybook/addon-essentials": "^8.4.7",
+		"@storybook/addon-storysource": "^8.4.7",
+		"@storybook/blocks": "^8.4.7",
+		"@storybook/manager-api": "^8.4.7",
+		"@storybook/react": "^8.4.7",
+		"@storybook/react-vite": "^8.4.7",
+		"@storybook/theming": "^8.4.7",
 		"@types/node": "^22.10.2",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
 		"@u-elements/u-details": "^0.1.0",
 		"@u-elements/u-tabs": "^0.0.8",
+		"@vitejs/plugin-react": "^4.3.4",
+		"globals": "^15.12.0",
 		"postcss": "^8.4.49",
 		"postcss-nesting": "^13.0.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"storybook": "^8.4.7",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.3",
-		"vite-plugin-dts": "^4.3.0",
-		"vitepress": "^1.5.0",
-		"vue": "^3.5.13"
+		"vite": "^6.0.6",
+		"vite-plugin-dts": "^4.4.0"
 	}
 }

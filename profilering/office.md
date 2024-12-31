@@ -1,7 +1,0 @@
-# Officemaler
-
-## Word
-
-## PowerPoint
-
-## Teamsbakgrunn

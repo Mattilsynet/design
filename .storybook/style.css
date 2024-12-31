@@ -1,0 +1,85 @@
+body {
+	background: white;
+}
+
+u-tabpanel > pre,
+u-tabpanel > pre > .docblock-source {
+	margin-block: 0;
+}
+
+.sbdocs-content.sbdocs-content {
+	max-width: 50rem; /* 800px */
+}
+
+.sbdocs-content > * {
+	margin-block: 0;
+}
+.sbdocs-content > * + * {
+	margin-block-start: 1rem;
+}
+
+.sbdocs-h1 {
+	font-size: 3em;
+	line-height: 1.2;
+	margin-block: 0;
+
+	&:not(#mattilsynet-design)::after {
+		content: "Under utvikling";
+		background: color-mix(in hsl, currentcolor 15%, transparent);
+		border-radius: 3px;
+		display: inline-block;
+		font-size: .875rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		line-height: 1;
+		padding: .4em;
+		vertical-align: middle;
+		margin-left: .8em;
+	}
+}
+
+.sbdocs-h2,
+.sbdocs-h3 {
+	margin-block-start: 1.75rem;
+
+	& + * {
+		margin-top: .25rem;
+	}
+}
+
+.sbdocs-h2,
+.sbdocs-blockquote {
+	margin-inline: 0;
+	font-size: 1.375em;
+	text-wrap: balance;
+}
+
+.sbdocs-blockquote {
+	margin-block: 1rem 1.75rem;
+
+	&:where(:has(> h3:first-child)) {
+		padding: 2rem;
+		background: #e2f1df;
+		border-radius: .5rem;
+		font-size: 1.125rem;
+	}
+
+	& > * {
+		margin-block: 0;
+		font-size: inherit;
+	}
+	& > * + * {
+		margin-block-start: 1rem;
+	}
+	& > h3 {
+		margin-block-end: -.75rem;
+	}
+	&[data-error] {
+		background: rgba(244, 63, 94, 0.14);
+	}
+}
+
+.sbdocs-ol,
+.sbdocs-ul {
+	padding-left: 1em;
+}

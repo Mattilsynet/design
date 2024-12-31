@@ -1,0 +1,44 @@
+<link rel="shortcut icon" href="/docs/logo-symbol.svg" />
+<style>
+  /**
+   * Rounded content
+   */
+  #root > div { padding: min(1rem, 1%); gap: .25rem }
+  #root > div > * { border-radius: .75rem; border: 1px solid color-mix(in hsl, currentcolor, transparent 90%); overflow: hidden }
+  #root > div > :has(> .sidebar-container) { border: 0; overflow: visible }
+  #root div:has(+ .sidebar-container)::after { opacity: 0!important }
+  #root .sb-bar { box-shadow: none!important }
+
+  /**
+   * Hide stuff
+   */
+  .sidebar-container.sidebar-container .sidebar-header button, /* Hide settings */
+  .sidebar-container.sidebar-container svg[type], /* Hide sidebar type icons */
+  .sidebar-container.sidebar-container button[data-action="expand-all"], /* Hide expand <button> */
+  .sidebar-container.sidebar-container button[title="Tag filters"], /* Hide filter tags <button> */
+  .sidebar-container.sidebar-container .search-field + :has(button) /* Disable "Create new story" <button> */
+    { display: none !important }
+
+  /**
+   * Sidebar
+   */
+  .sidebar-container .sidebar-header a { font-size: 1.25rem } /* Larger title in sidebar */
+  .sidebar-container .sidebar-item :is(a, button) { align-items: center; font: inherit; font-weight: 400 }
+  .sidebar-container .sidebar-item a { gap: 0 }
+  .sidebar-container .sidebar-subheading,
+  .sidebar-container .search-result-item--label > :first-child,
+  .sidebar-container .sidebar-item {
+    color: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.5;
+    text-transform: none;
+  }
+
+  /**
+   * Search
+   */
+  .search-field.search-field { box-shadow: none }
+  .search-field.search-field #storybook-explorer-searchfield { font: inherit }
+</style>

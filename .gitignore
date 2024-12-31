@@ -1,5 +1,5 @@
 # Runtime
-.vitepress/cache
+storybook-static
 node_modules
 **/dist
 **/mtds

@@ -1,3 +1,7 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Identitet/Form og bevegelse" />
+
 # Form og bevegelse
 
 ## Avrundet form
@@ -9,29 +13,29 @@ Mattilsynet jobber via tre hovedroller - veileder, myndighetsutøver og beredska
 Ved kombinasjon tekstboks og fotoboks skal den ene boksen ha ett avrundet hjørne og den andre rettvinklede hjørner. Avrundingen er hentet fra frøformen i logosymbolet, og skal alltid være nederst i høyre hjørne.
 
 
-<style module>
+{/*<style>{`
   .card { display: flex; flex-wrap: wrap; overflow: hidden; border-bottom-right-radius: 4rem; font-size: 1rem; margin: 3rem 0 }
   .card > * { flex: 1 1 10rem; width: 50%; height: auto; object-fit: cover }
   .card > div { padding: 2.5rem; background: var(--mt-granskog); color: var(--mt-gaasunge) }
   .card--light > div { background: var(--mt-gaasunge); color: var(--mt-mork-granskog) }
   .card__title { font-size: 1.5rem; line-height: 1.2; font-weight: bold; margin-bottom: 1rem }
-</style>
-<div :class="$style.card">
+`}</style>
+<div className="$style.card">
   <div>
-    <div :class="$style.card__title">Øremerking av svin</div>
+    <div className="$style.card__title">Øremerking av svin</div>
     Alle svin skal merkes med et øremerke som er godkjent av Mattilsynet. Dette gjelder også svin i dyrehold som er hobbypreget.
   </div>
   <img alt="" src="./form-1.png" />
 </div>
 <div>
-  <div :class="`${$style.card} ${$style['card--light']}`" style="max-width: 18rem">
+  <div className="`${$style.card} ${$style['card--light']}`" style="max-width: 18rem">
     <img alt="" src="./form-2.png" />
     <div>
       Aktuelt
-      <div :class="$style.card__title">Svinepest i Sverige &rarr;</div>
+      <div className="$style.card__title">Svinepest i Sverige &rarr;</div>
     </div>
   </div>
-</div>
+</div>*/}
 
 ## Bevegelse
 
