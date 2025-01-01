@@ -1,3 +1,5 @@
+@import url("../designsystem/styles.module.css");
+
 body {
 	background: white;
 }

@@ -1,5 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
+import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Modal",
@@ -30,21 +31,21 @@ export const Default: Story = {
 		return (
 			<>
 				<button
-					className="styles.button"
+					className={styles.button}
 					onClick={() => setOpen(true)}
 					type="button"
 				>
 					Open
 				</button>
 				<dialog
-					className="styles.modal"
+					className={styles.modal}
 					onClose={() => setOpen(false)}
 					ref={modal}
 				>
 					<form method="dialog">
 						<button
 							type="submit"
-							className="styles.button"
+							className={styles.button}
 							aria-label="Lukk"
 						></button>
 					</form>
@@ -69,21 +70,21 @@ export const Close: Story = {
 		return (
 			<>
 				<button
-					className="styles.button"
+					className={styles.button}
 					type="button"
 					onClick={() => setOpen(true)}
 				>
 					Open
 				</button>
 				<dialog
-					className="styles.modal"
+					className={styles.modal}
 					onClose={() => setOpen(false)}
 					ref={modal}
 				>
 					<form method="dialog">
 						<button
 							type="submit"
-							className="styles.button"
+							className={styles.button}
 							aria-label="Lukk"
 						></button>
 					</form>
@@ -94,13 +95,13 @@ export const Close: Story = {
 						<form method="dialog">
 							<button
 								type="submit"
-								className="styles.button"
+								className={styles.button}
 								data-variant="secondary"
 							>
 								Avbryt
 							</button>
 						</form>
-						<button type="button" className="styles.button">
+						<button type="button" className={styles.button}>
 							Lagre
 						</button>
 					</div>

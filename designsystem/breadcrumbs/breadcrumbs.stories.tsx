@@ -1,4 +1,5 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Breadcrumbs",
@@ -18,7 +19,7 @@ const decorators = [
 export const Default: Story = {
 	decorators,
 	render: () => (
-		<nav className="styles.breadcrumbs" aria-label="Du er her:">
+		<nav className={styles.breadcrumbs} aria-label="Du er her:">
 			<a href="#none" aria-label="Tilbake til Nivå 3">
 				Nivå 3
 			</a>
@@ -47,14 +48,14 @@ export const Backbutton: Story = {
 	render: () => (
 		<>
 			Tilbakeknapp på både mobil og desktop:
-			<nav className="styles.breadcrumbs" aria-label="Du er her:">
+			<nav className={styles.breadcrumbs} aria-label="Du er her:">
 				<a href="#none" aria-label="Tilbake til Nivå 3">
 					Nivå 3
 				</a>
 			</nav>
 			<br />
 			Tilbakeknapp på kun mobil:
-			<nav className="styles.breadcrumbs" aria-label="Du er her:">
+			<nav className={styles.breadcrumbs} aria-label="Du er her:">
 				<a href="#none" aria-label="Tilbake til Nivå 3">
 					Nivå 3
 				</a>
@@ -77,7 +78,7 @@ export const Backbutton: Story = {
 			</nav>
 			<br />
 			Ingen tilbakeknapp:
-			<nav className="styles.breadcrumbs" aria-label="Du er her:">
+			<nav className={styles.breadcrumbs} aria-label="Du er her:">
 				<ol>
 					<li>
 						<a href="#none">Nivå 1</a>
@@ -104,7 +105,7 @@ export const Sizes: Story = {
 	render: () => (
 		<>
 			<nav
-				className="styles.breadcrumbs"
+				className={styles.breadcrumbs}
 				aria-label="Du er her:"
 				data-size="sm"
 			>

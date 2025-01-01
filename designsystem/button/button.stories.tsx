@@ -1,23 +1,7 @@
 import { HeartIcon, StarFillIcon, StarIcon } from "@navikt/aksel-icons";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useState } from "react";
-
-// Make React support popover=""target attribute
-// https://github.com/facebook/react/issues/27479
-declare global {
-	namespace React.JSX {
-		interface IntrinsicAttributes {
-			popovertarget?: string;
-			popover?: string | boolean;
-		}
-	}
-	namespace React {
-		interface HTMLAttributes<T> {
-			popovertarget?: string;
-			popover?: string | boolean;
-		}
-	}
-}
+import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Button",
@@ -36,8 +20,8 @@ const decorators = [
 
 export const Default: Story = {
 	decorators,
-	render: (args) => (
-		<button className="styles.button" {...args}>
+	render: () => (
+		<button type="button" className={styles.button}>
 			Hei
 		</button>
 	),
@@ -47,13 +31,13 @@ export const Variants: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className="styles.button">
+			<button type="button" className={styles.button}>
 				Primary (default)
 			</button>
-			<button type="button" className="styles.button" data-variant="secondary">
+			<button type="button" className={styles.button} data-variant="secondary">
 				Secondary
 			</button>
-			<button type="button" className="styles.button" data-variant="tertiary">
+			<button type="button" className={styles.button} data-variant="tertiary">
 				Tertiary
 			</button>
 		</>
@@ -64,13 +48,13 @@ export const Sizes: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className="styles.button" data-size="sm">
+			<button type="button" className={styles.button} data-size="sm">
 				Small
 			</button>
-			<button type="button" className="styles.button" data-size="md">
+			<button type="button" className={styles.button} data-size="md">
 				Medium
 			</button>
-			<button type="button" className="styles.button" data-size="lg">
+			<button type="button" className={styles.button} data-size="lg">
 				Large
 			</button>
 		</>
@@ -81,37 +65,37 @@ export const Arrows: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className="styles.button" data-arrow>
+			<button type="button" className={styles.button} data-arrow>
 				Knapp
 			</button>
-			<button type="button" className="styles.button" data-arrow="left">
+			<button type="button" className={styles.button} data-arrow="left">
 				Knapp
 			</button>
-			<a className="styles.button" data-arrow="right" href="#none">
+			<a className={styles.button} data-arrow="right" href="#none">
 				Lenkeknapp
 			</a>
 			<button
 				data-arrow="popover"
 				popovertarget="pop-1"
 				type="button"
-				className="styles.button"
+				className={styles.button}
 			>
 				Popover
 			</button>
 
-			<menu className="styles.popover" id="pop-1" popover="">
+			<menu className={styles.popover} id="pop-1" popover="">
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 1
 					</button>
 				</li>
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 2
 					</button>
 				</li>
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 3
 					</button>
 				</li>
@@ -124,11 +108,11 @@ export const Icons: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className="styles.button">
+			<button type="button" className={styles.button}>
 				<HeartIcon />
 				Ikon før
 			</button>
-			<button type="button" className="styles.button">
+			<button type="button" className={styles.button}>
 				Ikon etter
 				<StarIcon />
 			</button>
@@ -140,15 +124,15 @@ export const Loading: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button aria-busy="true" disabled type="button" className="styles.button">
+			<button aria-busy="true" disabled type="button" className={styles.button}>
 				Knapp
 			</button>
-			<a aria-busy="true" tabIndex={-1} href="#none" className="styles.button">
+			<a aria-busy="true" tabIndex={-1} href="#none" className={styles.button}>
 				Lenkeknapp
 			</a>
 			<button
 				aria-busy="true"
-				className="styles.button"
+				className={styles.button}
 				data-arrow="right"
 				disabled
 				type="button"
@@ -167,22 +151,22 @@ export const Contextmenu: Story = {
 				aria-label="Handlinger"
 				popovertarget="pop-2"
 				type="button"
-				className="styles.button"
+				className={styles.button}
 				data-variant="secondary"
 			/>
-			<menu popover="" id="pop-2" className="styles.popover">
+			<menu popover="" id="pop-2" className={styles.popover}>
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 1
 					</button>
 				</li>
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 2
 					</button>
 				</li>
 				<li>
-					<button type="button" className="styles.button">
+					<button type="button" className={styles.button}>
 						Knapp 3
 					</button>
 				</li>
@@ -200,7 +184,7 @@ export const Pressed: Story = {
 			<button
 				aria-pressed={pressed}
 				type="button"
-				className="styles.button"
+				className={styles.button}
 				data-variant="tertiary"
 				onClick={() => setPressed(!pressed)}
 			>
@@ -219,7 +203,7 @@ export const Tooltip: Story = {
 		<button
 			data-tooltip="Favoritt"
 			type="button"
-			className="styles.button"
+			className={styles.button}
 			data-variant="tertiary"
 		>
 			<StarIcon />

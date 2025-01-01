@@ -1,4 +1,5 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Field",
@@ -18,10 +19,10 @@ const decorators = [
 export const Default: Story = {
 	decorators,
 	render: () => (
-		<div className="styles.field">
+		<div className={styles.field}>
 			<label>Ledetekst</label>
 			<p>Beskrivelse</p>
-			<input type="text" className="styles.input" />
+			<input type="text" className={styles.input} />
 		</div>
 	),
 };
@@ -30,22 +31,22 @@ export const Toggles: Story = {
 	decorators,
 	render: () => (
 		<>
-			<div className="styles.field">
+			<div className={styles.field}>
 				<label>Radio 1</label>
-				<input type="radio" className="styles.input" name="my-radio" checked />
+				<input type="radio" className={styles.input} name="my-radio" checked />
 			</div>
-			<div className="styles.field">
+			<div className={styles.field}>
 				<label>Radio 2</label>
 				<p>Beskrivelse</p>
-				<input type="radio" className="styles.input" name="my-radio" />
+				<input type="radio" className={styles.input} name="my-radio" />
 			</div>
-			<div className="styles.field">
+			<div className={styles.field}>
 				<label>Check</label>
-				<input type="checkbox" className="styles.input" />
+				<input type="checkbox" className={styles.input} />
 			</div>
-			<div className="styles.field">
+			<div className={styles.field}>
 				<label>Switch</label>
-				<input type="checkbox" className="styles.input" role="switch" />
+				<input type="checkbox" className={styles.input} role="switch" />
 			</div>
 		</>
 	),
@@ -55,11 +56,11 @@ export const ValidationMessage: Story = {
 	decorators,
 	render: () => (
 		<>
-			<div className="styles.field">
+			<div className={styles.field}>
 				<label>Ledetekst</label>
 				<p>Beskrivelse</p>
-				<input type="text" className="styles.input" />
-				<div className="styles.validation">Validation</div>
+				<input type="text" className={styles.input} />
+				<div className={styles.validation}>Validation</div>
 			</div>
 		</>
 	),

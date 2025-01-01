@@ -37,7 +37,7 @@
 	/**
 	 * Numeric
 	 */
-	.table [data-numeric]:is(td, th) {
+	.table [data-numeric]:not([data-numeric="false"]):is(td, th) {
 		font-variant-numeric: tabular-nums;
 		text-align: end;
 		white-space: nowrap;
@@ -132,8 +132,9 @@
 	figure:has(> .table) {
 		animation: scrollShadow linear;
 		animation-timeline: scroll(self inline);
+		margin-inline: 0;
 		overflow: auto;
-		overscroll-behavior: contain; /* Prevent browser back/forward history on end of scroll */
+		overscroll-behavior-x: contain; /* Prevent browser back/forward history on end of scroll */
 	}
 	@keyframes scrollShadow {
 		from {

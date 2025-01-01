@@ -1,0 +1,34 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './popover.stories';
+
+<Meta of={stories} />
+
+# Popover
+
+- Legg klassen `popover`, attributten `popover` og `id` på `<div>` eller `<menu>`
+- Legg `popovertarget="ID"` på typisk `<button>` som trigger element
+- Plassiering vil automatisk tilpasse seg scroll og tilgjengelig plass
+- **Merk:** automatisk posisjonering krever at du har importert javascript pakken: `import "@mattilsynet/design"`
+
+<Canvas of={stories.Dropdown} />
+
+## Nedtrekksmeny / Dropdown
+- Bruk `<menu>` med `<li><button type="button">` eller ` <li><a>` som barn
+
+<Canvas of={stories.Dropdown} />
+
+## Position
+- Bruk `data-position="[top|right|bottom|left]-[start|middle|end]"`
+
+<Canvas of={stories.Position} />
+
+## Lukkeknapp
+- Bruk `popovertargetaction="hide"` på `<button>` for å lage lukkeknapp:
+
+<Canvas of={stories.Close} />
+
+## Pil
+
+- Bruk `data-arrow` på `<button>` for å få ikon:
+
+<Canvas of={stories.Arrow} />

@@ -4,28 +4,20 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
-import { styles } from "../designsystem/";
 import "./style.css";
 import "@u-elements/u-tabs";
 
 export default {
-	decorators: [
-		(Story) => {
-			useEffect(() => {
-				for (const el of document.querySelectorAll('[class*="styles."]'))
-					el.className = styles[el.className.replace(/styles\./g, "")];
-			}, []);
-			return <Story />;
-		},
-		// 	withThemeByDataAttribute({
-		// 	  defaultTheme: 'Light',
-		// 	  attributeName: 'data-theme',
-		// 	  themes: {
-		// 	    'Light': 'light',
-		// 	    'Dark preview': 'dark',
-		// 	  }
-		// 	})
-	],
+	// decorators: [
+	// 		withThemeByDataAttribute({
+	// 		  defaultTheme: 'Light',
+	// 		  attributeName: 'data-theme',
+	// 		  themes: {
+	// 		    'Light': 'light',
+	// 		    'Dark preview': 'dark',
+	// 		  }
+	// 		})
+	// ],
 	parameters: {
 		controls: {
 			disableSaveFromUI: true,

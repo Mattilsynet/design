@@ -83,3 +83,22 @@ export function onAdd (animationName: string, callback: () => void) {
 		disconnect: (el: Element | Document, ) => off(el, 'animationstart', onAnimation, QUICK_EVENT)
 	};
 }
+
+// Make React support popover=""target attribute
+// https://github.com/facebook/react/issues/27479
+declare global {
+	namespace React.JSX {
+		interface IntrinsicAttributes {
+			popovertargetaction?: string;
+			popovertarget?: string;
+			popover?: string | boolean;
+		}
+	}
+	namespace React {
+		interface HTMLAttributes<T> {
+			popovertargetaction?: string;
+			popovertarget?: string;
+			popover?: string | boolean;
+		}
+	}
+}

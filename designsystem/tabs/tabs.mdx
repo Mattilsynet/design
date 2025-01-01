@@ -1,0 +1,17 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './tabs.stories';
+
+<Meta of={stories} />
+
+# Tabs
+
+- Legg klassen `tabs` på [`<u-tabs>`](https://u-elements.github.io/u-elements/elements/u-tabs) fra [u-elements](https://u-elements.github.io/u-elements/elements/u-tabs)
+- Legg `aria-selected="true"` på ønsket åpen fane
+- **Merk:** Skriv `class=` istedenfor `className=` dersom du bruker [React 18 eller eldre](https://react.dev/reference/react-dom/components#custom-html-elements)
+
+<Canvas of={stories.Default} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+
+<Canvas of={stories.Sizes} />

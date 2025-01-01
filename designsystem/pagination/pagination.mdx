@@ -40,11 +40,11 @@ import * as stories from './pagination.stories';
 2. Du får et hendig `object` i retur, som kan brukes til å generere HTML:
     ```ts
     {
-      prev: number | false; // Previous page or false if no previous
-      next: number | false; // Next page or false if no next
+      prev: number; // Previous page, 0 if no previous
+      next: number; // Next page, 0 if no next
       pages: Array<{
         current: 'page' | false; // Value of `aria-current`
-        page: string;     // Page number or empty if ellipsis
+        page: number;     // Page number or 0 if ellipsis
         key: string;      // Unique child key for React/frameworks
       }>
     }

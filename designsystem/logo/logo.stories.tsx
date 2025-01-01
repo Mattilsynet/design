@@ -1,4 +1,5 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Logo",
@@ -35,12 +36,12 @@ export const Default: Story = {
 	decorators,
 	render: () => (
 		<>
-			<h1 className="styles.logo"></h1>
-			<a className="styles.logo" href="/">
+			<h1 className={styles.logo}></h1>
+			<a className={styles.logo} href="/">
 				Undermerke
 			</a>
 			<div className="demo-resize">
-				<h1 className="styles.logo">Resize&nbsp;Demo</h1>
+				<h1 className={styles.logo}>Resize&nbsp;Demo</h1>
 			</div>
 		</>
 	),
