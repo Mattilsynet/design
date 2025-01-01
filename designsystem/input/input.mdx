@@ -1,0 +1,38 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './input.stories';
+
+<Meta of={stories} />
+
+# Input
+
+- Legg klassen `input` på `<input>`, `<select>` eller `<textarea>`
+- Input `type="radio"`, `type="checkbox"` og `role="switch"`  er også støttet
+- Bruk [`Field`](/designsystem/field/) for å automatisk koble sammen `label` og `input`
+- Bruk alltid en relatert `<label>`, `aria-label`, eller `aria-labelledby`
+
+<Canvas of={stories.Default} />
+
+## Varianter
+- Bruk `<select>`, `<textarea>` eller `<input type="text | checkbox | radio | email | number | password | radio | search | tel | url">`
+- Kombiner `type="checkbox" role="switch"` for å få bryter-design
+
+<Canvas of={stories.Variants} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+- Bruk `size="number"` for å sette en bredde som indikere antall tegn
+
+<Canvas of={stories.Sizes} />
+
+
+## Read only
+- Legg på attributt `readonly`
+- Husk også `disabled` dersom du legger `readonly` på `type="checkbox"` eller `type="radio"`, siden disse ikke stoppes automatisk av nettleseren
+- Merk at `readonly disabled` felter ikke sendes inn som skjemadata - de ignoreres av `<form>` og `FormData`
+
+<Canvas of={stories.ReadOnly} />
+
+## Disabled
+- Legg på attributt `disabled`
+
+<Canvas of={stories.Disabled} />

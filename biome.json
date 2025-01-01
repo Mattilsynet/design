@@ -21,7 +21,11 @@
 			"a11y": {
 				"noLabelWithoutControl": "off",
 				"noSvgWithoutTitle": "off",
-				"useAriaPropsForRole": "off"
+				"useAriaPropsForRole": "off",
+				"useHeadingContent": "off"
+			},
+			"style": {
+				"useSelfClosingElements": "off"
 			}
 		}
 	},

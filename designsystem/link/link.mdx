@@ -1,0 +1,12 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './link.stories';
+
+<Meta of={stories} />
+
+# Link
+
+- `<a>` får automatisk lenkestil
+- Lenker burde alltid være `<a>` for å oppnå god universell utforming
+- Bruk klassen `link` om du mot formodning trenger lenkestil på andre element
+
+<Canvas of={stories.Default} />

@@ -1,5 +1,6 @@
 import { HeartIcon, StarFillIcon, StarIcon } from "@navikt/aksel-icons";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 // Make React support popover=""target attribute
 // https://github.com/facebook/react/issues/27479
@@ -18,7 +19,6 @@ declare global {
 	}
 }
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
 	title: "Designsystem/Button",
 } satisfies Meta;
@@ -28,21 +28,12 @@ type Story = StoryObj<typeof meta>;
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div
-			style={{ display: "flex", gap: ".5rem", alignItems: "center" }}
-			onKeyUp={() => {}}
-			onClick={({ target }: React.MouseEvent) => {
-				const button = (target as Element)?.closest?.("[aria-pressed]");
-				const pressed = button?.getAttribute("aria-pressed") === "true";
-				button?.setAttribute("aria-pressed", `${!pressed}`);
-			}}
-		>
+		<div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
 			<Story />
 		</div>
 	),
 ];
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
 	decorators,
 	render: (args) => (
@@ -202,19 +193,24 @@ export const Contextmenu: Story = {
 
 export const Pressed: Story = {
 	decorators,
-	render: () => (
-		<button
-			aria-pressed="false"
-			type="button"
-			className="styles.button"
-			data-variant="tertiary"
-		>
-			<StarIcon data-pressed="false" />
-			<span data-pressed="false">Lagre favoritt</span>
-			<StarFillIcon data-pressed="true" />
-			<span data-pressed="true">Fjern favoritt</span>
-		</button>
-	),
+	render: function Render() {
+		const [pressed, setPressed] = useState(false);
+
+		return (
+			<button
+				aria-pressed={pressed}
+				type="button"
+				className="styles.button"
+				data-variant="tertiary"
+				onClick={() => setPressed(!pressed)}
+			>
+				<StarIcon data-pressed="false" />
+				<span data-pressed="false">Lagre favoritt</span>
+				<StarFillIcon data-pressed="true" />
+				<span data-pressed="true">Fjern favoritt</span>
+			</button>
+		);
+	},
 };
 
 export const Tooltip: Story = {

@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './alert.stories';
+
+<Meta of={stories} />
+
+# Alert
+
+- Legg klassen `alert` på typisk `output` eller `<div>`
+- Bruk `<div role="alert">` ved kritiske feil og `<output>` ved andre varsel
+
+<Canvas of={stories.Default} />
+
+## Varianter
+- Bruk `data-color="info | success | warning | danger"`
+
+<Canvas of={stories.Variants} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+
+<Canvas of={stories.Sizes} />
+
+## Med tittel
+- Legg `h2`, `h3` eller `h4` som første element
+
+<Canvas of={stories.Title} />

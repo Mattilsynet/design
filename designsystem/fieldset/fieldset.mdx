@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './fieldset.stories';
+
+<Meta of={stories} />
+
+# Fieldset
+
+- Legg klassen `fieldset` på `<fieldset>` rundt `<legend>` og skjemafelter
+- Dette grupperer typisk `checkbox` eller `radio` inputs
+
+<Canvas of={stories.Radios} />
+
+## Checkboxes
+<Canvas of={stories.Checkboxes} />

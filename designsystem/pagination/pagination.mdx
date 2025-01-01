@@ -1,0 +1,53 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './pagination.stories';
+
+<Meta of={stories} />
+
+# Pagination
+
+- Bruk klassen `pagination` på `<nav>` med `aria-label="Sidenavigering"`
+- Legg `<ul><li>` inni, med `<a class="button">` eller `<button type="button" class="button">`
+- Legg inn tom `<li>` der du ønsker ellipsis (&hellip;)
+- Legg `aria-current="page"` på valgt side
+- Legg `<a aria-disabled="true"` eller `<button disabled` for ugyldig forrige/neste
+
+<Canvas of={stories.Default} />
+
+## Knapper
+
+- Bruk `<button type="button">` istedenfor `<a>` dersom du bygger en SPA
+
+<Canvas of={stories.Buttons} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+
+<Canvas of={stories.Sizes} />
+
+
+## Javascript-hjelper
+
+1. Bruk JS-hjelperen for å generere steg og tilhørende attributter:
+    ```tsx
+    import { pagination } from '@mattilsynet/design';
+
+    const { pages, next, prev } = pagination({
+      current: 1,
+      total: 20,
+      show: 7,
+    })
+    ```
+2. Du får et hendig `object` i retur, som kan brukes til å generere HTML:
+    ```ts
+    {
+      prev: number | false; // Previous page or false if no previous
+      next: number | false; // Next page or false if no next
+      pages: Array<{
+        current: 'page' | false; // Value of `aria-current`
+        page: string;     // Page number or empty if ellipsis
+        key: string;      // Unique child key for React/frameworks
+      }>
+    }
+    ```
+3. Eksempel på bruk i `React`:
+    <Canvas of={stories.Helper} />

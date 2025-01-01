@@ -1,0 +1,24 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './breadcrumbs.stories';
+
+<Meta of={stories} />
+
+# Breadcrumbs
+
+- Bruk klassen `breadcrumbs` på `<nav>` med `aria-label="Du er her"`
+- Legg `<ol>` inni, med `<li><a>` som barn
+- Siste `<a>` skal ha `aria-current="page"`
+- Hvis `<a>` ligger direkte i `<nav>` vil denne være [tilbakeknapp](#tilbakeknapp)
+
+<Canvas of={stories.Default} />
+
+## Tilbakeknapp
+- Tilbakeknapp vises alltid dersom kun `<a>` er barn av `<nav>`
+- Tilbakeknapp vises kun på mobil dersom `<a>` og `<ol>` er barn av `<nav>`
+
+<Canvas of={stories.Backbutton} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+
+<Canvas of={stories.Sizes} />

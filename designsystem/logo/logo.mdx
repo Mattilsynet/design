@@ -1,8 +1,11 @@
-# Logo <mark data-badge="Alfa"></mark>
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './logo.stories';
 
-::: warning OBS:
-  Logojustering kommer for å bedre støtte applikasjoner
-:::
+<Meta of={stories} />
+
+# Logo
+
+> ⚠️ **OBS:** Logojustering kommer for å bedre støtte applikasjoner
 
 - Legg klassen `logo` på typisk `<h1>` eller `<a>`
 - Legg inn navn på din applikasjon som undermerke
@@ -11,14 +14,4 @@
 - Logo følger tekststørrelse og tekstfarge (burde være `#054449`)
 - Ved lite plass blir "Mattilsynet" skjult visuelt, og deretter undermerke:
 
-<pre hidden>
-<h1 class="styles.logo"></h1>
-<a class="styles.logo" href="/">
-  Undermerke
-</a>
-
-<div class="demo-resize">
-  <h1 class="styles.logo">Resize&nbsp;Demo</h1>
-</div>
-</pre>
-<Story stacked />
+<Canvas of={stories.Default} />
