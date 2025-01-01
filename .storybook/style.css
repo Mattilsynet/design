@@ -85,3 +85,7 @@ u-tabpanel > pre > .docblock-source {
 .sbdocs-ul {
 	padding-left: 1em;
 }
+
+.docblock-colorpalette {
+	margin-block-start: 2rem;
+}

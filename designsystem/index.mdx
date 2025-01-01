@@ -50,7 +50,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 2. **Importer JavaScript** støttefunksjonalitet (popover, field, etc.):
     <u-tabs class={styles.tabs} data-size="sm">
       <u-tablist>
-        <u-tab>JavaScript</u-tab>
+        <u-tab>JS</u-tab>
         <u-tab>HTML</u-tab>
       </u-tablist>
       <u-tabpanel>
@@ -68,7 +68,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 3. **Importer stiler** enten via JavaScript, CSS eller med TailwindCSS:
     <u-tabs class={styles.tabs} data-size="sm">
       <u-tablist>
-        <u-tab>JavaScript</u-tab>
+        <u-tab>JS</u-tab>
         <u-tab>CSS</u-tab>
         <u-tab>TailwindCSS</u-tab>
       </u-tablist>
@@ -108,9 +108,17 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 4. **Ta i bruk stiler** ved å importere `styles` objektet:
     <u-tabs class={styles.tabs} data-size="sm">
       <u-tablist>
+        <u-tab>JSX</u-tab>
         <u-tab>JS</u-tab>
         <u-tab>JSON</u-tab>
       </u-tablist>
+      <u-tabpanel>
+        ```jsx
+        import { styles } from "@mattilsynet/design";
+
+        <button className={styles.button}></button>
+        ```
+      </u-tabpanel>
       <u-tabpanel>
         ```jsx
         import { styles } from "@mattilsynet/design";
