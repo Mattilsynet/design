@@ -43,10 +43,10 @@ addons.setConfig({
     'storybook/a11y/panel': { hidden: true }, // Vision simulation
     'storybook/background': { hidden: true }, // Dark mode
     'storybook/measure-addon/tool': { hidden: false }, // Ruler
-    'storybook/outline': { hidden: false }, // Outlines
+    'storybook/outline': { hidden: true }, // Outlines
     'storybook/source-loader/panel': { hidden: false }, // Code
     'storybook/viewport': { hidden: false }, // Resize
-    copy: { hidden: true }, // Copy link to canvar only
+    copy: { hidden: true }, // Copy link to canvas only
     eject: { hidden: false }, // Open canvas only in new window
     fullscreen: { hidden: false }, // Hide sidebar
     remount: { hidden: true }, // Same as reload
