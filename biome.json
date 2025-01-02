@@ -26,6 +26,9 @@
 			},
 			"style": {
 				"useSelfClosingElements": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
 			}
 		}
 	},

@@ -1,8 +1,5 @@
 import { Meta } from '@storybook/blocks';
-import { encodeSVG } from './logo';
-import logoNorsk from '../public/logo.svg?raw';
-import logoEngelsk from '../public/logo-english.svg?raw';
-import logoSamisk from '../public/logo-samisk.svg?raw';
+import { Svgs } from './svgs';
 
 <Meta title="Identitet/Logo" />
 
@@ -10,93 +7,11 @@ import logoSamisk from '../public/logo-samisk.svg?raw';
 
 ## Last ned logo
 
-<style dangerouslySetInnerHTML={{ __html: "span > svg:only-child { display: block; width: 50%; height: auto; margin-top: 2rem }" }}/>
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
-  <a href={encodeSVG(logoNorsk)} download="mattilsynet-logo.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoNorsk }} />
-    Last ned hovedlogo norsk
-  </a>
+<Svgs path="/logo" reverse fill="#054449" />
 
-  <a href={encodeSVG(logoNorsk)} download="mattilsynet-logo.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoNorsk }} />
-    Last ned hovedlogo norsk
-  </a>
-  <a href={encodeSVG(logoNorsk, '#E2F1DF')} download="mattilsynet-logo-lys.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoNorsk }} />
-    Last ned lys logo norsk
-  </a>
-  <a href={encodeSVG(logoEngelsk)} download="mattilsynet-logo-engelsk.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoEngelsk }} />
-    Last ned hovedlogo engelsk
-  </a>
-  <a href={encodeSVG(logoEngelsk, '#E2F1DF')} download="mattilsynet-logo-engelsk-lys.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoEngelsk }} />
-    Last ned lys logo engelsk
-  </a>
-  <a href={encodeSVG(logoSamisk)} download="mattilsynet-logo-samisk.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoSamisk }} />
-    Last ned hovedlogo samisk
-  </a>
-  <a href={encodeSVG(logoSamisk, '#E2F1DF')} download="mattilsynet-logo-samisk-lys.svg">
-    <span dangerouslySetInnerHTML={{ __html: logoSamisk }} />
-    Last ned lys logo samisk
-  </a>
-</div>
+<Svgs path="/logo" reverse fill="#E2F1DF" />
 
-{/* <script setup lang="ts">
-  import { data } from '../.vitepress/theme/svgs.data.ts';
-  const map = Object.fromEntries(data);
-  const logoNorsk  = map['/logo.svg'];
-  const logoEngelsk  = map['/logo-english.svg'];
-  const logoSamisk  = map['/logo-samisk.svg'];
-
-  // Inspired by https://github.com/yoksel/url-encoder/
-  const encodeSVG = (data: string, color = '#054449') => {
-    const [_, _x, _y, w, h] = data.match(/viewBox="(\d+)\s+(\d+)\s+(\d+)\s+(\d+)"/i);
-    return `data:image/svg+xml,${data
-      .replace(/width="[^"]+"/gi, `width="${w}"`) // Use viewBox for width
-      .replace(/height="[^"]+"/gi, `height="${h}"`) // Use viewBox for height
-      .replace(/currentColor/gi, color) // Use color. @default granskog
-      .replace(/"/g, `'`)
-      .replace(/>\s{1,}</g, `><`)
-      .replace(/\s{2,}/g, ` `)
-      .replace(/[\r\n%#()<>?[\\\]^`{|}]/g, encodeURIComponent)}`;
-  }
-</script>
-<style>
-  .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px , 1fr)); gap: 2rem; font-size: 1rem }
-  .logos { margin-block: .5rem .25rem; font-size: inherit }
-  .logos a { opacity: 1; font-size: 1rem }
-  .logos :is(img, svg) { width: 100%; height: auto; padding: 2rem; border-radius: .5rem; background: var(--mt-gaasunge); color: #054449 }
-  .logos > :nth-child(even) :is(svg,img) { background: var(--mt-granskog); color: #E2F1DF }
-</style>
-<div class="logos">
-  <a href={encodeSVG(logoNorsk)} download="mattilsynet-logo.svg">
-    <div v-html="logoNorsk"></div>
-    Last ned hovedlogo norsk
-  </a>
-  <a href={encodeSVG(logoNorsk, '#E2F1DF')} download="mattilsynet-logo-lys.svg">
-    <div v-html="logoNorsk"></div>
-    Last ned lys logo norsk
-  </a>
-  <a href={encodeSVG(logoEngelsk)} download="mattilsynet-logo-engelsk.svg">
-    <div v-html="logoEngelsk"></div>
-    Last ned hovedlogo engelsk
-  </a>
-  <a href={encodeSVG(logoEngelsk, '#E2F1DF')} download="mattilsynet-logo-engelsk-lys.svg">
-    <div v-html="logoEngelsk"></div>
-    Last ned lys logo engelsk
-  </a>
-  <a href={encodeSVG(logoSamisk)} download="mattilsynet-logo-samisk.svg">
-    <div v-html="logoSamisk"></div>
-    Last ned hovedlogo samisk
-  </a>
-  <a href={encodeSVG(logoSamisk, '#E2F1DF')} download="mattilsynet-logo-samisk-lys.svg">
-    <div v-html="logoSamisk"></div>
-    Last ned lys logo samisk
-  </a>
-</div>
-
+{/*
 ## Bakgrunn
 Vi skal kommunisere tydelig og enkelt, og derfor har vi laget en ny logo uten for mange detaljer. Navnetrekket har god lesbarhet, og logoen er enkel å bruke i alle digitale og fysiske flater. Det nye symbolet kan gi assosiasjoner til for eksempel jorda vår, et blad, en fisk, bølger og soloppgang.
 

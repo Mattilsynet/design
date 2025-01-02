@@ -31,7 +31,6 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"dependencies": {
-		"@phosphor-icons/core": "^2.1.1",
 		"nanopop": "^2.4.2"
 	},
 	"devDependencies": {
@@ -39,6 +38,7 @@
 		"@digdir/designsystemet-css": "^1.0.0-next.44",
 		"@digdir/designsystemet-theme": "^1.0.0-next.44",
 		"@navikt/aksel-icons": "^7.9.0",
+		"@phosphor-icons/core": "^2.1.1",
 		"@storybook/addon-essentials": "^8.4.7",
 		"@storybook/addon-storysource": "^8.4.7",
 		"@storybook/blocks": "^8.4.7",
@@ -53,6 +53,7 @@
 		"@u-elements/u-details": "^0.1.0",
 		"@u-elements/u-tabs": "^0.0.8",
 		"@vitejs/plugin-react": "^4.3.4",
+		"fast-glob": "^3.3.2",
 		"globals": "^15.12.0",
 		"postcss": "^8.4.49",
 		"postcss-nesting": "^13.0.1",

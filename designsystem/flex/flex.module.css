@@ -1,4 +1,9 @@
 @layer mt.design {
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+	}
+
 	.autolayout {
 		--gap: var(--ds-spacing-3);
 		--columns: 1;

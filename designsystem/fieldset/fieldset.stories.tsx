@@ -14,7 +14,12 @@ export const Radios: Story = {
 			<legend>Hva foretrekker du?</legend>
 			<p>Fellesbeskrivelse</p>
 			<div className={styles.field}>
-				<input type="radio" className={styles.input} name="my-radio" checked />
+				<input
+					type="radio"
+					className={styles.input}
+					name="my-radio"
+					defaultChecked
+				/>
 				<label>Alternativ 1</label>
 				<p>Beskrivelse</p>
 			</div>
@@ -38,7 +43,7 @@ export const Checkboxes: Story = {
 						type="checkbox"
 						className={styles.input}
 						name="my-check"
-						checked
+						defaultChecked
 					/>
 					<label>Alternativ 1</label>
 				</div>

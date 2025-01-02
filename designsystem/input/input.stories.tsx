@@ -54,7 +54,12 @@ export const Variants: Story = {
 
 			<div className={styles.field}>
 				<label>Radio 1</label>
-				<input type="radio" className={styles.input} name="my-radio" checked />
+				<input
+					type="radio"
+					className={styles.input}
+					name="my-radio"
+					defaultChecked
+				/>
 			</div>
 
 			<div className={styles.field}>
