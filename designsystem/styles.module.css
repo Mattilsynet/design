@@ -5,7 +5,7 @@
 @import url("./details/details.module.css");
 @import url("./field/field.module.css");
 @import url("./fieldset/fieldset.module.css");
-@import url("./flex/flex.module.css");
+@import url("./layout/layout.module.css");
 @import url("./font.css");
 @import url("./input/input.module.css");
 @import url("./link/link.module.css");

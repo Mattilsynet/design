@@ -15,3 +15,16 @@ import * as stories from './logo.stories';
 - Ved lite plass blir "Mattilsynet" skjult visuelt, og deretter undermerke:
 
 <Canvas of={stories.Default} />
+
+## Favicon
+
+- For å støtte dark mode og eldre Safari, bruker vi flere favicon-filer (<a href="/favicon.svg" download>svg</a>, <a href="/favicon.ico" download>ico</a> og <a href="/favicon-dark.ico" download>ico dark</a>)
+- Disse er tilgjengelig via `@mattilsynet/design/favicon.[svg|ico]`
+
+```html
+<head>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
+</head>
+```

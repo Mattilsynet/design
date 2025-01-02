@@ -1,3 +1,4 @@
+import styles from "../designsystem/styles.module.css";
 declare global {
 	interface Window {
 		SVGS: string[][];
@@ -15,7 +16,7 @@ export const Svgs = ({ path, reverse, fill, ...rest }: SvgsProps) => {
 	if (reverse) files.reverse();
 
 	return (
-		<div className="svgs" {...rest}>
+		<div className={`svgs ${styles.grid}`} data-grid="lg" {...rest}>
 			{files.map(([file, svg]) => {
 				const style = fill === "#E2F1DF" ? { color: fill } : undefined;
 				const href = fill ? encodeSVG(svg, fill) : file;
@@ -29,7 +30,7 @@ export const Svgs = ({ path, reverse, fill, ...rest }: SvgsProps) => {
 				);
 			})}
 			<style>{`
-        .svgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-block: 2rem }
+        .svgs { margin-block: 2rem }
 				.svgs a[style] { background: #054449 }
         .svgs a {
 					align-items: center;

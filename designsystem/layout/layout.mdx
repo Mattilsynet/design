@@ -1,0 +1,52 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './layout.stories';
+
+<Meta of={stories} />
+
+# Layout
+
+- Bruk klassene `flex` for `display: flex` eller `grid` for `display: grid`
+- Begge klassene støtter `data-align | data-justify | data-align-content | data-center | data-gap`
+
+## Flex
+
+- Brukes når elementenes innhold skal bestemme plassering
+- Bruk `data-nowrap` for å hindre linjeskift
+
+<Canvas of={stories.Flex} />
+
+## Grid
+
+- Brukes når forelderen skal bestemme plassering
+- Bruk uten `data-grid` for å kun få rader / vertikal layout med `data-gap`
+- Bruk `data-grid="fit"` for automatisk antall kolonner
+- Bruk `data-grid="xs | sm | md | lg"` for bestemte bredder
+- Bruk `data-grid="fit-xs | fit-sm | fit-md | fit-lg"` for minimumsbredder som får lov å vokse
+- Bruk `data-grid="1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12"` for bestemt antall
+<Canvas of={stories.Grid} />
+
+## Gap
+- `data-gap="none | false | sm | md | lg"`
+- Hvis du ikke setter `data-gap` vil `md` automatisk være default
+<Canvas of={stories.Gap} />
+
+## Center
+- Bruk `data-center="sm | md | lg | xl | 2xl"` for å sentrere innholdet
+- Vi bruker hovedsakelig `2xl` som hoved container for innhold
+- Viker på både `flex` og `grid`
+<Canvas of={stories.Center} />
+
+## Align
+- `data-align="stretch | start | center | end"` setter vertikal plassering med [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) 
+- Viker på både `flex` og `grid`
+<Canvas of={stories.Align} />
+
+## Justify
+- `data-justify="start | center | end | space-between | space-around | space-evenly"` setter horisontal plassering med [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) 
+- Viker på både `flex` og `grid`
+<Canvas of={stories.Justify} />
+
+## AlignContent
+- `data-align-content="start | center | end | space-between | space-around | space-evenly"` setter vertikal plassering over flere rader med [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)
+- Viker på både `flex` og `grid`
+<Canvas of={stories.AlignContent} />

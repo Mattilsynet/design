@@ -10,9 +10,8 @@ type Story = StoryObj<typeof meta>;
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div className="stack">
+		<div style={{ display: "grid", gap: "1rem" }}>
 			<Story />
-			<style>{".stack > * + * { margin-top: 1rem }"}</style>
 		</div>
 	),
 ];
