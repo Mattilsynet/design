@@ -96,9 +96,8 @@ export const Count: Story = {
 		<>
 			<div className={styles.field}>
 				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
 				<textarea className={styles.input} defaultValue="Noe innhold" />
-				<div data-count="100" />
+				<p data-count="20" />
 			</div>
 		</>
 	),

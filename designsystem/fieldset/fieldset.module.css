@@ -11,5 +11,19 @@
 			color: inherit;
 			margin: 0;
 		}
+
+		/**
+		 * Child added event inspired by:
+		 * https://davidwalsh.name/detect-node-insertion
+		 */
+		& > [class*="validation"] {
+			animation: fieldsetValidationAdded 100ms; /* Longer animation time than .field to ensure correct validation shows */
+		}
+	}
+}
+
+@keyframes fieldsetValidationAdded {
+	from {
+		scale: 1;
 	}
 }

@@ -1,7 +1,7 @@
 import styles from '../styles.module.css';
 import { IS_BROWSER, onAdd } from '../utils';
 const CSS_TABLE = styles.table.split(' ')[0];
-const BOUND = new Map<Element | Document, ReturnType<typeof onAdd>>();
+const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 
 function process(tables: HTMLCollectionOf<Element>) {
   for(const table of tables) if (table instanceof HTMLTableElement) {

@@ -36,7 +36,7 @@ export function anchorPosition(anchor: HTMLElement, popover: HTMLElement) {
   on(window, 'load,resize,scroll', update, QUICK_EVENT);
 }
 
-function process ({ target: el, newState }: Toggle){
+function handleToggle ({ target: el, newState }: Toggle){
   const isPopping = newState === 'open' && el instanceof HTMLElement && el.classList.contains(CSS_POPOVER);
   const anchor = isPopping && (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(`[popovertarget="${el.id}"]`);
 
@@ -44,8 +44,8 @@ function process ({ target: el, newState }: Toggle){
 }
 
 export function observe(el: Node) {
-  el.addEventListener('toggle', process, true); // Use capture since toggle does not bubble
+  on(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 }
 export function unobserve(el: Node) {
-  el.removeEventListener('toggle', process, true); // Use capture since toggle does not bubble
+  off(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 }

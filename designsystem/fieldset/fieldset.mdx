@@ -21,7 +21,12 @@ import * as stories from './fieldset.stories';
 - Legg attributten `readonly disabled` på hver `input`
 <Canvas of={stories.ReadOnly} />
 
-{/* ## Feilmelding
-- Legg klassen `validation` på et element for å tilknytte feilmelding
+## Horisontal
+- Legg attributten `field` inni en `flex` med `data-gap="3"`
+- Brukes kun ved få svaralternativer
+<Canvas of={stories.Horizontal} />
+
+## Feilmelding
+- Legg klassen `validation` på et direkte barn for å knytte feilmelding til alle inputs
 - **Merk:** automatisk oppkobling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-<Canvas of={stories.ValidationMessage} /> */}
+<Canvas of={stories.ValidationMessage} />

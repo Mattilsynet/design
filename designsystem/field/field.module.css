@@ -8,13 +8,14 @@
 		 * https://davidwalsh.name/detect-node-insertion
 		 */
 		* {
-			animation: fieldChildAdded 100ms;
+			animation: fieldChildAdded 50ms; /* Shorter animation time than .fieldset to ensure correct validation shows */
 		}
 
 		/* <p> is used for field descriptions */
 		& > p {
 			margin: 0;
 		}
+
 		& > label + p {
 			margin-top: calc(var(--ds-spacing-2) * -1);
 		}

@@ -69,7 +69,7 @@ export const off = (
  * Child added event inspired by:
  * https://davidwalsh.name/detect-node-insertion
  */
-export function onAdd (animationName: string, callback: () => void) {
+export const onAdd = (animationName: string, callback: () => void) => {
   let timer: ReturnType<typeof requestAnimationFrame> | number = 0;
   const onAnimation = (event: Event & { animationName?: string }) => {
     if (event.animationName === animationName) {
@@ -83,6 +83,9 @@ export function onAdd (animationName: string, callback: () => void) {
 		disconnect: (el: Element | Document, ) => off(el, 'animationstart', onAnimation, QUICK_EVENT)
 	};
 }
+
+export const isInputLike = (el: unknown): el is HTMLInputElement =>
+	el instanceof HTMLElement && 'validity' in el && !(el instanceof HTMLButtonElement);
 
 // Make React support popover=""target attribute
 // https://github.com/facebook/react/issues/27479
