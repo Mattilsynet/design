@@ -1,0 +1,5 @@
+@layer mt.design {
+	.card {
+		composes: ds-card from "@digdir/designsystemet-css";
+	}
+}

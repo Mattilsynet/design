@@ -5,11 +5,13 @@ import fg from "fast-glob";
 import { version } from "../package.json";
 
 const PUBLIC_DIR = path.resolve('./public');
+const FOLDERS = '@(identitet|designsystem|profilering)';
+const IGNORE = '!(avatar|card|chip)'
 
 export default {
   stories: [
-    "../@(identitet|designsystem|profilering)/**/*.mdx",
-    "../@(identitet|designsystem|profilering)/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    `../${FOLDERS}/**/${IGNORE}.mdx`,
+    `../${FOLDERS}/**/${IGNORE}.stories.@(js|jsx|mjs|ts|tsx)`,
   ],
   addons: [
     {

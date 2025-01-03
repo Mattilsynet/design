@@ -169,3 +169,13 @@ export const Disabled: Story = {
 		</>
 	),
 };
+
+export const Search: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Søkefelt</label>
+			<input className={styles.input} type="search" />
+		</div>
+	),
+};

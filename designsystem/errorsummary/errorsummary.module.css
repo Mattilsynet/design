@@ -1,0 +1,13 @@
+@layer mt.design {
+	.errorsummary {
+		composes: ds-error-summary from "@digdir/designsystemet-css";
+
+		& > h2 {
+			margin-block: 0;
+		}
+		& > ul {
+			margin-block: .5em 0;
+			padding-left: 1em;
+		}
+	}
+}

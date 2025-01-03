@@ -1,0 +1,5 @@
+@layer mt.design {
+	.chip {
+		composes: ds-chip from "@digdir/designsystemet-css";
+	}
+}

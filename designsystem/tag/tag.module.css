@@ -1,0 +1,5 @@
+@layer mt.design {
+	.tag {
+		composes: ds-tag from "@digdir/designsystemet-css";
+	}
+}
