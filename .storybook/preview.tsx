@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import "./style.css";
 import "../designsystem"; // Import functionality from designsystem
 import "@u-elements/u-tabs";
+import "@u-elements/u-details";
 
 export default {
 	// decorators: [

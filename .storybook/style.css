@@ -14,7 +14,7 @@ u-tabpanel > pre > .docblock-source {
 .sbdocs-content > * {
 	margin-block: 0;
 }
-.sbdocs-content > * + * {
+.sbdocs-content > * + *:not(u-details + u-details, details + details) {
 	margin-block-start: 1rem;
 }
 

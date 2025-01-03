@@ -28,7 +28,8 @@
   .sidebar-container .sidebar-item :is(a, button) { align-items: center; font: inherit; font-weight: 400 }
   .sidebar-container .sidebar-item a { gap: 0 }
   .sidebar-container .sidebar-subheading,
-  .sidebar-container .search-result-item--label > :first-child,
+  .sidebar-container .search-result-item:not([data-id$="--docs"]) .search-result-item--label > :first-child,
+  .sidebar-container .search-result-item[data-id$="--docs"] .search-result-item--label > :last-child,
   .sidebar-container .sidebar-item {
     color: inherit;
     font-size: 1rem;
@@ -37,10 +38,21 @@
     line-height: 1.5;
     text-transform: none;
   }
+  .sidebar-container .search-result-item--label > :last-child {
+    display: flex;
+    gap: .25em;
+  }
 
   /**
    * Search
    */
-  .search-field.search-field { box-shadow: none }
+  .search-field.search-field { box-shadow: none; position: relative }
   .search-field.search-field #storybook-explorer-searchfield { font: inherit }
+  .search-field.search-field #storybook-explorer-searchfield::placeholder { color: transparent }
+  .search-field.search-field:has(#storybook-explorer-searchfield:placeholder-shown)::before {
+    content: 'Søk';
+    margin-left: 2em;
+    opacity: .8;
+    position: absolute;
+  }
 </style>

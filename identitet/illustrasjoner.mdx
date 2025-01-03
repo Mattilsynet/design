@@ -1,5 +1,6 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 import { Svgs } from './svgs';
+import styles from '../designsystem/styles.module.css';
 
 <Meta title="Identitet/Illustrasjoner" />
 
@@ -8,25 +9,31 @@ import { Svgs } from './svgs';
 > I Mattilsynet har vi utviklet en egen illustrasjonsstil som gir oss et egenartet og lett gjenkjennelig uttrykk.
 Illustrasjonene er enkle å (gjen)bruke på mange ulike flater. 
 
-## Illustrasjonsstil
-- Tydelig, ren og enkel
-- «Omskalert» - det vil si at plantene og naturen er store i forhold til mennesker og dyr. Dette gir stilen egenart og understreker viktigheten av naturen vi lever i og med. Formmessig er også vekstene svært illustrative.
+<u-details class={styles.details}>
+  <u-summary>Illustrasjonsstil</u-summary>
+  
+  - Tydelig, ren og enkel
+  - «Omskalert» - det vil si at plantene og naturen er store i forhold til mennesker og dyr. Dette gir stilen egenart og understreker viktigheten av naturen vi lever i og med. Formmessig er også vekstene svært illustrative.
 
-Vi har jobbet frem et modulsystem hvor en deler av illustrasjonene bygger på formene i logosymbolet vårt. Dette systemet, eller biblioteket, gjør det enkelt å plukke enkeltformer og sette disse sammen til nye komposisjoner som matcher ulike situasjoner og ulike fagområder. Oppbyggingen av illustrasjonsbiblioteket er i gang, men ikke fullført. Det vil gradvis fylles på med nye illustrasjoner.
+  Vi har jobbet frem et modulsystem hvor en deler av illustrasjonene bygger på formene i logosymbolet vårt. Dette systemet, eller biblioteket, gjør det enkelt å plukke enkeltformer og sette disse sammen til nye komposisjoner som matcher ulike situasjoner og ulike fagområder. Oppbyggingen av illustrasjonsbiblioteket er i gang, men ikke fullført. Det vil gradvis fylles på med nye illustrasjoner.
 
-Merk at illustrasjonene som hovedregel ikke skal brukes sammen med foto.
+  Merk at illustrasjonene som hovedregel ikke skal brukes sammen med foto.
+</u-details>
+<u-details class={styles.details}>
+  <u-summary>Farger</u-summary>
+  
+  Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge som i hovedsak kun skal benyttes i illustrasjonene, og ikke på andre elementer. Vi har 4 ulike hudtoner i bruk på illustrasjonene.
 
-## Farger
-Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge som i hovedsak kun skal benyttes i illustrasjonene, og ikke på andre elementer. Vi har 4 ulike hudtoner i bruk på illustrasjonene.
-
-<ColorPalette>
-  <ColorItem colors={['#F8E0D8']} title="Hudtone, lysest" />
-  <ColorItem colors={['#C58F79']} title="Hudtone, mellom" />
-  <ColorItem colors={['#7F433B']} title="Hud og hår, mørk" />
-  <ColorItem colors={['#ED9A32']} title="Hår, gylden" />
-  <ColorItem colors={['#1E1A28']} title="Hår, mørk" />
-  <ColorItem colors={['#1D57AA']} title="Klær, mellomblå" subtitle="Brukes som alternativ til Fjord på mørke flater" />
-</ColorPalette>
+  <ColorPalette>
+    <ColorItem colors={['#F8E0D8']} title="Hudtone, lysest" />
+    <ColorItem colors={['#C58F79']} title="Hudtone, mellom" />
+    <ColorItem colors={['#7F433B']} title="Hud og hår, mørk" />
+    <ColorItem colors={['#ED9A32']} title="Hår, gylden" />
+    <ColorItem colors={['#1E1A28']} title="Hår, mørk" />
+    <ColorItem colors={['#1D57AA']} title="Klær, mellomblå" subtitle="Brukes som alternativ til Fjord på mørke flater" />
+  </ColorPalette>
+</u-details>
+<br />
 
 ## Planter
 <Svgs path="/illustrations/plants" />
@@ -51,6 +58,3 @@ Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge
 
 ## Visjonen vår
 <Svgs path="/illustrations/vision" />
-
-## Illustrasjonssystem
-På sikt skal det jobbes ut et modulsystem
