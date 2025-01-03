@@ -47,6 +47,10 @@ u-tabpanel > pre > .docblock-source {
 	}
 }
 
+.sbdocs-h3 {
+	font-size: 1em;
+}
+
 .sbdocs-h2,
 .sbdocs-blockquote {
 	margin-inline: 0;
@@ -86,4 +90,20 @@ u-tabpanel > pre > .docblock-source {
 
 .docblock-colorpalette {
 	margin-block-start: 2rem;
+}
+
+/** Source */
+.docblock-source.docblock-source,
+.docblock-source button {
+	background: #032c30;
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+	color: white;
+	margin: 0;
+}
+.docblock-source .prismjs * {
+	color: inherit !important;
+	font-size: 1rem;
+	line-height: 1.5;
 }

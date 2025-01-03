@@ -1,5 +1,11 @@
 @layer mt.design {
 	.details {
 		composes: ds-details from "@digdir/designsystemet-css";
+
+		--dsc-details-background: transparent;
+		--dsc-details-heading-background: transparent;
+		--dsc-details-heading-background--hover: transparent;
+		--dsc-details-heading-background--open: transparent;
+		--dsc-details-border-color: var(--mt-divider);
 	}
 }

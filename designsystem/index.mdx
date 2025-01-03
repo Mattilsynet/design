@@ -142,6 +142,10 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     > som hindrer konflikt og gjør at du slipper å tenke på versjonering 🥳
 5. **Ta i bruk illustrasjoner og ikoner** - [egen dokumentasjon kommer](#)
 
+> ### 🤓 Generelle tips
+> - **Størrelser kan endres** med `data-size="sm | md | lg"` kan brukes på *alle* HTML elementer - også HTML elementer uten designsystem-klasse
+> - **Unngå å kombinere klasser** som f.eks. `modal` og `grid`, men nøst på hvert sitt element: `<dialog className={styles.modal}><div className={styles.grid}>`
+
 {/*Hvorfor CSS og ikke React komponenter?*/}
 
 ## Kom i gang for designere

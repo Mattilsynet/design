@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
+		<div className={styles.flex}>
 			<Story />
 		</div>
 	),

@@ -16,9 +16,10 @@ const decorators = [
 		<div className="mt-story">
 			<Story />
 			<style>{`
-        .mt-story { display: grid; gap: 1rem }
-        .mt-story div { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
-        .mt-story code {font-size: .875rem}
+        .mt-story { display: grid; gap: 1rem; padding: 1px }
+        .mt-story div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
+				.mt-story b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
+        .mt-story code { font-size: .875rem }
         .mt-story div[data-align-content] { height: 150px }
       `}</style>
 		</div>
@@ -54,20 +55,20 @@ export const Flex: Story = {
 export const Grid: Story = {
 	decorators,
 	render: () => (
-		<div className={styles.grid} data-gap="lg">
+		<div className={styles.grid} data-gap="8">
 			<div className={styles.grid} data-grid="fit-lg">
 				<div>Child 1</div>
 				<div>Child 2</div>
 			</div>
-			<div className={styles.grid} data-grid="4.8" data-gap="lg">
+			<div className={styles.grid} data-grid="sidebar" data-gap="8">
 				<div>
 					Sidebar
-					<div className={styles.grid} data-grid="fit-sm" data-gap="none">
+					<div className={styles.grid} data-grid="fit-sm" data-gap="0">
 						<div>Child 1</div>
 						<div>Child 2</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-grid="2" data-gap="md">
+				<div className={styles.grid} data-grid="2" data-gap="3">
 					<div>Child 1</div>
 					<div className={styles.grid} data-grid="sm">
 						<div>Child 2-1</div>
@@ -85,37 +86,70 @@ export const Grid: Story = {
 	),
 };
 
+export const Box: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.box} data-color="lys-furu">
+			Content
+		</div>
+	),
+};
+
 export const Gap: Story = {
 	decorators,
 	render: () => (
-		<section className={styles.grid} data-grid="4.8">
-			<code>
-				data-gap="none"
-				<br />
-				data-gap="false"
-			</code>
-			<div className={styles.flex} data-gap="none">
+		<section className={styles.grid} data-grid="sidebar">
+			<code>data-gap="none | false | 0"</code>
+			<div className={styles.flex} data-gap="0">
 				<div>1</div>
 				<div>2</div>
 				<div>3</div>
 				<div>4</div>
 			</div>
-			<code>data-gap="sm"</code>
-			<div className={styles.flex} data-gap="sm">
+			<code>data-gap="2"</code>
+			<div className={styles.flex} data-gap="2">
 				<div>1</div>
 				<div>2</div>
 				<div>3</div>
 				<div>4</div>
 			</div>
-			<code>data-gap="md"</code>
-			<div className={styles.flex} data-gap="md">
+			<code>data-gap="3"</code>
+			<div className={styles.flex} data-gap="3">
 				<div>1</div>
 				<div>2</div>
 				<div>3</div>
 				<div>4</div>
 			</div>
-			<code>data-gap="lg"</code>
-			<div className={styles.flex} data-gap="lg">
+			<code>data-gap="4"</code>
+			<div className={styles.flex} data-gap="4">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+			</div>
+			<code>data-gap="5"</code>
+			<div className={styles.flex} data-gap="5">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+			</div>
+			<code>data-gap="6"</code>
+			<div className={styles.flex} data-gap="6">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+			</div>
+			<code>data-gap="7"</code>
+			<div className={styles.flex} data-gap="7">
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+			</div>
+			<code>data-gap="8"</code>
+			<div className={styles.flex} data-gap="8">
 				<div>1</div>
 				<div>2</div>
 				<div>3</div>
@@ -127,6 +161,9 @@ export const Gap: Story = {
 
 export const Center: Story = {
 	decorators,
+	parameters: {
+		layout: "fullscreen",
+	},
 	render: () => (
 		<>
 			<div className={styles.grid} data-center="sm">
@@ -153,57 +190,33 @@ export const Align: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-grid="4.8"
+			data-grid="sidebar"
 			data-align="center"
-			data-gap="lg"
+			data-gap="8"
 		>
 			<code>data-align="stretch"</code>
 			<div className={styles.flex} data-align="stretch">
-				<button type="button" className={styles.button} data-size="sm">
-					Small
-				</button>
-				<button type="button" className={styles.button} data-size="md">
-					Medium
-				</button>
-				<button type="button" className={styles.button} data-size="lg">
-					Large
-				</button>
+				<b data-size="sm">Small</b>
+				<b data-size="md">Medium</b>
+				<b data-size="lg">Large</b>
 			</div>
 			<code>data-align="start"</code>
 			<div className={styles.flex} data-align="start">
-				<button type="button" className={styles.button} data-size="sm">
-					Small
-				</button>
-				<button type="button" className={styles.button} data-size="md">
-					Medium
-				</button>
-				<button type="button" className={styles.button} data-size="lg">
-					Large
-				</button>
+				<b data-size="sm">Small</b>
+				<b data-size="md">Medium</b>
+				<b data-size="lg">Large</b>
 			</div>
 			<code>data-align="center"</code>
 			<div className={styles.flex} data-align="center">
-				<button type="button" className={styles.button} data-size="sm">
-					Small
-				</button>
-				<button type="button" className={styles.button} data-size="md">
-					Medium
-				</button>
-				<button type="button" className={styles.button} data-size="lg">
-					Large
-				</button>
+				<b data-size="sm">Small</b>
+				<b data-size="md">Medium</b>
+				<b data-size="lg">Large</b>
 			</div>
 			<code>data-align="end"</code>
 			<div className={styles.flex} data-align="end">
-				<button type="button" className={styles.button} data-size="sm">
-					Small
-				</button>
-				<button type="button" className={styles.button} data-size="md">
-					Medium
-				</button>
-				<button type="button" className={styles.button} data-size="lg">
-					Large
-				</button>
+				<b data-size="sm">Small</b>
+				<b data-size="md">Medium</b>
+				<b data-size="lg">Large</b>
 			</div>
 		</section>
 	),
@@ -214,81 +227,45 @@ export const Justify: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-grid="4.8"
+			data-grid="sidebar"
 			data-align="center"
-			data-gap="lg"
+			data-gap="8"
 		>
 			<code>data-justify="start"</code>
 			<div className={styles.flex} data-justify="start">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 			<code>data-justify="center"</code>
 			<div className={styles.flex} data-justify="center">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 			<code>data-justify="end"</code>
 			<div className={styles.flex} data-justify="end">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 			<code>data-justify="space-between"</code>
 			<div className={styles.flex} data-justify="space-between">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 			<code>data-justify="space-around"</code>
 			<div className={styles.flex} data-justify="space-around">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 			<code>data-justify="space-evenly"</code>
 			<div className={styles.flex} data-justify="space-evenly">
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
-				<button type="button" className={styles.button} data-size="sm">
-					Knapp
-				</button>
+				<b>Box</b>
+				<b>Box</b>
+				<b>Box</b>
 			</div>
 		</section>
 	),
@@ -296,89 +273,53 @@ export const Justify: Story = {
 export const AlignContent: Story = {
 	decorators,
 	render: () => (
-		<section className={styles.grid} data-grid="lg" data-gap="lg">
+		<section className={styles.grid} data-grid="lg" data-gap="8">
 			<article>
 				<code>start</code>
 				<div className={styles.flex} data-align-content="start">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 			<article>
 				<code>center</code>
 				<div className={styles.flex} data-align-content="center">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 			<article>
 				<code>end</code>
 				<div className={styles.flex} data-align-content="end">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 			<article>
 				<code>space-between</code>
 				<div className={styles.flex} data-align-content="space-between">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 			<article>
 				<code>space-around</code>
 				<div className={styles.flex} data-align-content="space-around">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 			<article>
 				<code>space-evenly</code>
 				<div className={styles.flex} data-align-content="space-evenly">
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
-					<button type="button" className={styles.button} data-size="sm">
-						Knapp
-					</button>
+					<b>Box</b>
+					<b>Box</b>
+					<b>Box</b>
 				</div>
 			</article>
 		</section>

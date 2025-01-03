@@ -55,3 +55,84 @@ export const Checkboxes: Story = {
 		</>
 	),
 };
+
+export const Disabled: Story = {
+	render: () => (
+		<>
+			<fieldset className={styles.fieldset} disabled>
+				<legend>Hvilke foretrekker du?</legend>
+				<p>Fellesbeskrivelse</p>
+				<div className={styles.field}>
+					<input
+						type="checkbox"
+						className={styles.input}
+						name="my-check"
+						defaultChecked
+					/>
+					<label>Alternativ 1</label>
+				</div>
+				<div className={styles.field}>
+					<input type="checkbox" className={styles.input} name="my-check" />
+					<label>Alternativ 2</label>
+				</div>
+			</fieldset>
+		</>
+	),
+};
+
+export const ReadOnly: Story = {
+	render: () => (
+		<>
+			<fieldset className={styles.fieldset}>
+				<legend>Hvilke foretrekker du?</legend>
+				<p>Fellesbeskrivelse</p>
+				<div className={styles.field}>
+					<input
+						type="checkbox"
+						className={styles.input}
+						name="my-check"
+						defaultChecked
+						readOnly
+						disabled
+					/>
+					<label>Alternativ 1</label>
+				</div>
+				<div className={styles.field}>
+					<input
+						type="checkbox"
+						className={styles.input}
+						name="my-check"
+						readOnly
+						disabled
+					/>
+					<label>Alternativ 2</label>
+				</div>
+			</fieldset>
+		</>
+	),
+};
+
+// export const ValidationMessage: Story = {
+// 	render: () => (
+// 		<>
+// 			<fieldset className={styles.fieldset}>
+// 				<legend>Hvilke foretrekker du?</legend>
+// 				<p>Fellesbeskrivelse</p>
+// 				<div className={styles.field}>
+// 					<input
+// 						type="checkbox"
+// 						className={styles.input}
+// 						name="my-check"
+// 						defaultChecked
+// 					/>
+// 					<label>Alternativ 1</label>
+// 				</div>
+// 				<div className={styles.field}>
+// 					<input type="checkbox" className={styles.input} name="my-check" />
+// 					<label>Alternativ 2</label>
+// 				</div>
+// 				<div className={styles.validation}>Feilmelding</div>
+// 			</fieldset>
+// 		</>
+// 	),
+// };

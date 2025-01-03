@@ -1,6 +1,7 @@
 import styles from '../styles.module.css';
 import { IS_BROWSER, onAdd, useId } from '../utils';
 const CSS_FIELD = styles.field.split(' ')[0];
+const CSS_COUNT = styles.count.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
 const BOUND = new Map<Element | Document, ReturnType<typeof onAdd>>();
 
@@ -22,6 +23,12 @@ function process(fields: HTMLCollectionOf<Element>) {
     }
 
     if (input) for (const label of labels) label.htmlFor = useId(input);
+
+    // const count = input?.nextElementSibling?.getAttribute('data-count');
+    // if (count) {
+    //   (input as HTMLElement).style.background = 'red';
+    // }
+
     input?.setAttribute('aria-describedby', descs.join(' '));
     input?.setAttribute('aria-invalid', `${!valid}`);
   }

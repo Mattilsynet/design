@@ -10,7 +10,7 @@ type Story = StoryObj<typeof meta>;
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div style={{ display: "grid", gap: ".5rem" }}>
+		<div className={styles.grid}>
 			<Story />
 		</div>
 	),
@@ -66,6 +66,39 @@ export const ValidationMessage: Story = {
 				<p>Beskrivelse</p>
 				<input type="text" className={styles.input} />
 				<div className={styles.validation}>Validation</div>
+			</div>
+		</>
+	),
+};
+
+export const Affixes: Story = {
+	decorators,
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Pris i NOK per måned</label>
+				<div className={styles.affixes}>
+					<span>NOK</span>
+					<input type="text" className={styles.input} />
+					<span>pr. mnd.</span>
+				</div>
+			</div>
+		</>
+	),
+};
+
+export const Count: Story = {
+	decorators,
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<p>Beskrivelse</p>
+				<textarea className={styles.input} defaultValue="Noe innhold" />
+				<div data-count="100" />
 			</div>
 		</>
 	),

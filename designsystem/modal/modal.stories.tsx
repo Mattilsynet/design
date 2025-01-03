@@ -9,16 +9,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators = [
-	(Story: StoryFn) => (
-		<div style={{ display: "grid", gap: ".5rem" }}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: function Render() {
 		const [open, setOpen] = useState(false);
 		const modal = useRef<HTMLDialogElement>(null);
@@ -57,7 +48,6 @@ export const Default: Story = {
 };
 
 export const Close: Story = {
-	decorators,
 	render: function Render() {
 		const [open, setOpen] = useState(false);
 		const modal = useRef<HTMLDialogElement>(null);
@@ -88,22 +78,22 @@ export const Close: Story = {
 							aria-label="Lukk"
 						></button>
 					</form>
-					Modal content here
-					<br />
-					<br />
-					<div style={{ display: "flex", gap: ".5rem" }}>
-						<form method="dialog">
-							<button
-								type="submit"
-								className={styles.button}
-								data-variant="secondary"
-							>
-								Avbryt
+					<div className={styles.grid}>
+						Modal content here
+						<div className={styles.flex}>
+							<form method="dialog">
+								<button
+									type="submit"
+									className={styles.button}
+									data-variant="secondary"
+								>
+									Avbryt
+								</button>
+							</form>
+							<button type="button" className={styles.button}>
+								Lagre
 							</button>
-						</form>
-						<button type="button" className={styles.button}>
-							Lagre
-						</button>
+						</div>
 					</div>
 				</dialog>
 			</>

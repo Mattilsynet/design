@@ -1,26 +1,102 @@
 @layer mt.design {
+	.grid:not([hidden]) {
+		display: grid;
+	}
+	.flex:not([hidden]) {
+		display: flex;
+	}
+	.grid,
+	.flex,
+	.box {
+		box-sizing: border-box;
+
+		&[data-pad="1"] {
+			padding: var(--ds-sizing-1);
+		}
+		&[data-pad="2"] {
+			padding: var(--ds-sizing-2);
+		}
+		&[data-pad="3"] {
+			padding: var(--ds-sizing-3);
+		}
+		&[data-radius="sm"] {
+			border-radius: var(--ds-border-radius-sm);
+		}
+		&[data-radius="md"] {
+			border-radius: var(--ds-border-radius-md);
+		}
+		&[data-radius="lg"] {
+			border-radius: var(--ds-border-radius-lg);
+		}
+		&[data-color] {
+			padding: var(--ds-sizing-3);
+			border-radius: 5px; /* TODO: Should it? */
+		}
+		&[data-color="lys-furu"] {
+			background-color: var(--mt-lys-furu);
+		}
+		&[data-center="sm"],
+		&[data-center="md"],
+		&[data-center="lg"],
+		&[data-center="xl"],
+		&[data-center="2xl"] {
+			box-sizing: border-box;
+			margin-inline: auto;
+			width: calc(100% - 10vw); /* Always 5vw padding on each side */
+			max-width: 96rem; /* 1440px - default to "2xl" */
+		}
+		&[data-center="sm"] {
+			max-width: 40rem; /* 640px */
+		}
+		&[data-center="md"] {
+			max-width: 48rem; /* 768px */
+		}
+		&[data-center="lg"] {
+			max-width: 64rem; /* 1024px */
+		}
+		&[data-center="xl"] {
+			max-width: 80rem; /* 1280px */
+		}
+		&[data-center="2xl"] {
+			max-width: 96rem; /* 1536px */
+		}
+	}
 	.grid,
 	.flex {
-		box-sizing: border-box;
-		display: flex;
 		flex-wrap: wrap;
-		gap: var(--ds-spacing-3);
+		gap: var(--ds-spacing-2);
 
 		& > * {
 			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
 			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
 		}
+		&[data-gap="0"],
 		&[data-gap="none"],
 		&[data-gap="false"] {
 			gap: 0px;
 		}
-		&[data-gap="xs"] {
+		&[data-gap="1"] {
 			gap: var(--ds-spacing-1);
 		}
-		&[data-gap="sm"] {
+		&[data-gap="2"] {
 			gap: var(--ds-spacing-2);
 		}
-		&[data-gap="lg"] {
+		&[data-gap="3"] {
+			gap: var(--ds-spacing-3);
+		}
+		&[data-gap="4"] {
+			gap: var(--ds-spacing-4);
+		}
+		&[data-gap="5"] {
+			gap: var(--ds-spacing-5);
+		}
+		&[data-gap="6"] {
+			gap: var(--ds-spacing-6);
+		}
+		&[data-gap="7"] {
+			gap: var(--ds-spacing-7);
+		}
+		&[data-gap="8"] {
 			gap: var(--ds-spacing-8);
 		}
 		&[data-align="start"] {
@@ -74,39 +150,11 @@
 		&[data-nowrap] {
 			flex-wrap: nowrap;
 		}
-		&[data-center="sm"],
-		&[data-center="md"],
-		&[data-center="lg"],
-		&[data-center="xl"],
-		&[data-center="2xl"] {
-			box-sizing: border-box;
-			margin-inline: auto;
-			width: calc(100% - var(--ds-spacing-4)); /* Fake 8px padding on each side */
-			max-width: 96rem; /* 1440px - default to "2xl" */
-		}
-
-		&[data-center="sm"] {
-			max-width: 40rem; /* 640px */
-		}
-		&[data-center="md"] {
-			max-width: 48rem; /* 768px */
-		}
-		&[data-center="lg"] {
-			max-width: 64rem; /* 1024px */
-		}
-		&[data-center="xl"] {
-			max-width: 80rem; /* 1280px */
-		}
-		&[data-center="2xl"] {
-			max-width: 96rem; /* 1536px */
-		}
 	}
 
 	.grid {
 		--columns: auto-fill;
 		--min: 0px;
-
-		display: grid;
 
 		&[data-grid] {
 			grid-template-columns: repeat(
@@ -134,8 +182,8 @@
 		&[data-grid="fit-lg"] {
 			--min: 200px;
 		}
-		&[data-grid="4.8"] {
-			grid-template-columns: 4fr 8fr;
+		&[data-grid="sidebar"] {
+			grid-template-columns: 4fr 8fr; /* TODO: Figure out */
 		}
 		&[data-grid="1"] {
 			--columns: 1;

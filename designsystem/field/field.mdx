@@ -4,35 +4,25 @@ import * as stories from './field.stories';
 <Meta of={stories} />
 
 # Field
-
 - Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
-- Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `<p>` og `class="styles.validation"`
+- Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `<p>` og klassen `validation`
 - **Merk:** automatisk oppkobling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-
 <Canvas of={stories.Default} />
 
 ## Radio / Check / Switch
-
 - Ved bruk av `<input type="checkbox | radio"` vil `<label>`, `<p>` og `class="styles.validation"` legge seg etter input
-
 <Canvas of={stories.Toggles} />
 
 ## Feilmelding
-- Legg `class="styles.validation"` på et element for å tilknytte feilmelding
-
+- Legg klassen `validation` på et element for å tilknytte feilmelding
 <Canvas of={stories.ValidationMessage} />
 
-{/*## Antall tegn
+## Prefiks og suffiks
+- Legg klassen `affixes` på en `<div>` rundt `input`
+- Legg elementer før eller etter `input` for å legge til ikoner, knapper eller annet innhold
+- **Merk:** for god tilgjengelighet, beskriv ønsket innhold i `<p>` eller `<label>`, f.eks.: "Pris i NOK per måned"
+<Canvas of={stories.Affixes} />
 
-- Legg `data-limit="100"` på `<input> | <textarea>`
-- Legg til en `<div data-field="limit"></div>`
-
-<pre hidden>
-<div class="styles.field">
-  <label>Ledetekst</label>
-  <p>Beskrivelse</p>
-  <input type="text" class="styles.input" data-limit="100" />
-  <div data-field="limit"></div>
-</div>
-</pre>
-<Story />*/}
+## Antall tegn (Eksperimentell)
+- Legg `data-count="number"` på `<div>` etter `input`
+<Canvas of={stories.Count} />
