@@ -99,61 +99,68 @@ export const Gap: Story = {
 	decorators,
 	render: () => (
 		<section className={styles.grid} data-grid="sidebar">
-			<code>data-gap="none | false | 0"</code>
+			<code>data-gap="0 | none | false"</code>
 			<div className={styles.flex} data-gap="0">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
+			</div>
+			<code>data-gap="1"</code>
+			<div className={styles.flex} data-gap="1">
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="2"</code>
 			<div className={styles.flex} data-gap="2">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="3"</code>
 			<div className={styles.flex} data-gap="3">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="4"</code>
 			<div className={styles.flex} data-gap="4">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="5"</code>
 			<div className={styles.flex} data-gap="5">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="6"</code>
 			<div className={styles.flex} data-gap="6">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="7"</code>
 			<div className={styles.flex} data-gap="7">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 			<code>data-gap="8"</code>
 			<div className={styles.flex} data-gap="8">
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
 			</div>
 		</section>
 	),
