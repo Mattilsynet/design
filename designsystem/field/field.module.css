@@ -3,11 +3,8 @@
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-spacing-2);
 
-		/**
-		 * Child added event inspired by:
-		 * https://davidwalsh.name/detect-node-insertion
-		 */
-		* {
+		/* Child added event inspired by: https://davidwalsh.name/detect-node-insertion */
+		& :is(:defined, [class*="validation"], input, select, textarea, p) {
 			animation: fieldChildAdded 50ms; /* Shorter animation time than .fieldset to ensure correct validation shows */
 		}
 
