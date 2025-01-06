@@ -11,6 +11,11 @@
 			--dsc-button-color--hover: var(--ds-color-text-default);
 		}
 
+		& :is(a, button) {
+			border-radius: var(--ds-border-radius-full);
+			pointer-events: all; /* TODO: Fix in Designsystemet https://github.com/digdir/designsystemet/pull/2942 */
+		}
+
 		/* Chevrons  */
 		& > :is(ol, ul) > li:first-child > :is(a, button)::before,
 		& > :is(ol, ul) > li:last-child > :is(a, button)::before {
@@ -30,9 +35,6 @@
 		}
 		& > :is(ol, ul) > li:last-child:empty > :is(a, button)::before {
 			content: "Neste";
-		}
-		& :is(a, button) {
-			pointer-events: all; /* TODO: Fix in Designsystemet */
 		}
 		& :is(a, button)::after {
 			content: none;

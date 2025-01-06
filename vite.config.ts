@@ -13,7 +13,10 @@ const cssPropsRename: Plugin = {
   name: 'Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations',
   transform: (code) => ({
     map: null,
-    code: code.replace(/--ds(c?)-/g, `--ds$1${version}-`).replace(/@layer [^;]+/g, (m) => m.replace(/\b(ds|mt)\./g, `$1.v${version}`))
+    code: code
+      .replace(/--ds-(size|sizing)-/g, '--ds-')
+      .replace(/--ds(c?)-/g, `--ds$1${version}-`)
+      .replace(/@layer [^;]+/g, (m) => m.replace(/\b(ds|mt)\./g, `$1.v${version}`))
   })
 };
 
