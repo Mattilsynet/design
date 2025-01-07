@@ -88,14 +88,15 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         * Fix Tailwind Preflight specificity by using @layer:
         * See https://css-tricks.com/?p=372576
         */
-        @layer tailwind-base, ds, mt;
-        @import url('@mattilsynet/design/styles.css');
+        @layer tailwind-base, ds, mt; /* Must be before loading @mattilsynet/design */
 
         @layer tailwind-base {
           @tailwind base;
         }
         @tailwind components;
         @tailwind utilities;
+
+        @import url('@mattilsynet/design/styles.css'); /* Load @mattilsynet/design after Tailwind */
         ```
       </u-tabpanel>
     </u-tabs>

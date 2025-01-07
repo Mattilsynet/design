@@ -52,20 +52,22 @@ export const Position: Story = {
 				className={styles.popover}
 				data-position="top-end"
 			>
-				Er du sikker på at du vil avslutte uten å lagre?
-				<div>
-					<button type="button" className={styles.button}>
-						Lagre
-					</button>
-					<button
-						popovertarget="pop-2"
-						popovertargetaction="hide"
-						type="button"
-						className={styles.button}
-						data-variant="secondary"
-					>
-						Avbryt
-					</button>
+				<div className={styles.grid}>
+					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
+					<div className={styles.flex}>
+						<button type="button" className={styles.button}>
+							Lagre
+						</button>
+						<button
+							popovertarget="pop-2"
+							popovertargetaction="hide"
+							type="button"
+							className={styles.button}
+							data-variant="secondary"
+						>
+							Avbryt
+						</button>
+					</div>
 				</div>
 			</div>
 		</>
