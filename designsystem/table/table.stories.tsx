@@ -33,7 +33,7 @@ type RowType = (typeof mockData)[0] & { expand?: React.ReactNode };
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div style={{ display: "grid", gap: "1rem" }}>
+		<div className={styles.grid} data-gap="4">
 			<Story />
 		</div>
 	),
@@ -513,7 +513,7 @@ export const PaginatableSimple: Story = {
 						))}
 					</tbody>
 				</table>
-				<nav className={styles.pagination}>
+				<nav className={styles.pagination} data-size="sm">
 					<ul>
 						<li>
 							<button
