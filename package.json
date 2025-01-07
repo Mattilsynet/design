@@ -4,12 +4,10 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
+	"files": ["mtds"],
 	"engines": {
-		"npm": "^10.x",
-		"node": "^20.x"
+		"npm": ">=10.0.0",
+		"node": ">=20.0.0"
 	},
 	"exports": {
 		".": {
