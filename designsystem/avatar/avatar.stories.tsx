@@ -10,7 +10,7 @@ type Story = StoryObj<typeof meta>;
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div style={{ display: "grid", gap: ".5rem" }}>
+		<div className={styles.grid}>
 			<Story />
 		</div>
 	),

@@ -1,5 +1,27 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
+		align-self: center; /* If placed inside .flex */
+		/* --dsc-tag-background: var(--mt-neutral);
+		--dsc-tag-color: var(--mt-neutral); */
+
+		&[data-color="info"] {
+			--dsc-tag-background: var(--mt-bakgrunns-blaa);
+			--dsc-tag-color: var(--mt-fjord);
+			--dsc-tag-color: var(--mt-granskog);
+		}
+		&[data-color="success"] {
+			--dsc-tag-background: #d3e8e0;
+			--dsc-tag-color: var(--mt-granskog);
+		}
+		&[data-color="warning"] {
+			--dsc-tag-background: var(--mt-bakgrunns-gul);
+			--dsc-tag-color: var(--mt-gul);
+		}
+		&[data-color="danger"] {
+			--dsc-tag-background: var(--mt-bakgrunns-rosa);
+			--dsc-tag-color: var(--mt-rognebaer);
+			--dsc-tag-color: var(--mt-granskog);
+		}
 	}
 }
