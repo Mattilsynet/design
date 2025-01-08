@@ -43,23 +43,25 @@ function handleToggle ({ target: el, newState }: Toggle){
   if (anchor) anchorPosition(anchor, el);
 }
 
-// In SPA applications, it can be usefull to close popover menus when clicking <a> (not supported by native)
-function handleClick ({ target }: Event){
-  const el = target instanceof Element && target.closest('[popovertarget]:not(button)') as HTMLElement | null;
-  if (el) {
-    const action = el.getAttribute('popovertargetaction') || 'toggle';
-    const popper = (el.getRootNode() as ShadowRoot).getElementById?.(el.getAttribute('popovertarget') || '');
+// Polyfill popovertarget for <a> (not supported by native)
+function handleLinkClick ({ target }: Event){
+  const el = target instanceof Element && target.closest('a[popovertarget]');
 
-    popper?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
+  if (el) {
+    const root = el.getRootNode() as ShadowRoot;
+    const target = root.getElementById?.(el.getAttribute('popovertarget') || '');
+    const action = el.getAttribute('popovertargetaction') || 'toggle';
+
+    target?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
   }
 }
 
 
 export function observe(el: Node) {
-  on(el, 'click', handleClick); // Allow `<a>` to use `popovertarget` as well
+  on(el, 'click', handleLinkClick); // Allow `<a>` to use `popovertarget` as well
   on(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 }
 export function unobserve(el: Node) {
-  off(el, 'click', handleClick);
+  off(el, 'click', handleLinkClick);
   off(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 }
