@@ -1,0 +1,5 @@
+@layer mt.design {
+	.badge {
+		composes: ds-badge from "@digdir/designsystemet-css";
+	}
+}
