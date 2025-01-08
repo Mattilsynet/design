@@ -81,11 +81,6 @@
 		-moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
 	}
 
-	menu {
-		list-style: none;
-		padding: 0;
-	}
-
 	:is(b, h1, h2, h3, h4, h5, h6, label, legend, strong, th) {
 		font-weight: 700;
 	}
