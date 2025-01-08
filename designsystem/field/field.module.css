@@ -17,6 +17,10 @@
 			margin-top: calc(var(--ds-size-2) * -1);
 		}
 
+		&:has(input:is([type="radio"], [type="checkbox"])) label {
+			font-weight: 500;
+		}
+
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		&:has([readonly]:disabled) label {
 			cursor: default;

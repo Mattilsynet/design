@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "../designsystem/styles.module.css";
-import "@u-elements/u-datalist";
 declare global {
 	interface Window {
 		SVGS: { file: string; categories: string[]; svg: string }[];
@@ -21,42 +20,60 @@ export const Svgs = ({
 	showSearch = false,
 	...rest
 }: SvgsProps) => {
-	const [search, setSearch] = useState("");
 	const svgs = window.SVGS.filter((svg) => svg.file.startsWith(path));
-	const allCategories = svgs.reduce((categories: string[], svg) => {
-		for (const category of svg.categories) {
-			if (!categories.includes(category)) {
-				categories.push(category);
-			}
-		}
-		return categories;
-	}, []);
+	const allCategories = new Set(svgs.flatMap((svg) => svg.categories));
+	const [showCategory, setCategory] = useState("");
+	const [query, setQuery] = useState("");
+
 	if (reverse) svgs.reverse();
 
 	return (
 		<div>
 			{showSearch && (
-				<>
+				<div className={styles.grid} data-gap="4">
 					<input
 						className={styles.input}
+						onChange={({ target }) => setQuery(target.value.trim())}
 						type="search"
-						onChange={(e) => setSearch(e.target.value)}
 					/>
-					<u-datalist id="illustration-categories">
-						{allCategories.map((category) => (
-							<u-option key={category}>{category}</u-option>
-						))}
-					</u-datalist>
-				</>
+					<fieldset className={styles.fieldset}>
+						<legend>Kategori</legend>
+						<div className={styles.flex} data-gap="4">
+							<div className={styles.field}>
+								<input
+									checked={!showCategory}
+									type="radio"
+									className={styles.input}
+									onChange={() => setCategory("")}
+									name="category"
+									value="all"
+								/>
+								<label>Alle</label>
+							</div>
+							{Array.from(allCategories, (category) => (
+								<div key={category} className={styles.field}>
+									<input
+										type="radio"
+										checked={showCategory === category}
+										onChange={() => setCategory(category)}
+										className={styles.input}
+										name="category"
+										value={category}
+									/>
+									<label>{category}</label>
+								</div>
+							))}
+						</div>
+					</fieldset>
+				</div>
 			)}
 			<div className={`svgs ${styles.grid}`} data-grid="lg" {...rest}>
 				{svgs
 					.filter(
 						(svg) =>
-							!showSearch ||
-							svg.categories.some((category) => category.includes(search)) ||
-							svg.file.includes(search) ||
-							!search,
+							(!showCategory ||
+								svg.categories.some((cat) => showCategory === cat)) &&
+							svg.file.includes(query),
 					)
 					.map(({ file, svg }) => {
 						const style = fill === "#E2F1DF" ? { color: fill } : undefined;
