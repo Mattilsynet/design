@@ -1,4 +1,4 @@
-import { HeartIcon, StarFillIcon, StarIcon } from "@navikt/aksel-icons";
+import { Heart, Star } from "@phosphor-icons/react";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import styles from "../styles.module.css";
@@ -21,24 +21,15 @@ const decorators = [
 export const Default: Story = {
 	decorators,
 	render: () => (
-		<button type="button" className={styles.button}>
-			Hei
-		</button>
-	),
-};
-
-export const Variants: Story = {
-	decorators,
-	render: () => (
 		<>
-			<button type="button" className={styles.button}>
-				Primary (default)
+			<button type="button" className={styles.button} data-variant="primary">
+				Primary
 			</button>
 			<button type="button" className={styles.button} data-variant="secondary">
 				Secondary
 			</button>
-			<button type="button" className={styles.button} data-variant="tertiary">
-				Tertiary
+			<button type="button" className={styles.button}>
+				Tertiary (default)
 			</button>
 		</>
 	),
@@ -48,20 +39,35 @@ export const Sizes: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className={styles.button} data-size="sm">
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+				data-size="sm"
+			>
 				Small
 			</button>
-			<button type="button" className={styles.button} data-size="md">
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+				data-size="md"
+			>
 				Medium
 			</button>
-			<button type="button" className={styles.button} data-size="lg">
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+				data-size="lg"
+			>
 				Large
 			</button>
 		</>
 	),
 };
 
-export const Arrows: Story = {
+export const WithArrows: Story = {
 	decorators,
 	render: () => (
 		<>
@@ -104,36 +110,49 @@ export const Arrows: Story = {
 	),
 };
 
-export const Icons: Story = {
+export const WithIcons: Story = {
 	decorators,
 	render: () => (
 		<>
 			<button type="button" className={styles.button}>
-				<HeartIcon />
+				<Heart />
 				Ikon før
 			</button>
 			<button type="button" className={styles.button}>
 				Ikon etter
-				<StarIcon />
+				<Star />
 			</button>
 		</>
 	),
 };
 
-export const Loading: Story = {
+export const WithLoading: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button aria-busy="true" disabled type="button" className={styles.button}>
+			<button
+				aria-busy="true"
+				className={styles.button}
+				data-variant="primary"
+				disabled
+				type="button"
+			>
 				Knapp
 			</button>
-			<a aria-busy="true" tabIndex={-1} href="#none" className={styles.button}>
+			<a
+				aria-busy="true"
+				className={styles.button}
+				data-variant="primary"
+				href="#none"
+				tabIndex={-1}
+			>
 				Lenkeknapp
 			</a>
 			<button
 				aria-busy="true"
 				className={styles.button}
 				data-arrow="right"
+				data-variant="primary"
 				disabled
 				type="button"
 			>
@@ -143,7 +162,7 @@ export const Loading: Story = {
 	),
 };
 
-export const Contextmenu: Story = {
+export const WithMenu: Story = {
 	decorators,
 	render: () => (
 		<>
@@ -152,7 +171,7 @@ export const Contextmenu: Story = {
 				popovertarget="pop-2"
 				type="button"
 				className={styles.button}
-				data-variant="secondary"
+				data-variant="tertiary"
 			/>
 			<menu popover="" id="pop-2" className={styles.popover}>
 				<li>
@@ -188,16 +207,16 @@ export const Pressed: Story = {
 				data-variant="tertiary"
 				onClick={() => setPressed(!pressed)}
 			>
-				<StarIcon data-pressed="false" />
+				<Star data-pressed="false" />
 				<span data-pressed="false">Lagre favoritt</span>
-				<StarFillIcon data-pressed="true" />
+				<Star data-pressed="true" weight="fill" />
 				<span data-pressed="true">Fjern favoritt</span>
 			</button>
 		);
 	},
 };
 
-export const Tooltip: Story = {
+export const WithTooltip: Story = {
 	decorators,
 	render: () => (
 		<button
@@ -206,7 +225,7 @@ export const Tooltip: Story = {
 			className={styles.button}
 			data-variant="tertiary"
 		>
-			<StarIcon />
+			<Star />
 		</button>
 	),
 };

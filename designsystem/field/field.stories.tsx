@@ -57,7 +57,7 @@ export const Toggles: Story = {
 	),
 };
 
-export const ValidationMessage: Story = {
+export const WithValidation: Story = {
 	decorators,
 	render: () => (
 		<>
@@ -71,7 +71,7 @@ export const ValidationMessage: Story = {
 	),
 };
 
-export const Affixes: Story = {
+export const WithAffixes: Story = {
 	decorators,
 	render: () => (
 		<>
@@ -87,7 +87,7 @@ export const Affixes: Story = {
 	),
 };
 
-export const Count: Story = {
+export const WithCount: Story = {
 	decorators,
 	parameters: {
 		layout: "padded",

@@ -12,6 +12,51 @@
 			margin: 0;
 		}
 
+		/* https://every-layout.dev/layouts/stack/ */
+		& > * + * {
+			margin-top: 1em;
+		}
+
+		/**
+		 * Close button
+		 */
+		position: relative;
+		&:has(> button:last-child:empty) {
+			padding-right: var(--ds-sizing-12);
+		}
+		& > button:last-child:empty {
+			all: unset;
+			border-radius: var(--ds-border-radius-full);
+			cursor: pointer;
+			margin: var(--dsc-alert-padding);
+			position: absolute;
+			right: 0;
+			top: 0;
+			transition: scale .2s;
+
+			&:focus-visible {
+				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
+				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
+				outline: var(--ds--focus, var(--dsc-focus-outline));
+			}
+
+			&:active {
+				scale: 0.9;
+			}
+
+			&::before {
+				box-sizing: content-box;
+				display: block;
+				background: currentcolor;
+				content: "";
+				mask: center / contain no-repeat var(--mt-icon-close) content-box;
+				height: var(--mt-icon-size);
+				width: var(--mt-icon-size);
+				padding: .5em;
+				margin: -.5em;
+			}
+		}
+
 		&[data-color="warning"] {
 			--dsc-alert-background: #fcf0d2;
 			--dsc-alert-icon-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.25a.75.75 0 0 1 .66.39l9.52 17.25a.75.75 0 0 1-.65 1.11H2.47a.75.75 0 0 1-.65-1.11l9.52-17.25a.75.75 0 0 1 .66-.39m8.26 17.25L12 4.55 3.75 19.5zM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75m0 6.75a1 1 0 1 0 0 2 1 1 0 0 0 0-2'/%3E%3C/svg%3E");

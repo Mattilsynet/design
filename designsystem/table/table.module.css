@@ -104,13 +104,13 @@
 				background: currentcolor;
 				content: "";
 				display: inline-block;
-				height: 1em;
-				margin-inline-end: .25em;
+				height: var(--mt-icon-size);
+				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mt-icon-chevron);
 				rotate: 90deg;
 				transition: scale .2s;
-				vertical-align: -.15em;
-				width: 1em;
+				vertical-align: -.3em;
+				width: var(--mt-icon-size);
 			}
 
 			&[aria-expanded="true"]::before {

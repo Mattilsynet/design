@@ -1,3 +1,4 @@
+import { CheckCircle, Info, Warning, XCircle } from "@phosphor-icons/react";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import styles from "../styles.module.css";
 
@@ -54,6 +55,41 @@ export const Sizes: Story = {
 			</div>
 			<div className={styles.tag} data-size="lg">
 				Large
+			</div>
+		</>
+	),
+};
+
+export const WithIcons: Story = {
+	decorators,
+	render: () => (
+		<>
+			<div className={styles.tag} data-color="info">
+				<Info />
+				Info
+			</div>
+			<div className={styles.tag} data-color="success">
+				<CheckCircle />
+				Success
+			</div>
+			<div className={styles.tag} data-color="warning">
+				<Warning />
+				Warning
+			</div>
+			<div className={styles.tag} data-color="danger">
+				<XCircle />
+				Danger
+			</div>
+		</>
+	),
+};
+
+export const WithTooltip: Story = {
+	decorators,
+	render: () => (
+		<>
+			<div className={styles.tag} data-tooltip="Ikke original">
+				Bekreftet kopi
 			</div>
 		</>
 	),

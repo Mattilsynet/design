@@ -70,13 +70,44 @@ export const Sizes: Story = {
 	),
 };
 
-export const Title: Story = {
+export const WithTitle: Story = {
 	decorators,
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
 			Det er lange køer for å bestille pass om dagen, det kan være lurt å
 			bestille i god tid før du skal reise.
+		</output>
+	),
+};
+
+export const WithClose: Story = {
+	decorators,
+	render: () => (
+		<output className={styles.alert}>
+			<h2>Har du husket å bestille passtime?</h2>
+			Det er lange køer for å bestille pass om dagen, det kan være lurt å
+			bestille i god tid før du skal reise.
+			<button type="button" aria-label="Lukk"></button>
+		</output>
+	),
+};
+
+export const WithButtons: Story = {
+	decorators,
+	render: () => (
+		<output className={styles.alert}>
+			<h2>Har du husket å bestille passtime?</h2>
+			Det er lange køer for å bestille pass om dagen, det kan være lurt å
+			bestille i god tid før du skal reise.
+			<div className={styles.flex}>
+				<a href="#none" className={styles.button} data-variant="secondary">
+					Prøv igjen
+				</a>
+				<a href="#none" className={styles.button}>
+					Kontakt oss
+				</a>
+			</div>
 		</output>
 	),
 };

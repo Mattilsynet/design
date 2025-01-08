@@ -4,10 +4,19 @@ import * as stories from './tag.stories';
 <Meta of={stories} />
 
 # Tag (Eksperimentell)
-
 - Bruk klassen `tag` på typisk `<span>`
 <Canvas of={stories.Default} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
 <Canvas of={stories.Sizes} />
+
+## Ikoner
+- [Ikon fra phosphoricons.com](https://phosphoricons.com/) kan legges før tekst
+<Canvas of={stories.WithIcons} />
+
+## Tooltip (Eksperimentell)
+- Bruk `data-tooltip="Hjelpetekst"`
+- Teksten blir også automatisk tilgjengelig for skjermlesere
+- **Merk:** Krever minst `24px / 1.5rem / 6 units` luft under for å vises
+<Canvas of={stories.WithTooltip} />

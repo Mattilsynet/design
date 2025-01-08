@@ -12,15 +12,21 @@ import * as stories from './alert.stories';
 
 ## Varianter
 - Bruk `data-color="info | success | warning | danger"`
-
 <Canvas of={stories.Variants} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
-
 <Canvas of={stories.Sizes} />
 
 ## Med tittel
 - Legg `h2`, `h3` eller `h4` som første element
+<Canvas of={stories.WithTitle} />
 
-<Canvas of={stories.Title} />
+## Med lukkeknapp
+- Legg en tom `<button type="button" aria-label="Lukk">` som siste element
+<Canvas of={stories.WithClose} />
+
+## Med knapper
+- Legg en `flex` med knapper inni
+- Det er valgfritt om første knapp skal være `primary` eller `secondary`
+<Canvas of={stories.WithButtons} />

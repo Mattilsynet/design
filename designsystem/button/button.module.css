@@ -6,10 +6,18 @@
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
 		font-weight: 500;
-		position: relative; /* Needed for tooltip */
 		transition-duration: .2s;
 		transition-property: background-color, translate;
 		vertical-align: middle;
+
+		/* Overwrite to same as tertiary from Designsystemet  */
+		&:not([data-variant], [aria-current]:not([aria-current="false"])) {
+			--dsc-button-background: transparent;
+			--dsc-button-background--active: var(--ds-color-surface-active);
+			--dsc-button-background--hover: var(--ds-color-surface-hover);
+			--dsc-button-color: var(--ds-color-text-subtle);
+			--dsc-button-color--hover: var(--ds-color-text-default);
+		}
 
 		& > svg {
 			fill: currentColor;
@@ -29,6 +37,10 @@
 		/**
 		 * Paint ellipsis when empty
 		 */
+		&:empty {
+			border-radius: var(--ds-border-radius-full);
+			padding-inline: var(--ds-spacing-2);
+		}
 		&:empty::before {
 			background: currentcolor;
 			content: "";
@@ -38,35 +50,7 @@
 		}
 
 		/**
-		 * Tooltip and popover
-		 */
-		&[data-tooltip]::after {
-			background: #032c30;
-			border-radius: var(--ds-border-radius-md);
-			color: var(--ds-color-accent-contrast-default);
-			content: attr(data-tooltip);
-			font-size: .9375rem;
-			font-weight: 500;
-			left: 50%;
-			line-height: 1;
-			opacity: 0;
-			padding: .25rem;
-			pointer-events: none;
-			position: absolute;
-			top: 100%;
-			transition: .15s;
-			translate: -50%;
-			visibility: hidden;
-		}
-		&[data-tooltip]:focus-visible::after,
-		&[data-tooltip]:hover::after {
-			opacity: 0.9;
-			translate: -50% 2px;
-			visibility: visible;
-		}
-
-		/**
-		 * Arrows
+		 * Arrows and popover
 		 */
 		&[data-arrow]::before {
 			background: currentcolor;
@@ -114,6 +98,37 @@
 		&[aria-pressed="false"] [data-pressed="true"],
 		&[aria-pressed="true"] [data-pressed="false"] {
 			display: none;
+		}
+
+		/**
+		 * Tooltip
+		 */
+		position: relative;
+		&[data-tooltip]::after {
+			background: color-mix(in hsl, transparent 10%, var(--mt-mork-granskog));
+			border-radius: var(--ds-border-radius-md);
+			color: var(--ds-color-accent-contrast-default);
+			content: attr(data-tooltip);
+			font-size: .9375rem;
+			font-weight: 500;
+			left: 50%;
+			line-height: var(--ds-line-height-sm);
+			max-width: 18em;
+			opacity: 0;
+			padding: var(--ds-spacing-1) var(--ds-spacing-2);
+			pointer-events: none;
+			position: absolute;
+			top: 100%;
+			transition: .15s;
+			translate: -50%;
+			visibility: hidden;
+			width: max-content;
+		}
+		&[data-tooltip]:focus-visible::after,
+		&[data-tooltip]:hover::after {
+			opacity: 1;
+			translate: -50% 2px;
+			visibility: visible;
 		}
 	}
 }

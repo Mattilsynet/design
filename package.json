@@ -4,7 +4,9 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": ["mtds"],
+	"files": [
+		"mtds"
+	],
 	"engines": {
 		"npm": ">=10.0.0",
 		"node": ">=20.0.0"
@@ -40,7 +42,6 @@
 		"@biomejs/biome": "^1.9.4",
 		"@digdir/designsystemet-css": "^1.0.0-next.44",
 		"@digdir/designsystemet-theme": "^1.0.0-next.44",
-		"@navikt/aksel-icons": "^7.9.0",
 		"@phosphor-icons/react": "^2.1.7",
 		"@storybook/addon-essentials": "^8.4.7",
 		"@storybook/addon-storysource": "^8.4.7",

@@ -47,7 +47,7 @@ export const Default: Story = {
 	},
 };
 
-export const Close: Story = {
+export const WithClose: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
 		const modal = useRef<HTMLDialogElement>(null);
@@ -72,11 +72,7 @@ export const Close: Story = {
 					ref={modal}
 				>
 					<form method="dialog">
-						<button
-							type="submit"
-							className={styles.button}
-							aria-label="Lukk"
-						></button>
+						<button type="submit" aria-label="Lukk"></button>
 					</form>
 					<div className={styles.grid}>
 						Modal content here
