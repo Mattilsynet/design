@@ -131,6 +131,7 @@
 		 * In <menu>
 		 */
 		menu > li > & {
+			border-radius: var(--ds-border-radius-md);
 			justify-content: start;
 			width: 100%;
 		}
