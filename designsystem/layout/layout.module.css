@@ -11,13 +11,13 @@
 		box-sizing: border-box;
 
 		&[data-pad="1"] {
-			padding: var(--ds-sizing-1);
+			padding: var(--ds-size-1);
 		}
 		&[data-pad="2"] {
-			padding: var(--ds-sizing-2);
+			padding: var(--ds-size-2);
 		}
 		&[data-pad="3"] {
-			padding: var(--ds-sizing-3);
+			padding: var(--ds-size-3);
 		}
 		&[data-radius="sm"] {
 			border-radius: var(--ds-border-radius-sm);
@@ -29,7 +29,7 @@
 			border-radius: var(--ds-border-radius-lg);
 		}
 		&[data-color] {
-			padding: var(--ds-sizing-3);
+			padding: var(--ds-size-3);
 			border-radius: 5px; /* TODO: Should it? */
 		}
 		&[data-color="lys-furu"] {
@@ -64,7 +64,7 @@
 	.grid,
 	.flex {
 		flex-wrap: wrap;
-		gap: var(--ds-spacing-2);
+		gap: var(--ds-size-2);
 
 		& > * {
 			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
@@ -76,28 +76,28 @@
 			gap: 0px;
 		}
 		&[data-gap="1"] {
-			gap: var(--ds-spacing-1);
+			gap: var(--ds-size-1);
 		}
 		&[data-gap="2"] {
-			gap: var(--ds-spacing-2);
+			gap: var(--ds-size-2);
 		}
 		&[data-gap="3"] {
-			gap: var(--ds-spacing-3);
+			gap: var(--ds-size-3);
 		}
 		&[data-gap="4"] {
-			gap: var(--ds-spacing-4);
+			gap: var(--ds-size-4);
 		}
 		&[data-gap="5"] {
-			gap: var(--ds-spacing-5);
+			gap: var(--ds-size-5);
 		}
 		&[data-gap="6"] {
-			gap: var(--ds-spacing-6);
+			gap: var(--ds-size-6);
 		}
 		&[data-gap="7"] {
-			gap: var(--ds-spacing-7);
+			gap: var(--ds-size-7);
 		}
 		&[data-gap="8"] {
-			gap: var(--ds-spacing-8);
+			gap: var(--ds-size-8);
 		}
 		&[data-align="start"] {
 			align-items: start;

@@ -1048,7 +1048,7 @@ export const CheckableTanstack: Story = {
 	},
 };
 
-export const HorizontalTitles: Story = {
+export const WithHorizontalTitles: Story = {
 	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Table with horizontal titles">

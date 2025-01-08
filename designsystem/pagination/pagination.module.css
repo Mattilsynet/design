@@ -4,12 +4,11 @@
 
 		& :is(a, button) {
 			border-radius: var(--ds-border-radius-full);
-			pointer-events: all; /* TODO: Fix in Designsystemet https://github.com/digdir/designsystemet/pull/2942 */
 		}
 
 		/* Chevrons  */
-		& > :is(ol, ul) > li:first-child > :is(a, button)::before,
-		& > :is(ol, ul) > li:last-child > :is(a, button)::before {
+		& li:first-child > :is(a, button)::before,
+		& li:last-child > :is(a, button)::before {
 			background: currentcolor;
 			content: "";
 			height: var(--mt-icon-size);
@@ -17,32 +16,18 @@
 			order: 1;
 			width: var(--mt-icon-size);
 		}
-		& > :is(ol, ul) > li:first-child > :is(a, button)::before {
+		& li:first-child > :is(a, button)::before {
 			order: 0;
 			rotate: 180deg;
 		}
-		& > :is(ol, ul) > li:first-child:empty > :is(a, button)::before {
+		& li:first-child:empty > :is(a, button)::before {
 			content: "Forrige";
 		}
-		& > :is(ol, ul) > li:last-child:empty > :is(a, button)::before {
+		& li:last-child:empty > :is(a, button)::before {
 			content: "Neste";
 		}
 		& :is(a, button)::after {
 			content: none;
-		}
-
-		/* Ellipsis when empty */
-		& :is(ol, ul) > li:empty {
-			align-items: center;
-			display: flex;
-			justify-content: center;
-			min-width: var(--ds-sizing-12);
-
-			&::before {
-				content: "\2026"; /* Ellipsis, fallback for old Firefox */
-				content: "\2026" / "..."; /* Ellipsis, hidden from screen readers */
-				font-variant-numeric: normal;
-			}
 		}
 	}
 }

@@ -9,10 +9,10 @@
 			cursor: pointer;
 			display: flex;
 			font-weight: 500;
-			gap: var(--ds-spacing-1);
+			gap: var(--ds-size-1);
 			justify-content: center;
 			line-height: var(--ds-line-height-sm);
-			padding: var(--ds-spacing-3) var(--ds-spacing-5);
+			padding: var(--ds-size-3) var(--ds-size-5);
 			position: relative;
 
 			& :where(img, svg) {

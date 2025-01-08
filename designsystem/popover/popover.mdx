@@ -22,10 +22,14 @@ import * as stories from './popover.stories';
 <Canvas of={stories.Position} />
 
 ## Lukkeknapp
-- Bruk `popovertargetaction="hide"` på `<button>` for å lage lukkeknapp:
+- Bruk `popovertarget="ID" popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
 
 <Canvas of={stories.WithClose} />
 
 ## Pil
 - Bruk `data-arrow` på `<button>` for å få ikon:
 <Canvas of={stories.WithArrow} />
+
+## Skillelinje
+- Bruk `<li><hr />` i `<menu>` for å få skillelinje:
+<Canvas of={stories.WithDivider} />

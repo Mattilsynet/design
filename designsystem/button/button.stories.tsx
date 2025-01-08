@@ -67,6 +67,27 @@ export const Sizes: Story = {
 	),
 };
 
+export const Pressed: Story = {
+	decorators,
+	render: function Render() {
+		const [pressed, setPressed] = useState(false);
+
+		return (
+			<button
+				aria-pressed={pressed}
+				type="button"
+				className={styles.button}
+				onClick={() => setPressed(!pressed)}
+			>
+				<Star data-pressed="false" />
+				<span data-pressed="false">Lagre favoritt</span>
+				<Star data-pressed="true" weight="fill" />
+				<span data-pressed="true">Fjern favoritt</span>
+			</button>
+		);
+	},
+};
+
 export const WithArrows: Story = {
 	decorators,
 	render: () => (
@@ -171,7 +192,6 @@ export const WithMenu: Story = {
 				popovertarget="pop-2"
 				type="button"
 				className={styles.button}
-				data-variant="tertiary"
 			/>
 			<menu popover="" id="pop-2" className={styles.popover}>
 				<li>
@@ -194,38 +214,39 @@ export const WithMenu: Story = {
 	),
 };
 
-export const Pressed: Story = {
-	decorators,
-	render: function Render() {
-		const [pressed, setPressed] = useState(false);
-
-		return (
-			<button
-				aria-pressed={pressed}
-				type="button"
-				className={styles.button}
-				data-variant="tertiary"
-				onClick={() => setPressed(!pressed)}
-			>
-				<Star data-pressed="false" />
-				<span data-pressed="false">Lagre favoritt</span>
-				<Star data-pressed="true" weight="fill" />
-				<span data-pressed="true">Fjern favoritt</span>
-			</button>
-		);
-	},
-};
-
 export const WithTooltip: Story = {
 	decorators,
 	render: () => (
-		<button
-			data-tooltip="Favoritt"
-			type="button"
-			className={styles.button}
-			data-variant="tertiary"
-		>
+		<button data-tooltip="Favoritt" type="button" className={styles.button}>
 			<Star />
 		</button>
+	),
+};
+
+export const InMenu: Story = {
+	decorators,
+	render: () => (
+		<menu>
+			<li>
+				<button type="button" className={styles.button}>
+					Knapp 1
+				</button>
+			</li>
+			<li>
+				<button type="button" className={styles.button}>
+					Knapp med veldig lang tekst
+				</button>
+			</li>
+			<li>
+				<button type="button" className={styles.button}>
+					Knapp 3
+				</button>
+			</li>
+			<li>
+				<button type="button" className={styles.button}>
+					Knapp 4
+				</button>
+			</li>
+		</menu>
 	),
 };

@@ -29,8 +29,8 @@
 				mask: center / contain no-repeat var(--mt-icon-close) content-box;
 				height: var(--mt-icon-size);
 				width: var(--mt-icon-size);
-				padding: var(--ds-sizing-1);
-				margin: calc(var(--ds-sizing-1) * -1);
+				padding: var(--ds-size-1);
+				margin: calc(var(--ds-size-1) * -1);
 			}
 		}
 	}

@@ -79,6 +79,52 @@ export const Variants: Story = {
 	),
 };
 
+export const Select: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Select</label>
+			<select className={styles.input}>
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+				<option>Option 4</option>
+				<option>Option 5</option>
+			</select>
+		</div>
+	),
+};
+
+export const Checkbox: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Checkbox</label>
+			<input type="checkbox" className={styles.input} />
+		</div>
+	),
+};
+
+export const Radio: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Radio</label>
+			<input type="radio" className={styles.input} />
+		</div>
+	),
+};
+
+export const Switch: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Switch</label>
+			<input type="checkbox" role="switch" className={styles.input} />
+		</div>
+	),
+};
+
 export const Sizes: Story = {
 	decorators,
 	render: () => (

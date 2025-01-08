@@ -14,7 +14,7 @@ const cssPropsRename: Plugin = {
   transform: (code) => ({
     map: null,
     code: code
-      .replace(/--ds-(size|sizing)-/g, '--ds-')
+      .replace(/--ds-size-/g, '--ds-')
       .replace(/--ds(c?)-/g, `--ds$1${version}-`)
       .replace(/@layer [^;]+/g, (m) => m.replace(/\b(ds|mt)\./g, `$1.v${version}`))
   })
@@ -44,7 +44,6 @@ export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
     cssPropsRename
   ],
   build: isVitepress ? {} : {
-    cssMinify: false, // Prevent LESS crash when CSS rule ends in a custom property without trailing ; (i.e. div { --custom: red })
     outDir: dist,
     sourcemap: true,
     lib: {

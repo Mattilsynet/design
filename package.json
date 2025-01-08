@@ -35,13 +35,10 @@
 		"storybook": "storybook dev -p 6006",
 		"storybook:build": "npm run build && storybook build"
 	},
-	"dependencies": {
-		"nanopop": "^2.4.2"
-	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@digdir/designsystemet-css": "^1.0.0-next.44",
-		"@digdir/designsystemet-theme": "^1.0.0-next.44",
+		"@digdir/designsystemet-css": "^1.0.0-next.45",
+		"@digdir/designsystemet-theme": "^1.0.0-next.45",
 		"@phosphor-icons/react": "^2.1.7",
 		"@storybook/addon-essentials": "^8.4.7",
 		"@storybook/addon-storysource": "^8.4.7",

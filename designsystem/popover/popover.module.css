@@ -1,36 +1,35 @@
 @layer mt.design {
 	.popover {
-		--mt-popover-padding: var(--ds-spacing-5);
+		--mt-popover-padding: var(--ds-size-5);
 
 		background: white;
 		border-radius: 5px;
 		border: 0;
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;
-		display: none;
 		inset: auto;
 		list-style: none;
-		margin: 0;
+		margin: -2px 0 0;
 		opacity: 0;
 		padding: var(--mt-popover-padding);
 		position: fixed;
-		transition: opacity .2s, margin .2s, display .2s allow-discrete;
+		transition-duration: .2s;
+		transition-property: opacity, margin, visibility;
+		visibility: hidden;
 
 		&:popover-open {
-			@starting-style {
-				opacity: 0;
-				margin-top: -2px;
-			}
-			display: block;
+			margin: 0;
 			opacity: 1;
+			visibility: visible;
 		}
 
 		&:is(menu) {
-			--mt-popover-padding: var(--ds-spacing-3);
+			--mt-popover-padding: var(--ds-size-3);
 
-			& :is(a, button) {
-				justify-content: start;
-				width: 100%;
+			& > li > hr {
+				border: 0;
+				margin: var(--ds-size-2) 0;
+				border-top: 1px solid var(--mt-divider);
 			}
 		}
 	}

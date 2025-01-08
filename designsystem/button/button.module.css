@@ -7,7 +7,7 @@
 		display: inline-flex;
 		font-weight: 500;
 		transition-duration: .2s;
-		transition-property: background-color, translate;
+		transition-property: background-color, scale, translate;
 		vertical-align: middle;
 
 		/* Overwrite to same as tertiary from Designsystemet  */
@@ -21,8 +21,8 @@
 
 		& > svg {
 			fill: currentColor;
-			height: 1em;
-			width: 1em;
+			height: var(--mt-icon-size);
+			width: var(--mt-icon-size);
 		}
 
 		&:disabled,
@@ -31,16 +31,12 @@
 		}
 
 		&:active {
-			translate: 0 2px;
+			scale: 0.95;
 		}
 
 		/**
 		 * Paint ellipsis when empty
 		 */
-		&:empty {
-			border-radius: var(--ds-border-radius-full);
-			padding-inline: var(--ds-spacing-2);
-		}
 		&:empty::before {
 			background: currentcolor;
 			content: "";
@@ -67,10 +63,10 @@
 		&[data-arrow][popovertarget]::before {
 			mask-image: var(--mt-icon-chevron);
 			rotate: 90deg;
-			transition: .2s;
+			transition: rotate .2s ease-out;
 		}
 		&[data-arrow][popovertarget]:has(+ :popover-open)::before {
-			scale: -1 1;
+			rotate: -90deg;
 		}
 
 		/**
@@ -115,7 +111,7 @@
 			line-height: var(--ds-line-height-sm);
 			max-width: 18em;
 			opacity: 0;
-			padding: var(--ds-spacing-1) var(--ds-spacing-2);
+			padding: var(--ds-size-1) var(--ds-size-2);
 			pointer-events: none;
 			position: absolute;
 			top: 100%;
@@ -129,6 +125,14 @@
 			opacity: 1;
 			translate: -50% 2px;
 			visibility: visible;
+		}
+
+		/**
+		 * In <menu>
+		 */
+		menu > li > & {
+			justify-content: start;
+			width: 100%;
 		}
 	}
 }

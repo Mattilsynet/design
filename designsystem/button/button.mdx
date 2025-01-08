@@ -12,14 +12,12 @@ import * as stories from './button.stories';
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
-
 <Canvas of={stories.Sizes} />
 
 ## Pil og popover
 - Legg på `data-arrow` (høyrestilt) eller `data-arrow="left | right"`
 - Lasteindikator vil erstatte pil dersom disse kombineres
 - Kombiner `popovertarget` + `data-arrow` for chevron
-
 <Canvas of={stories.WithArrows} />
 
 ## Ikoner
@@ -30,7 +28,6 @@ import * as stories from './button.stories';
 - For `<button>`: Legg på `<button aria-busy="true" disabled`
 - For `<a>`: Legg på `<a aria-busy="true" tabindex="-1"`
 - Lasteindikator vil erstatte pil dersom disse kombineres
-
 <Canvas of={stories.WithLoading} />
 
 ## Handlingsmeny
@@ -39,11 +36,9 @@ import * as stories from './button.stories';
 
 <Canvas of={stories.WithMenu} />
 
-
 ## Pressed
 - Bruk `<button>` med `aria-pressed="true"`
 - Knappen endrer ikke stil, men du kan vise/skjule innhold ved bruk av attributten `data-pressed="true | false"`:
-
 <Canvas of={stories.Pressed} />
 
 ## Tooltip (Eksperimentell)
@@ -51,3 +46,8 @@ import * as stories from './button.stories';
 - Teksten blir også automatisk tilgjengelig for skjermlesere
 - **Merk:** Krever minst `24px / 1.5rem / 6 units` luft under for å vises
 <Canvas of={stories.WithTooltip} />
+
+## I meny
+- Legger du `button` i `<menu><li>` vil knappene ha samme bredde og venstrestilt tekst
+- Ved bruk av attributten `aria-pressed="true"` får knappen et sjekk-symbol
+<Canvas of={stories.InMenu} />

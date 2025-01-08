@@ -30,22 +30,22 @@ export const Flex: Story = {
 	decorators,
 	render: () => (
 		<div className={styles.flex}>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action 1
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action som er lengre 2
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action 3
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action 4
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action 5
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="primary">
 				Action 6
 			</button>
 		</div>

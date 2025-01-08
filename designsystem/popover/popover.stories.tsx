@@ -15,7 +15,13 @@ export const Dropdown: Story = {
 
 		return (
 			<>
-				<button popovertarget={popId} type="button" className={styles.button}>
+				<button
+					popovertarget={popId}
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+					data-arrow
+				>
 					Knapp
 				</button>
 				<menu popover="" id={popId} className={styles.popover}>
@@ -43,7 +49,12 @@ export const Dropdown: Story = {
 export const Position: Story = {
 	render: () => (
 		<>
-			<button popovertarget="pop-2" type="button" className={styles.button}>
+			<button
+				popovertarget="pop-2"
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+			>
 				Knapp
 			</button>
 			<div
@@ -55,7 +66,11 @@ export const Position: Story = {
 				<div className={styles.grid}>
 					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
 					<div className={styles.flex}>
-						<button type="button" className={styles.button}>
+						<button
+							type="button"
+							className={styles.button}
+							data-variant="primary"
+						>
 							Lagre
 						</button>
 						<button
@@ -77,7 +92,12 @@ export const Position: Story = {
 export const WithClose: Story = {
 	render: () => (
 		<>
-			<button popovertarget="pop-3" type="button" className={styles.button}>
+			<button
+				popovertarget="pop-3"
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+			>
 				Knapp
 			</button>
 			<div popover="" id="pop-3" className={styles.popover}>
@@ -86,6 +106,7 @@ export const WithClose: Story = {
 					popovertargetaction="hide"
 					type="button"
 					className={styles.button}
+					data-variant="secondary"
 				>
 					Lukk
 				</button>
@@ -110,4 +131,49 @@ export const WithArrow: Story = {
 			</div>
 		</>
 	),
+};
+
+export const WithDivider: Story = {
+	render: function Render() {
+		const popId = useId();
+
+		return (
+			<>
+				<button
+					popovertarget={popId}
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+					data-arrow
+				>
+					Knapp
+				</button>
+				<menu popover="" id={popId} className={styles.popover}>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<hr />
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 4
+						</button>
+					</li>
+				</menu>
+			</>
+		);
+	},
 };
