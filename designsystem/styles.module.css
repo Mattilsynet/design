@@ -43,6 +43,7 @@
 		--mt-icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='16' d='M40 128h176M144 56l72 72-72 72'/%3E%3C/svg%3E");
 		--mt-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='m181.7 133.7-80 80a8 8 0 0 1-11.4-11.4l74.4-74.3-74.4-74.3a8 8 0 0 1 11.4-11.4l80 80a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
 		--mt-icon-ellipsis: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'/%3E%3Ccircle cx='128' cy='128' r='16'/%3E%3Ccircle cx='60' cy='128' r='16'/%3E%3Ccircle cx='196' cy='128' r='16'/%3E%3C/svg%3E");
+		--mt-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M205.7 194.3a8 8 0 0 1-11.4 11.4L128 139.3l-66.3 66.4a8 8 0 0 1-11.4-11.4l66.4-66.3-66.4-66.3a8 8 0 0 1 11.4-11.4l66.3 66.4 66.3-66.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
 
 		--ds-color-focus-outer: var(--mt-granskog);
 		--ds-body-sm-font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
@@ -70,6 +71,7 @@
 	.body {
 		background: var(--mt-gaasunge);
 		color: var(--mt-granskog);
+		cursor: default; /* Avoid text cursor on non-form elements */
 		font: var(--ds-body-md-font-size) / 1.5 "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		font-feature-settings: "liga" 0; /* Disable ligatures */
 		margin: 0;

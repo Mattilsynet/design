@@ -9,7 +9,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const WithLinks: Story = {
 	render: () => (
 		<nav aria-label="Sidenavigering" className={styles.pagination}>
 			<ul>
@@ -54,7 +54,7 @@ export const Default: Story = {
 	),
 };
 
-export const Buttons: Story = {
+export const WithButtons: Story = {
 	render: () => (
 		<nav aria-label="Sidenavigering" className={styles.pagination}>
 			<ul>
@@ -144,7 +144,7 @@ export const Sizes: Story = {
 	),
 };
 
-export const Helper: Story = {
+export const WithHelper: Story = {
 	render: () => {
 		const { pages, next, prev } = pagination({
 			current: 1,

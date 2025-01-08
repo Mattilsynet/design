@@ -130,7 +130,7 @@ export const Horizontal: Story = {
 	),
 };
 
-export const ValidationMessage: Story = {
+export const WithValidation: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>

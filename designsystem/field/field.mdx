@@ -15,14 +15,14 @@ import * as stories from './field.stories';
 
 ## Feilmelding
 - Legg klassen `validation` på et element for å tilknytte feilmelding
-<Canvas of={stories.ValidationMessage} />
+<Canvas of={stories.WithValidation} />
 
 ## Prefiks og suffiks
 - Legg klassen `affixes` på en `<div>` rundt `input`
 - Legg elementer før eller etter `input` for å legge til ikon eller tekst
 - **Merk:** for god tilgjengelighet, beskriv ønsket innhold i `<p>` eller `<label>`, f.eks.: "Pris i NOK per måned"
-<Canvas of={stories.Affixes} />
+<Canvas of={stories.WithAffixes} />
 
 ## Antall tegn (Eksperimentell)
 - Legg `data-count="number"` på `<p>` etter `input`
-<Canvas of={stories.Count} />
+<Canvas of={stories.WithCount} />

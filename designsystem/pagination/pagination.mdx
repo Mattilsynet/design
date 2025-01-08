@@ -11,13 +11,13 @@ import * as stories from './pagination.stories';
 - Legg `aria-current="page"` på valgt side
 - Legg `<a aria-disabled="true"` eller `<button disabled` for ugyldig forrige/neste
 
-<Canvas of={stories.Default} />
+<Canvas of={stories.WithLinks} />
 
 ## Knapper
 
 - Bruk `<button type="button">` istedenfor `<a>` dersom du bygger en SPA
 
-<Canvas of={stories.Buttons} />
+<Canvas of={stories.WithButtons} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
@@ -50,4 +50,4 @@ import * as stories from './pagination.stories';
     }
     ```
 3. Eksempel på bruk i `React`:
-    <Canvas of={stories.Helper} />
+    <Canvas of={stories.WithHelper} />

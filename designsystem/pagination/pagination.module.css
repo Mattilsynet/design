@@ -2,15 +2,6 @@
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
 
-		/* Overwrite to same as tertiary from Designsystemet  */
-		& :is(a, button):not([aria-current="page"]) {
-			--dsc-button-background: transparent;
-			--dsc-button-background--active: var(--ds-color-surface-active);
-			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-color: var(--ds-color-text-subtle);
-			--dsc-button-color--hover: var(--ds-color-text-default);
-		}
-
 		& :is(a, button) {
 			border-radius: var(--ds-border-radius-full);
 			pointer-events: all; /* TODO: Fix in Designsystemet https://github.com/digdir/designsystemet/pull/2942 */

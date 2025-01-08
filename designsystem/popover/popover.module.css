@@ -31,15 +31,6 @@
 			& :is(a, button) {
 				justify-content: start;
 				width: 100%;
-
-				/* Overwrite to same as tertiary from Designsystemet  */
-				&:not([data-variant]) {
-					--dsc-button-background: transparent;
-					--dsc-button-background--active: var(--ds-color-surface-active);
-					--dsc-button-background--hover: var(--ds-color-surface-hover);
-					--dsc-button-color: var(--ds-color-text-subtle);
-					--dsc-button-color--hover: var(--ds-color-text-default);
-				}
 			}
 		}
 	}

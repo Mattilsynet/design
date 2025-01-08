@@ -4,7 +4,6 @@ import * as stories from './popover.stories';
 <Meta of={stories} />
 
 # Popover
-
 - Legg klassen `popover`, attributten `popover` og `id` på `<div>` eller `<menu>`
 - Legg `popovertarget="ID"` på typisk `<button>` som trigger element
 - Plassiering vil automatisk tilpasse seg scroll og tilgjengelig plass
@@ -25,10 +24,8 @@ import * as stories from './popover.stories';
 ## Lukkeknapp
 - Bruk `popovertargetaction="hide"` på `<button>` for å lage lukkeknapp:
 
-<Canvas of={stories.Close} />
+<Canvas of={stories.WithClose} />
 
 ## Pil
-
 - Bruk `data-arrow` på `<button>` for å få ikon:
-
-<Canvas of={stories.Arrow} />
+<Canvas of={stories.WithArrow} />

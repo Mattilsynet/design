@@ -74,7 +74,7 @@ export const Position: Story = {
 	),
 };
 
-export const Close: Story = {
+export const WithClose: Story = {
 	render: () => (
 		<>
 			<button popovertarget="pop-3" type="button" className={styles.button}>
@@ -94,7 +94,7 @@ export const Close: Story = {
 	),
 };
 
-export const Arrow: Story = {
+export const WithArrow: Story = {
 	render: () => (
 		<>
 			<button

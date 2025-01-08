@@ -43,7 +43,7 @@ export const Default: Story = {
 	),
 };
 
-export const Backbutton: Story = {
+export const WithBackbutton: Story = {
 	decorators,
 	render: () => (
 		<>
