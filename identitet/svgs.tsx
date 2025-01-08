@@ -32,6 +32,7 @@ export const Svgs = ({
 			{showSearch && (
 				<div className={styles.grid} data-gap="4">
 					<input
+						aria-label="Søk"
 						className={styles.input}
 						onChange={({ target }) => setQuery(target.value.trim())}
 						type="search"
