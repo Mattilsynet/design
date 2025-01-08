@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../designsystem/styles.module.css";
+import "@u-elements/u-datalist";
 declare global {
 	interface Window {
 		SVGS: { file: string; categories: string[]; svg: string }[];
@@ -37,16 +38,15 @@ export const Svgs = ({
 			{showSearch && (
 				<>
 					<input
-						list="illustration-categories"
 						className={styles.input}
 						type="search"
 						onChange={(e) => setSearch(e.target.value)}
 					/>
-					<datalist id="illustration-categories">
+					<u-datalist id="illustration-categories">
 						{allCategories.map((category) => (
-							<option key={category} value={category}></option>
+							<u-option key={category}>{category}</u-option>
 						))}
-					</datalist>
+					</u-datalist>
 				</>
 			)}
 			<div className={`svgs ${styles.grid}`} data-grid="lg" {...rest}>
