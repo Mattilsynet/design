@@ -21,10 +21,10 @@
 		 * Close button
 		 */
 		position: relative;
-		&:has(> button:empty) {
+		&:has(> button:last-child:empty) {
 			padding-right: var(--ds-sizing-12);
 		}
-		& > button:empty {
+		& > button:last-child:empty {
 			all: unset;
 			border-radius: var(--ds-border-radius-full);
 			cursor: pointer;
