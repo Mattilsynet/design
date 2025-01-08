@@ -30,7 +30,7 @@ export const Svgs = ({
 	return (
 		<div>
 			{showSearch && (
-				<div className={styles.grid} data-gap="4">
+				<div className={styles.grid} data-gap="md">
 					<input
 						aria-label="Søk"
 						className={styles.input}
@@ -39,7 +39,7 @@ export const Svgs = ({
 					/>
 					<fieldset className={styles.fieldset}>
 						<legend>Kategori</legend>
-						<div className={styles.flex} data-gap="4">
+						<div className={styles.flex} data-gap="md">
 							<div className={styles.field}>
 								<input
 									checked={!showCategory}

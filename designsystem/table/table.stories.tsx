@@ -33,7 +33,7 @@ type RowType = (typeof mockData)[0] & { expand?: React.ReactNode };
 
 const decorators = [
 	(Story: StoryFn) => (
-		<div className={styles.grid} data-gap="4">
+		<div className={styles.grid} data-gap="md">
 			<Story />
 		</div>
 	),

@@ -70,33 +70,20 @@
 			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
 			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
 		}
-		&[data-gap="0"],
 		&[data-gap="none"],
 		&[data-gap="false"] {
 			gap: 0px;
 		}
-		&[data-gap="1"] {
+		&[data-gap="xs"] {
 			gap: var(--ds-size-1);
 		}
-		&[data-gap="2"] {
+		&[data-gap="sm"] {
 			gap: var(--ds-size-2);
 		}
-		&[data-gap="3"] {
-			gap: var(--ds-size-3);
-		}
-		&[data-gap="4"] {
+		&[data-gap="md"] {
 			gap: var(--ds-size-4);
 		}
-		&[data-gap="5"] {
-			gap: var(--ds-size-5);
-		}
-		&[data-gap="6"] {
-			gap: var(--ds-size-6);
-		}
-		&[data-gap="7"] {
-			gap: var(--ds-size-7);
-		}
-		&[data-gap="8"] {
+		&[data-gap="lg"] {
 			gap: var(--ds-size-8);
 		}
 		&[data-align="start"] {

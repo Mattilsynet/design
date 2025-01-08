@@ -111,7 +111,7 @@ export const Horizontal: Story = {
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
 			<p>Fellesbeskrivelse</p>
-			<div className={styles.flex} data-gap="4">
+			<div className={styles.flex} data-gap="md">
 				<div className={styles.field}>
 					<input
 						type="checkbox"

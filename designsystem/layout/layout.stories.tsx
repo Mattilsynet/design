@@ -55,20 +55,20 @@ export const Flex: Story = {
 export const Grid: Story = {
 	decorators,
 	render: () => (
-		<div className={styles.grid} data-gap="8">
+		<div className={styles.grid} data-gap="lg">
 			<div className={styles.grid} data-grid="fit-lg">
 				<div>Child 1</div>
 				<div>Child 2</div>
 			</div>
-			<div className={styles.grid} data-grid="sidebar" data-gap="8">
+			<div className={styles.grid} data-grid="sidebar" data-gap="lg">
 				<div>
 					Sidebar
-					<div className={styles.grid} data-grid="fit-sm" data-gap="0">
+					<div className={styles.grid} data-grid="fit-sm" data-gap="none">
 						<div>Child 1</div>
 						<div>Child 2</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-grid="2" data-gap="3">
+				<div className={styles.grid} data-grid="2" data-gap="md">
 					<div>Child 1</div>
 					<div className={styles.grid} data-grid="sm">
 						<div>Child 2-1</div>
@@ -99,64 +99,36 @@ export const Gap: Story = {
 	decorators,
 	render: () => (
 		<section className={styles.grid} data-grid="sidebar">
-			<code>data-gap="0 | none | false"</code>
-			<div className={styles.flex} data-gap="0">
+			<code>data-gap="none | false"</code>
+			<div className={styles.flex} data-gap="none">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="1"</code>
-			<div className={styles.flex} data-gap="1">
+			<code>data-gap="xs"</code>
+			<div className={styles.flex} data-gap="xs">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="2"</code>
-			<div className={styles.flex} data-gap="2">
+			<code>data-gap="sm"</code>
+			<div className={styles.flex} data-gap="sm">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="3"</code>
-			<div className={styles.flex} data-gap="3">
+			<code>data-gap="md"</code>
+			<div className={styles.flex} data-gap="md">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="4"</code>
-			<div className={styles.flex} data-gap="4">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="5"</code>
-			<div className={styles.flex} data-gap="5">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="6"</code>
-			<div className={styles.flex} data-gap="6">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="7"</code>
-			<div className={styles.flex} data-gap="7">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="8"</code>
-			<div className={styles.flex} data-gap="8">
+			<code>data-gap="lg"</code>
+			<div className={styles.flex} data-gap="lg">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
@@ -199,7 +171,7 @@ export const Align: Story = {
 			className={styles.grid}
 			data-grid="sidebar"
 			data-align="center"
-			data-gap="8"
+			data-gap="lg"
 		>
 			<code>data-align="stretch"</code>
 			<div className={styles.flex} data-align="stretch">
@@ -236,7 +208,7 @@ export const Justify: Story = {
 			className={styles.grid}
 			data-grid="sidebar"
 			data-align="center"
-			data-gap="8"
+			data-gap="lg"
 		>
 			<code>data-justify="start"</code>
 			<div className={styles.flex} data-justify="start">
@@ -280,7 +252,7 @@ export const Justify: Story = {
 export const AlignContent: Story = {
 	decorators,
 	render: () => (
-		<section className={styles.grid} data-grid="lg" data-gap="8">
+		<section className={styles.grid} data-grid="lg" data-gap="lg">
 			<article>
 				<code>start</code>
 				<div className={styles.flex} data-align-content="start">
