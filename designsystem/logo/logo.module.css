@@ -36,7 +36,7 @@
 		margin: 0;
 		max-width: 100%;
 		min-width: var(--icon-height);
-		overflow-x: hidden;
+		overflow: hidden;
 		padding: 0;
 		text-align: left;
 		text-decoration: none; /* In case logo is an <a> */
