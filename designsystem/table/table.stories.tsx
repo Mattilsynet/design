@@ -91,47 +91,6 @@ export const Default: Story = {
 	),
 };
 
-// export const Default: Story = {
-//   decorators,
-//   render: (args) => {
-//     const columns: ColumnsType = [
-//       { key: 'firstName', label: 'First name' },
-//       { key: 'lastName', label: 'Last name' },
-//       { key: 'age', label: 'Age', numeric: true },
-//       { key: 'visits', label: 'Visits', numeric: true }
-//     ];
-
-//     return (
-//       <table {...args}>
-//         <thead>
-//           <tr>
-//             {columns.map(({ label, numeric }, index) => (
-//               <th key={index} data-numeric={numeric}>
-//                 {label}
-//               </th>
-//             ))}
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {mockDataSmall.map((row, rowIndex) => (
-//             <tr key={rowIndex}>
-//               {columns.map(({ key, numeric }, cellIndex) =>
-//                 cellIndex ? (
-//                   <td key={cellIndex} data-numeric={numeric}>
-//                     {row[key]}
-//                   </td>
-//                 ) : (
-//                   <th key={cellIndex}>{row[key]}</th>
-//                 )
-//               )}
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     );
-//   }
-// };
-
 export const DefaultTanstack: Story = {
 	decorators,
 	render: function Render(args) {
@@ -1136,6 +1095,77 @@ export const FixedWidths: Story = {
 	),
 };
 
+export const Align: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.grid}>
+			<code>data-align="start":</code>
+			<table
+				className={styles.table}
+				data-align="start"
+				aria-label="Table with align start"
+			>
+				<tbody>
+					<tr>
+						<th data-nowrap>Reference number</th>
+						<td>1</td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td>
+							A preliminary version.
+							<br />
+							An application for a certificate has been initiated.
+						</td>
+					</tr>
+					<tr>
+						<th>Template</th>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed
+							enim ut ex posuere suscipit id eu justo. Cras vehicula ornare
+							efficitur. Etiam commodo est velit, eget mattis felis sollicitudin
+							sit amet. Etiam non dui fermentum, malesuada augue in, elementum
+							felis.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<code>data-align="center":</code>
+			<table
+				className={styles.table}
+				data-align="center"
+				aria-label="Table with align start"
+			>
+				<tbody>
+					<tr>
+						<th data-nowrap>Reference number</th>
+						<td>1</td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td>
+							A preliminary version.
+							<br />
+							An application for a certificate has been initiated.
+						</td>
+					</tr>
+					<tr>
+						<th>Template</th>
+						<td>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed
+							enim ut ex posuere suscipit id eu justo. Cras vehicula ornare
+							efficitur. Etiam commodo est velit, eget mattis felis sollicitudin
+							sit amet. Etiam non dui fermentum, malesuada augue in, elementum
+							felis.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	),
+};
+
 export const NumericValues: Story = {
 	decorators,
 	render: () => (
@@ -1178,7 +1208,7 @@ export const NumericValues: Story = {
 	),
 };
 
-export const Footer: Story = {
+export const WithFooter: Story = {
 	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Table with footer">

@@ -4,18 +4,15 @@ import * as stories from './table.stories';
 <Meta of={stories} />
 
 # Table
-
 - Legg klassen `table` på `<table>`
 - Bruk `<thead>` med `<tr><th>` som barn for topplinje
 - Bruk `<tbody>` med `<tr><td>` som barn for rader
 - Bruk `aria-label` for å navngi tabellen for skjermlesere
 - Bruk `data-nowrap` hvor du vil på tabellen, rader eller celler for å hindre linjeskift
-
 <Canvas of={stories.Default} />
 
 ## Horisontale tittler
 - Bruk `<th scope="row">` som første barn i en rad for å få horisontal overskrift
-
 <Canvas of={stories.WithHorizontalTitles} />
 
 ## Like bredder
@@ -23,61 +20,52 @@ import * as stories from './table.stories';
 - Dette kan være upraktisk når innholdet endrer seg/sorteres/pagineres
 - Bruk `data-fixed` på `<table>` for like/satte bredder
 - Bruk evt. `style="width: X"` på `<th>` for å sette bredde på gitte kolonner
-
 <Canvas of={stories.FixedWidths} />
 
 ## Numeriske verider
 - Bruk `data-numeric` for å få høyrestilte tall med lik bredde.
-
 <Canvas of={stories.NumericValues} />
+
+## Vertikal justering av innhold
+- Bruk `data-align="start | center"` for å vertikalt justere innhold (`start` er default)
+<Canvas of={stories.Align} />
 
 ## Sortering
 - Bruk `<th aria-sort="none | ascending | descending | other">`
 - Bruk `<button type="button">`eller `<a>` i `<th>` for client/server sorting
 - Bruk [TanStack Table](https://tanstack.com/table/latest) eller annen valgfri kode for å utføre sorteringen
 - Se også [like bredder](#like-bredder)
-
 <Canvas of={stories.SortableSimple} />
 
 ## Bunnlinje
 - Bruk `<tfoot>` med `<tr><th>` som barn for bunnlinje
-
-<Canvas of={stories.Footer} />
+<Canvas of={stories.WithFooter} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
-
 <Canvas of={stories.Sizes} />
 
 ## Ekspandering
 - Legg `<button aria-expanded="true | false">` som barn av `td` eller `th`
 - Legg til en rad etter `<tr><td colspan="x">`, hvor `x` er antall kolonner
-
 <Canvas of={stories.ExpandableSimple} />
 
 ## Checkbox
 - Legg et [Field](/designsystem/field/) i `td` med `<input type="checkbox">` og `label`
-
 <Canvas of={stories.CheckableSimple} />
 
 ## Paginering
-
 - Tabell kan brukes sammen med [Pagination](/designsystem/pagination/)
-
 <Canvas of={stories.PaginatableSimple} />
 
 ## Mobil: Scroll
-
 - Plasser tabellen inni en `<figure>` for å få scroll på mobil
 - Bruk `data-nowrap` hvor du vil på tabellen, rader eller celler for å hindre linjeskift
 - **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-scroll)
-
 <Canvas of={stories.MobileScroll} />
 
 ## Mobile: Divid (Eksperimentell)
-
 - Legg `data-divide` på `<table>` for todelt uttegning opp til `960px`
 - **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 - **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-divide)
-
 <Canvas of={stories.MobileDivide} />

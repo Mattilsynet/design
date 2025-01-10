@@ -12,25 +12,18 @@
 		--dsc-table-header-background: transparent;
 		--dsc-table-header-divider: 1px solid;
 
+		vertical-align: top;
+
 		&[data-fixed] {
 			table-layout: fixed;
 		}
 
-		/**
-		 * TMP FIX DESIGNSYSTYEMET: https://github.com/digdir/designsystemet/pull/2933
-		 */
-		& > tbody:has(+ tfoot) > tr:last-child > :is(th, td) {
-			border-bottom: none;
+		& > :is(thead, tbody, tfoot) {
+			vertical-align: inherit;
 		}
-		& > tfoot > tr > :is(th, td) {
-			border-top: var(--dsc-table-header-divider);
-			border-bottom: none;
-		}
-		& > thead > tr > [aria-sort] > button:focus-visible {
-			border-radius: var(--ds-border-radius-sm);
-			box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-			outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-			outline: var(--ds--focus, var(--dsc-focus-outline));
+
+		&[data-align="center"] {
+			vertical-align: middle;
 		}
 	}
 
