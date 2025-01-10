@@ -120,9 +120,9 @@
 (defn export-assets
   "Expors all assets that aren't given specialized treatment."
   [& _]
-  (for [{:keys [path file]} (->> exports
-                                 (remove #(str/ends-with? (:path %) ".svg"))
-                                 (remove (comp #{"styles.css" "package.json" "styles.json"} :path)))]
+  (doseq [{:keys [path file]} (->> exports
+                                   (remove #(str/ends-with? (:path %) ".svg"))
+                                   (remove (comp #{"styles.css" "package.json" "styles.json"} :path)))]
     (let [target (io/file (str "resources/public/mtds/" path))]
       (io/make-parents target)
       (io/copy file target))))
