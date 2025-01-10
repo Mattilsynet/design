@@ -38,8 +38,14 @@ export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
       outDir: dist
     }),
     {
-      name: 'Generate CSS modules map to styles.json',
-      generateBundle: () => fs.writeFileSync(path.resolve(dist, 'styles.json'), JSON.stringify(cssModulesMap, null, 2))
+      name: 'Generate CSS modules map to styles.json and add ensure correct order when loading with TailwindCSS',
+      writeBundle: () => {
+        const css = path.resolve(dist, 'styles.css');
+        const json = path.resolve(dist, 'styles.json');
+        
+        fs.writeFileSync(css, `@layer tailwind-base, ds, mt;${fs.readFileSync(css, 'utf-8').replace('@charset "UTF-8";', '')}`);
+        fs.writeFileSync(json, JSON.stringify(cssModulesMap, null, 2))
+      }
     },
     cssPropsRename
   ],
@@ -59,7 +65,7 @@ export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
         preserveModules: true,
         preserveModulesRoot: root,
         // See https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
-        entryFileNames: ({ name }) => `${name.includes('node_modules') ? name.replace(/node_modules/, 'external') : '[name]'}.js`
+        entryFileNames: ({ name }) => `${name.includes('node_modules') ? name.replace(/node_modules/, 'external') : '[name]'}.js`,
       }, {
         format: 'iife',
         name: 'mtds'

@@ -1,6 +1,4 @@
-/* Ensure correct order when loading with TailwindCSS */
-@layer tailwind-base, ds, mt;
-
+@import url("@digdir/designsystemet-css");
 @import url("@digdir/designsystemet-theme");
 @import url("./alert/alert.module.css");
 @import url("./avatar/avatar.module.css");
