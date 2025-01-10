@@ -40,7 +40,7 @@ export const Default: Story = {
 			<a className={styles.logo} href="/">
 				Undermerke
 			</a>
-			<div className="demo-resize" style={{ width: 400 }}>
+			<div className="demo-resize">
 				<h1 className={styles.logo}>Resize&nbsp;Demo</h1>
 			</div>
 		</>
