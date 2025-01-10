@@ -40,7 +40,7 @@ export const Default: Story = {
 			<a className={styles.logo} href="/">
 				Undermerke
 			</a>
-			<div className="demo-resize">
+			<div className="demo-resize" style={{ width: 400 }}>
 				<h1 className={styles.logo}>Resize&nbsp;Demo</h1>
 			</div>
 		</>
@@ -50,8 +50,16 @@ export const Default: Story = {
 export const English: Story = {
 	decorators,
 	render: () => (
-		<h1 lang="en" className={styles.logo}>
-			Sanitary&nbsp;certificate&nbsp;status
-		</h1>
+		<>
+			<h1 lang="en" className={styles.logo}></h1>
+			<h1 lang="en" className={styles.logo}>
+				Sanitary certificate status
+			</h1>
+			<div className="demo-resize">
+				<h1 lang="en" className={styles.logo}>
+					Sanitary certificate status
+				</h1>
+			</div>
+		</>
 	),
 };
