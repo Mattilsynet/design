@@ -117,13 +117,15 @@
        slurp
        (spit "resources/public/mtds/styles.css")))
 
-(defn export-js [& _]
-  (->> exports
-       (filter (comp #{"index.iife.js"} :path))
-       first
-       :file
-       slurp
-       (spit "resources/public/mtds/index.iife.js")))
+(defn export-assets
+  "Expors all assets that aren't given specialized treatment."
+  [& _]
+  (for [{:keys [path file]} (->> exports
+                                 (remove #(str/ends-with? (:path %) ".svg"))
+                                 (remove (comp #{"styles.css" "package.json" "styles.json"} :path)))]
+    (let [target (io/file (str "resources/public/mtds/" path))]
+      (io/make-parents target)
+      (io/copy file target))))
 
 (defn load-committed-pom []
   (:out (shell/sh "git" "cat-file" "-p" "HEAD:clojure/pom.xml")))
