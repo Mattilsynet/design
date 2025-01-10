@@ -1,4 +1,4 @@
-@import url("@digdir/designsystemet-css");
+/* Do not load @digdir/designsystemet-css as is implicitt with "composes", and it creates lots of Typescript types we don't want */
 @import url("@digdir/designsystemet-theme");
 @import url("./alert/alert.module.css");
 @import url("./avatar/avatar.module.css");
