@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { IS_BROWSER, QUICK_EVENT, isInputLike, off, on, onAdd, useId } from '../utils';
+import { QUICK_EVENT, isInputLike, off, on, onAdd, useId } from '../utils';
 
 const CSS_FIELD = styles.field.split(' ')[0];
 const CSS_VALIDATIONS = styles.validation.split(' ');
@@ -49,8 +49,6 @@ function renderCounter(input: HTMLInputElement) {
     el.textContent = `${Math.abs(remainder)} tegn ${nextInvalid ? 'for mye' : 'igjen'}`;
   }
 }
-
-if (IS_BROWSER) observe(document);
 
 export function observe (el: Element | Document) {
   const fields = el.getElementsByClassName(CSS_FIELD);

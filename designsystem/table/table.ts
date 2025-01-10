@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { IS_BROWSER, onAdd } from '../utils';
+import { onAdd } from '../utils';
 const CSS_TABLE = styles.table.split(' ')[0];
 const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 
@@ -15,8 +15,6 @@ function process(tables: HTMLCollectionOf<Element>) {
     }
   }
 }
-
-if (IS_BROWSER) observe(document);
 
 export function observe (el: Element | Document) {
   const tables = el.getElementsByClassName(CSS_TABLE);

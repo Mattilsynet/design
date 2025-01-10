@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { IS_BROWSER, isInputLike, onAdd, useId } from '../utils';
+import { isInputLike, onAdd, useId } from '../utils';
 const CSS_FIELDSET = styles.fieldset.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
 const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
@@ -21,8 +21,6 @@ function process(fieldsets: HTMLCollectionOf<Element>) {
       }
   }
 }
-
-if (IS_BROWSER) observe(document);
 
 export function observe (el: Element | Document) {
   const fields = el.getElementsByClassName(CSS_FIELDSET);

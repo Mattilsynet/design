@@ -1,13 +1,11 @@
 import { type NanoPopPosition, reposition } from '../nanopop';
 import styles from '../styles.module.css';
-import { IS_BROWSER, QUICK_EVENT, off, on } from '../utils';
+import { QUICK_EVENT, off, on } from '../utils';
 
 const CSS_POPOVER = styles.popover.split(' ')[0];
 const CONTAINER = { toJSON: () => '', bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0, x: 0, y: 0 };
 const POSITIONS = /(top|right|bottom|left)-(start|middle|end)/;
 type Toggle = Event & { newState?: string };
-
-if (IS_BROWSER) observe(document);
 
 // Not exposed as a hook, as it is nice to allow consuming components to use it as a callback
 export function anchorPosition(anchor: HTMLElement, popover: HTMLElement) {
