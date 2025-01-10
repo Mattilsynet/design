@@ -31,6 +31,9 @@ export default {
 			},
 			container: (props: DocsContainerProps) => {
 				useEffect(() => {
+					// Set Norwegian language
+					document.documentElement.setAttribute("lang", "no");
+
 					// Paint blockqoutes with x as red
 					for (const el of document.querySelectorAll(".sbdocs-blockquote"))
 						el.toggleAttribute("data-error", el.textContent?.includes("❌"));
