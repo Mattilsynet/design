@@ -126,18 +126,18 @@
 			translate: -50% 2px;
 			visibility: visible;
 		}
+	}
 
-		/**
-		 * In <menu>
-		 */
-		menu:has(> li > &) {
-			list-style: none;
-			padding: 0;
-		}
-		menu > li > & {
-			border-radius: var(--ds-border-radius-md);
-			justify-content: start;
-			width: 100%;
-		}
+	/**
+	 * In <menu>
+	 */
+	menu:has(> li > .button) {
+		list-style: none;
+		padding: 0;
+	}
+	menu > li > .button {
+		border-radius: var(--ds-border-radius-md);
+		justify-content: start;
+		width: 100%;
 	}
 }

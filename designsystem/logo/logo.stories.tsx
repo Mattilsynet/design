@@ -46,3 +46,12 @@ export const Default: Story = {
 		</>
 	),
 };
+
+export const English: Story = {
+	decorators,
+	render: () => (
+		<h1 lang="en" className={styles.logo}>
+			Sanitary&nbsp;certificate&nbsp;status
+		</h1>
+	),
+};
