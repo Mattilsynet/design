@@ -11,7 +11,7 @@ brew install mvn
 ```
 
 ```clj
-io.mattilsynet/design {:mvn/version "0.2.0.13"}
+io.mattilsynet/design {:mvn/version "0.2.0.14"}
 ```
 
 (Versjonsnummeret korresponderer med npm-pakkens, altså `0.0.3`, og har et
