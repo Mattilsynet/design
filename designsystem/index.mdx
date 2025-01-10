@@ -84,6 +84,9 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       </u-tabpanel>
       <u-tabpanel>
         ```css
+        /* Load @mattilsynet/design before Tailwind */
+        @import url('@mattilsynet/design/styles.css');
+
         /**
         * Fix Tailwind Preflight specificity by using @layer:
         * See https://css-tricks.com/?p=372576
@@ -94,7 +97,6 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         @tailwind components;
         @tailwind utilities;
 
-        @import url('@mattilsynet/design/styles.css'); /* Load @mattilsynet/design after Tailwind */
         ```
       </u-tabpanel>
     </u-tabs>
