@@ -2,6 +2,7 @@
 @import url("@digdir/designsystemet-theme");
 @import url("./alert/alert.module.css");
 @import url("./avatar/avatar.module.css");
+@import url("./badge/badge.module.css");
 @import url("./breadcrumbs/breadcrumbs.module.css");
 @import url("./button/button.module.css");
 @import url("./card/card.module.css");

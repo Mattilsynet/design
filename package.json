@@ -4,9 +4,7 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": [
-		"mtds"
-	],
+	"files": ["mtds"],
 	"engines": {
 		"npm": ">=10.0.0",
 		"node": ">=20.0.0"
@@ -48,22 +46,22 @@
 		"@storybook/react-vite": "^8.4.7",
 		"@storybook/theming": "^8.4.7",
 		"@tanstack/react-table": "^8.20.6",
-		"@types/node": "^22.10.2",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
+		"@types/node": "^22.10.5",
+		"@types/react": "^19.0.6",
+		"@types/react-dom": "^19.0.3",
 		"@u-elements/u-datalist": "0.0.9",
 		"@u-elements/u-details": "^0.1.0",
 		"@u-elements/u-tabs": "^0.0.8",
 		"@vitejs/plugin-react": "^4.3.4",
-		"fast-glob": "^3.3.2",
+		"fast-glob": "^3.3.3",
 		"globals": "^15.12.0",
 		"postcss": "^8.4.49",
 		"postcss-nesting": "^13.0.1",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
 		"storybook": "^8.4.7",
-		"typescript": "^5.7.2",
-		"vite": "^6.0.6",
-		"vite-plugin-dts": "^4.4.0"
+		"typescript": "^5.7.3",
+		"vite": "^6.0.7",
+		"vite-plugin-dts": "^4.5.0"
 	}
 }

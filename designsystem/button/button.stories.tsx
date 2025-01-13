@@ -1,5 +1,5 @@
 import { Heart, Star } from "@phosphor-icons/react";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import styles from "../styles.module.css";
 
@@ -10,8 +10,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators = [
-	(Story: StoryFn) => (
+const decorators: Story["decorators"] = [
+	(Story) => (
 		<div className={styles.flex}>
 			<Story />
 		</div>
@@ -224,7 +224,6 @@ export const WithTooltip: Story = {
 };
 
 export const InMenu: Story = {
-	decorators,
 	render: () => (
 		<menu>
 			<li>

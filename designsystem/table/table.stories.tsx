@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
 	type ColumnDef,
 	type ExpandedState,
@@ -31,8 +31,8 @@ type ColumnsType = {
 }[];
 type RowType = (typeof mockData)[0] & { expand?: React.ReactNode };
 
-const decorators = [
-	(Story: StoryFn) => (
+const decorators: Story["decorators"] = [
+	(Story) => (
 		<div className={styles.grid} data-gap="md">
 			<Story />
 		</div>

@@ -7,7 +7,7 @@ import illustrations from "../public/illustrations/illustrations.json";
 
 const PUBLIC_DIR = path.resolve("./public");
 const FOLDERS = "@(identitet|designsystem|profilering)";
-const IGNORE = "!(avatar|badge|card|chip)";
+const IGNORE = "!(avatar|card|chip)";
 
 export default {
 	stories: [

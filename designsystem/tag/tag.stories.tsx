@@ -1,5 +1,5 @@
 import { CheckCircle, Info, Warning, XCircle } from "@phosphor-icons/react";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -9,8 +9,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators = [
-	(Story: StoryFn) => (
+const decorators: Story["decorators"] = [
+	(Story) => (
 		<div className={styles.flex}>
 			<Story />
 		</div>

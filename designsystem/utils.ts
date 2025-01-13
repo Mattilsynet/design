@@ -101,7 +101,7 @@ declare global {
 		interface HTMLAttributes<T> {
 			popovertargetaction?: string;
 			popovertarget?: string;
-			popover?: string | boolean;
+			popover?: "" | "auto" | "manual" | undefined;
 		}
 	}
 }

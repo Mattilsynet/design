@@ -17,6 +17,10 @@
 		transition-property: opacity, margin, visibility;
 		visibility: hidden;
 
+		&:not([hidden]) {
+			display: block;
+		}
+
 		&:popover-open {
 			margin: 0;
 			opacity: 1;

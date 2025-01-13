@@ -5,4 +5,17 @@ import * as stories from './badge.stories';
 
 # Badge
 - Legg klassen `badge` på typisk `span`
+- Legg innhold inni attributten `data-badge`
 <Canvas of={stories.Default} />
+
+## Farger
+- Bruk `data-color` for å endre farge
+<Canvas of={stories.Color} />
+
+## Inni element
+- Knapper og overskifter kan være forelder til `badge`
+<Canvas of={stories.InElement} />
+
+## Rundt element
+- Dersom `badge` har elementer inni, vil den plassere seg i top-høyre hjørne 
+<Canvas of={stories.WithPosition} />

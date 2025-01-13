@@ -1,5 +1,49 @@
 @layer mt.design {
 	.badge {
-		composes: ds-badge from "@digdir/designsystemet-css";
+		--dsc-badge-background: var(--ds-color-base-default);
+		--dsc-badge-color: var(--ds-color-contrast-default);
+		--dsc-badge-size: var(--ds-size-6);
+
+		display: inline-grid;
+		position: relative;
+		place-items: center;
+		vertical-align: middle;
+
+		&::before {
+			background: var(--dsc-badge-background);
+			border-radius: var(--ds-border-radius-full);
+			box-sizing: border-box;
+			color: var(--dsc-badge-color);
+			content: attr(data-badge);
+			display: grid;
+			font-size: var(--ds-body-sm-font-size);
+			font-variant-numeric: tabular-nums;
+			font-weight: 700;
+			line-height: 1;
+			min-height: var(--dsc-badge-size);
+			min-width: var(--dsc-badge-size);
+			padding: 0 calc(var(--ds-size-1) * 1.5);
+			place-items: center;
+		}
+
+		&[data-badge=""],
+		&:not([data-badge]) {
+			--dsc-badge-size: var(--ds-size-3);
+		}
+
+		&:not(:empty)::before {
+			position: absolute;
+			right: 0%;
+			top: 0%;
+			translate: 50% -50%;
+			font-size: .75rem;
+		}
+
+		&[data-color="danger"] {
+			--dsc-badge-background: var(--mt-rognebaer);
+		}
+	}
+	:is(h1, h2, h3, h4, h5, h6) > .badge::before {
+		translate: 0 -.1em;
 	}
 }
