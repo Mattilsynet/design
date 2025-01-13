@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './skeleton.stories';
+
+<Meta of={stories} />
+
+# Skeleton
+- Legg klassen `skeleton` på typisk `div` eller `span` (for tekst)
+- Bruk `data-variant="rectangle | circle | text"`
+- Bruk inline `style` for `width` og `height`
+<Canvas of={stories.Default} />
+
+## Sirkel
+- Bruk `data-variant="circle"`
+- Bruk inline `style` for `width` - height er automatisk lik width
+<Canvas of={stories.Circle} />
+
+## Tekst
+- Bruk `data-variant="text"` på en `span`
+- Innholdet bestemmer størrelsen på tekst-skeleton
+<Canvas of={stories.Text} />

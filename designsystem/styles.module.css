@@ -1,28 +1,29 @@
 /* Do not load @digdir/designsystemet-css as is implicitt with "composes", and it creates lots of Typescript types we don't want */
 @import url("@digdir/designsystemet-theme");
-@import url("./alert/alert.module.css");
-@import url("./avatar/avatar.module.css");
-@import url("./badge/badge.module.css");
-@import url("./breadcrumbs/breadcrumbs.module.css");
-@import url("./button/button.module.css");
-@import url("./card/card.module.css");
-@import url("./chip/chip.module.css");
-@import url("./details/details.module.css");
-@import url("./errorsummary/errorsummary.module.css");
-@import url("./field/field.module.css");
-@import url("./fieldset/fieldset.module.css");
-@import url("./font.css");
-@import url("./input/input.module.css");
-@import url("./layout/layout.module.css");
-@import url("./link/link.module.css");
-@import url("./logo/logo.module.css");
-@import url("./modal/modal.module.css");
-@import url("./pagination/pagination.module.css");
-@import url("./popover/popover.module.css");
-@import url("./table/table.module.css");
-@import url("./tabs/tabs.module.css");
-@import url("./tag/tag.module.css");
 @import url("./validation/validation.module.css");
+@import url("./tag/tag.module.css");
+@import url("./tabs/tabs.module.css");
+@import url("./table/table.module.css");
+@import url("./skeleton/skeleton.module.css");
+@import url("./popover/popover.module.css");
+@import url("./pagination/pagination.module.css");
+@import url("./modal/modal.module.css");
+@import url("./logo/logo.module.css");
+@import url("./link/link.module.css");
+@import url("./layout/layout.module.css");
+@import url("./input/input.module.css");
+@import url("./font.css");
+@import url("./fieldset/fieldset.module.css");
+@import url("./field/field.module.css");
+@import url("./errorsummary/errorsummary.module.css");
+@import url("./details/details.module.css");
+@import url("./chip/chip.module.css");
+@import url("./card/card.module.css");
+@import url("./button/button.module.css");
+@import url("./breadcrumbs/breadcrumbs.module.css");
+@import url("./badge/badge.module.css");
+@import url("./avatar/avatar.module.css");
+@import url("./alert/alert.module.css");
 
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.design {

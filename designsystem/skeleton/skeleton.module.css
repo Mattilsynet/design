@@ -1,0 +1,9 @@
+@layer mt.design {
+	.skeleton {
+		composes: ds-skeleton from "@digdir/designsystemet-css";
+
+		&[data-variant="circle"] {
+			height: auto;
+		}
+	}
+}
