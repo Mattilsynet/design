@@ -65,7 +65,7 @@
     "granskog": {
       "background-default": {
         "$type": "color",
-        "$value": "{color.granskog.1}"
+        "$value": "#ff037d"
       },
       "background-subtle": {
         "$type": "color",
