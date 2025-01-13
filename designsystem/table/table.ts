@@ -6,7 +6,6 @@ const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 function process(tables: HTMLCollectionOf<Element>) {
   for(const table of tables) if (table instanceof HTMLTableElement) {
     const ths = Array.from(table.tHead?.rows[0]?.cells || [], (el) => el.innerText?.trim()); // Using innerText to only include visible text
-    console.log(ths);
     for (const tbody of table.tBodies) {
       for (const row of tbody.rows) {
         for (const cell of row.cells) {

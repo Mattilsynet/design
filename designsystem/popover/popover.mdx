@@ -8,7 +8,6 @@ import * as stories from './popover.stories';
 - Legg `popovertarget="ID"` på typisk `<button>` som trigger element
 - Plassiering vil automatisk tilpasse seg scroll og tilgjengelig plass
 - **Merk:** automatisk posisjonering krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-
 <Canvas of={stories.Dropdown} />
 
 ## Nedtrekksmeny / Dropdown
@@ -17,8 +16,8 @@ import * as stories from './popover.stories';
 <Canvas of={stories.Dropdown} />
 
 ## Position
-- Bruk `data-position="[top|right|bottom|left]-[start|middle|end]"`
-
+- Bruk `data-position="over | under"`
+- Popover vil alltid legge seg der det er plass i skjermbildet
 <Canvas of={stories.Position} />
 
 ## Lukkeknapp
@@ -33,3 +32,4 @@ import * as stories from './popover.stories';
 ## Skillelinje
 - Bruk `<li><hr />` i `<menu>` for å få skillelinje:
 <Canvas of={stories.WithDivider} />
+<Canvas of={stories.Dropdown} />

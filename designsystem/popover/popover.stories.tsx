@@ -16,7 +16,7 @@ export const Dropdown: Story = {
 		return (
 			<>
 				<button
-					popovertarget={popId}
+					popoverTarget={popId}
 					type="button"
 					className={styles.button}
 					data-variant="secondary"
@@ -30,7 +30,7 @@ export const Dropdown: Story = {
 					className={styles.popover}
 					style={{ width: 900 }}
 				>
-					<menu className={styles.grid} data-grid="md" data-gap="none">
+					<menu className={styles.grid} data-gap="none">
 						<li>
 							<button type="button" className={styles.button}>
 								Knapp 1
@@ -147,7 +147,7 @@ export const Position: Story = {
 	render: () => (
 		<>
 			<button
-				popovertarget="pop-2"
+				popoverTarget="pop-2"
 				type="button"
 				className={styles.button}
 				data-variant="primary"
@@ -158,7 +158,7 @@ export const Position: Story = {
 				popover=""
 				id="pop-2"
 				className={styles.popover}
-				data-position="top-end"
+				data-position="over"
 			>
 				<div className={styles.grid}>
 					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
@@ -171,8 +171,8 @@ export const Position: Story = {
 							Lagre
 						</button>
 						<button
-							popovertarget="pop-2"
-							popovertargetaction="hide"
+							popoverTarget="pop-2"
+							popoverTargetAction="hide"
 							type="button"
 							className={styles.button}
 							data-variant="secondary"
@@ -190,7 +190,7 @@ export const WithClose: Story = {
 	render: () => (
 		<>
 			<button
-				popovertarget="pop-3"
+				popoverTarget="pop-3"
 				type="button"
 				className={styles.button}
 				data-variant="primary"
@@ -199,8 +199,8 @@ export const WithClose: Story = {
 			</button>
 			<div popover="" id="pop-3" className={styles.popover}>
 				<button
-					popovertarget="pop-3"
-					popovertargetaction="hide"
+					popoverTarget="pop-3"
+					popoverTargetAction="hide"
 					type="button"
 					className={styles.button}
 					data-variant="secondary"
@@ -217,7 +217,7 @@ export const WithArrow: Story = {
 		<>
 			<button
 				data-arrow
-				popovertarget="pop-4"
+				popoverTarget="pop-4"
 				type="button"
 				className={styles.button}
 			>
@@ -237,7 +237,7 @@ export const WithDivider: Story = {
 		return (
 			<>
 				<button
-					popovertarget={popId}
+					popoverTarget={popId}
 					type="button"
 					className={styles.button}
 					data-variant="secondary"

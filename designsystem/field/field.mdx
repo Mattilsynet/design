@@ -9,6 +9,12 @@ import * as stories from './field.stories';
 - **Merk:** automatisk oppkobling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 <Canvas of={stories.Default} />
 
+## Obligatorisk felt
+- Legg `required` eller `aria-required` på skjemaelementet
+- Da får du automatisk teksten `Må fylles ut` i `<label>`
+- **Merk:** Dersom `lang="en"` er satt på `<html>` eller en forelder, vil teksten endres til `Required`
+<Canvas of={stories.Required} />
+
 ## Radio / Check / Switch
 - Ved bruk av `<input type="checkbox | radio"` vil `<label>`, `<p>` og `class="styles.validation"` legge seg etter input
 <Canvas of={stories.Toggles} />

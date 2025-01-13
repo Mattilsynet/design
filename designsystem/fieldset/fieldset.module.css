@@ -12,6 +12,26 @@
 			margin: 0;
 		}
 
+		/* Mark <legend> with Required if all inputs inside are required */
+		&:has(:required, [aria-required="true"]):not(
+				:has(:optional, [aria-required="false"])
+			) {
+			& > legend::after {
+				content: var(--mt-required);
+				background: var(--mt-bekk);
+				border-radius: var(--ds-border-radius-sm);
+				color: var(--mt-fjord);
+				font-size: .75em;
+				font-weight: normal;
+				line-height: var(--ds-line-height-sm);
+				margin-inline-start: var(--ds-size-2);
+				padding: var(--ds-size-1) var(--ds-size-2);
+			}
+			& label::after {
+				content: none;
+			}
+		}
+
 		/**
 		 * Child added event inspired by:
 		 * https://davidwalsh.name/detect-node-insertion

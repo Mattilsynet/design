@@ -27,6 +27,17 @@ export const Default: Story = {
 	),
 };
 
+export const Required: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.field}>
+			<label>Ledetekst</label>
+			<p>Beskrivelse</p>
+			<input type="text" required className={styles.input} />
+		</div>
+	),
+};
+
 export const Toggles: Story = {
 	decorators,
 	render: () => (

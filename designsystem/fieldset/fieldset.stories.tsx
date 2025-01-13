@@ -18,13 +18,14 @@ export const Radios: Story = {
 					type="radio"
 					className={styles.input}
 					name="my-radio"
+					required
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
 				<p>Beskrivelse</p>
 			</div>
 			<div className={styles.field}>
-				<input type="radio" className={styles.input} name="my-radio" />
+				<input type="radio" className={styles.input} name="my-radio" required />
 				<label>Alternativ 2</label>
 				<p>Beskrivelse</p>
 			</div>

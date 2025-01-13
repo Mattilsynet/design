@@ -17,6 +17,19 @@
 			margin-top: calc(var(--ds-size-2) * -1);
 		}
 
+		/*  Mark as required */
+		&:has(:required, [aria-required="true"]) > label::after {
+			content: var(--mt-required);
+			background: var(--mt-bekk);
+			border-radius: var(--ds-border-radius-sm);
+			color: var(--mt-fjord);
+			font-size: .75em;
+			font-weight: normal;
+			line-height: var(--ds-line-height-sm);
+			margin-inline-start: var(--ds-size-2);
+			padding: var(--ds-size-1) var(--ds-size-2);
+		}
+
 		&:has(input:is([type="radio"], [type="checkbox"])) label {
 			font-weight: 500;
 		}
@@ -27,6 +40,7 @@
 			opacity: 1;
 		}
 	}
+
 	.affixes {
 		composes: ds-field-affixes from "@digdir/designsystemet-css";
 

@@ -16,7 +16,7 @@
 			color: var(--dsc-badge-color);
 			content: attr(data-badge);
 			display: grid;
-			font-size: var(--ds-body-sm-font-size);
+			font-size: var(--ds-body-xs-font-size);
 			font-variant-numeric: tabular-nums;
 			font-weight: 700;
 			line-height: 1;
