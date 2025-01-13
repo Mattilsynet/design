@@ -146,6 +146,9 @@
 		.table[data-mobile="spaced"] {
 			table-layout: auto; /* Allow content to grow in each <td> */
 
+			& > :is(thead, tfoot) {
+				display: none; /* Hide header and footer */
+			}
 			& > tbody {
 				display: contents; /* Skip <tbody> */
 
