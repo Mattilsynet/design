@@ -1,0 +1,13 @@
+name: Publish
+
+on:
+    push:
+        paths:
+            - "package.json"
+        branches:
+            - master
+
+jobs:
+    build:
+        name: "Build and release"
+        runs-on: ubuntu-latest
