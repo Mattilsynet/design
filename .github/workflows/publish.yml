@@ -2,8 +2,6 @@ name: Publish
 
 on:
   push:
-    paths:
-      - "package.json"
     branches:
       - master
 
@@ -11,3 +9,40 @@ jobs:
   build:
     name: "Build and release"
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version change
+        id: check_version
+        run: |
+          if git diff HEAD^ HEAD -- package.json | grep '"version"'; then
+            echo "Version changed, continuing."
+          else
+            echo "Version not changed, skipping workflow."
+            exit 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Create a new Git tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Creating tag: $VERSION"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push origin "$VERSION"
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_TOKEN_ACTION }}
+      
