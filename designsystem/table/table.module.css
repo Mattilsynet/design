@@ -17,11 +17,9 @@
 		&[data-fixed] {
 			table-layout: fixed;
 		}
-
 		& > :is(thead, tbody, tfoot) {
 			vertical-align: inherit;
 		}
-
 		&[data-align="center"] {
 			vertical-align: middle;
 		}
@@ -30,7 +28,7 @@
 	/**
 	 * Numeric
 	 */
-	.table [data-numeric]:not([data-numeric="false"]):is(td, th) {
+	.table :where([data-numeric]:not([data-numeric="false"])):where(td, th) {
 		font-variant-numeric: tabular-nums;
 		text-align: end;
 		white-space: nowrap;
@@ -78,8 +76,10 @@
 
 		& > :is(td, th) > button[aria-expanded] {
 			all: unset;
+			box-sizing: border-box;
 			cursor: pointer;
 			border-radius: var(--ds-border-radius-sm);
+			width: 100%;
 
 			&:focus-visible {
 				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
@@ -101,13 +101,13 @@
 				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mt-icon-chevron);
 				rotate: 90deg;
-				transition: scale .2s;
+				transition: rotate .2s;
 				vertical-align: -.3em;
 				width: var(--mt-icon-size);
 			}
 
 			&[aria-expanded="true"]::before {
-				scale: -1 1;
+				rotate: -90deg;
 			}
 		}
 	}
@@ -131,43 +131,64 @@
 	}
 	@keyframes scrollShadow {
 		from {
-			box-shadow: inset -.5rem 0 .5rem -.5rem rgb(0 0 0 / 0.5);
+			box-shadow: inset -.5rem 0 .5rem -.5rem rgb(0 0 0 / 0.4);
 		}
 		to {
-			box-shadow: inset .5rem 0 .5rem -.5rem rgb(0 0 0 / 0.5);
+			box-shadow: inset .5rem 0 .5rem -.5rem rgb(0 0 0 / 0.4);
 		}
 	}
 
 	/**
-	 * Divided (up to 960px)
+	 * Mobile versions (up to 960px)
 	 */
 	@media screen and (max-width: 60em) {
-		.table[data-divide] {
-			& > :is(thead, tfoot) {
-				display: none;
-			}
-			& > tbody > tr {
-				display: contents;
-			}
-			& > tbody > tr > :is(td, th) {
-				animation: tableChildAdded 100ms;
-				border-top: var(--dsc-table-border);
-				border-bottom: none;
-				display: table-row;
-				text-align: inherit; /* Undo data-numeric alignment */
-			}
+		.table[data-mobile="divided"],
+		.table[data-mobile="spaced"] {
+			table-layout: auto; /* Allow content to grow in each <td> */
 
-			& > tbody > tr > :is(td, th):first-child {
-				border-top: 1px solid;
-			}
+			& > tbody {
+				display: contents; /* Skip <tbody> */
 
-			& [data-th]:is(th, td)::before {
-				box-sizing: border-box;
-				content: attr(data-th);
-				display: table-cell;
-				font-weight: 500;
-				padding: var(--dsc-table-padding);
+				& > tr {
+					display: table-row-group; /* But make each row a <tbody> */
+
+					/* Do not re-syle if expandable (colspan) */
+					& > :is(td, th):not([colspan]) {
+						animation: tableChildAdded 100ms;
+						border-top: var(--dsc-table-border);
+						border-bottom: none;
+						display: table-row;
+						text-align: inherit; /* Undo data-numeric alignment */
+
+						&:first-child {
+							border-top: 1px solid;
+						}
+						&::before {
+							box-sizing: border-box;
+							content: attr(data-th);
+							display: table-cell;
+							font-weight: 500;
+							padding: var(--dsc-table-padding);
+							text-align: start;
+							width: 50%; /* Emulate table-layout: fixed */
+						}
+						&[data-th=":empty"]:before {
+							content: "\200B"; /* zero-width space to ensure correct line-height... */
+							content: "\200B" / ""; /* ...and hide from screen reader when supported */
+						}
+					}
+				}
 			}
+			&:not(:has(> thead)) > tbody > tr > [data-th=":empty"]::before {
+				padding-inline: 0; /* Collapse data-th when no headers */
+				width: 0; /* Collapse data-th when no headers */
+			}
+		}
+		.table[data-mobile="spaced"]:has(thead)
+			> tbody
+			> tr
+			> :not([colspan]):is(td, th) {
+			text-align: end;
 		}
 	}
 }

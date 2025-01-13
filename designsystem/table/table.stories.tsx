@@ -762,7 +762,7 @@ export const ExpandableSimple: Story = {
 
 		return (
 			<table className={styles.table} aria-label="Expandable table" {...args}>
-				<thead>
+				{/* <thead>
 					<tr>
 						{columns.map(({ label, numeric }) => (
 							<th key={label} data-numeric={numeric}>
@@ -770,7 +770,7 @@ export const ExpandableSimple: Story = {
 							</th>
 						))}
 					</tr>
-				</thead>
+				</thead> */}
 				<tbody>
 					{mockExpand.map(function Row(row) {
 						const [expanded, setExpanded] = useState(false);
@@ -1425,7 +1425,7 @@ export const MobileScroll: Story = {
 	),
 };
 
-export const MobileDivide: Story = {
+export const MobileDivided: Story = {
 	decorators,
 	parameters: {
 		viewport: {
@@ -1435,7 +1435,7 @@ export const MobileDivide: Story = {
 	render: () => (
 		<table
 			className={styles.table}
-			data-divide
+			data-mobile="divided"
 			aria-label="Mobile divided table"
 		>
 			<thead>
@@ -1448,25 +1448,136 @@ export const MobileDivide: Story = {
 			</thead>
 			<tbody>
 				<tr>
-					<td>Antoni</td>
+					<th>Antoni</th>
 					<td>Foyston</td>
 					<td>74</td>
 					<td>128</td>
 				</tr>
 				<tr>
-					<td>Jenine</td>
+					<th>Jenine</th>
 					<td>Healey</td>
 					<td>22</td>
 					<td>194</td>
 				</tr>
 				<tr>
-					<td>Leigh</td>
+					<th>Leigh</th>
 					<td>Klein</td>
-					<td>26</td>
+					<td>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam felis
+						quam, pulvinar et lacus et, molestie semper ante.
+					</td>
 					<td>114</td>
 				</tr>
 				<tr>
-					<td>Zara</td>
+					<th>Zara</th>
+					<td>Greenrodd</td>
+					<td>28</td>
+					<td>36</td>
+				</tr>
+			</tbody>
+		</table>
+	),
+};
+
+export const MobileSpaced: Story = {
+	decorators,
+	parameters: {
+		viewport: {
+			defaultViewport: "mobile2", // Large mobile default viewport
+		},
+	},
+	render: () => (
+		<table
+			className={styles.table}
+			data-mobile="spaced"
+			aria-label="Mobile spaced table"
+		>
+			<thead>
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+					<th>Visits</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Antoni</th>
+					<td>Foyston</td>
+					<td>74</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<th>Jenine</th>
+					<td>Healey</td>
+					<td>22</td>
+					<td>194</td>
+				</tr>
+				<tr>
+					<th>Leigh</th>
+					<td>Klein</td>
+					<td>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam felis
+						quam, pulvinar et lacus et, molestie semper ante.
+					</td>
+					<td>114</td>
+				</tr>
+				<tr>
+					<th>Zara</th>
+					<td>Greenrodd</td>
+					<td>28</td>
+					<td>36</td>
+				</tr>
+			</tbody>
+		</table>
+	),
+};
+
+export const MobileRepeat: Story = {
+	decorators,
+	parameters: {
+		viewport: {
+			defaultViewport: "mobile2", // Large mobile default viewport
+		},
+	},
+	render: () => (
+		<table
+			className={styles.table}
+			data-mobile="repeat"
+			aria-label="Mobile repeat table"
+		>
+			<thead>
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+					<th>Visits</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Antoni</th>
+					<td>Foyston</td>
+					<td>74</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<th>Jenine</th>
+					<td>Healey</td>
+					<td>22</td>
+					<td>194</td>
+				</tr>
+				<tr>
+					<th>Leigh</th>
+					<td>Klein</td>
+					<td>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam felis
+						quam, pulvinar et lacus et, molestie semper ante.
+					</td>
+					<td>114</td>
+				</tr>
+				<tr>
+					<th>Zara</th>
 					<td>Greenrodd</td>
 					<td>28</td>
 					<td>36</td>
