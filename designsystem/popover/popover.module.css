@@ -10,6 +10,7 @@
 		inset: auto;
 		list-style: none;
 		margin: -2px 0 0;
+		max-width: 90vw;
 		opacity: 0;
 		padding: var(--mt-popover-padding);
 		position: fixed;
@@ -27,14 +28,14 @@
 			visibility: visible;
 		}
 
-		&:is(menu) {
+		&:is(menu),
+		&:has(> menu:only-child) {
 			--mt-popover-padding: var(--ds-size-3);
-
-			& > li > hr {
-				border: 0;
-				margin: var(--ds-size-2) 0;
-				border-top: 1px solid var(--mt-divider);
-			}
+		}
+		&:is(menu) > li > hr {
+			border: 0;
+			margin: var(--ds-size-2) 0;
+			border-top: 1px solid var(--mt-divider);
 		}
 	}
 }

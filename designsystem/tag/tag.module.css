@@ -2,7 +2,12 @@
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
 		align-self: center; /* If placed inside .flex */
+		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
+
+		& > svg {
+			flex-shrink: 0; /* Never shrkink icon */
+		}
 
 		/**
 		 * Colors

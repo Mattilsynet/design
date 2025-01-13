@@ -1,14 +1,24 @@
 @layer mt.design {
 	.card {
-		/* composes: ds-card from "@digdir/designsystemet-css"; */
+		align-items: start;
 		background-color: white;
 		border-radius: var(--ds-border-radius-lg);
 		border: 1px solid var(--mt-divider);
 		box-sizing: border-box;
-		padding: var(--ds-size-4);
 		display: flex;
+		gap: var(--ds-size-8);
+		padding: var(--ds-size-4);
 
 		& > * {
+			margin: 0;
+		}
+	}
+
+	.info {
+		& > dt {
+			float: left;
+		}
+		& > dd {
 			margin: 0;
 		}
 	}

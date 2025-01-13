@@ -1,0 +1,24 @@
+/**
+ * These files are generated from design tokens defind using Token Studio
+ */
+
+@layer ds.theme.color {
+:root {
+  --ds-color-accent-background-default: var(--ds-color-granskog-background-default);
+  --ds-color-accent-background-subtle: var(--ds-color-granskog-background-subtle);
+  --ds-color-accent-surface-default: var(--ds-color-granskog-surface-default);
+  --ds-color-accent-surface-hover: var(--ds-color-granskog-surface-hover);
+  --ds-color-accent-surface-active: var(--ds-color-granskog-surface-active);
+  --ds-color-accent-border-subtle: var(--ds-color-granskog-border-subtle);
+  --ds-color-accent-border-default: var(--ds-color-granskog-border-default);
+  --ds-color-accent-border-strong: var(--ds-color-granskog-border-strong);
+  --ds-color-accent-base-default: var(--ds-color-granskog-base-default);
+  --ds-color-accent-base-hover: var(--ds-color-granskog-base-hover);
+  --ds-color-accent-base-active: var(--ds-color-granskog-base-active);
+  --ds-color-accent-text-subtle: var(--ds-color-granskog-text-subtle);
+  --ds-color-accent-text-default: var(--ds-color-granskog-text-default);
+  --ds-color-accent-contrast-default: var(--ds-color-granskog-contrast-default);
+  --ds-color-accent-contrast-subtle: var(--ds-color-granskog-contrast-subtle);
+}
+
+}

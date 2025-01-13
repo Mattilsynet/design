@@ -1,0 +1,24 @@
+/**
+ * These files are generated from design tokens defind using Token Studio
+ */
+
+@layer ds.theme.color {
+:root, [data-color-scheme], [data-color="granskog"] {
+  --ds-color-background-default: var(--ds-color-granskog-background-default);
+  --ds-color-background-subtle: var(--ds-color-granskog-background-subtle);
+  --ds-color-surface-default: var(--ds-color-granskog-surface-default);
+  --ds-color-surface-hover: var(--ds-color-granskog-surface-hover);
+  --ds-color-surface-active: var(--ds-color-granskog-surface-active);
+  --ds-color-border-subtle: var(--ds-color-granskog-border-subtle);
+  --ds-color-border-default: var(--ds-color-granskog-border-default);
+  --ds-color-border-strong: var(--ds-color-granskog-border-strong);
+  --ds-color-base-default: var(--ds-color-granskog-base-default);
+  --ds-color-base-hover: var(--ds-color-granskog-base-hover);
+  --ds-color-base-active: var(--ds-color-granskog-base-active);
+  --ds-color-text-subtle: var(--ds-color-granskog-text-subtle);
+  --ds-color-text-default: var(--ds-color-granskog-text-default);
+  --ds-color-contrast-default: var(--ds-color-granskog-contrast-default);
+  --ds-color-contrast-subtle: var(--ds-color-granskog-contrast-subtle);
+}
+
+}

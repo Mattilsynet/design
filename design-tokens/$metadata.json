@@ -1,0 +1,25 @@
+{
+  "tokenSetOrder": [
+    "primitives/globals",
+    "primitives/modes/size/small",
+    "primitives/modes/size/medium",
+    "primitives/modes/size/large",
+    "primitives/modes/size/global",
+    "primitives/modes/typography/size/small",
+    "primitives/modes/typography/size/medium",
+    "primitives/modes/typography/size/large",
+    "primitives/modes/typography/primary/mattilsynet",
+    "primitives/modes/typography/secondary/mattilsynet",
+    "primitives/modes/color-scheme/light/global",
+    "primitives/modes/color-scheme/light/mattilsynet",
+    "primitives/modes/color-scheme/dark/global",
+    "primitives/modes/color-scheme/dark/mattilsynet",
+    "themes/mattilsynet",
+    "semantic/color",
+    "semantic/modes/main-color/granskog",
+    "semantic/modes/support-color/5",
+    "semantic/modes/support-color/--border-radius",
+    "semantic/style",
+    "Figma/components"
+  ]
+}

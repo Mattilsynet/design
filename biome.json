@@ -12,7 +12,13 @@
 		}
 	},
 	"files": {
-		"ignore": ["storybook-static", "mtds", "dist"]
+		"ignore": [
+			"storybook-static",
+			"mtds",
+			"dist",
+			"design-tokens",
+			"design-tokens-build"
+		]
 	},
 	"linter": {
 		"enabled": true,
@@ -22,7 +28,9 @@
 				"noLabelWithoutControl": "off",
 				"noSvgWithoutTitle": "off",
 				"useAriaPropsForRole": "off",
-				"useHeadingContent": "off"
+				"useHeadingContent": "off",
+				"useSemanticElements": "off",
+				"useFocusableInteractive": "off"
 			},
 			"style": {
 				"useSelfClosingElements": "off"
