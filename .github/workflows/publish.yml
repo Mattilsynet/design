@@ -23,6 +23,7 @@ jobs:
           else
             echo "Version not changed, skipping workflow."
             exit 0
+          fi
 
       - uses: actions/setup-node@v4
         with:
