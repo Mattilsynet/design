@@ -1,6 +1,9 @@
 name: Publish
 
 on: 
+  push:
+    branches:
+      - ci/publish-via-github-action
   workflow_dispatch:
 
 jobs:
