@@ -605,14 +605,6 @@ export const PaginatableTanstack: Story = {
 						</li>
 					</ul>
 				</nav>
-				{/* <Pagination
-          aria-label="Navigate table content"
-          max={table.getPageCount()}
-          nextLabel="Next page"
-          onChange={(value: number) => table.setPageIndex(value - 1)}
-          previousLabel="Previous page"
-          value={table.getState().pagination.pageIndex + 1}
-        /> */}
 			</>
 		);
 	},
@@ -762,7 +754,7 @@ export const ExpandableSimple: Story = {
 
 		return (
 			<table className={styles.table} aria-label="Expandable table" {...args}>
-				{/* <thead>
+				<thead>
 					<tr>
 						{columns.map(({ label, numeric }) => (
 							<th key={label} data-numeric={numeric}>
@@ -770,7 +762,7 @@ export const ExpandableSimple: Story = {
 							</th>
 						))}
 					</tr>
-				</thead> */}
+				</thead>
 				<tbody>
 					{mockExpand.map(function Row(row) {
 						const [expanded, setExpanded] = useState(false);
