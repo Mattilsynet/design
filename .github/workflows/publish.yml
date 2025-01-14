@@ -3,7 +3,7 @@ name: Publish
 on: 
   push:
     branches:
-      - ci/publish-via-github-action
+      - ci/publish-via-github-action # TODO endre dette tilbake til master
   workflow_dispatch:
 
 jobs:
@@ -20,20 +20,24 @@ jobs:
         run: |
           if git diff HEAD^ HEAD -- package.json | grep '"version"'; then
             echo "Version changed, continuing."
+            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else
             echo "Version not changed, skipping workflow."
-            exit 0
+            echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
       - uses: actions/setup-node@v4
+        if: env.VERSION_CHANGED == 'true'
         with:
           node-version: lts/*
           cache: npm
 
       - name: Install dependencies
+        if: env.VERSION_CHANGED == 'true'
         run: npm i
 
       - name: Create a new Git tag
+        if: env.VERSION_CHANGED == 'true'
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -44,7 +48,22 @@ jobs:
           git push origin "$VERSION"
 
       - name: Publish to npm
+        if: env.VERSION_CHANGED == 'true'
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_TOKEN_ACTION }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            @mattilsynet:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GPR
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
