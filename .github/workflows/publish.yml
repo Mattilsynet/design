@@ -30,11 +30,11 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         with:
           node-version: lts/*
-          cache: npm
+          cache: yarn
 
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
-        run: npm i
+        run: yarn
 
       - name: Create a new Git tag
         if: env.VERSION_CHANGED == 'true'
@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public
+        run: yarn publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
 
       - name: Publish to GPR
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
