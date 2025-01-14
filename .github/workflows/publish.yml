@@ -32,7 +32,7 @@ jobs:
           node-version: lts/*
           cache: npm
 
-      - name: set-env for yarn install to @mattilsynet scope
+      - name: set-env for npm install to @mattilsynet scope
         shell: bash
         run: echo "NPM_AUTH_TOKEN=${{ secrets.READ_TOKEN_ACTION }}" >> $GITHUB_ENV
 
@@ -60,7 +60,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish
+        run: npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
