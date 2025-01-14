@@ -27,35 +27,35 @@ jobs:
           fi
 
       - uses: actions/setup-node@v4
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         with:
           node-version: lts/*
           cache: npm
 
       - name: Install dependencies
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         run: npm install
 
-      - name: Create a new Git tag
-        if: env.VERSION_CHANGED == 'true'
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Creating tag: $VERSION"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "$VERSION" -m "Release $VERSION"
-          git push origin "$VERSION"
+      #- name: Create a new Git tag
+       # if: env.VERSION_CHANGED == 'true'
+        #run: |
+         # VERSION=$(node -p "require('./package.json').version")
+          #echo "VERSION=$VERSION" >> $GITHUB_ENV
+          #echo "Creating tag: $VERSION"
+          #git config user.name "github-actions[bot]"
+          #git config user.email "github-actions[bot]@users.noreply.github.com"
+          #git tag -a "$VERSION" -m "Release $VERSION"
+          #git push origin "$VERSION"
       
       - name: Creating .npmrc
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         run: |
           cat << EOF > "$HOME/.npmrc" 
             //registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}"
           EOF
 
       - name: Publish to npm
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         run: npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Recreating .npmrc for publishing to GitHub
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         run: |
           rm $HOME/.npmrc && 
           cat << EOF > "$HOME/.npmrc"
@@ -74,7 +74,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GPR
-        if: env.VERSION_CHANGED == 'true'
+        #if: env.VERSION_CHANGED == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
