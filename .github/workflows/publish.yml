@@ -32,10 +32,6 @@ jobs:
           node-version: lts/*
           cache: npm
 
-      - name: set-env for npm install to @mattilsynet scope
-        shell: bash
-        run: echo "NPM_AUTH_TOKEN=${{ secrets.READ_TOKEN_ACTION }}" >> $GITHUB_ENV
-
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
         run: npm i
