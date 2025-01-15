@@ -179,7 +179,7 @@ export function Epost() {
 					<div
 						style={{
 							fontFamily: "Avenir, Avenir Next, sans-serif",
-							fontSize: 11,
+							fontSize: 13,
 							lineHeight: 1.5,
 						}}
 					>
@@ -199,7 +199,12 @@ export function Epost() {
 							.filter(Boolean)
 							.join(" / ") || "000 000 000"}
 						<br />
-						Besøksadresse: {data.visit || "Veigata 1, 2001 Byen"}
+						Besøksadresse:{" "}
+						<a
+							href={`https://maps.google.com/?q=${window.encodeURIComponent(data.visit)}`}
+						>
+							{data.visit || "Veigata 1, 2001 Byen"}
+						</a>
 						<br />
 						Felles postadresse: Mattilsynet, hovedkontoret, felles postmottak,
 						postboks 383, 2381 Brumunddal
@@ -217,7 +222,7 @@ export function Epost() {
 						</a>
 						<br />
 						<br />
-						<img alt="Mattilsynet" src="/docs/logo-epost.png" width="232" />
+						<img alt="Mattilsynet" src="/docs/logo-epost.png" width="200" />
 					</div>
 				</div>
 				<button
