@@ -53,7 +53,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public --dry-run
+        run: npm publish --access public
 
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
