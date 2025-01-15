@@ -179,7 +179,7 @@ export function Epost() {
 					<div
 						style={{
 							fontFamily: "Avenir, Avenir Next, sans-serif",
-							fontSize: 13,
+							fontSize: "11pt",
 							lineHeight: 1.5,
 						}}
 					>
