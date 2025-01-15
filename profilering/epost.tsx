@@ -75,9 +75,26 @@ export function Epost() {
 					/>
 				</div>
 				<div className={styles.field}>
-					<label>
-						<MapPinArea aria-hidden="true" /> Kontorsted
-					</label>
+					<div
+						className={styles.flex}
+						data-justify="space-between"
+						style={{ width: "100%" }}
+					>
+						<label>
+							<MapPinArea aria-hidden="true" /> Kontorsted
+						</label>
+						<a
+							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
+						</a>
+					</div>
+					<small>
+						Språkrådet sier at navn på hovedkontor, regioner, avdelinger og
+						seksjoner skrives i små bokstaver.
+					</small>
 					<input
 						className={styles.input}
 						name="office"
@@ -131,15 +148,13 @@ export function Epost() {
 						<label>
 							<MapTrifold aria-hidden="true" /> Besøksadresse
 						</label>
-						<p>
-							<a
-								href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Se kontorsteder <ArrowSquareOut aria-hidden="true" />
-							</a>
-						</p>
+						<a
+							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
+						</a>
 					</div>
 					<input
 						className={styles.input}
