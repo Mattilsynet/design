@@ -3,12 +3,12 @@ name: Publish to npm and GitHub
 on: 
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
   build:
-    name: "Build and publish"
+    name: "Check version, build and publish"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
