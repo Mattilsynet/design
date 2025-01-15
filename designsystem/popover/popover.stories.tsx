@@ -24,120 +24,113 @@ export const Dropdown: Story = {
 				>
 					Knapp
 				</button>
-				<div
-					popover=""
-					id={popId}
-					className={styles.popover}
-					style={{ width: 900 }}
-				>
-					<menu className={styles.grid} data-gap="none">
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 1
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								Knapp 3
-							</button>
-						</li>
-					</menu>
-				</div>
+				<menu popover="" id={popId} className={styles.popover}>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 3
+						</button>
+					</li>
+				</menu>
 			</>
 		);
 	},

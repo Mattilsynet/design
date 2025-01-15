@@ -2,7 +2,6 @@
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 
-		align-self: center; /* If placed inside .flex */
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
 		font-weight: 500;

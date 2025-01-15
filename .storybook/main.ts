@@ -2,8 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 import fg from "fast-glob";
-import { version } from "../package.json";
-import illustrations from "../public/illustrations/illustrations.json";
+
+const root = process.cwd();
+const pkg = JSON.parse(fs.readFileSync(path.resolve(root, 'package.json'), 'utf-8'));
+const illustrations = JSON.parse(fs.readFileSync(path.resolve(root, 'public/illustrations/illustrations.json'), 'utf-8'));
 
 const PUBLIC_DIR = path.resolve("./public");
 const FOLDERS = "@(identitet|designsystem|profilering)";
@@ -41,7 +43,7 @@ export default {
 	// Expose package versions and icons
 	previewHead: (head) =>
 		`${head}<script>
-      window.VERSION = ${JSON.stringify(version)};
+      window.VERSION = ${JSON.stringify(pkg.version)};
       window.SVGS = ${JSON.stringify(
 				fg.sync(path.join(PUBLIC_DIR, "**", "*.svg")).map((file) => ({
 					file: path.relative(PUBLIC_DIR, file),
