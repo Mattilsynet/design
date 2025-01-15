@@ -3,7 +3,7 @@ name: Publish to npm and GitHub
 on: 
   push:
     branches:
-      - ci/publish-via-github-action
+      - master
   workflow_dispatch:
 
 jobs:
