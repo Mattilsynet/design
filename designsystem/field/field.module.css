@@ -2,6 +2,7 @@
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-size-2);
+		/* align-items: normal; /* TODO */
 
 		/* Child added event inspired by: https://davidwalsh.name/detect-node-insertion */
 		& :is(:defined, [class*="validation"], input, select, textarea, p) {
@@ -20,13 +21,13 @@
 		/*  Mark as required */
 		&:has(:required, [aria-required="true"]) > label::after {
 			content: var(--mt-required);
-			background: var(--mt-bekk);
+			background: var(--mt-bakgrunns-blaa);
 			border-radius: var(--ds-border-radius-sm);
 			color: var(--mt-fjord);
 			font-size: .75em;
 			font-weight: normal;
 			line-height: var(--ds-line-height-sm);
-			margin-inline-start: var(--ds-size-2);
+			margin-inline-start: var(--ds-size-3);
 			padding: var(--ds-size-1) var(--ds-size-2);
 		}
 

@@ -1,7 +1,6 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
-		align-self: center; /* If placed inside .flex */
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
 
