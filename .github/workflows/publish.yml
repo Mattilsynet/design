@@ -3,7 +3,7 @@ name: Publish to npm and GitHub
 on: 
   push:
     branches:
-      - master
+      - ci/publish-via-github-action
   workflow_dispatch:
 
 jobs:
@@ -53,11 +53,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: npm publish --access public --dry-run
 
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
