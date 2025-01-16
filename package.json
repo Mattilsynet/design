@@ -21,6 +21,7 @@
 		"./icons/*": "./mtds/icons/*",
 		"./illustrations/*": "./mtds/illustrations/*",
 		"./index.iife.js": "./mtds/index.iife.js",
+		"./index.iife.js.map": "./mtds/index.iife.js.map",
 		"./package.json": "./package.json",
 		"./styles.css": "./mtds/styles.css",
 		"./styles.json": "./mtds/styles.json"
