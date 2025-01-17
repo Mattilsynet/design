@@ -13,12 +13,12 @@ import styles from "../designsystem/styles.module.css";
 
 type Data = Record<string, string>;
 
-function toPhone(value = "", mobile = false) {
-	let number = value.replace(/[^\d+]+/g, "").replace(/^(00|\+)47/, "");
-
-	if (mobile) number = number.replace(/(\d{3})(\d{2})(\d{3})/, "$1 $2 $3");
-	else number = number.replace(/(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4");
-
+function toPhone(value = "") {
+	const number = value
+		.replace(/[^\d+]+/g, "")
+		.match(/.{1,2}/g)
+		?.join(" ")
+		.trim();
 	return number && `+47 ${number}`;
 }
 
@@ -195,7 +195,7 @@ export function Epost() {
 						<br />
 						<br />
 						Telefon:{" "}
-						{[toPhone(data.phone), toPhone(data.mobile, true)]
+						{[toPhone(data.phone), toPhone(data.mobile)]
 							.filter(Boolean)
 							.join(" / ") || "000 000 000"}
 						<br />
