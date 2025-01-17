@@ -1,4 +1,4 @@
-import { CheckCircle, Info, Warning, XCircle } from "@phosphor-icons/react";
+import { Shrimp } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import styles from "../styles.module.css";
 
@@ -21,7 +21,7 @@ export const Default: Story = {
 	decorators,
 	render: () => (
 		<>
-			<div className={styles.tag} data-color="neural">
+			<div className={styles.tag} data-color="neutral">
 				Neutral
 			</div>
 			<div className={styles.tag} data-color="info">
@@ -60,25 +60,36 @@ export const Sizes: Story = {
 	),
 };
 
-export const WithIcons: Story = {
+export const WithIcon: Story = {
 	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-color="info">
-				<Info />
 				Info
 			</div>
 			<div className={styles.tag} data-color="success">
-				<CheckCircle />
 				Success
 			</div>
 			<div className={styles.tag} data-color="warning">
-				<Warning />
 				Warning
 			</div>
 			<div className={styles.tag} data-color="danger">
-				<XCircle />
 				Danger
+			</div>
+		</>
+	),
+};
+
+export const WithIconOverwrite: Story = {
+	decorators,
+	render: () => (
+		<>
+			<div className={styles.tag} data-color="success">
+				<Shrimp />
+				Reke
+			</div>
+			<div className={styles.tag} data-color="info" data-icon="none">
+				Alle felter må fylles ut
 			</div>
 		</>
 	),

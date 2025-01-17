@@ -21,10 +21,10 @@
 			rotate: 180deg;
 		}
 		& li:first-child:empty > :is(a, button)::before {
-			content: "Forrige";
+			content: var(--mt-text-previous);
 		}
 		& li:last-child:empty > :is(a, button)::before {
-			content: "Neste";
+			content: var(--mt-text-next);
 		}
 		& :is(a, button)::after {
 			content: none;

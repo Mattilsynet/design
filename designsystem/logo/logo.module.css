@@ -63,7 +63,7 @@
 		}
 
 		&::before {
-			content: "Mattilsynet"; /* Screen reader text for all browsers except Safari < 17.4 */
+			content: var(--mt-text-logo);
 			mask: 0 var(--height) / auto var(--icon-height) no-repeat var(--logo-url);
 			width: var(--icon-width);
 		}
@@ -83,9 +83,6 @@
 
 		&:empty::after {
 			--width: 5.22em;
-		}
-		&::before {
-			content: "Norwegian Food Safety Authority";
 		}
 
 		/* Do not hide "Norwegian Food Safety Authority" as this is important when doing international work */

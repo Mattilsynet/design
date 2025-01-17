@@ -15,10 +15,11 @@ type Data = Record<string, string>;
 
 function toPhone(value = "") {
 	const number = value
-		.replace(/[^\d+]+/g, "")
-		.match(/.{1,2}/g)
-		?.join(" ")
-		.trim();
+		.replace(/(\+|00)\s*47/, "") // Remove +47 or 0047
+		.replace(/\D+/g, "") // Remove non-digits
+		.match(/.{1,2}/g) // Split into groups of two
+		?.join(" ") // Join with space
+		.trim(); // Remove leading/trailing spaces
 	return number && `+47 ${number}`;
 }
 
@@ -173,7 +174,7 @@ export function Epost() {
 						background: "white",
 						padding: 40,
 						borderRadius: 10,
-						border: "1px solid var(--mt-divider)",
+						border: "1px solid var(--mt-color-200)",
 					}}
 				>
 					<div
@@ -197,7 +198,7 @@ export function Epost() {
 						Telefon:{" "}
 						{[toPhone(data.phone), toPhone(data.mobile)]
 							.filter(Boolean)
-							.join(" / ") || "000 000 000"}
+							.join(" / ") || "+47 00 00 00 00"}
 						<br />
 						Besøksadresse:{" "}
 						<a

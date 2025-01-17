@@ -17,8 +17,8 @@
 				:has(:optional, [aria-required="false"])
 			) {
 			& > legend::after {
-				content: var(--mt-required);
-				background: var(--mt-bekk);
+				content: var(--mt-text-required);
+				background: var(--mt-color-bekk);
 				border-radius: var(--ds-border-radius-sm);
 				color: var(--mt-fjord);
 				font-size: .75em;

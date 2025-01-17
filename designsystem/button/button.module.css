@@ -77,7 +77,7 @@
 		}
 		&[aria-busy="true"]::before {
 			background: currentcolor;
-			content: "Laster...";
+			content: var(--mt-text-loading);
 			display: inline-block;
 			height: var(--mt-icon-size);
 			mask: center / contain no-repeat
@@ -100,7 +100,7 @@
 		 */
 		position: relative;
 		&[data-tooltip]::after {
-			background: color-mix(in hsl, transparent 10%, var(--mt-mork-granskog));
+			background: var(--mt-color-mork-granskog);
 			border-radius: var(--ds-border-radius-md);
 			color: var(--ds-color-accent-contrast-default);
 			content: attr(data-tooltip);

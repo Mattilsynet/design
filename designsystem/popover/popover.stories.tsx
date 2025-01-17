@@ -9,6 +9,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const range = Array.from(Array(10), (_, num) => num + 1);
+
+export const Default: Story = {
+	render: function Render() {
+		const popId = useId();
+
+		return (
+			<>
+				<button
+					popoverTarget={popId}
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+					data-arrow
+				>
+					Knapp
+				</button>
+				<menu popover="" id={popId} className={styles.popover}>
+					{range.map((num) => (
+						<li key={num}>
+							<button type="button" className={styles.button}>
+								Knapp {num}
+							</button>
+						</li>
+					))}
+				</menu>
+			</>
+		);
+	},
+};
+
 export const Dropdown: Story = {
 	render: function Render() {
 		const popId = useId();
@@ -26,109 +57,23 @@ export const Dropdown: Story = {
 				</button>
 				<menu popover="" id={popId} className={styles.popover}>
 					<li>
-						<button type="button" className={styles.button}>
+						<a href="#none" className={styles.button}>
 							Knapp 1
-						</button>
+						</a>
 					</li>
 					<li>
-						<button type="button" className={styles.button}>
+						<a href="#none" className={styles.button}>
 							Knapp 2
-						</button>
+						</a>
 					</li>
 					<li>
-						<button type="button" className={styles.button}>
+						<a
+							href="#none"
+							className={styles.button}
+							popoverTargetAction="show"
+						>
 							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 1
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 2
-						</button>
-					</li>
-					<li>
-						<button type="button" className={styles.button}>
-							Knapp 3
-						</button>
+						</a>
 					</li>
 				</menu>
 			</>

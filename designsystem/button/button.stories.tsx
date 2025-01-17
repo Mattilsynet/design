@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 const decorators: Story["decorators"] = [
 	(Story) => (
-		<div className={styles.flex}>
+		<div className={styles.flex} data-align="center">
 			<Story />
 		</div>
 	),
