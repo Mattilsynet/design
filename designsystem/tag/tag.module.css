@@ -40,7 +40,7 @@
 		}
 		&[data-color="warning"] {
 			--dsc-tag-background: var(--mtds-color-bakgrunns-gul);
-			--dsc-tag-color: var(--mtds-color-skin-dark);
+			--dsc-tag-color: var(--mtds-color-info-gul);
 			--dsc-tag-icon-url: var(--mtds-icon-warning);
 		}
 		&[data-color="danger"] {

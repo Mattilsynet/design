@@ -65,7 +65,7 @@
 
 		&[data-color="warning"] {
 			--dsc-alert-background: var(--mtds-color-bakgrunns-gul);
-			--dsc-alert-color: var(--mtds-color-skin-dark);
+			--dsc-alert-color: var(--mtds-color-info-gul);
 			--dsc-alert-icon-url: var(--mtds-icon-warning);
 		}
 		&[data-color="success"] {
