@@ -63,7 +63,7 @@
 		}
 
 		&::before {
-			content: var(--mt-text-logo);
+			content: var(--mtds-text-logo);
 			mask: 0 var(--height) / auto var(--icon-height) no-repeat var(--logo-url);
 			width: var(--icon-width);
 		}

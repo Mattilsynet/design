@@ -19,7 +19,7 @@ const decorators: Story["decorators"] = [
 	(Story) => (
 		<div
 			className={styles.grid}
-			style={{ background: "var(--mt-color-gaasunge)", padding: "2em" }}
+			style={{ background: "var(--mtds-color-gaasunge)", padding: "2em" }}
 		>
 			<Story />
 		</div>

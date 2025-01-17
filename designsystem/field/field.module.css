@@ -20,10 +20,10 @@
 
 		/*  Mark as required */
 		&:has(:required, [aria-required="true"]) > label::after {
-			content: var(--mt-text-required);
-			background: var(--mt-color-bakgrunns-blaa);
+			content: var(--mtds-text-required);
+			background: var(--mtds-color-bakgrunns-blaa);
 			border-radius: var(--ds-border-radius-sm);
-			color: var(--mt-fjord);
+			color: var(--mtds-fjord);
 			font-size: .75em;
 			font-weight: normal;
 			line-height: var(--ds-line-height-sm);
