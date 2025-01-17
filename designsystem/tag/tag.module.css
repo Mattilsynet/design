@@ -1,32 +1,52 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
+		--dsc-tag-background: var(--mtds-color-100);
+
+		border-radius: 5px;
+		border: 1px solid var(--mtds-color-100);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
+		height: fit-content; /* Can be removed when DigiDir gets this */
 
+		/**
+		 * Icon
+		 */
 		& > svg {
 			flex-shrink: 0; /* Never shrkink icon */
+		}
+		&:not([data-icon], :has(svg))::before {
+			background: currentcolor;
+			content: "";
+			display: var(--dsc-tag-icon-url, none); /* Hide if no --dsc-tag-icon-url is set */
+			flex-shrink: 0;
+			height: var(--mtds-icon-size);
+			mask: center / contain no-repeat var(--dsc-tag-icon-url) content-box;
+			width: var(--mtds-icon-size);
 		}
 
 		/**
 		 * Colors
 		 */
-
 		&[data-color="info"] {
-			--dsc-tag-background: var(--mt-bakgrunns-blaa);
-			--dsc-tag-color: var(--mt-fjord);
+			--dsc-tag-background: var(--mtds-color-bakgrunns-blaa);
+			--dsc-tag-color: var(--mtds-color-fjord);
+			--dsc-tag-icon-url: var(--mtds-icon-info);
 		}
 		&[data-color="success"] {
-			--dsc-tag-background: #d3e8e0;
-			--dsc-tag-color: var(--mt-granskog);
+			--dsc-tag-background: var(--mtds-color-lav);
+			--dsc-tag-color: var(--mtds-color-granskog);
+			--dsc-tag-icon-url: var(--mtds-icon-success);
 		}
 		&[data-color="warning"] {
-			--dsc-tag-background: var(--mt-bakgrunns-gul);
-			--dsc-tag-color: var(--mt-info-gul);
+			--dsc-tag-background: var(--mtds-color-bakgrunns-gul);
+			--dsc-tag-color: var(--mtds-color-skin-dark);
+			--dsc-tag-icon-url: var(--mtds-icon-warning);
 		}
 		&[data-color="danger"] {
-			--dsc-tag-background: var(--mt-bakgrunns-rosa);
-			--dsc-tag-color: var(--mt-info-rod);
+			--dsc-tag-background: var(--mtds-color-bakgrunns-rosa);
+			--dsc-tag-color: var(--mtds-color-info-rod);
+			--dsc-tag-icon-url: var(--mtds-icon-danger);
 		}
 
 		/**
@@ -34,7 +54,7 @@
 		 */
 		position: relative;
 		&[data-tooltip]::after {
-			background: color-mix(in hsl, transparent 10%, var(--mt-mork-granskog));
+			background: var(--mtds-color-mork-granskog);
 			border-radius: var(--ds-border-radius-md);
 			color: var(--ds-color-accent-contrast-default);
 			content: attr(data-tooltip);

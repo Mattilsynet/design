@@ -1,6 +1,6 @@
 @layer mt.design {
 	.popover {
-		--mt-popover-padding: var(--ds-size-5);
+		--mtds-popover-padding: var(--ds-size-5);
 
 		background: white;
 		border-radius: 5px;
@@ -12,7 +12,7 @@
 		margin: -2px 0 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		opacity: 0;
-		padding: var(--mt-popover-padding);
+		padding: var(--mtds-popover-padding);
 		position: fixed;
 		transition-duration: .2s;
 		transition-property: opacity, margin, visibility;
@@ -30,12 +30,12 @@
 
 		&:is(menu),
 		&:has(> menu:only-child) {
-			--mt-popover-padding: var(--ds-size-3);
+			--mtds-popover-padding: var(--ds-size-3);
 		}
 		&:is(menu) > li > hr {
 			border: 0;
 			margin: var(--ds-size-2) 0;
-			border-top: 1px solid var(--mt-divider);
+			border-top: 1px solid var(--mtds-color-200);
 		}
 	}
 }

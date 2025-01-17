@@ -39,15 +39,16 @@ function handleToggle ({ target: el, newState }: Toggle){
 }
 
 // Polyfill popovertarget for <a> (not supported by native)
-function handleLinkClick ({ target }: Event){
-  const el = target instanceof Element && target.closest('a[popovertarget]');
+// and automatically assume popovertarget is the closest parent popover
+// but respect the popovertarget and popovertargetaction attribute
+function handleLinkClick (event: Event){
+  const link = event.target instanceof Element && event.target.closest('a');
+  if (link) {
+    const root = link.getRootNode() as ShadowRoot;
+    const target = root.getElementById?.(link.getAttribute('popovertarget') || '') || link.closest(`.${CSS_POPOVER}`);
+    const action = link.getAttribute('popovertargetaction') || 'toggle';
 
-  if (el) {
-    const root = el.getRootNode() as ShadowRoot;
-    const target = root.getElementById?.(el.getAttribute('popovertarget') || '');
-    const action = el.getAttribute('popovertargetaction') || 'toggle';
-
-    target?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
+    if (!event.defaultPrevented) target?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
   }
 }
 

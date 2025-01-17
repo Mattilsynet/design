@@ -97,13 +97,13 @@
 				background: currentcolor;
 				content: "";
 				display: inline-block;
-				height: var(--mt-icon-size);
+				height: var(--mtds-icon-size);
 				margin-inline-end: var(--ds-size-2);
-				mask: center / contain no-repeat var(--mt-icon-chevron);
+				mask: center / contain no-repeat var(--mtds-icon-chevron);
 				rotate: 90deg;
 				transition: rotate .2s;
 				vertical-align: -.3em;
-				width: var(--mt-icon-size);
+				width: var(--mtds-icon-size);
 			}
 
 			&[aria-expanded="true"]::before {

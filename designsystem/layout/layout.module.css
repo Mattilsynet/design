@@ -33,7 +33,7 @@
 			border-radius: 5px; /* TODO: Should it? */
 		}
 		&[data-color="lys-furu"] {
-			background-color: var(--mt-lys-furu);
+			background-color: var(--mtds-color-lys-furu);
 		}
 		&[data-center="sm"],
 		&[data-center="md"],

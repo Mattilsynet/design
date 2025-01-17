@@ -26,9 +26,9 @@
 				display: block;
 				background: currentcolor;
 				content: "";
-				mask: center / contain no-repeat var(--mt-icon-close) content-box;
-				height: var(--mt-icon-size);
-				width: var(--mt-icon-size);
+				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+				height: var(--mtds-icon-size);
+				width: var(--mtds-icon-size);
 				padding: var(--ds-size-1);
 				margin: calc(var(--ds-size-1) * -1);
 			}

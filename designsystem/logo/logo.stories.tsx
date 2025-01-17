@@ -47,6 +47,16 @@ export const Default: Story = {
 	),
 };
 
+export const Sizes: Story = {
+	decorators,
+	render: () => (
+		<>
+			<h1 className={styles.logo} data-size="md"></h1>
+			<h1 className={styles.logo} data-size="lg"></h1>
+		</>
+	),
+};
+
 export const English: Story = {
 	decorators,
 	render: () => (

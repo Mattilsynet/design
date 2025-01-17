@@ -11,9 +11,15 @@ import * as stories from './tag.stories';
 - Bruk `data-size="sm | md | lg"`
 <Canvas of={stories.Sizes} />
 
-## Ikoner
+## Farger og ikon
+- Bruk `data-color="neutral | info | success | warning | danger"`
+- Ikon følger automatisk med farge, med mindre du legge inn `<svg>` eller `data-icon="none"`
+<Canvas of={stories.WithIcon} />
+
+## Egenvalgt ikon
+- Ikon forsvinner dersom du legger inn egen `<svg>` eller `data-icon="none"`
 - [Ikon fra phosphoricons.com](https://phosphoricons.com/) kan legges før tekst
-<Canvas of={stories.WithIcons} />
+<Canvas of={stories.WithIconOverwrite} />
 
 ## Tooltip (Eksperimentell)
 - Bruk `data-tooltip="Hjelpetekst"`

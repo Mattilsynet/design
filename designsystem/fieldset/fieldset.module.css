@@ -17,10 +17,10 @@
 				:has(:optional, [aria-required="false"])
 			) {
 			& > legend::after {
-				content: var(--mt-required);
-				background: var(--mt-bekk);
+				content: var(--mtds-text-required);
+				background: var(--mtds-color-bekk);
 				border-radius: var(--ds-border-radius-sm);
-				color: var(--mt-fjord);
+				color: var(--mtds-fjord);
 				font-size: .75em;
 				font-weight: normal;
 				line-height: var(--ds-line-height-sm);

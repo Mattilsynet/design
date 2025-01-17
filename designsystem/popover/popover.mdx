@@ -8,10 +8,11 @@ import * as stories from './popover.stories';
 - Legg `popovertarget="ID"` på typisk `<button>` som trigger element
 - Plassiering vil automatisk tilpasse seg scroll og tilgjengelig plass
 - **Merk:** automatisk posisjonering krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-<Canvas of={stories.Dropdown} />
+<Canvas of={stories.Default} />
 
 ## Nedtrekksmeny / Dropdown
 - Bruk `<menu>` med `<li><button type="button">` eller ` <li><a>` som barn
+- Dersom du legger `<a>` inni en `popover`, vil den automatsk lukke popoveren på klikk, med mindre du setter `popovertargetaction="show"` eller kjører `event.preventDefault()` på `onClick`
 
 <Canvas of={stories.Dropdown} />
 
