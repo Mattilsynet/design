@@ -1,0 +1,11 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './heading.stories';
+
+<Meta of={stories} />
+
+# Heading
+
+- Bruk klassen `heading` på typisk `<h1>` til `<h6>`
+- **Merk:** `heading` endrer kun størrelse – ikke overskriftsnivå for universell utforming.<br />Husk derfor å benytte [korrekt HTML heading-nivå](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253).
+
+<Canvas of={stories.Default} />
