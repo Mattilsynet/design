@@ -8,11 +8,12 @@
 		--dsc-alert-icon-url: var(--mtds-icon-info);
 		--dsc-alert-icon-color: currentcolor;
 
-		& > :first-child {
+		/* https://every-layout.dev/layouts/stack/ */
+		& > * {
 			margin-block: 0;
 		}
-		& > :last-child {
-			margin-top: 1em;
+		& > * + * {
+			margin-block-start: 1em;
 		}
 		& :is(h2, h3, h3, h4):first-child {
 			font-size: 1em;
@@ -60,7 +61,7 @@
 
 		&[data-color="warning"] {
 			--dsc-alert-background: var(--mtds-color-bakgrunns-gul);
-			--dsc-alert-color: var(--mtds-color-info-gul);
+			--dsc-alert-color: var(--mtds-color-skin-dark);
 			--dsc-alert-icon-url: var(--mtds-icon-warning);
 		}
 		&[data-color="success"] {
