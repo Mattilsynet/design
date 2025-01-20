@@ -1,0 +1,73 @@
+name: Publish to npm and GitHub
+
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "Check version, build and publish"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check version change
+        id: check_version
+        run: |
+          if git diff HEAD^ HEAD -- package.json | grep '"version"'; then
+            echo "Version changed, continuing."
+            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "Version not changed, skipping workflow."
+            echo "VERSION_CHANGED=false" >> $GITHUB_ENV
+          fi
+
+      - uses: actions/setup-node@v4
+        if: env.VERSION_CHANGED == 'true'
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        if: env.VERSION_CHANGED == 'true'
+        run: npm install
+
+      - name: Create a new Git tag
+        if: env.VERSION_CHANGED == 'true'
+        run: |
+         VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Creating tag: $VERSION"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push origin "$VERSION"
+      
+      - name: Creating .npmrc
+        if: env.VERSION_CHANGED == 'true'
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
+
+      - name: Publish to npm
+        if: env.VERSION_CHANGED == 'true'
+        run: npm publish --access public
+
+      - name: Recreating .npmrc for publishing to GitHub
+        if: env.VERSION_CHANGED == 'true'
+        run: |
+          rm $HOME/.npmrc && 
+          cat << EOF > "$HOME/.npmrc"
+            @mattilsynet:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GPR
+        if: env.VERSION_CHANGED == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
