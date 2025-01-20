@@ -8,13 +8,13 @@ import * as stories from './layout.stories';
 - Begge klassene støtter `data-align | data-justify | data-align-content | data-center | data-gap`
 
 ## Flex
-- Brukes når elementenes innhold skal bestemme plassering
+- Brukes når elementenes innhold skal bestemme størrelser
 - `flex-wrap: wrap` er på default, men kan skrues av med `data-nowrap`
 
 <Canvas of={stories.Flex} />
 
 ## Grid
-- Brukes når forelderen skal bestemme plassering
+- Brukes når forelderen skal bestemme størrelser
 - Bruk uten `data-grid` for å kun få rader / vertikal layout med `data-gap`
 - Bruk `data-grid="fit"` for automatisk antall kolonner
 - Bruk `data-grid="xs | sm | md | lg"` for bestemte bredder
