@@ -24,6 +24,7 @@
 @import url("./badge/badge.module.css");
 @import url("./avatar/avatar.module.css");
 @import url("./alert/alert.module.css");
+@import url("./heading/heading.module.css");
 
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.design {
