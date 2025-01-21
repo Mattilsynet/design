@@ -30,8 +30,8 @@
 		"build": "vite build && rm -rf mtds/docs/",
 		"lint": "npx @biomejs/biome lint",
 		"publish:clojure": "npm run build && cd ./clojure && ./publish.sh",
-		"publish:minor": "npm version minor --message 'Release %s' && npm run build && git push --tags && npm publish --access public",
-		"publish:patch": "npm version patch --message 'Release %s' && npm run build && git push --tags && npm publish --access public",
+		"bump:minor": "npm version minor --message 'Release %s'",
+		"bump:patch": "npm version patch --message 'Release %s'",
 		"start": "vite",
 		"storybook": "storybook dev -p 6006",
 		"storybook:build": "npm run build && storybook build"
