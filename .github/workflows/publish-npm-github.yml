@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 105-githubaction-publish-to-clojure-too
   workflow_dispatch:
 
 jobs:
@@ -42,6 +41,10 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         run: npm run build
 
+      - name: Build
+        if: env.VERSION_CHANGED == 'true'
+        run: npm run build
+
       # Tagging the new release
       - name: Create a new Git tag
         if: env.VERSION_CHANGED == 'true'
@@ -61,7 +64,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public --dry-run
+        run: npm publish --access public
 
       # Publishing to GitHub
       - name: Recreating .npmrc for publishing to GitHub
@@ -77,7 +80,7 @@ jobs:
 
       - name: Publish to GPR
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --dry-run
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

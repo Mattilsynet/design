@@ -1,9 +1,6 @@
 name: Publish to Clojars
 
 on:
-  push:
-    branches:
-      - 105-githubaction-publish-to-clojure-too
   repository_dispatch:
     types: ["npm_publish_done"]
   workflow_dispatch:
