@@ -70,8 +70,19 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          mkdir -p ~/.m2
+          cat << EOF > ~/.m2/settings.xml
+          <settings>
+            <servers>
+              <server>
+                <id>clojars</id>
+                <username>${{ secrets.CLOJARS_USERNAME }}</username>
+                <password>${{ secrets.CLOJARS_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+          
           cd ./clojure
           ./publish.sh
-        env:
-          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
-          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_TOKEN }}
