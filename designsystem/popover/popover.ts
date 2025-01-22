@@ -52,26 +52,19 @@ function handleLinkClick (event: Event){
   }
 }
 
-function place (anchor: HTMLElement | null, poppe: HTMLElement, isOver = false) {
-  const { innerWidth: winW, innerHeight: winH, scrollY: winY, scrollX: winX } = window;
-  const { offsetWidth: popperW, offsetHeight: popperH } = poppe;
-  let anchorX = -winX;
-  let anchorY = -winY;
-  let el = anchor;
-
-  do {
-    anchorX += el?.offsetLeft || 0;
-    anchorY += el?.offsetTop || 0;
-    el = (el?.offsetParent || null) as HTMLElement | null;
-  } while (el);
-
-  const anchorBottom = anchorY + (anchor?.offsetHeight || 0);
-  const hasSpaceUnder = anchorBottom + popperH < winH;
+function place (anchor: HTMLElement | null, popper: HTMLElement, isOver = false) {
+  if (!anchor) return;
+  const { offsetWidth: popperW, offsetHeight: popperH } = popper;
+  const { offsetWidth: anchorW, offsetHeight: anchorH } = anchor;
+  const { width, height, left, top } = anchor.getBoundingClientRect();
+  const anchorX = Math.round(left - (anchorW - width) / 2); // Correct for CSS transform scale
+  const anchorY = Math.round(top - (anchorH - height) / 2); // Correct for CSS transform scale
+  const hasSpaceUnder = anchorY + anchorH + popperH < window.innerHeight;
   const hasSpaceOver = anchorY - popperH > 0
   const placeUnder = (!isOver && hasSpaceUnder) || !hasSpaceOver // Always place under when no hasSpaceOver, as no OS can scroll further up than 0
-  const scroll = placeUnder ? winY + anchorBottom + popperH + 30 : 0
+  const scroll = placeUnder ? window.scrollY + anchorY + anchorH + popperH + 30 : 0
 
-  poppe.style.left = `${Math.round(Math.min(Math.max(10, anchorX), winW - popperW - 10))}px`
-  poppe.style.top = `${Math.round(placeUnder ? anchorBottom : anchorY - popperH)}px`
+  popper.style.left = `${Math.round(Math.min(Math.max(10, anchorX), window.innerWidth - popperW - 10))}px`
+  popper.style.top = `${Math.round(placeUnder ? anchorY + anchorH : anchorY - popperH)}px`
   SCROLLER?.style.setProperty('top', `${Math.round(scroll)}px`);
 }
