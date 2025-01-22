@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-clojure-test-${{ hashFiles('deps.edn') }}
+          key: ${{ runner.os }}-clojure-build-${{ hashFiles('deps.edn') }}
           restore-keys: |
             ${{ runner.os }}-clojure-test
 
@@ -55,11 +55,11 @@ jobs:
             ${{ runner.os }}-gitlibs-build
 
       # Publish to Clojars for clojure
-      #- name: Build and publish to Clojars
-      # if: env.VERSION_CHANGED == 'true'
-        #run: |
-        #  cd ./clojure
-        #  ./publish.sh
-        #env:
-         # CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
-         # CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
+      - name: Build and publish to Clojars
+        if: env.VERSION_CHANGED == 'true'
+        run: |
+          cd ./clojure
+          ./publish.sh
+        env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
