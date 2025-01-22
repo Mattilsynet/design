@@ -19,5 +19,5 @@ mvn deploy:deploy-file \
   -DrepositoryId=clojars \
   -Durl=https://clojars.org/repo \
   -DpomFile=pom.xml \
-  -Dusername=$CLOJARS_PASSWORD \
-  -Dpassword=$CLOJARS_USERNAME
+  -Dusername=$CLOJARS_USERNAME \
+  -Dpassword=$CLOJARS_PASSWORD
