@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 105-githubaction-publish-to-clojure-too
   workflow_dispatch:
 
 jobs:
