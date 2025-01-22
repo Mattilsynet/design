@@ -18,6 +18,4 @@ mvn deploy:deploy-file \
   -Dfile=mattilsynet-design.jar \
   -DrepositoryId=clojars \
   -Durl=https://clojars.org/repo \
-  -DpomFile=pom.xml \
-  -Dusername=$CLOJARS_USERNAME \
-  -Dpassword=$CLOJARS_PASSWORD
+  -DpomFile=pom.xml
