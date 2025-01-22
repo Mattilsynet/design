@@ -26,6 +26,7 @@ jobs:
             echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
+      # Node setup
       - uses: actions/setup-node@v4
         if: env.VERSION_CHANGED == 'true'
         with:
@@ -35,11 +36,12 @@ jobs:
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
         run: npm ci
-    
+
       - name: Build
         if: env.VERSION_CHANGED == 'true'
         run: npm run build
 
+      # Tagging the new release
       - name: Create a new Git tag
         if: env.VERSION_CHANGED == 'true'
         run: |
@@ -50,7 +52,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "$VERSION" -m "Release $VERSION"
           git push origin "$VERSION"
-      
+
+      # Publishing to npm
       - name: Creating .npmrc
         if: env.VERSION_CHANGED == 'true'
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
@@ -59,6 +62,7 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         run: npm publish --access public
 
+      # Publishing to GitHub
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
         run: |
@@ -75,3 +79,13 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Initiate a publish to Clojars
+      - name: Dispatch event for publishing to Clojars
+        if: env.VERSION_CHANGED == 'true'
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/mattilsynet/design/dispatches \
+            -d '{"event_type":"npm_publish_done"}'
