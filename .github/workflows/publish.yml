@@ -26,6 +26,7 @@ jobs:
             echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
+      # Node setup
       - uses: actions/setup-node@v4
         if: env.VERSION_CHANGED == 'true'
         with:
@@ -36,6 +37,7 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         run: npm ci
 
+      # Tagging the new release
       - name: Create a new Git tag
         if: env.VERSION_CHANGED == 'true'
         run: |
@@ -46,7 +48,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "$VERSION" -m "Release $VERSION"
           git push origin "$VERSION"
-      
+
+      # Publishing to npm
       - name: Creating .npmrc
         if: env.VERSION_CHANGED == 'true'
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
@@ -55,6 +58,7 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         run: npm publish --access public
 
+      # Publishing to GitHub
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
         run: |
@@ -71,3 +75,45 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Setup clojure environment and cache
+      - name: Prepare java
+        if: env.VERSION_CHANGED == 'true'
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install clojure tools
+        if: env.VERSION_CHANGED == 'true'
+        uses: DeLaGuardo/setup-clojure@12.1
+        with:
+          cli: 1.11.1.1413
+
+      - name: Cache maven build deps
+        if: env.VERSION_CHANGED == 'true'
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-clojure-test-${{ hashFiles('deps.edn') }}
+          restore-keys: |
+            ${{ runner.os }}-clojure-test
+
+      - name: Cache gitlibs
+        if: env.VERSION_CHANGED == 'true'
+        uses: actions/cache@v3
+        with:
+          path: ~/.gitlibs
+          key: ${{ runner.os }}-gitlibs-build-${{ hashFiles('deps.edn') }}
+          restore-keys: |
+            ${{ runner.os }}-gitlibs-build
+
+      # Publish to Clojars for clojure
+      - name: Build and publish to Clojars
+        if: env.VERSION_CHANGED == 'true'
+        run: |
+          cd ./clojure
+          ./publish.sh
+        env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
