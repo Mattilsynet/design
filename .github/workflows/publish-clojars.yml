@@ -1,0 +1,77 @@
+name: Publish to Clojars
+
+on:
+  repository_dispatch:
+    types: ["npm_publish_done"]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    name: "Build and publish to Clojars"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Setup Node and install dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Setup clojure environment and cache
+      - name: Prepare java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@13.0
+        with:
+          cli: 1.12.0.1488
+
+      - name: Cache maven build deps
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-clojure-build-${{ hashFiles('deps.edn') }}
+          restore-keys: |
+            ${{ runner.os }}-clojure-test
+
+      - name: Cache gitlibs
+        uses: actions/cache@v3
+        with:
+          path: ~/.gitlibs
+          key: ${{ runner.os }}-gitlibs-build-${{ hashFiles('deps.edn') }}
+          restore-keys: |
+            ${{ runner.os }}-gitlibs-build
+
+      # Publish to Clojars for clojure
+      - name: Build and publish to Clojars
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          mkdir -p ~/.m2
+          cat << EOF > ~/.m2/settings.xml
+          <settings>
+            <servers>
+              <server>
+                <id>clojars</id>
+                <username>${{ secrets.CLOJARS_USERNAME }}</username>
+                <password>${{ secrets.CLOJARS_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+          
+          cd ./clojure
+          ./publish.sh
