@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
       # Setup clojure environment and cache
       - name: Prepare java
         uses: actions/setup-java@v3
