@@ -1,10 +1,12 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "0.2.10",
+	"version": "0.2.11",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": ["mtds"],
+	"files": [
+		"mtds"
+	],
 	"engines": {
 		"npm": ">=10.0.0",
 		"node": ">=20.0.0"
@@ -34,33 +36,35 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@digdir/designsystemet-css": "^1.0.0-next.45",
-		"@digdir/designsystemet-theme": "^1.0.0-next.45",
 		"@phosphor-icons/react": "^2.1.7",
-		"@storybook/addon-essentials": "^8.4.7",
-		"@storybook/addon-storysource": "^8.4.7",
-		"@storybook/blocks": "^8.4.7",
-		"@storybook/manager-api": "^8.4.7",
-		"@storybook/react": "^8.4.7",
-		"@storybook/react-vite": "^8.4.7",
-		"@storybook/theming": "^8.4.7",
+		"@storybook/addon-essentials": "^8.5.0",
+		"@storybook/addon-storysource": "^8.5.0",
+		"@storybook/blocks": "^8.5.0",
+		"@storybook/manager-api": "^8.5.0",
+		"@storybook/react": "^8.5.0",
+		"@storybook/react-vite": "^8.5.0",
+		"@storybook/theming": "^8.5.0",
 		"@tanstack/react-table": "^8.20.6",
-		"@types/node": "^22.10.5",
-		"@types/react": "^19.0.6",
+		"@types/node": "^22.10.7",
+		"@types/react": "^19.0.7",
 		"@types/react-dom": "^19.0.3",
-		"@u-elements/u-datalist": "0.0.9",
+		"@u-elements/u-datalist": "0.1.0",
 		"@u-elements/u-details": "^0.1.0",
 		"@u-elements/u-tabs": "^0.0.8",
 		"@vitejs/plugin-react": "^4.3.4",
 		"fast-glob": "^3.3.3",
 		"globals": "^15.12.0",
-		"postcss": "^8.4.49",
+		"postcss": "^8.5.1",
 		"postcss-nesting": "^13.0.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"storybook": "^8.4.7",
 		"typescript": "^5.7.3",
-		"vite": "^6.0.7",
+		"vite": "^6.0.11",
 		"vite-plugin-dts": "^4.5.0"
+	},
+	"dependencies": {
+		"@digdir/designsystemet-css": "^1.0.0-next.47",
+		"@digdir/designsystemet-theme": "^1.0.0-next.47"
 	}
 }
