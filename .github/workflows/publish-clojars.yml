@@ -62,7 +62,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          echo "CLOJARS_USERNAME=${{ secrets.CLOJARS_USERNAME }}" >> $GITHUB_ENV
-          echo "CLOJARS_PASSWORD=${{ secrets.CLOJARS_TOKEN }}" >> $GITHUB_ENV
           cd ./clojure
           ./publish.sh
+        env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_TOKEN }}
