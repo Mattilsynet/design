@@ -86,15 +86,6 @@ export const Grid: Story = {
 	),
 };
 
-export const Box: Story = {
-	decorators,
-	render: () => (
-		<div className={styles.box} data-color="lys-furu">
-			Content
-		</div>
-	),
-};
-
 export const Gap: Story = {
 	decorators,
 	render: () => (
