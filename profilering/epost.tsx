@@ -61,6 +61,7 @@ export function Epost() {
 						type="text"
 						autoComplete="off"
 						value={data.name}
+						required
 					/>
 				</div>
 				<div className={styles.field}>
@@ -73,48 +74,59 @@ export function Epost() {
 						type="text"
 						autoComplete="off"
 						value={data.position}
+						required
 					/>
 				</div>
 				<div className={styles.field}>
-					<div
-						className={styles.flex}
-						data-justify="space-between"
-						style={{ width: "100%" }}
-					>
-						<label>
-							<MapPinArea aria-hidden="true" /> Kontorsted
-						</label>
-						<a
-							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
-						</a>
-					</div>
-					<small>
-						Språkrådet sier at navn på hovedkontor, regioner, avdelinger og
-						seksjoner skrives i små bokstaver.
-					</small>
+					<label>
+						<MapPinArea aria-hidden="true" /> Tilknytning
+					</label>
 					<input
 						className={styles.input}
 						name="office"
 						type="text"
 						autoComplete="off"
+						placeholder="kontorsted, seksjon"
 						value={data.office}
+						list="office-list"
+						required
 					/>
-				</div>
-				<div className={styles.field}>
-					<label>
-						<Graph aria-hidden="true" /> Seksjon
-					</label>
-					<input
-						className={styles.input}
-						name="section"
-						type="text"
-						autoComplete="off"
-						value={data.section}
-					/>
+					<datalist id="office-list">
+						<option>Hovedkontoret</option>
+						<option>Agder</option>
+						<option>Bergen og omland</option>
+						<option>Finnmark</option>
+						<option>Gauldal</option>
+						<option>Glåmdal og Østerdal</option>
+						<option>Grensekontroll og import</option>
+						<option>Gudbrandsdal</option>
+						<option>Helgeland</option>
+						<option>Innherred og Fosen</option>
+						<option>Mat</option>
+						<option>Midtre Hålogaland</option>
+						<option>Mjøsområdet</option>
+						<option>Namdal</option>
+						<option>Nasjonale godkjenninger</option>
+						<option>Nasjonale oppgaver</option>
+						<option>Nordfjord</option>
+						<option>Nordmøre og Romsdal</option>
+						<option>Nordre Buskerud, Hadeland og Valdres</option>
+						<option>Romerike</option>
+						<option>Salten</option>
+						<option>Slakteritilsyn</option>
+						<option>Styring og administrasjon</option>
+						<option>Sunnfjord og Sogn</option>
+						<option>Sunnhordland og Haugalandet</option>
+						<option>Sunnmøre</option>
+						<option>Søndre Buskerud</option>
+						<option>Sør-Innherred</option>
+						<option>Sør-Rogaland, Sirdal og Flekkefjord</option>
+						<option>Telemark</option>
+						<option>Troms og Svalbard</option>
+						<option>Trondheim og omland</option>
+						<option>Vestfold</option>
+						<option>Østfold og Follo</option>
+					</datalist>
 				</div>
 				<div className={styles.field}>
 					<label>
@@ -138,31 +150,27 @@ export function Epost() {
 						type="text"
 						autoComplete="off"
 						value={data.mobile}
+						required
 					/>
 				</div>
 				<div className={styles.field}>
-					<div
-						className={styles.flex}
-						data-justify="space-between"
-						style={{ width: "100%" }}
+					<label>
+						<MapTrifold aria-hidden="true" /> Besøksadresse
+					</label>
+					<a
+						href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+						target="_blank"
+						rel="noreferrer"
 					>
-						<label>
-							<MapTrifold aria-hidden="true" /> Besøksadresse
-						</label>
-						<a
-							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
-						</a>
-					</div>
+						Se kontorsteder <ArrowSquareOut aria-hidden="true" />
+					</a>
 					<input
 						className={styles.input}
 						name="visit"
 						type="text"
 						autoComplete="off"
 						value={data.visit}
+						required
 					/>
 				</div>
 			</form>
@@ -191,9 +199,7 @@ export function Epost() {
 						<br />
 						{data.position || "stillingstittel"}
 						<br />
-						Mattilsynet, {data.office || "kontorsted"},{" "}
-						{data.section || "seksjon"}
-						<br />
+						Mattilsynet, {data.office || "kontorsted, seksjon"}
 						<br />
 						Telefon:{" "}
 						{[toPhone(data.phone), toPhone(data.mobile)]
@@ -207,23 +213,17 @@ export function Epost() {
 							{data.visit || "Veigata 1, 2001 Byen"}
 						</a>
 						<br />
-						Felles postadresse: Mattilsynet, hovedkontoret, felles postmottak,
-						postboks 383, 2381 Brumunddal
-						<br />
-						E-post:{" "}
 						<a
-							href="mailto:postmottak@mattilsynet.no"
+							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
 							style={{ color: "inherit" }}
 						>
-							postmottak@mattilsynet.no
-						</a>
-						<br />
-						<a href="https://mattilsynet.no" style={{ color: "inherit" }}>
-							mattilsynet.no
+							Kontakt Mattilsynet
 						</a>
 						<br />
 						<br />
-						<img alt="Mattilsynet" src="/docs/logo-epost.png" width="200" />
+						<a href="https://www.mattilsynet.no/" style={{ color: "inherit" }}>
+							<img alt="Mattilsynet" src="/docs/logo-epost.png" width="200" />
+						</a>
 					</div>
 				</div>
 				<button
