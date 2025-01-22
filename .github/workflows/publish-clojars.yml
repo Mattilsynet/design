@@ -1,6 +1,9 @@
 name: Publish to Clojars
 
 on:
+  workflow_run:
+    workflows: ["Publish to npm and GitHub"]
+    types: ["completed"]
   repository_dispatch:
     types: ["npm_publish_done"]
   workflow_dispatch:
