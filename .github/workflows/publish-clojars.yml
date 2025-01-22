@@ -57,14 +57,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gitlibs-build
 
-      - name: Debug secrets
-        run: |
-          echo "Username length: ${#CLOJARS_USERNAME}"
-          echo "Password length: ${#CLOJARS_PASSWORD}"
-        env:
-          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
-          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
-
       # Publish to Clojars for clojure
       - name: Build and publish to Clojars
         run: |
