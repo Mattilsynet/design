@@ -60,6 +60,8 @@ jobs:
       # Publish to Clojars for clojure
       - name: Build and publish to Clojars
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           cd ./clojure
           ./publish.sh
         env:
