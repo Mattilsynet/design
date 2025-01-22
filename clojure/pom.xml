@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.mattilsynet</groupId>
   <artifactId>design</artifactId>
-  <version>0.2.8-test.23</version>
+  <version>0.2.8.22</version>
   <name>design</name>
   <dependencies>
   </dependencies>
@@ -31,7 +31,7 @@
   <scm>
     <connection>scm:git:git://github.com/mattilsynet/design.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/mattilsynet/design.git</developerConnection>
-    <tag>v0.2.8-test.23</tag>
+    <tag>v0.2.8-22</tag>
     <url>https://github.com/Mattilsynet/design/tree/master/clojure</url>
   </scm>
 </project>
