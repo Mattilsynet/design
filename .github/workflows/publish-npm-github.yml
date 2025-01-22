@@ -56,7 +56,7 @@ jobs:
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public
+        run: npm publish --access public --dry-run
 
       # Publishing to GitHub
       - name: Recreating .npmrc for publishing to GitHub
@@ -72,48 +72,16 @@ jobs:
 
       - name: Publish to GPR
         if: env.VERSION_CHANGED == 'true'
-        run: npm publish
+        run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Setup clojure environment and cache
-      - name: Prepare java
-        if: env.VERSION_CHANGED == 'true'
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Install clojure tools
-        if: env.VERSION_CHANGED == 'true'
-        uses: DeLaGuardo/setup-clojure@12.1
-        with:
-          cli: 1.11.1.1413
-
-      - name: Cache maven build deps
-        if: env.VERSION_CHANGED == 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-clojure-test-${{ hashFiles('deps.edn') }}
-          restore-keys: |
-            ${{ runner.os }}-clojure-test
-
-      - name: Cache gitlibs
-        if: env.VERSION_CHANGED == 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.gitlibs
-          key: ${{ runner.os }}-gitlibs-build-${{ hashFiles('deps.edn') }}
-          restore-keys: |
-            ${{ runner.os }}-gitlibs-build
-
-      # Publish to Clojars for clojure
-      - name: Build and publish to Clojars
+      # Initiate a publish to Clojars
+      - name: Dispatch event for publishing to Clojars
         if: env.VERSION_CHANGED == 'true'
         run: |
-          cd ./clojure
-          ./publish.sh
-        env:
-          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
-          CLOJARS_PASSWORD: ${{ secrets.CLOJARS_PASSWORD }}
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/mattilsynet/design/dispatches \
+            -d '{"event_type":"npm_publish_done"}'
