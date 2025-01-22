@@ -118,6 +118,7 @@
 			translate: -50%;
 			visibility: hidden;
 			width: max-content;
+			z-index: 99999;
 		}
 		&[data-tooltip]:focus-visible::after,
 		&[data-tooltip]:hover::after {
