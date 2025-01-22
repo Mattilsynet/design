@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "0.2.8-alpha",
+	"version": "0.2.8",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
