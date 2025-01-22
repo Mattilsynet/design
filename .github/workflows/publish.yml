@@ -35,6 +35,10 @@ jobs:
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
         run: npm ci
+    
+      - name: Build
+        if: env.VERSION_CHANGED == 'true'
+        run: npm run build
 
       - name: Create a new Git tag
         if: env.VERSION_CHANGED == 'true'
