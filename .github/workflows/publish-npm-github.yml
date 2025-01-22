@@ -36,10 +36,6 @@ jobs:
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
         run: npm ci
-    
-      - name: Build
-        if: env.VERSION_CHANGED == 'true'
-        run: npm run build
 
       - name: Build
         if: env.VERSION_CHANGED == 'true'
