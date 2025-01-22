@@ -56,7 +56,6 @@ jobs:
 
       # Publish to Clojars for clojure
       - name: Build and publish to Clojars
-        if: env.VERSION_CHANGED == 'true'
         run: |
           cd ./clojure
           ./publish.sh
