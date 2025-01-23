@@ -4,10 +4,12 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
-import "./style.css";
-import "../designsystem"; // Import functionality from designsystem
+import { styles } from "../designsystem"; // Import functionality from designsystem
+import "./preview.css";
 import "@u-elements/u-tabs";
 import "@u-elements/u-details";
+
+const CSS_ALERT = styles.alert.split(" ");
 
 export default {
 	// decorators: [
@@ -35,8 +37,22 @@ export default {
 					document.documentElement.setAttribute("lang", "no");
 
 					// Paint blockqoutes with x as red
-					for (const el of document.querySelectorAll(".sbdocs-blockquote"))
-						el.toggleAttribute("data-error", el.textContent?.includes("❌"));
+					for (const el of document.querySelectorAll(
+						".sbdocs-blockquote:not(h1 + .sbdocs-blockquote)",
+					)) {
+						const text = el.textContent || "";
+						const color = text.includes("❌")
+							? "danger"
+							: text.includes("⚠️")
+								? "warning"
+								: text.includes("✅")
+									? "success"
+									: "info";
+
+						el.innerHTML = el.innerHTML?.replace(/(❌|✅|⚠️)/, "");
+						el.classList.add(...CSS_ALERT);
+						el.setAttribute("data-color", color);
+					}
 
 					// Hide BR from screen readers
 					for (const br of document.getElementsByTagName("br")) {
