@@ -12,20 +12,24 @@
 			margin: 0;
 		}
 
-		/* Mark <legend> with Required if all inputs inside are required */
+		/* Mark <legend> with "Required" if all inputs inside are required */
 		&:has(:required, [aria-required="true"]):not(
 				:has(:optional, [aria-required="false"])
 			) {
 			& > legend::after {
+				background: var(--mtds-color-bakgrunns-blaa);
+				border-radius: 5px;
+				border: 1px solid var(--mtds-color-100);
+				box-sizing: border-box;
+				color: var(--mtds-color-fjord);
 				content: var(--mtds-text-required);
-				background: var(--mtds-color-bekk);
-				border-radius: var(--ds-border-radius-sm);
-				color: var(--mtds-fjord);
-				font-size: .75em;
+				display: inline-block;
+				font-size: var(--ds-body-xs-font-size);
 				font-weight: normal;
-				line-height: var(--ds-line-height-sm);
-				margin-inline-start: var(--ds-size-2);
-				padding: var(--ds-size-1) var(--ds-size-2);
+				height: var(--ds-size-8);
+				line-height: 1.5;
+				margin-inline-start: var(--ds-size-3);
+				padding: 0 var(--ds-size-2);
 			}
 			& label::after {
 				content: none;
