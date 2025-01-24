@@ -49,7 +49,8 @@ function handleLinkClick (event: Event){
 }
 
 function place (anchor: HTMLElement | null, popper: HTMLElement, isOver = false) {
-  if (!anchor) return;
+  if (!anchor?.isConnected || !popper?.isConnected) return POPPING.delete(popper); // Stop watchning if anchor is removed from DOM
+
   const { offsetWidth: popperW, offsetHeight: popperH } = popper;
   const { offsetWidth: anchorW, offsetHeight: anchorH } = anchor;
   const { width, height, left, top } = anchor.getBoundingClientRect();
