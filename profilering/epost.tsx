@@ -1,7 +1,6 @@
 import {
 	ArrowSquareOut,
 	DeviceMobile,
-	Graph,
 	IdentificationBadge,
 	MapPinArea,
 	MapTrifold,
@@ -187,7 +186,7 @@ export function Epost() {
 				>
 					<div
 						style={{
-							fontFamily: "Avenir, Avenir Next, sans-serif",
+							fontFamily: "Avenir, Avenir Next, Avenir Next LT Pro, sans-serif",
 							fontSize: "11pt",
 							lineHeight: 1.5,
 						}}
