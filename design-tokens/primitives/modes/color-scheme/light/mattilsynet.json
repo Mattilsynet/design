@@ -1,67 +1,5 @@
 {
   "mattilsynet": {
-    "5": {
-      "1": {
-        "$type": "color",
-        "$value": "#ffffff"
-      },
-      "2": {
-        "$type": "color",
-        "$value": "#f3f3f3"
-      },
-      "3": {
-        "$type": "color",
-        "$value": "#e2e2e2"
-      },
-      "4": {
-        "$type": "color",
-        "$value": "#d1d1d1"
-      },
-      "5": {
-        "$type": "color",
-        "$value": "#c2c2c2"
-      },
-      "6": {
-        "$type": "color",
-        "$value": "#bcbcbc"
-      },
-      "7": {
-        "$type": "color",
-        "$value": "#7e7e7e"
-      },
-      "8": {
-        "$type": "color",
-        "$value": "#616161"
-      },
-      "9": {
-        "$type": "color",
-        "$value": "#000000"
-      },
-      "10": {
-        "$type": "color",
-        "$value": "#181818"
-      },
-      "11": {
-        "$type": "color",
-        "$value": "#282828"
-      },
-      "12": {
-        "$type": "color",
-        "$value": "#616161"
-      },
-      "13": {
-        "$type": "color",
-        "$value": "#2b2b2b"
-      },
-      "contrast-1": {
-        "$type": "color",
-        "$value": "#ffffff"
-      },
-      "contrast-2": {
-        "$type": "color",
-        "$value": "#919191"
-      }
-    },
     "granskog": {
       "1": {
         "$type": "color",
@@ -124,7 +62,7 @@
         "$value": "#ccd9da"
       }
     },
-    "--border-radius": {
+    "neutral": {
       "1": {
         "$type": "color",
         "$value": "#ffffff"
@@ -184,68 +122,6 @@
       "contrast-2": {
         "$type": "color",
         "$value": "#919191"
-      }
-    },
-    "neutral": {
-      "1": {
-        "$type": "color",
-        "$value": "#ffffff"
-      },
-      "2": {
-        "$type": "color",
-        "$value": "#f3f4f4"
-      },
-      "3": {
-        "$type": "color",
-        "$value": "#e0e2e4"
-      },
-      "4": {
-        "$type": "color",
-        "$value": "#cfd2d5"
-      },
-      "5": {
-        "$type": "color",
-        "$value": "#bfc3c7"
-      },
-      "6": {
-        "$type": "color",
-        "$value": "#b8bcc1"
-      },
-      "7": {
-        "$type": "color",
-        "$value": "#777f89"
-      },
-      "8": {
-        "$type": "color",
-        "$value": "#59626f"
-      },
-      "9": {
-        "$type": "color",
-        "$value": "#1E2B3C"
-      },
-      "10": {
-        "$type": "color",
-        "$value": "#313d4d"
-      },
-      "11": {
-        "$type": "color",
-        "$value": "#444f5d"
-      },
-      "12": {
-        "$type": "color",
-        "$value": "#59626f"
-      },
-      "13": {
-        "$type": "color",
-        "$value": "#1f2c3d"
-      },
-      "contrast-1": {
-        "$type": "color",
-        "$value": "#ffffff"
-      },
-      "contrast-2": {
-        "$type": "color",
-        "$value": "#babec4"
       }
     }
   }
