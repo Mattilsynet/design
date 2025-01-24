@@ -3,19 +3,19 @@
     "granskog": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
-        "$value": "#f1f4f4"
+        "$value": "#e502f8"
       },
       "3": {
         "$type": "color",
-        "$value": "#dbe4e5"
+        "$value": "#ffffff"
       },
       "4": {
         "$type": "color",
-        "$value": "#c6d4d5"
+        "$value": "rgba(108,106,105,5)"
       },
       "5": {
         "$type": "color",
@@ -23,15 +23,15 @@
       },
       "6": {
         "$type": "color",
-        "$value": "#aac0c1"
+        "$value": "rgba(108,106,105,5)"
       },
       "7": {
         "$type": "color",
-        "$value": "#5d8589"
+        "$value": "#054449"
       },
       "8": {
         "$type": "color",
-        "$value": "#36696d"
+        "$value": "rgba(108,106,105,10)"
       },
       "9": {
         "$type": "color",
@@ -39,11 +39,11 @@
       },
       "10": {
         "$type": "color",
-        "$value": "#1e575b"
+        "$value": "#032C30"
       },
       "11": {
         "$type": "color",
-        "$value": "#386a6e"
+        "$value": "#032C30"
       },
       "12": {
         "$type": "color",
@@ -51,7 +51,7 @@
       },
       "13": {
         "$type": "color",
-        "$value": "#043134"
+        "$value": "#054449"
       },
       "contrast-1": {
         "$type": "color",
@@ -59,7 +59,7 @@
       },
       "contrast-2": {
         "$type": "color",
-        "$value": "#ccd9da"
+        "$value": "#ffffff"
       }
     },
     "neutral": {
@@ -73,7 +73,7 @@
       },
       "3": {
         "$type": "color",
-        "$value": "#e2e2e2"
+        "$value": "#ffffff"
       },
       "4": {
         "$type": "color",
