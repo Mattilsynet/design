@@ -65,10 +65,14 @@
 		--mtds-text-previous: "Forrige";
 		--mtds-text-required: "Må fylles ut";
 
-		--ds-color-focus-outer: var(--mtds-color-granskog);
 		--ds-body-sm-font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
 		--ds-body-md-font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
 		--ds-body-lg-font-size: clamp(1.125rem, 1.025rem + 0.5vw, 1.375rem);
+
+		--ds-color-focus-outer: var(--mtds-color-granskog);
+		--dsc-focus-border-width: 2px;
+		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
+			var(--ds-color-focus-inner);
 
 		--ds-color-accent-background-default: #f3f8f1;
 		--ds-color-accent-background-subtle: #e2f1df;

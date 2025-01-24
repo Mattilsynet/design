@@ -70,3 +70,8 @@
 		scale: 1;
 	}
 }
+
+/* Add option to hide required text */
+[data-required="hidden"] {
+	--mtds-text-required: none;
+}

@@ -58,6 +58,7 @@ export default {
 					for (const br of document.getElementsByTagName("br")) {
 						br.setAttribute("aria-hidden", "true");
 					}
+
 					document.addEventListener("click", (e) => {
 						const base = (window.top || window).location.href.split("?")[0];
 						const link = e.target instanceof Element && e.target.closest("a");
