@@ -43,7 +43,8 @@ export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
         const css = path.resolve(dist, 'styles.css');
         const json = path.resolve(dist, 'styles.json');
         
-        fs.writeFileSync(css, `@layer tailwind-base, ds, mt;${fs.readFileSync(css, 'utf-8').replace('@charset "UTF-8";', '')}`);
+        // Insert @layer directive to ensure correct order when loading with TailwindCSS
+        fs.writeFileSync(css, `@layer base, tailwind-base, ds, mt;${fs.readFileSync(css, 'utf-8').replace('@charset "UTF-8";', '')}`);
         fs.writeFileSync(json, JSON.stringify(cssModulesMap, null, 2))
       }
     },

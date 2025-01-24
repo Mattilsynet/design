@@ -4,38 +4,34 @@ import { IS_BROWSER, QUICK_EVENT, off, on } from '../utils';
 export function observe(el: Node) {
   on(el, 'click', handleLinkClick); // Allow `<a>` to use `popovertarget` as well
   on(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+  on(window, 'load,resize,scroll', updatePositions, QUICK_EVENT); // Use capture since toggle does not bubble
+  on(document, 'DOMContentReady', updatePositions, QUICK_EVENT); // Use capture since toggle does not bubble
+  document.fonts.ready.then(updatePositions); // Inital render and when fonts load
 }
 export function unobserve(el: Node) {
   off(el, 'click', handleLinkClick);
   off(el, 'toggle', handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 }
 
-type Toggle = Event & { newState?: string };
 const CSS_POPOVER = styles.popover.split(' ')[0];
 const SCROLLER = IS_BROWSER ? document.createElement('div') : null // Used to ensure we have scrollability under
-if (SCROLLER) SCROLLER.style.cssText = 'position:absolute;padding:1px';
+const POPPING = new Map<Element, () => void>(); // Store current open poppers and their update functions
+SCROLLER?.setAttribute('style', 'position:absolute;padding:1px');
 
-function handleToggle ({ target: el, newState }: Toggle){
-  const isPopping = newState === 'open' && el instanceof HTMLElement && el.classList.contains(CSS_POPOVER);
-  const anchor = isPopping && (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(`[popovertarget="${el.id}"]`);
-
-  if (anchor) {
+function handleToggle ({ target: el, newState }: Event & { newState?: string }){
+  if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
+    const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(`[popovertarget="${el.id}"]`);
     const isOver = el.getAttribute('data-position') === 'over';
-    const update = () => place(anchor, el, isOver);
-    const removeEvent = ({ newState }: Toggle) => {
-      if (newState === 'open') return;
-      off(document, 'DOMContentReady', update, QUICK_EVENT);
-      off(el, 'toggle', removeEvent, QUICK_EVENT);
-      off(window, 'load,resize,scroll', update, QUICK_EVENT);
-      SCROLLER?.remove();
-    }
-
-    document.body.append(SCROLLER || '');
-    document.fonts.ready.then(update); // Inital render and when fonts load
-    on(window, 'load,resize,scroll', update, QUICK_EVENT);
-    on(document, 'DOMContentReady', update, QUICK_EVENT);
-    on(el, 'toggle', removeEvent, QUICK_EVENT);
+    
+    if (newState === 'closed') POPPING.delete(el);
+    else if (anchor) POPPING.set(el, () => place(anchor, el, isOver));
+    document.body.append(SCROLLER || ''); // Ensure we have the scroller
+    updatePositions();
   }
+}
+
+function updatePositions() {
+  for (const [_, updatePosition] of POPPING) updatePosition();
 }
 
 // Polyfill popovertarget for <a> (not supported by native)
@@ -53,7 +49,8 @@ function handleLinkClick (event: Event){
 }
 
 function place (anchor: HTMLElement | null, popper: HTMLElement, isOver = false) {
-  if (!anchor) return;
+  if (!anchor?.isConnected || !popper?.isConnected) return POPPING.delete(popper); // Stop watchning if anchor is removed from DOM
+
   const { offsetWidth: popperW, offsetHeight: popperH } = popper;
   const { offsetWidth: anchorW, offsetHeight: anchorH } = anchor;
   const { width, height, left, top } = anchor.getBoundingClientRect();

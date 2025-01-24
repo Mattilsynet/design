@@ -18,17 +18,21 @@
 			margin-top: calc(var(--ds-size-2) * -1);
 		}
 
-		/*  Mark as required */
+		/* Mark <label> as required */
 		&:has(:required, [aria-required="true"]) label::after {
-			content: var(--mtds-text-required);
 			background: var(--mtds-color-bakgrunns-blaa);
-			border-radius: var(--ds-border-radius-sm);
-			color: var(--mtds-fjord);
-			font-size: .75em;
+			border-radius: 5px;
+			border: 1px solid var(--mtds-color-100);
+			box-sizing: border-box;
+			color: var(--mtds-color-fjord);
+			content: var(--mtds-text-required);
+			display: inline-block;
+			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
-			line-height: var(--ds-line-height-sm);
+			height: var(--ds-size-8);
+			line-height: 1.5;
 			margin-inline-start: var(--ds-size-3);
-			padding: var(--ds-size-1) var(--ds-size-2);
+			padding: 0 var(--ds-size-2);
 		}
 
 		&:has(input:is([type="radio"], [type="checkbox"])) label {
@@ -65,4 +69,9 @@
 	from {
 		scale: 1;
 	}
+}
+
+/* Add option to hide required text */
+[data-required="hidden"] {
+	--mtds-text-required: none;
 }

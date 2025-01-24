@@ -17,6 +17,7 @@
 		transition-duration: .2s;
 		transition-property: opacity, margin, visibility;
 		visibility: hidden;
+		z-index: 9999;
 
 		&:not([hidden]) {
 			display: block;

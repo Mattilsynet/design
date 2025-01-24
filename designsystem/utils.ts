@@ -39,7 +39,7 @@ const events = (
 ): void => {
 	for (const type of rest[0].split(",")) {
 		rest[0] = type;
-		Element.prototype[`${action}EventListener`].apply(element, rest);
+		element[`${action}EventListener`](...rest);
 	}
 };
 
@@ -89,19 +89,20 @@ export const isInputLike = (el: unknown): el is HTMLInputElement =>
 
 // Make React support popover=""target attribute
 // https://github.com/facebook/react/issues/27479
+type Popover = "" | "auto" | "manual" | undefined;
 declare global {
 	namespace React.JSX {
 		interface IntrinsicAttributes {
 			popovertargetaction?: string;
 			popovertarget?: string;
-			popover?: string | boolean;
+			popover?: Popover;
 		}
 	}
 	namespace React {
 		interface HTMLAttributes<T> {
 			popovertargetaction?: string;
 			popovertarget?: string;
-			popover?: "" | "auto" | "manual" | undefined;
+			popover?: Popover;
 		}
 	}
 }

@@ -67,6 +67,62 @@ export const Sizes: Story = {
 	),
 };
 
+export const Colors: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.grid} data-grid="2">
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+				data-color="accent"
+			>
+				Accent
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+				data-color="danger"
+			>
+				Danger
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
+				data-color="accent"
+			>
+				Accent
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
+				data-color="danger"
+			>
+				Danger
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="tertiary"
+				data-color="accent"
+			>
+				Accent
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="tertiary"
+				data-color="danger"
+			>
+				Danger
+			</button>
+		</div>
+	),
+};
+
 export const Pressed: Story = {
 	decorators,
 	render: function Render() {

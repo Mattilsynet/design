@@ -13,6 +13,7 @@ import * as stories from './field.stories';
 - Legg `required` eller `aria-required` på skjemaelementet
 - Da får du automatisk teksten `Må fylles ut` i `<label>`
 - **Merk:** Dersom `lang="en"` er satt på `<html>` eller en forelder, vil teksten endres til `Required`
+- **Merk:** Dersom du ønsker å skru denne [lovpålagte merkingen av obligatoriske felter](https://www.designsystemet.no/monstre/obligatoriske-og-valgfrie-felt), kan du legge `data-required="hidden"` på hvilket som helst element (f.eks. `<html data-required="hidden">` for å skru av for hele dokumentet)
 <Canvas of={stories.Required} />
 
 ## Radio / Check / Switch

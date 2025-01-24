@@ -8,7 +8,7 @@ import { styles } from './';
 > Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/),
 men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
 
-> ### 💚 Bidra og delta:
+> ### ✅ Bidra og delta:
 > - **Spørsmål, tanker eller ideer?** Skriv gjerne til oss på [Slack](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) eller [Github](https://github.com/Mattilsynet/design/issues) 🙌
 > - **Hva er siste nytt?** Se [versjonslogg på Github](https://github.com/Mattilsynet/design/releases) og [oppgaver vi jobber med](https://github.com/orgs/Mattilsynet/projects/22)
 
@@ -70,7 +70,8 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       <u-tablist>
         <u-tab>JS</u-tab>
         <u-tab>CSS</u-tab>
-        <u-tab>TailwindCSS</u-tab>
+        <u-tab>TailwindCSS v1, v2, v3</u-tab>
+        <u-tab>TailwindCSS v4</u-tab>
       </u-tablist>
       <u-tabpanel>
         ```js
@@ -99,9 +100,16 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 
         ```
       </u-tabpanel>
+      <u-tabpanel>
+        ```css
+        /* Load @mattilsynet/design before Tailwind */
+        @import url('@mattilsynet/design/styles.css');
+        @import url('tailwindcss');
+        ```
+      </u-tabpanel>
     </u-tabs>
 
-    > ### 💡 Merk: `background`, `color` og `font` blir satt på `<body>`
+    > ### ⚠️ Merk: `background`, `color` og `font` blir satt på `<body>`
     >
     > `body { background: …; color: …; font: … }` blir automatisk definert,
     > slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers.
@@ -140,7 +148,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       </u-tabpanel>
     </u-tabs>
 
-    > ### 🤔 Hvorfor ikke bare skrive `class="button"`?
+    > ### Hvorfor ikke bare skrive `class="button"`?
     >
     > Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig.
     > Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn,
