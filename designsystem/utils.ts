@@ -39,7 +39,7 @@ const events = (
 ): void => {
 	for (const type of rest[0].split(",")) {
 		rest[0] = type;
-		Element.prototype[`${action}EventListener`].apply(element, rest);
+		element[`${action}EventListener`](...rest);
 	}
 };
 
