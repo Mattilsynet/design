@@ -131,7 +131,8 @@
 	/**
 	 * In <menu>
 	 */
-	menu:has(> li > .button) {
+	/* Using :where to only reset browser agent standards */
+	menu:where(:has(> li > .button)) {
 		list-style: none;
 		padding: 0;
 		margin: 0;
