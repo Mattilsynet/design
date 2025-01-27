@@ -2,14 +2,13 @@
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
 
-		& > legend {
-			padding: 0;
-		}
-
 		/* Reset designsystemet */
+		& > legend,
 		& > legend + p {
 			color: inherit;
 			margin: 0;
+			opacity: 1;
+			padding: 0;
 		}
 
 		/* Mark <legend> with "Required" if all inputs inside are required */
