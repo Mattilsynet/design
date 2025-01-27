@@ -27,6 +27,7 @@ export default {
 				toolbars: false,
 			},
 		},
+		"@storybook/addon-mdx-gfm",
 		"@storybook/addon-storysource",
 	],
 	core: {
