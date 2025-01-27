@@ -15,15 +15,15 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#b3c6c7"
+        "$value": "#E2F1DF"
       },
       "5": {
         "$type": "color",
-        "$value": "#b3c6c7"
+        "$value": "#E2F1DF"
       },
       "6": {
         "$type": "color",
-        "$value": "rgba(108,106,105,5)"
+        "$value": "#6c6a6914"
       },
       "7": {
         "$type": "color",
@@ -31,7 +31,7 @@
       },
       "8": {
         "$type": "color",
-        "$value": "rgba(108,106,105,10)"
+        "$value": "#6c6a6929"
       },
       "9": {
         "$type": "color",
