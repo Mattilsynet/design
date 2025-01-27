@@ -485,7 +485,7 @@
       },
       "text-default": {
         "$type": "color",
-        "$value": "{global.orange.13}"
+        "$value": "{global.yellow.13}"
       },
       "contrast-default": {
         "$type": "color",

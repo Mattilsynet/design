@@ -10,7 +10,7 @@
     },
     "extra-bold": {
       "$type": "fontWeights",
-      "$value": "Semi bold"
+      "$value": "Bold"
     },
     "regular": {
       "$type": "fontWeights",
