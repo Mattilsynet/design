@@ -202,6 +202,6 @@
  */
 @keyframes tableChildAdded {
 	from {
-		scale: 1;
+		clip: none;
 	}
 }
