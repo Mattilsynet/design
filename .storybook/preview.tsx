@@ -10,6 +10,7 @@ import "@u-elements/u-tabs";
 import "@u-elements/u-details";
 
 const CSS_ALERT = styles.alert.split(" ");
+const CSS_TABLE = styles.table.split(" ");
 
 export default {
 	// decorators: [
@@ -57,6 +58,11 @@ export default {
 					// Hide BR from screen readers
 					for (const br of document.getElementsByTagName("br")) {
 						br.setAttribute("aria-hidden", "true");
+					}
+
+					// Tables
+					for (const table of document.querySelectorAll("table:not([class])")) {
+						table.classList.add(...CSS_TABLE);
 					}
 
 					document.addEventListener("click", (e) => {

@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "0.2.12",
+	"version": "0.2.13",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
@@ -36,6 +36,7 @@
 		"@biomejs/biome": "^1.9.4",
 		"@phosphor-icons/react": "^2.1.7",
 		"@storybook/addon-essentials": "^8.5.0",
+		"@storybook/addon-mdx-gfm": "^8.5.2",
 		"@storybook/addon-storysource": "^8.5.0",
 		"@storybook/blocks": "^8.5.0",
 		"@storybook/manager-api": "^8.5.0",
