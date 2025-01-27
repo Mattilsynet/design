@@ -732,17 +732,51 @@
   {
     "id": "4f46ea271f629fcbf89e96e2a5d40c84a066ecb4",
     "name": "5",
-    "selectedTokenSets": {
-      "semantic/modes/support-color/5": "enabled"
-    },
-    "group": "Support color"
+    "selectedTokenSets": {},
+    "group": "Support color",
+    "$figmaCollectionId": "VariableCollectionId:40350:32140",
+    "$figmaModeId": "42024:2",
+    "$figmaVariableReferences": {
+      "color.support.background-default": "ebb5c97f5665cbf50c75ccb98c325a4cf5fe7bfd",
+      "color.support.background-subtle": "f335dd41b7552a3b79ab669dabfc2d9ff0fb67f4",
+      "color.support.surface-default": "4b9b4ed68e9cecb2ce4ab3f178539ed7ce122c3e",
+      "color.support.surface-hover": "6c769adcb1ab47be79ab19c3fa5885a5983aff8f",
+      "color.support.surface-active": "baa422d3a450e2334c5769a41c64eee660e019e7",
+      "color.support.border-subtle": "ac32882812ecf7e91ea4d8ae3a8cadc0effe642e",
+      "color.support.border-default": "2c90a6909fe0bd5021f3d6cdd7b9e06af5585b22",
+      "color.support.border-strong": "c2abacdfd1abe024c1cc61c4f9b3df76fce74478",
+      "color.support.base-default": "37f4935900b866e62b27f25df8f286cb8438bbe4",
+      "color.support.base-hover": "0cb52036537c93200b65cba9536faf22b600e198",
+      "color.support.base-active": "b03488ad948031bbc159b56d31de4612dfbf20ff",
+      "color.support.text-subtle": "6dfcab52f0856b8d7743252ae99a445d400ceb83",
+      "color.support.text-default": "18e6ac532d3acdbf9d0e40b881f757bb986b9b46",
+      "color.support.contrast-default": "6708cecdc3413dc9174dce0ff279d85e48e1cc25",
+      "color.support.contrast-subtle": "98b34ff27e1f5751383b52a36b7a269ac3ca1d7f"
+    }
   },
   {
     "id": "d8b648afad10bb0029112adf3f0f24ec9eaa1305",
     "name": "--border-radius",
-    "selectedTokenSets": {
-      "semantic/modes/support-color/--border-radius": "enabled"
-    },
-    "group": "Support color"
+    "selectedTokenSets": {},
+    "group": "Support color",
+    "$figmaCollectionId": "VariableCollectionId:40350:32140",
+    "$figmaModeId": "42024:3",
+    "$figmaVariableReferences": {
+      "color.support.background-default": "ebb5c97f5665cbf50c75ccb98c325a4cf5fe7bfd",
+      "color.support.background-subtle": "f335dd41b7552a3b79ab669dabfc2d9ff0fb67f4",
+      "color.support.surface-default": "4b9b4ed68e9cecb2ce4ab3f178539ed7ce122c3e",
+      "color.support.surface-hover": "6c769adcb1ab47be79ab19c3fa5885a5983aff8f",
+      "color.support.surface-active": "baa422d3a450e2334c5769a41c64eee660e019e7",
+      "color.support.border-subtle": "ac32882812ecf7e91ea4d8ae3a8cadc0effe642e",
+      "color.support.border-default": "2c90a6909fe0bd5021f3d6cdd7b9e06af5585b22",
+      "color.support.border-strong": "c2abacdfd1abe024c1cc61c4f9b3df76fce74478",
+      "color.support.base-default": "37f4935900b866e62b27f25df8f286cb8438bbe4",
+      "color.support.base-hover": "0cb52036537c93200b65cba9536faf22b600e198",
+      "color.support.base-active": "b03488ad948031bbc159b56d31de4612dfbf20ff",
+      "color.support.text-subtle": "6dfcab52f0856b8d7743252ae99a445d400ceb83",
+      "color.support.text-default": "18e6ac532d3acdbf9d0e40b881f757bb986b9b46",
+      "color.support.contrast-default": "6708cecdc3413dc9174dce0ff279d85e48e1cc25",
+      "color.support.contrast-subtle": "98b34ff27e1f5751383b52a36b7a269ac3ca1d7f"
+    }
   }
 ]
