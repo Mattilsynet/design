@@ -1,8 +1,7 @@
 import styles from '../styles.module.css';
-import { isInputLike, onAdd, useId } from '../utils';
+import { isInputLike, onMutation, useId } from '../utils';
 const CSS_FIELDSET = styles.fieldset.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
-const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 
 function process(fieldsets: HTMLCollectionOf<Element>) {
   for(const fieldset of fieldsets) {
@@ -22,13 +21,5 @@ function process(fieldsets: HTMLCollectionOf<Element>) {
   }
 }
 
-export function observe (el: Element | Document) {
-  const fields = el.getElementsByClassName(CSS_FIELDSET);
-  const add = onAdd(styles.fieldsetValidationAdded, () => process(fields));
-  BOUND.set(el, add);
-  add.observe(el);
-}
-
-export function unobserve (el: Element | Document) {
-  BOUND.get(el)?.disconnect(el);
-}
+export const observe = (el: Element) => onMutation(el, CSS_FIELDSET, process);
+export const unobserve = (el: Element) => onMutation(el, CSS_FIELDSET, false);

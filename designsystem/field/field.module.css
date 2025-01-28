@@ -2,12 +2,6 @@
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-size-2);
-		/* align-items: normal; /* TODO */
-
-		/* Child added event inspired by: https://davidwalsh.name/detect-node-insertion */
-		& :is(:defined, [class*="validation"], input, select, textarea, p) {
-			animation: fieldChildAdded 50ms; /* Shorter animation time than .fieldset to ensure correct validation shows */
-		}
 
 		/* <p> is used for field descriptions */
 		& > p {
@@ -18,8 +12,9 @@
 			margin-top: calc(var(--ds-size-2) * -1);
 		}
 
+		& > :not(input, select, textarea),
 		& label {
-			opacity: 1; /* Prevent DigiDir disabled state for the <label> itself */
+			opacity: 1; /* Overwrite DigiDir disabled */
 		}
 
 		/* Mark <label> as required */
@@ -65,12 +60,6 @@
 	}
 	.count {
 		font: inherit;
-	}
-}
-
-@keyframes fieldChildAdded {
-	from {
-		clip: none;
 	}
 }
 

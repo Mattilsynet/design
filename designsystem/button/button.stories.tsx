@@ -123,6 +123,36 @@ export const Colors: Story = {
 	),
 };
 
+export const Nowrap: Story = {
+	decorators,
+	render: () => (
+		<div className={styles.grid} data-grid="sm" style={{ width: 300 }}>
+			<div>
+				<p>Med nowrap:</p>
+				<button
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+				>
+					<Star />
+					<span data-nowrap>Lagre favoritt</span>
+				</button>
+			</div>
+			<div>
+				<p>Uten nowrap:</p>
+				<button
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+				>
+					<Star />
+					Lagre favoritt
+				</button>
+			</div>
+		</div>
+	),
+};
+
 export const Pressed: Story = {
 	decorators,
 	render: function Render() {

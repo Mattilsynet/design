@@ -44,7 +44,7 @@ function handleLinkClick (event: Event){
     const target = root.getElementById?.(link.getAttribute('popovertarget') || '') || link.closest(`.${CSS_POPOVER}`);
     const action = link.getAttribute('popovertargetaction') || 'toggle';
 
-    if (!event.defaultPrevented) target?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
+    target?.togglePopover(action === 'show' || (action === 'hide' ? false : undefined));
   }
 }
 
