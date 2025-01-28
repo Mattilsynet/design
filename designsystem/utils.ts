@@ -12,25 +12,6 @@ export function useId (el: Element) {
 	return el.id;
 };
 
-/**
- * Speed up MutationObserver by debouncing and only running when page is visible
- * @return new MutaionObserver
- */
-export function createOptimizedMutationObserver(callback: MutationCallback) {
-  const queue: MutationRecord[] = [];
-  const observer = new MutationObserver((mutations) => {
-    if (!queue[0]) requestAnimationFrame(process);
-    queue.push(...mutations);
-  });
-
-  const process = () => {
-    callback(queue, observer);
-    queue.length = 0; // Reset queue
-  };
-
-  return observer;
-}
-
 // Internal helper for on / off
 const events = (
 	action: "add" | "remove",
@@ -66,22 +47,50 @@ export const off = (
 ): void => events("remove", element, rest);
 
 /**
- * Child added event inspired by:
- * https://davidwalsh.name/detect-node-insertion
+ * Speed up MutationObserver by debouncing and only running when page is visible
+ * @return new MutaionObserver
  */
-export const onAdd = (animationName: string, callback: () => void) => {
-  let timer: ReturnType<typeof requestAnimationFrame> | number = 0;
-  const onAnimation = (event: Event & { animationName?: string }) => {
-    if (event.animationName === animationName) {
-      cancelAnimationFrame(timer);
-      timer = requestAnimationFrame(callback);
-    }
-  };
+export function createOptimizedMutationObserver(callback: MutationCallback) {
+  let queue = 0;
 
-	return {
-		observe: (el: Element | Document, ) => on(el, 'animationend', onAnimation, QUICK_EVENT),
-		disconnect: (el: Element | Document, ) => off(el, 'animationstart', onAnimation, QUICK_EVENT)
+	const onFrame = () => setTimeout(onTimer, 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
+	const onTimer = () => {
+		callback([], observer);
+		queue = 0;
 	};
+  const observer = new MutationObserver(() => {
+    if (!queue) queue = requestAnimationFrame(onFrame);
+  });
+
+  return observer;
+}
+
+type Mutator = { observer: MutationObserver, collections: Map<string, () => void> };
+const MUTATORS = new WeakMap<Element, Mutator>();
+const MUTATORS_CALLBACK = (element: Element) => {
+	const mutator = MUTATORS.get(element);
+
+	if (!mutator || !element.isConnected) {
+		mutator?.observer?.disconnect();
+		MUTATORS.delete(element);
+	} else for(const [, callback] of mutator.collections) callback();
+};
+
+export const onMutation = (
+	element: Element,
+	className: string,
+	callback: ((collection: HTMLCollection) => void) | false
+) => {
+	const collection = element.getElementsByClassName(className);
+	let mutator = MUTATORS.get(element);
+
+	if (!mutator) {
+		mutator = { collections: new Map(), observer: createOptimizedMutationObserver(() => MUTATORS_CALLBACK(element)) };
+		mutator.observer.observe(element, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+		MUTATORS.set(element, mutator);
+	}
+	if (callback) mutator.collections.set(className, () => callback(collection));
+	else mutator.collections.delete(className);
 }
 
 export const isInputLike = (el: unknown): el is HTMLInputElement =>

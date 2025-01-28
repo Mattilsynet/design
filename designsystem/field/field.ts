@@ -1,10 +1,9 @@
 import styles from '../styles.module.css';
-import { QUICK_EVENT, isInputLike, off, on, onAdd, useId } from '../utils';
+import { QUICK_EVENT, isInputLike, off, on, onMutation, useId } from '../utils';
 
 const CSS_FIELD = styles.field.split(' ')[0];
 const CSS_VALIDATIONS = styles.validation.split(' ');
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
-const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 
 function renderAria(fields: HTMLCollectionOf<Element>) {
   for(const field of fields) {
@@ -50,18 +49,14 @@ function renderCounter(input: HTMLInputElement) {
   }
 }
 
-export function observe (el: Element | Document) {
-  const fields = el.getElementsByClassName(CSS_FIELD);
-  const add = onAdd(styles.fieldChildAdded, () => renderAria(fields));
-  BOUND.set(el, add);
-  add.observe(el);
+export function observe (el: Element) {
+  onMutation(el, CSS_FIELD, renderAria);
   on(el, 'input', handleInput, QUICK_EVENT);
 }
 
-export function unobserve (el: Element | Document) {
-  BOUND.get(el)?.disconnect(el);
+export function unobserve (el: Element) {
+  onMutation(el, CSS_FIELD, false);
   off(el, 'input', handleInput, QUICK_EVENT);
 }
-
 
 // TODO: Remove invalid when errormessage is gone

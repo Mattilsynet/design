@@ -157,7 +157,6 @@
 
 					/* Do not re-syle if expandable (colspan) */
 					& > :is(td, th):not([colspan]) {
-						animation: tableChildAdded 100ms;
 						border-top: var(--dsc-table-border);
 						border-bottom: none;
 						display: table-row;
@@ -193,15 +192,5 @@
 			> :not([colspan]):is(td, th) {
 			text-align: end;
 		}
-	}
-}
-
-/**
- * Child added event inspired by:
- * https://davidwalsh.name/detect-node-insertion
- */
-@keyframes tableChildAdded {
-	from {
-		clip: none;
 	}
 }

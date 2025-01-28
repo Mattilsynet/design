@@ -6,16 +6,16 @@ import { IS_BROWSER } from './utils';
 export { pagination } from './pagination/pagination';
 export * as styles from './styles.module.css';
 
-if (IS_BROWSER) observe(document); // Automatic observe on browser
+if (IS_BROWSER) observe(document.body); // Automatic observe on browser
 
-export function observe(el: Element | Document) {
+export function observe(el: Element) {
   field.observe(el);
   fieldset.observe(el);
   popover.observe(el);
   table.observe(el);
 }
 
-export function unobserve(el: Element | Document) {
+export function unobserve(el: Element) {
   field.unobserve(el);
   fieldset.unobserve(el);
   popover.unobserve(el);

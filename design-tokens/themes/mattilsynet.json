@@ -1,67 +1,5 @@
 {
   "color": {
-    "5": {
-      "1": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.1}"
-      },
-      "2": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.2}"
-      },
-      "3": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.3}"
-      },
-      "4": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.4}"
-      },
-      "5": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.5}"
-      },
-      "6": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.6}"
-      },
-      "7": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.7}"
-      },
-      "8": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.8}"
-      },
-      "9": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.9}"
-      },
-      "10": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.10}"
-      },
-      "11": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.11}"
-      },
-      "12": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.12}"
-      },
-      "13": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.13}"
-      },
-      "contrast-1": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.contrast-1}"
-      },
-      "contrast-2": {
-        "$type": "color",
-        "$value": "{mattilsynet.5.contrast-2}"
-      }
-    },
     "granskog": {
       "1": {
         "$type": "color",
@@ -185,68 +123,6 @@
         "$type": "color",
         "$value": "{mattilsynet.neutral.contrast-2}"
       }
-    },
-    "--border-radius": {
-      "1": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.1}"
-      },
-      "2": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.2}"
-      },
-      "3": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.3}"
-      },
-      "4": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.4}"
-      },
-      "5": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.5}"
-      },
-      "6": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.6}"
-      },
-      "7": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.7}"
-      },
-      "8": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.8}"
-      },
-      "9": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.9}"
-      },
-      "10": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.10}"
-      },
-      "11": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.11}"
-      },
-      "12": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.12}"
-      },
-      "13": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.13}"
-      },
-      "contrast-1": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.contrast-1}"
-      },
-      "contrast-2": {
-        "$type": "color",
-        "$value": "{mattilsynet.--border-radius.contrast-2}"
-      }
     }
   },
   "font": {
@@ -260,7 +136,7 @@
       "$type": "fontWeights",
       "$value": "{mattilsynet.bold}"
     },
-    "semibold": {
+    "bold": {
       "$type": "fontWeights",
       "$value": "{mattilsynet.extra-bold}"
     },

@@ -1,7 +1,6 @@
 import styles from '../styles.module.css';
-import { onAdd } from '../utils';
+import { onMutation } from '../utils';
 const CSS_TABLE = styles.table.split(' ')[0];
-const BOUND = new WeakMap<Element | Document, ReturnType<typeof onAdd>>();
 
 function process(tables: HTMLCollectionOf<Element>) {
   for(const table of tables) if (table instanceof HTMLTableElement) {
@@ -16,13 +15,5 @@ function process(tables: HTMLCollectionOf<Element>) {
   }
 }
 
-export function observe (el: Element | Document) {
-  const tables = el.getElementsByClassName(CSS_TABLE);
-  const add = onAdd(styles.tableChildAdded, () => process(tables));
-  BOUND.set(el, add);
-  add.observe(el);
-}
-
-export function unobserve (el: Element | Document) {
-  BOUND.get(el)?.disconnect(el);
-}
+export const observe = (el: Element) => onMutation(el, CSS_TABLE, process);
+export const unobserve = (el: Element) => onMutation(el, CSS_TABLE, false);
