@@ -40,7 +40,7 @@
 		}
 
 		&[data-color="danger"] {
-			--dsc-badge-background: var(--mtds-rognebaer);
+			background: var(--mtds-rognebaer);
 		}
 	}
 	:is(h1, h2, h3, h4, h5, h6) > .badge::before {

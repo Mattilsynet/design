@@ -382,7 +382,12 @@ export const App: Story = {
 			<nav data-variant="minimized">
 				<menu>
 					<li>
-						<a className={styles.button} href="#none" aria-current="page">
+						<a
+							className={styles.button}
+							href="#none"
+							aria-current="page"
+							data-tooltip="Søknader"
+						>
 							<Signature /> Søknader
 						</a>
 					</li>

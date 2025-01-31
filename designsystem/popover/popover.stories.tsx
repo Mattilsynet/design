@@ -92,12 +92,7 @@ export const Position: Story = {
 			>
 				Knapp
 			</button>
-			<div
-				popover=""
-				id="pop-2"
-				className={styles.popover}
-				data-position="over"
-			>
+			<div data-position="top" popover="" id="pop-2" className={styles.popover}>
 				<div className={styles.grid}>
 					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
 					<div className={styles.flex}>

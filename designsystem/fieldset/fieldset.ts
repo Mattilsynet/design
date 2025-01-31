@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { isInputLike, onMutation, useId } from '../utils';
+import { attr, isInputLike, onMutation, useId } from '../utils';
 const CSS_FIELDSET = styles.fieldset.split(' ')[0];
 const CSS_VALIDATION = styles.validation.split(' ')[0];
 
@@ -15,8 +15,8 @@ function process(fieldsets: HTMLCollectionOf<Element>) {
 
     if (validationId) 
       for(const input of inputs) {
-        input.setAttribute('aria-describedby', validationId);
-        input.setAttribute('aria-invalid', 'true');
+        attr(input, 'aria-describedby', validationId);
+        attr(input, 'aria-invalid', 'true');
       }
   }
 }

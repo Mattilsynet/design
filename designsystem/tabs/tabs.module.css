@@ -1,36 +1,5 @@
 @layer mt.design {
-	.tabs > u-tablist {
-		display: inline-flex;
-		vertical-align: bottom;
-
-		& > u-tab {
-			align-items: center;
-			box-sizing: border-box;
-			cursor: pointer;
-			display: flex;
-			font-weight: 500;
-			gap: var(--ds-size-1);
-			justify-content: center;
-			line-height: var(--ds-line-height-sm);
-			padding: var(--ds-size-3) var(--ds-size-5);
-			position: relative;
-
-			& :where(img, svg) {
-				flex-shrink: 0; /* Never shrink icon */
-			}
-
-			&:hover,
-			&[aria-selected="true"] {
-				background: linear-gradient(currentcolor, currentcolor) 100% 100% / 100%
-					.15em repeat-x;
-			}
-
-			/* We set z-index to make sure the active line does not bleed over the focus indicator */
-			&:focus-visible {
-				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-				outline: var(--ds--focus, var(--dsc-focus-outline));
-				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-			}
-		}
+	.tabs {
+		composes: ds-tabs from "@digdir/designsystemet-css";
 	}
 }

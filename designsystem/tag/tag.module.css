@@ -48,37 +48,5 @@
 			--dsc-tag-color: var(--mtds-color-info-rod);
 			--dsc-tag-icon-url: var(--mtds-icon-danger);
 		}
-
-		/**
-		 * Tooltip
-		 */
-		position: relative;
-		&[data-tooltip]::after {
-			background: var(--mtds-color-mork-granskog);
-			border-radius: var(--ds-border-radius-md);
-			color: var(--ds-color-accent-contrast-default);
-			content: attr(data-tooltip);
-			font-size: .9375rem;
-			font-weight: 500;
-			left: 50%;
-			line-height: var(--ds-line-height-sm);
-			max-width: 18em;
-			opacity: 0;
-			padding: var(--ds-size-1) var(--ds-size-2);
-			pointer-events: none;
-			position: absolute;
-			top: 100%;
-			transition: .15s;
-			translate: -50%;
-			visibility: hidden;
-			width: max-content;
-			z-index: 99999;
-		}
-		&[data-tooltip]:focus-visible::after,
-		&[data-tooltip]:hover::after {
-			opacity: 1;
-			translate: -50% 2px;
-			visibility: visible;
-		}
 	}
 }
