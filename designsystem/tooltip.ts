@@ -30,6 +30,6 @@ function handleMoveDebounced(target: Element | null) {
     TOOLTIP.textContent = anchor.getAttribute('data-tooltip') || '';
     TOOLTIP.showPopover();
     anchorPosition(TOOLTIP, false); // Reset position
-    anchorPosition(TOOLTIP, anchor, 'top');
+    anchorPosition(TOOLTIP, anchor, anchor.getAttribute('data-tooltip-position') || 'top');
   }
 }
