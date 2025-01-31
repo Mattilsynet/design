@@ -32,9 +32,9 @@
 		}
 		& > button:last-child:empty {
 			all: unset;
-			border-radius: var(--ds-border-radius-full);
+			border-radius: var(--ds-border-radius-md);
 			cursor: pointer;
-			margin: var(--dsc-alert-padding);
+			margin: var(--dsc-alert-spacing);
 			position: absolute;
 			right: 0;
 			top: 0;

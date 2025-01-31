@@ -81,10 +81,11 @@ export const Dropdown: Story = {
 	},
 };
 
-export const Position: Story = {
+export const Anchor: Story = {
 	render: () => (
 		<>
 			<button
+				data-anchor="top"
 				popoverTarget="pop-2"
 				type="button"
 				className={styles.button}
@@ -92,12 +93,7 @@ export const Position: Story = {
 			>
 				Knapp
 			</button>
-			<div
-				popover=""
-				id="pop-2"
-				className={styles.popover}
-				data-position="over"
-			>
+			<div popover="" id="pop-2" className={styles.popover}>
 				<div className={styles.grid}>
 					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
 					<div className={styles.flex}>

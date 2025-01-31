@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { QUICK_EVENT, isInputLike, off, on, onMutation, useId } from '../utils';
+import { QUICK_EVENT, attr, isInputLike, off, on, onMutation, useId } from '../utils';
 
 const CSS_FIELD = styles.field.split(' ')[0];
 const CSS_VALIDATIONS = styles.validation.split(' ');
@@ -21,11 +21,12 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
       } else if (el instanceof HTMLParagraphElement) descs.push(useId(el));
     }
 
-    if (input) for (const label of labels) label.htmlFor = useId(input);
-    if (input) renderCounter(input);
-
-    input?.setAttribute('aria-describedby', descs.join(' '));
-    input?.setAttribute('aria-invalid', `${!valid}`);
+    if (input) {
+      for (const label of labels) label.htmlFor = useId(input);
+      renderCounter(input);
+      attr(input, 'aria-describedby', descs.join(' '));
+      attr(input, 'aria-invalid', `${!valid}`);
+    }
   }
 }
 function handleInput({ target }: Event) {
@@ -42,7 +43,7 @@ function renderCounter(input: HTMLInputElement) {
     const prevInvalid = el.getAttribute('aria-live') === 'polite';
 
     if (prevInvalid !== nextInvalid) {
-      el.setAttribute('aria-live', nextInvalid ? 'polite' : 'off');
+      attr(el, 'aria-live', nextInvalid ? 'polite' : 'off');
       for (const css of CSS_VALIDATIONS) el.classList.toggle(css, nextInvalid);
     }
     el.textContent = `${Math.abs(remainder)} tegn ${nextInvalid ? 'for mye' : 'igjen'}`;
@@ -58,5 +59,3 @@ export function unobserve (el: Element) {
   onMutation(el, CSS_FIELD, false);
   off(el, 'input', handleInput, QUICK_EVENT);
 }
-
-// TODO: Remove invalid when errormessage is gone

@@ -189,7 +189,7 @@ export const WithArrows: Story = {
 			</a>
 			<button
 				data-arrow="popover"
-				popovertarget="pop-1"
+				popoverTarget="pop-1"
 				type="button"
 				className={styles.button}
 			>
@@ -275,7 +275,7 @@ export const WithMenu: Story = {
 		<>
 			<button
 				aria-label="Handlinger"
-				popovertarget="pop-2"
+				popoverTarget="pop-2"
 				type="button"
 				className={styles.button}
 			/>

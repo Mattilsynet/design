@@ -5,10 +5,9 @@
 		/* Overwrite to same as tertiary from Designsystemet  */
 		& > form[method="dialog"]:first-child > button:only-child {
 			all: unset;
-			border-radius: var(--ds-border-radius-full);
+			border-radius: var(--ds-border-radius-md);
 			cursor: pointer;
 			float: right;
-			margin: var(--dsc-alert-padding);
 			transition: scale .2s;
 
 			&:focus-visible {

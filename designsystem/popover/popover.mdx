@@ -16,10 +16,10 @@ import * as stories from './popover.stories';
 
 <Canvas of={stories.Dropdown} />
 
-## Position
-- Bruk `data-position="over | under"`
+## Anchor
+- Bruk `data-anchor="top | bottom | left | right"` på `<button>` for å plassere popoveren
 - Popover vil alltid legge seg der det er plass i skjermbildet
-<Canvas of={stories.Position} />
+<Canvas of={stories.Anchor} />
 
 ## Lukkeknapp
 - Bruk `popovertarget="ID" popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:

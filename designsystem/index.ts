@@ -2,6 +2,7 @@ import * as field from './field/field';
 import * as fieldset from './fieldset/fieldset';
 import * as popover from './popover/popover';
 import * as table from './table/table';
+import './tooltip'; // Load data-tooltip behaviour
 import { IS_BROWSER } from './utils';
 export { pagination } from './pagination/pagination';
 export * as styles from './styles.module.css';
