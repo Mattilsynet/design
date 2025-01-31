@@ -20,6 +20,10 @@ export const Default: Story = {
 	decorators,
 	render: () => (
 		<>
+			{/**
+			 * Du kan bruke <h1>, <h2>, <h3>, <h4>, <h5>, <h6>.
+			 * <h2> er kun brukt til demo
+			 */}
 			<h2 className={styles.heading} data-size="2xl">
 				Heading data-size="2xl"
 			</h2>
@@ -40,6 +44,17 @@ export const Default: Story = {
 			</h2>
 			<h2 className={styles.heading} data-size="2xs">
 				Heading data-size="2xs"
+			</h2>
+		</>
+	),
+};
+
+export const Center: Story = {
+	decorators,
+	render: () => (
+		<>
+			<h2 className={styles.heading} data-justify="center">
+				Heading data-justify="center"
 			</h2>
 		</>
 	),
