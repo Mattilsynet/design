@@ -248,10 +248,6 @@
 				margin-left: var(--spacing-sm);
 				margin-top: var(--spacing-md);
 				width: var(--sides);
-
-				& [data-tooltip] {
-					--mtds-anchor: none;
-				}
 			}
 			& > main {
 				container: main / inline-size;

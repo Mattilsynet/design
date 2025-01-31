@@ -85,9 +85,8 @@ export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null 
 	if (anchor === false || !anchor?.isConnected || !target?.isConnected) return TARGETS.delete(target); // Stop watchning if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ''); // Ensure we have t´he scroller
 	if (!TARGETS.has(target)) {
-		const key = anchor.getAttribute('data-anchor') || window.getComputedStyle(anchor).getPropertyValue('--mtds-anchor') || position;
-		const val = ANCHOR[key as keyof typeof ANCHOR] ?? ANCHOR.bottom; // Use CSS property to store position for more flexibility
-		return TARGETS.set(target, () => anchorPosition(target, anchor, val)).get(target)?.(); // Start watching if not already watching
+		const place = ANCHOR[position as keyof typeof ANCHOR] ?? ANCHOR.bottom; // Use CSS property to store position for more flexibility
+		return TARGETS.set(target, () => anchorPosition(target, anchor, place)).get(target)?.(); // Start watching if not already watching
 	}
 	if (position === ANCHOR.none) return target.style.setProperty('left', '-100vw'); // Hide target if anchor is set to none
 

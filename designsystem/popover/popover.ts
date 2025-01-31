@@ -17,7 +17,7 @@ function handleToggle ({ target: el, newState }: Event & { newState?: string }){
     const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(`[popovertarget="${el.id}"]`);
     
     if (newState === 'closed') anchorPosition(el, false);
-    else if (anchor) anchorPosition(el, anchor);
+    else if (anchor) anchorPosition(el, anchor, el.getAttribute('data-position') || 'bottom');
   }
 }
 
