@@ -1,5 +1,9 @@
 @layer mt.design {
-    .heading {
-        composes: ds-heading from "@digdir/designsystemet-css";
-    }
+	.heading {
+		composes: ds-heading from "@digdir/designsystemet-css";
+
+		&[data-justify="center"] {
+			text-align: center;
+		}
+	}
 }

@@ -3,13 +3,8 @@
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-size-2);
 
-		/* <p> is used for field descriptions */
-		& > p {
-			margin: 0;
-		}
-
 		& label + p {
-			margin-top: calc(var(--ds-size-2) * -1);
+			margin-top: 0;
 		}
 
 		& > :not(input, select, textarea),
@@ -34,8 +29,12 @@
 			padding: 0 var(--ds-size-2);
 		}
 
-		&:has(input:is([type="radio"], [type="checkbox"])) label {
-			font-weight: 500;
+		&:has(input:is([type="radio"], [type="checkbox"])) {
+			row-gap: 0;
+
+			& label {
+				font-weight: 500;
+			}
 		}
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
@@ -54,8 +53,13 @@
 		box-shadow: inset 0 0 0 1px var(--dsc-field-affix-border-color);
 		display: flex;
 
-		& > * {
+		/* TMP: LastPass fix */
+		& > :not(:empty) {
 			padding-inline: var(--dsc-field-affix-padding-inline);
+		}
+		& > input:has(+ [data-lastpass-icon-root]) {
+			border-bottom-right-radius: var(--ds-border-radius-md);
+			border-top-right-radius: var(--ds-border-radius-md);
 		}
 	}
 	.count {

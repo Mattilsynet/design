@@ -25,6 +25,7 @@
 		"rules": {
 			"recommended": true,
 			"a11y": {
+				"useAnchorContent": "off",
 				"noLabelWithoutControl": "off",
 				"noSvgWithoutTitle": "off",
 				"useAriaPropsForRole": "off",

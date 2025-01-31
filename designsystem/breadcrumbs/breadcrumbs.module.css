@@ -1,5 +1,10 @@
 @layer mt.design {
 	.breadcrumbs {
 		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
+
+		& > :is(ol, ul) > li {
+			align-items: center;
+			display: flex;
+		}
 	}
 }

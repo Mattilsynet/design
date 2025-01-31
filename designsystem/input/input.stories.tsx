@@ -21,7 +21,9 @@ export const Default: Story = {
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
-			<input className={styles.input} />
+			<div className={styles.affixes}>
+				<input className={styles.input} />
+			</div>
 		</div>
 	),
 };

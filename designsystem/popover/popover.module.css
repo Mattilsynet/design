@@ -31,7 +31,7 @@
 
 		&:is(menu),
 		&:has(> menu:only-child) {
-			--mtds-popover-padding: var(--ds-size-3);
+			--mtds-popover-padding: var(--ds-size-2);
 		}
 		&:is(menu) > li > hr {
 			border: 0;

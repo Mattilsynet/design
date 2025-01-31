@@ -4,13 +4,12 @@
 		border-collapse: collapse; /* Allow rows to have border */
 
 		--dsc-table-background: transparent;
-		--dsc-table-border: 1px solid
-			color-mix(in hsl, currentcolor, transparent 80%);
+		--dsc-table-border-color: var(--mtds-color-200);
 		--dsc-table-color: inherit;
 		--dsc-table-header-background--hover: transparent;
 		--dsc-table-header-background--sorted: transparent;
 		--dsc-table-header-background: transparent;
-		--dsc-table-header-divider: 1px solid;
+		--dsc-table-border-divider: 1px solid;
 
 		vertical-align: top;
 
@@ -40,6 +39,13 @@
 	.table[data-nowrap],
 	.table [data-nowrap] {
 		white-space: nowrap;
+	}
+
+	/**
+	 * Table heading fix
+	 */
+	.table > thead > tr:last-child > :is(td, th) {
+		border-bottom-color: currentcolor;
 	}
 
 	/**
@@ -155,16 +161,21 @@
 				& > tr {
 					display: table-row-group; /* But make each row a <tbody> */
 
+					&:first-child > :is(td, th) {
+						border-top: var(--dsc-table-border-divider);
+					}
+
 					/* Do not re-syle if expandable (colspan) */
 					& > :is(td, th):not([colspan]) {
-						border-top: var(--dsc-table-border);
-						border-bottom: none;
+						/* border-top: var(--dsc-table-border); */
+						/* border-bottom: none; */
 						display: table-row;
 						text-align: inherit; /* Undo data-numeric alignment */
 
-						&:first-child {
-							border-top: 1px solid;
+						&:last-child {
+							border-bottom: var(--dsc-table-border-divider);
 						}
+
 						&::before {
 							box-sizing: border-box;
 							content: attr(data-th);
