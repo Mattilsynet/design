@@ -75,3 +75,6 @@ jobs:
           
           cd ./clojure
           ./publish.sh
+
+          git push
+          git push --tags
