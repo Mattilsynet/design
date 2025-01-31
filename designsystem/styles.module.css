@@ -124,4 +124,29 @@
 	:where(b, h1, h2, h3, h4, h5, h6, label, legend, strong, th) {
 		font-weight: 700;
 	}
+
+	.tooltip {
+		background: var(--mtds-color-mork-granskog);
+		border-radius: var(--ds-border-radius-md);
+		border: 0;
+		color: var(--ds-color-accent-contrast-default);
+		display: block;
+		font-size: .9375rem;
+		font-weight: 500;
+		inset: auto;
+		line-height: var(--ds-line-height-sm);
+		max-width: 18em;
+		opacity: 0;
+		padding: var(--ds-size-1) var(--ds-size-2);
+		position: fixed;
+		transition-duration: .15s;
+		transition-property: opacity, visibility;
+		visibility: hidden;
+		z-index: 99999;
+
+		&:popover-open {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }

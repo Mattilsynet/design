@@ -1,5 +1,5 @@
 import styles from '../styles.module.css';
-import { onMutation } from '../utils';
+import { attr, onMutation } from '../utils';
 const CSS_TABLE = styles.table.split(' ')[0];
 
 function process(tables: HTMLCollectionOf<Element>) {
@@ -8,7 +8,7 @@ function process(tables: HTMLCollectionOf<Element>) {
     for (const tbody of table.tBodies) {
       for (const row of tbody.rows) {
         for (const cell of row.cells) {
-          cell.setAttribute('data-th', ths[cell.cellIndex] || ':empty'); // Using U+200B to prevent empty string from collapsing
+          attr(cell, 'data-th', ths[cell.cellIndex] || ':empty');
         }
       }
     }
