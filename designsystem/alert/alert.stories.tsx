@@ -75,8 +75,10 @@ export const WithTitle: Story = {
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
-			Det er lange køer for å bestille pass om dagen, det kan være lurt å
-			bestille i god tid før du skal reise.
+			<p>
+				Det er lange køer for å bestille pass om dagen, det kan være lurt å
+				bestille i god tid før du skal reise.
+			</p>
 		</output>
 	),
 };
@@ -86,8 +88,10 @@ export const WithClose: Story = {
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
-			Det er lange køer for å bestille pass om dagen, det kan være lurt å
-			bestille i god tid før du skal reise.
+			<p>
+				Det er lange køer for å bestille pass om dagen, det kan være lurt å
+				bestille i god tid før du skal reise.
+			</p>
 			<button type="button" aria-label="Lukk"></button>
 		</output>
 	),
@@ -98,8 +102,10 @@ export const WithButtons: Story = {
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
-			Det er lange køer for å bestille pass om dagen, det kan være lurt å
-			bestille i god tid før du skal reise.
+			<p>
+				Det er lange køer for å bestille pass om dagen, det kan være lurt å
+				bestille i god tid før du skal reise.
+			</p>
 			<div className={styles.flex}>
 				<a href="#none" className={styles.button} data-variant="secondary">
 					Prøv igjen

@@ -1,4 +1,13 @@
+import {
+	Gear,
+	ListChecks,
+	MagnifyingGlass,
+	SignOut,
+	Signature,
+	User,
+} from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useEffect } from "react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -240,6 +249,7 @@ export const Justify: Story = {
 		</section>
 	),
 };
+
 export const AlignContent: Story = {
 	decorators,
 	render: () => (
@@ -293,5 +303,118 @@ export const AlignContent: Story = {
 				</div>
 			</article>
 		</section>
+	),
+};
+
+export const App: Story = {
+	tags: ["!dev"], // TMP hide story
+	parameters: {
+		layout: "fullscreen",
+	},
+	decorators: [
+		function Render(Story) {
+			useEffect(() => {
+				const handleToggle = ({ target }: Event) =>
+					(target as Element)
+						?.closest("nav,aside,header,footer")
+						?.toggleAttribute("hidden");
+
+				document.addEventListener("click", handleToggle);
+				return () => document.removeEventListener("click", handleToggle);
+			}, []);
+
+			return (
+				<div className={styles.body}>
+					<Story />
+				</div>
+			);
+		},
+	],
+	render: () => (
+		<div className={styles.grid} data-grid="app">
+			<header>
+				<nav className={styles.breadcrumbs} aria-label="Du er her">
+					<ul>
+						<li>
+							<a href="#none" className={styles.logo}></a>
+						</li>
+						<li>
+							<a href="#none">Søknader</a>
+						</li>
+					</ul>
+				</nav>
+				<menu className={styles.flex}>
+					<li>
+						<button type="button" className={styles.button}>
+							En knapp
+						</button>
+					</li>
+					<li>
+						<button
+							type="button"
+							className={styles.button}
+							aria-label="Meny"
+							popoverTarget="menu"
+						></button>
+						<menu className={styles.popover} popover="auto" id="menu">
+							<li>
+								<a className={styles.button} href="#none">
+									<User />
+									Profil
+								</a>
+							</li>
+							<li>
+								<a className={styles.button} href="#none">
+									<Gear />
+									Innstillinger
+								</a>
+							</li>
+							<li>
+								<a className={styles.button} href="#none">
+									<SignOut />
+									Logg ut
+								</a>
+							</li>
+						</menu>
+					</li>
+				</menu>
+			</header>
+			<nav data-variant="minimized">
+				<menu>
+					<li>
+						<a className={styles.button} href="#none" aria-current="page">
+							<Signature /> Søknader
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="#none">
+							<ListChecks />
+							Behandling
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="#none">
+							<MagnifyingGlass />
+							Søk
+						</a>
+					</li>
+				</menu>
+			</nav>
+			<main>
+				<div className={styles.card} style={{ height: "100%" }}>
+					Content
+				</div>
+			</main>
+			<aside>
+				<form>
+					<h2 className={styles.heading} data-size="xs">
+						Filters
+					</h2>
+				</form>
+			</aside>
+			<footer hidden>
+				<a href="#none" className={styles.logo}></a>
+			</footer>
+		</div>
 	),
 };

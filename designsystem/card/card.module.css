@@ -1,7 +1,7 @@
 @layer mt.design {
 	.card {
 		align-items: start;
-		background-color: white;
+		background-color: var(--mtds-color-white);
 		border-radius: var(--ds-border-radius-lg);
 		border: 1px solid var(--mtds-color-100);
 		box-sizing: border-box;

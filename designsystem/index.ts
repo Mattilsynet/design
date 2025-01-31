@@ -6,7 +6,16 @@ import { IS_BROWSER } from './utils';
 export { pagination } from './pagination/pagination';
 export * as styles from './styles.module.css';
 
-if (IS_BROWSER) observe(document.body); // Automatic observe on browser
+if (IS_BROWSER) {
+  // Check if the page is still loading - might happen if the script is in <head>
+  const isLoading = document.readyState === "loading";
+  const onLoaded = () => observe(document.body);
+
+  if (isLoading) document.addEventListener("DOMContentLoaded", onLoaded);
+  else onLoaded();
+}
+  
+  observe(document.body); // Automatic observe on browser
 
 export function observe(el: Element) {
   field.observe(el);

@@ -13,16 +13,20 @@ const CSS_ALERT = styles.alert.split(" ");
 const CSS_TABLE = styles.table.split(" ");
 
 export default {
-	// decorators: [
-	// 		withThemeByDataAttribute({
-	// 		  defaultTheme: 'Light',
-	// 		  attributeName: 'data-theme',
-	// 		  themes: {
-	// 		    'Light': 'light',
-	// 		    'Dark preview': 'dark',
-	// 		  }
-	// 		})
-	// ],
+	decorators: [
+		(Story) => {
+			useEffect(() => document.documentElement.setAttribute("lang", "no"), []); // Set Nowegian language
+			return <Story />;
+		},
+		// withThemeByDataAttribute({
+		//   defaultTheme: 'Light',
+		//   attributeName: 'data-theme',
+		//   themes: {
+		//     'Light': 'light',
+		//     'Dark preview': 'dark',
+		//   }
+		// })
+	],
 	parameters: {
 		controls: {
 			disableSaveFromUI: true,
@@ -34,9 +38,6 @@ export default {
 			},
 			container: (props: DocsContainerProps) => {
 				useEffect(() => {
-					// Set Norwegian language
-					document.documentElement.setAttribute("lang", "no");
-
 					// Paint blockqoutes with x as red
 					for (const el of document.querySelectorAll(
 						".sbdocs-blockquote:not(h1 + .sbdocs-blockquote)",
