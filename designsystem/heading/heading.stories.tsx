@@ -52,10 +52,8 @@ export const Default: Story = {
 export const Center: Story = {
 	decorators,
 	render: () => (
-		<>
-			<h2 className={styles.heading} data-justify="center">
-				Heading data-justify="center"
-			</h2>
-		</>
+		<h2 className={styles.heading} data-justify="center">
+			Heading data-justify="center"
+		</h2>
 	),
 };
