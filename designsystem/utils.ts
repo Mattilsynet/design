@@ -79,7 +79,6 @@ if (IS_BROWSER){
  * @param target The Element to position
  * @param anchor The Element to use as anchor
  */
-type AnchorKeys = keyof typeof ANCHOR;
 const ANCHOR = { top: 0, right: 1, bottom: 2, left: 3, none: 4 }; // Speed up by using a const map
 
 export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null | false, position?: string | number) {
