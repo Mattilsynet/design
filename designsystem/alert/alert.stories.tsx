@@ -26,7 +26,7 @@ export const Default: Story = {
 	),
 };
 
-export const Variants: Story = {
+export const Colors: Story = {
 	decorators,
 	render: () => (
 		<>

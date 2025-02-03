@@ -212,7 +212,7 @@
 			--columns: 12;
 		}
 		&[data-grid="app"] {
-			--spacing-md: var(--ds-size-7);
+			--spacing-md: var(--ds-size-6);
 			--spacing-sm: var(--ds-size-3);
 			--sides: 14em;
 
@@ -248,6 +248,24 @@
 				margin-left: var(--spacing-sm);
 				margin-top: var(--spacing-md);
 				width: var(--sides);
+				transition-duration: .3s;
+				transition-timing-function: ease-out;
+
+				/* WIP */
+				&[data-expanded="false"] {
+					width: var(--ds-size-14);
+				}
+				&[data-expanded="false"] [data-expanded="true"] {
+					display: none;
+				}
+
+				&:not([data-expanded="false"])
+					[data-expanded]:not(
+						[data-expanded="false"],
+						[data-expanded="true"]
+					)::after {
+					content: attr(data-expanded);
+				}
 			}
 			& > main {
 				container: main / inline-size;

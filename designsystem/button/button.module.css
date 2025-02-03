@@ -112,6 +112,11 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
+
+		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
+		& > li::before {
+			content: "\200B";
+		}
 	}
 	menu > li > .button {
 		border-radius: var(--ds-border-radius-md);

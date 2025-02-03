@@ -79,12 +79,13 @@ if (IS_BROWSER){
  * @param target The Element to position
  * @param anchor The Element to use as anchor
  */
+type AnchorKeys = keyof typeof ANCHOR;
 const ANCHOR = { top: 0, right: 1, bottom: 2, left: 3, none: 4 }; // Speed up by using a const map
 
 export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null | false, position?: string | number) {
-	if (anchor === false || !anchor?.isConnected || !target?.isConnected) return TARGETS.delete(target); // Stop watchning if anchor is removed from DOM
+	if (!anchor || !anchor.isConnected || !target.isConnected) return TARGETS.delete(target); // Stop watchning if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ''); // Ensure we have t´he scroller
-	if (!TARGETS.has(target)) {
+	if (!TARGETS.has(target) || ANCHOR[position as AnchorKeys] === undefined) { // Setup new target or update position
 		const place = ANCHOR[position as keyof typeof ANCHOR] ?? ANCHOR.bottom; // Use CSS property to store position for more flexibility
 		return TARGETS.set(target, () => anchorPosition(target, anchor, place)).get(target)?.(); // Start watching if not already watching
 	}
@@ -100,12 +101,14 @@ export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null 
 	const hasSpaceRight = anchorW + anchorW + targetW < window.innerWidth;
 	const hasSpaceOver = anchorY - targetH > 0
 	const hasSpaceUnder = anchorY + anchorH + targetH < window.innerHeight;
-	const positionRight = (position === ANCHOR.bottom && hasSpaceRight) || !hasSpaceLeft // Always position under when no hasSpaceOver, as no OS can scroll further up than 0
-	const positionUnder = (position === ANCHOR.bottom && hasSpaceUnder) || !hasSpaceOver // Always position under when no hasSpaceOver, as no OS can scroll further up than 0
+	const positionRight = (position === ANCHOR.bottom && hasSpaceRight) || !hasSpaceLeft // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
+	const positionUnder = (position === ANCHOR.bottom && hasSpaceUnder) || !hasSpaceOver // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
+	const centerX = Math.min(Math.max(10, anchorX - (targetW - anchorW) / 2), window.innerWidth - targetW - 10);
+	const centerY = Math.min(Math.max(10, anchorY - (targetH - anchorH) / 2), window.innerHeight - targetH - 10);
 	const isVertical = position === ANCHOR.top || position === ANCHOR.bottom;
 
-	target.style.left = `${Math.round(isVertical ? Math.min(Math.max(10, anchorX - (targetW - anchorW) / 2), window.innerWidth - targetW - 10) : (positionRight ? anchorX + anchorW : anchorX - targetW))}px`
-  target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : Math.min(Math.max(10, anchorY - (targetH - anchorH) / 2), window.innerHeight - targetH - 10))}px`
+	target.style.left = `${Math.round(isVertical ? centerX : (positionRight ? anchorX + anchorW : anchorX - targetW))}px`
+  target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`
   SCROLLER?.style.setProperty('translate', `${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)} ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`);
 }
 
