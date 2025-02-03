@@ -1,11 +1,12 @@
 import styles from './styles.module.css';
 import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on, useId } from "./utils";
 
-let TOOLTIP: HTMLElement | null = null;
-let ANCHOR: Element | null = null;
-let THROTTLE: number | ReturnType<typeof setTimeout> = 0;
-let THROTTLE_LAST_CALL = Number.NEGATIVE_INFINITY;
+const POSITION_CSS_PROPERTY = '--mtds-tooltip-position';
 const THROTTLE_DELAY = 100;
+let ANCHOR: Element | null = null;
+let LAST_CALL = Number.NEGATIVE_INFINITY;
+let THROTTLE: number | ReturnType<typeof setTimeout> = 0;
+let TOOLTIP: HTMLElement | null = null;
 
 if (IS_BROWSER) {
   TOOLTIP = document.body.appendChild(document.createElement('div'));
@@ -16,14 +17,14 @@ if (IS_BROWSER) {
 }
 
 function handleMove({ target }: Event) {
-  const wait = THROTTLE_LAST_CALL + THROTTLE_DELAY - Date.now();
+  const wait = LAST_CALL + THROTTLE_DELAY - Date.now();
   clearTimeout(THROTTLE);
   THROTTLE = setTimeout(handleMoveThrottled, Math.max(wait, 0), target);
 }
 
 // Using a throttled function to avoid performance issues
 function handleMoveThrottled(target: Element | null) {
-  THROTTLE_LAST_CALL = Date.now();
+  LAST_CALL = Date.now();
 
   if (!TOOLTIP || target === TOOLTIP) return; // Allow tooltip to be hovered, following https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus
   let anchor = target?.closest?.<HTMLElement>('[data-tooltip],[data-expanded]') || null;
@@ -32,7 +33,8 @@ function handleMoveThrottled(target: Element | null) {
   if (anchor === ANCHOR) return;
 
   // Do not show tooltip if boolish value
-  const content = anchor?.getAttribute('data-tooltip') || anchor?.getAttribute('data-expanded') || '';
+  const content = anchor?.getAttribute('data-tooltip') || anchor?.getAttribute('data-expanded') || TOOLTIP.textContent || '';
+  const position = anchor?.getAttribute('data-tooltip-position') || window.getComputedStyle(anchor || document.body).getPropertyValue(POSITION_CSS_PROPERTY) || 'top';
   if (!content || content === 'false' || content === 'true') anchor = null;
   
   ANCHOR?.removeAttribute('aria-labelledby'); // Unbind previous anchor
@@ -40,7 +42,7 @@ function handleMoveThrottled(target: Element | null) {
 
   ANCHOR?.setAttribute('aria-labelledby', useId(TOOLTIP));
   TOOLTIP.togglePopover(!!anchor);
-  // anchorPosition(TOOLTIP, false); // Reset anchor position
-  anchorPosition(TOOLTIP, anchor, anchor?.getAttribute('data-tooltip-position') || 'top');
-  if (anchor) TOOLTIP.textContent = content;
+  TOOLTIP.replaceChildren(content);
+  anchorPosition(TOOLTIP, false); // Reset anchor position
+  anchorPosition(TOOLTIP, anchor, position);
 }

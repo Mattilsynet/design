@@ -244,6 +244,8 @@
 				}
 			}
 			& > nav {
+				--mtds-tooltip-position: right;
+
 				grid-area: nav;
 				margin-left: var(--spacing-sm);
 				margin-top: var(--spacing-md);
@@ -254,9 +256,10 @@
 				/* WIP */
 				&[data-expanded="false"] {
 					width: var(--ds-size-14);
-				}
-				&[data-expanded="false"] [data-expanded="true"] {
-					display: none;
+
+					&[data-expanded="true"] {
+						display: none;
+          }
 				}
 
 				&:not([data-expanded="false"])

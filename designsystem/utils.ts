@@ -85,7 +85,7 @@ const ANCHOR = { top: 0, right: 1, bottom: 2, left: 3, none: 4 }; // Speed up by
 export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null | false, position?: string | number) {
 	if (!anchor || !anchor.isConnected || !target.isConnected) return TARGETS.delete(target); // Stop watchning if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ''); // Ensure we have t´he scroller
-	if (!TARGETS.has(target) || ANCHOR[position as AnchorKeys] === undefined) { // Setup new target or update position
+	if (!TARGETS.has(target)) { // Setup new target or update position
 		const place = ANCHOR[position as keyof typeof ANCHOR] ?? ANCHOR.bottom; // Use CSS property to store position for more flexibility
 		return TARGETS.set(target, () => anchorPosition(target, anchor, place)).get(target)?.(); // Start watching if not already watching
 	}
