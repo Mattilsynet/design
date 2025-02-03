@@ -33,16 +33,16 @@ function handleMoveThrottled(target: Element | null) {
   if (anchor === ANCHOR) return;
 
   // Do not show tooltip if boolish value
-  const content = anchor?.getAttribute('data-tooltip') || anchor?.getAttribute('data-expanded') || TOOLTIP.textContent || '';
+  const content = anchor?.getAttribute('data-tooltip') || anchor?.getAttribute('data-expanded') || '';
   const position = anchor?.getAttribute('data-tooltip-position') || window.getComputedStyle(anchor || document.body).getPropertyValue(POSITION_CSS_PROPERTY) || 'top';
   if (!content || content === 'false' || content === 'true') anchor = null;
+  if (anchor) TOOLTIP.textContent = content; // Only update content if new anchor
   
   ANCHOR?.removeAttribute('aria-labelledby'); // Unbind previous anchor
   ANCHOR = anchor; // Store new anchor - might be null if no new anchor
 
   ANCHOR?.setAttribute('aria-labelledby', useId(TOOLTIP));
   TOOLTIP.togglePopover(!!anchor);
-  TOOLTIP.replaceChildren(content);
   anchorPosition(TOOLTIP, false); // Reset anchor position
   anchorPosition(TOOLTIP, anchor, position);
 }
