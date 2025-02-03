@@ -259,7 +259,7 @@
 
 					&[data-expanded="true"] {
 						display: none;
-					}
+          }
 				}
 
 				&:not([data-expanded="false"])
