@@ -54,7 +54,8 @@
 		--mtds-color-sand: #f4ece6;
 		--mtds-color-solstreif: #f8de9c;
 		--mtds-color-sommerdag: #f9cc76;
-		--mtds-color-100: color-mix(in hsl, currentcolor 5%, transparent);
+		--mtds-color-50: color-mix(in hsl, currentcolor 5%, transparent);
+		--mtds-color-100: color-mix(in hsl, currentcolor 10%, transparent);
 		--mtds-color-200: color-mix(in hsl, currentcolor 20%, transparent);
 
 		--mtds-icon-size: 1em;
@@ -126,9 +127,11 @@
 	}
 
 	.tooltip {
-		background: var(--mtds-color-mork-granskog);
-		border-radius: var(--ds-border-radius-md);
-		border: 0;
+		--margin: 5px;
+		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
+		background-color: var(--mtds-color-mork-granskog);
+		border-radius: calc(var(--ds-border-radius-md) + var(--margin));
+		border: var(--margin) solid transparent;
 		color: var(--ds-color-accent-contrast-default);
 		display: block;
 		font-size: .9375rem;
@@ -139,13 +142,15 @@
 		opacity: 0;
 		padding: var(--ds-size-1) var(--ds-size-2);
 		position: fixed;
+		scale: 0.9;
 		transition-duration: .15s;
-		transition-property: opacity, visibility;
+		transition-property: opacity, visibility, scale, top, left;
 		visibility: hidden;
 		z-index: 99999;
 
 		&:popover-open {
 			opacity: 1;
+			scale: 1;
 			visibility: visible;
 		}
 	}

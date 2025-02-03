@@ -4,7 +4,7 @@
 
 		--dsc-alert-background: var(--mtds-color-bakgrunns-blaa);
 		--dsc-alert-color: var(--mtds-color-fjord);
-		--dsc-alert-border-color: var(--mtds-color-100);
+		--dsc-alert-border-color: var(--mtds-color-50);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
 		--dsc-alert-icon-color: currentcolor;
 
@@ -51,15 +51,19 @@
 			}
 
 			&::before {
-				box-sizing: content-box;
-				display: block;
 				background: currentcolor;
+				box-sizing: border-box;
 				content: "";
-				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+				display: block;
 				height: var(--mtds-icon-size);
+				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+				position: relative;
 				width: var(--mtds-icon-size);
-				padding: .5em;
-				margin: -.5em;
+			}
+			&::after {
+				content: "";
+				position: absolute; /* Increase click surface */
+				inset: -.5em;
 			}
 		}
 

@@ -314,10 +314,15 @@ export const App: Story = {
 	decorators: [
 		function Render(Story) {
 			useEffect(() => {
-				const handleToggle = ({ target }: Event) =>
-					(target as Element)
-						?.closest("nav,aside,header,footer")
-						?.toggleAttribute("hidden");
+				const handleToggle = ({ target }: Event) => {
+					const el = (target as Element)?.closest("nav"); // "nav,aside,header,footer"
+					// 	el?.toggleAttribute("hidden");
+
+					el?.setAttribute(
+						"data-expanded",
+						`${el.getAttribute("data-expanded") === "false"}`,
+					);
+				};
 
 				document.addEventListener("click", handleToggle);
 				return () => document.removeEventListener("click", handleToggle);
@@ -379,28 +384,30 @@ export const App: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav data-variant="minimized">
+			<nav data-expanded="false">
 				<menu>
 					<li>
 						<a
 							className={styles.button}
 							href="#none"
 							aria-current="page"
-							data-tooltip="Søknader"
+							data-expanded="Søknader"
 						>
-							<Signature /> Søknader
+							<Signature />
 						</a>
 					</li>
 					<li>
-						<a className={styles.button} href="#none">
+						<a
+							className={styles.button}
+							href="#none"
+							data-expanded="Behandling"
+						>
 							<ListChecks />
-							Behandling
 						</a>
 					</li>
 					<li>
-						<a className={styles.button} href="#none">
+						<a className={styles.button} href="#none" data-expanded="Søk">
 							<MagnifyingGlass />
-							Søk
 						</a>
 					</li>
 				</menu>

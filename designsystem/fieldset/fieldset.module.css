@@ -18,7 +18,7 @@
 			& > legend::after {
 				background: var(--mtds-color-bakgrunns-blaa);
 				border-radius: 5px;
-				border: 1px solid var(--mtds-color-100);
+				border: 1px solid var(--mtds-color-50);
 				box-sizing: border-box;
 				color: var(--mtds-color-fjord);
 				content: var(--mtds-text-required);
