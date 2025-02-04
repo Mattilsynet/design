@@ -1,0 +1,33 @@
+@layer mt.design {
+	:root {
+		--mtds-tooltip-position: top;
+	}
+	.tooltip {
+		--margin: 5px;
+		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
+		background-color: var(--mtds-color-mork-granskog);
+		border-radius: calc(var(--ds-border-radius-md) + var(--margin));
+		border: var(--margin) solid transparent;
+		color: var(--ds-color-accent-contrast-default);
+		display: block;
+		font-size: .9375rem;
+		font-weight: 500;
+		inset: auto;
+		line-height: var(--ds-line-height-sm);
+		max-width: 18em;
+		opacity: 0;
+		padding: var(--ds-size-1) var(--ds-size-2);
+		position: fixed;
+		scale: 0.9;
+		transition-duration: .15s;
+		transition-property: opacity, visibility, scale, top, left;
+		visibility: hidden;
+		z-index: 99999;
+
+		&:popover-open {
+			opacity: 1;
+			scale: 1;
+			visibility: visible;
+		}
+	}
+}

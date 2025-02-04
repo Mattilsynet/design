@@ -315,13 +315,17 @@ export const App: Story = {
 		function Render(Story) {
 			useEffect(() => {
 				const handleToggle = ({ target }: Event) => {
-					const el = (target as Element)?.closest("nav"); // "nav,aside,header,footer"
-					// 	el?.toggleAttribute("hidden");
+					const el =
+						(target as Element)?.closest("nav") ||
+						document.querySelector("aside"); // "nav,aside,header,footer"
+					const toggle = () =>
+						el?.setAttribute(
+							"data-expanded",
+							`${el?.getAttribute("data-expanded") === "false"}`,
+						);
 
-					el?.setAttribute(
-						"data-expanded",
-						`${el.getAttribute("data-expanded") === "false"}`,
-					);
+					if (!document.startViewTransition) toggle();
+					else document.startViewTransition(() => toggle());
 				};
 
 				document.addEventListener("click", handleToggle);
@@ -384,44 +388,102 @@ export const App: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav data-expanded="false">
+			<nav data-expanded="true" className={styles.grid} data-gap="lg">
+				<button
+					type="button"
+					data-expanded="toggle"
+					data-tooltip="Sidemeny"
+				></button>
 				<menu>
 					<li>
 						<a
 							className={styles.button}
 							href="#none"
 							aria-current="page"
-							data-expanded="Søknader"
+							data-tooltip="Søknader"
 						>
 							<Signature />
 						</a>
 					</li>
 					<li>
-						<a
-							className={styles.button}
-							href="#none"
-							data-expanded="Behandling"
-						>
+						<a className={styles.button} href="#none" data-tooltip="Behandling">
 							<ListChecks />
 						</a>
 					</li>
 					<li>
-						<a className={styles.button} href="#none" data-expanded="Søk">
+						<a className={styles.button} href="#none" data-tooltip="Søk">
 							<MagnifyingGlass />
 						</a>
 					</li>
 				</menu>
+				<form className={styles.grid} data-expanded="true">
+					<fieldset className={styles.fieldset}>
+						<legend>Velg type iskrem</legend>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label>Sjokolade</label>
+						</div>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label data-tooltip="Med strø!">Kokkos</label>
+						</div>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label>Jordbær</label>
+						</div>
+					</fieldset>
+				</form>
 			</nav>
 			<main>
 				<div className={styles.card} style={{ height: "100%" }}>
-					Content
+					<img
+						style={{ width: "100%", height: 600, objectFit: "cover" }}
+						src="https://mattilsynet-xp7prod.enonic.cloud/_/image/8fe5f0c4-49c2-4d27-9dca-764cdfc7e110:64ec235cca8f61e8e8e590ca1cf3a7fb28e132ba/width-1440/Forsidebanner.png"
+						alt=""
+					/>
+					<fieldset className={styles.fieldset}>
+						<legend>Hvilke foretrekker du?</legend>
+						<p>Fellesbeskrivelse</p>
+						<div className={styles.field}>
+							<input
+								type="checkbox"
+								className={styles.input}
+								name="my-check"
+								defaultChecked
+							/>
+							<label>Alternativ 1</label>
+						</div>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} name="my-check" />
+							<label>Alternativ 2</label>
+						</div>
+					</fieldset>
 				</div>
 			</main>
-			<aside>
-				<form>
+			<aside data-expanded="true">
+				<form className={styles.grid} data-gap="md">
 					<h2 className={styles.heading} data-size="xs">
 						Filters
 					</h2>
+					<div className={styles.field}>
+						<label>Search</label>
+						<input type="text" className={styles.input} />
+					</div>
+					<fieldset className={styles.fieldset}>
+						<legend>Velg type iskrem</legend>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label>Sjokolade</label>
+						</div>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label data-tooltip="Med strø!">Kokkos</label>
+						</div>
+						<div className={styles.field}>
+							<input type="checkbox" className={styles.input} />
+							<label>Jordbær</label>
+						</div>
+					</fieldset>
 				</form>
 			</aside>
 			<footer hidden>

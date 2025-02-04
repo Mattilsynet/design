@@ -9,6 +9,7 @@
 		transition-duration: .2s;
 		transition-property: background-color, scale, translate;
 		vertical-align: middle;
+		width: fit-content; /* Try preventing content wrap when placed in flexbox */
 
 		/* Overwrite to same as tertiary from Designsystemet  */
 		&:not([data-variant], [aria-current]:not([aria-current="false"])) {
@@ -116,6 +117,7 @@
 		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
 		& > li::before {
 			content: "\200B";
+			position: absolute;
 		}
 	}
 	menu > li > .button {
