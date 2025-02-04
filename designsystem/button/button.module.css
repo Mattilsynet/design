@@ -1,6 +1,10 @@
 @layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
+		--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore active color as we use scale instead */
+		--dsc-button-border-color: currentcolor;
+		--dsc-button-color--hover: var(--dsc-button-color);
+		--dsc-button-color: currentcolor;
 
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
@@ -12,12 +16,24 @@
 		width: fit-content; /* Try preventing content wrap when placed in flexbox */
 
 		/* Overwrite to same as tertiary from Designsystemet  */
+		&[data-variant="tertiary"],
 		&:not([data-variant], [aria-current]:not([aria-current="false"])) {
-			--dsc-button-background: transparent;
-			--dsc-button-background--active: var(--ds-color-surface-active);
 			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-color: var(--ds-color-text-subtle);
-			--dsc-button-color--hover: var(--ds-color-text-default);
+			--dsc-button-background: transparent;
+			--dsc-button-border-color: transparent;
+		}
+
+		&[data-variant="primary"] {
+			--dsc-button-color: var(--mtds-color-white);
+		}
+		&[data-variant="primary"][data-color="invert"] {
+			--dsc-button-background--hover: var(--mtds-color-white);
+			--dsc-button-background: var(--mtds-color-white);
+			--dsc-button-color: var(--mtds-color-granskog);
+		}
+		&[data-color="invert"] {
+			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
+			--dsc-button-color: currentcolor;
 		}
 
 		& > svg {
