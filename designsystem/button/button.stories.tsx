@@ -370,6 +370,14 @@ export const Invert: Story = {
 			>
 				Tertiary
 			</button>
+			<button
+				data-color="invert"
+				aria-current="page"
+				type="button"
+				className={styles.button}
+			>
+				aria-current="page"
+			</button>
 		</div>
 	),
 };
