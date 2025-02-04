@@ -84,7 +84,9 @@ export const WithBackbutton: Story = {
 						<a href="#none">Nivå 1</a>
 					</li>
 					<li>
-						<a href="#none">Nivå 2</a>
+						<a href="#none">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit
+						</a>
 					</li>
 					<li>
 						<a href="#none">Nivå 3</a>
@@ -129,6 +131,30 @@ export const Sizes: Story = {
 					</li>
 				</ol>
 			</nav>
+		</>
+	),
+};
+
+export const WithoutLinks: Story = {
+	decorators,
+	render: () => (
+		<>
+			<div className={styles.breadcrumbs} aria-label="Sidens plassering:">
+				<ol>
+					<li>
+						<span>Nivå 1</span>
+					</li>
+					<li>
+						<span>Nivå 2</span>
+					</li>
+					<li>
+						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+					</li>
+					<li>
+						<span>Nivå 4</span>
+					</li>
+				</ol>
+			</div>
 		</>
 	),
 };

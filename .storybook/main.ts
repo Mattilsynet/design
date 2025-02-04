@@ -9,12 +9,11 @@ const illustrations = JSON.parse(fs.readFileSync(path.resolve(root, 'public/illu
 
 const PUBLIC_DIR = path.resolve("./public");
 const FOLDERS = "@(identitet|designsystem|profilering)";
-const IGNORE = "!(avatar|chip)";
 
 export default {
 	stories: [
-		`../${FOLDERS}/**/${IGNORE}.mdx`,
-		`../${FOLDERS}/**/${IGNORE}.stories.@(js|jsx|mjs|ts|tsx)`,
+		`../${FOLDERS}/**/*.mdx`,
+		`../${FOLDERS}/**/*.stories.@(js|jsx|mjs|ts|tsx)`,
 	],
 	addons: [
 		{

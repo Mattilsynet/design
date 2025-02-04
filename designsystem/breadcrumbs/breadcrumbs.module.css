@@ -5,6 +5,14 @@
 		& > :is(ol, ul) > li {
 			align-items: center;
 			display: flex;
+			max-width: 100%;
+
+			> * {
+				min-width: 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 		}
 	}
 }
