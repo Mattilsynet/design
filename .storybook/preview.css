@@ -25,16 +25,18 @@ u-tabpanel > pre > .docblock-source {
 
 	&:not(#mattilsynet-design)::after {
 		content: "Under utvikling";
-		background: color-mix(in hsl, currentcolor 15%, transparent);
-		border-radius: 3px;
+		background: var(--mtds-color-50);
+		border-radius: 5px;
+		border: 1px solid var(--mtds-color-50);
+		box-sizing: border-box;
 		display: inline-block;
-		font-size: .875rem;
-		font-weight: 500;
-		letter-spacing: 0;
-		line-height: 1;
-		padding: .4em;
-		vertical-align: middle;
-		margin-left: .8em;
+		font-size: var(--ds-body-xs-font-size);
+		font-weight: normal;
+		height: var(--ds-size-8);
+		line-height: 1.5;
+		margin-inline-start: var(--ds-size-3);
+		padding: 0 var(--ds-size-2);
+		vertical-align: .65em;
 	}
 }
 

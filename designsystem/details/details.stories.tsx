@@ -20,3 +20,12 @@ export const Default: Story = {
 		</u-details>
 	),
 };
+
+export const DefaultOpen: Story = {
+	render: () => (
+		<u-details class={styles.details} open>
+			<u-summary>Default open</u-summary>
+			Innhold
+		</u-details>
+	),
+};

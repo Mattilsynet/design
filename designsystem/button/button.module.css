@@ -1,6 +1,12 @@
 @layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
+		--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore color change on active as we use scale instead */
+		--dsc-button-background--hover: var(--ds-color-surface-hover);
+		--dsc-button-background: transparent;
+		--dsc-button-color--hover: var(--dsc-button-color); /* Ignore color change on hover */
+		--dsc-button-border-color: currentcolor;
+		--dsc-button-color: currentcolor;
 
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
@@ -9,14 +15,29 @@
 		transition-duration: .2s;
 		transition-property: background-color, scale, translate;
 		vertical-align: middle;
+		width: fit-content; /* Try preventing content wrap when placed in flexbox */
 
 		/* Overwrite to same as tertiary from Designsystemet  */
-		&:not([data-variant], [aria-current]:not([aria-current="false"])) {
-			--dsc-button-background: transparent;
-			--dsc-button-background--active: var(--ds-color-surface-active);
-			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-color: var(--ds-color-text-subtle);
-			--dsc-button-color--hover: var(--ds-color-text-default);
+		&[data-variant="tertiary"],
+		&:not([data-variant]) {
+			--dsc-button-border-color: transparent;
+		}
+
+		&[data-variant="primary"],
+		&[aria-current]:not([aria-current="false"]) {
+			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
+			--dsc-button-background: var(--mtds-color-granskog);
+			--dsc-button-color: var(--mtds-color-white);
+		}
+		&[data-color="invert"][data-variant="primary"],
+		&[data-color="invert"][aria-current]:not([aria-current="false"]) {
+			--dsc-button-background--hover: var(--mtds-color-white);
+			--dsc-button-background: var(--mtds-color-white);
+			--dsc-button-color: var(--mtds-color-granskog);
+		}
+		&[data-color="invert"] {
+			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
+			--dsc-button-color: currentcolor;
 		}
 
 		& > svg {
@@ -116,6 +137,7 @@
 		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
 		& > li::before {
 			content: "\200B";
+			position: absolute;
 		}
 	}
 	menu > li > .button {

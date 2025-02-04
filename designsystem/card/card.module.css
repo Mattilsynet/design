@@ -1,25 +1,26 @@
 @layer mt.design {
 	.card {
-		align-items: start;
 		background-color: var(--mtds-color-white);
 		border-radius: var(--ds-border-radius-lg);
 		border: 1px solid var(--mtds-color-100);
 		box-sizing: border-box;
+		padding: var(--ds-size-4);
+
+		/* align-items: start;
 		display: flex;
 		gap: var(--ds-size-8);
-		padding: var(--ds-size-4);
 
 		& > * {
 			margin: 0;
-		}
+		} */
 	}
 
-	.info {
+	/* .info {
 		& > dt {
 			float: left;
 		}
 		& > dd {
 			margin: 0;
 		}
-	}
+	} */
 }

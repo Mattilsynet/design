@@ -8,6 +8,14 @@
 	.grid,
 	.flex {
 		box-sizing: border-box;
+		flex-wrap: wrap;
+		gap: var(--ds-size-2);
+
+		& > * {
+			box-sizing: border-box;
+			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
+			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
+		}
 
 		&[data-pad="1"] {
 			padding: var(--ds-size-1);
@@ -59,16 +67,7 @@
 		&[data-center="2xl"] {
 			max-width: 96rem; /* 1536px */
 		}
-	}
-	.grid,
-	.flex {
-		flex-wrap: wrap;
-		gap: var(--ds-size-2);
 
-		& > * {
-			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
-			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
-		}
 		&[data-gap="none"],
 		&[data-gap="false"] {
 			gap: 0px;
@@ -211,9 +210,11 @@
 		&[data-grid="12"] {
 			--columns: 12;
 		}
+
 		&[data-grid="app"] {
 			--spacing-md: var(--ds-size-6);
 			--spacing-sm: var(--ds-size-3);
+			--sides--collapsed: calc(var(--ds-size-1) * 17);
 			--sides: 14em;
 
 			gap: 0;
@@ -222,6 +223,8 @@
 				"nav main aside" 1fr
 				"footer footer footer" auto / auto 1fr auto;
 			min-height: 100vh;
+			min-height: 100svh; /* Use small viewport height if supported */
+			transition: grid-template-columns .3s ease-out;
 
 			& > header {
 				align-items: center;
@@ -243,44 +246,90 @@
 					margin-bottom: var(--spacing-md);
 				}
 			}
-			& > nav {
-				--mtds-tooltip-position: right;
-
+			/* Using this selector to make left side optional and support any tag */
+			& > header + :not(main) {
+				align-content: start; /* TODO: Set default alignment in case used as grid */
 				grid-area: nav;
-				margin-left: var(--spacing-sm);
-				margin-top: var(--spacing-md);
+				overflow-y: auto;
+				padding-left: var(--spacing-sm);
+				padding-top: var(--spacing-md);
+				position: relative;
+				view-transition-name: mtds-laytout-app--left;
 				width: var(--sides);
-				transition-duration: .3s;
-				transition-timing-function: ease-out;
 
-				/* WIP */
+				&[data-expanded="false"] [data-expanded="true"],
+				&[data-expanded="true"] [data-expanded="false"] {
+					display: none;
+				}
 				&[data-expanded="false"] {
-					width: var(--ds-size-14);
-
-					&[data-expanded="true"] {
-						display: none;
-          }
+					--mtds-tooltip-position: right;
 				}
 
-				&:not([data-expanded="false"])
-					[data-expanded]:not(
-						[data-expanded="false"],
-						[data-expanded="true"]
-					)::after {
-					content: attr(data-expanded);
+				/* Position toggle button */
+				& > button:first-child {
+					all: unset;
+					position: absolute;
+					inset: 50% 0 auto auto;
+					/* border-right: 2px solid; */
+
+					/* &::after {
+						content: "<";
+					} */
+				}
+
+				/* Move tooltips to button content when expanded */
+				&:not([data-expanded="false"]) menu > li > [data-tooltip] {
+					--mtds-tooltip-position: none;
+
+					&::after {
+						content: attr(data-tooltip);
+					}
+				}
+
+				/* 960px */
+				@media screen and (max-width: 60em) {
+					& {
+						background-color: var(--mtds-color-white);
+						border-top: 1px solid var(--mtds-color-100);
+						left: 0;
+						padding: var(--spacing-sm);
+						position: fixed;
+						right: 0;
+						top: calc(100vh - var(--ds-size-13));
+						width: auto;
+						z-index: 99;
+
+						&::before {
+							content: "Navigasjon";
+						}
+					}
 				}
 			}
+
 			& > main {
 				container: main / inline-size;
 				grid-area: main;
 				margin: 0 var(--spacing-sm) var(--spacing-sm);
+				view-transition-name: mtds-laytout-app--main;
 			}
-			& > aside {
+
+			/* Using this selector to make right side optional and support any tag */
+			& > main + :not(footer) {
 				grid-area: aside;
-				margin-right: var(--spacing-sm);
-				margin-top: var(--spacing-md);
+				padding-right: var(--spacing-sm);
+				padding-top: var(--spacing-md);
+				view-transition-name: mtds-laytout-app--right;
 				width: var(--sides);
+
+				&[data-expanded="false"] {
+					padding-inline: 0;
+					width: 0;
+					opacity: 0;
+					visibility: hidden;
+					overflow: hidden;
+				}
 			}
+
 			& > footer {
 				background: var(--mtds-color-granskog);
 				color: var(--mtds-color-lav);
@@ -290,4 +339,24 @@
 			}
 		}
 	}
+}
+
+::view-transition-old(mtds-laytout-app--left),
+::view-transition-new(mtds-laytout-app--left),
+::view-transition-old(mtds-laytout-app--right),
+::view-transition-new(mtds-laytout-app--right) {
+	height: 100%;
+	object-fit: none;
+	object-position: left;
+}
+
+::view-transition-old(mtds-laytout-app--main),
+::view-transition-new(mtds-laytout-app--main) {
+	height: 100%;
+}
+
+/* Declare outside @layer to ensure specificity */
+.grid[data-grid="app"] > nav[data-expanded="false"] {
+	min-width: var(--sides--collapsed) !important; /* Prevent shrinking */
+	width: var(--sides--collapsed) !important;
 }

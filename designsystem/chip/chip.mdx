@@ -3,8 +3,12 @@ import * as stories from './chip.stories';
 
 <Meta of={stories} />
 
-# Chip (Eksperimentell)
+# Chip
 
-- Bruk klassen `chip` på typisk `<span>`
+- Bruk klassen `chip` på `<label>`
+- Legg en `<input type="radio">` med klassen `input`
+<Canvas of={stories.Radio} />
 
-<Canvas of={stories.Default} />
+## Checkbox
+- Bruk `type="checkbox"` i stedet for `type="radio"`
+<Canvas of={stories.Checkbox} />

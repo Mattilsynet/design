@@ -3,6 +3,9 @@
 		composes: ds-fieldset from "@digdir/designsystemet-css";
 
 		/* Reset designsystemet */
+		& > * {
+			margin-top: var(--ds-size-2);
+		}
 		& > legend,
 		& > legend + p {
 			color: inherit;

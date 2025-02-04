@@ -11,6 +11,13 @@ import "@u-elements/u-details";
 
 const CSS_ALERT = styles.alert.split(" ");
 const CSS_TABLE = styles.table.split(" ");
+const MATOMO = "mattilsynet.matomo.cloud";
+
+declare global {
+	interface Window {
+		_paq?: string[][];
+	}
+}
 
 export default {
 	decorators: [
@@ -38,22 +45,41 @@ export default {
 			},
 			container: (props: DocsContainerProps) => {
 				useEffect(() => {
-					// Paint blockqoutes with x as red
+					// Setup Matomo tracking
+					const isLocal = window.location.hostname === "localhost";
+					const isLoaded = document.querySelector('script[src*="matomo.js"]');
+					const title = document.querySelector(".sbdocs-h1")?.textContent;
+					const url = (window.top || window).location.href;
+
+					window._paq = window._paq || [];
+					window._paq.push(["setDocumentTitle", title || document.title]);
+					window._paq.push(["setCustomUrl", url]); // Use location.href to fix storybook iframe url issues
+					window._paq.push(["trackPageView"]);
+
+					if (!isLoaded && !isLocal) {
+						window._paq.push(["enableLinkTracking"]);
+						window._paq.push(["setTrackerUrl", `https://${MATOMO}/matomo.php`]);
+						window._paq.push(["setSiteId", "17"]);
+						document.body.append(
+							Object.assign(document.createElement("script"), {
+								async: true,
+								src: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`,
+							}),
+						);
+					}
+
+					// Paint colors blockqoutes based on emojis
 					for (const el of document.querySelectorAll(
 						".sbdocs-blockquote:not(h1 + .sbdocs-blockquote)",
 					)) {
-						const text = el.textContent || "";
-						const color = text.includes("❌")
-							? "danger"
-							: text.includes("⚠️")
-								? "warning"
-								: text.includes("✅")
-									? "success"
-									: "info";
+						const colors = { "❌": "danger", "⚠️": "warning", "✅": "success" };
+						const color = Object.entries(colors).find(([icon]) =>
+							el.textContent?.includes(icon),
+						)?.[1];
 
 						el.innerHTML = el.innerHTML?.replace(/(❌|✅|⚠️)/, "");
 						el.classList.add(...CSS_ALERT);
-						el.setAttribute("data-color", color);
+						el.setAttribute("data-color", color || "info");
 					}
 
 					// Hide BR from screen readers

@@ -2,9 +2,24 @@
 	.breadcrumbs {
 		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
 
+		& > :is(ol, ul) {
+			row-gap: calc(var(--ds-size-1) / 2);
+		}
+
 		& > :is(ol, ul) > li {
 			align-items: center;
 			display: flex;
+			max-width: 100%;
+
+			&::after {
+				flex-shrink: 0;
+			}
+		}
+		& > :is(ol, ul) > li > * {
+			min-width: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 }

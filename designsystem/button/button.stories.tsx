@@ -335,3 +335,49 @@ export const InMenu: Story = {
 		</menu>
 	),
 };
+
+export const Invert: Story = {
+	render: () => (
+		<div
+			className={styles.flex}
+			style={{ backgroundColor: "#054449", color: "#fff", padding: 15 }}
+		>
+			<p style={{ flex: "1 0 100%" }}>
+				Temporary data-color="invert" added while waiting for final
+				Designsystemet color tokens:
+			</p>
+			<button
+				data-color="invert"
+				type="button"
+				className={styles.button}
+				data-variant="primary"
+			>
+				Primary
+			</button>
+			<button
+				data-color="invert"
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
+			>
+				Secondary
+			</button>
+			<button
+				data-color="invert"
+				type="button"
+				className={styles.button}
+				data-variant="tertiary"
+			>
+				Tertiary
+			</button>
+			<button
+				data-color="invert"
+				aria-current="page"
+				type="button"
+				className={styles.button}
+			>
+				aria-current="page"
+			</button>
+		</div>
+	),
+};
