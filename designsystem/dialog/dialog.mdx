@@ -1,18 +1,20 @@
 import { Meta, Canvas } from '@storybook/blocks';
-import * as stories from './modal.stories';
+import * as stories from './dialog.stories';
 
 <Meta of={stories} />
 
-# Modal
+# Dialog
 
-- Legg klassen `modal` på `<dialog>`
+- Legg klassen `dialog` på `<dialog>`
 - Åpne med metoden [`.showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal)
 
 <Canvas of={stories.Default} />
 
 ## Lukke knapp
-
 - Legg `<form method="dialog"><button aria-label="Lukk"></button></form>` inni for lukke-knapp
 - Legg evt. til flere knapper for lukking
-
 <Canvas of={stories.WithClose} />
+
+## Klikk utenfor dialog for å lukke
+- Legg `data-closedby="any"` på `<dialog>`
+<Canvas of={stories.WithBackdropClose} />

@@ -1,0 +1,28 @@
+@layer mt.design {
+	.spinner {
+		display: inline-grid;
+		gap: var(--ds-size-2);
+		place-items: center;
+		vertical-align: middle;
+	}
+	.spinner::before {
+		background: currentcolor;
+		content: "";
+		font-size: 2em;
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat var(--mtds-icon-spinner);
+		width: var(--mtds-icon-size);
+	}
+	.spinner:empty:before {
+		content: var(--mtds-text-loading); /* Ensure content for screen readers */
+	}
+	.spinner[data-size="xs"]::before {
+		font-size: 1em;
+	}
+	.spinner[data-size="sm"]::before {
+		font-size: 1.5em;
+	}
+	.spinner[data-size="lg"]::before {
+		font-size: 3.5em;
+	}
+}

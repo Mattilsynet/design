@@ -1,0 +1,16 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './spinner.stories';
+
+<Meta of={stories} />
+
+# Spinner
+- Bruk klassen `spinner` på typisk `<span>`
+<Canvas of={stories.Default} />
+
+## Størrelser
+- Bruk `data-size="xs | sm | md | lg"`
+<Canvas of={stories.Sizes} />
+
+## Tekst
+- Skriv tekst inni for dersom du ønsker
+<Canvas of={stories.Text} />
