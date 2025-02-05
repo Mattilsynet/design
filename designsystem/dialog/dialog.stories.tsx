@@ -103,14 +103,8 @@ export const WithBackdropClose: Story = {
 		const dialogRef = useRef<HTMLDialogElement>(null);
 
 		useEffect(() => {
-			const dialog = dialogRef.current;
-			const handleToggle = (event: Event) => console.log(event);
-
-			if (open) dialog?.showModal();
-			else dialog?.close();
-
-			dialog?.addEventListener("toggle", handleToggle);
-			return () => dialog?.removeEventListener("toggle", handleToggle);
+			if (open) dialogRef.current?.showModal();
+			else dialogRef.current?.close();
 		}, [open]);
 
 		return (
