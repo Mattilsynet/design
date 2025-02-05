@@ -1,0 +1,28 @@
+@layer mt.design {
+	hr,
+	.divider {
+		border: 0;
+		border-top: 1px solid var(--mtds-color-200);
+		margin: var(--ds-size-4) 0;
+
+		&[data-gap="none"],
+		&[data-gap="false"] {
+			margin-block: 0px;
+		}
+		&[data-gap="xs"] {
+			margin-block: var(--ds-size-1); /* 4px */
+		}
+		&[data-gap="sm"] {
+			margin-block: var(--ds-size-2); /* 8px */
+		}
+		&[data-gap="md"] {
+			margin-block: var(--ds-size-4); /* 16px */
+		}
+		&[data-gap="lg"] {
+			margin-block: var(--ds-size-6); /* 24px */
+		}
+		&[data-gap="xl"] {
+			margin-block: var(--ds-size-8); /* 32px */
+		}
+	}
+}

@@ -188,7 +188,7 @@ export const WithArrows: Story = {
 				Lenkeknapp
 			</a>
 			<button
-				data-arrow="popover"
+				data-arrow
 				popoverTarget="pop-1"
 				type="button"
 				className={styles.button}
@@ -221,11 +221,11 @@ export const WithIcons: Story = {
 	decorators,
 	render: () => (
 		<>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="secondary">
 				<Heart />
 				Ikon før
 			</button>
-			<button type="button" className={styles.button}>
+			<button type="button" className={styles.button} data-variant="secondary">
 				Ikon etter
 				<Star />
 			</button>

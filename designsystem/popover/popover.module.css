@@ -34,9 +34,7 @@
 			--mtds-popover-padding: var(--ds-size-2);
 		}
 		&:is(menu) > li > hr {
-			border: 0;
-			margin: var(--ds-size-2) 0;
-			border-top: 1px solid var(--mtds-color-200);
+			margin-block: var(--ds-size-2);
 		}
 	}
 }
