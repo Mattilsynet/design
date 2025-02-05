@@ -1,6 +1,10 @@
 @layer mt.design {
-	.modal {
-		composes: ds-modal from "@digdir/designsystemet-css";
+	.dialog {
+		composes: ds-modal from "@digdir/designsystemet-css"; /* TODO: Change to ds-dialog when DigiDir release next-49 */
+
+		&[data-closedby="any"]::backdrop {
+			cursor: pointer;
+		}
 
 		/* Overwrite to same as tertiary from Designsystemet  */
 		& > form[method="dialog"]:first-child > button:only-child {

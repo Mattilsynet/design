@@ -312,32 +312,11 @@ export const App: Story = {
 		layout: "fullscreen",
 	},
 	decorators: [
-		function Render(Story) {
-			useEffect(() => {
-				const handleToggle = ({ target }: Event) => {
-					const el =
-						(target as Element)?.closest("nav") ||
-						document.querySelector("aside"); // "nav,aside,header,footer"
-					const toggle = () =>
-						el?.setAttribute(
-							"data-expanded",
-							`${el?.getAttribute("data-expanded") === "false"}`,
-						);
-
-					if (!document.startViewTransition) toggle();
-					else document.startViewTransition(() => toggle());
-				};
-
-				document.addEventListener("click", handleToggle);
-				return () => document.removeEventListener("click", handleToggle);
-			}, []);
-
-			return (
-				<div className={styles.body}>
-					<Story />
-				</div>
-			);
-		},
+		(Story) => (
+			<div className={styles.body}>
+				<Story />
+			</div>
+		),
 	],
 	render: () => (
 		<div className={styles.grid} data-grid="app">
@@ -352,48 +331,38 @@ export const App: Story = {
 						</li>
 					</ul>
 				</nav>
-				<menu className={styles.flex}>
+				<button type="button" className={styles.button}>
+					En knapp
+				</button>
+				<button
+					type="button"
+					className={styles.button}
+					aria-label="Meny"
+					popoverTarget="menu"
+				></button>
+				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
-						<button type="button" className={styles.button}>
-							En knapp
-						</button>
+						<a className={styles.button} href="#none">
+							<User />
+							Profil
+						</a>
 					</li>
 					<li>
-						<button
-							type="button"
-							className={styles.button}
-							aria-label="Meny"
-							popoverTarget="menu"
-						></button>
-						<menu className={styles.popover} popover="auto" id="menu">
-							<li>
-								<a className={styles.button} href="#none">
-									<User />
-									Profil
-								</a>
-							</li>
-							<li>
-								<a className={styles.button} href="#none">
-									<Gear />
-									Innstillinger
-								</a>
-							</li>
-							<li>
-								<a className={styles.button} href="#none">
-									<SignOut />
-									Logg ut
-								</a>
-							</li>
-						</menu>
+						<a className={styles.button} href="#none">
+							<Gear />
+							Innstillinger
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="#none">
+							<SignOut />
+							Logg ut
+						</a>
 					</li>
 				</menu>
 			</header>
 			<nav data-expanded="true" className={styles.grid} data-gap="lg">
-				<button
-					type="button"
-					data-expanded="toggle"
-					data-tooltip="Sidemeny"
-				></button>
+				<button type="button"></button>
 				<menu>
 					<li>
 						<a
@@ -425,7 +394,7 @@ export const App: Story = {
 						</div>
 						<div className={styles.field}>
 							<input type="checkbox" className={styles.input} />
-							<label data-tooltip="Med strø!">Kokkos</label>
+							<label>Kokkos</label>
 						</div>
 						<div className={styles.field}>
 							<input type="checkbox" className={styles.input} />
@@ -477,7 +446,7 @@ export const App: Story = {
 						</div>
 						<div className={styles.field}>
 							<input type="checkbox" className={styles.input} />
-							<label data-tooltip="Med strø!">Kokkos</label>
+							<label>Kokkos</label>
 						</div>
 						<div className={styles.field}>
 							<input type="checkbox" className={styles.input} />

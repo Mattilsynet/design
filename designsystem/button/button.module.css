@@ -15,7 +15,6 @@
 		transition-duration: .2s;
 		transition-property: background-color, scale, translate;
 		vertical-align: middle;
-		width: fit-content; /* Try preventing content wrap when placed in flexbox */
 
 		/* Overwrite to same as tertiary from Designsystemet  */
 		&[data-variant="tertiary"],
@@ -109,8 +108,7 @@
 			content: var(--mtds-text-loading);
 			display: inline-block;
 			height: var(--mtds-icon-size);
-			mask: center / contain no-repeat
-				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cstyle%3E@keyframes rotate%7Bto%7Brotate:360deg%7D%7D@keyframes stroke%7B50%25%7Bstroke-dasharray:100,200;stroke-dashoffset:-15;transform:rotate(0deg)%7Dto%7Bstroke-dasharray:1,200;stroke-dashoffset:-120;transform:rotate(15deg)%7D%7Dcircle%7Bcx:25;cy:25;r:20;fill:none;stroke:currentcolor;stroke-width:5%7Dcircle:last-child%7Banimation:stroke ease-in-out infinite 2s,rotate linear infinite 2s;transform-origin:center%7D%3C/style%3E%3Ccircle opacity='.2'/%3E%3Ccircle stroke-dasharray='1, 200'/%3E%3C/svg%3E");
+			mask: center / contain no-repeat var(--mtds-icon-spinner);
 			text-align: center;
 			vertical-align: middle;
 			width: var(--mtds-icon-size);

@@ -12,15 +12,11 @@
 		& > * {
 			margin-block: 0;
 		}
-		& > * + * {
+		& > :not(h2, h3, h4, h5, h6) + * {
 			margin-top: 1em;
 		}
 		& :is(h2, h3, h3, h4):first-child {
 			font-size: 1em;
-
-			& + * {
-				margin-top: 0;
-			}
 		}
 
 		/**

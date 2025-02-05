@@ -148,55 +148,50 @@
 	 * Mobile versions (up to 960px)
 	 */
 	@media screen and (max-width: 60em) {
-		.table[data-mobile="divided"],
-		.table[data-mobile="spaced"] {
+		.table[data-mobile] {
 			table-layout: auto; /* Allow content to grow in each <td> */
+		}
+		.table[data-mobile] > :is(thead, tfoot) {
+			display: none; /* Hide header and footer */
+		}
+		.table[data-mobile] > tbody {
+			display: contents; /* Skip <tbody> */
+		}
+		.table[data-mobile] > tbody > tr {
+			display: table-row-group; /* But make each row a <tbody> */
 
-			& > :is(thead, tfoot) {
-				display: none; /* Hide header and footer */
-			}
-			& > tbody {
-				display: contents; /* Skip <tbody> */
-
-				& > tr {
-					display: table-row-group; /* But make each row a <tbody> */
-
-					&:first-child > :is(td, th) {
-						border-top: var(--dsc-table-border-divider);
-					}
-
-					/* Do not re-syle if expandable (colspan) */
-					& > :is(td, th):not([colspan]) {
-						/* border-top: var(--dsc-table-border); */
-						/* border-bottom: none; */
-						display: table-row;
-						text-align: inherit; /* Undo data-numeric alignment */
-
-						&:last-child {
-							border-bottom: var(--dsc-table-border-divider);
-						}
-
-						&::before {
-							box-sizing: border-box;
-							content: attr(data-th);
-							display: table-cell;
-							font-weight: 500;
-							padding: var(--dsc-table-padding);
-							text-align: start;
-							width: 50%; /* Emulate table-layout: fixed */
-						}
-						&[data-th=":empty"]:before {
-							content: "\200B"; /* zero-width space to ensure correct line-height... */
-							content: "\200B" / ""; /* ...and hide from screen reader when supported */
-						}
-					}
-				}
-			}
-			&:not(:has(> thead)) > tbody > tr > [data-th=":empty"]::before {
-				padding-inline: 0; /* Collapse data-th when no headers */
-				width: 0; /* Collapse data-th when no headers */
+			&:first-child > :is(td, th) {
+				border-top: var(--dsc-table-border-divider);
 			}
 		}
+
+		/* Do not re-syle if expandable (colspan) */
+		.table[data-mobile] > tbody > tr > :is(td, th):not([colspan]) {
+			display: table-row;
+			text-align: inherit; /* Undo data-numeric alignment */
+
+			&:last-child {
+				border-bottom: var(--dsc-table-border-divider);
+			}
+
+			&::before {
+				box-sizing: border-box;
+				content: attr(data-th);
+				display: table-cell;
+				font-weight: 500;
+				padding: var(--dsc-table-padding);
+				text-align: start;
+				width: 50%; /* Emulate table-layout: fixed */
+			}
+			&[data-th=":empty"]:before {
+				content: "\200B" / ""; /* ...and hide from screen reader when supported */
+				content: "\200B"; /* zero-width space to ensure correct line-height... */
+				padding-inline: 0;
+				width: 0;
+			}
+		}
+
+		/* Only right-align if headers are present */
 		.table[data-mobile="spaced"]:has(thead)
 			> tbody
 			> tr

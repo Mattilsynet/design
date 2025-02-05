@@ -1,5 +1,7 @@
+import * as dialog from './dialog/dialog';
 import * as field from './field/field';
 import * as fieldset from './fieldset/fieldset';
+import * as layout from './layout/layout';
 import * as popover from './popover/popover';
 import * as table from './table/table';
 import './tooltip/tooltip'; // Load data-tooltip behaviour
@@ -17,15 +19,19 @@ if (IS_BROWSER) {
 }
 
 export function observe(el: Element) {
+  dialog.observe(el);
   field.observe(el);
   fieldset.observe(el);
+  layout.observe(el);
   popover.observe(el);
   table.observe(el);
 }
 
 export function unobserve(el: Element) {
+  dialog.unobserve(el);
   field.unobserve(el);
   fieldset.unobserve(el);
+  layout.unobserve(el);
   popover.unobserve(el);
   table.unobserve(el);
 }

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "../styles.module.css";
 
 const meta = {
-	title: "Designsystem/Modal",
+	title: "Designsystem/Dialog",
 } satisfies Meta;
 
 export default meta;
@@ -12,11 +12,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
-		const modal = useRef<HTMLDialogElement>(null);
+		const dialogRef = useRef<HTMLDialogElement>(null);
 
 		useEffect(() => {
-			if (open) modal.current?.showModal();
-			else modal.current?.close();
+			if (open) dialogRef.current?.showModal();
+			else dialogRef.current?.close();
 		}, [open]);
 
 		return (
@@ -29,9 +29,9 @@ export const Default: Story = {
 					Open
 				</button>
 				<dialog
-					className={styles.modal}
+					className={styles.dialog}
 					onClose={() => setOpen(false)}
-					ref={modal}
+					ref={dialogRef}
 				>
 					<form method="dialog">
 						<button
@@ -40,7 +40,7 @@ export const Default: Story = {
 							aria-label="Lukk"
 						></button>
 					</form>
-					Modal content here
+					Dialog content here
 				</dialog>
 			</>
 		);
@@ -50,11 +50,11 @@ export const Default: Story = {
 export const WithClose: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
-		const modal = useRef<HTMLDialogElement>(null);
+		const dialogRef = useRef<HTMLDialogElement>(null);
 
 		useEffect(() => {
-			if (open) modal.current?.showModal();
-			else modal.current?.close();
+			if (open) dialogRef.current?.showModal();
+			else dialogRef.current?.close();
 		}, [open]);
 
 		return (
@@ -67,15 +67,15 @@ export const WithClose: Story = {
 					Open
 				</button>
 				<dialog
-					className={styles.modal}
+					className={styles.dialog}
 					onClose={() => setOpen(false)}
-					ref={modal}
+					ref={dialogRef}
 				>
 					<form method="dialog">
 						<button type="submit" aria-label="Lukk"></button>
 					</form>
 					<div className={styles.grid}>
-						Modal content here
+						Dialog content here
 						<div className={styles.flex}>
 							<form method="dialog">
 								<button
@@ -91,6 +91,44 @@ export const WithClose: Story = {
 							</button>
 						</div>
 					</div>
+				</dialog>
+			</>
+		);
+	},
+};
+
+export const WithBackdropClose: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState(false);
+		const dialogRef = useRef<HTMLDialogElement>(null);
+
+		useEffect(() => {
+			const dialog = dialogRef.current;
+			const handleToggle = (event: Event) => console.log(event);
+
+			if (open) dialog?.showModal();
+			else dialog?.close();
+
+			dialog?.addEventListener("toggle", handleToggle);
+			return () => dialog?.removeEventListener("toggle", handleToggle);
+		}, [open]);
+
+		return (
+			<>
+				<button
+					className={styles.button}
+					type="button"
+					onClick={() => setOpen(true)}
+				>
+					Open
+				</button>
+				<dialog
+					className={styles.dialog}
+					data-closedby="any"
+					onClose={() => setOpen(false)}
+					ref={dialogRef}
+				>
+					Klikk på utsiden for å lukke
 				</dialog>
 			</>
 		);

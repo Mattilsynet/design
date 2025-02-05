@@ -2,6 +2,7 @@
 @layer ds.base {
 	a,
 	.link {
+		all: unset; /* In case used on <button> */
 		color: inherit;
 		text-decoration: underline;
 		text-decoration-thickness: 0.0625em; /* 1px ish */
