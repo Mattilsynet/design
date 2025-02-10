@@ -7,7 +7,6 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useEffect } from "react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -106,28 +105,35 @@ export const Gap: Story = {
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="xs"</code>
+			<code>data-gap="xs" (4px)</code>
 			<div className={styles.flex} data-gap="xs">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="sm"</code>
+			<code>data-gap="sm" (8px)</code>
 			<div className={styles.flex} data-gap="sm">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="md"</code>
+			<code>data-gap="md" (16px)</code>
 			<div className={styles.flex} data-gap="md">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
 				<b>4</b>
 			</div>
-			<code>data-gap="lg"</code>
+			<code>data-gap="lg" (24px)</code>
+			<div className={styles.flex} data-gap="lg">
+				<b>1</b>
+				<b>2</b>
+				<b>3</b>
+				<b>4</b>
+			</div>
+			<code>data-gap="xl" (32px)</code>
 			<div className={styles.flex} data-gap="lg">
 				<b>1</b>
 				<b>2</b>
@@ -253,7 +259,12 @@ export const Justify: Story = {
 export const AlignContent: Story = {
 	decorators,
 	render: () => (
-		<section className={styles.grid} data-grid="lg" data-gap="lg">
+		<section
+			className={styles.grid}
+			data-grid="3"
+			data-gap="lg"
+			style={{ maxWidth: 700 }}
+		>
 			<article>
 				<code>start</code>
 				<div className={styles.flex} data-align-content="start">

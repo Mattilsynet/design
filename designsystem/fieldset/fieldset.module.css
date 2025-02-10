@@ -16,7 +16,7 @@
 
 		/* Mark <legend> with "Required" if all inputs inside are required */
 		&:has(:required, [aria-required="true"]):not(
-				:has(:optional, [aria-required="false"])
+				:has(:optional:not([aria-required="true"]), [aria-required="false"])
 			) {
 			& > legend::after {
 				background: var(--mtds-color-bakgrunns-blaa);

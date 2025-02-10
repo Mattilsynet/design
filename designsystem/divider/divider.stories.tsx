@@ -34,29 +34,34 @@ export const Gap: Story = {
 	render: () => (
 		<>
 			<div>
-				data-gap="none"
+				none
 				<hr data-gap="none" />
-				data-gap="none"
+				none
 			</div>
 			<div>
-				data-gap="xs"
+				xs (4px)
 				<hr data-gap="xs" />
-				data-gap="xs"
+				xs
 			</div>
 			<div>
-				data-gap="sm"
+				sm (8px)
 				<hr data-gap="sm" />
-				data-gap="sm"
+				sm
 			</div>
 			<div>
-				data-gap="md"
+				md (16px)
 				<hr data-gap="mg" />
-				data-gap="md"
+				md
 			</div>
 			<div>
-				data-gap="lg"
+				lg (24px)
 				<hr data-gap="lg" />
-				data-gap="lg"
+				lg
+			</div>
+			<div>
+				xl (32px)
+				<hr data-gap="xl" />
+				xl
 			</div>
 		</>
 	),

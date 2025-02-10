@@ -6,5 +6,13 @@ import * as stories from './errorsummary.stories';
 # Error summary
 
 - Bruk klassen `errorsummary` og `role="alert"` på `<div>`
+- Hver lenke skal være et anker som peker til `id` til relevante skjemafelt
+- Legg `tabindex="-1"` på overskriften slik at den kan gå fokus
+- Hvis `errorsummary` er synlig ved pageload: legg `autofocus` på overskriften
+- Hvis `errorsummary` blir ved submit av skjema: flytt fokus til overskriften med `.focus()`
 
 <Canvas of={stories.Default} />
+
+## Komplett eksempel
+- **Merk:** React kan ikke vise og flytte fokus i samme operasjon på grunn av asynkron uttegning. Bruk `setTimeout(() => { din-fokus-her })` for å flytte fokus etter at feilmeldingen er synlig.
+<Canvas of={stories.WithForm} />
