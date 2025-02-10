@@ -1,13 +1,26 @@
 @layer mt.design {
 	.errorsummary {
 		composes: ds-error-summary from "@digdir/designsystemet-css";
+		width: fit-content;
+		animation: errorsummary .2s ease-out forwards;
+	}
+	.errorsummary > :is(h2, h3, h4, h5, h6):first-child {
+		margin-block: 0;
+		border-radius: var(--ds-border-radius-sm);
+	}
+	.errorsummary > h2:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+	}
+	.errorsummary > ul {
+		margin-block: .5em 0;
+		padding-left: 1em;
+	}
 
-		& > h2 {
-			margin-block: 0;
-		}
-		& > ul {
-			margin-block: .5em 0;
-			padding-left: 1em;
+	@keyframes errorsummary {
+		from {
+			opacity: 0;
+			translate: 0 .25rem;
 		}
 	}
 }

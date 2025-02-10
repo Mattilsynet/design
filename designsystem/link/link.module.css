@@ -4,6 +4,7 @@
 	.link {
 		all: unset; /* In case used on <button> */
 		color: inherit;
+		cursor: pointer;
 		text-decoration: underline;
 		text-decoration-thickness: 0.0625em; /* 1px ish */
 		text-underline-offset: 0.27em; /* 5px ish */
