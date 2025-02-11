@@ -53,9 +53,9 @@
 		--mtds-color-info-rod: #92301c;
 		--mtds-color-lav: #e2f1df;
 		--mtds-color-lys-furu: #9bcab9;
-		--mtds-color-lys-furu-200: color-mix(
+		--mtds-color-lys-furu-500: color-mix(
 			in hsl,
-			var(--mtds-color-lys-furu) 20%,
+			var(--mtds-color-lys-furu) 50%,
 			transparent
 		);
 		--mtds-color-mork-granskog: #032c30;
