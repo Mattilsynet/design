@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, 'designsystem');
 const dist = path.resolve(__dirname, 'mtds'); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const version = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8')).version.replace(/\./g, '-');
 const isVitepress = process.env.npm_lifecycle_script?.includes('vitepress');
-const cssModulesMap = {}; // Used to create a map of all CSS modules classes
+const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 const cssPropsRename: Plugin = {
   name: 'Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations',
   transform: (code) => ({
@@ -23,7 +23,13 @@ const cssPropsRename: Plugin = {
 export default defineConfig(isVitepress ? { plugins: [cssPropsRename] } : {
   css: {
     postcss: { plugins: [postcssNesting] }, // Polyfill support modern CSS nesting for Samsung Internet
-    modules: { getJSON: (_, json) => Object.assign(cssModulesMap, json) } // Cache, but await writing file as dist might be cleared
+    modules: {
+      // Cache, but await writing file as dist might be cleared
+      getJSON: (_, json) => Object.assign(
+        cssModulesMap,
+        Object.fromEntries(Object.entries(json).filter(([key]) => key[0] !== '_')) // Skip private keys (starting with _)
+      )
+    }
   },
   plugins: [
     dts({

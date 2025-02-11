@@ -40,7 +40,21 @@ export const Default: Story = {
 							aria-label="Lukk"
 						></button>
 					</form>
-					Dialog content here
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.
+					Fusce varius urna odio, vel bibendum odio imperdiet eget. Aliquam
+					consectetur arcu mi, quis elementum mi convallis a. Sed venenatis nec
+					enim vel molestie. Vestibulum nec auctor ligula. Nunc id sollicitudin
+					ligula. Fusce interdum quam posuere augue fringilla, dignissim
+					convallis ex suscipit. Vestibulum ante ipsum primis in faucibus orci
+					luctus et ultrices posuere cubilia curae; Aliquam commodo bibendum
+					risus non luctus. Etiam molestie lectus commodo quam ornare posuere.
+					Vestibulum aliquam viverra ligula non ultricies. Pellentesque eu
+					bibendum nibh, vel vestibulum tortor. Duis rutrum metus sed dictum
+					sagittis. Vivamus in arcu sed neque cursus condimentum. Praesent vel
+					turpis malesuada, ullamcorper justo et, facilisis neque. In ex enim,
+					semper sed sapien sit amet, mollis laoreet mi. Fusce vitae bibendum
+					nulla, in condimentum tortor.
 				</dialog>
 			</>
 		);
