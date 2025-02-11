@@ -25,9 +25,9 @@ u-tabpanel > pre > .docblock-source {
 
 	&:not(#mattilsynet-design)::after {
 		content: "Under utvikling";
-		background: var(--mtds-color-50);
+		background: var(--mtds-color-neutral-50);
 		border-radius: 5px;
-		border: 1px solid var(--mtds-color-50);
+		border: 1px solid var(--mtds-color-neutral-50);
 		box-sizing: border-box;
 		display: inline-block;
 		font-size: var(--ds-body-xs-font-size);

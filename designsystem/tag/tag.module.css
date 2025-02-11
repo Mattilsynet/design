@@ -1,7 +1,7 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
-		--dsc-tag-background: var(--mtds-color-50);
+		--dsc-tag-background: var(--mtds-color-neutral-50);
 
 		border-radius: 5px;
 		border: 1px solid var(--mtds-color-50);

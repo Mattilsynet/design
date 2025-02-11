@@ -39,8 +39,10 @@
 			--dsc-button-color: currentcolor;
 		}
 
+		&::before,
 		& > svg {
 			fill: currentColor;
+			flex-shrink: 0;
 			height: var(--mtds-icon-size);
 			width: var(--mtds-icon-size);
 		}
@@ -68,8 +70,6 @@
 			background: currentcolor;
 			content: "";
 			mask: center / contain no-repeat var(--mtds-icon-ellipsis);
-			height: var(--mtds-icon-size);
-			width: var(--mtds-icon-size);
 		}
 
 		/**
@@ -79,9 +79,7 @@
 			background: currentcolor;
 			content: "";
 			mask: center / contain no-repeat var(--mtds-icon-arrow);
-			height: var(--mtds-icon-size);
 			order: 1; /* Use ::before and change order so ::after is allways unused, and loading will be placed where arrow was */
-			width: var(--mtds-icon-size);
 		}
 		&[data-arrow="left"]::before {
 			order: -1;
@@ -140,6 +138,7 @@
 	}
 	menu > li > .button {
 		border-radius: var(--ds-border-radius-md);
+		font-weight: normal;
 		justify-content: start;
 		width: 100%;
 	}
