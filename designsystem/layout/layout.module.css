@@ -218,13 +218,14 @@
 	/**
 	 * App layout
 	 */
-	.grid[data-grid="app"] {
+	.app {
 		--spacing-md: var(--ds-size-6);
 		--spacing-sm: var(--ds-size-3);
 		--sides--collapsed: calc(var(--ds-size-1) * 17);
 		--sides: 14em;
 
-		gap: 0;
+		box-sizing: border-box;
+		display: grid;
 		grid-template:
 			"header header header" auto
 			"nav main aside" 1fr
@@ -232,12 +233,18 @@
 		min-height: 100vh;
 		min-height: 100svh; /* Use small viewport height if supported */
 		transition: grid-template-columns .3s ease-out;
+
+		& > * {
+			box-sizing: border-box;
+			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
+			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
+		}
 	}
 
 	/**
 	 * App layout: Header
 	 */
-	.grid[data-grid="app"] > header {
+	.app > header {
 		align-items: center;
 		display: flex;
 		gap: var(--ds-size-2);
@@ -247,11 +254,6 @@
 		/* Push logo to left */
 		& > :first-child {
 			margin-right: auto;
-		}
-
-		/* Set burger icon on empty <button popovertarget> */
-		& button[popovertarget]:empty::before {
-			mask-image: var(--mtds-icon-burger);
 		}
 
 		/* WIP */
@@ -266,11 +268,11 @@
 	/**
 	 * App layout: Left side
 	 */
-	.grid[data-grid="app"] > header + :not(main) {
+	.app > header + :not(main) {
 		align-content: start; /* TODO: Set default alignment in case used as grid */
 		grid-area: nav;
 		overflow-y: auto;
-		padding-left: var(--spacing-sm);
+		padding-left: var(--spacing-md);
 		padding-top: var(--spacing-md);
 		position: relative;
 		view-transition-name: mtds-laytout-app--left;
@@ -278,7 +280,7 @@
 
 		/* Hide relevant child elements with data-expanded attribute */
 		&[data-expanded="false"] [data-expanded="true"],
-		&[data-expanded="true"] [data-expanded="false"] {
+		&:not([data-expanded="false"]) [data-expanded="false"] {
 			display: none;
 		}
 		&[data-expanded="false"] {
@@ -288,8 +290,26 @@
 		/* TODO: Position toggle button */
 		& > button:first-child:empty {
 			all: unset;
-			inset: 0 0 auto auto;
+			bottom: 20px;
+			cursor: pointer;
+			height: 40px;
+			left: 20px;
 			position: absolute;
+			text-align: center;
+			width: 40px;
+			z-index: 2;
+
+			&:after {
+				content: "<";
+			}
+		}
+
+		& menu > li {
+			margin-left: calc(var(--spacing-md) * -2);
+
+			& > [data-tooltip] {
+				padding-left: calc(var(--spacing-md) * 2);
+			}
 		}
 
 		/* Move tooltips to button content when expanded */
@@ -322,7 +342,7 @@
 	/**
 	 * App layout: Main
 	 */
-	.grid[data-grid="app"] > main {
+	.app > main {
 		container: main / inline-size;
 		grid-area: main;
 		margin: 0 var(--spacing-sm) var(--spacing-sm);
@@ -332,7 +352,7 @@
 	/**
 	 * App layout: Right sidre
 	 */
-	.grid[data-grid="app"] > main + :not(footer) {
+	.app > main + :not(footer) {
 		grid-area: aside;
 		padding-right: var(--spacing-sm);
 		padding-top: var(--spacing-md);
@@ -351,7 +371,7 @@
 	/**
 	 * App layout: Footer
 	 */
-	.grid[data-grid="app"] > footer {
+	.app > footer {
 		background: var(--mtds-color-granskog);
 		color: var(--mtds-color-lav);
 		grid-area: footer;
@@ -375,7 +395,7 @@
 }
 
 /* Declare outside @layer to ensure specificity */
-.grid[data-grid="app"] > nav[data-expanded="false"] {
+.app > nav[data-expanded="false"] {
 	min-width: var(--sides--collapsed) !important; /* Prevent shrinking */
 	width: var(--sides--collapsed) !important;
 }

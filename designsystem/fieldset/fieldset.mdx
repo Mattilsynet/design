@@ -7,10 +7,13 @@ import * as stories from './fieldset.stories';
 
 - Legg klassen `fieldset` på `<fieldset>` rundt `<legend>` og skjemafelter
 - Dette grupperer typisk `checkbox` eller `radio` inputs
-- Dersom alle skjemafelter er påkrevd, vises dette automatisk i `<legend>`
 <Canvas of={stories.Radios} />
 
-> **Tips:** Teksten `Må fylles ut` oversettes automatisk til `Required` dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property: `--mtds-text-required: "Må fylles ut";`
+## Obligatoriske felter
+- Dersom alle skjemafelter er påkrevd, vises dette automatisk i `<legend>`
+- Teksten `Må fylles ut` oversettes automatisk til `Required` dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property: `--mtds-text-required: "Må fylles ut";`
+- **Merk:** Dersom du ønsker å skru denne [lovpålagte merkingen av obligatoriske felter](https://www.designsystemet.no/monstre/obligatoriske-og-valgfrie-felt), kan du legge `data-required="hidden"` på hvilket som helst element (f.eks. `<html data-required="hidden">` for å skru av for hele dokumentet)
+<Canvas of={stories.Radios} />
 
 ## Checkboxes
 <Canvas of={stories.Checkboxes} />

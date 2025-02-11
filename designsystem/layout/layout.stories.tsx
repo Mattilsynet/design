@@ -1,4 +1,5 @@
 import {
+	Bell,
 	Gear,
 	ListChecks,
 	MagnifyingGlass,
@@ -318,7 +319,7 @@ export const AlignContent: Story = {
 };
 
 export const App: Story = {
-	tags: ["!dev"], // TMP hide story
+	name: "App (Experimental)",
 	parameters: {
 		layout: "fullscreen",
 	},
@@ -330,7 +331,7 @@ export const App: Story = {
 		),
 	],
 	render: () => (
-		<div className={styles.grid} data-grid="app">
+		<div className={styles.app}>
 			<header>
 				<nav className={styles.breadcrumbs} aria-label="Du er her">
 					<ul>
@@ -343,11 +344,11 @@ export const App: Story = {
 					</ul>
 				</nav>
 				<button type="button" className={styles.button}>
-					En knapp
+					<Bell />
 				</button>
 				<button
 					type="button"
-					className={styles.button}
+					className={styles.avatar}
 					aria-label="Meny"
 					popoverTarget="menu"
 				></button>
@@ -440,7 +441,7 @@ export const App: Story = {
 					</fieldset>
 				</div>
 			</main>
-			<aside data-expanded="true">
+			<aside data-expanded="false">
 				<form className={styles.grid} data-gap="md">
 					<h2 className={styles.heading} data-size="xs">
 						Filters

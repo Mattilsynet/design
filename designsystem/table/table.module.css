@@ -160,13 +160,13 @@
 		.table[data-mobile] > tbody > tr {
 			display: table-row-group; /* But make each row a <tbody> */
 
-			&:first-child > :is(td, th) {
+			&:first-child > :first-child {
 				border-top: var(--dsc-table-border-divider);
 			}
 		}
 
 		/* Do not re-syle if expandable (colspan) */
-		.table[data-mobile] > tbody > tr > :is(td, th):not([colspan]) {
+		.table[data-mobile] > tbody > tr > :not([colspan]) {
 			display: table-row;
 			text-align: inherit; /* Undo data-numeric alignment */
 
@@ -192,11 +192,23 @@
 		}
 
 		/* Only right-align if headers are present */
-		.table[data-mobile="spaced"]:has(thead)
-			> tbody
-			> tr
-			> :not([colspan]):is(td, th) {
+		.table[data-mobile="spaced"]:has(thead) > tbody > tr > :not([colspan]) {
 			text-align: end;
+		}
+
+		.table[data-mobile="stacked"],
+		.table[data-mobile="stacked"] > tbody,
+		.table[data-mobile="stacked"] > tbody > tr {
+			display: block;
+		}
+		.table[data-mobile="stacked"] > tbody > tr > :not([colspan]) {
+			display: block;
+			padding: var(--ds-size-2) 0;
+
+			&::before {
+				display: block;
+				padding: 0;
+			}
 		}
 	}
 }
