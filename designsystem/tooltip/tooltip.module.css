@@ -2,7 +2,7 @@
 	:root {
 		--mtds-tooltip-position: top;
 	}
-	.tooltip {
+	._tooltip {
 		--margin: 5px;
 		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
 		background-color: var(--mtds-color-mork-granskog);

@@ -2,11 +2,13 @@
 	.dialog {
 		composes: ds-modal from "@digdir/designsystemet-css"; /* TODO: Change to ds-dialog when DigiDir release next-49 */
 
-		inset: 0;
-		margin: auto;
+		animation: _fadein .2s forwards;
+		inset: 50% 0;
+		margin: 0 auto;
 		max-height: 80vh;
 		max-height: 90svh;
 		position: fixed;
+		translate: 0 -50%;
 
 		&[data-closedby="any"]::backdrop {
 			cursor: pointer;
@@ -46,5 +48,12 @@
 				inset: -.5em;
 			}
 		}
+	}
+}
+
+@keyframes _fadein {
+	from {
+		opacity: 0;
+		translate: 0 calc(-50% + 1rem);
 	}
 }

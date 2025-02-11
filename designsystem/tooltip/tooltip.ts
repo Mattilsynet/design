@@ -1,12 +1,13 @@
+import styles from '../styles.module.css';
 import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on } from "../utils";
-import styles from './tooltip.module.css';
 
+const CSS_TOOLTIP = styles._tooltip.split(' ');
 const DESCRIBEDBY = 'aria-describedby';
+const ESC = 'Escape';
 const LABELLEDBY = 'aria-labelledby';
 const POSITION_CSS_PROPERTY = '--mtds-tooltip-position';
 const THROTTLE_DELAY = 100;
 const TOOLTIP_ID = 'mtds-tooltip';
-const ESC = 'Escape';
 
 let ANCHOR: HTMLElement | null = null;
 let LAST_CALL = Number.NEGATIVE_INFINITY;
@@ -49,7 +50,7 @@ function handleMoveThrottled(target: Element | null) {
 // Initialize if in browser and not already initialized
 if (IS_BROWSER && !document.getElementById(TOOLTIP_ID)) {
   TOOLTIP = document.body.appendChild(document.createElement('div'));
-  TOOLTIP.classList.add(...styles.tooltip.split(' '));
+  TOOLTIP.classList.add(...CSS_TOOLTIP);
   TOOLTIP.id = TOOLTIP_ID;
   attr(TOOLTIP, 'popover', 'manual');
   on(document, 'blur,focus,mouseout,mouseover', handleMove, QUICK_EVENT);
