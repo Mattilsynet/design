@@ -33,13 +33,7 @@ export const Default: Story = {
 					onClose={() => setOpen(false)}
 					ref={dialogRef}
 				>
-					<form method="dialog">
-						<button
-							type="submit"
-							className={styles.button}
-							aria-label="Lukk"
-						></button>
-					</form>
+					<button aria-label="Lukk" data-command="close" type="button"></button>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
 					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.
 					Fusce varius urna odio, vel bibendum odio imperdiet eget. Aliquam
@@ -85,21 +79,18 @@ export const WithClose: Story = {
 					onClose={() => setOpen(false)}
 					ref={dialogRef}
 				>
-					<form method="dialog">
-						<button type="submit" aria-label="Lukk"></button>
-					</form>
+					<button type="button" data-command="close" aria-label="Lukk"></button>
 					<div className={styles.grid}>
 						Dialog content here
 						<div className={styles.flex}>
-							<form method="dialog">
-								<button
-									type="submit"
-									className={styles.button}
-									data-variant="secondary"
-								>
-									Avbryt
-								</button>
-							</form>
+							<button
+								className={styles.button}
+								data-command="close"
+								data-variant="secondary"
+								type="button"
+							>
+								Avbryt
+							</button>
 							<button type="button" className={styles.button}>
 								Lagre
 							</button>

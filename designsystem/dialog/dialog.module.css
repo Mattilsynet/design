@@ -14,7 +14,7 @@
 			cursor: pointer;
 		}
 
-		/* Overwrite to same as tertiary from Designsystemet  */
+		& > button:first-child:empty,
 		& > form[method="dialog"]:first-child > button:only-child {
 			all: unset;
 			border-radius: var(--ds-border-radius-md);

@@ -11,7 +11,8 @@ import * as stories from './dialog.stories';
 <Canvas of={stories.Default} />
 
 ## Lukke knapp
-- Legg `<form method="dialog"><button aria-label="Lukk"></button></form>` inni for lukke-knapp
+- Legg `data-command="close"` på en button inni for lukke-knapp
+- Første tomme knapp i `<dialog>` vil automatisk styles som lukke-knapp
 - Legg evt. til flere knapper for lukking
 <Canvas of={stories.WithClose} />
 
