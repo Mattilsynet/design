@@ -1,18 +1,20 @@
 import { QUICK_EVENT, attr, off, on } from '../utils';
 
-const handleBackdropClick = ({ clientX: x, clientY: y, target }: MouseEvent) => {
-  if (target instanceof HTMLDialogElement && attr(target, 'data-closedby') === 'any') {
-    const { top, right, bottom, left } = target.getBoundingClientRect();
+const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
+  if (el instanceof HTMLDialogElement && attr(el, 'data-closedby') === 'any') {
+    const { top, right, bottom, left } = el.getBoundingClientRect();
     const isInside = top <= y && y <= bottom && left <= x && x <= right;
-
-    if (!isInside) target.close();
+    
+    if (!isInside) el.close();
+  } else if (el instanceof Element && el.closest('button[data-command="close"]')) {
+    el?.closest('dialog')?.close();
   }
 };
 
 export function observe(el: Element) {
-  on(el, 'click', handleBackdropClick as EventListener, QUICK_EVENT);
+  on(el, 'click', handleClick as EventListener, QUICK_EVENT);
 }
 
 export function unobserve(el: Element) {
-  off(el, 'click', handleBackdropClick as EventListener, QUICK_EVENT);
+  off(el, 'click', handleClick as EventListener, QUICK_EVENT);
 }
