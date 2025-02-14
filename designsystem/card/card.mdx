@@ -4,7 +4,12 @@ import * as stories from './card.stories';
 <Meta of={stories} />
 
 # Card (Eksperimentell)
-
-- Bruk klassen `card` på typisk `<span>`
-
+- Bruk klassen `card` på typisk `<div>` eller `<a>`
 <Canvas of={stories.Default} />
+
+## Størrelser
+- Bruk `data-size="md | lg"`
+<Canvas of={stories.AsLink} />
+
+## Som lenke
+<Canvas of={stories.AsLink} />

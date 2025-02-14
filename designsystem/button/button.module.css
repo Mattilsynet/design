@@ -127,7 +127,7 @@
 	/**
 	 * In <menu>
 	 */
-	/* Using :where to only reset browser agent standards */
+	/* Using :where to only reset browser agent standards, but allow direct child selector (.something > *) to still winn */
 	menu:where(:has(> li > .button)) {
 		list-style: none;
 		padding: 0;

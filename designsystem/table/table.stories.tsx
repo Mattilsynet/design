@@ -17,6 +17,13 @@ import mockData from "./table.mockData";
 
 const meta = {
 	title: "Designsystem/Table",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid} data-gap="md">
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
@@ -31,14 +38,6 @@ type ColumnsType = {
 }[];
 type RowType = (typeof mockData)[0] & { expand?: React.ReactNode };
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid} data-gap="md">
-			<Story />
-		</div>
-	),
-];
-
 const mockDataSmall = mockData.slice(0, 4);
 const mockExpand = mockData.slice(0, 10).map((row: RowType) => ({
 	...row,
@@ -50,7 +49,6 @@ const mockExpand = mockData.slice(0, 10).map((row: RowType) => ({
 }));
 
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Example table">
 			<thead>
@@ -92,7 +90,6 @@ export const Default: Story = {
 };
 
 export const DefaultTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
@@ -145,7 +142,6 @@ export const DefaultTanstack: Story = {
 	},
 };
 export const HeadingsSimple: Story = {
-	decorators,
 	render: (args) => {
 		const columns: ColumnsType = [
 			{ key: "firstName", label: "First name" },
@@ -189,7 +185,6 @@ export const HeadingsSimple: Story = {
 };
 
 export const HeadingsTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const isNumeric = ["age", "visits", "date"];
 		const columns: ColumnDef<RowType>[] = [
@@ -278,7 +273,6 @@ export const HeadingsTanstack: Story = {
 };
 
 export const SortableSimple: Story = {
-	decorators,
 	render: function Render(args) {
 		const [sort, setSort] = useState<{
 			key: ColumnKeys;
@@ -352,7 +346,6 @@ export const SortableSimple: Story = {
 };
 
 export const SortableTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const [sorting, setSorting] = useState<SortingState>([]);
 		const isNumeric = ["age", "visits"];
@@ -426,7 +419,6 @@ export const SortableTanstack: Story = {
 };
 
 export const PaginatableSimple: Story = {
-	decorators,
 	render: function Render(args) {
 		const size = 10;
 		const [page, setPage] = useState(0);
@@ -516,7 +508,6 @@ export const PaginatableSimple: Story = {
 };
 
 export const PaginatableTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
@@ -611,7 +602,6 @@ export const PaginatableTanstack: Story = {
 };
 
 export const SearchableSimple: Story = {
-	decorators,
 	render: function Render(args) {
 		const [search, setSearch] = useState("");
 		const columns: ColumnsType = [
@@ -669,7 +659,6 @@ export const SearchableSimple: Story = {
 };
 
 export const SearchableTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const [search, setSearch] = useState("");
 		const isNumeric = ["age", "visits"];
@@ -743,7 +732,6 @@ export const SearchableTanstack: Story = {
 };
 
 export const ExpandableSimple: Story = {
-	decorators,
 	render: function Render(args) {
 		const columns: ColumnsType = [
 			{ key: "firstName", label: "First name" },
@@ -799,7 +787,6 @@ export const ExpandableSimple: Story = {
 };
 
 export const ExpandableTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const [expanded, setExpanded] = useState<ExpandedState>({});
 		const isNumeric = ["age", "visits"];
@@ -880,7 +867,6 @@ export const ExpandableTanstack: Story = {
 };
 
 export const CheckableSimple: Story = {
-	decorators,
 	render: function Render(args) {
 		const columns: ColumnsType = [
 			{ key: "firstName", label: "First name" },
@@ -924,7 +910,6 @@ export const CheckableSimple: Story = {
 };
 
 export const CheckableTanstack: Story = {
-	decorators,
 	render: function Render(args) {
 		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
@@ -1000,7 +985,6 @@ export const CheckableTanstack: Story = {
 };
 
 export const WithHorizontalTitles: Story = {
-	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Table with horizontal titles">
 			<thead>
@@ -1042,7 +1026,6 @@ export const WithHorizontalTitles: Story = {
 };
 
 export const FixedWidths: Story = {
-	decorators,
 	render: () => (
 		<table
 			className={styles.table}
@@ -1088,7 +1071,6 @@ export const FixedWidths: Story = {
 };
 
 export const Align: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.grid}>
 			<code>data-align="start":</code>
@@ -1159,7 +1141,6 @@ export const Align: Story = {
 };
 
 export const NumericValues: Story = {
-	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Table with numeric values">
 			<thead>
@@ -1201,7 +1182,6 @@ export const NumericValues: Story = {
 };
 
 export const WithFooter: Story = {
-	decorators,
 	render: () => (
 		<table className={styles.table} aria-label="Table with footer">
 			<thead>
@@ -1250,8 +1230,56 @@ export const WithFooter: Story = {
 	),
 };
 
+export const WithBorderAround: Story = {
+	name: "With border around (Experimental)",
+	render: () => (
+		<table
+			className={styles.table}
+			data-border="true"
+			aria-label="Table with border around"
+		>
+			<thead>
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+					<th>Visits</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Antoni</th>
+					<td>Foyston</td>
+					<td>74</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<th>Jenine</th>
+					<td>Healey</td>
+					<td>22</td>
+					<td>194</td>
+				</tr>
+				<tr>
+					<th>Leigh</th>
+					<td>Klein</td>
+					<td>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam felis
+						quam, pulvinar et lacus et, molestie semper ante.
+					</td>
+					<td>114</td>
+				</tr>
+				<tr>
+					<th>Zara</th>
+					<td>Greenrodd</td>
+					<td>28</td>
+					<td>36</td>
+				</tr>
+			</tbody>
+		</table>
+	),
+};
+
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<table data-size="sm" className={styles.table} aria-label="Small table">
 			<thead>
@@ -1293,7 +1321,7 @@ export const Sizes: Story = {
 };
 
 export const Checkbox: Story = {
-	decorators,
+	tags: ["!dev"],
 	render: () => (
 		<table className={styles.table} aria-label="Small table">
 			<thead>
@@ -1360,7 +1388,6 @@ export const Checkbox: Story = {
 };
 
 export const MobileScroll: Story = {
-	decorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1418,7 +1445,6 @@ export const MobileScroll: Story = {
 };
 
 export const MobileDivided: Story = {
-	decorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1472,7 +1498,6 @@ export const MobileDivided: Story = {
 };
 
 export const MobileSpaced: Story = {
-	decorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1526,7 +1551,6 @@ export const MobileSpaced: Story = {
 };
 
 export const MobileStacked: Story = {
-	decorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport

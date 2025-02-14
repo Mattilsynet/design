@@ -50,12 +50,19 @@ function renderCounter(input: HTMLInputElement) {
   }
 }
 
+// Prevent browsers from showing default validation bubbles
+function handleInvalid(event: Event) {
+  if ((event.target as Element)?.closest?.(`.${CSS_FIELD}`)) event.preventDefault();
+}
+
 export function observe (el: Element) {
   onMutation(el, CSS_FIELD, renderAria);
   on(el, 'input', handleInput, QUICK_EVENT);
+  on(el, 'invalid', handleInvalid, true); // Use capture as invalid does noe buttle
 }
 
 export function unobserve (el: Element) {
   onMutation(el, CSS_FIELD, false);
   off(el, 'input', handleInput, QUICK_EVENT);
+  off(el, 'invalid', handleInvalid, true);
 }

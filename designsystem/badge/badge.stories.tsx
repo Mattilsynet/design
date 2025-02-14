@@ -4,26 +4,23 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Badge",
+	decorators: [
+		(Story) => (
+			<div className={styles.flex}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.flex}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => <span className={styles.badge} data-badge="2"></span>,
 };
 
 export const Color: Story = {
-	decorators,
 	render: () => (
 		<>
 			<span className={styles.badge} data-badge="2"></span>
@@ -33,7 +30,6 @@ export const Color: Story = {
 };
 
 export const InElement: Story = {
-	decorators,
 	render: () => (
 		<div>
 			<h2>
@@ -48,7 +44,6 @@ export const InElement: Story = {
 };
 
 export const WithPosition: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button type="button" className={styles.button}>

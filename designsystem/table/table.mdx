@@ -51,7 +51,7 @@ import * as stories from './table.stories';
 <Canvas of={stories.ExpandableSimple} />
 
 ## Checkbox
-- Legg et [Field](/designsystem/field/) i `td` med `<input type="checkbox">` og `label`
+- Legg et [Field](/designsystem/field/) med `<input type="checkbox">` og `<label>` i første celle
 <Canvas of={stories.CheckableSimple} />
 
 ## Paginering
@@ -65,13 +65,19 @@ import * as stories from './table.stories';
 <Canvas of={stories.MobileScroll} />
 
 ## Mobile: Divided
-- Legg `data-mobile="divided"` på `<table>` for todelt uttegning opp til `960px`
+- Legg `data-mobile="divided"` på `<table>` for todelt visning opp til `960px`
 - **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 - **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-divided)
 <Canvas of={stories.MobileDivided} />
 
-## Mobile: Spacedd
-- Legg `data-mobile="spaced"` på `<table>` for todelt uttegning opp til `960px`
+## Mobile: Spaced
+- Legg `data-mobile="spaced"` på `<table>` for todelt visning opp til `960px`
 - **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 - **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-spaced)
 <Canvas of={stories.MobileSpaced} />
+
+## Mobile: Stacked
+- Legg `data-mobile="stacked"` på `<table>` for stablet visning opp til `960px`
+- **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
+- **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-stacked)
+<Canvas of={stories.MobileStacked} />

@@ -3,30 +3,28 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Spinner",
+	decorators: [
+		(Story) => (
+			<div
+				className={styles.grid}
+				data-align="center"
+				data-grid="fit-sm"
+				style={{ width: "max-content", minWidth: 250 }}
+			>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div
-			className={styles.grid}
-			data-align="center"
-			data-grid="fit-sm"
-			style={{ width: "max-content", minWidth: 250 }}
-		>
-			<Story />
-		</div>
-	),
-];
 
 export const Default: Story = {
 	render: () => <span className={styles.spinner}></span>,
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			xs: <span className={styles.spinner} data-size="xs"></span>
@@ -38,7 +36,6 @@ export const Sizes: Story = {
 };
 
 export const Text: Story = {
-	decorators,
 	render: () => (
 		<>
 			<span className={styles.spinner}>Henter innhold...</span>

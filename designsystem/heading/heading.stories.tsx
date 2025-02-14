@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Heading",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<>
 			{/**
@@ -50,7 +48,6 @@ export const Default: Story = {
 };
 
 export const Center: Story = {
-	decorators,
 	render: () => (
 		<h2 className={styles.heading} data-justify="center">
 			Heading data-justify="center"

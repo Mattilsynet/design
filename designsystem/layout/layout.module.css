@@ -5,11 +5,17 @@
 	.flex:not([hidden]) {
 		display: flex;
 	}
+	/* Using :where to only reset browser agent standards, but allow direct child selector (.something > *) to still winn */
+	:where(.flex, .grid) {
+		margin: 0;
+	}
 	.grid,
 	.flex {
 		box-sizing: border-box;
 		flex-wrap: wrap;
 		gap: var(--ds-size-2);
+		list-style: none;
+		padding: 0;
 
 		& > * {
 			box-sizing: border-box;
@@ -17,31 +23,6 @@
 			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
 		}
 
-		&[data-pad="1"] {
-			padding: var(--ds-size-1);
-		}
-		&[data-pad="2"] {
-			padding: var(--ds-size-2);
-		}
-		&[data-pad="3"] {
-			padding: var(--ds-size-3);
-		}
-		&[data-radius="sm"] {
-			border-radius: var(--ds-border-radius-sm);
-		}
-		&[data-radius="md"] {
-			border-radius: var(--ds-border-radius-md);
-		}
-		&[data-radius="lg"] {
-			border-radius: var(--ds-border-radius-lg);
-		}
-		&[data-color] {
-			padding: var(--ds-size-3);
-			border-radius: 5px; /* TODO: Should it? */
-		}
-		&[data-color="lys-furu"] {
-			background-color: var(--mtds-color-lys-furu);
-		}
 		&[data-center="sm"],
 		&[data-center="md"],
 		&[data-center="lg"],
@@ -221,7 +202,7 @@
 	.app {
 		--spacing-md: var(--ds-size-6);
 		--spacing-sm: var(--ds-size-3);
-		--sides--collapsed: calc(var(--ds-size-1) * 17);
+		--sides--collapsed: 4.25rem; /* Using rem and not -ds-size as we do not want this to be fluid */
 		--sides: 14em;
 
 		box-sizing: border-box;

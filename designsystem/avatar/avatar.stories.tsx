@@ -5,21 +5,19 @@ import avatar from "./avatar.jpg";
 
 const meta = {
 	title: "Designsystem/Avatar",
+	decorators: [
+		(Story) => (
+			<div className={styles.flex} data-align="center">
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.flex} data-align="center">
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.avatar}>MT</div>
@@ -34,7 +32,6 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.avatar} data-size="xs">

@@ -1,7 +1,6 @@
 @layer mt.design {
 	.table {
 		composes: ds-table from "@digdir/designsystemet-css";
-		border-collapse: collapse; /* Allow rows to have border */
 
 		--dsc-table-background: transparent;
 		--dsc-table-border-color: var(--mtds-color-200);
@@ -42,10 +41,17 @@
 	}
 
 	/**
-	 * Table heading fix
+	 * Table border and heading fix
 	 */
-	.table > thead > tr:last-child > :is(td, th) {
+	.table:not([data-border="true"]) > thead > tr:last-child > :is(td, th) {
 		border-bottom-color: currentcolor;
+		vertical-align: bottom;
+	}
+	.table[data-border="true"] {
+		--dsc-table-background: var(--mtds-color-white);
+	}
+	.table[data-border="true"] > thead > tr > :is(th, td) {
+		background-color: #eef1ea; /* TODO: integrate into color system */
 	}
 
 	/**
@@ -149,6 +155,7 @@
 	 */
 	@media screen and (max-width: 60em) {
 		.table[data-mobile] {
+			border-collapse: collapse; /* Allow rows to have border */
 			table-layout: auto; /* Allow content to grow in each <td> */
 		}
 		.table[data-mobile] > :is(thead, tfoot) {
@@ -168,6 +175,7 @@
 		/* Do not re-syle if expandable (colspan) */
 		.table[data-mobile] > tbody > tr > :not([colspan]) {
 			display: table-row;
+			font-weight: normal;
 			text-align: inherit; /* Undo data-numeric alignment */
 
 			&:last-child {
@@ -178,7 +186,7 @@
 				box-sizing: border-box;
 				content: attr(data-th);
 				display: table-cell;
-				font-weight: 500;
+				font-weight: 700;
 				padding: var(--dsc-table-padding);
 				text-align: start;
 				width: 50%; /* Emulate table-layout: fixed */
@@ -203,12 +211,18 @@
 		}
 		.table[data-mobile="stacked"] > tbody > tr > :not([colspan]) {
 			display: block;
-			padding: var(--ds-size-2) 0;
+			padding: var(--ds-size-3) 0;
 
 			&::before {
 				display: block;
 				padding: 0;
 			}
+		}
+		.table[data-mobile="stacked"] > tbody > tr > :first-child {
+			padding-top: var(--ds-size-6);
+		}
+		.table[data-mobile="stacked"] > tbody > tr > :last-child {
+			padding-bottom: var(--ds-size-6);
 		}
 	}
 }

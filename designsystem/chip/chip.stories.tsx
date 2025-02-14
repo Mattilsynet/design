@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Chip",
+	decorators: [
+		(Story) => (
+			<div className={styles.flex}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.flex}>
-			<Story />
-		</div>
-	),
-];
-
 export const Radio: Story = {
-	decorators,
 	render: () => (
 		<>
 			<label className={styles.chip}>
@@ -44,7 +42,6 @@ export const Radio: Story = {
 };
 
 export const Checkbox: Story = {
-	decorators,
 	render: () => (
 		<>
 			<label className={styles.chip}>

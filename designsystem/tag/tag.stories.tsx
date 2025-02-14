@@ -4,21 +4,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Tag",
+	decorators: [
+		(Story) => (
+			<div className={styles.flex}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.flex}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-color="neutral">
@@ -41,7 +39,6 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-size="xs">
@@ -61,7 +58,6 @@ export const Sizes: Story = {
 };
 
 export const WithIcon: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-color="info">
@@ -81,7 +77,6 @@ export const WithIcon: Story = {
 };
 
 export const WithIconOverwrite: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-color="success">
@@ -96,7 +91,6 @@ export const WithIconOverwrite: Story = {
 };
 
 export const WithTooltip: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.tag} data-tooltip="Ikke original">

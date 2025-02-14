@@ -4,35 +4,34 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Error summary",
+	decorators: [
+		function Decorate(Story) {
+			useEffect(() => {
+				const handleClick = (event: Event) => {
+					const anchor = (event.target as Element)?.closest?.('a[href^="#"]');
+					const input = document.getElementById(
+						(anchor as HTMLAnchorElement)?.hash.slice(1),
+					);
+
+					if (input) {
+						event.preventDefault();
+						input.scrollIntoView({ behavior: "smooth" });
+						input.focus();
+					}
+				};
+
+				document.addEventListener("click", handleClick);
+				return () => document.removeEventListener("click", handleClick);
+			});
+
+			return (
+				<div style={{ width: "90vw", maxWidth: 500 }}>
+					<Story />
+				</div>
+			);
+		},
+	],
 } satisfies Meta;
-
-const decorators: Story["decorators"] = [
-	function Decorate(Story) {
-		useEffect(() => {
-			const handleClick = (event: Event) => {
-				const anchor = (event.target as Element)?.closest?.('a[href^="#"]');
-				const input = document.getElementById(
-					(anchor as HTMLAnchorElement)?.hash.slice(1),
-				);
-
-				if (input) {
-					event.preventDefault();
-					input.scrollIntoView({ behavior: "smooth" });
-					input.focus();
-				}
-			};
-
-			document.addEventListener("click", handleClick);
-			return () => document.removeEventListener("click", handleClick);
-		});
-
-		return (
-			<div style={{ width: "90vw", maxWidth: 500 }}>
-				<Story />
-			</div>
-		);
-	},
-];
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -57,7 +56,6 @@ export const Default: Story = {
 };
 
 export const WithForm: Story = {
-	decorators,
 	render: function Render() {
 		const [showErrorSummary, setShowErrorSummary] = useState(false);
 		const [value, setValue] = useState("");

@@ -11,14 +11,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid} data-grid="fit-sm">
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
 	render: () => (
 		<>
@@ -30,9 +22,8 @@ export const Default: Story = {
 };
 
 export const Gap: Story = {
-	decorators,
 	render: () => (
-		<>
+		<div className={styles.grid} data-grid="fit-sm">
 			<div>
 				none
 				<hr data-gap="none" />
@@ -63,6 +54,6 @@ export const Gap: Story = {
 				<hr data-gap="xl" />
 				xl
 			</div>
-		</>
+		</div>
 	),
 };
