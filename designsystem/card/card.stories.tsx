@@ -10,29 +10,49 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Card",
+	parameters: {
+		layout: "padded",
+	},
+	decorators: [
+		(Story) => (
+			<div className={`${styles.body} ${styles.grid}`}>
+				<style>{"body{background:var(--mtds-color-gaasunge)}"}</style>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div
-			className={styles.grid}
-			style={{ background: "var(--mtds-color-gaasunge)", padding: "2em" }}
-		>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => <div className={styles.card}>Hei</div>,
 };
 
+export const Sizes: Story = {
+	render: () => (
+		<>
+			<div className={styles.card} data-size="md">
+				Hei
+			</div>
+			<div className={styles.card} data-size="lg">
+				Hei
+			</div>
+		</>
+	),
+};
+
+export const AsLink: Story = {
+	render: () => (
+		<a href="#anchor" className={styles.card}>
+			Hei
+		</a>
+	),
+};
+
 export const Tableish: Story = {
-	decorators,
+	tags: ["!dev"],
 	render: () => (
 		<div role="table">
 			<div className={styles.card} role="row">

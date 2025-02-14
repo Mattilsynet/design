@@ -4,23 +4,19 @@ import * as stories from './input.stories';
 <Meta of={stories} />
 
 # Input
-
 - Legg klassen `input` på `<input>`, `<select>` eller `<textarea>`
 - Input `type="radio"`, `type="checkbox"` og `role="switch"`  er også støttet
 - Bruk [field](?path=/docs/designsystem-field--docs) for automatisk kobling mot `<label>` eller `aria-label` på `input` for skjult label
-
 <Canvas of={stories.Default} />
 
 ## Varianter
 - Bruk `<select>`, `<textarea>` eller `<input type="text | checkbox | radio | email | number | password | radio | search | tel | url">`
 - Kombiner `type="checkbox" role="switch"` for å få bryter-design
-
 <Canvas of={stories.Variants} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
 - Bruk `size="number"` for å sette en bredde som indikere antall tegn
-
 <Canvas of={stories.Sizes} />
 
 
@@ -28,16 +24,13 @@ import * as stories from './input.stories';
 - Legg på attributt `readonly`
 - Husk også `disabled` dersom du legger `readonly` på `type="checkbox"` eller `type="radio"`, siden disse ikke stoppes automatisk av nettleseren
 - **Merk:** `readonly disabled` felter ikke sendes inn som skjemadata i verken `<form>` eller `FormData`
-
 <Canvas of={stories.ReadOnly} />
 
 ## Disabled
 - Legg på attributt `disabled`
-
 <Canvas of={stories.Disabled} />
 
 
 ## Search
 - Bruk `type="search"`
-
 <Canvas of={stories.Search} />

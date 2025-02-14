@@ -3,37 +3,35 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Logo",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+				<style>{`
+					.demo-resize {
+						border-radius: 2px;
+						box-sizing: border-box;
+						max-width: max-content;
+						min-width: min-content;
+						outline: 1px dashed;
+						outline-offset: 5px;
+						overflow: hidden;
+						padding-bottom: 2em;
+						position: relative;
+						resize: horizontal;
+	
+						&::after { content: "Drag to resize →"; position: absolute; right: 1em; bottom: 0; white-space: nowrap }
+					}
+				`}</style>
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-			<style>{`
-				.demo-resize {
-					border-radius: 2px;
-					box-sizing: border-box;
-					max-width: max-content;
-					min-width: min-content;
-					outline: 1px dashed;
-					outline-offset: 5px;
-					overflow: hidden;
-					padding-bottom: 2em;
-					position: relative;
-					resize: horizontal;
-
-					&::after { content: "Drag to resize →"; position: absolute; right: 1em; bottom: 0; white-space: nowrap }
-				}
-			`}</style>
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<>
 			<h1 className={styles.logo}></h1>
@@ -48,7 +46,6 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<h1 className={styles.logo} data-size="md"></h1>
@@ -58,7 +55,6 @@ export const Sizes: Story = {
 };
 
 export const English: Story = {
-	decorators,
 	render: () => (
 		<>
 			<h1 lang="en" className={styles.logo}></h1>

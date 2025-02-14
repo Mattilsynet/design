@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Field",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
@@ -28,7 +26,6 @@ export const Default: Story = {
 };
 
 export const Required: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
@@ -39,7 +36,6 @@ export const Required: Story = {
 };
 
 export const Toggles: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -69,7 +65,6 @@ export const Toggles: Story = {
 };
 
 export const WithValidation: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -83,7 +78,6 @@ export const WithValidation: Story = {
 };
 
 export const WithAffixes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -99,7 +93,6 @@ export const WithAffixes: Story = {
 };
 
 export const WithCount: Story = {
-	decorators,
 	parameters: {
 		layout: "padded",
 	},

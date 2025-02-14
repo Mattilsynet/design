@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Breadcrumbs",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<nav className={styles.breadcrumbs} aria-label="Du er her:">
 			<a href="#none" aria-label="Tilbake til Nivå 3">
@@ -44,7 +42,6 @@ export const Default: Story = {
 };
 
 export const WithBackbutton: Story = {
-	decorators,
 	render: () => (
 		<>
 			Tilbakeknapp på både mobil og desktop:
@@ -103,7 +100,6 @@ export const WithBackbutton: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<nav
@@ -136,7 +132,6 @@ export const Sizes: Story = {
 };
 
 export const WithoutLinks: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.breadcrumbs} aria-label="Sidens plassering:">

@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Input",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
@@ -29,7 +27,6 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -82,7 +79,6 @@ export const Variants: Story = {
 };
 
 export const Select: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Select</label>
@@ -98,7 +94,6 @@ export const Select: Story = {
 };
 
 export const Checkbox: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Checkbox</label>
@@ -108,7 +103,6 @@ export const Checkbox: Story = {
 };
 
 export const Radio: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Radio</label>
@@ -118,7 +112,6 @@ export const Radio: Story = {
 };
 
 export const Switch: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Switch</label>
@@ -128,7 +121,6 @@ export const Switch: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<input
@@ -160,7 +152,6 @@ export const Sizes: Story = {
 };
 
 export const ReadOnly: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -190,7 +181,6 @@ export const ReadOnly: Story = {
 };
 
 export const Disabled: Story = {
-	decorators,
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -219,7 +209,6 @@ export const Disabled: Story = {
 };
 
 export const Search: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.field}>
 			<label>Søkefelt</label>

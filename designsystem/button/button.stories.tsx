@@ -5,21 +5,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Button",
+	decorators: [
+		(Story) => (
+			<div className={styles.flex} data-align="center">
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.flex} data-align="center">
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button type="button" className={styles.button} data-variant="primary">
@@ -36,7 +34,6 @@ export const Default: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button
@@ -68,7 +65,6 @@ export const Sizes: Story = {
 };
 
 export const Colors: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.grid} data-grid="2">
 			<button
@@ -124,7 +120,6 @@ export const Colors: Story = {
 };
 
 export const Nowrap: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.grid} data-grid="sm" style={{ width: 300 }}>
 			<div>
@@ -154,7 +149,6 @@ export const Nowrap: Story = {
 };
 
 export const Pressed: Story = {
-	decorators,
 	render: function Render() {
 		const [pressed, setPressed] = useState(false);
 
@@ -175,7 +169,6 @@ export const Pressed: Story = {
 };
 
 export const WithArrows: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button type="button" className={styles.button} data-arrow>
@@ -218,7 +211,6 @@ export const WithArrows: Story = {
 };
 
 export const WithIcons: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button type="button" className={styles.button} data-variant="secondary">
@@ -234,7 +226,6 @@ export const WithIcons: Story = {
 };
 
 export const WithLoading: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button
@@ -270,7 +261,6 @@ export const WithLoading: Story = {
 };
 
 export const WithMenu: Story = {
-	decorators,
 	render: () => (
 		<>
 			<button
@@ -301,7 +291,6 @@ export const WithMenu: Story = {
 };
 
 export const WithTooltip: Story = {
-	decorators,
 	render: () => (
 		<button data-tooltip="Favoritt" type="button" className={styles.button}>
 			<Star />

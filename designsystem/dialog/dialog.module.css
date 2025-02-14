@@ -1,4 +1,7 @@
 @layer mt.design {
+	body:not(:has(.dialog:modal)) {
+		overflow: auto; /* TODO: Remove when DigiDir release next-49 */
+	}
 	.dialog {
 		composes: ds-modal from "@digdir/designsystemet-css"; /* TODO: Change to ds-dialog when DigiDir release next-49 */
 

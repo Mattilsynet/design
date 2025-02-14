@@ -3,21 +3,19 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Alert",
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className={styles.grid}>
-			<Story />
-		</div>
-	),
-];
-
 export const Default: Story = {
-	decorators,
 	render: () => (
 		<output className={styles.alert}>
 			Info ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
@@ -27,7 +25,6 @@ export const Default: Story = {
 };
 
 export const Colors: Story = {
-	decorators,
 	render: () => (
 		<>
 			<output className={styles.alert}>
@@ -51,7 +48,6 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-	decorators,
 	render: () => (
 		<>
 			<output className={styles.alert} data-size="sm">
@@ -71,7 +67,6 @@ export const Sizes: Story = {
 };
 
 export const WithTitle: Story = {
-	decorators,
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
@@ -84,7 +79,6 @@ export const WithTitle: Story = {
 };
 
 export const WithClose: Story = {
-	decorators,
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>
@@ -98,7 +92,6 @@ export const WithClose: Story = {
 };
 
 export const WithButtons: Story = {
-	decorators,
 	render: () => (
 		<output className={styles.alert}>
 			<h2>Har du husket å bestille passtime?</h2>

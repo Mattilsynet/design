@@ -4,23 +4,13 @@
 		border-radius: var(--ds-border-radius-lg);
 		border: 1px solid var(--mtds-color-100);
 		box-sizing: border-box;
-		padding: var(--ds-size-4);
-
-		/* align-items: start;
-		display: flex;
-		gap: var(--ds-size-8);
-
-		& > * {
-			margin: 0;
-		} */
+		display: block;
+		padding: var(--ds-size-5);
+		text-decoration: none;
 	}
 
-	/* .info {
-		& > dt {
-			float: left;
-		}
-		& > dd {
-			margin: 0;
-		}
+	/* .card[data-size="lg"] {
+		border-radius: var(--ds-border-radius-xl);
+		padding: var(--ds-size-10);
 	} */
 }

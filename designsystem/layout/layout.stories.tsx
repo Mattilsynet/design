@@ -15,28 +15,26 @@ const meta = {
 	parameters: {
 		layout: "padded",
 	},
+	decorators: [
+		(Story) => (
+			<div className="mt-story">
+				<Story />
+				<style>{`
+					.mt-story { display: grid; gap: 1rem; padding: 1px }
+					.mt-story div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
+					.mt-story b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
+					.mt-story code { font-size: .875rem }
+					.mt-story div[data-align-content] { height: 150px }
+				`}</style>
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div className="mt-story">
-			<Story />
-			<style>{`
-        .mt-story { display: grid; gap: 1rem; padding: 1px }
-        .mt-story div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
-				.mt-story b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
-        .mt-story code { font-size: .875rem }
-        .mt-story div[data-align-content] { height: 150px }
-      `}</style>
-		</div>
-	),
-];
-
 export const Flex: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.flex}>
 			<button type="button" className={styles.button} data-variant="primary">
@@ -62,7 +60,6 @@ export const Flex: Story = {
 };
 
 export const Grid: Story = {
-	decorators,
 	render: () => (
 		<div className={styles.grid} data-gap="lg">
 			<div className={styles.grid} data-grid="fit-lg">
@@ -96,7 +93,6 @@ export const Grid: Story = {
 };
 
 export const Gap: Story = {
-	decorators,
 	render: () => (
 		<section className={styles.grid} data-grid="sidebar">
 			<code>data-gap="none | false"</code>
@@ -146,7 +142,6 @@ export const Gap: Story = {
 };
 
 export const Center: Story = {
-	decorators,
 	parameters: {
 		layout: "fullscreen",
 	},
@@ -172,7 +167,6 @@ export const Center: Story = {
 };
 
 export const Align: Story = {
-	decorators,
 	render: () => (
 		<section
 			className={styles.grid}
@@ -209,7 +203,6 @@ export const Align: Story = {
 };
 
 export const Justify: Story = {
-	decorators,
 	render: () => (
 		<section
 			className={styles.grid}
@@ -258,7 +251,6 @@ export const Justify: Story = {
 };
 
 export const AlignContent: Story = {
-	decorators,
 	render: () => (
 		<section
 			className={styles.grid}

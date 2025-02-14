@@ -106,7 +106,7 @@ export default {
 						if (samePage && link.hash) {
 							e.preventDefault();
 							document
-								.getElementById(link.hash.slice(1))
+								.getElementById(decodeURIComponent(link.hash.slice(1)))
 								?.scrollIntoView({ behavior: "smooth" });
 						}
 					});
