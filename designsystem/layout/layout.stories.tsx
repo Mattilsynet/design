@@ -8,8 +8,6 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { useRef } from "react";
-import { Link } from "../link/link.tsx";
 import styles from "../styles.module.css";
 
 const meta = {
