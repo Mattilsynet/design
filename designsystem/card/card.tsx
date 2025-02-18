@@ -27,7 +27,5 @@ export const Card: CardComponent = forwardRef<null>(function Card<
 >({ as, className, ...rest }: CardProps<Href, As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || (rest.href ? "a" : "div");
 
-	return (
-		<Tag className={`${styles.avatar} ${className}`} ref={ref} {...rest} />
-	);
+	return <Tag className={`${styles.card} ${className}`} ref={ref} {...rest} />;
 }) as CardComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

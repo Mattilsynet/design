@@ -1,9 +1,9 @@
 import {
 	type JSX,
 	forwardRef,
-	// useEffect,
-	// useImperativeHandle,
-	// useRef,
+	useEffect,
+	useImperativeHandle,
+	useRef,
 } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -23,27 +23,27 @@ export const Breadcrumbs: BreadcrumbsComponent = forwardRef<null>(
 		{ as, className, ...rest }: BreadcrumbsProps<As>,
 		ref?: PolymorphicRef<As>,
 	) {
+		const innerRef = useRef<As>(null);
 		const Tag = as || "nav";
-		// const innerRef = useRef<HTMLDialogElement>(null);
 
-		// useImperativeHandle(ref, () => innerRef.current as HTMLDialogElement); // Forward innerRef
-		// useEffect(() => {
-		// 	const lis = innerRef.current?.getElementsByTagName("li");
-		// 	if (lis) for(const li as lis) {
-		// 		li.setAttribute("role", "none"); // Remove role from li
-		// 		li.firstElementChild?.setAttribute("role", "listitem"); //
-		// 	}
-		// 	const items = innerRef.current?.getElementsByTagName("li");
-		// 	const last = items?.[items.length - 1].firstElementChild;
+		useImperativeHandle(ref, () => innerRef.current as As); // Forward innerRef
+		useEffect(() => {
+			if (innerRef.current instanceof HTMLElement) {
+				const items = innerRef.current.querySelectorAll("li > :is(a,button)");
+				const last = items[items.length - 1];
 
-		// 	if (last instanceof HTMLElement) last.focus(); // Focus first link
-		// });
+				for (const item of items) {
+					const action = item === last ? "setAttribute" : "removeAttribute";
+					item[action]("aria-current", "page");
+				}
+			}
+		});
 
 		return (
 			<Tag
 				aria-label={rest["aria-label"] || "Du er her:"}
 				className={`${styles.breadcrumbs} ${className}`}
-				ref={ref}
+				ref={innerRef}
 				{...rest}
 			/>
 		);
