@@ -92,7 +92,7 @@ export const WithAffixes: Story = {
 	),
 };
 
-export const WithCount: Story = {
+export const WithCharacterCount: Story = {
 	parameters: {
 		layout: "padded",
 	},

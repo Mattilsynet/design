@@ -1,5 +1,6 @@
 import { User } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Avatar } from "../react";
 import styles from "../styles.module.css";
 import avatar from "./avatar.jpg";
 
@@ -27,6 +28,20 @@ export const Default: Story = {
 			<div className={styles.avatar}>
 				<User aria-label="Navn Navnesen" />
 			</div>
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Avatar>MT</Avatar>
+			<Avatar>
+				<img src={avatar} alt="Navn Navnesen" />
+			</Avatar>
+			<Avatar>
+				<User aria-label="Navn Navnesen" />
+			</Avatar>
 		</>
 	),
 };

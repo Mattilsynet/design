@@ -20,11 +20,16 @@ const meta = {
 			<div className="mt-story">
 				<Story />
 				<style>{`
-					.mt-story { display: grid; gap: 1rem; padding: 1px }
-					.mt-story div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
-					.mt-story b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
-					.mt-story code { font-size: .875rem }
-					.mt-story div[data-align-content] { height: 150px }
+					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
+						display: grid;
+						gap: 1rem;
+						padding: 1px;
+						
+						& b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
+						& code { font-size: .875rem }
+						& div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
+						& div[data-align-content] { height: 150px }
+					}
 				`}</style>
 			</div>
 		),
@@ -131,7 +136,7 @@ export const Gap: Story = {
 				<b>4</b>
 			</div>
 			<code>data-gap="xl" (32px)</code>
-			<div className={styles.flex} data-gap="lg">
+			<div className={styles.flex} data-gap="xl">
 				<b>1</b>
 				<b>2</b>
 				<b>3</b>
