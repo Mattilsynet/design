@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Divider } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -16,6 +17,16 @@ export const Default: Story = {
 		<>
 			Innhold før
 			<hr />
+			Innhold etter
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			Innhold før
+			<Divider />
 			Innhold etter
 		</>
 	),

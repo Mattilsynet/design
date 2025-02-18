@@ -11,3 +11,12 @@ export const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
 		);
 	},
 );
+
+export type SummaryProps = React.ComponentPropsWithoutRef<"summary">;
+
+export const Summary = forwardRef<HTMLElement, SummaryProps>(function Summary(
+	{ className, ...rest },
+	ref,
+) {
+	return <u-summary class={className} ref={ref} {...rest} />;
+});

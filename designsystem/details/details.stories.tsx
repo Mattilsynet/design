@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Details, Summary } from "../react";
 import styles from "../styles.module.css";
 import "@u-elements/u-details";
 
@@ -18,6 +19,15 @@ export const Default: Story = {
 			<u-summary>Åpne/lukk</u-summary>
 			Innhold
 		</u-details>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Details>
+			<Summary>Åpne/lukk</Summary>
+			Innhold
+		</Details>
 	),
 };
 

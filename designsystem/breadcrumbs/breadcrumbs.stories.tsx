@@ -59,9 +59,7 @@ export const React: Story = {
 					<a href="#none">Nivå 3</a>
 				</li>
 				<li>
-					<a href="#none" aria-current="page">
-						Nivå 4
-					</a>
+					<a href="#none">Nivå 4</a>
 				</li>
 			</ol>
 		</Breadcrumbs>

@@ -6,12 +6,16 @@
 		composes: ds-modal from "@digdir/designsystemet-css"; /* TODO: Change to ds-dialog when DigiDir release next-49 */
 
 		animation: _fadein .2s forwards;
-		inset: 50% 0;
-		margin: 0 auto;
-		max-height: 80vh;
+		bottom: auto;
+		left: 50%;
+		margin: 0;
 		max-height: 90svh;
+		max-height: 90vh;
+		overflow: auto;
 		position: fixed;
-		translate: 0 -50%;
+		right: auto;
+		top: 50%;
+		transform: translate(-50%, -50%);
 
 		&[data-closedby="any"]::backdrop {
 			cursor: pointer;
@@ -57,6 +61,6 @@
 @keyframes _fadein {
 	from {
 		opacity: 0;
-		translate: 0 calc(-50% + 1rem);
+		translate: 0 1rem;
 	}
 }

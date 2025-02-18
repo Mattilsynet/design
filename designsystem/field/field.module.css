@@ -35,6 +35,9 @@
 			& label {
 				font-weight: normal;
 			}
+			& p {
+				font-size: var(--ds-font-size-minus-1);
+			}
 		}
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
