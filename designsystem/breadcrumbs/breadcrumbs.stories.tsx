@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Breadcrumbs } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -38,6 +39,32 @@ export const Default: Story = {
 				</li>
 			</ol>
 		</nav>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Breadcrumbs>
+			<a href="#none" aria-label="Tilbake til Nivå 3">
+				Nivå 3
+			</a>
+			<ol>
+				<li>
+					<a href="#none">Nivå 1</a>
+				</li>
+				<li>
+					<a href="#none">Nivå 2</a>
+				</li>
+				<li>
+					<a href="#none">Nivå 3</a>
+				</li>
+				<li>
+					<a href="#none" aria-current="page">
+						Nivå 4
+					</a>
+				</li>
+			</ol>
+		</Breadcrumbs>
 	),
 };
 

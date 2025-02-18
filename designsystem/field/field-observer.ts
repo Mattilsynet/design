@@ -2,6 +2,8 @@ import styles from '../styles.module.css';
 import { QUICK_EVENT, attr, isInputLike, off, on, onMutation, useId } from '../utils';
 
 const CSS_FIELD = styles.field.split(' ')[0];
+const CSS_PROPERTY_OVER = '--mtds-text-count-over';
+const CSS_PROPERTY_UNDER = '--mtds-text-count-under';
 const CSS_VALIDATIONS = styles.validation.split(' ');
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 
@@ -36,17 +38,20 @@ function handleInput({ target }: Event) {
 function renderCounter(input: HTMLInputElement) {
   const el = input?.nextElementSibling;
   const limit = el?.getAttribute('data-count');
-
+  
   if (el && limit) {
     const remainder = Number(limit) - input.value.length;
     const nextInvalid = remainder < 0;
     const prevInvalid = el.getAttribute('aria-live') === 'polite';
+    const style = window.getComputedStyle(el || input);
+    const over = style.getPropertyValue(CSS_PROPERTY_OVER)?.slice(1, -1) || ''; // slice to trim quotes
+    const under = style.getPropertyValue(CSS_PROPERTY_UNDER)?.slice(1, -1) || ''; // slice to trim quotes
 
     if (prevInvalid !== nextInvalid) {
       attr(el, 'aria-live', nextInvalid ? 'polite' : 'off');
       for (const css of CSS_VALIDATIONS) el.classList.toggle(css, nextInvalid);
     }
-    el.textContent = `${Math.abs(remainder)} tegn ${nextInvalid ? 'for mye' : 'igjen'}`;
+    el.textContent = (nextInvalid ? over : under).replace('%d', `${Math.abs(remainder)}`);
   }
 }
 

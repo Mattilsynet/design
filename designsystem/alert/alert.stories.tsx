@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Alert } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -21,6 +22,15 @@ export const Default: Story = {
 			Info ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
 			tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
 		</output>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Alert>
+			Info ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
+			tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
+		</Alert>
 	),
 };
 

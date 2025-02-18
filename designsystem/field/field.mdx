@@ -32,4 +32,7 @@ import * as stories from './field.stories';
 
 ## Antall tegn
 - Legg `data-count="number"` på `<p>` etter `input`
-<Canvas of={stories.WithCount} />
+- Teksten oversettes automatisk til engelsk dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property, hvor `%d` er antall tegn. Eksempel:
+  `--mtds-text-count-under: "%d characters remaining";`
+  `--mtds-text-count-over: "%d characters too many";`
+<Canvas of={stories.WithCharacterCount} />

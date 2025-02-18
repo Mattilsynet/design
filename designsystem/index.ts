@@ -1,19 +1,19 @@
-import * as dialog from './dialog/dialog';
-import * as field from './field/field';
-import * as fieldset from './fieldset/fieldset';
-import * as layout from './layout/layout';
-import * as popover from './popover/popover';
-import * as table from './table/table';
-import './tooltip/tooltip'; // Load data-tooltip behaviour
-import { IS_BROWSER } from './utils';
-export { pagination } from './pagination/pagination';
-export * as styles from './styles.module.css';
+import * as dialog from "./dialog/dialog-observer";
+import * as field from "./field/field-observer";
+import * as fieldset from "./fieldset/fieldset-observer";
+import * as layout from "./layout/layout-observer";
+import * as popover from "./popover/popover-observer";
+import * as table from "./table/table-observer";
+import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
+import { IS_BROWSER } from "./utils";
+export { pagination } from "./pagination/pagination";
+export * as styles from "./styles.module.css";
 
 // Automatic observe on browser
 if (IS_BROWSER) {
   const isLoading = document.readyState === "loading"; // Check if the page is still loading - might happen if the script is in <head>
   const onLoaded = () => observe(document.body);
-  
+
   if (isLoading) document.addEventListener("DOMContentLoaded", onLoaded);
   else onLoaded();
 }

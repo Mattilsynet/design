@@ -1,5 +1,6 @@
 import { Envelope } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Badge } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -18,6 +19,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => <span className={styles.badge} data-badge="2"></span>,
+};
+
+export const React: Story = {
+	render: () => <Badge data-badge="2"></Badge>,
 };
 
 export const Color: Story = {
