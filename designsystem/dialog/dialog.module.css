@@ -16,6 +16,7 @@
 		right: auto;
 		top: 50%;
 		transform: translate(-50%, -50%);
+		z-index: 1000; /* Place above also when non-modal */
 
 		&[data-closedby="any"]::backdrop {
 			cursor: pointer;
