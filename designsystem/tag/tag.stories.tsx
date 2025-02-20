@@ -1,14 +1,15 @@
 import { Shrimp } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Tag } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Tag",
 	decorators: [
 		(Story) => (
-			<div className={styles.flex}>
+			<span className={styles.flex}>
 				<Story />
-			</div>
+			</span>
 		),
 	],
 } satisfies Meta;
@@ -19,21 +20,33 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: () => (
 		<>
-			<div className={styles.tag} data-color="neutral">
+			<span className={styles.tag} data-color="neutral">
 				Neutral
-			</div>
-			<div className={styles.tag} data-color="info">
+			</span>
+			<span className={styles.tag} data-color="info">
 				Info
-			</div>
-			<div className={styles.tag} data-color="success">
+			</span>
+			<span className={styles.tag} data-color="success">
 				Success
-			</div>
-			<div className={styles.tag} data-color="warning">
+			</span>
+			<span className={styles.tag} data-color="warning">
 				Warning
-			</div>
-			<div className={styles.tag} data-color="danger">
+			</span>
+			<span className={styles.tag} data-color="danger">
 				Danger
-			</div>
+			</span>
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Tag data-color="neutral">Neutral</Tag>
+			<Tag data-color="info">Info</Tag>
+			<Tag data-color="success">Success</Tag>
+			<Tag data-color="warning">Warning</Tag>
+			<Tag data-color="danger">Danger</Tag>
 		</>
 	),
 };
@@ -41,18 +54,18 @@ export const Default: Story = {
 export const Sizes: Story = {
 	render: () => (
 		<>
-			<div className={styles.tag} data-size="xs">
+			<span className={styles.tag} data-size="xs">
 				Extra small
-			</div>
-			<div className={styles.tag} data-size="sm">
+			</span>
+			<span className={styles.tag} data-size="sm">
 				Small
-			</div>
-			<div className={styles.tag} data-size="md">
+			</span>
+			<span className={styles.tag} data-size="md">
 				Medium
-			</div>
-			<div className={styles.tag} data-size="lg">
+			</span>
+			<span className={styles.tag} data-size="lg">
 				Large
-			</div>
+			</span>
 		</>
 	),
 };
@@ -60,18 +73,18 @@ export const Sizes: Story = {
 export const WithIcon: Story = {
 	render: () => (
 		<>
-			<div className={styles.tag} data-color="info">
+			<span className={styles.tag} data-color="info">
 				Info
-			</div>
-			<div className={styles.tag} data-color="success">
+			</span>
+			<span className={styles.tag} data-color="success">
 				Success
-			</div>
-			<div className={styles.tag} data-color="warning">
+			</span>
+			<span className={styles.tag} data-color="warning">
 				Warning
-			</div>
-			<div className={styles.tag} data-color="danger">
+			</span>
+			<span className={styles.tag} data-color="danger">
 				Danger
-			</div>
+			</span>
 		</>
 	),
 };
@@ -79,13 +92,13 @@ export const WithIcon: Story = {
 export const WithIconOverwrite: Story = {
 	render: () => (
 		<>
-			<div className={styles.tag} data-color="success">
+			<span className={styles.tag} data-color="success">
 				<Shrimp />
 				Reke
-			</div>
-			<div className={styles.tag} data-color="info" data-icon="none">
+			</span>
+			<span className={styles.tag} data-color="info" data-icon="none">
 				Alle felter må fylles ut
-			</div>
+			</span>
 		</>
 	),
 };
@@ -93,9 +106,9 @@ export const WithIconOverwrite: Story = {
 export const WithTooltip: Story = {
 	render: () => (
 		<>
-			<div className={styles.tag} data-tooltip="Ikke original">
+			<span className={styles.tag} data-tooltip="Ikke original">
 				Bekreftet kopi
-			</div>
+			</span>
 		</>
 	),
 };

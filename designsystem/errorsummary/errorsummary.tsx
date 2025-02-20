@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import styles from "../styles.module.css";
 
@@ -19,7 +20,7 @@ export const Errorsummary = forwardRef<HTMLDivElement, ErrorsummaryProps>(
 
 		return (
 			<div
-				className={`${styles.errorsummary} ${className}`}
+				className={clsx(styles.errorsummary, className)}
 				role="alert"
 				ref={innerRef}
 				{...rest}

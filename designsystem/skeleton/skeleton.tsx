@@ -1,0 +1,37 @@
+import clsx from "clsx";
+import { type JSX, forwardRef } from "react";
+import type {
+	PolymorphicComponentPropWithRef,
+	PolymorphicRef,
+} from "../react-types";
+import styles from "../styles.module.css";
+
+type SkeletonBaseProps<Variant> = {
+	"data-variant"?: Variant;
+};
+
+export type SkeletonProps<
+	Variant,
+	As extends React.ElementType = Variant extends "text" ? "span" : "div",
+> = PolymorphicComponentPropWithRef<As, SkeletonBaseProps<Variant>>;
+
+type SkeletonComponent = <
+	Variant,
+	As extends React.ElementType = Variant extends "text" ? "span" : "div",
+>(
+	props: SkeletonProps<Variant, As>,
+) => JSX.Element;
+
+export const Skeleton: SkeletonComponent = forwardRef<null>(function Skeleton<
+	Variant,
+	As extends React.ElementType = Variant extends "text" ? "span" : "div",
+>(
+	{ as, className, ...rest }: SkeletonProps<Variant, As>,
+	ref?: PolymorphicRef<As>,
+) {
+	const Tag = as || (rest.href ? "span" : "div");
+
+	return (
+		<Tag className={clsx(styles.skeleton, className)} ref={ref} {...rest} />
+	);
+}) as SkeletonComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

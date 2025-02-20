@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import styles from "../styles.module.css";
 
@@ -18,7 +19,7 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(
 
 		return (
 			<dialog
-				className={`${styles.dialog} ${className}`}
+				className={clsx(styles.dialog, className)}
 				ref={innerRef}
 				{...rest}
 			/>

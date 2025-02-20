@@ -6,6 +6,7 @@ import {
 	UploadSimple,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Card } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -28,6 +29,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => <div className={styles.card}>Hei</div>,
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Card>Hei</Card>
+			<Card href="#">Lenke</Card>
+		</>
+	),
 };
 
 export const Sizes: Story = {

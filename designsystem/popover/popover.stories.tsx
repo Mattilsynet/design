@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useId } from "react";
+import { Popover } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -35,6 +36,35 @@ export const Default: Story = {
 						</li>
 					))}
 				</menu>
+			</>
+		);
+	},
+};
+
+export const React: Story = {
+	render: function Render() {
+		const popId = useId();
+
+		return (
+			<>
+				<button
+					popoverTarget={popId}
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+					data-arrow
+				>
+					Knapp
+				</button>
+				<Popover as="menu" id={popId} className={styles.popover}>
+					{range.map((num) => (
+						<li key={num}>
+							<button type="button" className={styles.button}>
+								Knapp {num}
+							</button>
+						</li>
+					))}
+				</Popover>
 			</>
 		);
 	},

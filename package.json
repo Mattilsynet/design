@@ -4,7 +4,9 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": ["mtds"],
+	"files": [
+		"mtds"
+	],
 	"engines": {
 		"npm": ">=10.0.0",
 		"node": ">=20.0.0"
@@ -13,6 +15,10 @@
 		".": {
 			"import": "./mtds/index.js",
 			"types": "./mtds/index.d.ts"
+		},
+		"./react": {
+			"import": "./mtds/react.js",
+			"types": "./mtds/react.d.ts"
 		},
 		"./*.svg": "./mtds/*.svg",
 		"./*.ico": "./mtds/*.ico",
@@ -64,6 +70,7 @@
 		"@digdir/designsystemet-theme": "^1.0.0-next.48",
 		"@u-elements/u-datalist": "0.1.2",
 		"@u-elements/u-details": "^0.1.0",
-		"@u-elements/u-tabs": "^0.0.8"
+		"@u-elements/u-tabs": "^0.0.8",
+		"clsx": "^2.1.1"
 	}
 }

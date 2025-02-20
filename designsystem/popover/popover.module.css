@@ -12,6 +12,7 @@
 		margin: -2px 0 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		opacity: 0;
+		overscroll-behavior: contain; /* In case user adds overflow: auto */
 		padding: var(--mtds-popover-padding);
 		position: fixed;
 		transition-duration: .2s;

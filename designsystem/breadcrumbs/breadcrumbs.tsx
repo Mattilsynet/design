@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
 	type JSX,
 	forwardRef,
@@ -42,7 +43,7 @@ export const Breadcrumbs: BreadcrumbsComponent = forwardRef<null>(
 		return (
 			<Tag
 				aria-label={rest["aria-label"] || "Du er her:"}
-				className={`${styles.breadcrumbs} ${className}`}
+				className={clsx(styles.breadcrumbs, className)}
 				ref={innerRef}
 				{...rest}
 			/>

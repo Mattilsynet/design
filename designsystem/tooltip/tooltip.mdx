@@ -1,0 +1,10 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './tooltip.stories';
+
+<Meta of={stories} />
+
+# Tooltip
+- Bruk `data-tooltip="Hjelpetekst"` på hvilet et interaktivt element
+- Bruk `data-tooltip-position="top | right | bottom | left"` for å endre plassering
+- Teksten blir også automatisk tilgjengelig for skjermlesere
+<Canvas of={stories.Default} />

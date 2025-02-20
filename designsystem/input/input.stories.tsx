@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Field, Input } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -19,10 +20,17 @@ export const Default: Story = {
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
-			<div className={styles.affixes}>
-				<input className={styles.input} />
-			</div>
+			<input className={styles.input} />
 		</div>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Field>
+			<label>Ledetekst</label>
+			<Input />
+		</Field>
 	),
 };
 

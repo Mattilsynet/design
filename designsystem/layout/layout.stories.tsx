@@ -8,6 +8,7 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -39,7 +40,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Flex: Story = {
+export const FlexStory: Story = {
+	name: "Flex",
 	render: () => (
 		<div className={styles.flex}>
 			<button type="button" className={styles.button} data-variant="primary">
@@ -64,7 +66,8 @@ export const Flex: Story = {
 	),
 };
 
-export const Grid: Story = {
+export const GridStory: Story = {
+	name: "Grid",
 	render: () => (
 		<div className={styles.grid} data-gap="lg">
 			<div className={styles.grid} data-grid="fit-lg">
@@ -94,6 +97,49 @@ export const Grid: Story = {
 				</div>
 			</div>
 		</div>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Flex>
+				<Button data-variant="primary">Action 1</Button>
+				<Button data-variant="primary">Action som er lengre 2</Button>
+				<Button data-variant="primary">Action 3</Button>
+				<Button data-variant="primary">Action 4</Button>
+				<Button data-variant="primary">Action 5</Button>
+				<Button data-variant="primary">Action 6</Button>
+			</Flex>
+			<Grid data-gap="lg">
+				<Grid data-grid="fit-lg">
+					<div>Child 1</div>
+					<div>Child 2</div>
+				</Grid>
+				<Grid data-grid="sidebar" data-gap="lg">
+					<div>
+						Sidebar
+						<Grid data-grid="fit-sm" data-gap="none">
+							<div>Child 1</div>
+							<div>Child 2</div>
+						</Grid>
+					</div>
+					<Grid data-grid="2" data-gap="md">
+						<div>Child 1</div>
+						<Grid data-grid="sm">
+							<div>Child 2-1</div>
+							<div>Child 2-2</div>
+							<div>Child 2-3</div>
+							<div>Child 2-4</div>
+							<div>Child 2-5</div>
+							<div>Child 2-6</div>
+						</Grid>
+						<div>Child 3</div>
+						<div>Child 4</div>
+					</Grid>
+				</Grid>
+			</Grid>
+		</>
 	),
 };
 

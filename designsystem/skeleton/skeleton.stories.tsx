@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Flex, Grid, Skeleton } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -32,6 +33,27 @@ export const Default: Story = {
 				</span>
 			</p>
 		</div>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Grid>
+			<Skeleton style={{ height: 150 }} />
+			<Flex data-gap="md" data-align="center">
+				<Skeleton data-variant="circle" style={{ width: 40 }}></Skeleton>
+				<h2>
+					<Skeleton data-variant="text">En medium tittel</Skeleton>
+				</h2>
+			</Flex>
+			<p>
+				<Skeleton data-variant="text">
+					Cras vulputate et dolor vel aliquet. Aliquam convallis, dolor id
+					rhoncus lobortis, quam quam cursus nisl, consectetur accumsan ligula
+					velit eu nulla.
+				</Skeleton>
+			</p>
+		</Grid>
 	),
 };
 

@@ -6,4 +6,48 @@
 			text-align: center;
 		}
 	}
+	.stack {
+		padding-block: 3rem;
+		/* outline: 1px dashed rgba(0, 0, 0, 0.2); */
+	}
+	.stack > * {
+		margin-block: var(--ds-size-6);
+	}
+	.stack > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
+		margin-block: 1em 0;
+	}
+	.stack > [data-size="lg"]:where(h1, h2, h3, h4, h5, h6) {
+		margin-block-start: var(--ds-size-10);
+
+		& + * {
+			margin-block-start: var(--ds-size-6);
+		}
+	}
+	.stack > [data-size="md"]:where(h1, h2, h3, h4, h5, h6) {
+		margin-block-start: var(--ds-size-10);
+
+		& + * {
+			margin-block-start: var(--ds-size-2);
+		}
+	}
+	.stack > [data-size="sm"]:where(h1, h2, h3, h4, h5, h6) {
+		margin-block-start: var(--ds-size-6);
+
+		& + * {
+			margin-block-start: var(--ds-size-1);
+		}
+		& + :is(ul, ol) {
+			margin-block-start: var(--ds-size-2);
+		}
+	}
+
+	.stack > :is(ul, ol) > li {
+		margin-block-start: var(--ds-size-1);
+	}
+	/* .stack > p + p {
+		margin-block-start: var(--ds-size-8);
+	} */
+	.stack > :first-child {
+		margin-block: 0;
+	}
 }

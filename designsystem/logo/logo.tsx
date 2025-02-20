@@ -6,27 +6,27 @@ import type {
 } from "../react-types";
 import styles from "../styles.module.css";
 
-type AvatarBaseProps<Href> = {
+type LogoBaseProps<Href> = {
 	href?: Href;
 };
 
-export type AvatarProps<
+export type LogoProps<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
-> = PolymorphicComponentPropWithRef<As, AvatarBaseProps<Href>>;
+> = PolymorphicComponentPropWithRef<As, LogoBaseProps<Href>>;
 
-type AvatarComponent = <
+type LogoComponent = <
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
 >(
-	props: AvatarProps<Href, As>,
+	props: LogoProps<Href, As>,
 ) => JSX.Element;
 
-export const Avatar: AvatarComponent = forwardRef<null>(function Avatar<
+export const Logo: LogoComponent = forwardRef<null>(function Logo<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
->({ as, className, ...rest }: AvatarProps<Href, As>, ref?: PolymorphicRef<As>) {
+>({ as, className, ...rest }: LogoProps<Href, As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || (rest.href ? "a" : "span");
 
-	return <Tag className={clsx(styles.avatar, className)} ref={ref} {...rest} />;
-}) as AvatarComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
+	return <Tag className={clsx(styles.logo, className)} ref={ref} {...rest} />;
+}) as LogoComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

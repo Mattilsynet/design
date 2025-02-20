@@ -39,7 +39,7 @@ export const React: Story = {
 			<Avatar>
 				<img src={avatar} alt="Navn Navnesen" />
 			</Avatar>
-			<Avatar>
+			<Avatar href="#">
 				<User aria-label="Navn Navnesen" />
 			</Avatar>
 		</>

@@ -71,7 +71,7 @@ export default defineConfig({
     outDir: dist,
     sourcemap: true,
     lib: {
-      entry: path.resolve(root, "index.ts"),
+      entry: path.resolve(root, "index.ts"), // [path.resolve(root, "index.ts"), path.resolve(root, "react.tsx")],
       cssFileName: "styles",
       fileName: "[name]",
     },
@@ -83,6 +83,7 @@ export default defineConfig({
           // https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
           preserveModules: true,
           preserveModulesRoot: root,
+          // inlineDynamicImports: false, // Needed when using multiple inputs
           // See https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
           entryFileNames: ({ name }) =>
             `${name.includes("node_modules") ? name.replace(/node_modules/, "external") : "[name]"}.js`,
@@ -90,6 +91,7 @@ export default defineConfig({
         {
           format: "iife",
           name: "mtds",
+          // inlineDynamicImports: false, // Needed when using multiple inputs
         },
       ],
     },

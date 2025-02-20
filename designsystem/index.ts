@@ -6,7 +6,7 @@ import * as popover from "./popover/popover-observer";
 import * as table from "./table/table-observer";
 import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
 import { IS_BROWSER } from "./utils";
-export { pagination } from "./pagination/pagination";
+export { pagination } from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 
 // Automatic observe on browser

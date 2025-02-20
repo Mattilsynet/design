@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -18,7 +19,7 @@ type CardComponent = <
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "div",
 >(
-	props: CardProps<As>,
+	props: CardProps<Href, As>,
 ) => JSX.Element;
 
 export const Card: CardComponent = forwardRef<null>(function Card<
@@ -27,5 +28,5 @@ export const Card: CardComponent = forwardRef<null>(function Card<
 >({ as, className, ...rest }: CardProps<Href, As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || (rest.href ? "a" : "div");
 
-	return <Tag className={`${styles.card} ${className}`} ref={ref} {...rest} />;
+	return <Tag className={clsx(styles.card, className)} ref={ref} {...rest} />;
 }) as CardComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
