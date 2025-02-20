@@ -1,13 +1,14 @@
+export * as styles from "./styles.module.css";
+export { pagination } from "./pagination/pagination-helper";
+import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
+import "@u-elements/u-details"; // Polyfill for <details> element
 import * as dialog from "./dialog/dialog-observer";
 import * as field from "./field/field-observer";
 import * as fieldset from "./fieldset/fieldset-observer";
 import * as layout from "./layout/layout-observer";
 import * as popover from "./popover/popover-observer";
 import * as table from "./table/table-observer";
-import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
 import { IS_BROWSER } from "./utils";
-export { pagination } from "./pagination/pagination-helper";
-export * as styles from "./styles.module.css";
 
 // Automatic observe on browser
 if (IS_BROWSER) {

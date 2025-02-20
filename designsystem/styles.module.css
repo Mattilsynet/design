@@ -40,7 +40,6 @@
 @layer mt.design {
 	:root {
 		--mtds-color-50: color-mix(in hsl, currentcolor 5%, transparent);
-		--mtds-color-100: color-mix(in hsl, currentcolor 10%, transparent);
 		--mtds-color-200: color-mix(in hsl, currentcolor 20%, transparent);
 		--mtds-color-bakgrunns-blaa: #dfeef6;
 		--mtds-color-bakgrunns-gul: #fcf0d2;
