@@ -111,21 +111,22 @@
 		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
 			var(--ds-color-focus-inner);
 
-		--ds-color-accent-background-default: var(--mtds-color-gaasunge);
-		--ds-color-accent-background-subtle: var(--mtds-color-lav);
-		--ds-color-accent-surface-default: #d3e8e0;
-		--ds-color-accent-surface-hover: #bcdcd0;
-		--ds-color-accent-surface-active: #bcdcd0;
-		--ds-color-accent-border-subtle: #116e6b;
-		--ds-color-accent-border-default: var(--mtds-color-granskog);
-		--ds-color-accent-border-strong: var(--mtds-color-granskog);
-		--ds-color-accent-base-default: var(--mtds-color-granskog);
-		--ds-color-accent-base-hover: var(--mtds-color-mork-granskog);
-		--ds-color-accent-base-active: var(--mtds-color-mork-granskog);
-		--ds-color-accent-text-subtle: var(--mtds-color-granskog);
-		--ds-color-accent-text-default: var(--mtds-color-granskog);
-		--ds-color-accent-contrast-default: var(--mtds-color-gaasunge);
-		--ds-color-accent-contrast-subtle: var(--mtds-color-lav);
+		--ds-color-background-default: var(--mtds-color-gaasunge);
+		--ds-color-background-tinted: var(--mtds-color-lav);
+		--ds-color-surface-default: var(--mtds-color-white);
+		--ds-color-surface-tinted: #d3e8e0;
+		--ds-color-surface-hover: #bcdcd0;
+		--ds-color-surface-active: #bcdcd0;
+		--ds-color-border-subtle: #116e6b;
+		--ds-color-border-default: var(--mtds-color-granskog);
+		--ds-color-border-strong: var(--mtds-color-granskog);
+		--ds-color-base-default: var(--mtds-color-granskog);
+		--ds-color-base-hover: var(--mtds-color-mork-granskog);
+		--ds-color-base-active: var(--mtds-color-mork-granskog);
+		--ds-color-text-subtle: var(--mtds-color-granskog);
+		--ds-color-text-default: var(--mtds-color-granskog);
+		--ds-color-base-contrast-default: var(--mtds-color-gaasunge);
+		--ds-color-base-contrast-subtle: var(--mtds-color-lav);
 	}
 
 	/* Change language of "required" */

@@ -2,13 +2,24 @@
 	:root {
 		--mtds-tooltip-position: top;
 	}
+
+	[data-tooltip][tabindex="0"] {
+		border-radius: var(--ds-border-radius-sm);
+
+		&:focus-visible {
+			box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
+			outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
+			outline: var(--ds--focus, var(--dsc-focus-outline));
+		}
+	}
+
 	._tooltip {
 		--margin: 5px;
 		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
 		background-color: var(--mtds-color-mork-granskog);
 		border-radius: calc(var(--ds-border-radius-md) + var(--margin));
 		border: var(--margin) solid transparent;
-		color: var(--ds-color-accent-contrast-default);
+		color: var(--ds-color-base-contrast-default);
 		display: block;
 		font-size: .9375rem;
 		font-weight: 500;

@@ -10,10 +10,6 @@
 			align-items: center;
 			display: flex;
 			max-width: 100%;
-
-			&::after {
-				flex-shrink: 0; /* TODO: Can be removed when DigiDir releases version next-49 */
-			}
 		}
 		& > :is(ol, ul) > li > * {
 			min-width: 0;

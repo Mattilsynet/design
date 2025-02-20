@@ -1,7 +1,7 @@
 @layer mt.design {
 	.badge {
 		--dsc-badge-background: var(--ds-color-base-default);
-		--dsc-badge-color: var(--ds-color-contrast-default);
+		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-size: var(--ds-size-6);
 
 		display: inline-grid;

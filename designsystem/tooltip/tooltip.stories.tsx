@@ -16,9 +16,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => <span data-tooltip="Innhold her">Hold over meg</span>,
+	render: () => <span tabIndex={0} data-tooltip="Innhold her">Hold over meg</span>,
 };
 
 export const React: Story = {
-	render: () => <span data-tooltip="Innhold her">Hold over meg</span>,
+	render: () => <span tabIndex={0} data-tooltip="Innhold her">Hold over meg</span>,
 };
