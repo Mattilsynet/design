@@ -13,25 +13,28 @@ const TabsComp = forwardRef<UTabs.UHTMLTabsElement, TabsProps>(function Tabs(
 });
 
 export type TabsListProps = UTabs.ReactUtablist;
-const List = forwardRef<UTabs.UHTMLTabListElement, TabsListProps>(
-	function TabList({ className, ...rest }, ref) {
+const TabsList = forwardRef<UTabs.UHTMLTabListElement, TabsListProps>(
+	function TabsList({ className, ...rest }, ref) {
 		return <u-tablist class={className} ref={ref} {...rest} />;
 	},
 );
 
 export type TabsPanelProps = UTabs.ReactUtabpanel;
-const Panel = forwardRef<UTabs.UHTMLTabPanelElement, TabsPanelProps>(
-	function TabPanel({ className, ...rest }, ref) {
+const TabsPanel = forwardRef<UTabs.UHTMLTabPanelElement, TabsPanelProps>(
+	function TabsPanel({ className, ...rest }, ref) {
 		return <u-tabpanel class={className} ref={ref} {...rest} />;
 	},
 );
 
 export type TabsTabProps = UTabs.ReactUtab;
-const Tab = forwardRef<UTabs.UHTMLTabElement, TabsTabProps>(function Tab(
-	{ className, ...rest },
-	ref,
-) {
-	return <u-tab class={className} ref={ref} {...rest} />;
-});
+const TabsTab = forwardRef<UTabs.UHTMLTabElement, TabsTabProps>(
+	function TabsTab({ className, ...rest }, ref) {
+		return <u-tab class={className} ref={ref} {...rest} />;
+	},
+);
 
-export const Tabs = Object.assign(TabsComp, { List, Panel, Tab });
+export const Tabs = Object.assign(TabsComp, {
+	List: TabsList,
+	Panel: TabsPanel,
+	Tab: TabsTab,
+});

@@ -14,16 +14,15 @@ export const React: Story = {
 		<Fieldset>
 			<legend>Hva foretrekker du?</legend>
 			<p>Fellesbeskrivelse</p>
-			<Field>
-				<Input type="radio" name="my-radio" required defaultChecked />
-				<label>Alternativ 1</label>
-				<p>Beskrivelse</p>
-			</Field>
-			<Field>
-				<Input type="radio" name="my-radio" required />
-				<label>Alternativ 2</label>
-				<p>Beskrivelse</p>
-			</Field>
+			<Field
+				as="input"
+				type="radio"
+				label="Alternativ 1"
+				description="Beskrivelse"
+				required
+				defaultChecked
+			/>
+			<Field as="input" type="radio" label="Alternativ 2" required />
 		</Fieldset>
 	),
 };

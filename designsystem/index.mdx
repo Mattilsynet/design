@@ -50,11 +50,12 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       </u-tabpanel>
     </u-tabs>
 
-2. **Importer JavaScript** støttefunksjonalitet (popover, field, etc.):
+2. **Importer JavaScript** støttefunksjonalitet *eller* **React komponenter**:
     <u-tabs class={styles.tabs} data-size="sm">
       <u-tablist>
         <u-tab>JS</u-tab>
         <u-tab>HTML</u-tab>
+        <u-tab>React</u-tab>
       </u-tablist>
       <u-tabpanel>
         ```js
@@ -65,6 +66,11 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```html
         <!-- Only use if you have no build step: -->
         <script src="node_modules/@mattilsynet/design/mtds/index.iife.js"></script>
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```jsx
+        import { Button } from "@mattilsynet/design/react";
         ```
       </u-tabpanel>
     </u-tabs>

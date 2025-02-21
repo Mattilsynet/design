@@ -28,11 +28,59 @@ export const Default: Story = {
 
 export const React: Story = {
 	render: () => (
-		<Field>
-			<label>Ledetekst</label>
-			<p>Beskrivelse</p>
-			<Input className={styles.input} />
-		</Field>
+		<>
+			<h2>
+				Field uten <code>as</code> attributt lar deg bygge opp av bestanddeler:
+			</h2>
+			<Field>
+				<label>Ledetekst</label>
+				<p>Beskrivelse</p>
+				<Input className={styles.input} />
+			</Field>
+			<br />
+			<h2>
+				Field med <code>as="input"</code> gir deg en komplett field med
+				<small></small>
+				<br />
+				<code>label</code> + <code>description</code> + <code>input</code> +{" "}
+				<code>error</code> + <code>prefix</code> + <code>suffix</code>:
+			</h2>
+			<Field
+				as="input"
+				label="Ledetekst"
+				description="Beskrivelse"
+				error="Feilmelding"
+				prefix="Før"
+				suffix="Etter"
+			/>
+			<br />
+			<h2>
+				Field med <code>as="input"</code> og <code>type="checkbox"</code>:
+			</h2>
+			<Field as="input" type="checkbox" label="Ledetekst" />
+			<br />
+			<h2>
+				Field med <code>as="textarea"</code> og{" "}
+				<code>count=&#x7B;15&#x7D;</code>:
+			</h2>
+			<Field
+				as="textarea"
+				label="Ledetekst"
+				description="Beskrivelse"
+				count={15}
+			/>
+			<br />
+			<h2>
+				Field med <code>as="select"</code>:
+			</h2>
+			<Field as="select" label="Ledetekst">
+				<option>Option 1</option>
+				<option>Option 2</option>
+				<option>Option 3</option>
+				<option>Option 4</option>
+				<option>Option 5</option>
+			</Field>
+		</>
 	),
 };
 
