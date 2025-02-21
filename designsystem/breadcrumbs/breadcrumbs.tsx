@@ -11,6 +11,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
+import { attr } from "../utils";
 
 export type BreadcrumbsProps<As extends React.ElementType = "nav"> =
 	PolymorphicComponentPropWithRef<As, { "aria-label"?: string }>;
@@ -33,22 +34,8 @@ export const Breadcrumbs: BreadcrumbsComponent = forwardRef<null>(
 				const items = innerRef.current.querySelectorAll("li > :is(a,button)");
 				const last = items[items.length - 1];
 
-				for (const item of items) {
-					const action = item === last ? "setAttribute" : "removeAttribute";
-					item[action]("aria-current", "page");
-				}
-			}
-		});
-		useImperativeHandle(ref, () => innerRef.current as As); // Forward innerRef
-		useEffect(() => {
-			if (innerRef.current instanceof HTMLElement) {
-				const items = innerRef.current.querySelectorAll("li > :is(a,button)");
-				const last = items[items.length - 1];
-
-				for (const item of items) {
-					const action = item === last ? "setAttribute" : "removeAttribute";
-					item[action]("aria-current", "page");
-				}
+				for (const item of items)
+					attr(item, "aria-current", item === last ? "page" : null);
 			}
 		});
 
