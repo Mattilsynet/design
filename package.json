@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "0.3.8",
+	"version": "0.4.0",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
@@ -29,7 +29,7 @@
 		"./styles.json": "./mtds/styles.json"
 	},
 	"scripts": {
-		"build": "vite build && vite build --mode iife && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
+		"build": "vite build --mode iife && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
 		"lint": "npx @biomejs/biome lint",
 		"publish:clojure": "npm run build && cd ./clojure && ./publish.sh",
 		"start": "vite",
@@ -55,7 +55,6 @@
 		"@types/react-dom": "^19.0.4",
 		"@vitejs/plugin-react": "^4.3.4",
 		"fast-glob": "^3.3.3",
-		"globals": "^15.15.0",
 		"postcss": "^8.5.3",
 		"postcss-nesting": "^13.0.1",
 		"react": "^19.0.0",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Field, Fieldset, Input } from "../react";
+import { Field, Fieldset } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {

@@ -28,7 +28,6 @@ export default defineConfig(({ mode }) =>
   mode === "iife"
     ? {
         build: {
-          emptyOutDir: false,
           outDir: dist,
           sourcemap: true,
           lib: {
@@ -86,6 +85,7 @@ export default defineConfig(({ mode }) =>
           cssPropsRename,
         ],
         build: {
+          emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder
           outDir: dist,
           sourcemap: true,
           lib: {
@@ -95,12 +95,12 @@ export default defineConfig(({ mode }) =>
             ],
             cssFileName: "styles",
             fileName: "[name]",
+            formats: ["es"],
           },
           rollupOptions: {
             // Externalize React
             external: ["react", "react-dom", "react/jsx-runtime"],
             output: {
-              format: "es",
               // Needed to truly enable being treeshakable when Vite is in lib mode
               // https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
               preserveModules: true,
