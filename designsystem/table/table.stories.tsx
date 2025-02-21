@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { Fragment, useState } from "react";
 import { pagination } from "../";
+import { Table } from "../react";
 import styles from "../styles.module.css";
 import mockData from "./table.mockData";
 
@@ -86,6 +87,47 @@ export const Default: Story = {
 				</tr>
 			</tbody>
 		</table>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Table aria-label="Example table">
+			<thead>
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+					<th>Visits</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Antoni</td>
+					<td>Foyston</td>
+					<td>74</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<td>Jenine</td>
+					<td>Healey</td>
+					<td>22</td>
+					<td>194</td>
+				</tr>
+				<tr>
+					<td>Leigh</td>
+					<td>Klein</td>
+					<td>26</td>
+					<td>114</td>
+				</tr>
+				<tr>
+					<td>Zara</td>
+					<td>Greenrodd</td>
+					<td>28</td>
+					<td>36</td>
+				</tr>
+			</tbody>
+		</Table>
 	),
 };
 

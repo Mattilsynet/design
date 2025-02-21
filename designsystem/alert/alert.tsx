@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -17,5 +18,7 @@ export const Alert: AlertComponent = forwardRef<null>(function Alert<
 >({ as, className, ...rest }: AlertProps<As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || "output";
 
-	return <Tag className={`${styles.alert} ${className}`} ref={ref} {...rest} />;
+	if (!rest.role && Tag !== "output") Object.assign(rest, { role: "alert" }); // Ensure role is set to 'alert' if not <output>
+
+	return <Tag className={clsx(styles.alert, className)} ref={ref} {...rest} />;
 }) as AlertComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

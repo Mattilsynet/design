@@ -2,7 +2,7 @@
 	.card {
 		background-color: var(--mtds-color-white);
 		border-radius: var(--ds-border-radius-lg);
-		border: 1px solid var(--mtds-color-100);
+		border: 1px solid var(--mtds-color-200);
 		box-sizing: border-box;
 		display: block;
 		padding: var(--ds-size-5);

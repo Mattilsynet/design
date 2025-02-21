@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Spinner } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -22,6 +23,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => <span className={styles.spinner}></span>,
+};
+
+export const React: Story = {
+	render: () => <Spinner />,
 };
 
 export const Sizes: Story = {

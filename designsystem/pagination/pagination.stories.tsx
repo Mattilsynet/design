@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { pagination } from "../";
+import { Pagination } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -51,6 +52,51 @@ export const WithLinks: Story = {
 				</li>
 			</ul>
 		</nav>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Pagination>
+			<ul>
+				<li>
+					<a href="?p=1" className={styles.button} aria-disabled="true">
+						Forrige
+					</a>
+				</li>
+				<li>
+					<a href="?p=1" className={styles.button} aria-current="page">
+						1
+					</a>
+				</li>
+				<li>
+					<a href="?p=2" className={styles.button}>
+						2
+					</a>
+				</li>
+				<li>
+					<a href="?p=3" className={styles.button}>
+						3
+					</a>
+				</li>
+				<li>
+					<a href="?p=4" className={styles.button}>
+						4
+					</a>
+				</li>
+				<li></li>
+				<li>
+					<a href="?p=10" className={styles.button}>
+						10
+					</a>
+				</li>
+				<li>
+					<a href="?p=2" className={styles.button}>
+						Neste
+					</a>
+				</li>
+			</ul>
+		</Pagination>
 	),
 };
 

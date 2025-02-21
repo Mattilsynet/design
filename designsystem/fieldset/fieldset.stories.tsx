@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Field, Fieldset } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -7,6 +8,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const React: Story = {
+	render: () => (
+		<Fieldset>
+			<legend>Hva foretrekker du?</legend>
+			<p>Fellesbeskrivelse</p>
+			<Field
+				as="input"
+				type="radio"
+				label="Alternativ 1"
+				description="Beskrivelse"
+				required
+				defaultChecked
+			/>
+			<Field as="input" type="radio" label="Alternativ 2" required />
+		</Fieldset>
+	),
+};
 
 export const Radios: Story = {
 	render: () => (

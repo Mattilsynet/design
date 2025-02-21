@@ -9,15 +9,11 @@ const getSteps = (now: number, max: number, show: number) => {
   return pages;
 };
 
-export const pagination = ({
-  current = 1,
-  total = 10,
-  show = 7,
-}) => ({
+export const pagination = ({ current = 1, total = 10, show = 7 }) => ({
   prev: current > 1 ? current - 1 : 0,
   next: current < total ? current + 1 : 0,
   pages: getSteps(current, total, show).map((page, index) => ({
-    current: page === current && 'page' as const,
+    current: page === current && ("page" as const),
     key: `key-${page}-${index}`,
     page,
   })),

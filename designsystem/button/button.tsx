@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -18,7 +19,7 @@ type ButtonComponent = <
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "button",
 >(
-	props: ButtonProps<As>,
+	props: ButtonProps<Href, As>,
 ) => JSX.Element;
 
 export const Button: ButtonComponent = forwardRef<null>(function Button<
@@ -27,7 +28,5 @@ export const Button: ButtonComponent = forwardRef<null>(function Button<
 >({ as, className, ...rest }: ButtonProps<Href, As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || (rest.href ? "a" : "button");
 
-	return (
-		<Tag className={`${styles.button} ${className}`} ref={ref} {...rest} />
-	);
+	return <Tag className={clsx(styles.button, className)} ref={ref} {...rest} />;
 }) as ButtonComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

@@ -1,6 +1,7 @@
 import { Heart, Star } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import { Button } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -29,6 +30,18 @@ export const Default: Story = {
 			<button type="button" className={styles.button}>
 				Tertiary (default)
 			</button>
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Button data-variant="primary">Primary</Button>
+			<Button data-variant="secondary">Secondary</Button>
+			<Button>Tertiary (default)</Button>
+			<Button href="#">Tertiary (default)</Button>
+			<Button as="span">Tertiary (default)</Button>
 		</>
 	),
 };

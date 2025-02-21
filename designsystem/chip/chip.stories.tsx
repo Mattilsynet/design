@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Chip, Input } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -14,6 +15,21 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Chip>
+				<Input type="radio" value="nynorsk" defaultChecked name="my-radio" />
+				Nynorsk
+			</Chip>
+			<Chip>
+				<Input type="radio" value="bokmål" name="my-radio" />
+				Bokmål
+			</Chip>
+		</>
+	),
+};
 
 export const Radio: Story = {
 	render: () => (

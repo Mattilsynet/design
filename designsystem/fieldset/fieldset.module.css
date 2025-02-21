@@ -4,7 +4,7 @@
 
 		/* Reset designsystemet */
 		& > * {
-			margin-top: var(--ds-size-2);
+			margin-top: var(--ds-size-3);
 		}
 		& > legend,
 		& > legend + p {
@@ -16,7 +16,7 @@
 
 		/* Mark <legend> with "Required" if all inputs inside are required */
 		&:has(:required, [aria-required="true"]):not(
-				:has(:optional:not([aria-required="true"]), [aria-required="false"])
+				:has(:optional:not(button):not([aria-required="true"]), [aria-required="false"])
 			) {
 			& > legend::after {
 				background: var(--mtds-color-bakgrunns-blaa);

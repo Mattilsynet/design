@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -18,6 +19,6 @@ export const Heading: HeadingComponent = forwardRef<null>(function Heading<
 	const Tag = as || "h2";
 
 	return (
-		<Tag className={`${styles.heading} ${className}`} ref={ref} {...rest} />
+		<Tag className={clsx(styles.heading, className)} ref={ref} {...rest} />
 	);
 }) as HeadingComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

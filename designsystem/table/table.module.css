@@ -5,10 +5,10 @@
 		--dsc-table-background: transparent;
 		--dsc-table-border-color: var(--mtds-color-200);
 		--dsc-table-color: inherit;
+		--dsc-table-divider-border-width: 1px;
 		--dsc-table-header-background--hover: transparent;
 		--dsc-table-header-background--sorted: transparent;
 		--dsc-table-header-background: transparent;
-		--dsc-table-border-divider: 1px solid;
 
 		vertical-align: top;
 
@@ -168,7 +168,7 @@
 			display: table-row-group; /* But make each row a <tbody> */
 
 			&:first-child > :first-child {
-				border-top: var(--dsc-table-border-divider);
+				border-top: var(--dsc-table-divider-border-width) var(--dsc-table-divider-border-style);
 			}
 		}
 
@@ -179,7 +179,7 @@
 			text-align: inherit; /* Undo data-numeric alignment */
 
 			&:last-child {
-				border-bottom: var(--dsc-table-border-divider);
+				border-bottom: var(--dsc-table-divider-border-width) var(--dsc-table-divider-border-style);
 			}
 
 			&::before {

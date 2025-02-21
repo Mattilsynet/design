@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -16,5 +17,5 @@ export const Link: LinkComponent = forwardRef<null>(function Link<
 	As extends React.ElementType = "a",
 >({ as, className, ...rest }: LinkProps<As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || "a";
-	return <Tag className={`${styles.link} ${className}`} {...rest} ref={ref} />;
+	return <Tag className={clsx(styles.link, className)} {...rest} ref={ref} />;
 }) as LinkComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

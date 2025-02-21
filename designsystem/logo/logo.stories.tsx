@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Logo } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -40,6 +41,18 @@ export const Default: Story = {
 			</a>
 			<div className="demo-resize">
 				<h1 className={styles.logo}>Resize&nbsp;Demo</h1>
+			</div>
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Logo as="h1" />
+			<Logo href="/">Undermerke</Logo>
+			<div className="demo-resize">
+				<Logo className={styles.logo}>Resize&nbsp;Demo</Logo>
 			</div>
 		</>
 	),

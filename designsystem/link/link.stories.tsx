@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Link } from "../react";
 
 const meta = {
 	title: "Designsystem/Link",
@@ -13,6 +14,16 @@ export const Default: Story = {
 			<a href="https://www.mattilsynet.no/">Mattilsynet</a> er et statlig tilsyn
 			og direktorat som har som visjon å trygge framtiden for mennesker, dyr og
 			natur.
+		</>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<>
+			<Link href="https://www.mattilsynet.no/">Mattilsynet</Link> er et statlig
+			tilsyn og direktorat som har som visjon å trygge framtiden for mennesker,
+			dyr og natur.
 		</>
 	),
 };
