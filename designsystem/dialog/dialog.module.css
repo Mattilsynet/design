@@ -7,6 +7,8 @@
 		max-height: 90svh;
 		max-height: 90vh;
 		overflow: auto;
+		max-height: 90vh;
+		overflow: auto;
 		position: fixed;
 		z-index: 1000; /* Place above also when non-modal */
 

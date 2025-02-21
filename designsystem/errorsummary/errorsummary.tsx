@@ -18,6 +18,16 @@ export const Errorsummary = forwardRef<HTMLDivElement, ErrorsummaryProps>(
 			}
 		}, []);
 
+		useImperativeHandle(ref, () => innerRef.current as HTMLDivElement); // Forward innerRef
+		useEffect(() => {
+			const first = innerRef.current?.firstElementChild;
+
+			if (first instanceof HTMLHeadingElement) {
+				first.setAttribute("tabindex", "-1");
+				first.focus(); // Autofocus first heading
+			}
+		}, []);
+
 		return (
 			<div
 				className={clsx(styles.errorsummary, className)}

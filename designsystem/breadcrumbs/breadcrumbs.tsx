@@ -39,6 +39,18 @@ export const Breadcrumbs: BreadcrumbsComponent = forwardRef<null>(
 				}
 			}
 		});
+		useImperativeHandle(ref, () => innerRef.current as As); // Forward innerRef
+		useEffect(() => {
+			if (innerRef.current instanceof HTMLElement) {
+				const items = innerRef.current.querySelectorAll("li > :is(a,button)");
+				const last = items[items.length - 1];
+
+				for (const item of items) {
+					const action = item === last ? "setAttribute" : "removeAttribute";
+					item[action]("aria-current", "page");
+				}
+			}
+		});
 
 		return (
 			<Tag

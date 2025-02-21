@@ -12,7 +12,6 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(
 
 		useImperativeHandle(ref, () => innerRef.current as HTMLDialogElement); // Forward innerRef
 		useEffect(() => {
-			console.log(innerRef);
 			const action = open ? (modal ? "showModal" : "show") : "close";
 			innerRef.current?.[action]();
 		}, [open, modal]);
