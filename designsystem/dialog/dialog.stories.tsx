@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
-import { Dialog } from "../react";
+import { Button, Dialog } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -62,13 +62,7 @@ export const React: Story = {
 
 		return (
 			<>
-				<button
-					className={styles.button}
-					onClick={() => setOpen(true)}
-					type="button"
-				>
-					Open
-				</button>
+				<Button onClick={() => setOpen(true)}>Open</Button>
 				<Dialog
 					className={styles.dialog}
 					onClose={() => setOpen(false)}

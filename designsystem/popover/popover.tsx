@@ -7,7 +7,12 @@ import type {
 import styles from "../styles.module.css";
 
 export type PopoverProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{
+			"data-position"?: "top" | "bottom" | "left" | "right";
+		}
+	>;
 
 type PopoverComponent = <As extends React.ElementType = "div">(
 	props: PopoverProps<As>,

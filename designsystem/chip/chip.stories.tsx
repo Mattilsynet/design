@@ -27,6 +27,7 @@ export const React: Story = {
 				<Input type="radio" value="bokmål" name="my-radio" />
 				Bokmål
 			</Chip>
+			<Chip data-removable>Bokmål</Chip>
 		</>
 	),
 };
@@ -79,6 +80,16 @@ export const Checkbox: Story = {
 				/>
 				Bokmål
 			</label>
+		</>
+	),
+};
+
+export const Removable: Story = {
+	render: () => (
+		<>
+			<button type="button" className={styles.chip} data-removable>
+				Nynorsk
+			</button>
 		</>
 	),
 };

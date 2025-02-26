@@ -6,6 +6,7 @@ import * as dialog from "./dialog/dialog-observer";
 import * as field from "./field/field-observer";
 import * as fieldset from "./fieldset/fieldset-observer";
 import * as layout from "./layout/layout-observer";
+import * as logo from "./logo/logo-observer";
 import * as popover from "./popover/popover-observer";
 import * as table from "./table/table-observer";
 import { IS_BROWSER } from "./utils";
@@ -24,6 +25,7 @@ export function observe(el: Element) {
   field.observe(el);
   fieldset.observe(el);
   layout.observe(el);
+  logo.observe(el);
   popover.observe(el);
   table.observe(el);
 }
@@ -33,6 +35,7 @@ export function unobserve(el: Element) {
   field.unobserve(el);
   fieldset.unobserve(el);
   layout.unobserve(el);
+  logo.unobserve(el);
   popover.unobserve(el);
   table.unobserve(el);
 }

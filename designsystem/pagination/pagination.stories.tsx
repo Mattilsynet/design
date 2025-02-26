@@ -199,7 +199,7 @@ export const WithHelper: Story = {
 		});
 
 		return (
-			<nav className={styles.pagination}>
+			<Pagination>
 				<ul>
 					<li>
 						<a
@@ -233,7 +233,7 @@ export const WithHelper: Story = {
 						</a>
 					</li>
 				</ul>
-			</nav>
+			</Pagination>
 		);
 	},
 };

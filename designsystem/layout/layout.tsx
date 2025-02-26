@@ -6,27 +6,90 @@ import type {
 } from "../react-types";
 import styles from "../styles.module.css";
 
-type LayoutProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
+type SharedProps = {
+	"data-align"?: "stretch" | "start" | "center" | "end";
+	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
+	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | false;
+	"data-justify"?:
+		| "start"
+		| "center"
+		| "end"
+		| "space-between"
+		| "space-around"
+		| "space-evenly";
+	"data-justify-content"?:
+		| "start"
+		| "center"
+		| "end"
+		| "space-between"
+		| "space-around"
+		| "space-evenly";
+};
 
-type LayoutComponent = <As extends React.ElementType = "div">(
-	props: LayoutProps<As>,
+export type FlexProps<As extends React.ElementType = "div"> =
+	PolymorphicComponentPropWithRef<As, SharedProps>;
+
+export type GridProps<As extends React.ElementType = "div"> =
+	PolymorphicComponentPropWithRef<
+		As,
+		SharedProps & {
+			"data-grid"?:
+				| "1"
+				| "2"
+				| "3"
+				| "4"
+				| "5"
+				| "6"
+				| "7"
+				| "8"
+				| "9"
+				| "10"
+				| "11"
+				| "12"
+				| "fit"
+				| "fit-lg"
+				| "fit-md"
+				| "fit-sm"
+				| "fit-xs"
+				| "lg"
+				| "md"
+				| "sm"
+				| "xs"
+				| 1
+				| 2
+				| 3
+				| 4
+				| 5
+				| 6
+				| 7
+				| 8
+				| 9
+				| 10
+				| 11
+				| 12;
+		}
+	>;
+
+type FlexComponent = <As extends React.ElementType = "div">(
+	props: FlexProps<As>,
 ) => JSX.Element;
 
-export type FlexProps<As extends React.ElementType = "div"> = LayoutProps<As>;
-export const Flex: LayoutComponent = forwardRef<null>(function Flex<
+type GridComponent = <As extends React.ElementType = "div">(
+	props: GridProps<As>,
+) => JSX.Element;
+
+export const Flex: FlexComponent = forwardRef<null>(function Flex<
 	As extends React.ElementType = "div",
->({ as, className, ...rest }: LayoutProps<As>, ref?: PolymorphicRef<As>) {
+>({ as, className, ...rest }: FlexProps<As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || "div";
 
 	return <Tag className={clsx(styles.flex, className)} ref={ref} {...rest} />;
-}) as LayoutComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
+}) as FlexComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
-export type GridProps<As extends React.ElementType = "div"> = LayoutProps<As>;
-export const Grid: LayoutComponent = forwardRef<null>(function Grid<
+export const Grid: GridComponent = forwardRef<null>(function Grid<
 	As extends React.ElementType = "div",
->({ as, className, ...rest }: LayoutProps<As>, ref?: PolymorphicRef<As>) {
+>({ as, className, ...rest }: GridProps<As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || "div";
 
 	return <Tag className={clsx(styles.grid, className)} ref={ref} {...rest} />;
-}) as LayoutComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
+}) as GridComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

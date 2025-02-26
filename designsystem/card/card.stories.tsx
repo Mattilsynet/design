@@ -12,11 +12,14 @@ import styles from "../styles.module.css";
 const meta = {
 	title: "Designsystem/Card",
 	parameters: {
-		layout: "padded",
+		layout: "fullscreen",
 	},
 	decorators: [
 		(Story) => (
-			<div className={`${styles.body} ${styles.grid}`}>
+			<div
+				className={`${styles.body} ${styles.grid}`}
+				style={{ padding: "2em" }}
+			>
 				<style>{"body{background:var(--mtds-color-gaasunge)}"}</style>
 				<Story />
 			</div>
@@ -28,7 +31,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => <div className={styles.card}>Hei</div>,
+	render: () => (
+		<>
+			<div className={styles.card}>Hei</div>
+		</>
+	),
 };
 
 export const React: Story = {
@@ -36,19 +43,6 @@ export const React: Story = {
 		<>
 			<Card>Hei</Card>
 			<Card href="#">Lenke</Card>
-		</>
-	),
-};
-
-export const Sizes: Story = {
-	render: () => (
-		<>
-			<div className={styles.card} data-size="md">
-				Hei
-			</div>
-			<div className={styles.card} data-size="lg">
-				Hei
-			</div>
 		</>
 	),
 };

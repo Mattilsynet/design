@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
-import { Errorsummary } from "../react";
+import { Errorsummary, Heading } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -59,7 +59,7 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<Errorsummary>
-			<h2>For å gå videre må du rette opp følgende feil:</h2>
+			<Heading>For å gå videre må du rette opp følgende feil:</Heading>
 			<ul>
 				<li>
 					<a href="#my-input-1">Fødselsdato kan ikke være etter år 2005</a>

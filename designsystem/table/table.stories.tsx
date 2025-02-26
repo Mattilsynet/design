@@ -1273,7 +1273,6 @@ export const WithFooter: Story = {
 };
 
 export const WithBorderAround: Story = {
-	name: "With border around (Experimental)",
 	render: () => (
 		<table
 			className={styles.table}
@@ -1282,7 +1281,7 @@ export const WithBorderAround: Story = {
 		>
 			<thead>
 				<tr>
-					<th>First name</th>
+					<th data-nowrap>First name</th>
 					<th>Last name</th>
 					<th>Age</th>
 					<th>Visits</th>

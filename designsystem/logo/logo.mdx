@@ -5,30 +5,40 @@ import * as stories from './logo.stories';
 
 # Logo
 
-> ⚠️ **OBS:** Logojustering kommer for å bedre støtte applikasjoner
-
 - Legg klassen `logo` på typisk `<h1>` eller `<a>`
-- Legg inn navn på din applikasjon som undermerke
-- Usynlig prefiks-tekst "Mattilsynet" blir automatisk lagt inn for skjermlesere
-- Bruk `&nbsp;` istedenfor mellomrom, eksempel: `Min&nbsp;admin`
+- Teksten "Mattilsynet" blir automatisk lagt inn for skjermlesere
 - Logo følger tekststørrelse og tekstfarge (burde være `#054449`)
-- Ved lite plass blir "Mattilsynet" skjult visuelt, og deretter undermerke:
-- **Merk:** Logo blir engelsk dersom du setter `<html lang="en">`
+- Ved lite plass blir tekst visuelt
 <Canvas of={stories.Default} />
 
-## Størrelser
-- Logo støtter `data-size="md | lg"`
-<Canvas of={stories.Sizes} />
+## App logo
+- Legg en `<svg>` fra `phosphoricons.com` som første barn for å lage en app-logo
+- Legg appnavn inn i `logo` som tekst
+- Applogo endrer automatisk favion
+<Canvas of={stories.WithAppIcon} />
 
-## Engelsk
-- Legg sett `lang="en"` på `<html>` eller elementet du bruker til logo
-- Ikke bruk `&nbsp;` i engelske logoer
-- **Merk:** Skjuler aldri "Mattilsynet, Norwegian Food Safety Authority" fordi dette er viktig i internsasjonal sammenheng
-<Canvas of={stories.English} />
+## App logo med teknisk miljø
+- Bruk `data-color="orange | blue"` på `logo` for å få en distinkt fargeendring
+- Legg `<mark>` etter appnavn for indikere teknisk kjøremiljø
+<Canvas of={stories.WithAppIconOrange} />
+
+## Undermerke
+- Legg tekst inn i `logo` for å lage et undermerke
+- Bruk `<wbr />` dersom du ønsker at et ord skal kunne brekke i flere deler, eksempel: `Helse&shy;sertifikat`
+<Canvas of={stories.WithSubbrand} />
+
+## Undermerke på engelsk
+- Logo blir engelsk dersom du setter `<html lang="en">`
+<Canvas of={stories.WithSubbrandEnglish} />
+
+## Størrelser
+- Du kan skalere logo ved å endre `font-size` eller bruke `data-size`
+<Canvas of={stories.Sizes} />
 
 ## Favicon
 - For å støtte dark mode og eldre Safari, bruker vi flere favicon-filer (<a href="/favicon.svg" download>svg</a>, <a href="/favicon.ico" download>ico</a> og <a href="/favicon-dark.ico" download>ico dark</a>)
 - Disse er tilgjengelig via `@mattilsynet/design/favicon.[svg|ico]`
+- **Merk:** App-logo endrer automatisk på favicon ([utenom i Safari som ikke støtter dette](https://bugs.webkit.org/show_bug.cgi?id=95979#c2))
 ```html
 <head>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

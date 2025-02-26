@@ -39,8 +39,6 @@
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.design {
 	:root {
-		--mtds-color-50: color-mix(in hsl, currentcolor 5%, transparent);
-		--mtds-color-200: color-mix(in hsl, currentcolor 20%, transparent);
 		--mtds-color-bakgrunns-blaa: #dfeef6;
 		--mtds-color-bakgrunns-gul: #fcf0d2;
 		--mtds-color-bakgrunns-rosa: #fee9df;
@@ -61,11 +59,6 @@
 		--mtds-color-neutral-50: color-mix(
 			in hsl,
 			var(--mtds-color-neutral) 5%,
-			transparent
-		);
-		--mtds-color-neutral-100: color-mix(
-			in hsl,
-			var(--mtds-color-neutral) 10%,
 			transparent
 		);
 		--mtds-color-neutral-200: color-mix(

@@ -6,7 +6,7 @@ const DESCRIBEDBY = "aria-describedby";
 const ESC = "Escape";
 const LABELLEDBY = "aria-labelledby";
 const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
-const THROTTLE_DELAY = 100;
+const THROTTLE_DELAY = 300;
 const TOOLTIP_ID = "mtds-tooltip";
 
 let ANCHOR: HTMLElement | null = null;
@@ -35,34 +35,34 @@ function handleMoveThrottled(target: Element | null) {
   // No need to update
   if (anchor === ANCHOR) return;
 
-  const content = anchor?.getAttribute("data-tooltip") || "";
+  const content = (anchor && attr(anchor, "data-tooltip")) || "";
   const position =
-    anchor?.getAttribute("data-tooltip-position") ||
+    (anchor && attr(anchor, "data-tooltip-position")) ||
     window
       .getComputedStyle(anchor || document.body)
       .getPropertyValue(POSITION_CSS_PROPERTY) ||
     "top";
+
+  const isHidden =
+    !content ||
+    content === "false" ||
+    content === "true" ||
+    position === "none";
+
+  if (isHidden) anchor = null; // Do not show tooltip if boolish value
+  if (anchor) TOOLTIP.textContent = content; // Only update content if new anchor
+
+  const hadLabel = ANCHOR && attr(ANCHOR, LABELLEDBY) === TOOLTIP_ID;
   const hasLabel =
     Boolean(anchor?.innerText.trim()) ||
     anchor?.hasAttribute(LABELLEDBY) ||
     anchor?.hasAttribute("aria-label");
 
-  if (
-    !content ||
-    content === "false" ||
-    content === "true" ||
-    position === "none"
-  )
-    anchor = null; // Do not show tooltip if boolish value
-  if (anchor) TOOLTIP.textContent = content; // Only update content if new anchor
-
-  ANCHOR?.removeAttribute(
-    ANCHOR.getAttribute(LABELLEDBY) === TOOLTIP_ID ? LABELLEDBY : DESCRIBEDBY
-  ); // Unlink previous anchor
+  ANCHOR?.removeAttribute(hadLabel ? LABELLEDBY : DESCRIBEDBY); // Unlink previous anchor
   anchorPosition(TOOLTIP, false); // Reset anchor position
 
   ANCHOR = anchor; // Store new anchor - might be null if no new anchor
-  ANCHOR?.setAttribute(hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP_ID); // Use tooltip as description if allready has label
+  if (ANCHOR) attr(ANCHOR, hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP_ID); // Use tooltip as description if allready has label
   TOOLTIP.togglePopover(!!anchor);
   anchorPosition(TOOLTIP, anchor, position);
 }

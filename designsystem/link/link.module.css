@@ -8,7 +8,6 @@
 		text-decoration: underline;
 		text-decoration-thickness: 0.0625em; /* 1px ish */
 		text-underline-offset: 0.27em; /* 5px ish */
-		transition: .2s;
 		outline-offset: 2px;
 		outline: 2px none currentcolor;
 

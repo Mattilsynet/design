@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -16,9 +17,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => <span tabIndex={0} data-tooltip="Innhold her">Hold over meg</span>,
+	render: () => (
+		<button type="button" data-tooltip="Innhold her">
+			Hold over meg
+		</button>
+	),
 };
 
 export const React: Story = {
-	render: () => <span tabIndex={0} data-tooltip="Innhold her">Hold over meg</span>,
+	render: () => <Button data-tooltip="Innhold her">Hold over meg</Button>,
 };
