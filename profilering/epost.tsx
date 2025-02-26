@@ -181,7 +181,7 @@ export function Epost() {
 						background: "white",
 						padding: 40,
 						borderRadius: 10,
-						border: "1px solid var(--mtds-color-200)",
+						border: "1px solid var(--mtds-color-neutral-200)",
 					}}
 				>
 					<div

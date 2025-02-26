@@ -7,7 +7,12 @@ import type {
 import styles from "../styles.module.css";
 
 export type AlertProps<As extends React.ElementType = "output"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{
+			"data-color"?: "info" | "success" | "warning" | "danger";
+		}
+	>;
 
 type AlertComponent = <As extends React.ElementType = "output">(
 	props: AlertProps<As>,

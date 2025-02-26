@@ -3,6 +3,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import styles from "../styles.module.css";
 
 export type DialogProps = React.ComponentPropsWithoutRef<"dialog"> & {
+	"data-closedby"?: "any" | "closerequest";
 	modal: boolean;
 };
 

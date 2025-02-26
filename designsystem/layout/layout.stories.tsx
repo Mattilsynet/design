@@ -3,6 +3,7 @@ import {
 	Gear,
 	ListChecks,
 	MagnifyingGlass,
+	Plant,
 	SignOut,
 	Signature,
 	User,
@@ -74,7 +75,11 @@ export const GridStory: Story = {
 				<div>Child 1</div>
 				<div>Child 2</div>
 			</div>
-			<div className={styles.grid} data-grid="sidebar" data-gap="lg">
+			<div
+				className={styles.grid}
+				style={{ gridTemplateColumns: "1fr 2fr" }}
+				data-gap="lg"
+			>
 				<div>
 					Sidebar
 					<div className={styles.grid} data-grid="fit-sm" data-gap="none">
@@ -116,7 +121,7 @@ export const React: Story = {
 					<div>Child 1</div>
 					<div>Child 2</div>
 				</Grid>
-				<Grid data-grid="sidebar" data-gap="lg">
+				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="lg">
 					<div>
 						Sidebar
 						<Grid data-grid="fit-sm" data-gap="none">
@@ -379,7 +384,10 @@ export const App: Story = {
 				<nav className={styles.breadcrumbs} aria-label="Du er her">
 					<ul>
 						<li>
-							<a href="#none" className={styles.logo}></a>
+							<a href="#none" className={styles.logo}>
+								<Plant weight="fill" />
+								Digiplant
+							</a>
 						</li>
 						<li>
 							<a href="#none">Søknader</a>
@@ -416,7 +424,7 @@ export const App: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav data-expanded="true" className={styles.grid} data-gap="lg">
+			<nav data-expanded="true">
 				<button type="button"></button>
 				<menu>
 					<li>
@@ -440,6 +448,7 @@ export const App: Story = {
 						</a>
 					</li>
 				</menu>
+				<hr className={styles.divider} data-gap="xl" />
 				<form className={styles.grid} data-expanded="true">
 					<fieldset className={styles.fieldset}>
 						<legend>Velg type iskrem</legend>
@@ -510,7 +519,7 @@ export const App: Story = {
 					</fieldset>
 				</form>
 			</aside>
-			<footer hidden>
+			<footer className={styles.app_footer} hidden>
 				<a href="#none" className={styles.logo}></a>
 			</footer>
 		</div>

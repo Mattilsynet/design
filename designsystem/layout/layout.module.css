@@ -222,10 +222,16 @@
 		}
 	}
 
+	.app > * {
+		display: content;
+	}
+
 	/**
 	 * App layout: Header
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
-	.app > header {
+	.app > header,
+	.app header:has(~ main) {
 		align-items: center;
 		display: flex;
 		gap: var(--ds-size-2);
@@ -240,7 +246,7 @@
 		/* WIP */
 		&[data-color="surface"] {
 			background: var(--mtds-color-white);
-			border-bottom: 1px solid var(--mtds-color-200);
+			border-bottom: 1px solid var(--mtds-color-neutral-200);
 			padding: var(--spacing-md);
 			margin-bottom: var(--spacing-md);
 		}
@@ -248,8 +254,10 @@
 
 	/**
 	 * App layout: Left side
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
-	.app > header + :not(main) {
+	.app > nav,
+	.app nav:has(+ main) {
 		align-content: start; /* TODO: Set default alignment in case used as grid */
 		grid-area: nav;
 		overflow-y: auto;
@@ -305,7 +313,7 @@
 		/* 960px */
 		@media screen and (max-width: 60em) {
 			background-color: var(--mtds-color-white);
-			border-top: 1px solid var(--mtds-color-200);
+			border-top: 1px solid var(--mtds-color-neutral-200);
 			left: 0;
 			padding: var(--spacing-sm);
 			position: fixed;
@@ -322,8 +330,9 @@
 
 	/**
 	 * App layout: Main
+	 * NOTE: <main> can only appear once on a page so no need for direct child selector
 	 */
-	.app > main {
+	.app main {
 		container: main / inline-size;
 		grid-area: main;
 		margin: 0 var(--spacing-sm) var(--spacing-sm);
@@ -331,9 +340,11 @@
 	}
 
 	/**
-	 * App layout: Right sidre
+	 * App layout: Right side
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
-	.app > main + :not(footer) {
+	.app > aside,
+	.app main + aside {
 		grid-area: aside;
 		padding-right: var(--spacing-sm);
 		padding-top: var(--spacing-md);
@@ -351,8 +362,10 @@
 
 	/**
 	 * App layout: Footer
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
-	.app > footer {
+	.app > footer,
+	.app main ~ footer {
 		background: var(--mtds-color-granskog);
 		color: var(--mtds-color-lav);
 		grid-area: footer;

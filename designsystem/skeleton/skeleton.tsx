@@ -6,24 +6,25 @@ import type {
 } from "../react-types";
 import styles from "../styles.module.css";
 
-type SkeletonBaseProps<Variant> = {
+type Variants = "circle" | "text" | "rectangle";
+type SkeletonBaseProps<Variant extends Variants> = {
 	"data-variant"?: Variant;
 };
 
 export type SkeletonProps<
-	Variant,
+	Variant extends Variants,
 	As extends React.ElementType = Variant extends "text" ? "span" : "div",
 > = PolymorphicComponentPropWithRef<As, SkeletonBaseProps<Variant>>;
 
 type SkeletonComponent = <
-	Variant,
+	Variant extends Variants,
 	As extends React.ElementType = Variant extends "text" ? "span" : "div",
 >(
 	props: SkeletonProps<Variant, As>,
 ) => JSX.Element;
 
 export const Skeleton: SkeletonComponent = forwardRef<null>(function Skeleton<
-	Variant,
+	Variant extends Variants,
 	As extends React.ElementType = Variant extends "text" ? "span" : "div",
 >(
 	{ as, className, ...rest }: SkeletonProps<Variant, As>,

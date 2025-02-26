@@ -4,7 +4,7 @@
 		--dsc-tag-background: var(--mtds-color-neutral-50);
 
 		border-radius: 5px;
-		border: 1px solid var(--mtds-color-50);
+		border: 1px solid var(--mtds-color-neutral-50);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
 		height: fit-content; /* Can be removed when DigiDir gets this */

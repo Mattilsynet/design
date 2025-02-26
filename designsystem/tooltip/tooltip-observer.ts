@@ -6,7 +6,7 @@ const DESCRIBEDBY = "aria-describedby";
 const ESC = "Escape";
 const LABELLEDBY = "aria-labelledby";
 const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
-const THROTTLE_DELAY = 100;
+const THROTTLE_DELAY = 300;
 const TOOLTIP_ID = "mtds-tooltip";
 
 let ANCHOR: HTMLElement | null = null;

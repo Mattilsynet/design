@@ -3,7 +3,7 @@
 		composes: ds-table from "@digdir/designsystemet-css";
 
 		--dsc-table-background: transparent;
-		--dsc-table-border-color: var(--mtds-color-200);
+		--dsc-table-border-color: var(--mtds-color-neutral-200);
 		--dsc-table-color: inherit;
 		--dsc-table-divider-border-width: 1px;
 		--dsc-table-header-background--hover: transparent;

@@ -7,7 +7,12 @@ import type {
 import styles from "../styles.module.css";
 
 export type HeadingProps<As extends React.ElementType = "h2"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{
+			"data-size"?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+		}
+	>;
 
 type HeadingComponent = <As extends React.ElementType = "h2">(
 	props: HeadingProps<As>,
