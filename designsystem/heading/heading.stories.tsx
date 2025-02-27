@@ -100,11 +100,13 @@ export const Stack: Story = {
 					<h1 className={styles.heading} data-size="xl">
 						Her søker du om helsesertifikat for sjømat til Australia
 					</h1>
-					<p style={{ fontSize: "1.45em" }}>
-						Se hvilken løsning du skal bruke når du søker, hva sertifikatet
-						koster og når sertifikatkontoret holder åpent.
-					</p>
-					<p>Publisert 14.01.2025</p>
+					<div>
+						<div style={{ fontSize: "1.45em", marginBottom: 5 }}>
+							Se hvilken løsning du skal bruke når du søker, hva sertifikatet
+							koster og når sertifikatkontoret holder åpent.
+						</div>
+						<small>Publisert 14.01.2025</small>
+					</div>
 					<h2 className={styles.heading} data-size="sm">
 						Innhold på denne siden
 					</h2>
@@ -212,6 +214,49 @@ export const Stack: Story = {
 							<p>Beskrivelse</p>
 						</div>
 					</fieldset>
+					<h2 className={styles.heading} data-size="md">
+						Litt informasjon
+					</h2>
+					<table
+						className={styles.table}
+						aria-label="Example table"
+						data-border
+					>
+						<thead>
+							<tr>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>Age</th>
+								<th>Visits</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Antoni</td>
+								<td>Foyston</td>
+								<td>74</td>
+								<td>128</td>
+							</tr>
+							<tr>
+								<td>Jenine</td>
+								<td>Healey</td>
+								<td>22</td>
+								<td>194</td>
+							</tr>
+							<tr>
+								<td>Leigh</td>
+								<td>Klein</td>
+								<td>26</td>
+								<td>114</td>
+							</tr>
+							<tr>
+								<td>Zara</td>
+								<td>Greenrodd</td>
+								<td>28</td>
+								<td>36</td>
+							</tr>
+						</tbody>
+					</table>
 					<p>
 						Fiskehelsekravene stilles av australske veterinærmyndigheter, og de
 						kommer i tillegg til norske regelverkskrav. Den som underskriver

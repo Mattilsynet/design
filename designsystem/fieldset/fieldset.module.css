@@ -35,6 +35,7 @@
 				line-height: 1.5;
 				margin-inline-start: var(--ds-size-3);
 				padding: 0 var(--ds-size-2);
+				vertical-align: middle;
 			}
 			& label::after {
 				content: none;

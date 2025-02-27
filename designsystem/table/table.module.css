@@ -11,6 +11,7 @@
 		--dsc-table-header-background: transparent;
 		--mtds-divided: 50; /* Need to be unitless */
 
+		background: var(--dsc-table-background);
 		vertical-align: top;
 
 		&[data-fixed] {
@@ -44,15 +45,18 @@
 	/**
 	 * Table border and heading fix
 	 */
-	.table:not([data-border="true"]) > thead > tr:last-child > :is(td, th) {
+	.table:not([data-border]) > thead > tr:last-child > :is(td, th) {
 		border-bottom-color: currentcolor;
 		vertical-align: bottom;
 	}
-	.table[data-border="true"] {
+	.table[data-border] {
 		--dsc-table-background: var(--mtds-color-white);
 	}
-	.table[data-border="true"] > thead > tr > :is(th, td) {
-		background-color: #eef1ea; /* TODO: integrate into color system */
+	.table[data-border] > thead > tr > :is(th, td) {
+		background-color: var(--mtds-color-lav); /* TODO: integrate into color system */
+	}
+	.table[data-border] > tbody > tr > :not(:last-child) {
+		border-right: 1px solid var(--mtds-color-neutral-100);
 	}
 
 	/**
@@ -225,16 +229,16 @@
 		/**
 		 * Mobile data-border
 		 */
-		.table[data-mobile][data-border="true"] {
+		.table[data-mobile][data-border] {
 			padding: var(--dsc-table-padding);
 			border: var(--dsc-table-border-width) var(--dsc-table-border-style)
 				var(--dsc-table-border-color);
 		}
-		.table[data-mobile][data-border="true"] > tbody > tr:first-child {
+		.table[data-mobile][data-border] > tbody > tr:first-child {
 			border-top: 0;
 			padding-top: 0;
 		}
-		.table[data-mobile][data-border="true"] > tbody > tr:last-child {
+		.table[data-mobile][data-border] > tbody > tr:last-child {
 			border-bottom: 0;
 			padding-bottom: 0;
 		}
