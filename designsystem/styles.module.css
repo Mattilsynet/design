@@ -104,7 +104,7 @@
 		--ds-body-lg-font-size: clamp(1.125rem, 1.0575rem + 0.3vw, 1.3125rem); /* 18px => 21px */
 
 		--ds-color-focus-outer: var(--mtds-color-granskog);
-		--dsc-focus-border-width: 2px;
+		--ds-border-width-focus: 2px;
 		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
 			var(--ds-color-focus-inner);
 
