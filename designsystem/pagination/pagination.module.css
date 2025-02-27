@@ -1,33 +1,32 @@
 @layer mt.design {
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
+	}
+	.pagination :is(a, button) {
+		border-radius: var(--ds-border-radius-full);
+	}
+	.pagination :is(a, button)::after {
+		content: none; /* Hide DigiDir chevron */
+	}
 
-		& :is(a, button) {
-			border-radius: var(--ds-border-radius-full);
-		}
-
-		/* Chevrons  */
-		& li:first-child > :is(a, button)::before,
-		& li:last-child > :is(a, button)::before {
-			background: currentcolor;
-			content: "";
-			height: var(--mtds-icon-size);
-			mask: center / contain no-repeat var(--mtds-icon-chevron);
-			order: 1;
-			width: var(--mtds-icon-size);
-		}
-		& li:first-child > :is(a, button)::before {
-			order: 0;
-			rotate: 180deg;
-		}
-		& li:first-child:empty > :is(a, button)::before {
-			content: var(--mtds-text-previous);
-		}
-		& li:last-child:empty > :is(a, button)::before {
-			content: var(--mtds-text-next);
-		}
-		& :is(a, button)::after {
-			content: none; /* Hide DigiDir chevron */
-		}
+	/* Chevrons  */
+	.pagination li:first-child > :is(a, button)::before,
+	.pagination li:last-child > :is(a, button)::before {
+		background: currentcolor;
+		content: "";
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat var(--mtds-icon-chevron);
+		order: 1;
+		width: var(--mtds-icon-size);
+	}
+	.pagination li:first-child > :is(a, button)::before {
+		order: 0;
+		rotate: 180deg;
+	}
+	.pagination li:first-child:empty > :is(a, button)::before {
+		content: var(--mtds-text-previous);
+	}
+	.pagination li:last-child:empty > :is(a, button)::before {
+		content: var(--mtds-text-next);
 	}
 }

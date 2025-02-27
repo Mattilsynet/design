@@ -61,6 +61,11 @@
 			var(--mtds-color-neutral) 5%,
 			transparent
 		);
+		--mtds-color-neutral-100: color-mix(
+			in hsl,
+			var(--mtds-color-neutral) 10%,
+			transparent
+		);
 		--mtds-color-neutral-200: color-mix(
 			in hsl,
 			var(--mtds-color-neutral) 20%,
