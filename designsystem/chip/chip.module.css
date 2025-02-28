@@ -1,5 +1,16 @@
 @layer mt.design {
 	.chip {
 		composes: ds-chip from "@digdir/designsystemet-css";
+		transition-property: background-color, color;
+		transition-duration: .2s;
+
+		&[data-removable] {
+			background: var(--dsc-chip-background);
+			border-color: var(--dsc-chip-border-color);
+			color: var(--dsc-chip-color);
+		}
+		&[data-removable]:hover {
+			background: var(--dsc-chip-background--hover)
+		}
 	}
 }
