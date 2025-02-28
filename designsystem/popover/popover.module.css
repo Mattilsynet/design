@@ -2,11 +2,12 @@
 	.popover {
 		--mtds-popover-padding: var(--ds-size-5);
 
-		background: white;
+		background: var(--mtds-color-white);
 		border-radius: 5px;
-		border: 0;
+		border: 1px solid var(--mtds-color-neutral-100);
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;
+		color: var(--mtds-color-granskog); /* Needed to overwrite browser default */
 		inset: auto;
 		list-style: none;
 		margin: -2px 0 0;

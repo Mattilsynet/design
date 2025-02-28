@@ -10,6 +10,7 @@ import * as stories from './layout.stories';
 ## Flex
 - Brukes når elementenes innhold skal bestemme størrelser
 - `flex-wrap: wrap` er på default, men kan skrues av med `data-nowrap`
+- **Merk:** Skal du kun elementer under hverandre, er `grid` et bedre alternativ, siden `flex-direction: column` kan ha uønskede bieffekter på f.eks. `align-items`, `justify-content`.
 
 <Canvas of={stories.FlexStory} />
 

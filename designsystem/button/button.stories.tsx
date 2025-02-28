@@ -238,7 +238,7 @@ export const WithIcons: Story = {
 	),
 };
 
-export const WithLoading: Story = {
+export const WithSpinner: Story = {
 	render: () => (
 		<>
 			<button

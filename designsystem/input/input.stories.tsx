@@ -216,11 +216,20 @@ export const Disabled: Story = {
 	),
 };
 
-export const Search: Story = {
+export const TypeSearch: Story = {
 	render: () => (
 		<div className={styles.field}>
 			<label>Søkefelt</label>
 			<input className={styles.input} type="search" />
+		</div>
+	),
+};
+
+export const TypeDate: Story = {
+	render: () => (
+		<div className={styles.field}>
+			<label>Datovelger</label>
+			<input className={styles.input} type="date" />
 		</div>
 	),
 };
