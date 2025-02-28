@@ -10,6 +10,7 @@
 
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		display: inline-flex;
+		flex-shrink: 0; /* If placed in flex */
 		font-weight: 500;
 		max-width: 100%;
 		transition-duration: .2s;
