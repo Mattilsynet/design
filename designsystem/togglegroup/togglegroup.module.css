@@ -1,8 +1,2 @@
 @layer mt.design {
-	.togglegroup {
-		display: inline-grid;
-		gap: var(--ds-size-2);
-		place-items: center;
-		vertical-align: middle;
-	}
 }

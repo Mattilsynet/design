@@ -206,14 +206,17 @@
 		--sides: 14em;
 
 		box-sizing: border-box;
-		display: grid;
 		grid-template:
-			"header header header" auto
-			"nav main aside" 1fr
-			"footer footer footer" auto / auto 1fr auto;
+		"header header header" auto
+		"nav main aside" 1fr
+		"footer footer footer" auto / auto 1fr auto;
 		min-height: 100vh;
 		min-height: 100svh; /* Use small viewport height if supported */
 		transition: grid-template-columns .3s ease-out;
+
+		&:not([hidden]) {
+			display: grid;
+		}
 
 		& > * {
 			box-sizing: border-box;
@@ -233,10 +236,13 @@
 	.app > header,
 	.app header:has(~ main) {
 		align-items: center;
-		display: flex;
 		gap: var(--ds-size-2);
 		grid-area: header;
 		padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+
+		&:not([hidden]) {
+			display: flex;
+		}
 
 		/* Push logo to left */
 		& > :first-child {
