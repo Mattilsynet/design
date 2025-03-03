@@ -101,6 +101,15 @@ export const Select: Story = {
 	),
 };
 
+export const Textarea: Story = {
+	render: () => (
+		<div className={styles.field}>
+			<label>Textarea</label>
+			<textarea className={styles.input}></textarea>
+		</div>
+	),
+};
+
 export const Checkbox: Story = {
 	render: () => (
 		<div className={styles.field}>

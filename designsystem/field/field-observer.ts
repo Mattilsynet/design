@@ -35,13 +35,25 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
     if (input) {
       for (const label of labels) label.htmlFor = useId(input);
       renderCounter(input);
+      renderTextareaSize(input);
       attr(input, "aria-describedby", descs.join(" "));
       attr(input, "aria-invalid", `${!valid}`);
     }
   }
 }
 function handleInput({ target }: Event) {
-  if (isInputLike(target)) renderCounter(target);
+  if (isInputLike(target)) {
+    renderCounter(target);
+    renderTextareaSize(target);
+  }
+}
+
+// iOS does not support field-sizing: content, so we need to manually resize
+function renderTextareaSize(textarea: Element) {
+  if (textarea instanceof HTMLTextAreaElement) {
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
 }
 
 function renderCounter(input: HTMLInputElement) {

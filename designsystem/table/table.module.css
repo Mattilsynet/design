@@ -242,5 +242,8 @@
 			border-bottom: 0;
 			padding-bottom: 0;
 		}
+		.table[data-mobile][data-border] > tbody > tr > * {
+			border-inline: 0;
+		}
 	}
 }
