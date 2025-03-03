@@ -3,6 +3,12 @@
 		--mtds-tooltip-position: top;
 	}
 
+	 /* Ensure :hover, even when disabled */
+	[data-tooltip]:disabled,
+	[data-tooltip][aria-disabled="true"] {
+		pointer-events: all;
+	}
+
 	[data-tooltip][tabindex="0"] {
 		border-radius: var(--ds-border-radius-sm);
 
