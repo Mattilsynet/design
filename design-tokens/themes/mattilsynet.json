@@ -1,0 +1,188 @@
+{
+  "color": {
+    "primary": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.primary.16}"
+      }
+    },
+    "neutral": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.neutral.16}"
+      }
+    }
+  },
+  "font-family": {
+    "$type": "fontFamilies",
+    "$value": "{mattilsynet.font-family}"
+  },
+  "font-weight": {
+    "medium": {
+      "$type": "fontWeights",
+      "$value": "{mattilsynet.font-weight.medium}"
+    },
+    "semibold": {
+      "$type": "fontWeights",
+      "$value": "{mattilsynet.font-weight.semibold}"
+    },
+    "regular": {
+      "$type": "fontWeights",
+      "$value": "{mattilsynet.font-weight.regular}"
+    }
+  },
+  "border-radius": {
+    "1": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*0.5,{border-radius.scale})"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base},{border-radius.scale}*2)"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*2,{border-radius.scale}*5)"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*3,{border-radius.scale}*7)"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "{border-radius.base}"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "9999"
+    },
+    "base": {
+      "$type": "dimension",
+      "$value": "5"
+    },
+    "scale": {
+      "$type": "dimension",
+      "$value": "4"
+    }
+  }
+}
