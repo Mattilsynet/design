@@ -39,9 +39,8 @@ export const React: Story = {
 		<>
 			<Button data-variant="primary">Primary</Button>
 			<Button data-variant="secondary">Secondary</Button>
-			<Button>Tertiary (default)</Button>
-			<Button href="#">Tertiary (default)</Button>
-			<Button as="span">Tertiary (default)</Button>
+			<Button>Tertiary as button</Button>
+			<Button href="#">Tertiary as link</Button>
 		</>
 	),
 };
@@ -84,7 +83,6 @@ export const Colors: Story = {
 				type="button"
 				className={styles.button}
 				data-variant="primary"
-				data-color="accent"
 			>
 				Accent
 			</button>
@@ -92,38 +90,6 @@ export const Colors: Story = {
 				type="button"
 				className={styles.button}
 				data-variant="primary"
-				data-color="danger"
-			>
-				Danger
-			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
-				data-color="accent"
-			>
-				Accent
-			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
-				data-color="danger"
-			>
-				Danger
-			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="tertiary"
-				data-color="accent"
-			>
-				Accent
-			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="tertiary"
 				data-color="danger"
 			>
 				Danger
@@ -339,6 +305,7 @@ export const InMenu: Story = {
 };
 
 export const Invert: Story = {
+	name: 'Invert (Eksperimentell)',
 	render: () => (
 		<div
 			className={styles.flex}

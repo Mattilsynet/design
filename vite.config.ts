@@ -16,7 +16,7 @@ const cssPropsRename: Plugin = {
   transform: (code) => ({
     map: null,
     code: code
-      .replace(/--ds-size-/g, "--ds-")
+      .replace(/--ds-size-/g, "--mtds-")
       .replace(/--ds(c?)-/g, `--ds$1${version}-`)
       .replace(/@layer [^;]+/g, (m) =>
         m.replace(/\b(ds|mt)\./g, `$1.v${version}`)

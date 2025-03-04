@@ -10,7 +10,6 @@
 		transition-property: box-shadow, translate;
 		transition-duration: .2s;
 
-
 		&:not([hidden]) {
 			display: block;
 		}

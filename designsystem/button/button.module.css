@@ -1,12 +1,6 @@
 @layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
-		--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore color change on active as we use scale instead */
-		--dsc-button-background--hover: var(--ds-color-surface-hover);
-		--dsc-button-background: transparent;
-		--dsc-button-color--hover: var(--dsc-button-color); /* Ignore color change on hover */
-		--dsc-button-border-color: currentcolor;
-		--dsc-button-color: currentcolor;
 
 		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
 		flex-shrink: 0; /* If placed in flex */
@@ -18,6 +12,15 @@
 
 		&:not([hidden]) {
 			display: inline-flex;
+		}
+
+		&:not([data-color="danger"]) {
+			--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore color change on active as we use scale instead */
+			--dsc-button-background--hover: var(--ds-color-surface-hover);
+			--dsc-button-background: transparent;
+			--dsc-button-color--hover: var(--dsc-button-color); /* Ignore color change on hover */
+			--dsc-button-border-color: currentcolor;
+			--dsc-button-color: currentcolor;
 		}
 
 		/* Overwrite to same as tertiary from Designsystemet  */
@@ -106,7 +109,6 @@
 		 */
 		&[aria-busy="true"] {
 			pointer-events: none;
-			opacity: 1; /* Undo disabled styling */
 		}
 		&[aria-busy="true"]::before {
 			background: currentcolor;

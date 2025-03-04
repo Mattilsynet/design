@@ -1,8 +1,10 @@
 @layer mt.design {
 	.chip {
 		composes: ds-chip from "@digdir/designsystemet-css";
+		--dsc-chip-input-accent-color: var(--mtds-color-white);
+
 		transition-property: background-color, color;
-		transition-duration: .2s;
+		transition-duration: .2s;		
 
 		&[data-removable] {
 			background: var(--dsc-chip-background);

@@ -30,3 +30,14 @@ export const React: Story = {
 		</Field>
 	),
 };
+
+export const Colors: Story = {
+	render: () => (
+		<>
+			<Validation data-color="danger">Feilmelding</Validation>
+			<Validation data-color="success">Feilmelding</Validation>
+			<Validation data-color="info">Feilmelding</Validation>
+			<Validation data-color="warning">Feilmelding</Validation>
+		</>
+	),
+};

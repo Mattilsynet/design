@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<button type="button" className={styles.button} disabled data-tooltip="Innhold her">
+		<button type="button" className={styles.button} data-tooltip="Innhold her">
 			Hold over meg
 		</button>
 	),
