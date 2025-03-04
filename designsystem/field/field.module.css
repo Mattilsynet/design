@@ -3,7 +3,7 @@
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-size-2);
 
-		& label + p {
+		& p:first-of-type {
 			margin-top: 0;
 		}
 

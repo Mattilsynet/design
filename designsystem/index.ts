@@ -11,6 +11,9 @@ import * as popover from "./popover/popover-observer";
 import * as table from "./table/table-observer";
 import { IS_BROWSER } from "./utils";
 
+export type Size = "sm" | "md" | "lg";
+export type HeadingSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
 // Automatic observe on browser
 if (IS_BROWSER) {
   const isLoading = document.readyState === "loading"; // Check if the page is still loading - might happen if the script is in <head>

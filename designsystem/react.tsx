@@ -12,6 +12,7 @@ export * from "./errorsummary/errorsummary";
 export * from "./field/field";
 export * from "./fieldset/fieldset";
 export * from "./heading/heading";
+export * from "./helptext/helptext";
 export * from "./input/input";
 export * from "./layout/layout";
 export * from "./link/link";
