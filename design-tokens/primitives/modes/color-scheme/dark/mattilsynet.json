@@ -3,67 +3,83 @@
     "primary": {
       "1": {
         "$type": "color",
-        "$value": "#021f21"
+        "$value": "#1E2224",
+        "$description": "background-default"
       },
       "2": {
         "$type": "color",
-        "$value": "#03282b"
+        "$value": "#6C6A6914",
+        "$description": "background-tinted"
       },
       "3": {
         "$type": "color",
-        "$value": "#043135"
+        "$value": "#24282a",
+        "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#043b3f"
+        "$value": "#9bcab9",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#054247"
+        "$value": "#9bcab9",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#0e4b50"
+        "$value": "#9bcab9",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#21595d"
+        "$value": "#6c6a691a",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
-        "$value": "#598386"
+        "$value": "#68b096",
+        "$description": "border-default"
       },
       "9": {
         "$type": "color",
-        "$value": "#8aa7aa"
+        "$value": "#6c6a6933",
+        "$description": "border-strong"
       },
       "10": {
         "$type": "color",
-        "$value": "#8aa7aa"
+        "$value": "#8aa7aa",
+        "$description": "text-subtle"
       },
       "11": {
         "$type": "color",
-        "$value": "#dee6e7"
+        "$value": "#dee6e7",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
-        "$value": "#95b0b2"
+        "$value": "#68b096",
+        "$description": "base-default"
       },
       "13": {
         "$type": "color",
-        "$value": "#7b9c9f"
+        "$value": "#abe1cd",
+        "$description": "base-hover"
       },
       "14": {
         "$type": "color",
-        "$value": "#60888b"
+        "$value": "#abe1cd",
+        "$description": "base-active"
       },
       "15": {
         "$type": "color",
-        "$value": "#181c1c"
+        "$value": "#181c1c",
+        "$description": "base-contrast-subtle"
       },
       "16": {
         "$type": "color",
-        "$value": "#000000"
+        "$value": "#000000",
+        "$description": "base-contrast-default"
       }
     },
     "neutral": {

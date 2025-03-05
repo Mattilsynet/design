@@ -15,35 +15,43 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#dcebf6"
+        "$value": "#DFEEF6",
+        "$description": "surface-tinted\n\"bakgrunnsblå\""
       },
       "5": {
         "$type": "color",
-        "$value": "#c5ddf0"
+        "$value": "#cde5f2",
+        "$description": "surface-hover\n\"Bekk\"\n\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#aed0ea"
+        "$value": "#9ecced",
+        "$description": "surface-active\n\"Himmel\""
       },
       "7": {
         "$type": "color",
-        "$value": "#94c1e3"
+        "$value": "#153F7B12",
+        "$description": "border-subtle\nFjord 7%"
       },
       "8": {
         "$type": "color",
-        "$value": "#2a83c8"
+        "$value": "#153F7B",
+        "$description": "border-default\nfjord"
       },
       "9": {
         "$type": "color",
-        "$value": "#0964a9"
+        "$value": "#153F7B33",
+        "$description": "border-strong\nfjord 20%"
       },
       "10": {
         "$type": "color",
-        "$value": "#0964a9"
+        "$value": "#1D57AA",
+        "$description": "text-subtle\nMellomblå"
       },
       "11": {
         "$type": "color",
-        "$value": "#042d4d"
+        "$value": "#153F7B",
+        "$description": "text-default\n\"Fjord\""
       },
       "12": {
         "$type": "color",
@@ -81,7 +89,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#daeddd"
+        "$value": "#E2F1DF",
+        "$description": "surface-tinted\nLav"
       },
       "5": {
         "$type": "color",
@@ -93,23 +102,28 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#8fc997"
+        "$value": "#05444912",
+        "$description": "border-subtle\n7% granskog"
       },
       "8": {
         "$type": "color",
-        "$value": "#1d922d"
+        "$value": "#054449",
+        "$description": "border-default\ngranskog"
       },
       "9": {
         "$type": "color",
-        "$value": "#057114"
+        "$value": "#05444933",
+        "$description": "border-strong\ngranskog 20%"
       },
       "10": {
         "$type": "color",
-        "$value": "#057114"
+        "$value": "#116E6B",
+        "$description": "text-subtle\nhavdyp"
       },
       "11": {
         "$type": "color",
-        "$value": "#023409"
+        "$value": "#054449",
+        "$description": "text-default\ngranskog"
       },
       "12": {
         "$type": "color",
@@ -147,7 +161,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#fae6c6"
+        "$value": "#FCF0D2",
+        "$description": "surface-tinted\nbakgrunnsgul"
       },
       "5": {
         "$type": "color",
@@ -159,15 +174,18 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#eeb04c"
+        "$value": "#7F433B12",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
-        "$value": "#ad7214"
+        "$value": "#7F433B",
+        "$description": "border-default"
       },
       "9": {
         "$type": "color",
-        "$value": "#85580f"
+        "$value": "#7F433B33",
+        "$description": "border-strong"
       },
       "10": {
         "$type": "color",
@@ -175,7 +193,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#3c2807"
+        "$value": "#7F433B",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
@@ -279,7 +298,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#f8e4e4"
+        "$value": "#FEE9DF",
+        "$description": "surface-tinted\nbakgrunnsrosa"
       },
       "5": {
         "$type": "color",
@@ -291,15 +311,18 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#e8adad"
+        "$value": "#92301C12",
+        "$description": "border-subtle\nInforød 7%"
       },
       "8": {
         "$type": "color",
-        "$value": "#d15757"
+        "$value": "#92301C",
+        "$description": "border-default\ninforød"
       },
       "9": {
         "$type": "color",
-        "$value": "#bf1b1b"
+        "$value": "#92301C33",
+        "$description": "border-strong\ninforød 20%"
       },
       "10": {
         "$type": "color",
@@ -307,7 +330,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#590d0d"
+        "$value": "#92301C",
+        "$description": "text-default\ninforød"
       },
       "12": {
         "$type": "color",

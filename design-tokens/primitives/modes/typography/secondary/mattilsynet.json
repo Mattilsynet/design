@@ -2,7 +2,7 @@
   "mattilsynet": {
     "font-family": {
       "$type": "fontFamilies",
-      "$value": "Inter"
+      "$value": "Mattilsynet Sans Variable"
     },
     "font-weight": {
       "medium": {
