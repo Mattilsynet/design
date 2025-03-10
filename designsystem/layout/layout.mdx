@@ -1,30 +1,37 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { Alert } from '../react.tsx';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
 
 # Layout
 - Bruk klassene `flex` for `display: flex` eller `grid` for `display: grid`
-- Begge klassene støtter `data-align | data-justify | data-align-content | data-center | data-gap`
+- Begge klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`
+
+
+<Alert data-color='info'>
+**Hvorfor ikke bare bruke Tailwind eller vanilla CSS?**
+<br />Fordi vi ønsker å ha en felles standard for layout som er enkel å forstå og bruke. Dette gjør det enklere å lage nye komponenter og sider, og gjør det enklere å vedlikeholde eksisterende kode.
+</Alert>
 
 ## Flex
-- Brukes når elementenes innhold skal bestemme størrelser
+- **💡 Bruk `flex` når du trenger forskjellige bredder på elementene**
 - `flex-wrap: wrap` er på default, men kan skrues av med `data-nowrap`
 - **Merk:** Skal du kun elementer under hverandre, er `grid` et bedre alternativ, siden `flex-direction: column` kan ha uønskede bieffekter på f.eks. `align-items`, `justify-content`.
 
 <Canvas of={stories.FlexStory} />
 
 ## Grid
-- Brukes når forelderen skal bestemme størrelser
-- Bruk uten `data-grid` for å kun få rader / vertikal layout med `data-gap`
-- Bruk `data-grid="fit"` for automatisk antall kolonner
-- Bruk `data-grid="xs | sm | md | lg"` for bestemte bredder
-- Bruk `data-grid="fit-xs | fit-sm | fit-md | fit-lg"` for minimumsbredder som får lov å vokse
-- Bruk `data-grid="1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12"` for bestemt antall
+- **💡 Bruk `grid` når du trenger samme bredder på alle elementer**
+- **💡 Bruk `grid` *uten* `data-items` for å sette elementer under hverandre**
+- Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
+- Bruk `data-items="xs | sm | md | lg"` for minimumsbredder som får lov å vokse
+- Bruk `data-fixed` for å låste bredder
 <Canvas of={stories.GridStory} />
 
 ## Gap
-- `data-gap="none | false | xs | sm | md | lg | xl"` (`sm` er default)
+- `data-gap="none | xs | sm | md | lg | xl"` (`sm` er default)
+- **Merk:** Bruker du `data-items` og ikke setter `data-gap` blir `column-gap` automatisk `md` for økt lesbarhet
 <Canvas of={stories.Gap} />
 
 ## Center

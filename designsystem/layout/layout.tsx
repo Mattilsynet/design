@@ -9,7 +9,7 @@ import styles from "../styles.module.css";
 type SharedProps = {
 	"data-align"?: "stretch" | "start" | "center" | "end";
 	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
-	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | false;
+	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
 	"data-justify"?:
 		| "start"
 		| "center"
@@ -33,40 +33,19 @@ export type GridProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		SharedProps & {
-			"data-grid"?:
-				| "1"
-				| "2"
-				| "3"
-				| "4"
-				| "5"
-				| "6"
-				| "7"
-				| "8"
-				| "9"
-				| "10"
-				| "11"
-				| "12"
-				| "fit"
-				| "fit-lg"
-				| "fit-md"
-				| "fit-sm"
-				| "fit-xs"
-				| "lg"
-				| "md"
-				| "sm"
-				| "xs"
-				| 1
-				| 2
-				| 3
-				| 4
-				| 5
-				| 6
-				| 7
-				| 8
-				| 9
-				| 10
-				| 11
-				| 12;
+			"data-fixed"?: boolean;
+			"data-items"?:
+				| "auto"
+				| "5ch"
+				| "10ch"
+				| "15ch"
+				| "20ch"
+				| "25ch"
+				| "30ch"
+				| "35ch"
+				| "40ch"
+				| "45ch"
+				| "50ch";
 		}
 	>;
 

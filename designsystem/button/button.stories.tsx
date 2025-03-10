@@ -1,4 +1,4 @@
-import { Heart, Star } from "@phosphor-icons/react";
+import { Heart, List, Star, X } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../react";
@@ -78,12 +78,8 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
 	render: () => (
-		<div className={styles.grid} data-grid="2">
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="primary"
-			>
+		<div className={styles.grid} data-items="2">
+			<button type="button" className={styles.button} data-variant="primary">
 				Accent
 			</button>
 			<button
@@ -100,7 +96,7 @@ export const Colors: Story = {
 
 export const Nowrap: Story = {
 	render: () => (
-		<div className={styles.grid} data-grid="sm" style={{ width: 300 }}>
+		<div className={styles.grid} data-items="sm" style={{ width: 300 }}>
 			<div>
 				<p>Med nowrap:</p>
 				<button
@@ -132,17 +128,40 @@ export const Pressed: Story = {
 		const [pressed, setPressed] = useState(false);
 
 		return (
-			<button
-				aria-pressed={pressed}
-				type="button"
-				className={styles.button}
-				onClick={() => setPressed(!pressed)}
-			>
-				<Star data-pressed="false" />
-				<span data-pressed="false">Lagre favoritt</span>
-				<Star data-pressed="true" weight="fill" />
-				<span data-pressed="true">Fjern favoritt</span>
-			</button>
+			<>
+				<button
+					aria-pressed={pressed}
+					type="button"
+					className={styles.button}
+					onClick={() => setPressed(!pressed)}
+				>
+					<Star data-pressed="false" />
+					<span data-pressed="false">Lagre favoritt</span>
+					<Star data-pressed="true" weight="fill" />
+					<span data-pressed="true">Fjern favoritt</span>
+				</button>
+				<button
+					className={styles.button}
+					popoverTarget="pop-pressed"
+					type="button"
+				>
+					With popover
+					<List data-pressed="false" />
+					<X data-pressed="true" />
+				</button>
+				<menu className={styles.popover} id="pop-pressed" popover="auto">
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+				</menu>
+			</>
 		);
 	},
 };
@@ -168,7 +187,7 @@ export const WithArrows: Story = {
 				Popover
 			</button>
 
-			<menu className={styles.popover} id="pop-1" popover="">
+			<menu className={styles.popover} id="pop-1" popover="auto">
 				<li>
 					<button type="button" className={styles.button}>
 						Knapp 1
@@ -248,7 +267,7 @@ export const WithMenu: Story = {
 				type="button"
 				className={styles.button}
 			/>
-			<menu popover="" id="pop-2" className={styles.popover}>
+			<menu popover="auto" id="pop-2" className={styles.popover}>
 				<li>
 					<button type="button" className={styles.button}>
 						Knapp 1
@@ -305,7 +324,7 @@ export const InMenu: Story = {
 };
 
 export const Invert: Story = {
-	name: 'Invert (Eksperimentell)',
+	name: "Invert (Eksperimentell)",
 	render: () => (
 		<div
 			className={styles.flex}

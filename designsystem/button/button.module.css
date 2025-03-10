@@ -2,7 +2,7 @@
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 
-		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
+		border-radius: 5px;
 		flex-shrink: 0; /* If placed in flex */
 		font-weight: 500;
 		max-width: 100%;
@@ -10,7 +10,7 @@
 		transition-property: background-color, scale, translate;
 		vertical-align: middle;
 
-		&:not([hidden]) {
+		&:where(:not([hidden])) {
 			display: inline-flex;
 		}
 
@@ -36,7 +36,7 @@
 
 		&[data-variant="primary"] {
 			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
-			--dsc-button-background: var(--mtds-color-granskog);
+			--dsc-button-background: var(--mtds-color-granskog); /* #0f6160; /*#116e6b;*/
 			--dsc-button-color: var(--mtds-color-white);
 		}
 		&[data-color="invert"][data-variant="primary"] {
@@ -97,11 +97,10 @@
 		}
 		&[data-arrow][popovertarget]::before {
 			mask-image: var(--mtds-icon-chevron);
-			rotate: 90deg;
 			transition: rotate .2s ease-out;
 		}
 		&[data-arrow][popovertarget]:has(+ :popover-open)::before {
-			rotate: -90deg;
+			rotate: -180deg;
 		}
 
 		/**
@@ -122,8 +121,10 @@
 		}
 
 		/**
-		 * Aria-pressed
+		 * Aria-pressed / Popover-open
 		 */
+		&[popovertarget]:has(+ :not(:popover-open)) [data-pressed="true"],
+		&[popovertarget]:has(+ :popover-open) [data-pressed="false"],
 		&[aria-pressed="false"] [data-pressed="true"],
 		&[aria-pressed="true"] [data-pressed="false"] {
 			display: none;

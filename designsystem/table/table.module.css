@@ -24,6 +24,9 @@
 			vertical-align: middle;
 		}
 	}
+	.table th {
+		font-weight: 500; /* TODO EIRIK: Se på med Stein Olav */
+	}
 
 	/**
 	 * Numeric
@@ -99,9 +102,9 @@
 			width: 100%;
 
 			&:focus-visible {
-				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-				outline: var(--ds--focus, var(--dsc-focus-outline));
-				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
+				box-shadow: var(--dsc-focus-boxShadow);
+				outline: var(--dsc-focus-outline);
+				outline-offset: var(--ds-border-width-focus);
 			}
 
 			/* &::after {
@@ -117,16 +120,21 @@
 				height: var(--mtds-icon-size);
 				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mtds-icon-chevron);
-				rotate: 90deg;
 				transition: rotate .2s;
 				vertical-align: -.3em;
 				width: var(--mtds-icon-size);
 			}
 
 			&[aria-expanded="true"]::before {
-				rotate: -90deg;
+				rotate: -180deg;
 			}
 		}
+	}
+	.table
+		> tbody
+		> tr:has(> :is(td, th) > button[aria-expanded="true"])
+		> :is(td, th) {
+		border-bottom: 0;
 	}
 
 	/**

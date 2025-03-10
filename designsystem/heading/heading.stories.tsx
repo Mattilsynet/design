@@ -6,7 +6,7 @@ const meta = {
 	title: "Designsystem/Heading",
 	decorators: [
 		(Story) => (
-			<div className={styles.grid}>
+			<div className={styles.grid} style={{ whiteSpace: "nowrap" }}>
 				<Story />
 			</div>
 		),

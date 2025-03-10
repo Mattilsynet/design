@@ -16,12 +16,13 @@
 		content: "";
 		height: var(--mtds-icon-size);
 		mask: center / contain no-repeat var(--mtds-icon-chevron);
+		rotate: -90deg;
 		order: 1;
 		width: var(--mtds-icon-size);
 	}
 	.pagination li:first-child > :is(a, button)::before {
 		order: 0;
-		rotate: 180deg;
+		rotate: 90deg;
 	}
 	.pagination li:first-child:empty > :is(a, button)::before {
 		content: var(--mtds-text-previous);

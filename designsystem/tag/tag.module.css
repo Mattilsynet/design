@@ -7,7 +7,6 @@
 		border: 1px solid var(--mtds-color-neutral-50);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
-		height: fit-content; /* Can be removed when DigiDir gets this */
 		flex-shrink: 0; /* If placed in display: flex */
 
 		/**

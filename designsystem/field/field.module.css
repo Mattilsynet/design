@@ -2,58 +2,164 @@
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
 		row-gap: var(--ds-size-2);
+		position: relative; /* To support <u-datalist> positioning */
+	}
 
-		& p:first-of-type {
-			margin-top: 0;
-		}
+	/* Remove space between label and description */
+	.field > p:first-of-type {
+		margin-top: 0;
+	}
+	.field > * {
+		opacity: 1; /* Overwrite DigiDir disabled */
+	}
 
-		& > :not(input, select, textarea),
+	/**
+	 * Mark <label> as required
+	 */
+	.field:has(:required, [aria-required="true"]) label::after {
+		background: var(--mtds-color-bakgrunns-blaa);
+		border-radius: 5px;
+		border: 1px solid var(--mtds-color-neutral-50);
+		box-sizing: border-box;
+		color: var(--mtds-color-fjord);
+		content: var(--mtds-text-required);
+		display: inline-block;
+		font-size: var(--ds-body-xs-font-size);
+		font-weight: normal;
+		height: var(--ds-size-8);
+		line-height: 1.5;
+		margin-inline-start: var(--ds-size-3);
+		padding: 0 var(--ds-size-2);
+		vertical-align: middle;
+	}
+
+	/**
+	 * Toggles
+	 */
+	.field:has(input:is([type="radio"], [type="checkbox"])) {
+		row-gap: 0;
+
 		& label {
-			opacity: 1; /* Overwrite DigiDir disabled */
-		}
-
-		/* Mark <label> as required */
-		&:has(:required, [aria-required="true"]) label::after {
-			background: var(--mtds-color-bakgrunns-blaa);
-			border-radius: 5px;
-			border: 1px solid var(--mtds-color-neutral-50);
-			box-sizing: border-box;
-			color: var(--mtds-color-fjord);
-			content: var(--mtds-text-required);
-			display: inline-block;
-			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
-			height: var(--ds-size-8);
-			line-height: 1.5;
-			margin-inline-start: var(--ds-size-3);
-			padding: 0 var(--ds-size-2);
-			vertical-align: middle;
 		}
-
-		&:has(input:is([type="radio"], [type="checkbox"])) {
-			row-gap: 0;
-
-			& label {
-				font-weight: normal;
-			}
-			& p {
-				font-size: var(--ds-font-size-minus-1);
-			}
+		& p {
+			font-size: var(--ds-font-size-minus-1);
 		}
-
-		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		&:has([readonly]:disabled) label {
-			cursor: default;
+			cursor: default; /* Stiling when both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		}
 	}
 
+	/**
+	 * Suggestion
+	 */
+	.field u-datalist {
+		background: var(--mtds-color-white);
+		border-radius: 5px;
+		border: 1px solid var(--mtds-color-neutral-200);
+		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+		box-sizing: border-box;
+		color: var(--mtds-color-granskog);
+		left: 0;
+		margin: 0;
+		max-height: 400px;
+		overflow: auto;
+		padding: var(--ds-size-2);
+		position: absolute;
+		width: 100%;
+		z-index: 9999;
+
+		/* Hide <u-option role="none"> if any other <u-option> is visible */
+		& > u-option[role="none"] {
+			display: block;
+		}
+		&:has(u-option:not([hidden]):not([aria-disabled="true"]):not([role="none"]))
+			> u-option[role="none"] {
+			display: none;
+		}
+	}
+	.field u-option {
+		position: relative;
+		border-radius: 3px; /* 5px border-radius */
+		outline: 0;
+		padding: var(--ds-size-2);
+		transition: .1s background-color;
+
+		&[aria-selected="true"] {
+			padding-left: var(--ds-size-10);
+		}
+		&[aria-selected="true"]::before {
+			background: currentcolor;
+			content: "";
+			mask: center / contain no-repeat var(--mtds-icon-check);
+			position: absolute;
+			inset: 0 auto 0 var(--ds-size-3);
+			width: var(--mtds-icon-size);
+		}
+		&[role="option"]:hover {
+			background: var(--ds-color-surface-hover);
+		}
+	}
+	.field u-option:focus,
+	.field u-tags > data:focus {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline-offset: var(--ds-border-width-focus);
+		outline: var(--dsc-focus-outline);
+		position: relative;
+		z-index: 1; /* Place focus line on top */
+	}
+
+	/**
+	 * Multi suggestion
+	 */
+	.field u-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--ds-size-2);
+		position: relative;
+	}
+	.field u-tags > input {
+		flex: 1 0 100%;
+	}
+	.field u-tags > data {
+		align-items: center;
+		background: var(--ds-color-surface-tinted);
+		border-radius: var(--ds-border-radius-full);
+		border: 1px solid var(--ds-color-border-subtle);
+		box-sizing: border-box;
+		color: var(--ds-color-text-default);
+		cursor: pointer;
+		gap: var(--ds-size-1);
+		display: inline-flex;
+		font-size: var(--ds-font-size-minus-1);
+		line-height: var(--ds-line-height-sm);
+		min-height: var(--ds-size-8);
+		padding-inline: var(--ds-size-3) var(--ds-size-2);
+		text-decoration: none;
+		transition: .2s;
+	}
+	.field u-tags > data::after {
+		background: currentcolor;
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat var(--mtds-icon-close);
+		width: var(--mtds-icon-size);
+		padding: 0;
+		border-radius: 100%;
+	}
+	.field u-tags > u-datalist {
+		top: 100%;
+	}
+
+	/**
+	 * Affixes
+	 */
 	.affixes {
 		composes: ds-field-affixes from "@digdir/designsystemet-css";
 
 		align-items: center;
 		box-shadow: inset 0 0 0 1px var(--dsc-field-affix-border-color);
 
-		&:not([hidden]){
+		&:where(:not([hidden])) {
 			display: flex;
 		}
 

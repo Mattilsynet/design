@@ -4,7 +4,8 @@
 		"enabled": true
 	},
 	"formatter": {
-		"enabled": true
+		"enabled": true,
+		"ignore": ["layout.module.css"]
 	},
 	"javascript": {
 		"formatter": {
@@ -25,13 +26,15 @@
 		"rules": {
 			"recommended": true,
 			"a11y": {
-				"useAnchorContent": "off",
+				"noInteractiveElementToNoninteractiveRole": "off",
 				"noLabelWithoutControl": "off",
 				"noSvgWithoutTitle": "off",
+				"useAnchorContent": "off",
 				"useAriaPropsForRole": "off",
+				"useFocusableInteractive": "off",
 				"useHeadingContent": "off",
 				"useSemanticElements": "off",
-				"useFocusableInteractive": "off"
+				"useValidAriaRole": "off"
 			},
 			"style": {
 				"useSelfClosingElements": "off"

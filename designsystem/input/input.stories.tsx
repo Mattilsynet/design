@@ -242,3 +242,18 @@ export const TypeDate: Story = {
 		</div>
 	),
 };
+
+export const TypeNumber: Story = {
+	render: () => (
+		<div className={styles.grid} data-items="lg">
+			<div className={styles.field}>
+				<label>Antall dyr</label>
+				<input className={styles.input} type="number" />
+			</div>
+			<div className={styles.field}>
+				<label>Referansenummer</label>
+				<input className={styles.input} type="text" inputMode="numeric" />
+			</div>
+		</div>
+	),
+};

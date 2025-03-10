@@ -1,3 +1,4 @@
+import { List, X } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useId } from "react";
 import { Button, Popover } from "../react";
@@ -27,7 +28,7 @@ export const Default: Story = {
 				>
 					Knapp
 				</button>
-				<menu popover="" id={popId} className={styles.popover}>
+				<menu popover="auto" id={popId} className={styles.popover}>
 					{range.map((num) => (
 						<li key={num}>
 							<button type="button" className={styles.button}>
@@ -79,7 +80,7 @@ export const Dropdown: Story = {
 				>
 					Knapp
 				</button>
-				<menu popover="" id={popId} className={styles.popover}>
+				<menu popover="auto" id={popId} className={styles.popover}>
 					<li>
 						<a href="#none" className={styles.button}>
 							Knapp 1
@@ -116,7 +117,12 @@ export const Position: Story = {
 			>
 				Knapp
 			</button>
-			<div data-position="top" popover="" id="pop-2" className={styles.popover}>
+			<div
+				className={styles.popover}
+				data-position="top"
+				id="pop-2"
+				popover="auto"
+			>
 				<div className={styles.grid}>
 					<p>Er du sikker på at du vil avslutte uten å lagre?</p>
 					<div className={styles.flex}>
@@ -154,7 +160,7 @@ export const WithClose: Story = {
 			>
 				Knapp
 			</button>
-			<div popover="" id="pop-3" className={styles.popover}>
+			<div popover="auto" id="pop-3" className={styles.popover}>
 				<button
 					popoverTarget="pop-3"
 					popoverTargetAction="hide"
@@ -173,14 +179,29 @@ export const WithArrow: Story = {
 	render: () => (
 		<>
 			<button
+				className={styles.button}
 				data-arrow
 				popoverTarget="pop-4"
 				type="button"
-				className={styles.button}
 			>
 				Knapp
 			</button>
-			<div popover="" id="pop-4" className={styles.popover}>
+			<div popover="auto" id="pop-4" className={styles.popover}>
+				Innhold
+			</div>
+		</>
+	),
+};
+
+export const WithIcon: Story = {
+	render: () => (
+		<>
+			<button className={styles.button} popoverTarget="pop-icon" type="button">
+				Knapp
+				<List data-pressed="false" />
+				<X data-pressed="true" />
+			</button>
+			<div popover="auto" id="pop-icon" className={styles.popover}>
 				Innhold
 			</div>
 		</>
@@ -202,7 +223,7 @@ export const WithDivider: Story = {
 				>
 					Knapp
 				</button>
-				<menu popover="" id={popId} className={styles.popover}>
+				<menu popover="auto" id={popId} className={styles.popover}>
 					<li>
 						<button type="button" className={styles.button}>
 							Knapp 1

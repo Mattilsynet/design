@@ -1,3 +1,6 @@
+import "@u-elements/u-datalist";
+import "@u-elements/u-tags";
+import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
   QUICK_EVENT,
@@ -20,10 +23,12 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
     const labels: HTMLLabelElement[] = [];
     const descs: string[] = [];
     let input: HTMLInputElement | null = null;
+    let datalist: UHTMLDataListElement | null = null;
     let valid = true;
 
     for (const el of field.getElementsByTagName("*")) {
       if (el instanceof HTMLLabelElement) labels.push(el);
+      else if (el instanceof UHTMLDataListElement) datalist = el;
       else if (isInputLike(el)) input = el;
       else if (el.classList.contains(CSS_VALIDATION)) {
         // Must be before instanceof HTMLParagraphElement since validation can also be a <p>
@@ -34,17 +39,12 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
 
     if (input) {
       for (const label of labels) label.htmlFor = useId(input);
+      renderDatalist(input, datalist);
       renderCounter(input);
       renderTextareaSize(input);
       attr(input, "aria-describedby", descs.join(" "));
       attr(input, "aria-invalid", `${!valid}`);
     }
-  }
-}
-function handleInput({ target }: Event) {
-  if (isInputLike(target)) {
-    renderCounter(target);
-    renderTextareaSize(target);
   }
 }
 
@@ -54,6 +54,23 @@ function renderTextareaSize(textarea: Element) {
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
+}
+
+function renderDatalist(
+  input: HTMLInputElement,
+  list?: UHTMLDataListElement | null
+) {
+  attr(input, "list", list ? useId(list) : null);
+
+  if (!list) return;
+  if (!input.hasAttribute("placeholder")) attr(input, "placeholder", ""); // Needed to render dropdown chevron when <datalist> is present
+
+  const style = window.getComputedStyle(list);
+  const singular = style.getPropertyValue("--mtds-text-datalist-singular");
+  const plural = style.getPropertyValue("--mtds-text-datalist-plural");
+
+  attr(list, "data-sr-plural", plural);
+  attr(list, "data-sr-singular", singular);
 }
 
 function renderCounter(input: HTMLInputElement) {
@@ -77,6 +94,14 @@ function renderCounter(input: HTMLInputElement) {
       "%d",
       `${Math.abs(remainder)}`
     );
+  }
+}
+
+// Update when typing
+function handleInput({ target }: Event) {
+  if (isInputLike(target)) {
+    renderCounter(target);
+    renderTextareaSize(target);
   }
 }
 

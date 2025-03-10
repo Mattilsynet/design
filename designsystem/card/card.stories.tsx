@@ -2,7 +2,10 @@ import {
 	CalendarDots,
 	Clock,
 	DownloadSimple,
+	HourglassHigh,
 	ListChecks,
+	MapPin,
+	SmileyMeh,
 	UploadSimple,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -55,45 +58,209 @@ export const AsLink: Story = {
 	),
 };
 
-export const Tableish: Story = {
-	tags: ["!dev"],
+export const AsTable: Story = {
 	render: () => (
-		<div role="table">
-			<div className={styles.card} role="row">
-				<h2 role="cell" data-size="md">
-					PSC8CHE2023029471IN
-				</h2>
-				<dl className={styles.info} role="cell">
-					<dt>
-						<CalendarDots />
-					</dt>
-					<dd>06.12.2024</dd>
-					<dt>
-						<Clock />
-					</dt>
-					<dd>19:37</dd>
-				</dl>
-				<dl role="cell" className={styles.info}>
-					<dt>
-						<UploadSimple />
-					</dt>
-					<dd>GREENK</dd>
-					<dt>🇫🇷</dt>
-					<dd>Frankrike</dd>
-				</dl>
-				<dl role="cell" className={styles.info} style={{ maxWidth: "10em" }}>
-					<dt>
-						<DownloadSimple />
-					</dt>
-					<dd>Bama Gruppen AS, avd. Trading</dd>
-				</dl>
-				<dl role="cell" className={styles.info}>
-					<dt>
-						<ListChecks />
-					</dt>
-					<dd>Daucus carota, Hydrangea paniculata, +4</dd>
-				</dl>
+		<>
+			<div className={styles.card}>
+				<div className={styles.flex}>
+					<h2 data-size="md" data-self="20ch" data-breakup="40">
+						PSC8CHE2023029471IN
+					</h2>
+					<div className={styles.grid} data-self="40ch" data-items="20ch">
+						<div className={styles.grid} data-items="10ch">
+							<span className={styles.info}>
+								<CalendarDots />
+								06.12.2024
+							</span>
+							<span className={styles.info}>
+								<Clock />
+								19:37
+							</span>
+						</div>
+						<div className={styles.grid} data-items="10ch">
+							<span className={styles.info}>
+								<UploadSimple />
+								GREENK
+							</span>
+							<span className={styles.info}>
+								<svg width={20} height={20}>
+									<text
+										dominantBaseline="central"
+										textAnchor="middle"
+										x="50%"
+										y="50%"
+									>
+										🇫🇷
+									</text>
+								</svg>
+								Frankrike
+							</span>
+						</div>
+					</div>
+					<div className={styles.grid} data-self="50ch" data-items="25ch">
+						<span className={styles.info}>
+							<DownloadSimple />
+							Bama Gruppen AS, avd. Trading
+						</span>
+						<span className={styles.info}>
+							<ListChecks />
+							Daucus carota, Hydrangea paniculata, +4
+						</span>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-items="20ch">
+					<h2 data-size="md" data-breakout>
+						Bambus
+					</h2>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<MapPin />
+							Grunerlokka, Oslo
+						</span>
+						<span className={styles.info}>
+							<Clock />
+							12.00 - 22.00
+						</span>
+					</div>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<SmileyMeh />
+							06.01.2024
+						</span>
+						<span className={styles.info}>
+							<HourglassHigh />
+							107.02.2020
+						</span>
+					</div>
+					<strong data-self="10ch" data-fixed>
+						Planlegg tur*
+					</strong>
+				</div>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-items="20ch">
+					<h2 data-size="md" data-breakout>
+						Burgern
+					</h2>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<MapPin />
+							Sentrum, Oslo
+						</span>
+						<span className={styles.info}>
+							<Clock />
+							14.00 - 22.00{" "}
+							<span
+								className={styles.tag}
+								data-size="sm"
+								data-color="info"
+								data-icon="false"
+							>
+								Kveld
+							</span>
+						</span>
+					</div>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<SmileyMeh />
+							14.06.2022
+						</span>
+						<span className={styles.info}>
+							<HourglassHigh />
+							13.02.2023
+						</span>
+					</div>
+					<strong data-self="10ch" data-fixed>
+						Planlegg tur*
+					</strong>
+				</div>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-items="20ch">
+					<h2 data-size="md" data-breakout>
+						Den lekke tomat
+					</h2>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<MapPin />
+							Sagene, Oslo
+						</span>
+						<span className={styles.info}>
+							<Clock />
+							11.00 - 22.00
+						</span>
+					</div>
+					<div className={styles.grid} data-items="15ch">
+						<span className={styles.info}>
+							<SmileyMeh />
+							08.01.2024
+						</span>
+						<span className={styles.info}>
+							<HourglassHigh />
+							23.03.2025
+						</span>
+					</div>
+					<strong data-self="10ch" data-fixed>
+						Planlegg tur*
+					</strong>
+				</div>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-items="20ch">
+					<h2 data-size="md" data-breakout>
+						Ananasen
+					</h2>
+					<div className={styles.grid} data-items="10ch">
+						<span className={styles.info}>
+							<MapPin />
+							Loren, Oslo
+						</span>
+						<span className={styles.info}>
+							<Clock />
+							13.00 - 22.00
+						</span>
+					</div>
+					<div className={styles.grid} data-items="10ch">
+						<span className={styles.info}>
+							<SmileyMeh />
+							06.01.2023
+						</span>
+						<span className={styles.info}>
+							<HourglassHigh />
+							07.04.2025
+						</span>
+					</div>
+					<strong data-self="10ch" data-fixed>
+						Planlegg tur*
+					</strong>
+				</div>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-items="15ch">
+					<h2 data-size="md">Ananasen</h2>
+					<span className={styles.info}>
+						<MapPin />
+						Loren, Oslo
+					</span>
+					<span className={styles.info}>
+						<Clock />
+						13.00 - 22.00
+					</span>
+					<span className={styles.info}>
+						<SmileyMeh />
+						06.01.2023
+					</span>
+					<span className={styles.info}>
+						<HourglassHigh />
+						07.04.2025
+					</span>
+					<strong data-self="10ch" data-fixed>
+						Planlegg tur*
+					</strong>
+				</div>
+			</div>
+		</>
 	),
 };

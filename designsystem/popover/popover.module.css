@@ -20,7 +20,7 @@
 		visibility: hidden;
 		z-index: 9999;
 
-		&:not([hidden]) {
+		&:where(:not([hidden])) {
 			display: block;
 		}
 
