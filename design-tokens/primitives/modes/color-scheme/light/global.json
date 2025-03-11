@@ -25,8 +25,8 @@
       },
       "6": {
         "$type": "color",
-        "$value": "#9ecced",
-        "$description": "surface-active\n\"Himmel\""
+        "$value": "#B3DAEF",
+        "$description": "surface-active\n"
       },
       "7": {
         "$type": "color",
@@ -35,13 +35,13 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#153F7B",
-        "$description": "border-default\nfjord"
+        "$value": "#153F7B33",
+        "$description": "border-default\nfjord 20%"
       },
       "9": {
         "$type": "color",
-        "$value": "#153F7B33",
-        "$description": "border-strong\nfjord 20%"
+        "$value": "#153F7B",
+        "$description": "border-strong\nfjord"
       },
       "10": {
         "$type": "color",
@@ -55,15 +55,18 @@
       },
       "12": {
         "$type": "color",
-        "$value": "#0A71C0"
+        "$value": "#1D57AA",
+        "$description": "base-default\nmellomblå"
       },
       "13": {
         "$type": "color",
-        "$value": "#085d9f"
+        "$value": "#153F7B",
+        "$description": "base-hover\nfjord"
       },
       "14": {
         "$type": "color",
-        "$value": "#074a7e"
+        "$value": "#103160",
+        "$description": "base-active\n"
       },
       "15": {
         "$type": "color",
@@ -94,11 +97,13 @@
       },
       "5": {
         "$type": "color",
-        "$value": "#c3e2c7"
+        "$value": "#C8E2C3",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#abd6b1"
+        "$value": "#B0D9B6",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
@@ -107,13 +112,13 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#054449",
-        "$description": "border-default\ngranskog"
+        "$value": "#05444933",
+        "$description": "border-default\ngranskog 20%"
       },
       "9": {
         "$type": "color",
-        "$value": "#05444933",
-        "$description": "border-strong\ngranskog 20%"
+        "$value": "#054449",
+        "$description": "border-strong\ngranskog"
       },
       "10": {
         "$type": "color",
@@ -127,15 +132,18 @@
       },
       "12": {
         "$type": "color",
-        "$value": "#068718"
+        "$value": "#0f6160",
+        "$description": "base-default\nmodifisert havdyp"
       },
       "13": {
         "$type": "color",
-        "$value": "#057014"
+        "$value": "#054449",
+        "$description": "base-hover"
       },
       "14": {
         "$type": "color",
-        "$value": "#045a10"
+        "$value": "#032c30",
+        "$description": "base-active"
       },
       "15": {
         "$type": "color",
@@ -166,25 +174,27 @@
       },
       "5": {
         "$type": "color",
-        "$value": "#f6d5a0"
+        "$value": "#F8DE9C",
+        "$description": "surface-hover\nsolstreif"
       },
       "6": {
         "$type": "color",
-        "$value": "#f3c479"
+        "$value": "#F3D079",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
         "$value": "#7F433B12",
-        "$description": "border-subtle"
+        "$description": "border-subtle\n7%"
       },
       "8": {
         "$type": "color",
-        "$value": "#7F433B",
-        "$description": "border-default"
+        "$value": "#7F433B33",
+        "$description": "border-default\n20%"
       },
       "9": {
         "$type": "color",
-        "$value": "#7F433B33",
+        "$value": "#7F433B",
         "$description": "border-strong"
       },
       "10": {
@@ -298,48 +308,53 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#FEE9DF",
-        "$description": "surface-tinted\nbakgrunnsrosa"
+        "$value": "#FEEAE6",
+        "$description": "surface-tinted\nJustert bakgrunnsrosa"
       },
       "5": {
         "$type": "color",
-        "$value": "#f3d2d2"
+        "$value": "#F7DAD4",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#eec1c1"
+        "$value": "#F3CFC8",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#92301C12",
-        "$description": "border-subtle\nInforød 7%"
+        "$value": "#AA2C1C12",
+        "$description": "border-subtle\n7%"
       },
       "8": {
         "$type": "color",
-        "$value": "#92301C",
-        "$description": "border-default\ninforød"
+        "$value": "#AA2C1C33",
+        "$description": "border-default\n20%"
       },
       "9": {
         "$type": "color",
-        "$value": "#92301C33",
-        "$description": "border-strong\ninforød 20%"
+        "$value": "#AA2C1C",
+        "$description": "border-strong\n(ny rødfarge)"
       },
       "10": {
         "$type": "color",
-        "$value": "#bf1b1b"
+        "$value": "#DA573B",
+        "$description": "text-subtle\nrognebær"
       },
       "11": {
         "$type": "color",
-        "$value": "#92301C",
-        "$description": "text-default\ninforød"
+        "$value": "#AA2C1C",
+        "$description": "text-default\n(ny rødfarge)"
       },
       "12": {
         "$type": "color",
-        "$value": "#C01B1B"
+        "$value": "#DA573B",
+        "$description": "base-default\nrognebær"
       },
       "13": {
         "$type": "color",
-        "$value": "#9b1616"
+        "$value": "#AA2C1C",
+        "$description": "base-hover\nny rødfarge"
       },
       "14": {
         "$type": "color",
