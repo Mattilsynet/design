@@ -22,11 +22,11 @@
 					)
 			) {
 			& > legend::after {
-				background: var(--mtds-color-bakgrunns-blaa);
+				background: var(--ds-color-info-surface-tinted);
 				border-radius: 5px;
-				border: 1px solid var(--mtds-color-neutral-15);
+				border: 1px solid var(--ds-color-info-border-subte);
 				box-sizing: border-box;
-				color: var(--mtds-color-fjord);
+				color: var(--ds-color-info-text-default);
 				content: var(--mtds-text-required);
 				display: inline-block;
 				font-size: var(--ds-body-xs-font-size);

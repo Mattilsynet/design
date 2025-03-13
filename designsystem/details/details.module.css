@@ -6,7 +6,6 @@
 		--dsc-details-summary-background: transparent;
 		--dsc-details-summary-background--hover: transparent;
 		--dsc-details-summary-background--open: transparent;
-		--dsc-details-border-color: var(--mtds-color-neutral-15);
 
 		& > :is(summary, u-summary)::before {
 			transition: rotate .2s ease-out;

@@ -4,20 +4,20 @@
 
 @layer ds.theme.color-scheme.dark {
 [data-color-scheme="dark"] {
-  --ds-color-primary-background-default: #021f21;
-  --ds-color-primary-background-tinted: #03282b;
-  --ds-color-primary-surface-default: #043135;
-  --ds-color-primary-surface-tinted: #043b3f;
-  --ds-color-primary-surface-hover: #054247;
-  --ds-color-primary-surface-active: #0e4b50;
-  --ds-color-primary-border-subtle: #21595d;
-  --ds-color-primary-border-default: #598386;
-  --ds-color-primary-border-strong: #8aa7aa;
-  --ds-color-primary-text-subtle: #8aa7aa;
+  --ds-color-primary-background-default: #1E2224;
+  --ds-color-primary-background-tinted: #6B6B6B614;
+  --ds-color-primary-surface-default: #24282a;
+  --ds-color-primary-surface-tinted: #054449;
+  --ds-color-primary-surface-hover: #0f6160;
+  --ds-color-primary-surface-active: #0f6160;
+  --ds-color-primary-border-subtle: #6c6a691a;
+  --ds-color-primary-border-default: #6c6a6933;
+  --ds-color-primary-border-strong: #68b096;
+  --ds-color-primary-text-subtle: #9BCAB9;
   --ds-color-primary-text-default: #dee6e7;
-  --ds-color-primary-base-default: #95b0b2;
-  --ds-color-primary-base-hover: #7b9c9f;
-  --ds-color-primary-base-active: #60888b;
+  --ds-color-primary-base-default: #68b096;
+  --ds-color-primary-base-hover: #abe1cd;
+  --ds-color-primary-base-active: #abe1cd;
   --ds-color-primary-base-contrast-subtle: #181c1c;
   --ds-color-primary-base-contrast-default: #000000;
   --ds-color-neutral-background-default: #1b1b1b;
@@ -109,20 +109,20 @@
  
 @media (prefers-color-scheme: dark) {
   [data-color-scheme="auto"] {
-  --ds-color-primary-background-default: #021f21;
-  --ds-color-primary-background-tinted: #03282b;
-  --ds-color-primary-surface-default: #043135;
-  --ds-color-primary-surface-tinted: #043b3f;
-  --ds-color-primary-surface-hover: #054247;
-  --ds-color-primary-surface-active: #0e4b50;
-  --ds-color-primary-border-subtle: #21595d;
-  --ds-color-primary-border-default: #598386;
-  --ds-color-primary-border-strong: #8aa7aa;
-  --ds-color-primary-text-subtle: #8aa7aa;
+  --ds-color-primary-background-default: #1E2224;
+  --ds-color-primary-background-tinted: #6B6B6B614;
+  --ds-color-primary-surface-default: #24282a;
+  --ds-color-primary-surface-tinted: #054449;
+  --ds-color-primary-surface-hover: #0f6160;
+  --ds-color-primary-surface-active: #0f6160;
+  --ds-color-primary-border-subtle: #6c6a691a;
+  --ds-color-primary-border-default: #6c6a6933;
+  --ds-color-primary-border-strong: #68b096;
+  --ds-color-primary-text-subtle: #9BCAB9;
   --ds-color-primary-text-default: #dee6e7;
-  --ds-color-primary-base-default: #95b0b2;
-  --ds-color-primary-base-hover: #7b9c9f;
-  --ds-color-primary-base-active: #60888b;
+  --ds-color-primary-base-default: #68b096;
+  --ds-color-primary-base-hover: #abe1cd;
+  --ds-color-primary-base-active: #abe1cd;
   --ds-color-primary-base-contrast-subtle: #181c1c;
   --ds-color-primary-base-contrast-default: #000000;
   --ds-color-neutral-background-default: #1b1b1b;

@@ -2,11 +2,29 @@
 	.alert {
 		composes: ds-alert from "@digdir/designsystemet-css";
 
-		--dsc-alert-background: var(--mtds-color-bakgrunns-blaa);
-		--dsc-alert-color: var(--mtds-color-fjord);
-		--dsc-alert-border-color: var(--mtds-color-neutral-15);
+		--dsc-alert-border-color: var(--ds-color-info-border-subtle);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
-		--dsc-alert-icon-color: currentcolor;
+
+		/* Force info if not set */
+		&:not([data-color]) {
+			--ds-color-background-default: var(--ds-color-info-background-default);
+			--ds-color-background-tinted: var(--ds-color-info-background-tinted);
+			--ds-color-surface-tinted: var(--ds-color-info-surface-tinted);
+			--ds-color-surface-hover: var(--ds-color-info-surface-hover);
+			--ds-color-surface-active: var(--ds-color-info-surface-active);
+			--ds-color-border-subtle: var(--ds-color-info-border-subtle);
+			--ds-color-border-default: var(--ds-color-info-border-default);
+			--ds-color-border-strong: var(--ds-color-info-border-strong);
+			--ds-color-base-default: var(--ds-color-info-base-default);
+			--ds-color-base-hover: var(--ds-color-info-base-hover);
+			--ds-color-base-active: var(--ds-color-info-base-active);
+			--ds-color-text-subtle: var(--ds-color-info-text-subtle);
+			--ds-color-text-default: var(--ds-color-info-text-default);
+			--ds-color-base-contrast-default: var(
+				--ds-color-info-base-contrast-default
+			);
+			--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
+		}
 
 		&:where(:not([hidden])) {
 			display: block; /* Ensure display block, even when <output> */
@@ -66,20 +84,13 @@
 				inset: -.5em;
 			}
 		}
-
 		&[data-color="warning"] {
-			--dsc-alert-background: var(--mtds-color-bakgrunns-gul);
-			--dsc-alert-color: var(--mtds-color-info-gul);
 			--dsc-alert-icon-url: var(--mtds-icon-warning);
 		}
 		&[data-color="success"] {
-			--dsc-alert-background: var(--mtds-color-lav);
-			--dsc-alert-color: var(--mtds-color-granskog);
 			--dsc-alert-icon-url: var(--mtds-icon-success);
 		}
 		&[data-color="danger"] {
-			--dsc-alert-background: var(--mtds-color-bakgrunns-rosa);
-			--dsc-alert-color: var(--mtds-color-info-rod);
 			--dsc-alert-icon-url: var(--mtds-icon-danger);
 		}
 	}

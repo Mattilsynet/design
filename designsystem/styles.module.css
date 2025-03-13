@@ -1,5 +1,5 @@
 /* Do not load @digdir/designsystemet-css as is implicitt with "composes", and it creates lots of Typescript types we don't want */
-@import url("@digdir/designsystemet-theme");
+@import url("../design-tokens-build/mattilsynet.css");
 @import url("./alert/alert.module.css");
 @import url("./avatar/avatar.module.css");
 @import url("./badge/badge.module.css");
@@ -41,40 +41,6 @@
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.design {
 	:root {
-		--mtds-color-bakgrunns-blaa: #dfeef6;
-		--mtds-color-bakgrunns-gul: #fcf0d2;
-		--mtds-color-bakgrunns-rosa: #fee9df;
-		--mtds-color-bekk: #cde5f2;
-		--mtds-color-fjord: #153f7b;
-		--mtds-color-gaasunge: #faf6f3;
-		--mtds-color-granskog: #054449;
-		--mtds-color-info-gul: #7f433b;
-		--mtds-color-info-rod: #92301c;
-		--mtds-color-lav: #e2f1df;
-		--mtds-color-lys-furu: #9bcab9;
-		--mtds-color-lys-furu-500: color-mix(
-			in hsl,
-			var(--mtds-color-lys-furu) 50%,
-			transparent
-		);
-		--mtds-color-mork-granskog: #032c30;
-		--mtds-color-neutral-6: color-mix(
-			in hsl,
-			var(--mtds-color-neutral) 6%,
-			transparent
-		);
-		--mtds-color-neutral-15: color-mix(
-			in hsl,
-			var(--mtds-color-neutral) 15%,
-			transparent
-		);
-		--mtds-color-neutral: #6c6a69;
-		--mtds-color-rognebaer: #da573b;
-		--mtds-color-sand: #f4ece6;
-		--mtds-color-solstreif: #f8de9c;
-		--mtds-color-sommerdag: #f9cc76;
-		--mtds-color-white: #fff;
-
 		--mtds-icon-size: 1em;
 		--mtds-icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='m221.7 133.7-72 72a8 8 0 0 1-11.4-11.4l58.4-58.3H40a8 8 0 0 1 0-16h156.7l-58.4-58.3a8 8 0 0 1 11.4-11.4l72 72a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
 		--mtds-icon-burger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z'/%3E%3C/svg%3E");
@@ -114,27 +80,11 @@
 		--ds-heading-xs-font-size: clamp(1.125rem, 1.0575rem + 0.3vw, 1.3125rem); /* 18px => 21px */
 		--ds-heading-2xs-font-size: clamp(1rem, 0.955rem + 0.2vw, 1.125rem); /* 16px => 18px */
 
-		--ds-color-focus-outer: var(--mtds-color-granskog);
+		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
+		--ds-color-focus-outer: var(--ds-color-text-default);
 		--ds-border-width-focus: 2px;
 		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
 			var(--ds-color-focus-inner);
-
-		--ds-color-background-default: var(--mtds-color-gaasunge);
-		--ds-color-background-tinted: var(--mtds-color-lav);
-		--ds-color-surface-default: var(--mtds-color-white);
-		--ds-color-surface-tinted: var(--mtds-color-lav);
-		--ds-color-surface-hover: #bcdcd0;
-		--ds-color-surface-active: #bcdcd0;
-		--ds-color-border-subtle: #116e6b;
-		--ds-color-border-default: var(--mtds-color-granskog);
-		--ds-color-border-strong: var(--mtds-color-granskog);
-		--ds-color-base-default: var(--mtds-color-granskog);
-		--ds-color-base-hover: var(--mtds-color-granskog);
-		--ds-color-base-active: var(--mtds-color-granskog);
-		--ds-color-text-subtle: var(--mtds-color-granskog);
-		--ds-color-text-default: var(--mtds-color-granskog);
-		--ds-color-base-contrast-default: var(--mtds-color-gaasunge);
-		--ds-color-base-contrast-subtle: var(--mtds-color-lav);
 	}
 
 	/* Change language of "required" */
@@ -150,8 +100,8 @@
 
 	body,
 	.body {
-		background: var(--mtds-color-gaasunge);
-		color: var(--mtds-color-granskog);
+		background: var(--ds-color-background-default);
+		color: var(--ds-color-text-default);
 		cursor: default; /* Avoid text cursor on non-form elements */
 		font: var(--ds-body-md-font-size) / 1.5 "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		font-feature-settings: "liga" 0; /* Disable ligatures */

@@ -17,11 +17,11 @@
 	 * Mark <label> as required
 	 */
 	.field:has(:required, [aria-required="true"]) label::after {
-		background: var(--mtds-color-bakgrunns-blaa);
+		background: var(--ds-color-info-surface-tinted);
 		border-radius: 5px;
-		border: 1px solid var(--mtds-color-neutral-15);
+		border: 1px solid var(--ds-color-info-border-subtle);
 		box-sizing: border-box;
-		color: var(--mtds-color-fjord);
+		color: var(--ds-color-info-text-default);
 		content: var(--mtds-text-required);
 		display: inline-block;
 		font-size: var(--ds-body-xs-font-size);
@@ -54,12 +54,12 @@
 	 * Suggestion
 	 */
 	.field u-datalist {
-		background: var(--mtds-color-white);
+		background: var(--ds-color-surface-default);
 		border-radius: 5px;
-		border: 1px solid var(--mtds-color-neutral-15);
+		border: 1px solid var(--ds-color-border-subtle);
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;
-		color: var(--mtds-color-granskog);
+		color: var(--ds-color-text-default);
 		left: 0;
 		margin: 0;
 		max-height: 400px;

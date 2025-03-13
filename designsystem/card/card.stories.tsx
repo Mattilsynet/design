@@ -23,7 +23,7 @@ const meta = {
 				className={`${styles.body} ${styles.grid}`}
 				style={{ padding: "2em" }}
 			>
-				<style>{"body{background:var(--mtds-color-gaasunge)}"}</style>
+				<style>{"body{background:var(--ds-color-background-default)}"}</style>
 				<Story />
 			</div>
 		),

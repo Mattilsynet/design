@@ -19,23 +19,17 @@
 			--dsc-button-background: transparent;
 			--dsc-button-background--active: var(--ds-color-surface-active);
 			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-color: var(--ds-color-text-subtle);
+			--dsc-button-color: var(--ds-color-text-default);
 			--dsc-button-color--hover: var(--ds-color-text-default);
 		}
 
-		&[aria-current]:not([aria-current="false"]) {
-			--dsc-button-background: var(--mtds-color-lys-furu-500);
-			font-weight: bold;
+		&[data-variant="secondary"] {
+			--dsc-button-border-color: var(--ds-color-border-default);
 		}
 
-		&[data-color="invert"][data-variant="primary"] {
-			--dsc-button-background--hover: var(--mtds-color-white);
-			--dsc-button-background: var(--mtds-color-white);
-			--dsc-button-color: var(--mtds-color-granskog);
-		}
-		&[data-color="invert"] {
-			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
-			--dsc-button-color: currentcolor;
+		&[aria-current]:not([aria-current="false"]) {
+			--dsc-button-background: var(--ds-color-surface-tinted);
+			font-weight: bold;
 		}
 
 		&::before,

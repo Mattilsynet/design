@@ -14,12 +14,13 @@
 		&[type="checkbox"]:not([role="switch"]) {
 			border-radius: var(--ds-border-radius-md);
 		}
-		&[type="checkbox"]:not([role="switch"]):checked {
+		/* TODO: Maybe use this? */
+		/* &[type="checkbox"]:not([role="switch"]):checked {
 			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23fff' d='m232.5 80.5-128 128a12 12 0 0 1-17 0l-56-56a12 12 0 1 1 17-17L96 183 215.5 63.5a12 12 0 0 1 17 17Z'/%3E%3C/svg%3E");
 			background-position: 0 -.05em;
 			background-repeat: no-repeat;
 			background-size: contain;
-		}
+		} */
 
 		/* If list attribute exits, allow rendering dropdown chevron instead */
 		&[type="search"]:not([list], :has(+ u-datalist)) {

@@ -3,7 +3,7 @@
 		composes: ds-table from "@digdir/designsystemet-css";
 
 		--dsc-table-background: transparent;
-		--dsc-table-border-color: var(--mtds-color-neutral-15);
+		--dsc-table-border-color: var(--ds-color-neutral-border-subtle);
 		--dsc-table-border-radius: var(--ds-border-radius-md);
 		--dsc-table-color: inherit;
 		--dsc-table-divider-border-width: 1px;
@@ -58,13 +58,13 @@
 		vertical-align: bottom;
 	}
 	.table[data-border] {
-		--dsc-table-background: var(--mtds-color-white);
+		--dsc-table-background: var(--ds-color-surface-default);
 	}
 	.table[data-border] > thead > tr > :is(th, td) {
-		background-color: var(--mtds-color-lav); /* TODO: integrate into color system */
+		background-color: var(--ds-color-surface-tinted);
 	}
 	.table[data-border] > tbody > tr > :not(:last-child) {
-		border-right: 1px solid var(--mtds-color-neutral-15);
+		border-right: 1px solid var(--ds-color-neutral-border-subtle);
 	}
 
 	/**

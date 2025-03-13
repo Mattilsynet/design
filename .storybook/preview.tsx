@@ -4,13 +4,14 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
-import styles from "../designsystem/styles.module.css";
+import { styles } from "../designsystem";
 import "./preview.css";
 import "@u-elements/u-tabs";
 import "@u-elements/u-details";
 
-const CSS_ALERT = styles.alert.split(" ");
-const CSS_TABLE = styles.table.split(" ");
+const CSS = styles as unknown as Record<string, string>; // Fix internal typings
+const CSS_ALERT = CSS.alert.split(" ");
+const CSS_TABLE = CSS.table.split(" ");
 const MATOMO = "mattilsynet.matomo.cloud";
 
 declare global {

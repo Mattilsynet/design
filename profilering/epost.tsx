@@ -179,13 +179,8 @@ export function Epost() {
 			<div className={styles.grid} data-gap="md" data-align-content="start">
 				<div
 					id="email-preview"
-					style={{
-						marginTop: "1.875em",
-						background: "white",
-						padding: 40,
-						borderRadius: 10,
-						border: "1px solid var(--mtds-color-neutral-15)",
-					}}
+					className={styles.card}
+					style={{ marginTop: "1.875em" }}
 				>
 					<div
 						style={{

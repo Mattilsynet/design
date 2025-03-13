@@ -41,7 +41,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@digdir/designsystemet-css": "^1.0.0",
-		"@digdir/designsystemet-theme": "^1.0.0",
 		"@phosphor-icons/react": "^2.1.7",
 		"@storybook/addon-essentials": "^8.6.0",
 		"@storybook/addon-mdx-gfm": "^8.6.0",
