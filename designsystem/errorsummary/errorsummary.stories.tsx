@@ -25,11 +25,7 @@ const meta = {
 				return () => document.removeEventListener("click", handleClick);
 			});
 
-			return (
-				<div style={{ width: "90vw", maxWidth: 500 }}>
-					<Story />
-				</div>
-			);
+			return <Story />;
 		},
 	],
 } satisfies Meta;

@@ -1,24 +1,66 @@
 @layer mt.design {
-	.card,
-	.group {
-		background-color: var(--mtds-color-white);
+	.card {
+		--mtds-card-border-color: var(--ds-color-neutral-border-subtle);
+		--mtds-card-border-color--hover: var(--ds-color-neutral-border-strong);
+		--mtds-card-border-radius: var(--ds-border-radius-lg);
+		--mtds-card-padding: var(--ds-size-5);
+		--mtds-card-gap: var(--ds-size-4);
+
+		background-color: var(--ds-color-neutral-surface-default);
 		border-radius: var(--ds-border-radius-lg);
-		border: 1px solid var(--mtds-color-neutral-200);
+		border: 1px solid var(--mtds-card-border-color);
 		box-sizing: border-box;
-		display: block;
-		padding: var(--ds-size-5);
+		font: inherit;
+		margin: 0;
+		padding: var(--mtds-card-padding);
+		text-align: inherit;
 		text-decoration: none;
-		transition-property: box-shadow, translate;
-		transition-duration: .2s;
+		transition-duration: .15s;
+		transition-property: border-color, scale;
+
+		&:where(:not(tr, [hidden])) {
+			display: block;
+		}
+
+		&:is(button:enabled, button:not([aria-disabled="true"])) {
+			cursor: pointer;
+		}
 	}
 
-	.card:is(:any-link, button, [role="button"]):hover:not(:active) {
-		box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.05), 0 0 3px 1px rgba(0, 0, 0, 0.05);
-		translate: 0 -3px;
+	.card:is(:any-link, button, [role="button"]):hover {
+		border-color: var(--mtds-card-border-color--hover);
 	}
 
-	/* .group {
-		background-color: var(--mtds-color-neutral-50);
-		border: 0;
-	} */
+	.card:is(:any-link, button, [role="button"]):active {
+		scale: 0.99;
+	}
+
+	.info {
+		--mtds-info-icon-size: var(--mtds-icon-size);
+		--mtds-info-gap: var(--ds-size-2);
+		--mtds-info-x: calc(var(--mtds-info-icon-size) + var(--mtds-info-gap));
+
+		overflow: clip;
+		text-overflow: ellipsis;
+	}
+
+	/* TODO: Document, add label */
+	.info:has(> svg) {
+		padding-left: var(--mtds-info-x);
+	}
+
+	.info > svg {
+		position: absolute;
+		margin-left: calc(var(--mtds-info-x) * -1);
+		height: calc(var(--ds-line-height-md) * 1em); /* Fallback if not supporting lh unit */
+		height: 1lh; /* But use 1lh if available to align with line-height */
+		width: var(--mtds-info-icon-size);
+	}
+
+	.group {
+		background-color: var(--ds-color-background-tinted);
+		border-radius: var(--ds-border-radius-lg);
+		box-sizing: border-box;
+		padding: var(--ds-size-5);
+	}
 }

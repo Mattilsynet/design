@@ -20,9 +20,9 @@
 		text-decoration: none;
 	}
 	.logo:focus-visible {
-		box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-		outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-		outline: var(--ds--focus, var(--dsc-focus-outline));
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
 	}
 	.logo::before,
 	.logo::after {
@@ -43,12 +43,12 @@
 	 * Colors
 	 */
 	.logo[data-color="orange"] {
-		--icon-color: var(--mtds-color-rognebaer);
-		color: var(--mtds-color-info-rod);
+		--icon-color: #da573b; /* Rognebær */
+		color: #92301c; /* Inforød */
 	}
 	.logo[data-color="blue"] {
-		--icon-color: #1d57aa;
-		color: #1d57aa;
+		--icon-color: #1d57aa; /* Mellomblå */
+		color: #1d57aa; /* Mellomblå */
 	}
 
 	/**

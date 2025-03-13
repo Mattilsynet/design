@@ -1,15 +1,8 @@
 @layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
-		--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore color change on active as we use scale instead */
-		--dsc-button-background--hover: var(--ds-color-surface-hover);
-		--dsc-button-background: transparent;
-		--dsc-button-color--hover: var(--dsc-button-color); /* Ignore color change on hover */
-		--dsc-button-border-color: currentcolor;
-		--dsc-button-color: currentcolor;
 
-		border-radius: calc(5 / 18 * 1em); /* 5px border-radius */
-		display: inline-flex;
+		border-radius: var(--ds-border-radius-md);
 		flex-shrink: 0; /* If placed in flex */
 		font-weight: 500;
 		max-width: 100%;
@@ -17,30 +10,26 @@
 		transition-property: background-color, scale, translate;
 		vertical-align: middle;
 
+		&:where(:not([hidden])) {
+			display: inline-flex;
+		}
+
 		/* Overwrite to same as tertiary from Designsystemet  */
-		&[data-variant="tertiary"],
-		&:not([data-variant]) {
-			--dsc-button-border-color: transparent;
+		&:not([data-variant="primary"]) {
+			--dsc-button-background: transparent;
+			--dsc-button-background--active: var(--ds-color-surface-active);
+			--dsc-button-background--hover: var(--ds-color-surface-hover);
+			--dsc-button-color: var(--ds-color-text-default);
+			--dsc-button-color--hover: var(--ds-color-text-default);
+		}
+
+		&[data-variant="secondary"] {
+			--dsc-button-border-color: var(--ds-color-border-default);
 		}
 
 		&[aria-current]:not([aria-current="false"]) {
-			--dsc-button-background: var(--mtds-color-lys-furu-500);
+			--dsc-button-background: var(--ds-color-surface-tinted);
 			font-weight: bold;
-		}
-
-		&[data-variant="primary"] {
-			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
-			--dsc-button-background: var(--mtds-color-granskog);
-			--dsc-button-color: var(--mtds-color-white);
-		}
-		&[data-color="invert"][data-variant="primary"] {
-			--dsc-button-background--hover: var(--mtds-color-white);
-			--dsc-button-background: var(--mtds-color-white);
-			--dsc-button-color: var(--mtds-color-granskog);
-		}
-		&[data-color="invert"] {
-			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
-			--dsc-button-color: currentcolor;
 		}
 
 		&::before,
@@ -91,11 +80,10 @@
 		}
 		&[data-arrow][popovertarget]::before {
 			mask-image: var(--mtds-icon-chevron);
-			rotate: 90deg;
 			transition: rotate .2s ease-out;
 		}
 		&[data-arrow][popovertarget]:has(+ :popover-open)::before {
-			rotate: -90deg;
+			rotate: -180deg;
 		}
 
 		/**
@@ -103,7 +91,6 @@
 		 */
 		&[aria-busy="true"] {
 			pointer-events: none;
-			opacity: 1; /* Undo disabled styling */
 		}
 		&[aria-busy="true"]::before {
 			background: currentcolor;
@@ -117,8 +104,10 @@
 		}
 
 		/**
-		 * Aria-pressed
+		 * Aria-pressed / Popover-open
 		 */
+		&[popovertarget]:has(+ :not(:popover-open)) [data-pressed="true"],
+		&[popovertarget]:has(+ :popover-open) [data-pressed="false"],
 		&[aria-pressed="false"] [data-pressed="true"],
 		&[aria-pressed="true"] [data-pressed="false"] {
 			display: none;

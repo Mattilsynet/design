@@ -1,0 +1,196 @@
+@layer mt.design {
+	/**
+	 * App layout
+	 */
+	.app {
+		--spacing-md: var(--ds-size-6);
+		--spacing-sm: var(--ds-size-3);
+		--sides--collapsed: 4.25rem; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--sides: 14em;
+
+		box-sizing: border-box;
+		grid-template:
+			"header header header" auto
+			"nav main aside" 1fr
+			"footer footer footer" auto / auto 1fr auto;
+		min-height: 100vh;
+		min-height: 100svh; /* Use small viewport height if supported */
+		transition: grid-template-columns .3s ease-out;
+
+		&:where(:not([hidden])) {
+			display: grid;
+		}
+
+		& > * {
+			box-sizing: border-box;
+			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
+			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
+		}
+	}
+
+	.app > * {
+		display: content;
+	}
+
+	/**
+	 * App layout: Header
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
+	 */
+	.app > header,
+	.app header:has(~ main) {
+		align-items: center;
+		gap: var(--ds-size-2);
+		grid-area: header;
+		padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+
+		&:not([hidden]) {
+			display: flex;
+		}
+
+		/* Push logo to left */
+		& > :first-child {
+			margin-right: auto;
+		}
+	}
+
+	/**
+	 * App layout: Left side
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
+	 */
+	.app > nav,
+	.app nav:has(+ main) {
+		align-content: start; /* TODO: Set default alignment in case used as grid */
+		grid-area: nav;
+		overflow-y: auto;
+		padding-left: var(--spacing-md);
+		padding-top: var(--spacing-md);
+		position: relative;
+		view-transition-name: mtds-laytout-app--left;
+		width: var(--sides);
+
+		/* Hide relevant child elements with data-expanded attribute */
+		&[data-expanded="false"] [data-expanded="true"],
+		&:not([data-expanded="false"]) [data-expanded="false"] {
+			display: none;
+		}
+		&[data-expanded="false"] {
+			--mtds-tooltip-position: right;
+		}
+
+		/* TODO: Position toggle button */
+		& > button:first-child:empty {
+			all: unset;
+			bottom: 20px;
+			cursor: pointer;
+			height: 40px;
+			left: 20px;
+			position: absolute;
+			text-align: center;
+			width: 40px;
+			z-index: 2;
+
+			&:after {
+				content: "<";
+			}
+		}
+
+		& menu > li {
+			margin-left: calc(var(--spacing-md) * -2);
+
+			& > [data-tooltip] {
+				padding-left: calc(var(--spacing-md) * 2);
+			}
+		}
+
+		/* Move tooltips to button content when expanded */
+		&:not([data-expanded="false"]) menu > li > [data-tooltip] {
+			--mtds-tooltip-position: none;
+
+			&::after {
+				content: attr(data-tooltip);
+			}
+		}
+
+		/* 960px */
+		@media screen and (max-width: 60em) {
+			background-color: var(--ds-color-surface-default);
+			border-top: 1px solid var(--ds-color-border-subtle);
+			left: 0;
+			padding: var(--spacing-sm);
+			position: fixed;
+			right: 0;
+			top: calc(100vh - var(--ds-size-13));
+			width: auto;
+			z-index: 99;
+
+			&::before {
+				content: "Navigasjon";
+			}
+		}
+	}
+
+	/**
+	 * App layout: Main
+	 * NOTE: <main> can only appear once on a page so no need for direct child selector
+	 */
+	.app main {
+		container: main / inline-size;
+		grid-area: main;
+		margin: 0 var(--spacing-sm) var(--spacing-sm);
+		view-transition-name: mtds-laytout-app--main;
+	}
+
+	/**
+	 * App layout: Right side
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
+	 */
+	.app > aside,
+	.app main + aside {
+		grid-area: aside;
+		padding-right: var(--spacing-sm);
+		padding-top: var(--spacing-md);
+		view-transition-name: mtds-laytout-app--right;
+		width: var(--sides);
+
+		&[data-expanded="false"] {
+			padding-inline: 0;
+			width: 0;
+			opacity: 0;
+			visibility: hidden;
+			overflow: hidden;
+		}
+	}
+
+	/**
+	 * App layout: Footer
+	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
+	 */
+	.app > footer,
+	.app main ~ footer {
+		background: var(--ds-color-base-hover);
+		color: var(--ds-color-base-contrast-subtle);
+		grid-area: footer;
+		margin-top: var(--spacing-sm);
+		padding: var(--spacing-md);
+	}
+}
+
+::view-transition-old(mtds-laytout-app--left),
+::view-transition-new(mtds-laytout-app--left),
+::view-transition-old(mtds-laytout-app--right),
+::view-transition-new(mtds-laytout-app--right) {
+	height: 100%;
+	object-fit: none;
+	object-position: left;
+}
+
+::view-transition-old(mtds-laytout-app--main),
+::view-transition-new(mtds-laytout-app--main) {
+	height: 100%;
+}
+
+/* Declare outside @layer to ensure specificity */
+.app > nav[data-expanded="false"] {
+	min-width: var(--sides--collapsed) !important; /* Prevent shrinking */
+	width: var(--sides--collapsed) !important;
+}

@@ -2,7 +2,6 @@
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
 
-		--dsc-input-calendar-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
 		--dsc-input-border-width--toggle: 1px;
 		--dsc-input-stroke: 0.045em;
 		scroll-margin-block-start: 7em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
@@ -12,62 +11,73 @@
 			opacity: 1;
 		}
 
-		&[type="search"] {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
+		&[type="checkbox"]:not([role="switch"]) {
+			border-radius: var(--ds-border-radius-md);
+		}
+		/* TODO: Maybe use this? */
+		/* &[type="checkbox"]:not([role="switch"]):checked {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23fff' d='m232.5 80.5-128 128a12 12 0 0 1-17 0l-56-56a12 12 0 1 1 17-17L96 183 215.5 63.5a12 12 0 0 1 17 17Z'/%3E%3C/svg%3E");
+			background-position: 0 -.05em;
+			background-repeat: no-repeat;
+			background-size: contain;
+		} */
+
+		/* If list attribute exits, allow rendering dropdown chevron instead */
+		&[type="search"]:not([list], :has(+ u-datalist)) {
+			background-image: var(--mtds-icon-search);
 			background-position: var(--ds-size-3) center;
 			background-repeat: no-repeat;
 			background-size: var(--ds-size-6);
 			padding-left: var(--ds-size-12);
+		}
 
-			&::-webkit-search-cancel-button {
-				-webkit-appearance: none;
-				cursor: pointer;
-				width: var(--ds-size-3);
-				height: var(--ds-size-3);
-				background: linear-gradient(
-						45deg,
-						transparent 0%,
-						transparent 43%,
-						currentcolor 45%,
-						currentcolor 55%,
-						transparent 57%,
-						transparent 100%
-					),
-					linear-gradient(
-						135deg,
-						transparent 0%,
-						transparent 43%,
-						currentcolor 45%,
-						currentcolor 55%,
-						transparent 57%,
-						transparent 100%
-					);
-			}
+		&:has([list], + u-datalist) {
+			background-image: var(--mtds-icon-chevron);
+			background-position: calc(100% - var(--ds-size-3)) center;
+			background-repeat: no-repeat;
+			background-size: var(--ds-size-6);
+			padding-right: var(--ds-size-12);
+		}
+
+		&[type="search"]::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+			cursor: pointer;
+			width: var(--ds-size-3);
+			height: var(--ds-size-3);
+			background: linear-gradient(
+					45deg,
+					transparent 0%,
+					transparent 43%,
+					currentcolor 45%,
+					currentcolor 55%,
+					transparent 57%,
+					transparent 100%
+				),
+				linear-gradient(
+					135deg,
+					transparent 0%,
+					transparent 43%,
+					currentcolor 45%,
+					currentcolor 55%,
+					transparent 57%,
+					transparent 100%
+				);
 		}
 	}
 
 	/* Chrome and Safari: Add custom icon (Firefox does not support this) */
 	@supports selector(::-webkit-scrollbar) {
 		.input[type="date"] {
-			background-image: var(--dsc-input-calendar-url);
+			background-image: var(--mtds-icon-calendar);
 			background-position: calc(100% - var(--ds-size-3)) center;
 			background-repeat: no-repeat;
 			background-size: var(--ds-size-6);
 		}
-	}
-	/* Chrome: Keep, but hide native icon */
-	@supports selector(::-webkit-calendar-picker-indicator) {
+		/* Chrome: Keep, but hide native icon */
 		.input[type="date"]::-webkit-calendar-picker-indicator {
-			background: red;
 			cursor: pointer;
 			opacity: 0;
 			width: var(--ds-size-6);
-		}
-	}
-	/* Safari: Add space for custom icon  */
-	@supports (selector(::-webkit-scrollbar) and not(::-webkit-calendar-picker-indicator)) {
-		.input[type="date"] {
-			padding-right: var(--ds-size-12);
 		}
 	}
 }

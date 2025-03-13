@@ -3,7 +3,7 @@
 		--mtds-tooltip-position: top;
 	}
 
-	 /* Ensure :hover, even when disabled */
+	/* Ensure :hover, even when disabled */
 	[data-tooltip]:disabled,
 	[data-tooltip][aria-disabled="true"] {
 		pointer-events: all;
@@ -13,16 +13,16 @@
 		border-radius: var(--ds-border-radius-sm);
 
 		&:focus-visible {
-			box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-			outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-			outline: var(--ds--focus, var(--dsc-focus-outline));
+			box-shadow: var(--dsc-focus-boxShadow);
+			outline: var(--dsc-focus-outline);
+			outline-offset: var(--ds-border-width-focus);
 		}
 	}
 
 	._tooltip {
 		--margin: 5px;
 		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
-		background-color: var(--mtds-color-mork-granskog);
+		background-color: var(--ds-color-base-active);
 		border-radius: calc(var(--ds-border-radius-md) + var(--margin));
 		border: var(--margin) solid transparent;
 		color: var(--ds-color-base-contrast-default);

@@ -1,0 +1,39 @@
+.helptext {
+  composes: ds-focus from "@digdir/designsystemet-css";
+
+  background: none;
+  border-radius: var(--ds-border-radius-full);
+  border: .1em solid;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  flex-shrink: 0;
+  font: inherit;
+  height: var(--ds-size-6);
+  margin: 0;
+  overflow: hidden;
+  padding: calc(var(--ds-size-1) / 2);
+  transition-duration: .2s;
+  transition-property: background-color, scale;
+  vertical-align: middle;
+  width: var(--ds-size-6);
+
+  &::before {
+    background-color: currentcolor;
+    content: '';
+    display: block;
+    height: 100%;
+    mask: center/contain no-repeat var(--mtds-icon-help);
+  }
+
+  &:hover {
+    background-color: var(--ds-color-surface-hover);
+  }
+  &:active {
+    scale: .9;
+  }
+  &:has(+ :popover-open) {
+    background-color: var(--ds-color-surface-hover);
+  }
+}

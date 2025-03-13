@@ -1,0 +1,9 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as stories from './helptext.stories';
+
+<Meta of={stories} />
+
+# Help text
+- Bruk klassen `helptext` på `<button>` og `popovertarget="MIN-ID"`
+- Legg klassen `popover`, attributten `popover` og `id` på `<div>` direkte etter `<button>`
+<Canvas of={stories.Default} />

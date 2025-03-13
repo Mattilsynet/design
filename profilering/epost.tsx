@@ -39,9 +39,12 @@ export function Epost() {
 	return (
 		<div
 			className={styles.grid}
-			data-grid="sidebar"
 			data-gap="lg"
-			style={{ width: "80vw", margin: "4rem calc(50% - 40vw)" }}
+			style={{
+				width: "80vw",
+				margin: "4rem calc(50% - 40vw)",
+				gridTemplateColumns: "1fr 2fr",
+			}}
 		>
 			<style>{"svg{vertical-align:-.175em}"}</style>
 			<form
@@ -176,13 +179,8 @@ export function Epost() {
 			<div className={styles.grid} data-gap="md" data-align-content="start">
 				<div
 					id="email-preview"
-					style={{
-						marginTop: "1.875em",
-						background: "white",
-						padding: 40,
-						borderRadius: 10,
-						border: "1px solid var(--mtds-color-neutral-200)",
-					}}
+					className={styles.card}
+					style={{ marginTop: "1.875em" }}
 				>
 					<div
 						style={{

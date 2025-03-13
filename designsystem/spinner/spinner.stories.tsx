@@ -9,7 +9,7 @@ const meta = {
 			<div
 				className={styles.grid}
 				data-align="center"
-				data-grid="fit-sm"
+				data-items="100"
 				style={{ width: "max-content", minWidth: 250 }}
 			>
 				<Story />

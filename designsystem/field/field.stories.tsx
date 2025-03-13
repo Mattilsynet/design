@@ -137,6 +137,9 @@ export const WithValidation: Story = {
 };
 
 export const WithAffixes: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -154,6 +157,7 @@ export const WithAffixes: Story = {
 export const WithCharacterCount: Story = {
 	parameters: {
 		layout: "padded",
+		showInOverview: true,
 	},
 	render: () => (
 		<>
@@ -161,6 +165,61 @@ export const WithCharacterCount: Story = {
 				<label>Ledetekst</label>
 				<textarea className={styles.input} defaultValue="Noe innhold" />
 				<p data-count="20" />
+			</div>
+		</>
+	),
+};
+
+export const WithSuggestion: Story = {
+	name: "With suggestion (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<input type="search" className={styles.input} />
+				<u-datalist>
+					<u-option role="none">Tomt</u-option>
+					<u-option value="Sogndal">Sogndal</u-option>
+					<u-option value="Oslo">Oslo</u-option>
+					<u-option value="Brønnøysund">Brønnøysund</u-option>
+					<u-option value="Stavanger">Stavanger</u-option>
+					<u-option value="Trondheim">Trondheim</u-option>
+					<u-option value="Bergen">Bergen</u-option>
+					<u-option value="Lillestrøm">Lillestrøm</u-option>
+				</u-datalist>
+			</div>
+		</>
+	),
+};
+
+export const WithMultiSuggestion: Story = {
+	name: "With multi suggestion (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<u-tags>
+					<data value="Sogndal">Sogndal</data>
+					<input type="search" className={styles.input} />
+					<u-datalist>
+						<u-option role="none">Tomt</u-option>
+						<u-option value="Sogndal">Sogndal</u-option>
+						<u-option value="Oslo">Oslo</u-option>
+						<u-option value="Brønnøysund">Brønnøysund</u-option>
+						<u-option value="Stavanger">Stavanger</u-option>
+						<u-option value="Trondheim">Trondheim</u-option>
+						<u-option value="Bergen">Bergen</u-option>
+						<u-option value="Lillestrøm">Lillestrøm</u-option>
+					</u-datalist>
+				</u-tags>
 			</div>
 		</>
 	),

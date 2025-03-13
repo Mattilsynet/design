@@ -4,13 +4,14 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
-import { styles } from "../designsystem"; // Import functionality from designsystem
+import { styles } from "../designsystem";
 import "./preview.css";
 import "@u-elements/u-tabs";
 import "@u-elements/u-details";
 
-const CSS_ALERT = styles.alert.split(" ");
-const CSS_TABLE = styles.table.split(" ");
+const CSS = styles as unknown as Record<string, string>; // Fix internal typings
+const CSS_ALERT = CSS.alert.split(" ");
+const CSS_TABLE = CSS.table.split(" ");
 const MATOMO = "mattilsynet.matomo.cloud";
 
 declare global {
@@ -83,14 +84,12 @@ export default {
 					}
 
 					// Hide BR from screen readers
-					for (const br of document.getElementsByTagName("br")) {
+					for (const br of document.getElementsByTagName("br"))
 						br.setAttribute("aria-hidden", "true");
-					}
 
 					// Tables
-					for (const table of document.querySelectorAll("table:not([class])")) {
+					for (const table of document.querySelectorAll("table:not([class])"))
 						table.classList.add(...CSS_TABLE);
-					}
 
 					document.addEventListener("click", (e) => {
 						const base = (window.top || window).location.href.split("?")[0];
@@ -153,7 +152,7 @@ export default {
 						"*",
 					],
 					"Designsystem",
-					["Introduksjon", "*"],
+					["Introduksjon", "Komponenter", "*"],
 					"Profilering",
 					["Introduksjon", "*"],
 				],

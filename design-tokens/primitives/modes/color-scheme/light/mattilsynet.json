@@ -1,127 +1,167 @@
 {
   "mattilsynet": {
-    "granskog": {
+    "primary": {
       "1": {
         "$type": "color",
-        "$value": "#FAF7F4"
+        "$value": "#FAF7F4",
+        "$description": "background-default\n\"gåsunge\""
       },
       "2": {
         "$type": "color",
-        "$value": "#e502f8"
+        "$value": "#6B6B6B0F",
+        "$description": "background-tinted\n6% opacity (HEX-0F)"
       },
       "3": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#ffffff",
+        "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#E2F1DF"
+        "$value": "#E2F1DF",
+        "$description": "surface-tinted\n\"lav\""
       },
       "5": {
         "$type": "color",
-        "$value": "#E2F1DF"
+        "$value": "#D8EED8",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#6c6a6914"
+        "$value": "#CAE8CA",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#054449"
+        "$value": "#6B6B6B26",
+        "$description": "border-subtle\n15% opacity"
       },
       "8": {
         "$type": "color",
-        "$value": "#6c6a6929"
+        "$value": "#054449",
+        "$description": "border-default\ngranskog\n"
       },
       "9": {
         "$type": "color",
-        "$value": "#054449"
+        "$value": "#032C30",
+        "$description": "border-strong\nmørk granskog"
       },
       "10": {
         "$type": "color",
-        "$value": "#032C30"
+        "$value": "#116E6B",
+        "$description": "text-subtle\n\"Havdyp\""
       },
       "11": {
         "$type": "color",
-        "$value": "#032C30"
+        "$value": "#054449",
+        "$description": "text default\n\"granskog\""
       },
       "12": {
         "$type": "color",
-        "$value": "#36696d"
+        "$value": "#116E6B",
+        "$description": "base-default\n\"havdyp\""
       },
       "13": {
         "$type": "color",
-        "$value": "#054449"
+        "$value": "#054449",
+        "$description": "base-hover\n\"granskog\"\n"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#032C30",
+        "$description": "base-active\n\"mørk granskog\""
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#E2F1DF",
+        "$description": "base-contrast-subtle\nlav"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "base-contrast-default"
       }
     },
     "neutral": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#ffffff",
+        "$description": "background-default"
       },
       "2": {
         "$type": "color",
-        "$value": "#f3f3f3"
+        "$value": "#6B6B6B0F",
+        "$description": "background-tinted\n6% opacity (HEX-0F)\n"
       },
       "3": {
         "$type": "color",
-        "$value": "#6C6A6912"
+        "$value": "#ffffff",
+        "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#d1d1d1"
+        "$value": "#EDEDED",
+        "$description": "surface-tinted\n"
       },
       "5": {
         "$type": "color",
-        "$value": "#c2c2c2"
+        "$value": "#E3E3E3",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#6C6A6912"
+        "$value": "#DEDEDE",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#7e7e7e"
+        "$value": "#6B6B6B26",
+        "$description": "border-subtle\n15% opacity"
       },
       "8": {
         "$type": "color",
-        "$value": "#616161"
+        "$value": "#6B6B6B",
+        "$description": "border-default\n"
       },
       "9": {
         "$type": "color",
-        "$value": "#000000"
+        "$value": "#3D3D3D",
+        "$description": "border-strong\n"
       },
       "10": {
         "$type": "color",
-        "$value": "#181818"
+        "$value": "#6B6B6B",
+        "$description": "text-subtle"
       },
       "11": {
         "$type": "color",
-        "$value": "#282828"
+        "$value": "#3D3D3D",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
-        "$value": "#616161"
+        "$value": "#5F5F5F",
+        "$description": "base-default\n"
       },
       "13": {
         "$type": "color",
-        "$value": "#2b2b2b"
+        "$value": "#4D4D4D",
+        "$description": "base-hover"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#3D3D3D",
+        "$description": "base-active"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "#919191"
+        "$value": "#EDEDED",
+        "$description": "base-contrast-subtle"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "base-contrast-default"
       }
     }
   }

@@ -4,10 +4,13 @@
 		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-size: var(--ds-size-6);
 
-		display: inline-grid;
 		position: relative;
 		place-items: center;
 		vertical-align: middle;
+
+		&:where(:not([hidden])) {
+			display: inline-grid;
+		}
 
 		&::before {
 			background: var(--dsc-badge-background);

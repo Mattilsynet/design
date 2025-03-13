@@ -15,7 +15,7 @@ import * as stories from './button.stories';
 <Canvas of={stories.Sizes} />
 
 ## Farger
-- Bruk `data-color="accent | danger"`
+- Bruk `data-color="danger"` for å få rød knapp
 <Canvas of={stories.Colors} />
 
 ## Tekst på en linje
@@ -46,7 +46,8 @@ import * as stories from './button.stories';
 
 ## Pressed
 - Bruk `<button>` med `aria-pressed="true"`
-- Knappen endrer ikke stil, men du kan vise/skjule innhold ved bruk av attributten `data-pressed="true | false"`:
+- Du kan vise/skjule innhold ved bruke attributten `data-pressed="true | false"` på barn
+- **Merk:** Dersom neste element er `popover`, vil `data-pressed="true | false"` også fungere
 <Canvas of={stories.Pressed} />
 
 ## Tooltip

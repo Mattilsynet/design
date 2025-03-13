@@ -1,13 +1,11 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
-		--dsc-tag-background: var(--mtds-color-neutral-50);
 
-		border-radius: 5px;
-		border: 1px solid var(--mtds-color-neutral-50);
+		border-radius: var(--ds-border-radius-md);
+		border: 1px solid var(--ds-color-border-subtle);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
-		height: fit-content; /* Can be removed when DigiDir gets this */
 		flex-shrink: 0; /* If placed in display: flex */
 
 		/**
@@ -24,30 +22,6 @@
 			height: var(--mtds-icon-size);
 			mask: center / contain no-repeat var(--dsc-tag-icon-url) content-box;
 			width: var(--mtds-icon-size);
-		}
-
-		/**
-		 * Colors
-		 */
-		&[data-color="info"] {
-			--dsc-tag-background: var(--mtds-color-bakgrunns-blaa);
-			--dsc-tag-color: var(--mtds-color-fjord);
-			--dsc-tag-icon-url: var(--mtds-icon-info);
-		}
-		&[data-color="success"] {
-			--dsc-tag-background: var(--mtds-color-lav);
-			--dsc-tag-color: var(--mtds-color-granskog);
-			--dsc-tag-icon-url: var(--mtds-icon-success);
-		}
-		&[data-color="warning"] {
-			--dsc-tag-background: var(--mtds-color-bakgrunns-gul);
-			--dsc-tag-color: var(--mtds-color-info-gul);
-			--dsc-tag-icon-url: var(--mtds-icon-warning);
-		}
-		&[data-color="danger"] {
-			--dsc-tag-background: var(--mtds-color-bakgrunns-rosa);
-			--dsc-tag-color: var(--mtds-color-info-rod);
-			--dsc-tag-icon-url: var(--mtds-icon-danger);
 		}
 	}
 }

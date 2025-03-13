@@ -2,7 +2,7 @@
 	hr,
 	.divider {
 		border: 0;
-		border-top: 1px solid var(--mtds-color-neutral-200);
+		border-top: 1px solid var(--ds-color-neutral-border-subtle);
 		margin: var(--ds-size-4) 0;
 
 		&[data-gap="none"],

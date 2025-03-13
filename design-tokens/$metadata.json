@@ -10,14 +10,13 @@
     "primitives/modes/typography/size/large",
     "primitives/modes/typography/primary/mattilsynet",
     "primitives/modes/typography/secondary/mattilsynet",
-    "primitives/modes/color-scheme/light/global",
-    "primitives/modes/color-scheme/light/mattilsynet",
     "primitives/modes/color-scheme/dark/global",
     "primitives/modes/color-scheme/dark/mattilsynet",
+    "primitives/modes/color-scheme/light/global",
+    "primitives/modes/color-scheme/light/mattilsynet",
     "themes/mattilsynet",
     "semantic/color",
-    "semantic/modes/main-color/granskog",
-    "semantic/style",
-    "Figma/components"
+    "semantic/modes/main-color/primary",
+    "semantic/style"
   ]
 }

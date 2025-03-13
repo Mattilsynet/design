@@ -1,9 +1,12 @@
 @layer mt.design {
 	.spinner {
-		display: inline-grid;
 		gap: var(--ds-size-2);
 		place-items: center;
 		vertical-align: middle;
+
+		&:where(:not([hidden])) {
+			display: inline-grid;
+		}
 	}
 	.spinner::before {
 		background: currentcolor;

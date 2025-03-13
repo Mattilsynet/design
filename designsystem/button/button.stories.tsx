@@ -1,4 +1,4 @@
-import { Heart, Star } from "@phosphor-icons/react";
+import { Heart, List, Star, X } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../react";
@@ -39,9 +39,8 @@ export const React: Story = {
 		<>
 			<Button data-variant="primary">Primary</Button>
 			<Button data-variant="secondary">Secondary</Button>
-			<Button>Tertiary (default)</Button>
-			<Button href="#">Tertiary (default)</Button>
-			<Button as="span">Tertiary (default)</Button>
+			<Button>Tertiary as button</Button>
+			<Button href="#">Tertiary as link</Button>
 		</>
 	),
 };
@@ -79,13 +78,8 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
 	render: () => (
-		<div className={styles.grid} data-grid="2">
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="primary"
-				data-color="accent"
-			>
+		<>
+			<button type="button" className={styles.button} data-variant="primary">
 				Accent
 			</button>
 			<button
@@ -96,12 +90,7 @@ export const Colors: Story = {
 			>
 				Danger
 			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
-				data-color="accent"
-			>
+			<button type="button" className={styles.button} data-variant="secondary">
 				Accent
 			</button>
 			<button
@@ -112,29 +101,24 @@ export const Colors: Story = {
 			>
 				Danger
 			</button>
-			<button
-				type="button"
-				className={styles.button}
-				data-variant="tertiary"
-				data-color="accent"
-			>
+			<button type="button" className={styles.button}>
 				Accent
 			</button>
 			<button
 				type="button"
 				className={styles.button}
-				data-variant="tertiary"
 				data-color="danger"
+				data-variant="tertiary"
 			>
 				Danger
 			</button>
-		</div>
+		</>
 	),
 };
 
 export const Nowrap: Story = {
 	render: () => (
-		<div className={styles.grid} data-grid="sm" style={{ width: 300 }}>
+		<div className={styles.grid} data-items="auto" style={{ width: 350 }}>
 			<div>
 				<p>Med nowrap:</p>
 				<button
@@ -166,17 +150,40 @@ export const Pressed: Story = {
 		const [pressed, setPressed] = useState(false);
 
 		return (
-			<button
-				aria-pressed={pressed}
-				type="button"
-				className={styles.button}
-				onClick={() => setPressed(!pressed)}
-			>
-				<Star data-pressed="false" />
-				<span data-pressed="false">Lagre favoritt</span>
-				<Star data-pressed="true" weight="fill" />
-				<span data-pressed="true">Fjern favoritt</span>
-			</button>
+			<>
+				<button
+					aria-pressed={pressed}
+					type="button"
+					className={styles.button}
+					onClick={() => setPressed(!pressed)}
+				>
+					<Star data-pressed="false" />
+					<span data-pressed="false">Lagre favoritt</span>
+					<Star data-pressed="true" weight="fill" />
+					<span data-pressed="true">Fjern favoritt</span>
+				</button>
+				<button
+					className={styles.button}
+					popoverTarget="pop-pressed"
+					type="button"
+				>
+					With popover
+					<List data-pressed="false" />
+					<X data-pressed="true" />
+				</button>
+				<menu className={styles.popover} id="pop-pressed" popover="auto">
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							Knapp 2
+						</button>
+					</li>
+				</menu>
+			</>
 		);
 	},
 };
@@ -202,7 +209,7 @@ export const WithArrows: Story = {
 				Popover
 			</button>
 
-			<menu className={styles.popover} id="pop-1" popover="">
+			<menu className={styles.popover} id="pop-1" popover="auto">
 				<li>
 					<button type="button" className={styles.button}>
 						Knapp 1
@@ -282,7 +289,7 @@ export const WithMenu: Story = {
 				type="button"
 				className={styles.button}
 			/>
-			<menu popover="" id="pop-2" className={styles.popover}>
+			<menu popover="auto" id="pop-2" className={styles.popover}>
 				<li>
 					<button type="button" className={styles.button}>
 						Knapp 1
@@ -339,45 +346,27 @@ export const InMenu: Story = {
 };
 
 export const Invert: Story = {
+	name: "Invert",
 	render: () => (
 		<div
+			data-color-scheme="dark"
 			className={styles.flex}
-			style={{ backgroundColor: "#054449", color: "#fff", padding: 15 }}
+			style={{ padding: 15 }}
 		>
 			<p style={{ flex: "1 0 100%" }}>
-				Temporary data-color="invert" added while waiting for final
-				Designsystemet color tokens:
+				Use data-color-scheme="dark" on parent element or button itself to
+				invert
 			</p>
-			<button
-				data-color="invert"
-				type="button"
-				className={styles.button}
-				data-variant="primary"
-			>
+			<button type="button" className={styles.button} data-variant="primary">
 				Primary
 			</button>
-			<button
-				data-color="invert"
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
-			>
+			<button type="button" className={styles.button} data-variant="secondary">
 				Secondary
 			</button>
-			<button
-				data-color="invert"
-				type="button"
-				className={styles.button}
-				data-variant="tertiary"
-			>
+			<button type="button" className={styles.button} data-variant="tertiary">
 				Tertiary
 			</button>
-			<button
-				data-color="invert"
-				aria-current="page"
-				type="button"
-				className={styles.button}
-			>
+			<button aria-current="page" type="button" className={styles.button}>
 				aria-current="page"
 			</button>
 		</div>

@@ -28,6 +28,9 @@ export const React: Story = {
 };
 
 export const Radios: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hva foretrekker du?</legend>
@@ -53,6 +56,9 @@ export const Radios: Story = {
 };
 
 export const Checkboxes: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
@@ -151,6 +157,9 @@ export const Horizontal: Story = {
 };
 
 export const WithValidation: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
