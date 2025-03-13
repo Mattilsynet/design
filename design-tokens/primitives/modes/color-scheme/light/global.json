@@ -35,8 +35,8 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#153F7B33",
-        "$description": "border-default\nfjord 20%"
+        "$value": "#153F7B",
+        "$description": "border-default\nfjord"
       },
       "9": {
         "$type": "color",
@@ -113,8 +113,8 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#05444933",
-        "$description": "border-default\ngranskog 20%"
+        "$value": "#054449",
+        "$description": "border-default\ngranskog"
       },
       "9": {
         "$type": "color",
