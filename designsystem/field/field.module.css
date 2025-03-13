@@ -18,7 +18,7 @@
 	 */
 	.field:has(:required, [aria-required="true"]) label::after {
 		background: var(--ds-color-info-surface-tinted);
-		border-radius: 5px;
+		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-info-border-subtle);
 		box-sizing: border-box;
 		color: var(--ds-color-info-text-default);
@@ -55,7 +55,7 @@
 	 */
 	.field u-datalist {
 		background: var(--ds-color-surface-default);
-		border-radius: 5px;
+		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;

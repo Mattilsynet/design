@@ -2,7 +2,7 @@
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 
-		border-radius: 5px;
+		border-radius: var(--ds-border-radius-md);
 		flex-shrink: 0; /* If placed in flex */
 		font-weight: 500;
 		max-width: 100%;

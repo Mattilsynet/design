@@ -10,13 +10,13 @@ type SvgsProps = {
 	path: string;
 	showSearch?: boolean;
 	reverse?: boolean;
-	fill?: string;
+	mode?: "light" | "dark";
 } & React.ComponentPropsWithoutRef<"div">;
 
 export const Svgs = ({
 	path,
 	reverse,
-	fill,
+	mode = "light",
 	showSearch = false,
 	...rest
 }: SvgsProps) => {
@@ -77,49 +77,44 @@ export const Svgs = ({
 							svg.file.includes(query),
 					)
 					.map(({ file, svg }) => {
-						const style = fill === "#E2F1DF" ? { color: fill } : undefined;
-						const href = fill ? encodeSVG(svg, fill) : file;
+						const href = mode === "dark" ? encodeSVG(svg, mode) : file;
 						const name = file.split("/").pop();
 
 						return (
-							<a key={file} href={href} download={name} style={style}>
-								<span dangerouslySetInnerHTML={{ __html: svg }} />
+							<a
+								data-color-scheme={mode}
+								className={styles.card}
+								key={file}
+								href={href}
+								download={name}
+							>
+								<span
+									data-color="primary"
+									dangerouslySetInnerHTML={{ __html: svg }}
+								/>
 								{name}
 							</a>
 						);
 					})}
 				<style>{`
         .svgs { margin-block: 2rem }
-				.svgs a[style] { background: #054449 }
-        .svgs a {
-					align-items: center;
-					background: color-mix(in hsl, currentcolor 5%, transparent);
-					border-radius: 5px;
-					display: grid;
-					gap: 1em;
-					grid-template-rows: 1fr max-content;
-					padding: 2rem;
-					text-align: center;
-				}
-        .svgs svg {
-					height: auto;
-					max-height: 100px;
-					width: 100%;
-				}
+				.svgs a[data-color-scheme="dark"] { color: var(--ds-color-text-subtle) }
+        .svgs a { display: grid; align-items: center; grid-template-rows: 1fr max-content; gap: 1em; text-align: center }
+        .svgs svg { height: auto; max-height: 100px; width: 100% }
       `}</style>
 			</div>
 		</div>
 	);
 };
 
-const encodeSVG = (data: string, fill = "currentcolor") => {
+const encodeSVG = (data: string, mode = "light") => {
 	const [_, _x, _y, w, h] =
 		data.match(/viewBox="(\d+)\s+(\d+)\s+(\d+)\s+(\d+)"/i) || [];
 
 	return `data:image/svg+xml,${data
 		.replace(/width="[^"]+"/gi, `width="${w}"`) // Use viewBox for width
 		.replace(/height="[^"]+"/gi, `height="${h}"`) // Use viewBox for height
-		.replace(/currentColor/gi, fill) // Use color. @default granskog
+		.replace(/currentColor/gi, mode === "light" ? "#054449" : "#E2F1DF") // Use color. @default granskog
 		.replace(/"/g, `'`)
 		.replace(/>\s{1,}</g, "><")
 		.replace(/\s{2,}/g, " ")

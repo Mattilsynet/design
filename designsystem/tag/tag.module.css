@@ -2,7 +2,7 @@
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
 
-		border-radius: 5px;
+		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);

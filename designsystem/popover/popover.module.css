@@ -3,7 +3,7 @@
 		--mtds-popover-padding: var(--ds-size-5);
 
 		background: var(--ds-color-surface-default);
-		border-radius: 5px;
+		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;

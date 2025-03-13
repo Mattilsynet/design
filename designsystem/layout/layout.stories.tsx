@@ -27,7 +27,7 @@ const meta = {
 						gap: 1rem;
 						padding: 1px;
 						
-						& b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: 5px }
+						& b { display: flex; align-items: center; padding: .5em 1em; border: 1px solid; border-radius: var(--mtds-border-radius-md) }
 						& code { font-size: .875rem }
 						& div:not([class*="box"]) { outline: 1px dashed color-mix(in hsl, currentcolor 50%, transparent) }
 						& div[data-align-content] { height: 150px }

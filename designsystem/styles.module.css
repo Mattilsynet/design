@@ -98,6 +98,10 @@
 		--mtds-text-required: "Required";
 	}
 
+	[data-color-scheme] {
+		color: var(--ds-color-text-default);
+	}
+
 	body,
 	.body {
 		background: var(--ds-color-background-default);
