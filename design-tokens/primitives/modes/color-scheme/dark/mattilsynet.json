@@ -20,46 +20,34 @@
         "$type": "color",
         "$value": "#054449",
         "$description": "surface-tinted\ngranskog"
-        "$value": "#054449",
-        "$description": "surface-tinted\ngranskog"
       },
       "5": {
         "$type": "color",
         "$value": "#0f6160",
-        "$description": "surface-hover\nmodifisert havdyp"
-        "$value": "#0f6160",
-        "$description": "surface-hover\nmodifisert havdyp"
+        "$description": "surface-hover\nhavdyp"
       },
       "6": {
         "$type": "color",
         "$value": "#0f6160",
-        "$description": "surface-active\nmodifisert havdyp"
-        "$value": "#0f6160",
-        "$description": "surface-active\nmodifisert havdyp"
+        "$description": "surface-active\nhavdyp"
       },
       "7": {
         "$type": "color",
         "$value": "#6c6a691a",
-        "$description": "border-subtle\n10%"
         "$description": "border-subtle\n10%"
       },
       "8": {
         "$type": "color",
         "$value": "#6c6a6933",
         "$description": "border-default\n20%"
-        "$value": "#6c6a6933",
-        "$description": "border-default\n20%"
       },
       "9": {
         "$type": "color",
-        "$value": "#68b096",
         "$value": "#68b096",
         "$description": "border-strong"
       },
       "10": {
         "$type": "color",
-        "$value": "#9BCAB9",
-        "$description": "text-subtle\nlys furu"
         "$value": "#9BCAB9",
         "$description": "text-subtle\nlys furu"
       },

@@ -40,13 +40,9 @@
         "$type": "color",
         "$value": "#054449",
         "$description": "border-default\ngranskog\n"
-        "$value": "#054449",
-        "$description": "border-default\ngranskog\n"
       },
       "9": {
         "$type": "color",
-        "$value": "#032C30",
-        "$description": "border-strong\nmørk granskog"
         "$value": "#032C30",
         "$description": "border-strong\nmørk granskog"
       },
@@ -69,12 +65,9 @@
         "$type": "color",
         "$value": "#054449",
         "$description": "base-hover\n\"granskog\"\n"
-        "$value": "#054449",
-        "$description": "base-hover\n\"granskog\"\n"
       },
       "14": {
         "$type": "color",
-        "$value": "#032C30",
         "$value": "#032C30",
         "$description": "base-active\n\"mørk granskog\""
       },
