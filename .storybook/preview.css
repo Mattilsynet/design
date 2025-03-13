@@ -22,22 +22,6 @@ u-tabpanel > pre > .docblock-source {
 	font-size: 3em;
 	line-height: 1.2;
 	margin-block: 0;
-
-	&:not(#mattilsynet-design)::after {
-		content: "Under utvikling";
-		background: var(--mtds-color-neutral-50);
-		border-radius: 5px;
-		border: 1px solid var(--mtds-color-neutral-50);
-		box-sizing: border-box;
-		display: inline-block;
-		font-size: var(--ds-body-xs-font-size);
-		font-weight: normal;
-		height: var(--ds-size-8);
-		line-height: 1.5;
-		margin-inline-start: var(--ds-size-3);
-		padding: 0 var(--ds-size-2);
-		vertical-align: .65em;
-	}
 }
 
 .sbdocs-h2,

@@ -1,10 +1,10 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
-		--dsc-tag-background: var(--mtds-color-neutral-50);
+		--dsc-tag-background: var(--mtds-color-neutral-15);
 
 		border-radius: 5px;
-		border: 1px solid var(--mtds-color-neutral-50);
+		border: 1px solid var(--mtds-color-neutral-15);
 		font-variant-numeric: tabular-nums;
 		gap: var(--ds-size-1);
 		flex-shrink: 0; /* If placed in display: flex */

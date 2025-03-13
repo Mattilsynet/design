@@ -34,7 +34,7 @@ export const React: Story = {
 
 export const Gap: Story = {
 	render: () => (
-		<div className={styles.grid} data-items="sm">
+		<div className={styles.grid} data-items="200">
 			<div>
 				none
 				<hr data-gap="none" />

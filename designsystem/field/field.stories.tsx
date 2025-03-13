@@ -137,6 +137,9 @@ export const WithValidation: Story = {
 };
 
 export const WithAffixes: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -154,6 +157,7 @@ export const WithAffixes: Story = {
 export const WithCharacterCount: Story = {
 	parameters: {
 		layout: "padded",
+		showInOverview: true,
 	},
 	render: () => (
 		<>
@@ -170,6 +174,7 @@ export const WithSuggestion: Story = {
 	name: "With suggestion (Eksperimentell)",
 	parameters: {
 		layout: "padded",
+		showInOverview: true,
 	},
 	render: () => (
 		<>
@@ -195,6 +200,7 @@ export const WithMultiSuggestion: Story = {
 	name: "With multi suggestion (Eksperimentell)",
 	parameters: {
 		layout: "padded",
+		showInOverview: true,
 	},
 	render: () => (
 		<>

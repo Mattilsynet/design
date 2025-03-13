@@ -14,19 +14,13 @@
 			display: inline-flex;
 		}
 
-		&:not([data-color="danger"]) {
-			--dsc-button-background--active: var(--dsc-button-background--hover); /* Ignore color change on active as we use scale instead */
-			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-background: transparent;
-			--dsc-button-color--hover: var(--dsc-button-color); /* Ignore color change on hover */
-			--dsc-button-border-color: currentcolor;
-			--dsc-button-color: currentcolor;
-		}
-
 		/* Overwrite to same as tertiary from Designsystemet  */
-		&[data-variant="tertiary"],
-		&:not([data-variant]) {
-			--dsc-button-border-color: transparent;
+		&:not([data-variant="primary"]) {
+			--dsc-button-background: transparent;
+			--dsc-button-background--active: var(--ds-color-surface-active);
+			--dsc-button-background--hover: var(--ds-color-surface-hover);
+			--dsc-button-color: var(--ds-color-text-subtle);
+			--dsc-button-color--hover: var(--ds-color-text-default);
 		}
 
 		&[aria-current]:not([aria-current="false"]) {
@@ -34,11 +28,6 @@
 			font-weight: bold;
 		}
 
-		&[data-variant="primary"] {
-			--dsc-button-background--hover: var(--mtds-color-mork-granskog);
-			--dsc-button-background: var(--mtds-color-granskog); /* #0f6160; /*#116e6b;*/
-			--dsc-button-color: var(--mtds-color-white);
-		}
 		&[data-color="invert"][data-variant="primary"] {
 			--dsc-button-background--hover: var(--mtds-color-white);
 			--dsc-button-background: var(--mtds-color-white);

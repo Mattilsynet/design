@@ -23,13 +23,5 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"exclude": [
-		".storybook",
-		"design-tokens",
-		"design-tokens-build",
-		"dist",
-		"mdts",
-		"node_modules",
-		"storybook-static"
-	]
+	"include": [".storybook/*", "designsystem", "identitet", "profilering"]
 }

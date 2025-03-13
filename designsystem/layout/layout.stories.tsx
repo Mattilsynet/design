@@ -43,6 +43,9 @@ type Story = StoryObj<typeof meta>;
 
 export const FlexStory: Story = {
 	name: "Flex",
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.flex}>
 			<button type="button" className={styles.button} data-variant="primary">
@@ -67,20 +70,11 @@ export const FlexStory: Story = {
 	),
 };
 
-export const Sizes: Story = {
-	render: () => (
-		<>
-			{Array.from({ length: 16 }, (_, i) => i + 1).map((i) => (
-				<span key={i}>
-					{"0".repeat(5 * i)} ({i * 5})
-				</span>
-			))}
-		</>
-	),
-};
-
 export const GridStory: Story = {
 	name: "Grid",
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.grid} data-gap="lg">
 			<div className={styles.grid} data-items="auto">
@@ -94,14 +88,14 @@ export const GridStory: Story = {
 			>
 				<div>
 					Sidebar
-					<div className={styles.grid} data-items="10ch" data-gap="none">
+					<div className={styles.grid} data-items="100" data-gap="none">
 						<div>Child 1</div>
 						<div>Child 2</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-items="30ch" data-gap="md">
+				<div className={styles.grid} data-items="300" data-gap="md">
 					<div>Child 1</div>
-					<div className={styles.grid} data-items="10ch">
+					<div className={styles.grid} data-items="100">
 						<div>Child 2-1</div>
 						<div>Child 2-2</div>
 						<div>Child 2-3</div>
@@ -136,14 +130,14 @@ export const React: Story = {
 				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="lg">
 					<div>
 						Sidebar
-						<Grid data-items="10ch" data-gap="none">
+						<Grid data-items="100" data-gap="none">
 							<div>Child 1</div>
 							<div>Child 2</div>
 						</Grid>
 					</div>
-					<Grid data-items="30ch" data-gap="md">
+					<Grid data-items="300" data-gap="md">
 						<div>Child 1</div>
-						<Grid data-items="10ch">
+						<Grid data-items="100">
 							<div>Child 2-1</div>
 							<div>Child 2-2</div>
 							<div>Child 2-3</div>
@@ -242,8 +236,8 @@ export const Align: Story = {
 			data-gap="lg"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
-			<code>data-align="stretch"</code>
-			<div className={styles.flex} data-align="stretch">
+			<code>data-align="stret0"</code>
+			<div className={styles.flex} data-align="stret0">
 				<b data-size="sm">Small</b>
 				<b data-size="md">Medium</b>
 				<b data-size="lg">Large</b>
@@ -537,3 +531,22 @@ export const App: Story = {
 		</div>
 	),
 };
+
+// export const Sizes: Story = {
+// 	render: () => (
+// 		<>
+// 			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+// 				<div key={i}>
+// 					<div>
+// 						{"0".repeat(5 * i)} ({i * 5})
+// 					</div>
+// 					<div className={styles.flex} key={i} data-gap="none">
+// 						<div data-self={i * 50} style={{ background: "gray" }} data-fixed>
+// 							0
+// 						</div>
+// 					</div>
+// 				</div>
+// 			))}
+// 		</>
+// 	),
+// };

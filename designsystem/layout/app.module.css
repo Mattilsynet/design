@@ -55,7 +55,7 @@
 		/* WIP */
 		&[data-color="surface"] {
 			background: var(--mtds-color-white);
-			border-bottom: 1px solid var(--mtds-color-neutral-200);
+			border-bottom: 1px solid var(--mtds-color-neutral-15);
 			padding: var(--spacing-md);
 			margin-bottom: var(--spacing-md);
 		}
@@ -122,7 +122,7 @@
 		/* 960px */
 		@media screen and (max-width: 60em) {
 			background-color: var(--mtds-color-white);
-			border-top: 1px solid var(--mtds-color-neutral-200);
+			border-top: 1px solid var(--mtds-color-neutral-15);
 			left: 0;
 			padding: var(--spacing-sm);
 			position: fixed;

@@ -11,7 +11,7 @@ export * from "./divider/divider";
 export * from "./errorsummary/errorsummary";
 export * from "./field/field";
 export * from "./fieldset/fieldset";
-export * from "./heading/heading";
+export * from "./typography/typography";
 export * from "./helptext/helptext";
 export * from "./input/input";
 export * from "./layout/layout";

@@ -78,7 +78,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
 	render: () => (
-		<div className={styles.grid} data-items="2">
+		<>
 			<button type="button" className={styles.button} data-variant="primary">
 				Accent
 			</button>
@@ -90,13 +90,35 @@ export const Colors: Story = {
 			>
 				Danger
 			</button>
-		</div>
+			<button type="button" className={styles.button} data-variant="secondary">
+				Accent
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
+				data-color="danger"
+			>
+				Danger
+			</button>
+			<button type="button" className={styles.button}>
+				Accent
+			</button>
+			<button
+				type="button"
+				className={styles.button}
+				data-color="danger"
+				data-variant="tertiary"
+			>
+				Danger
+			</button>
+		</>
 	),
 };
 
 export const Nowrap: Story = {
 	render: () => (
-		<div className={styles.grid} data-items="sm" style={{ width: 300 }}>
+		<div className={styles.grid} data-items="auto" style={{ width: 350 }}>
 			<div>
 				<p>Med nowrap:</p>
 				<button

@@ -7,7 +7,7 @@ import type {
 import styles from "../styles.module.css";
 
 type SharedProps = {
-	"data-align"?: "stretch" | "start" | "center" | "end";
+	"data-align"?: "normal" | "stretch" | "start" | "center" | "end";
 	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
 	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
 	"data-justify"?:
@@ -36,16 +36,26 @@ export type GridProps<As extends React.ElementType = "div"> =
 			"data-fixed"?: boolean;
 			"data-items"?:
 				| "auto"
-				| "5ch"
-				| "10ch"
-				| "15ch"
-				| "20ch"
-				| "25ch"
-				| "30ch"
-				| "35ch"
-				| "40ch"
-				| "45ch"
-				| "50ch";
+				| "50"
+				| "100"
+				| "150"
+				| "200"
+				| "250"
+				| "300"
+				| "350"
+				| "400"
+				| "450"
+				| "500"
+				| 50
+				| 100
+				| 150
+				| 200
+				| 250
+				| 300
+				| 350
+				| 400
+				| 450
+				| 500;
 		}
 	>;
 

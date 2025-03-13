@@ -6,7 +6,8 @@ import * as stories from './layout.stories';
 
 # Layout
 - Bruk klassene `flex` for `display: flex` eller `grid` for `display: grid`
-- Begge klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`
+- Begge klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`, `data-nowrap`
+- Begge klassene støtter `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
 
 
 <Alert data-color='info'>
@@ -25,13 +26,12 @@ import * as stories from './layout.stories';
 - **💡 Bruk `grid` når du trenger samme bredder på alle elementer**
 - **💡 Bruk `grid` *uten* `data-items` for å sette elementer under hverandre**
 - Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
-- Bruk `data-items="xs | sm | md | lg"` for minimumsbredder som får lov å vokse
+- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
 - Bruk `data-fixed` for å låste bredder
 <Canvas of={stories.GridStory} />
 
 ## Gap
 - `data-gap="none | xs | sm | md | lg | xl"` (`sm` er default)
-- **Merk:** Bruker du `data-items` og ikke setter `data-gap` blir `column-gap` automatisk `md` for økt lesbarhet
 <Canvas of={stories.Gap} />
 
 ## Center
@@ -42,7 +42,7 @@ import * as stories from './layout.stories';
 <Canvas of={stories.Center} />
 
 ## Align
-- `data-align="stretch | start | center | end"` setter vertikal plassering med [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) 
+- `data-align="normal | start | center | end | stretch"` (`normal` er default) setter vertikal plassering med [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) 
 - Virker på både `flex` og `grid`
 <Canvas of={stories.Align} />
 

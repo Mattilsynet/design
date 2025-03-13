@@ -68,7 +68,7 @@ export const Svgs = ({
 					</fieldset>
 				</div>
 			)}
-			<div className={`svgs ${styles.grid}`} data-grid="lg" {...rest}>
+			<div className={`svgs ${styles.grid}`} data-items="200" {...rest}>
 				{svgs
 					.filter(
 						(svg) =>

@@ -17,7 +17,6 @@
 	 */
 	.grid,
 	.flex {
-		align-items: start;
 		box-sizing: border-box;
 		flex-wrap: wrap;
 		gap: var(--ds-size-2);
@@ -45,38 +44,29 @@
 		&[data-center="xl"] { max-width: 80rem } /* 1280px */
 		&[data-center="2xl"] { max-width: 96rem } /* 1536px */
 
-		&[data-items] {
-			--mtds-items: 0px; /* Set default layout width */
-			column-gap: var(--ds-size-4); /* Increase default gap column if data-items */
-		}
-		&[data-items="5ch"] { --mtds-items: 5ch }
-		&[data-items="10ch"] { --mtds-items: 10ch }
-		&[data-items="15ch"] { --mtds-items: 15ch }
-		&[data-items="20ch"] { --mtds-items: 20ch }
-		&[data-items="25ch"] { --mtds-items: 25ch }
-		&[data-items="30ch"] { --mtds-items: 30ch }
-		&[data-items="35ch"] { --mtds-items: 35ch }
-		&[data-items="40ch"] { --mtds-items: 40ch }
-		&[data-items="45ch"] { --mtds-items: 45ch }
-		&[data-items="50ch"] { --mtds-items: 50ch }
-		&[data-items="55ch"] { --mtds-items: 55ch }
-		&[data-items="60ch"] { --mtds-items: 60ch }
-		&[data-items="65ch"] { --mtds-items: 65ch }
-		&[data-items="70ch"] { --mtds-items: 70ch }
-		&[data-items="75ch"] { --mtds-items: 75ch }
-		&[data-items="80ch"] { --mtds-items: 80ch }
-
 		&[data-gap="none"] { gap: 0px  }
 		&[data-gap="xs"] { gap: var(--ds-size-1) } /* 4px */
 		&[data-gap="sm"] { gap: var(--ds-size-2) } /* 8px */
 		&[data-gap="md"] { gap: var(--ds-size-4) } /* 16px */
 		&[data-gap="lg"] { gap: var(--ds-size-6) } /* 24px */
 		&[data-gap="xl"] { gap: var(--ds-size-8) } /* 32px */
+		&[data-column-gap="none"] { column-gap: 0px  }
+		&[data-column-gap="xs"] { column-gap: var(--ds-size-1) } /* 4px */
+		&[data-column-gap="sm"] { column-gap: var(--ds-size-2) } /* 8px */
+		&[data-column-gap="md"] { column-gap: var(--ds-size-4) } /* 16px */
+		&[data-column-gap="lg"] { column-gap: var(--ds-size-6) } /* 24px */
+		&[data-column-gap="xl"] { column-gap: var(--ds-size-8) } /* 32px */
+		&[data-row-gap="none"] { row-gap: 0px  }
+		&[data-row-gap="xs"] { row-gap: var(--ds-size-1) } /* 4px */
+		&[data-row-gap="sm"] { row-gap: var(--ds-size-2) } /* 8px */
+		&[data-row-gap="md"] { row-gap: var(--ds-size-4) } /* 16px */
+		&[data-row-gap="lg"] { row-gap: var(--ds-size-6) } /* 24px */
+		&[data-row-gap="xl"] { row-gap: var(--ds-size-8) } /* 32px */
 
-		&[data-align="normal"] { align-items: start }
-		&[data-align="start"] { align-items: start }
 		&[data-align="center"] { align-items: center }
 		&[data-align="end"] { align-items: end}
+		&[data-align="start"] { align-items: start }
+		&[data-align="stretch"] { align-items: stretch }
 
 		&[data-align-content="start"] { align-content: start }
 		&[data-align-content="center"] { align-content: center }
@@ -97,47 +87,45 @@
 	/**
 	 * Flex
 	 */
-	.flex[data-items] > * { flex: 1 1 var(--mtds-items) }
+	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
 	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
-	.flex > [data-self] { flex-basis: var(--mtds-self) } /* Let --mtds-self win if defined */
-	.flex > [data-self="5ch"] { --mtds-self: 5ch }
-	.flex > [data-self="10ch"] { --mtds-self: 10ch }
-	.flex > [data-self="15ch"] { --mtds-self: 15ch }
-	.flex > [data-self="20ch"] { --mtds-self: 20ch }
-	.flex > [data-self="25ch"] { --mtds-self: 25ch }
-	.flex > [data-self="30ch"] { --mtds-self: 30ch }
-	.flex > [data-self="35ch"] { --mtds-self: 35ch }
-	.flex > [data-self="40ch"] { --mtds-self: 40ch }
-	.flex > [data-self="45ch"] { --mtds-self: 45ch }
-	.flex > [data-self="50ch"] { --mtds-self: 50ch }
-	.flex > [data-self="55ch"] { --mtds-self: 55ch }
-	.flex > [data-self="60ch"] { --mtds-self: 60ch }
-	.flex > [data-self="65ch"] { --mtds-self: 65ch }
-	.flex > [data-self="70ch"] { --mtds-self: 70ch }
-	.flex > [data-self="75ch"] { --mtds-self: 75ch }
-	.flex > [data-self="80ch"] { --mtds-self: 80ch }
-
-	@media(max-width: 601px) {
-		.flex > [data-breakout]:first-child { flex-basis: 100% }
-	}
-	@media(min-width: 600px) {
-		.flex:has(> [data-breakout]:first-child) { padding-left: var(--mtds-items) }
-		.flex > [data-breakout]:first-child { position: absolute; margin-left: calc(var(--mtds-items) * -1) }
-	}
+	.flex > * [data-nowrap] { min-width: max-content; }
+	.flex[data-items="50"] > *, .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
+	.flex[data-items="100"] > *, .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
+	.flex[data-items="150"] > *, .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
+	.flex[data-items="200"] > *, .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
+	.flex[data-items="250"] > *, .flex > [data-self="250"] { flex-basis: calc(1rem / 16 * 250) }
+	.flex[data-items="300"] > *, .flex > [data-self="300"] { flex-basis: calc(1rem / 16 * 300) }
+	.flex[data-items="350"] > *, .flex > [data-self="350"] { flex-basis: calc(1rem / 16 * 350) }
+	.flex[data-items="400"] > *, .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
+	.flex[data-items="450"] > *, .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
+	.flex[data-items="500"] > *, .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
 
 	/**
 	 * Grid
 	 */
 	.grid[data-items] {
-		 --mtds-grid-grow: auto-fit; /* Allows columns to grow to fit container */
-		 --mtds-grid-size: minmax(min(100%, var(--mtds-items)), 1fr); /* From https://moderncss.dev/solutions-to-replace-the-12-column-grid/ */
-		 grid-template-columns: repeat(var(--mtds-grid-grow), var(--mtds-grid-size));
+		--mtds-grid-size: 0px; /* Set default layout width */
+		--mtds-grid-grow: auto-fit; /* Allows columns to grow to fit container */
+		grid-template-columns: repeat(var(--mtds-grid-grow), minmax(min(100%, var(--mtds-grid-size)), 1fr)); /* From https://moderncss.dev/solutions-to-replace-the-12-column-grid/ */
 	}
 	.grid[data-fixed] { --mtds-grid-grow: auto-fill } /* "Fixes" sizes by causing max repetitions of columns - even empty if needed */
-	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-items) }
-
-	/*.flex > [data-breakup="40"] {
-		min-width: clamp(0px, calc((40rem - 100%) * 999), 100%); /* Unhold albatross technique: https://www.miragecraft.com/blog/unholy-albatross *
-	}*/
+	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-grid-size) }
+	.grid[data-items="50"] { --mtds-grid-size: calc(1rem / 16 * 50) }
+	.grid[data-items="100"] { --mtds-grid-size: calc(1rem / 16 * 100) }
+	.grid[data-items="150"] { --mtds-grid-size: calc(1rem / 16 * 150) }
+	.grid[data-items="200"] { --mtds-grid-size: calc(1rem / 16 * 200) }
+	.grid[data-items="250"] { --mtds-grid-size: calc(1rem / 16 * 250) }
+	.grid[data-items="300"] { --mtds-grid-size: calc(1rem / 16 * 300) }
+	.grid[data-items="350"] { --mtds-grid-size: calc(1rem / 16 * 350) }
+	.grid[data-items="400"] { --mtds-grid-size: calc(1rem / 16 * 400) }
+	.grid[data-items="450"] { --mtds-grid-size: calc(1rem / 16 * 450) }
+	.grid[data-items="500"] { --mtds-grid-size: calc(1rem / 16 * 500) }
+	.grid[data-items="550"] { --mtds-grid-size: calc(1rem / 16 * 550) }
+	.grid[data-items="600"] { --mtds-grid-size: calc(1rem / 16 * 600) }
+	.grid[data-items="650"] { --mtds-grid-size: calc(1rem / 16 * 650) }
+	.grid[data-items="700"] { --mtds-grid-size: calc(1rem / 16 * 700) }
+	.grid[data-items="750"] { --mtds-grid-size: calc(1rem / 16 * 750) }
+	.grid[data-items="800"] { --mtds-grid-size: calc(1rem / 16 * 800) }
 }

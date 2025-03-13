@@ -3,10 +3,10 @@ import { Heading } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
-	title: "Designsystem/Heading",
+	title: "Designsystem/Typography",
 	decorators: [
 		(Story) => (
-			<div className={styles.grid} style={{ whiteSpace: "nowrap" }}>
+			<div className={styles.grid}>
 				<Story />
 			</div>
 		),
@@ -17,6 +17,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+	render: () => <h2 className={styles.heading}>Heading</h2>,
+};
+export const Sizes: Story = {
 	render: () => (
 		<>
 			{/**
@@ -88,15 +91,16 @@ export const Center: Story = {
 	),
 };
 
-export const Stack: Story = {
-	tags: ["!dev"],
+export const Prose: Story = {
+	name: "Prose - typografisk stack (Eksperimentell)",
 	parameters: {
 		layout: "fullscreen",
+		showInOverview: true,
 	},
 	render: () => (
 		<div className={styles.body}>
-			<div className={styles.grid} data-center="md" data-size="lg">
-				<div className={styles.stack}>
+			<div className={styles.grid} data-center="md">
+				<div className={styles.prose}>
 					<h1 className={styles.heading} data-size="xl">
 						Her søker du om helsesertifikat for sjømat til Australia
 					</h1>
