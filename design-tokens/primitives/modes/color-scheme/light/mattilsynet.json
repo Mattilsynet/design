@@ -8,7 +8,7 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#6C6A690F",
+        "$value": "#6B6B6B0F",
         "$description": "background-tinted\n6% opacity (HEX-0F)"
       },
       "3": {
@@ -23,17 +23,17 @@
       },
       "5": {
         "$type": "color",
-        "$value": "#d3e8e0",
+        "$value": "#D8EED8",
         "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#bcdcd0",
+        "$value": "#CAE8CA",
         "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#6c6a6926",
+        "$value": "#6B6B6B26",
         "$description": "border-subtle\n15% opacity"
       },
       "8": {
@@ -58,8 +58,8 @@
       },
       "12": {
         "$type": "color",
-        "$value": "#0f6160",
-        "$description": "base-default\n\"modifisert havdyp\""
+        "$value": "#116E6B",
+        "$description": "base-default\n\"havdyp\""
       },
       "13": {
         "$type": "color",
@@ -73,13 +73,13 @@
       },
       "15": {
         "$type": "color",
-        "$value": "#ccd9da",
-        "$description": "base-contrast-default\nSJEKK FARGE!!!"
+        "$value": "#E2F1DF",
+        "$description": "base-contrast-subtle\nlav"
       },
       "16": {
         "$type": "color",
         "$value": "#ffffff",
-        "$description": "base-contrast-subtle"
+        "$description": "base-contrast-default"
       }
     },
     "neutral": {
@@ -90,7 +90,7 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#6C6A690F",
+        "$value": "#6B6B6B0F",
         "$description": "background-tinted\n6% opacity (HEX-0F)\n"
       },
       "3": {
@@ -100,68 +100,68 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#ece8e5",
-        "$description": "surface-tinted"
+        "$value": "#EDEDED",
+        "$description": "surface-tinted\n"
       },
       "5": {
         "$type": "color",
-        "$value": "#ddd9d7",
+        "$value": "#E3E3E3",
         "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#cecbc8",
+        "$value": "#DEDEDE",
         "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#6c6a6926",
+        "$value": "#6B6B6B26",
         "$description": "border-subtle\n15% opacity"
       },
       "8": {
         "$type": "color",
-        "$value": "#6C6A69",
+        "$value": "#6B6B6B",
         "$description": "border-default\n"
       },
       "9": {
         "$type": "color",
-        "$value": "#6C6A69",
-        "$description": "border-strong\n#6C6A69"
+        "$value": "#3D3D3D",
+        "$description": "border-strong\n"
       },
       "10": {
         "$type": "color",
-        "$value": "#636160",
+        "$value": "#6B6B6B",
         "$description": "text-subtle"
       },
       "11": {
         "$type": "color",
-        "$value": "#2c2b2b",
+        "$value": "#3D3D3D",
         "$description": "text-default"
       },
       "12": {
         "$type": "color",
-        "$value": "#FAF7F4",
-        "$description": "base-default\ngåsunge-justert"
+        "$value": "#5F5F5F",
+        "$description": "base-default\n"
       },
       "13": {
         "$type": "color",
-        "$value": "#e3dfdd",
+        "$value": "#4D4D4D",
         "$description": "base-hover"
       },
       "14": {
         "$type": "color",
-        "$value": "#ccc8c6",
+        "$value": "#3D3D3D",
         "$description": "base-active"
       },
       "15": {
         "$type": "color",
-        "$value": "#585756",
-        "$description": "base-contrast-default"
+        "$value": "#EDEDED",
+        "$description": "base-contrast-subtle"
       },
       "16": {
         "$type": "color",
-        "$value": "#000000",
-        "$description": "base-contrast-subtle"
+        "$value": "#FFFFFF",
+        "$description": "base-contrast-default"
       }
     }
   }

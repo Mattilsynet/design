@@ -8,7 +8,7 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#6C6A6914",
+        "$value": "#6B6B6B614",
         "$description": "background-tinted\n8%"
       },
       "3": {
@@ -24,12 +24,12 @@
       "5": {
         "$type": "color",
         "$value": "#0f6160",
-        "$description": "surface-hover\nmodifisert havdyp"
+        "$description": "surface-hover\nhavdyp"
       },
       "6": {
         "$type": "color",
         "$value": "#0f6160",
-        "$description": "surface-active\nmodifisert havdyp"
+        "$description": "surface-active\nhavdyp"
       },
       "7": {
         "$type": "color",
