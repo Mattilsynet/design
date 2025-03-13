@@ -7,9 +7,7 @@ import dts from "vite-plugin-dts";
 
 const root = path.resolve(__dirname, "designsystem");
 const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
-const version = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, "package.json"), "utf-8")
-).version.replace(/\./g, "-");
+const { version } = JSON.parse(fs.readFileSync(path.resolve(__dirname, "package.json"), "utf-8")); // Read version from package.json
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 const cssPropsRename: Plugin = {
   name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations",
@@ -19,7 +17,7 @@ const cssPropsRename: Plugin = {
       .replace(/--ds-size-/g, "--mtds-")
       .replace(/--ds(c?)-/g, '--mtds$1-')
       .replace(/@layer [^;]+/g, (m) =>
-        m.replace(/\b(ds|mt)\./g, `$1.v${version}`)
+        m.replace(/\b(ds|mt)\./g, `$1.v${version.replace(/\./g, "-")}`)
       ),
   }),
 };
