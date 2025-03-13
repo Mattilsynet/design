@@ -15,10 +15,10 @@ import * as stories from './table.stories';
 - Bruk `<th scope="row">` som første barn i en rad for å få horisontal overskrift
 <Canvas of={stories.WithHorizontalTitles} />
 
-## Like bredder
+## Låste bredder
 - Tabeller tilpasser kolonnebredder automatisk etter innhold
 - Dette kan være upraktisk når innholdet endrer seg/sorteres/pagineres
-- Bruk `data-fixed` på `<table>` for like/satte bredder
+- Bruk `data-fixed` på `<table>` for låste bredder
 - Bruk evt. `style="width: X"` på `<th>` for å sette bredde på gitte kolonner
 <Canvas of={stories.FixedWidths} />
 
@@ -34,7 +34,7 @@ import * as stories from './table.stories';
 - Bruk `<th aria-sort="none | ascending | descending | other">`
 - Bruk `<button type="button">`eller `<a>` i `<th>` for client/server sorting
 - Bruk [TanStack Table](https://tanstack.com/table/latest) eller annen valgfri kode for å utføre sorteringen
-- Se også [like bredder](#like-bredder)
+- Se også [låste bredder](#laste-bredder)
 <Canvas of={stories.SortableSimple} />
 
 ## Bunnlinje

@@ -43,6 +43,9 @@ type Story = StoryObj<typeof meta>;
 
 export const FlexStory: Story = {
 	name: "Flex",
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.flex}>
 			<button type="button" className={styles.button} data-variant="primary">
@@ -69,27 +72,30 @@ export const FlexStory: Story = {
 
 export const GridStory: Story = {
 	name: "Grid",
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.grid} data-gap="lg">
-			<div className={styles.grid} data-grid="fit-lg">
+			<div className={styles.grid} data-items="auto">
 				<div>Child 1</div>
 				<div>Child 2</div>
 			</div>
 			<div
 				className={styles.grid}
-				style={{ gridTemplateColumns: "1fr 2fr" }}
 				data-gap="lg"
+				style={{ gridTemplateColumns: "1fr 2fr" }}
 			>
 				<div>
 					Sidebar
-					<div className={styles.grid} data-grid="fit-sm" data-gap="none">
+					<div className={styles.grid} data-items="100" data-gap="none">
 						<div>Child 1</div>
 						<div>Child 2</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-grid="2" data-gap="md">
+				<div className={styles.grid} data-items="300" data-gap="md">
 					<div>Child 1</div>
-					<div className={styles.grid} data-grid="sm">
+					<div className={styles.grid} data-items="100">
 						<div>Child 2-1</div>
 						<div>Child 2-2</div>
 						<div>Child 2-3</div>
@@ -117,21 +123,21 @@ export const React: Story = {
 				<Button data-variant="primary">Action 6</Button>
 			</Flex>
 			<Grid data-gap="lg">
-				<Grid data-grid="fit-lg">
+				<Grid data-items="auto">
 					<div>Child 1</div>
 					<div>Child 2</div>
 				</Grid>
 				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="lg">
 					<div>
 						Sidebar
-						<Grid data-grid="fit-sm" data-gap="none">
+						<Grid data-items="100" data-gap="none">
 							<div>Child 1</div>
 							<div>Child 2</div>
 						</Grid>
 					</div>
-					<Grid data-grid="2" data-gap="md">
+					<Grid data-items="300" data-gap="md">
 						<div>Child 1</div>
-						<Grid data-grid="sm">
+						<Grid data-items="100">
 							<div>Child 2-1</div>
 							<div>Child 2-2</div>
 							<div>Child 2-3</div>
@@ -150,8 +156,8 @@ export const React: Story = {
 
 export const Gap: Story = {
 	render: () => (
-		<section className={styles.grid} data-grid="sidebar">
-			<code>data-gap="none | false"</code>
+		<section className={styles.grid} style={{ gridTemplateColumns: "1fr 2fr" }}>
+			<code>data-gap="none"</code>
 			<div className={styles.flex} data-gap="none">
 				<b>1</b>
 				<b>2</b>
@@ -226,12 +232,12 @@ export const Align: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-grid="sidebar"
 			data-align="center"
 			data-gap="lg"
+			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
-			<code>data-align="stretch"</code>
-			<div className={styles.flex} data-align="stretch">
+			<code>data-align="stret0"</code>
+			<div className={styles.flex} data-align="stret0">
 				<b data-size="sm">Small</b>
 				<b data-size="md">Medium</b>
 				<b data-size="lg">Large</b>
@@ -262,9 +268,9 @@ export const Justify: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-grid="sidebar"
 			data-align="center"
 			data-gap="lg"
+			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
 			<code>data-justify="start"</code>
 			<div className={styles.flex} data-justify="start">
@@ -310,7 +316,7 @@ export const AlignContent: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-grid="3"
+			data-items="3"
 			data-gap="lg"
 			style={{ maxWidth: 700 }}
 		>
@@ -525,3 +531,22 @@ export const App: Story = {
 		</div>
 	),
 };
+
+// export const Sizes: Story = {
+// 	render: () => (
+// 		<>
+// 			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+// 				<div key={i}>
+// 					<div>
+// 						{"0".repeat(5 * i)} ({i * 5})
+// 					</div>
+// 					<div className={styles.flex} key={i} data-gap="none">
+// 						<div data-self={i * 50} style={{ background: "gray" }} data-fixed>
+// 							0
+// 						</div>
+// 					</div>
+// 				</div>
+// 			))}
+// 		</>
+// 	),
+// };

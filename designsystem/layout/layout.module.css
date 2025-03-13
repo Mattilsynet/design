@@ -1,22 +1,27 @@
+ /**
+  * NOTE: This file is ignored by biome formatter to allow more compactness
+	*/
+
 @layer mt.design {
-	.grid:not([hidden]) {
-		display: grid;
-	}
-	.flex:not([hidden]) {
-		display: flex;
-	}
-	/* Using :where to only reset browser agent standards, but allow direct child selector (.something > *) to still winn */
+	/* Using :where to only reset browser agent standards, but allow other selectors (i.e. .something > *) to still winn */
+	:where(.grid:not([hidden])) { display: grid }
+	:where(.flex:not([hidden])) { display: flex }
 	:where(.flex, .grid) {
+		list-style: none;
 		margin: 0;
+		padding: 0;
 	}
+
+	/**
+	 * Shared
+	 */
 	.grid,
 	.flex {
 		box-sizing: border-box;
 		flex-wrap: wrap;
 		gap: var(--ds-size-2);
-		list-style: none;
-		padding: 0;
 
+		& > svg { flex-shrink: 0 } /* Never shrink svgs */
 		& > * {
 			box-sizing: border-box;
 			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
@@ -33,369 +38,94 @@
 			width: calc(100% - 10vw); /* Always 5vw padding on each side */
 			max-width: 96rem; /* 1440px - default to "2xl" */
 		}
-		&[data-center="sm"] {
-			max-width: 40rem; /* 640px */
-		}
-		&[data-center="md"] {
-			max-width: 48rem; /* 768px */
-		}
-		&[data-center="lg"] {
-			max-width: 64rem; /* 1024px */
-		}
-		&[data-center="xl"] {
-			max-width: 80rem; /* 1280px */
-		}
-		&[data-center="2xl"] {
-			max-width: 96rem; /* 1536px */
-		}
+		&[data-center="sm"] { max-width: 40rem } /* 640px */
+		&[data-center="md"] { max-width: 48rem } /* 768px */
+		&[data-center="lg"] { max-width: 64rem } /* 1024px */
+		&[data-center="xl"] { max-width: 80rem } /* 1280px */
+		&[data-center="2xl"] { max-width: 96rem } /* 1536px */
 
-		&[data-gap="none"],
-		&[data-gap="false"] {
-			gap: 0px;
-		}
-		&[data-gap="xs"] {
-			gap: var(--ds-size-1); /* 4px */
-		}
-		&[data-gap="sm"] {
-			gap: var(--ds-size-2); /* 8px */
-		}
-		&[data-gap="md"] {
-			gap: var(--ds-size-4); /* 16px */
-		}
-		&[data-gap="lg"] {
-			gap: var(--ds-size-6); /* 24px */
-		}
-		&[data-gap="xl"] {
-			gap: var(--ds-size-8); /* 32px */
-		}
-		&[data-align="start"] {
-			align-items: start;
-		}
-		&[data-align="center"] {
-			align-items: center;
-		}
-		&[data-align="end"] {
-			align-items: end;
-		}
-		&[data-align-content="start"] {
-			align-content: start;
-		}
-		&[data-align-content="center"] {
-			align-content: center;
-		}
-		&[data-align-content="end"] {
-			align-content: end;
-		}
-		&[data-align-content="stretch"] {
-			align-content: stretch;
-		}
-		&[data-align-content="space-around"] {
-			align-content: space-around;
-		}
-		&[data-align-content="space-between"] {
-			align-content: space-between;
-		}
-		&[data-align-content="space-evenly"] {
-			align-content: space-evenly;
-		}
-		&[data-justify="start"] {
-			justify-content: start;
-		}
-		&[data-justify="center"] {
-			justify-content: center;
-		}
-		&[data-justify="end"] {
-			justify-content: end;
-		}
-		&[data-justify="space-around"] {
-			justify-content: space-around;
-		}
-		&[data-justify="space-between"] {
-			justify-content: space-between;
-		}
-		&[data-justify="space-evenly"] {
-			justify-content: space-evenly;
-		}
-		&[data-nowrap] {
-			flex-wrap: nowrap;
-		}
-	}
+		&[data-gap="none"] { gap: 0px  }
+		&[data-gap="xs"] { gap: var(--ds-size-1) } /* 4px */
+		&[data-gap="sm"] { gap: var(--ds-size-2) } /* 8px */
+		&[data-gap="md"] { gap: var(--ds-size-4) } /* 16px */
+		&[data-gap="lg"] { gap: var(--ds-size-6) } /* 24px */
+		&[data-gap="xl"] { gap: var(--ds-size-8) } /* 32px */
+		&[data-column-gap="none"] { column-gap: 0px  }
+		&[data-column-gap="xs"] { column-gap: var(--ds-size-1) } /* 4px */
+		&[data-column-gap="sm"] { column-gap: var(--ds-size-2) } /* 8px */
+		&[data-column-gap="md"] { column-gap: var(--ds-size-4) } /* 16px */
+		&[data-column-gap="lg"] { column-gap: var(--ds-size-6) } /* 24px */
+		&[data-column-gap="xl"] { column-gap: var(--ds-size-8) } /* 32px */
+		&[data-row-gap="none"] { row-gap: 0px  }
+		&[data-row-gap="xs"] { row-gap: var(--ds-size-1) } /* 4px */
+		&[data-row-gap="sm"] { row-gap: var(--ds-size-2) } /* 8px */
+		&[data-row-gap="md"] { row-gap: var(--ds-size-4) } /* 16px */
+		&[data-row-gap="lg"] { row-gap: var(--ds-size-6) } /* 24px */
+		&[data-row-gap="xl"] { row-gap: var(--ds-size-8) } /* 32px */
 
-	.grid {
-		--columns: auto-fill;
-		--min: 0px;
+		&[data-align="center"] { align-items: center }
+		&[data-align="end"] { align-items: end}
+		&[data-align="start"] { align-items: start }
+		&[data-align="stretch"] { align-items: stretch }
 
-		&[data-grid] {
-			grid-template-columns: repeat(
-					var(--columns),
-					minmax(min(100%, var(--min)), 1fr)
-				);
-		}
+		&[data-align-content="start"] { align-content: start }
+		&[data-align-content="center"] { align-content: center }
+		&[data-align-content="end"] { align-content: end }
+		&[data-align-content="stretch"] { align-content: stretch }
+		&[data-align-content="space-around"] { align-content: space-around }
+		&[data-align-content="space-between"] { align-content: space-between }
+		&[data-align-content="space-evenly"] { align-content: space-evenly}
 
-		&[data-grid|="fit"] {
-			--columns: auto-fit;
-		}
-		&[data-grid="xs"],
-		&[data-grid="fit-xs"] {
-			--min: 50px; /* TODO: Figure out default sizes */
-		}
-		&[data-grid="sm"],
-		&[data-grid="fit-sm"] {
-			--min: 100px;
-		}
-		&[data-grid="md"],
-		&[data-grid="fit-md"] {
-			--min: 150px;
-		}
-		&[data-grid="lg"],
-		&[data-grid="fit-lg"] {
-			--min: 200px;
-		}
-		&[data-grid="xl"],
-		&[data-grid="fit-xl"] {
-			--min: 300px;
-		}
-		&[data-grid="sidebar"] {
-			grid-template-columns: 4fr 8fr; /* TODO: Figure out */
-		}
-		&[data-grid="1"] {
-			--columns: 1;
-		}
-		&[data-grid="2"] {
-			--columns: 2;
-		}
-		&[data-grid="3"] {
-			--columns: 3;
-		}
-		&[data-grid="4"] {
-			--columns: 4;
-		}
-		&[data-grid="5"] {
-			--columns: 5;
-		}
-		&[data-grid="6"] {
-			--columns: 6;
-		}
-		&[data-grid="7"] {
-			--columns: 7;
-		}
-		&[data-grid="8"] {
-			--columns: 8;
-		}
-		&[data-grid="9"] {
-			--columns: 9;
-		}
-		&[data-grid="10"] {
-			--columns: 10;
-		}
-		&[data-grid="11"] {
-			--columns: 11;
-		}
-		&[data-grid="12"] {
-			--columns: 12;
-		}
+		&[data-justify="start"] { justify-content: start }
+		&[data-justify="center"] { justify-content: center }
+		&[data-justify="end"] { justify-content: end }
+		&[data-justify="space-around"] { justify-content: space-around }
+		&[data-justify="space-between"] { justify-content: space-between }
+		&[data-justify="space-evenly"] { justify-content: space-evenly }
 	}
 
 	/**
-	 * App layout
+	 * Flex
 	 */
-	.app {
-		--spacing-md: var(--ds-size-6);
-		--spacing-sm: var(--ds-size-3);
-		--sides--collapsed: 4.25rem; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--sides: 14em;
-
-		box-sizing: border-box;
-		grid-template:
-		"header header header" auto
-		"nav main aside" 1fr
-		"footer footer footer" auto / auto 1fr auto;
-		min-height: 100vh;
-		min-height: 100svh; /* Use small viewport height if supported */
-		transition: grid-template-columns .3s ease-out;
-
-		&:not([hidden]) {
-			display: grid;
-		}
-
-		& > * {
-			box-sizing: border-box;
-			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
-			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
-		}
-	}
-
-	.app > * {
-		display: content;
-	}
+	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
+	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
+	.flex[data-nowrap] { flex-wrap: nowrap }
+	.flex > * [data-nowrap] { min-width: max-content; }
+	.flex[data-items="50"] > *, .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
+	.flex[data-items="100"] > *, .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
+	.flex[data-items="150"] > *, .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
+	.flex[data-items="200"] > *, .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
+	.flex[data-items="250"] > *, .flex > [data-self="250"] { flex-basis: calc(1rem / 16 * 250) }
+	.flex[data-items="300"] > *, .flex > [data-self="300"] { flex-basis: calc(1rem / 16 * 300) }
+	.flex[data-items="350"] > *, .flex > [data-self="350"] { flex-basis: calc(1rem / 16 * 350) }
+	.flex[data-items="400"] > *, .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
+	.flex[data-items="450"] > *, .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
+	.flex[data-items="500"] > *, .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
 
 	/**
-	 * App layout: Header
-	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
+	 * Grid
 	 */
-	.app > header,
-	.app header:has(~ main) {
-		align-items: center;
-		gap: var(--ds-size-2);
-		grid-area: header;
-		padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
-
-		&:not([hidden]) {
-			display: flex;
-		}
-
-		/* Push logo to left */
-		& > :first-child {
-			margin-right: auto;
-		}
-
-		/* WIP */
-		&[data-color="surface"] {
-			background: var(--mtds-color-white);
-			border-bottom: 1px solid var(--mtds-color-neutral-200);
-			padding: var(--spacing-md);
-			margin-bottom: var(--spacing-md);
-		}
+	.grid[data-items] {
+		--mtds-grid-size: 0px; /* Set default layout width */
+		--mtds-grid-grow: auto-fit; /* Allows columns to grow to fit container */
+		grid-template-columns: repeat(var(--mtds-grid-grow), minmax(min(100%, var(--mtds-grid-size)), 1fr)); /* From https://moderncss.dev/solutions-to-replace-the-12-column-grid/ */
 	}
-
-	/**
-	 * App layout: Left side
-	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
-	 */
-	.app > nav,
-	.app nav:has(+ main) {
-		align-content: start; /* TODO: Set default alignment in case used as grid */
-		grid-area: nav;
-		overflow-y: auto;
-		padding-left: var(--spacing-md);
-		padding-top: var(--spacing-md);
-		position: relative;
-		view-transition-name: mtds-laytout-app--left;
-		width: var(--sides);
-
-		/* Hide relevant child elements with data-expanded attribute */
-		&[data-expanded="false"] [data-expanded="true"],
-		&:not([data-expanded="false"]) [data-expanded="false"] {
-			display: none;
-		}
-		&[data-expanded="false"] {
-			--mtds-tooltip-position: right;
-		}
-
-		/* TODO: Position toggle button */
-		& > button:first-child:empty {
-			all: unset;
-			bottom: 20px;
-			cursor: pointer;
-			height: 40px;
-			left: 20px;
-			position: absolute;
-			text-align: center;
-			width: 40px;
-			z-index: 2;
-
-			&:after {
-				content: "<";
-			}
-		}
-
-		& menu > li {
-			margin-left: calc(var(--spacing-md) * -2);
-
-			& > [data-tooltip] {
-				padding-left: calc(var(--spacing-md) * 2);
-			}
-		}
-
-		/* Move tooltips to button content when expanded */
-		&:not([data-expanded="false"]) menu > li > [data-tooltip] {
-			--mtds-tooltip-position: none;
-
-			&::after {
-				content: attr(data-tooltip);
-			}
-		}
-
-		/* 960px */
-		@media screen and (max-width: 60em) {
-			background-color: var(--mtds-color-white);
-			border-top: 1px solid var(--mtds-color-neutral-200);
-			left: 0;
-			padding: var(--spacing-sm);
-			position: fixed;
-			right: 0;
-			top: calc(100vh - var(--ds-size-13));
-			width: auto;
-			z-index: 99;
-
-			&::before {
-				content: "Navigasjon";
-			}
-		}
-	}
-
-	/**
-	 * App layout: Main
-	 * NOTE: <main> can only appear once on a page so no need for direct child selector
-	 */
-	.app main {
-		container: main / inline-size;
-		grid-area: main;
-		margin: 0 var(--spacing-sm) var(--spacing-sm);
-		view-transition-name: mtds-laytout-app--main;
-	}
-
-	/**
-	 * App layout: Right side
-	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
-	 */
-	.app > aside,
-	.app main + aside {
-		grid-area: aside;
-		padding-right: var(--spacing-sm);
-		padding-top: var(--spacing-md);
-		view-transition-name: mtds-laytout-app--right;
-		width: var(--sides);
-
-		&[data-expanded="false"] {
-			padding-inline: 0;
-			width: 0;
-			opacity: 0;
-			visibility: hidden;
-			overflow: hidden;
-		}
-	}
-
-	/**
-	 * App layout: Footer
-	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
-	 */
-	.app > footer,
-	.app main ~ footer {
-		background: var(--mtds-color-granskog);
-		color: var(--mtds-color-lav);
-		grid-area: footer;
-		margin-top: var(--spacing-sm);
-		padding: var(--spacing-md);
-	}
-}
-
-::view-transition-old(mtds-laytout-app--left),
-::view-transition-new(mtds-laytout-app--left),
-::view-transition-old(mtds-laytout-app--right),
-::view-transition-new(mtds-laytout-app--right) {
-	height: 100%;
-	object-fit: none;
-	object-position: left;
-}
-
-::view-transition-old(mtds-laytout-app--main),
-::view-transition-new(mtds-laytout-app--main) {
-	height: 100%;
-}
-
-/* Declare outside @layer to ensure specificity */
-.app > nav[data-expanded="false"] {
-	min-width: var(--sides--collapsed) !important; /* Prevent shrinking */
-	width: var(--sides--collapsed) !important;
+	.grid[data-fixed] { --mtds-grid-grow: auto-fill } /* "Fixes" sizes by causing max repetitions of columns - even empty if needed */
+	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-grid-size) }
+	.grid[data-items="50"] { --mtds-grid-size: calc(1rem / 16 * 50) }
+	.grid[data-items="100"] { --mtds-grid-size: calc(1rem / 16 * 100) }
+	.grid[data-items="150"] { --mtds-grid-size: calc(1rem / 16 * 150) }
+	.grid[data-items="200"] { --mtds-grid-size: calc(1rem / 16 * 200) }
+	.grid[data-items="250"] { --mtds-grid-size: calc(1rem / 16 * 250) }
+	.grid[data-items="300"] { --mtds-grid-size: calc(1rem / 16 * 300) }
+	.grid[data-items="350"] { --mtds-grid-size: calc(1rem / 16 * 350) }
+	.grid[data-items="400"] { --mtds-grid-size: calc(1rem / 16 * 400) }
+	.grid[data-items="450"] { --mtds-grid-size: calc(1rem / 16 * 450) }
+	.grid[data-items="500"] { --mtds-grid-size: calc(1rem / 16 * 500) }
+	.grid[data-items="550"] { --mtds-grid-size: calc(1rem / 16 * 550) }
+	.grid[data-items="600"] { --mtds-grid-size: calc(1rem / 16 * 600) }
+	.grid[data-items="650"] { --mtds-grid-size: calc(1rem / 16 * 650) }
+	.grid[data-items="700"] { --mtds-grid-size: calc(1rem / 16 * 700) }
+	.grid[data-items="750"] { --mtds-grid-size: calc(1rem / 16 * 750) }
+	.grid[data-items="800"] { --mtds-grid-size: calc(1rem / 16 * 800) }
 }

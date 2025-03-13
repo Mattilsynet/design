@@ -26,9 +26,9 @@
 			transition: scale .2s;
 
 			&:focus-visible {
-				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-				outline: var(--ds--focus, var(--dsc-focus-outline));
+				box-shadow: var(--dsc-focus-boxShadow);
+				outline: var(--dsc-focus-outline);
+				outline-offset: var(--ds-border-width-focus);
 			}
 
 			&:active {

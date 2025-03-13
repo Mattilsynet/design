@@ -8,12 +8,11 @@ function process(logos: HTMLCollectionOf<Element>) {
 
   if (!svg) return;
   if (!FAVICON) {
-    const { head } = window.top?.document || document;
-    const oldIcon = head.getElementsByTagName("link[rel~='icon']");
+    const oldIcon = document.head.getElementsByTagName("link[rel~='icon']");
     const newIcon = document.createElement("link");
 
     for (const icon of oldIcon) icon.remove();
-    FAVICON = head.appendChild(Object.assign(newIcon, { rel: "icon" }));
+    FAVICON = document.head.appendChild(Object.assign(newIcon, { rel: "icon" }));
   }
 
   const isDot = svg.parentElement?.hasAttribute("data-color");

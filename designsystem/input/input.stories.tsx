@@ -87,6 +87,9 @@ export const Variants: Story = {
 };
 
 export const Select: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Select</label>
@@ -102,6 +105,9 @@ export const Select: Story = {
 };
 
 export const Textarea: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Textarea</label>
@@ -129,6 +135,9 @@ export const Radio: Story = {
 };
 
 export const Switch: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Switch</label>
@@ -226,6 +235,9 @@ export const Disabled: Story = {
 };
 
 export const TypeSearch: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Søkefelt</label>
@@ -235,10 +247,28 @@ export const TypeSearch: Story = {
 };
 
 export const TypeDate: Story = {
+	parameters: {
+		showInOverview: true,
+	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Datovelger</label>
 			<input className={styles.input} type="date" />
+		</div>
+	),
+};
+
+export const TypeNumber: Story = {
+	render: () => (
+		<div className={styles.grid} data-items="auto">
+			<div className={styles.field}>
+				<label>Antall dyr</label>
+				<input className={styles.input} type="number" />
+			</div>
+			<div className={styles.field}>
+				<label>Referansenummer</label>
+				<input className={styles.input} type="text" inputMode="numeric" />
+			</div>
 		</div>
 	),
 };

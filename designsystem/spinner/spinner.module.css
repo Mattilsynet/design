@@ -4,7 +4,7 @@
 		place-items: center;
 		vertical-align: middle;
 
-		&:not([hidden]) {
+		&:where(:not([hidden])) {
 			display: inline-grid;
 		}
 	}

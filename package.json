@@ -4,7 +4,9 @@
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
-	"files": ["mtds"],
+	"files": [
+		"mtds"
+	],
 	"engines": {
 		"npm": ">=10.0.0",
 		"node": ">=20.0.0"
@@ -65,9 +67,10 @@
 		"vite-plugin-dts": "^4.5.0"
 	},
 	"dependencies": {
-		"@u-elements/u-datalist": "0.1.3",
+		"@u-elements/u-datalist": "^0.1.3",
 		"@u-elements/u-details": "^0.1.0",
 		"@u-elements/u-tabs": "^0.0.8",
+		"@u-elements/u-tags": "^0.1.2",
 		"clsx": "^2.1.1"
 	}
 }
