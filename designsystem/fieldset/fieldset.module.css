@@ -24,7 +24,7 @@
 			& > legend::after {
 				background: var(--ds-color-info-surface-tinted);
 				border-radius: 5px;
-				border: 1px solid var(--ds-color-info-border-subte);
+				border: 1px solid var(--ds-color-info-border-subtle);
 				box-sizing: border-box;
 				color: var(--ds-color-info-text-default);
 				content: var(--mtds-text-required);
