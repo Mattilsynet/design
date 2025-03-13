@@ -1,10 +1,11 @@
 .helptext {
+  composes: ds-focus from "@digdir/designsystemet-css";
+
   background: none;
   border-radius: var(--ds-border-radius-full);
   border: .1em solid;
   box-sizing: border-box;
   color: inherit;
-  composes: ds-focus from "@digdir/designsystemet-css";
   cursor: pointer;
   display: inline-block;
   flex-shrink: 0;

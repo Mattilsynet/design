@@ -35,8 +35,8 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#153F7B",
-        "$description": "border-default\nfjord"
+        "$value": "#153F7B33",
+        "$description": "border-default\nfjord 20%"
       },
       "9": {
         "$type": "color",
@@ -62,9 +62,13 @@
         "$type": "color",
         "$value": "#153F7B",
         "$description": "base-hover\nfjord"
+        "$value": "#153F7B",
+        "$description": "base-hover\nfjord"
       },
       "14": {
         "$type": "color",
+        "$value": "#103160",
+        "$description": "base-active\n"
         "$value": "#103160",
         "$description": "base-active\n"
       },
@@ -113,8 +117,8 @@
       },
       "8": {
         "$type": "color",
-        "$value": "#054449",
-        "$description": "border-default\ngranskog"
+        "$value": "#05444933",
+        "$description": "border-default\ngranskog 20%"
       },
       "9": {
         "$type": "color",
@@ -140,9 +144,13 @@
         "$type": "color",
         "$value": "#054449",
         "$description": "base-hover"
+        "$value": "#054449",
+        "$description": "base-hover"
       },
       "14": {
         "$type": "color",
+        "$value": "#032c30",
+        "$description": "base-active"
         "$value": "#032c30",
         "$description": "base-active"
       },
@@ -316,6 +324,8 @@
         "$type": "color",
         "$value": "#FEEAE6",
         "$description": "surface-tinted\nJustert bakgrunnsrosa"
+        "$value": "#FEEAE6",
+        "$description": "surface-tinted\nJustert bakgrunnsrosa"
       },
       "5": {
         "$type": "color",
@@ -351,6 +361,8 @@
         "$type": "color",
         "$value": "#AA2C1C",
         "$description": "text-default\n(ny rødfarge)"
+        "$value": "#AA2C1C",
+        "$description": "text-default\n(ny rødfarge)"
       },
       "12": {
         "$type": "color",
@@ -359,6 +371,8 @@
       },
       "13": {
         "$type": "color",
+        "$value": "#AA2C1C",
+        "$description": "base-hover\nny rødfarge"
         "$value": "#AA2C1C",
         "$description": "base-hover\nny rødfarge"
       },

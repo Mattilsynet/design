@@ -4,9 +4,13 @@
 
 		--dsc-alert-background: var(--mtds-color-bakgrunns-blaa);
 		--dsc-alert-color: var(--mtds-color-fjord);
-		--dsc-alert-border-color: var(--mtds-color-neutral-50);
+		--dsc-alert-border-color: var(--mtds-color-neutral-15);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
 		--dsc-alert-icon-color: currentcolor;
+
+		&:where(:not([hidden])) {
+			display: block; /* Ensure display block, even when <output> */
+		}
 
 		/* https://every-layout.dev/layouts/stack/ */
 		& > * {
@@ -37,9 +41,9 @@
 			transition: scale .2s;
 
 			&:focus-visible {
-				box-shadow: var(--ds--focus, var(--dsc-focus-boxShadow));
-				outline-offset: var(--ds--focus, var(--dsc-focus-border-width));
-				outline: var(--ds--focus, var(--dsc-focus-outline));
+				box-shadow: var(--dsc-focus-boxShadow);
+				outline: var(--dsc-focus-outline);
+				outline-offset: var(--ds-border-width-focus);
 			}
 
 			&:active {

@@ -1,11 +1,23 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { PkgInfo } from '../../.storybook/blocks';
 import * as stories from './card.stories';
 
 <Meta of={stories} />
+<PkgInfo />
 
 # Card (Eksperimentell)
-- Bruk klassen `card` på typisk `<div>` eller `<a>`
+- Bruk klassen `card` på typisk `<div>`, `<a>` eller `<button>`
 <Canvas of={stories.Default} />
 
-## Som lenke
-<Canvas of={stories.AsLink} />
+## Interaktiv
+- Når `card` er klikkbart, får hele kortet `hover` og `active`-effekter
+- **Merk:** Klikkbare `card` kan ikke inneholde andre klikkbare elementer
+<Canvas of={stories.Interactive} />
+
+## Responsiv
+- Legg `flex` og `grid` inni `card` for å lage svært responsive design
+<Canvas of={stories.Responsive} />
+
+## Gruppering
+- Legg `flex` og `grid` inni `card` for å lage svært responsive design
+<Canvas of={stories.Group} />

@@ -25,7 +25,7 @@ export const Popover: PopoverComponent = forwardRef<null>(function Popover<
 
 	return (
 		<Tag
-			popover=""
+			popover="auto"
 			className={clsx(styles.popover, className)}
 			ref={ref}
 			{...rest}

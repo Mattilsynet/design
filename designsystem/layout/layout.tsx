@@ -7,9 +7,9 @@ import type {
 import styles from "../styles.module.css";
 
 type SharedProps = {
-	"data-align"?: "stretch" | "start" | "center" | "end";
+	"data-align"?: "normal" | "stretch" | "start" | "center" | "end";
 	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
-	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | false;
+	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
 	"data-justify"?:
 		| "start"
 		| "center"
@@ -33,40 +33,29 @@ export type GridProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		SharedProps & {
-			"data-grid"?:
-				| "1"
-				| "2"
-				| "3"
-				| "4"
-				| "5"
-				| "6"
-				| "7"
-				| "8"
-				| "9"
-				| "10"
-				| "11"
-				| "12"
-				| "fit"
-				| "fit-lg"
-				| "fit-md"
-				| "fit-sm"
-				| "fit-xs"
-				| "lg"
-				| "md"
-				| "sm"
-				| "xs"
-				| 1
-				| 2
-				| 3
-				| 4
-				| 5
-				| 6
-				| 7
-				| 8
-				| 9
-				| 10
-				| 11
-				| 12;
+			"data-fixed"?: boolean;
+			"data-items"?:
+				| "auto"
+				| "50"
+				| "100"
+				| "150"
+				| "200"
+				| "250"
+				| "300"
+				| "350"
+				| "400"
+				| "450"
+				| "500"
+				| 50
+				| 100
+				| 150
+				| 200
+				| 250
+				| 300
+				| 350
+				| 400
+				| 450
+				| 500;
 		}
 	>;
 

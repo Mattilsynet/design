@@ -1,21 +1,23 @@
 @layer mt.design {
 	.heading {
 		composes: ds-heading from "@digdir/designsystemet-css";
+		text-wrap: balance;
 
 		&[data-justify="center"] {
 			text-align: center;
 		}
 	}
-	.typostack {
+	.prose {
 		padding-block: 3rem;
+		max-width: 65ch;
 	}
-	.typostack > * {
+	.prose > * {
 		margin-block: var(--ds-size-6);
 	}
-	.typostack > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
+	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
 		margin-block: 1em 0;
 	}
-	.typostack > :where(ul, ol):not([class]) {
+	.prose > :where(ul, ol):not([class]) {
 		padding-left: .9em;
 
 		& li {
@@ -26,7 +28,7 @@
 		}
 	}
 
-	.typostack > :where(h1, h2, h3, h4, h5, h6) {
+	.prose > :where(h1, h2, h3, h4, h5, h6) {
 		&[data-size="lg"] {
 			margin-top: var(--ds-size-10);
 
@@ -57,7 +59,7 @@
 			}
 		}
 	}
-	.typostack > :first-child {
+	.prose > :first-child {
 		margin-block: 0;
 	}
 }
