@@ -44,8 +44,11 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<>
-			<Card>Hei</Card>
+			<Card>Card</Card>
 			<Card href="#">Lenke</Card>
+			<Card as="button" onClick={() => alert("Click!")}>
+				Knapp
+			</Card>
 		</>
 	),
 };

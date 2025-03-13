@@ -195,7 +195,7 @@ export const Overview = ({
 								.replace(/([a-z])([A-Z])/g, "$1-$2")
 								.toLowerCase(); // Split on camelcase and hyphenate
 
-							const href = `${baseUrl}-${file}--${variant === "Default" ? "about" : variantPath}`;
+							const href = `${baseUrl}-${file}--${variant === "Default" ? "docs" : variantPath}`;
 							return (
 								<div
 									className={`${styles.grid} component`}
