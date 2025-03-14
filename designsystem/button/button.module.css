@@ -2,16 +2,14 @@
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 
-		border-radius: var(--ds-border-radius-md);
 		flex-shrink: 0; /* If placed in flex */
-		font-weight: 500;
 		max-width: 100%;
 		transition-duration: .2s;
 		transition-property: background-color, scale, translate;
-		vertical-align: middle;
 
 		&:where(:not([hidden])) {
 			display: inline-flex;
+			vertical-align: middle;
 		}
 
 		/* Overwrite to same as tertiary from Designsystemet  */
@@ -23,13 +21,22 @@
 			--dsc-button-color--hover: var(--ds-color-text-default);
 		}
 
+		&[data-variant="primary"] {
+			border: 0; /* Hide border to ensure equal heights */
+		}
 		&[data-variant="secondary"] {
 			--dsc-button-border-color: var(--ds-color-border-default);
 		}
 
 		&[aria-current]:not([aria-current="false"]) {
 			--dsc-button-background: var(--ds-color-surface-tinted);
-			font-weight: bold;
+			font-weight: 700;
+		}
+		&[data-justify="start"] {
+			justify-content: start;
+		}
+		&[data-justify="end"] {
+			justify-content: end;
 		}
 
 		&::before,

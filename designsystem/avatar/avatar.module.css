@@ -1,7 +1,6 @@
 @layer mt.design {
 	.avatar {
 		composes: ds-avatar from "@digdir/designsystemet-css";
-		border: 0;
 		flex-shrink: 0; /* If placed in flex */
 	}
 	button.avatar {
