@@ -145,6 +145,40 @@ export const Nowrap: Story = {
 	),
 };
 
+export const Justify: Story = {
+	render: () => (
+		<div className={styles.grid} style={{ width: 350 }}>
+			<button
+				className={styles.button}
+				data-justify="center"
+				data-variant="secondary"
+				type="button"
+			>
+				<Star />
+				Center
+			</button>
+			<button
+				className={styles.button}
+				data-arrow="left"
+				data-justify="start"
+				data-variant="secondary"
+				type="button"
+			>
+				Start
+			</button>
+			<button
+				className={styles.button}
+				data-arrow="right"
+				data-justify="end"
+				data-variant="secondary"
+				type="button"
+			>
+				End
+			</button>
+		</div>
+	),
+};
+
 export const Pressed: Story = {
 	render: function Render() {
 		const [pressed, setPressed] = useState(false);

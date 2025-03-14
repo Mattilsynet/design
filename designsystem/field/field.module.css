@@ -129,22 +129,25 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
 		cursor: pointer;
-		gap: var(--ds-size-1);
 		display: inline-flex;
 		font-size: var(--ds-font-size-minus-1);
 		line-height: var(--ds-line-height-sm);
 		min-height: var(--ds-size-8);
-		padding-inline: var(--ds-size-3) var(--ds-size-2);
+		padding-left: var(--ds-size-3);
 		text-decoration: none;
 		transition: .2s;
 	}
 	.field u-tags > data::after {
 		background: currentcolor;
-		height: var(--mtds-icon-size);
-		mask: center / contain no-repeat var(--mtds-icon-close);
-		width: var(--mtds-icon-size);
+		height: var(--ds-size-8);
+		mask: center / 60% no-repeat var(--mtds-icon-close);
+		width: var(--ds-size-8);
 		padding: 0;
-		border-radius: 100%;
+		border-radius: var(--ds-border-radius-full);
+	}
+	.field u-tags > data:hover::after {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M128 24a104 104 0 1 0 104 104A104.1 104.1 0 0 0 128 24Zm37.7 130.3a8 8 0 0 1-11.4 11.4L128 139.3l-26.3 26.4a8 8 0 0 1-11.4-11.4l26.4-26.3-26.4-26.3a8 8 0 0 1 11.4-11.4l26.3 26.4 26.3-26.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
+		mask-size: 100%;
 	}
 	.field u-tags > u-datalist {
 		top: 100%;

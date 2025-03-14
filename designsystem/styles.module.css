@@ -99,7 +99,7 @@
 	}
 
 	[data-color-scheme] {
-		color: var(--ds-color-text-default);
+		color: var(--ds-color-text-default); /* Ensure we do not get neutal text color */
 	}
 
 	body,

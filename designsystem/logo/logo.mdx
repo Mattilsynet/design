@@ -6,7 +6,7 @@ import * as stories from './logo.stories';
 # Logo
 - Legg klassen `logo` på typisk `<h1>` eller `<a>`
 - Teksten "Mattilsynet" blir automatisk lagt inn for skjermlesere
-- Logo følger tekststørrelse og tekstfarge (burde være `#054449`)
+- Logo følger tekststørrelse og tekstfarge
 - Ved lite plass blir tekst visuelt
 <Canvas of={stories.Default} />
 
@@ -19,7 +19,7 @@ import * as stories from './logo.stories';
 ## App logo med teknisk miljø
 - Bruk `data-color="orange | blue"` på `logo` for å få en distinkt fargeendring
 - Legg `<mark>` etter appnavn for indikere teknisk kjøremiljø
-<Canvas of={stories.WithAppIconOrange} />
+<Canvas of={stories.WithAppIconEnvironment} />
 
 ## Undermerke
 - Legg tekst inn i `logo` for å lage et undermerke
@@ -29,10 +29,6 @@ import * as stories from './logo.stories';
 ## Undermerke på engelsk
 - Logo blir engelsk dersom du setter `<html lang="en">`
 <Canvas of={stories.WithSubbrandEnglish} />
-
-## Størrelser
-- Du kan skalere logo ved å endre `font-size` eller bruke `data-size`
-<Canvas of={stories.Sizes} />
 
 ## Favicon
 - For å støtte dark mode og eldre Safari, bruker vi flere favicon-filer (<a href="/favicon.svg" download>svg</a>, <a href="/favicon.ico" download>ico</a> og <a href="/favicon-dark.ico" download>ico dark</a>)

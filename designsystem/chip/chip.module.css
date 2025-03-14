@@ -5,14 +5,18 @@
 
 		transition-property: background-color, color;
 		transition-duration: .2s;
+	}
+	/* Double selector to win specificity */
+	.chip.chip input[type="checkbox"] {
+		border-radius: var(--ds-border-radius-sm);
+	}
 
-		&[data-removable] {
-			background: var(--dsc-chip-background);
-			border-color: var(--dsc-chip-border-color);
-			color: var(--dsc-chip-color);
-		}
-		&[data-removable]:hover {
-			background: var(--dsc-chip-background--hover);
-		}
+	.chip[data-removable] {
+		background: var(--dsc-chip-background);
+		border-color: var(--dsc-chip-border-color);
+		color: var(--dsc-chip-color);
+	}
+	.chip[data-removable]:hover {
+		background: var(--dsc-chip-background--hover);
 	}
 }

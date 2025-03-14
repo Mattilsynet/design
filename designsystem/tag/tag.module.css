@@ -23,5 +23,17 @@
 			mask: center / contain no-repeat var(--dsc-tag-icon-url) content-box;
 			width: var(--mtds-icon-size);
 		}
+		&[data-color="info"] {
+			--dsc-tag-icon-url: var(--mtds-icon-info);
+		}
+		&[data-color="success"] {
+			--dsc-tag-icon-url: var(--mtds-icon-success);
+		}
+		&[data-color="warning"] {
+			--dsc-tag-icon-url: var(--mtds-icon-warning);
+		}
+		&[data-color="danger"] {
+			--dsc-tag-icon-url: var(--mtds-icon-danger);
+		}
 	}
 }
