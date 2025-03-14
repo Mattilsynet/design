@@ -152,7 +152,7 @@ export default {
 						"*",
 					],
 					"Designsystem",
-					["Introduksjon", "Komponenter", "*"],
+					["Introduksjon", "Tokens", "Komponenter", "*"],
 					"Profilering",
 					["Introduksjon", "*"],
 				],
