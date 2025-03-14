@@ -64,7 +64,7 @@ function handleMoveThrottled(target: Element | null) {
   ANCHOR = anchor; // Store new anchor - might be null if no new anchor
   if (ANCHOR) attr(ANCHOR, hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP_ID); // Use tooltip as description if allready has label
   TOOLTIP.togglePopover(!!anchor);
-  anchorPosition(TOOLTIP, anchor, position);
+  anchorPosition(TOOLTIP, anchor || false, position);
 }
 
 // Initialize if in browser and not already initialized

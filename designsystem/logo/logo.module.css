@@ -118,6 +118,7 @@
 		inset: 0 0 auto;
 		pointer-events: none;
 		position: fixed;
+		z-index: 99999;
 	}
 	html:has(.logo[data-env]) {
 		--mtds-logo-color: var(--ds-color-danger-text-subtle); /* Rognebær */

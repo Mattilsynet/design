@@ -2,14 +2,10 @@
 	.dialog {
 		composes: ds-dialog from "@digdir/designsystemet-css";
 
-		inset: 50% auto auto 50%;
-		margin: 0;
+		background: var(--ds-color-surface-default);
+		color: var(--ds-color-text-default);
+		max-height: 90vh;
 		max-height: 90svh;
-		max-height: 90vh;
-		overflow: auto;
-		max-height: 90vh;
-		overflow: auto;
-		position: fixed;
 		z-index: 1000; /* Place above also when non-modal */
 
 		&[data-closedby="any"]::backdrop {
@@ -22,7 +18,8 @@
 			border-radius: var(--ds-border-radius-md);
 			cursor: pointer;
 			float: right;
-			position: relative;
+			margin: -.5em;
+			padding: .5em;
 			transition: scale .2s;
 
 			&:focus-visible {
@@ -31,7 +28,12 @@
 				outline-offset: var(--ds-border-width-focus);
 			}
 
+			&:hover {
+				background: var(--ds-color-surface-hover);
+			}
+
 			&:active {
+				background: var(--ds-color-surface-active);
 				scale: 0.9;
 			}
 			&::before {
@@ -41,13 +43,7 @@
 				display: block;
 				height: var(--mtds-icon-size);
 				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
-				position: relative;
 				width: var(--mtds-icon-size);
-			}
-			&::after {
-				content: "";
-				position: absolute; /* Increase click surface */
-				inset: -.5em;
 			}
 		}
 	}
