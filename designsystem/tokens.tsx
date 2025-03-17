@@ -60,6 +60,7 @@ export const Colors = () => (
       .tokens :is(th, td):has(+ [data-i="0"]) { padding-right: var(--mtds-2) }
       .tokens :is(th, td)[data-i="0"] { padding-left: var(--mtds-2); border-left: 1px solid var(--mtds-color-border-subtle) }
       .tokens thead small { font-weight: normal; display: block }
+      .tokens thead tr:first-child { text-align: center }
       .tokens thead th { vertical-align: top }
       .tokens tbody th { vertical-align: middle }
       .tokens tbody td { padding-inline: 1px }

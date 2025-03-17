@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 <Meta title="Designsystem/Tokens" />
 # Tokens
 
-> Design Tokens styrer hvordan komponentenes farger, typografi, størrelser, avstander, former osv, og deles på tvers av kode og Figma. 
+> Design tokens styrer blant annet farger, størrelser og avstander på tvers av kode og Figma. 
 
 <JumpTo />
 
@@ -18,7 +18,6 @@ Farge-tokens er navngitt `--mtds-color-NAVN-BRUKSOMRÅDE-VARIANT`.
 
 <div className={styles.alert} data-color="success">
 **Kode-tips:** Ved å fjerne `NAVN` fra token (kun beholde `--mtds-color-BRUKSOMRÅDE-VARIANT`), kan du dynamisk endre farger med attributten `data-color="NAVN"`.
-Slik løses farger for blant annet `Alert`, `Button` og `Tag`.
 </div>
 <br />
 <Colors />
@@ -26,9 +25,9 @@ Slik løses farger for blant annet `Alert`, `Button` og `Tag`.
 <hr className={styles.divider} style={{ marginBlock: 60 }} />
 
 ## Størrelser
-Størrelser skalerer med `font-size`, hvor utgangspunktet er `md` - medium.
-Du kan med andre ord ikke 100% piksel-versi, men kan heller fokusere hvilken relasjonen mellom elementer.
-Noen størrelser har t-skjorte-størrelse-navn, som brukes blant annet til `gap`, så det er lettere å oppnå konskevent design.
+Størrelser skaleres med `font-size`, der utgangspunktet er `md` (medium).
+Det betyr at du ikke alltid kjenner den eksakte pikselverdien, men i stedet kan fokusere på forholdet mellom elementene.
+Noen størrelser har t-skjortestørrelse-navn, som blant annet brukes for `gap`, noe som gjør det enklere å oppnå et konsekvent design.
 <Sizes />
 
 <hr className={styles.divider} style={{ marginBlock: 60 }} />
