@@ -101,7 +101,7 @@ export const Colors = () => (
 										<button
 											type="button"
 											className={styles.card}
-											data-tooltip={`📄 ${color}-${name}-${variant}`}
+											data-tooltip={`--mtds-color-${color === "primary" ? "" : `${color}-`}${name}-${variant}`}
 											onClick={({ currentTarget: el }) => {
 												const tooltip = document.getElementById("mtds-tooltip");
 												const token = `var(--mtds-color-${color}-${name}-${variant})`;

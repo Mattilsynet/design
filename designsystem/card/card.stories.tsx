@@ -73,7 +73,7 @@ export const Responsive: Story = {
 			<a href="#anchor" className={styles.card}>
 				<div className={styles.flex}>
 					<h2 data-size="md" data-self="250" data-fixed>
-						PSC8CHE2023029471IN
+						123456789
 					</h2>
 					<div className={styles.flex} data-self="500" data-items="100">
 						<div className={styles.grid} data-items="100">
@@ -89,7 +89,7 @@ export const Responsive: Story = {
 						<div className={styles.grid} data-items="100">
 							<span className={styles.info}>
 								<UploadSimple />
-								GREENK
+								Groene Tuin
 							</span>
 							<span className={styles.info}>
 								<svg width={20} height={20}>
@@ -108,7 +108,7 @@ export const Responsive: Story = {
 						<div className={styles.grid} data-self="500" data-items="250">
 							<span className={styles.info}>
 								<DownloadSimple />
-								Bama Gruppen AS, avd. Trading
+								Blomquist Blomster AS
 							</span>
 							<span className={styles.info}>
 								<ListChecks />

@@ -31,7 +31,7 @@
 		font-weight: 500;
 		inset: auto;
 		line-height: var(--ds-line-height-sm);
-		max-width: 18em;
+		max-width: 25em;
 		opacity: 0;
 		padding: var(--ds-size-1) var(--ds-size-2);
 		position: fixed;
