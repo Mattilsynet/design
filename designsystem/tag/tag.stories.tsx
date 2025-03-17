@@ -106,7 +106,7 @@ export const WithIconOverwrite: Story = {
 export const WithTooltip: Story = {
 	render: () => (
 		<>
-			<span className={styles.tag} data-tooltip="Ikke original">
+			<span className={styles.tag} data-tooltip="Ikke original" tabIndex={0}>
 				Bekreftet kopi
 			</span>
 		</>

@@ -28,6 +28,7 @@
 			"a11y": {
 				"noInteractiveElementToNoninteractiveRole": "off",
 				"noLabelWithoutControl": "off",
+				"noNoninteractiveTabindex": "off",
 				"noSvgWithoutTitle": "off",
 				"useAnchorContent": "off",
 				"useAriaPropsForRole": "off",

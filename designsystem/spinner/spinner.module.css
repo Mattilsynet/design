@@ -11,7 +11,7 @@
 	.spinner::before {
 		background: currentcolor;
 		content: "";
-		font-size: 2em;
+		font-size: var(--mtds-11);
 		height: var(--mtds-icon-size);
 		mask: center / contain no-repeat var(--mtds-icon-spinner);
 		width: var(--mtds-icon-size);
@@ -20,12 +20,12 @@
 		content: var(--mtds-text-loading); /* Ensure content for screen readers */
 	}
 	.spinner[data-size="xs"]::before {
-		font-size: 1em;
+		font-size: var(--mtds-5);
 	}
 	.spinner[data-size="sm"]::before {
-		font-size: 1.5em;
+		font-size: var(--mtds-7);
 	}
 	.spinner[data-size="lg"]::before {
-		font-size: 3.5em;
+		font-size: var(--mtds-15);
 	}
 }

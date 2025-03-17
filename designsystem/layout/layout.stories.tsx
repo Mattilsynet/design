@@ -236,8 +236,8 @@ export const Align: Story = {
 			data-gap="lg"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
-			<code>data-align="stret0"</code>
-			<div className={styles.flex} data-align="stret0">
+			<code>data-align="stretch"</code>
+			<div className={styles.flex} data-align="stretch">
 				<b data-size="sm">Small</b>
 				<b data-size="md">Medium</b>
 				<b data-size="lg">Large</b>
@@ -316,7 +316,7 @@ export const AlignContent: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-items="3"
+			data-items="200"
 			data-gap="lg"
 			style={{ maxWidth: 700 }}
 		>

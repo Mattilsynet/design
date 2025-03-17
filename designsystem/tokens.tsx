@@ -57,6 +57,7 @@ export const Colors = () => (
 	<>
 		<style>{`
       .tokens { margin-inline: calc(50% - 50vw + 4em); font-size: 0.875rem }
+			.tokens table { min-width: 1140px } /* Prevent squeeze */
       .tokens :is(th, td):has(+ [data-i="0"]) { padding-right: var(--mtds-2) }
       .tokens :is(th, td)[data-i="0"] { padding-left: var(--mtds-2); border-left: 1px solid var(--mtds-color-border-subtle) }
       .tokens thead small { font-weight: normal; display: block }

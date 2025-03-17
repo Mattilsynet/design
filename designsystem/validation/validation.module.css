@@ -1,5 +1,16 @@
 @layer mt.design {
 	.validation {
 		composes: ds-validation-message from "@digdir/designsystemet-css";
+		--dsc-validation-message-icon-url: var(--mtds-icon-danger--filled);
+	}
+
+	.validation[data-color="success"] {
+		--dsc-validation-message-icon-url: var(--mtds-icon-success);
+	}
+	.validation[data-color="warning"] {
+		--dsc-validation-message-icon-url: var(--mtds-icon-warning);
+	}
+	.validation[data-color="info"] {
+		--dsc-validation-message-icon-url: var(--mtds-icon-info);
 	}
 }
