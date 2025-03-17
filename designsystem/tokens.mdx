@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/blocks';
+import { JumpTo } from '../.storybook/blocks';
+import { Colors, Radius, Sizes } from './tokens';
+import styles from './styles.module.css';
+
+
+<Meta title="Designsystem/Tokens" />
+# Tokens
+
+> Design Tokens styrer hvordan komponentenes farger, typografi, størrelser, avstander, former osv, og deles på tvers av kode og Figma. 
+
+<JumpTo />
+
+## Farger
+Vi benytter semantiske farge-tokens, for å knytte farger til meningsfulle roller i brukergrensesnittet, i stedet for spesifikke fargetoner.
+Dette gir skalerbarhet, enklere vedlikehold, bedre tilgjengelighet og fleksibilitet.
+Farge-tokens er navngitt `--mtds-color-NAVN-BRUKSOMRÅDE-VARIANT`.
+
+<div className={styles.alert} data-color="success">
+**Kode-tips:** Ved å fjerne `NAVN` fra token (kun beholde `--mtds-color-BRUKSOMRÅDE-VARIANT`), kan du dynamisk endre farger med attributten `data-color="NAVN"`.
+Slik løses farger for blant annet `Alert`, `Button` og `Tag`.
+</div>
+<br />
+<Colors />
+
+<hr className={styles.divider} style={{ marginBlock: 60 }} />
+
+## Størrelser
+Størrelser skalerer med `font-size`, hvor utgangspunktet er `md` - medium.
+Du kan med andre ord ikke 100% piksel-versi, men kan heller fokusere hvilken relasjonen mellom elementer.
+Noen størrelser har t-skjorte-størrelse-navn, som brukes blant annet til `gap`, så det er lettere å oppnå konskevent design.
+<Sizes />
+
+<hr className={styles.divider} style={{ marginBlock: 60 }} />
+
+## Radius
+<Radius />

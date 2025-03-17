@@ -213,6 +213,9 @@
 			display: block;
 			font-weight: 700;
 		}
+		.table[data-mobile] > tbody > tr [data-th=":empty"]::before {
+			content: "\00A0"; /* Unicode &nbsp; to avoid line collapse */
+		}
 
 		.table[data-mobile="stacked"] > tbody > tr {
 			padding-block: var(--ds-size-6);

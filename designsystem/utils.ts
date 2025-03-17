@@ -81,8 +81,8 @@ if (IS_BROWSER){
  */
 const POSITION = { top: 0, right: 1, bottom: 2, left: 3 }; // Speed up by using a const map
 
-export function anchorPosition (target: HTMLElement, anchor: HTMLElement | null | false, position?: string | number) {
-	if (!anchor || !anchor.isConnected || !target.isConnected) return TARGETS.delete(target); // Stop watchning if anchor is removed from DOM
+export function anchorPosition (target: HTMLElement, anchor: HTMLElement | false, position?: string | number) {
+	if (anchor === false || !anchor.isConnected || !target.isConnected) return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ''); // Ensure we have t´he scroller
 	if (!TARGETS.has(target)) { // Setup new target or update position
 		const place = POSITION[position as keyof typeof POSITION] ?? POSITION.bottom; // Use CSS property to store position for more flexibility

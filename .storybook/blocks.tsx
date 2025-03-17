@@ -139,12 +139,15 @@ export const Overview = ({
 	return (
 		<>
 			<style>{`
-        .component { animation: item-example backwards .5s }
+        .component { animation: component backwards .5s; position: relative; transition: scale .2s }
         .component:nth-of-type(n+2) { animation-delay: 75ms }
         .component:nth-of-type(n+4) { animation-delay: 125ms }
         .component > div { padding: 0; aspect-ratio: 4 / 3; overflow: hidden; display: flex; align-items: center; justify-content: center }
         .component > div > div { transform: scale(${scale}) }
-        @keyframes item-example { from { opacity: 0; transform: translateY(1rem) } }
+				.component > a::before { content: ''; position: absolute; inset: 0; z-index: 2 }
+				.component:hover > div { border-color: var(--mtds-color-border-default) }
+				.component:active { scale: .95 }
+        @keyframes component { from { opacity: 0; transform: translateY(1rem) } }
       `}</style>
 			{!!filters.length && (
 				<>
