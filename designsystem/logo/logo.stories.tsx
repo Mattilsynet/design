@@ -11,7 +11,7 @@ const meta = {
 	decorators: [
 		(Story) => (
 			<div className={styles.body} style={{ padding: "3em" }}>
-				<div className={`${styles.grid} demo-resize`} data-gap="xl">
+				<div className={`${styles.grid} demo-resize`} data-gap="8">
 					<Story />
 					<style>{`
 						body { background: var(--ds-color-background-default) }

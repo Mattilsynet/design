@@ -3,9 +3,22 @@
 		composes: ds-chip from "@digdir/designsystemet-css";
 		--dsc-chip-input-accent-color: var(--ds-color-base-contrast-default);
 
-		transition-property: background-color, color;
+		border-radius: var(--ds-border-radius-xl); /* Prevent larger radius when growing in height */
+		max-width: 100%;
+		text-align: left;
 		transition-duration: .2s;
+		transition-property: background-color, color;
 	}
+	.chip::after {
+		flex-shrink: 0; /* TODO: Repport to DigDir */
+	}
+	.chip [data-nowrap] {
+		overflow: clip;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		min-width: 0;
+	}
+
 	/* Double selector to win specificity */
 	.chip.chip input[type="checkbox"] {
 		border-radius: var(--ds-border-radius-sm);

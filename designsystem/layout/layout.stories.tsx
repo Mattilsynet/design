@@ -76,24 +76,24 @@ export const GridStory: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.grid} data-gap="lg">
+		<div className={styles.grid} data-gap="6">
 			<div className={styles.grid} data-items="auto">
 				<div>Child 1</div>
 				<div>Child 2</div>
 			</div>
 			<div
 				className={styles.grid}
-				data-gap="lg"
+				data-gap="6"
 				style={{ gridTemplateColumns: "1fr 2fr" }}
 			>
 				<div>
 					Sidebar
-					<div className={styles.grid} data-items="100" data-gap="none">
+					<div className={styles.grid} data-items="100" data-gap="0">
 						<div>Child 1</div>
 						<div>Child 2</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-items="300" data-gap="md">
+				<div className={styles.grid} data-items="300" data-gap="4">
 					<div>Child 1</div>
 					<div className={styles.grid} data-items="100">
 						<div>Child 2-1</div>
@@ -122,20 +122,20 @@ export const React: Story = {
 				<Button data-variant="primary">Action 5</Button>
 				<Button data-variant="primary">Action 6</Button>
 			</Flex>
-			<Grid data-gap="lg">
+			<Grid data-gap="6">
 				<Grid data-items="auto">
 					<div>Child 1</div>
 					<div>Child 2</div>
 				</Grid>
-				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="lg">
+				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="6">
 					<div>
 						Sidebar
-						<Grid data-items="100" data-gap="none">
+						<Grid data-items="100" data-gap="0">
 							<div>Child 1</div>
 							<div>Child 2</div>
 						</Grid>
 					</div>
-					<Grid data-items="300" data-gap="md">
+					<Grid data-items="300" data-gap="4">
 						<div>Child 1</div>
 						<Grid data-items="100">
 							<div>Child 2-1</div>
@@ -157,47 +157,68 @@ export const React: Story = {
 export const Gap: Story = {
 	render: () => (
 		<section className={styles.grid} style={{ gridTemplateColumns: "1fr 2fr" }}>
-			<code>data-gap="none"</code>
-			<div className={styles.flex} data-gap="none">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="0"</code>
+			<div className={styles.flex} data-gap="0">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
-			<code>data-gap="xs" (4px)</code>
-			<div className={styles.flex} data-gap="xs">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="1" (4px)</code>
+			<div className={styles.flex} data-gap="1">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
-			<code>data-gap="sm" (8px)</code>
-			<div className={styles.flex} data-gap="sm">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="2" (8px)</code>
+			<div className={styles.flex} data-gap="2">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
-			<code>data-gap="md" (16px)</code>
-			<div className={styles.flex} data-gap="md">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="3" (12px)</code>
+			<div className={styles.flex} data-gap="3">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
-			<code>data-gap="lg" (24px)</code>
-			<div className={styles.flex} data-gap="lg">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="4" (16px)</code>
+			<div className={styles.flex} data-gap="4">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
-			<code>data-gap="xl" (32px)</code>
-			<div className={styles.flex} data-gap="xl">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
+			<code>data-gap="5" (20px)</code>
+			<div className={styles.flex} data-gap="5">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
+			</div>
+			<code>data-gap="6" (24px)</code>
+			<div className={styles.flex} data-gap="6">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
+			</div>
+			<code>data-gap="7" (28px)</code>
+			<div className={styles.flex} data-gap="7">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
+			</div>
+			<code>data-gap="8" (32px)</code>
+			<div className={styles.flex} data-gap="8">
+				<b>a</b>
+				<b>b</b>
+				<b>c</b>
+				<b>d</b>
 			</div>
 		</section>
 	),
@@ -233,7 +254,7 @@ export const Align: Story = {
 		<section
 			className={styles.grid}
 			data-align="center"
-			data-gap="lg"
+			data-gap="6"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
 			<code>data-align="stretch"</code>
@@ -269,7 +290,7 @@ export const Justify: Story = {
 		<section
 			className={styles.grid}
 			data-align="center"
-			data-gap="lg"
+			data-gap="6"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
 			<code>data-justify="start"</code>
@@ -317,7 +338,7 @@ export const AlignContent: Story = {
 		<section
 			className={styles.grid}
 			data-items="200"
-			data-gap="lg"
+			data-gap="6"
 			style={{ maxWidth: 700 }}
 		>
 			<article>
@@ -454,7 +475,7 @@ export const App: Story = {
 						</a>
 					</li>
 				</menu>
-				<hr className={styles.divider} data-gap="xl" />
+				<hr className={styles.divider} data-gap="8" />
 				<form className={styles.grid} data-expanded="true">
 					<fieldset className={styles.fieldset}>
 						<legend>Velg type iskrem</legend>
@@ -500,7 +521,7 @@ export const App: Story = {
 				</div>
 			</main>
 			<aside data-expanded="false">
-				<form className={styles.grid} data-gap="md">
+				<form className={styles.grid} data-gap="4">
 					<h2 className={styles.heading} data-size="xs">
 						Filters
 					</h2>
@@ -540,7 +561,7 @@ export const App: Story = {
 // 					<div>
 // 						{"0".repeat(5 * i)} ({i * 5})
 // 					</div>
-// 					<div className={styles.flex} key={i} data-gap="none">
+// 					<div className={styles.flex} key={i} data-gap="0">
 // 						<div data-self={i * 50} style={{ background: "gray" }} data-fixed>
 // 							0
 // 						</div>

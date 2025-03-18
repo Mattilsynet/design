@@ -34,36 +34,42 @@ export const React: Story = {
 
 export const Gap: Story = {
 	render: () => (
-		<div className={styles.grid} data-items="200">
+		<div className={styles.grid} data-items="50">
 			<div>
-				none
-				<hr data-gap="none" />
-				none
+				0
+				<hr data-gap="0" />0
 			</div>
 			<div>
-				xs (4px)
-				<hr data-gap="xs" />
-				xs
+				1 (4px)
+				<hr data-gap="1" />1
 			</div>
 			<div>
-				sm (8px)
-				<hr data-gap="sm" />
-				sm
+				2 (8px)
+				<hr data-gap="2" />2
 			</div>
 			<div>
-				md (16px)
-				<hr data-gap="mg" />
-				md
+				3 (12px)
+				<hr data-gap="3" />3
 			</div>
 			<div>
-				lg (24px)
-				<hr data-gap="lg" />
-				lg
+				4 (16px)
+				<hr data-gap="4" />4
 			</div>
 			<div>
-				xl (32px)
-				<hr data-gap="xl" />
-				xl
+				5 (20px)
+				<hr data-gap="5" />5
+			</div>
+			<div>
+				6 (24px)
+				<hr data-gap="6" />6
+			</div>
+			<div>
+				7 (28px)
+				<hr data-gap="7" />7
+			</div>
+			<div>
+				8 (32px)
+				<hr data-gap="8" />8
 			</div>
 		</div>
 	),

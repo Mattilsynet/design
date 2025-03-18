@@ -88,7 +88,7 @@ export const WithForm: Story = {
 		};
 
 		return (
-			<form className={styles.grid} data-gap="md" onSubmit={handleSubmit}>
+			<form className={styles.grid} data-gap="4" onSubmit={handleSubmit}>
 				<div
 					className={styles.errorsummary}
 					role="alert"

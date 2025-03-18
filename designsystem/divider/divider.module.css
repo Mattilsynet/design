@@ -3,25 +3,40 @@
 	.divider {
 		border: 0;
 		border-top: 1px solid var(--ds-color-neutral-border-subtle);
-		margin: var(--ds-size-4) 0;
+		margin: var(--ds-size-8) 0;
 
+		/* Kept for backwards compatibility: none | sm | md | lg | xl  */
 		&[data-gap="none"],
-		&[data-gap="false"] {
+		&[data-gap="0"] {
 			margin-block: 0px;
 		}
-		&[data-gap="xs"] {
+		&[data-gap="xs"],
+		&[data-gap="1"] {
 			margin-block: var(--ds-size-1); /* 4px */
 		}
-		&[data-gap="sm"] {
+		&[data-gap="sm"],
+		&[data-gap="2"] {
 			margin-block: var(--ds-size-2); /* 8px */
 		}
-		&[data-gap="md"] {
+		&[data-gap="3"] {
+			margin-block: var(--ds-size-3); /* 12px */
+		}
+		&[data-gap="md"],
+		&[data-gap="4"] {
 			margin-block: var(--ds-size-4); /* 16px */
 		}
-		&[data-gap="lg"] {
+		&[data-gap="5"] {
+			margin-block: var(--ds-size-5); /* 20px */
+		}
+		&[data-gap="lg"],
+		&[data-gap="6"] {
 			margin-block: var(--ds-size-6); /* 24px */
 		}
-		&[data-gap="xl"] {
+		&[data-gap="7"] {
+			margin-block: var(--ds-size-7); /* 28px */
+		}
+		&[data-gap="xl"],
+		&[data-gap="8"] {
 			margin-block: var(--ds-size-8); /* 32px */
 		}
 	}
