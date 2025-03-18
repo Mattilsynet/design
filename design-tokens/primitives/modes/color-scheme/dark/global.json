@@ -7,7 +7,8 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#03253f"
+        "$value": "#07162C",
+        "$description": "background-tinted"
       },
       "3": {
         "$type": "color",
@@ -15,7 +16,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#05375d"
+        "$value": "#0D284F",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
@@ -311,7 +313,8 @@
       },
       "12": {
         "$type": "color",
-        "$value": "#d76e6e"
+        "$value": "#FF8166",
+        "$description": "base-default\n"
       },
       "13": {
         "$type": "color",

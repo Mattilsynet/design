@@ -13,7 +13,7 @@
       },
       "3": {
         "$type": "color",
-        "$value": "#24282a",
+        "$value": "#2A2E30",
         "$description": "surface-default"
       },
       "4": {
@@ -23,28 +23,28 @@
       },
       "5": {
         "$type": "color",
-        "$value": "#0f6160",
-        "$description": "surface-hover\nhavdyp"
+        "$value": "#0A595C",
+        "$description": "surface-hover\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#0f6160",
+        "$value": "#116E6B",
         "$description": "surface-active\nhavdyp"
       },
       "7": {
         "$type": "color",
-        "$value": "#6c6a691a",
+        "$value": "#FFFFFF1a",
         "$description": "border-subtle\n10%"
       },
       "8": {
         "$type": "color",
-        "$value": "#6c6a6933",
-        "$description": "border-default\n20%"
+        "$value": "#68b096",
+        "$description": "border-default\nfuru"
       },
       "9": {
         "$type": "color",
-        "$value": "#68b096",
-        "$description": "border-strong"
+        "$value": "#abe1cd",
+        "$description": "border-strong\nbrevann"
       },
       "10": {
         "$type": "color",
@@ -63,8 +63,8 @@
       },
       "13": {
         "$type": "color",
-        "$value": "#abe1cd",
-        "$description": "base-hover"
+        "$value": "#9BCAB9",
+        "$description": "base-hover\nlys furu"
       },
       "14": {
         "$type": "color",
@@ -73,8 +73,8 @@
       },
       "15": {
         "$type": "color",
-        "$value": "#181c1c",
-        "$description": "base-contrast-subtle"
+        "$value": "#032C30",
+        "$description": "base-contrast-subtle\nmørk granskog"
       },
       "16": {
         "$type": "color",
