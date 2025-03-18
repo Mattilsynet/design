@@ -35,6 +35,9 @@ export const JumpTo = () => {
 	);
 };
 
+export const getPkgVersion = () =>
+	(window as unknown as { VERSION: string }).VERSION;
+
 export const PkgInfo = () => {
 	const story = useOf<"story">("story")?.story;
 	const github = `https://github.com/Mattilsynet/design/tree/next/designsystem/badge${story?.parameters.fileName.replace(/^\.|[^/]+$/g, "")}`;
@@ -47,7 +50,7 @@ export const PkgInfo = () => {
 				data-size="sm"
 				href="https://www.npmjs.com/package/@mattilsynet/design"
 			>
-				@mattilsynet/design@{(window as unknown as { VERSION: string }).VERSION}
+				@mattilsynet/design@{getPkgVersion()}
 			</a>
 			{story?.parameters.figma && (
 				<a

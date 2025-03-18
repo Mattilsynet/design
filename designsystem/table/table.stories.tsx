@@ -20,7 +20,7 @@ const meta = {
 	title: "Designsystem/Table",
 	decorators: [
 		(Story) => (
-			<div className={styles.grid} data-gap="md">
+			<div className={styles.grid} data-gap="4">
 				<Story />
 			</div>
 		),

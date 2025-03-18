@@ -9,9 +9,13 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Fragment } from "react";
 import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
+const gaps = [
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30,
+];
 const meta = {
 	title: "Designsystem/Layout",
 	parameters: {
@@ -76,35 +80,35 @@ export const GridStory: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.grid} data-gap="lg">
+		<div className={styles.grid} data-gap="6">
 			<div className={styles.grid} data-items="auto">
-				<div>Child 1</div>
-				<div>Child 2</div>
+				<div>auto</div>
+				<div>auto</div>
 			</div>
 			<div
 				className={styles.grid}
-				data-gap="lg"
+				data-gap="6"
 				style={{ gridTemplateColumns: "1fr 2fr" }}
 			>
 				<div>
-					Sidebar
-					<div className={styles.grid} data-items="100" data-gap="none">
-						<div>Child 1</div>
-						<div>Child 2</div>
+					Custom
+					<div className={styles.grid} data-items="100" data-gap="0">
+						<div>100</div>
+						<div>100</div>
 					</div>
 				</div>
-				<div className={styles.grid} data-items="300" data-gap="md">
-					<div>Child 1</div>
+				<div className={styles.grid} data-items="300" data-gap="4">
+					<div>300</div>
 					<div className={styles.grid} data-items="100">
-						<div>Child 2-1</div>
-						<div>Child 2-2</div>
-						<div>Child 2-3</div>
-						<div>Child 2-4</div>
-						<div>Child 2-5</div>
-						<div>Child 2-6</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
 					</div>
-					<div>Child 3</div>
-					<div>Child 4</div>
+					<div>300</div>
+					<div>300</div>
 				</div>
 			</div>
 		</div>
@@ -122,31 +126,31 @@ export const React: Story = {
 				<Button data-variant="primary">Action 5</Button>
 				<Button data-variant="primary">Action 6</Button>
 			</Flex>
-			<Grid data-gap="lg">
+			<Grid data-gap="6">
 				<Grid data-items="auto">
-					<div>Child 1</div>
-					<div>Child 2</div>
+					<div>auto</div>
+					<div>auto</div>
 				</Grid>
-				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="lg">
+				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="6">
 					<div>
-						Sidebar
-						<Grid data-items="100" data-gap="none">
-							<div>Child 1</div>
-							<div>Child 2</div>
+						Custom
+						<Grid data-items="100" data-gap="0">
+							<div>100</div>
+							<div>100</div>
 						</Grid>
 					</div>
-					<Grid data-items="300" data-gap="md">
-						<div>Child 1</div>
+					<Grid data-items="300" data-gap="4">
+						<div>300</div>
 						<Grid data-items="100">
-							<div>Child 2-1</div>
-							<div>Child 2-2</div>
-							<div>Child 2-3</div>
-							<div>Child 2-4</div>
-							<div>Child 2-5</div>
-							<div>Child 2-6</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
 						</Grid>
-						<div>Child 3</div>
-						<div>Child 4</div>
+						<div>300</div>
+						<div>300</div>
 					</Grid>
 				</Grid>
 			</Grid>
@@ -157,48 +161,17 @@ export const React: Story = {
 export const Gap: Story = {
 	render: () => (
 		<section className={styles.grid} style={{ gridTemplateColumns: "1fr 2fr" }}>
-			<code>data-gap="none"</code>
-			<div className={styles.flex} data-gap="none">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="xs" (4px)</code>
-			<div className={styles.flex} data-gap="xs">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="sm" (8px)</code>
-			<div className={styles.flex} data-gap="sm">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="md" (16px)</code>
-			<div className={styles.flex} data-gap="md">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="lg" (24px)</code>
-			<div className={styles.flex} data-gap="lg">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
-			<code>data-gap="xl" (32px)</code>
-			<div className={styles.flex} data-gap="xl">
-				<b>1</b>
-				<b>2</b>
-				<b>3</b>
-				<b>4</b>
-			</div>
+			{gaps.map((gap) => (
+				<Fragment key={gap}>
+					<code>data-gap="{gap}"</code>
+					<div className={styles.flex} data-gap={gap}>
+						<b>a</b>
+						<b>b</b>
+						<b>c</b>
+						<b>d</b>
+					</div>
+				</Fragment>
+			))}
 		</section>
 	),
 };
@@ -228,16 +201,41 @@ export const Center: Story = {
 	),
 };
 
+export const ItemSizes: Story = {
+	render: () => (
+		<>
+			<h2 className={styles.heading}>
+				Minimumsstørrelser Grid og Flex data-items:
+			</h2>
+			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+				<div key={i}>
+					<div className={styles.flex} key={i} data-gap="3" data-fixed>
+						<div
+							data-self={i * 50}
+							style={{
+								background: "var(--mtds-color-surface-tinted)",
+								whiteSpace: "nowrap",
+							}}
+						>
+							{i * 50}
+						</div>
+					</div>
+				</div>
+			))}
+		</>
+	),
+};
+
 export const Align: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
 			data-align="center"
-			data-gap="lg"
+			data-gap="6"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
-			<code>data-align="stret0"</code>
-			<div className={styles.flex} data-align="stret0">
+			<code>data-align="stretch"</code>
+			<div className={styles.flex} data-align="stretch">
 				<b data-size="sm">Small</b>
 				<b data-size="md">Medium</b>
 				<b data-size="lg">Large</b>
@@ -269,7 +267,7 @@ export const Justify: Story = {
 		<section
 			className={styles.grid}
 			data-align="center"
-			data-gap="lg"
+			data-gap="6"
 			style={{ gridTemplateColumns: "1fr 2fr" }}
 		>
 			<code>data-justify="start"</code>
@@ -316,8 +314,8 @@ export const AlignContent: Story = {
 	render: () => (
 		<section
 			className={styles.grid}
-			data-items="3"
-			data-gap="lg"
+			data-items="200"
+			data-gap="6"
 			style={{ maxWidth: 700 }}
 		>
 			<article>
@@ -454,7 +452,7 @@ export const App: Story = {
 						</a>
 					</li>
 				</menu>
-				<hr className={styles.divider} data-gap="xl" />
+				<hr className={styles.divider} data-gap="8" />
 				<form className={styles.grid} data-expanded="true">
 					<fieldset className={styles.fieldset}>
 						<legend>Velg type iskrem</legend>
@@ -500,7 +498,7 @@ export const App: Story = {
 				</div>
 			</main>
 			<aside data-expanded="false">
-				<form className={styles.grid} data-gap="md">
+				<form className={styles.grid} data-gap="4">
 					<h2 className={styles.heading} data-size="xs">
 						Filters
 					</h2>
@@ -531,22 +529,3 @@ export const App: Story = {
 		</div>
 	),
 };
-
-// export const Sizes: Story = {
-// 	render: () => (
-// 		<>
-// 			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
-// 				<div key={i}>
-// 					<div>
-// 						{"0".repeat(5 * i)} ({i * 5})
-// 					</div>
-// 					<div className={styles.flex} key={i} data-gap="none">
-// 						<div data-self={i * 50} style={{ background: "gray" }} data-fixed>
-// 							0
-// 						</div>
-// 					</div>
-// 				</div>
-// 			))}
-// 		</>
-// 	),
-// };

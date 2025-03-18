@@ -3,26 +3,28 @@
 	.divider {
 		border: 0;
 		border-top: 1px solid var(--ds-color-neutral-border-subtle);
-		margin: var(--ds-size-4) 0;
+		margin: var(--ds-size-6) 0;
 
-		&[data-gap="none"],
-		&[data-gap="false"] {
-			margin-block: 0px;
-		}
-		&[data-gap="xs"] {
-			margin-block: var(--ds-size-1); /* 4px */
-		}
-		&[data-gap="sm"] {
-			margin-block: var(--ds-size-2); /* 8px */
-		}
-		&[data-gap="md"] {
-			margin-block: var(--ds-size-4); /* 16px */
-		}
-		&[data-gap="lg"] {
-			margin-block: var(--ds-size-6); /* 24px */
-		}
-		&[data-gap="xl"] {
-			margin-block: var(--ds-size-8); /* 32px */
-		}
+		/* Kept for backwards compatibility: none | sm | md | lg | xl  */
+		&[data-gap="0"], &[data-gap="none"] { margin-block: 0px }
+		&[data-gap="1"], &[data-gap="xs"] { margin-block: var(--ds-size-1) }	/* 4px */
+		&[data-gap="2"], &[data-gap="sm"] { margin-block: var(--ds-size-2) }	/* 8px */
+		&[data-gap="3"] { margin-block: var(--ds-size-3) }										/* 12px */
+		&[data-gap="4"], &[data-gap="md"] { margin-block: var(--ds-size-4) }	/* 16px */
+		&[data-gap="5"] { margin-block: var(--ds-size-5) } 										/* 20px */
+		&[data-gap="6"] , &[data-gap="lg"] { margin-block: var(--ds-size-6) }	/* 24px */
+		&[data-gap="7"] { margin-block: var(--ds-size-7) }										/* 28px */
+		&[data-gap="8"] , &[data-gap="xl"] { margin-block: var(--ds-size-8) }	/* 32px */
+		&[data-gap="9"] { margin-block: var(--ds-size-9) } /* 36px */
+		&[data-gap="10"] { margin-block: var(--ds-size-10) } /* 40px */
+		&[data-gap="11"] { margin-block: var(--ds-size-11) } /* 44px */
+		&[data-gap="12"] { margin-block: var(--ds-size-12) } /* 48px */
+		&[data-gap="13"] { margin-block: var(--ds-size-13) } /* 52px */
+		&[data-gap="14"] { margin-block: var(--ds-size-14) } /* 56px */
+		&[data-gap="15"] { margin-block: var(--ds-size-15) } /* 60px */
+		&[data-gap="18"] { margin-block: var(--ds-size-18) } /* 60px */
+		&[data-gap="22"] { margin-block: var(--ds-size-22) } /* 72px */
+		&[data-gap="26"] { margin-block: var(--ds-size-26) } /* 104px */
+		&[data-gap="30"] { margin-block: var(--ds-size-30) } /* 120px */
 	}
 }

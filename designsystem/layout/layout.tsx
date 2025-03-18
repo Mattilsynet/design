@@ -9,7 +9,47 @@ import styles from "../styles.module.css";
 type SharedProps = {
 	"data-align"?: "normal" | "stretch" | "start" | "center" | "end";
 	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
-	"data-gap"?: "none" | "xs" | "sm" | "md" | "lg" | "xl";
+	"data-gap"?:
+		| "0"
+		| "1"
+		| "2"
+		| "3"
+		| "4"
+		| "5"
+		| "6"
+		| "7"
+		| "8"
+		| "9"
+		| "10"
+		| "11"
+		| "12"
+		| "13"
+		| "14"
+		| "15"
+		| "18"
+		| "22"
+		| "26"
+		| "30"
+		| 0
+		| 1
+		| 2
+		| 3
+		| 4
+		| 5
+		| 6
+		| 7
+		| 8
+		| 9
+		| 10
+		| 11
+		| 12
+		| 13
+		| 14
+		| 15
+		| 18
+		| 22
+		| 26
+		| 30;
 	"data-justify"?:
 		| "start"
 		| "center"

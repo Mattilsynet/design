@@ -1,10 +1,11 @@
 @layer mt.design {
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
+		scroll-margin-block-start: 7em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
 
 		--dsc-input-border-width--toggle: 1px;
 		--dsc-input-stroke: 0.045em;
-		scroll-margin-block-start: 7em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
+		--dsc-input-color: inherit;
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		&[readonly]:disabled {

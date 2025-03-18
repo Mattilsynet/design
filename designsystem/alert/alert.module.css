@@ -42,6 +42,9 @@
 		&[data-color="danger"] {
 			--dsc-alert-icon-url: var(--mtds-icon-danger);
 		}
+		&[data-color="neutral"] {
+			--dsc-alert-icon-url: var(--mtds-icon-question);
+		}
 
 		/* https://every-layout.dev/layouts/stack/ */
 		& > * {

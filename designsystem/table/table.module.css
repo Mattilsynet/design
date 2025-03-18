@@ -54,7 +54,7 @@
 	 * Table border and heading fix
 	 */
 	.table:not([data-border]) > thead > tr:last-child > :is(td, th) {
-		border-bottom-color: currentcolor;
+		border-bottom-color: var(--mtds-color-border-strong);
 		vertical-align: bottom;
 	}
 	.table[data-border] {

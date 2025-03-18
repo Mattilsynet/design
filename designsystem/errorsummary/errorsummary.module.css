@@ -2,7 +2,7 @@
 	.errorsummary {
 		composes: ds-error-summary from "@digdir/designsystemet-css";
 		width: fit-content;
-		animation: errorsummary .2s ease-out forwards;
+		animation: _errorsummary .2s ease-out forwards;
 	}
 	.errorsummary > :is(h2, h3, h4, h5, h6):first-child {
 		margin-block: 0;
@@ -17,7 +17,7 @@
 		padding-left: 1em;
 	}
 
-	@keyframes errorsummary {
+	@keyframes _errorsummary {
 		from {
 			opacity: 0;
 			translate: 0 .25rem;

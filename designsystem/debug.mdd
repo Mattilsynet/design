@@ -1,0 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import { styles } from './';
+import './debug.css';
+
+<Meta title="Designsystem/Debug" />
+
+<a>Hei</a>
+<table><tbody><div>Hei</div></tbody></table>

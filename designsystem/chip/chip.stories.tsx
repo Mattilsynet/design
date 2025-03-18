@@ -93,3 +93,22 @@ export const Removable: Story = {
 		</>
 	),
 };
+
+export const Nowrap: Story = {
+	render: () => (
+		<div className={styles.grid} data-items="auto" style={{ width: 250 }}>
+			<div>
+				<p>Med nowrap:</p>
+				<button type="button" className={styles.chip} data-removable>
+					<span data-nowrap>Mine favoritter</span>
+				</button>
+			</div>
+			<div>
+				<p>Uten nowrap:</p>
+				<button type="button" className={styles.chip} data-removable>
+					Mine favoritter
+				</button>
+			</div>
+		</div>
+	),
+};

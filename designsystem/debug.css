@@ -1,0 +1,134 @@
+/* Highliting accessibility errors in HTML */
+
+/* highlight HTML element with invalid value for lang attribute */
+html:not([lang]),
+html[lang=""] {
+	border: 2px dotted red !important;
+}
+
+/*  highlight images missing alt text */
+img:not([alt]) {
+	border: 2px dotted red !important;
+}
+
+/* highlight on all elements that are inside of lists but not a list item <li> and displays them with a red outline.*/
+:is(ul, ol) > :not(li) {
+	outline: 2px dotted red !important;
+}
+
+/* highlight on links without valid href attribute */
+a:not([href]),
+a[href="#"],
+a[href=""],
+a[href*="javascript:void(0)"] {
+	--note: "<a> is missing a valid href attribute";
+	outline: 2px dotted red !important;
+}
+
+/* highlights label with invalid for attribute */
+label:not([for]),
+label[for="#"],
+label[for=""] {
+	border: 2px dotted red !important;
+}
+
+/* Avoids div buttons from hell. More details in https://www.htmhell.dev/2-div-with-button-role/ */
+div[role="button"]:not([tabindex="0"]) {
+	color: red;
+	text-decoration: blink !important;
+}
+
+/* highlight on empty anchors/buttons */
+:is(a, button):empty:not([aria-label]):not([aria-labelledby]) {
+	border: 2px dotted red !important;
+}
+
+*:not(#global-nav__toggler .navbar__itemflex) {
+	p:has(div) div {
+		--note: "<div> element cannot be inside a <p> element";
+		outline: 2px solid var(--red);
+	}
+
+	button:has(a) a {
+		--note: "<a> element cannot be inside a <button> element";
+		outline: 2px solid var(--red);
+	}
+
+	a:has(button) button {
+		--note: "<button> element cannot be inside <a> element";
+		outline: 2px solid var(--red);
+	}
+
+	a[onclick],
+	a[href*="javascript"] {
+		--note: "Don't use <a> element to handle js events. Use event listeners instead.";
+		outline: 2px solid var(--red);
+	}
+
+	ul:has(> :not(li)) > :not(li),
+	ul.list-bullets:has(> :not(li)) > :not(li) {
+		--note: "Only <li> elements can be descendant of the <ul> element";
+		outline: 2px solid var(--red);
+	}
+
+	table {
+		&:has(> :not(tr, thead, tbody, tfoot, caption))
+			> :not(tr, thead, tbody, tfoot, caption) {
+			--note: "Only <tr>, <thead>, <tbody>, <tfoot> or <caption> elements can be descendants of the <table> element";
+			outline: 2px dotted red;
+		}
+	}
+
+	:is(thead, tbody, tfoot) > :not(tr) {
+		--note: "Only the <tr> element can be descendant of <thead>, <tbody> or <tfoot> elements";
+		outline: 2px dotted red;
+	}
+
+	tr {
+		&:has(> :not(th, td)) > :not(th, td) {
+			--note: "Only <th> and <td> elements can be descendants of the <tr> element";
+			outline: 2px dotted red;
+		}
+	}
+
+	tr.mb-table__row--clickable th,
+	tr.mb-table__row--clickable td {
+		&:has(a, button) {
+			--note: "Nested clickable element(s) in a row with the mb-table__row--clickable class";
+			outline: 2px dotted red;
+		}
+	}
+
+	table tbody > tr:has(th) > th:not([scope="row"]) {
+		--note: '😢 <th> in <tbody> is missing scope="row"';
+		outline: 2px solid var(--red);
+	}
+
+	label:not([for], :has(input), :has(textarea), :has(select)) {
+		--note: "<label> is missing <for> attribute, or <input>, <textarea> or <select> child element";
+		outline: 2px solid var(--red);
+	}
+
+	u-details:not(:has(> u-summary)) {
+		--note: "<u-details> is missing a <u-summary>";
+		outline: 2px solid var(--red);
+	}
+
+	:not(fieldset) > legend {
+		--note: "<legend> is not a direct child of the <fieldset> element";
+		outline: 2px solid var(--red);
+	}
+
+	&:hover::after {
+		content: var(--note);
+		background-color: white;
+		border: 2px solid var(--red);
+		padding: 1rem;
+		position: fixed;
+		top: 20rem;
+		left: 50%;
+		transform: translateX(-50%);
+		box-shadow: var(--shadow-dark);
+		z-index: 9999;
+	}
+}

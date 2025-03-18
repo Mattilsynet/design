@@ -35,9 +35,9 @@ export const Colors: Story = {
 	render: () => (
 		<>
 			<Validation data-color="danger">Feilmelding</Validation>
-			<Validation data-color="success">Feilmelding</Validation>
-			<Validation data-color="info">Feilmelding</Validation>
-			<Validation data-color="warning">Feilmelding</Validation>
+			<Validation data-color="success">Suksess</Validation>
+			<Validation data-color="info">Informasjon</Validation>
+			<Validation data-color="warning">Advarsel</Validation>
 		</>
 	),
 };

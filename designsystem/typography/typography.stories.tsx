@@ -185,7 +185,7 @@ export const Prose: Story = {
 						<label>Antall dyr</label>
 						<input type="text" className={styles.input} />
 					</div>
-					<hr className={styles.divider} data-gap="xl" />
+					<hr className={styles.divider} data-gap="8" />
 					<h2 className={styles.heading} data-size="lg">
 						Helsesertifikat for sjømat
 					</h2>

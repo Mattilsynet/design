@@ -17,17 +17,14 @@
 		&:not([data-icon], :has(svg))::before {
 			background: currentcolor;
 			content: "";
-			display: var(--dsc-tag-icon-url, none); /* Hide if no --dsc-tag-icon-url is set */
 			flex-shrink: 0;
 			height: var(--mtds-icon-size);
-			mask: center / contain no-repeat var(--dsc-tag-icon-url) content-box;
+			mask: center / contain no-repeat
+				var(--dsc-tag-icon-url, var(--mtds-icon-success)) content-box;
 			width: var(--mtds-icon-size);
 		}
 		&[data-color="info"] {
 			--dsc-tag-icon-url: var(--mtds-icon-info);
-		}
-		&[data-color="success"] {
-			--dsc-tag-icon-url: var(--mtds-icon-success);
 		}
 		&[data-color="warning"] {
 			--dsc-tag-icon-url: var(--mtds-icon-warning);
