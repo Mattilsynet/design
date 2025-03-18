@@ -249,6 +249,31 @@ export const Center: Story = {
 	),
 };
 
+export const ItemSizes: Story = {
+	render: () => (
+		<>
+			<h2 className={styles.heading}>
+				Minimumsstørrelser Grid og Flex data-items:
+			</h2>
+			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+				<div key={i}>
+					<div className={styles.flex} key={i} data-gap="3" data-fixed>
+						<div
+							data-self={i * 50}
+							style={{
+								background: "var(--mtds-color-surface-tinted)",
+								whiteSpace: "nowrap",
+							}}
+						>
+							{i * 50}
+						</div>
+					</div>
+				</div>
+			))}
+		</>
+	),
+};
+
 export const Align: Story = {
 	render: () => (
 		<section
@@ -552,22 +577,3 @@ export const App: Story = {
 		</div>
 	),
 };
-
-// export const Sizes: Story = {
-// 	render: () => (
-// 		<>
-// 			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
-// 				<div key={i}>
-// 					<div>
-// 						{"0".repeat(5 * i)} ({i * 5})
-// 					</div>
-// 					<div className={styles.flex} key={i} data-gap="0">
-// 						<div data-self={i * 50} style={{ background: "gray" }} data-fixed>
-// 							0
-// 						</div>
-// 					</div>
-// 				</div>
-// 			))}
-// 		</>
-// 	),
-// };
