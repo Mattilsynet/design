@@ -9,9 +9,13 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Fragment } from "react";
 import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
+const gaps = [
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30,
+];
 const meta = {
 	title: "Designsystem/Layout",
 	parameters: {
@@ -78,8 +82,8 @@ export const GridStory: Story = {
 	render: () => (
 		<div className={styles.grid} data-gap="6">
 			<div className={styles.grid} data-items="auto">
-				<div>Child 1</div>
-				<div>Child 2</div>
+				<div>auto</div>
+				<div>auto</div>
 			</div>
 			<div
 				className={styles.grid}
@@ -87,24 +91,24 @@ export const GridStory: Story = {
 				style={{ gridTemplateColumns: "1fr 2fr" }}
 			>
 				<div>
-					Sidebar
+					Custom
 					<div className={styles.grid} data-items="100" data-gap="0">
-						<div>Child 1</div>
-						<div>Child 2</div>
+						<div>100</div>
+						<div>100</div>
 					</div>
 				</div>
 				<div className={styles.grid} data-items="300" data-gap="4">
-					<div>Child 1</div>
+					<div>300</div>
 					<div className={styles.grid} data-items="100">
-						<div>Child 2-1</div>
-						<div>Child 2-2</div>
-						<div>Child 2-3</div>
-						<div>Child 2-4</div>
-						<div>Child 2-5</div>
-						<div>Child 2-6</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
+						<div>100</div>
 					</div>
-					<div>Child 3</div>
-					<div>Child 4</div>
+					<div>300</div>
+					<div>300</div>
 				</div>
 			</div>
 		</div>
@@ -124,29 +128,29 @@ export const React: Story = {
 			</Flex>
 			<Grid data-gap="6">
 				<Grid data-items="auto">
-					<div>Child 1</div>
-					<div>Child 2</div>
+					<div>auto</div>
+					<div>auto</div>
 				</Grid>
 				<Grid style={{ gridTemplateColumns: "1fr 2fr" }} data-gap="6">
 					<div>
-						Sidebar
+						Custom
 						<Grid data-items="100" data-gap="0">
-							<div>Child 1</div>
-							<div>Child 2</div>
+							<div>100</div>
+							<div>100</div>
 						</Grid>
 					</div>
 					<Grid data-items="300" data-gap="4">
-						<div>Child 1</div>
+						<div>300</div>
 						<Grid data-items="100">
-							<div>Child 2-1</div>
-							<div>Child 2-2</div>
-							<div>Child 2-3</div>
-							<div>Child 2-4</div>
-							<div>Child 2-5</div>
-							<div>Child 2-6</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
+							<div>100</div>
 						</Grid>
-						<div>Child 3</div>
-						<div>Child 4</div>
+						<div>300</div>
+						<div>300</div>
 					</Grid>
 				</Grid>
 			</Grid>
@@ -157,69 +161,17 @@ export const React: Story = {
 export const Gap: Story = {
 	render: () => (
 		<section className={styles.grid} style={{ gridTemplateColumns: "1fr 2fr" }}>
-			<code>data-gap="0"</code>
-			<div className={styles.flex} data-gap="0">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="1" (4px)</code>
-			<div className={styles.flex} data-gap="1">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="2" (8px)</code>
-			<div className={styles.flex} data-gap="2">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="3" (12px)</code>
-			<div className={styles.flex} data-gap="3">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="4" (16px)</code>
-			<div className={styles.flex} data-gap="4">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="5" (20px)</code>
-			<div className={styles.flex} data-gap="5">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="6" (24px)</code>
-			<div className={styles.flex} data-gap="6">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="7" (28px)</code>
-			<div className={styles.flex} data-gap="7">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
-			<code>data-gap="8" (32px)</code>
-			<div className={styles.flex} data-gap="8">
-				<b>a</b>
-				<b>b</b>
-				<b>c</b>
-				<b>d</b>
-			</div>
+			{gaps.map((gap) => (
+				<Fragment key={gap}>
+					<code>data-gap="{gap}"</code>
+					<div className={styles.flex} data-gap={gap}>
+						<b>a</b>
+						<b>b</b>
+						<b>c</b>
+						<b>d</b>
+					</div>
+				</Fragment>
+			))}
 		</section>
 	),
 };

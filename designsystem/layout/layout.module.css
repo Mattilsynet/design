@@ -55,6 +55,15 @@
 		&[data-gap="8"], &[data-gap="xl"] { gap: var(--ds-size-8) } /* 32px */
 		&[data-gap="9"] { gap: var(--ds-size-9) } /* 36px */
 		&[data-gap="10"] { gap: var(--ds-size-10) } /* 40px */
+		&[data-gap="11"] { gap: var(--ds-size-11) } /* 44px */
+		&[data-gap="12"] { gap: var(--ds-size-12) } /* 48px */
+		&[data-gap="13"] { gap: var(--ds-size-13) } /* 52px */
+		&[data-gap="14"] { gap: var(--ds-size-14) } /* 56px */
+		&[data-gap="15"] { gap: var(--ds-size-15) } /* 60px */
+		&[data-gap="18"] { gap: var(--ds-size-18) } /* 60px */
+		&[data-gap="22"] { gap: var(--ds-size-22) } /* 72px */
+		&[data-gap="26"] { gap: var(--ds-size-26) } /* 104px */
+		&[data-gap="30"] { gap: var(--ds-size-30) } /* 120px */
 
 		&[data-align="center"] { align-items: center }
 		&[data-align="end"] { align-items: end}
