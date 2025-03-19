@@ -167,8 +167,8 @@
 	 */
 	.app > footer,
 	.app main ~ footer {
-		background: var(--ds-color-base-hover);
-		color: var(--ds-color-base-contrast-subtle);
+		background: var(--ds-color-background-default);
+		color: var(--ds-color-text-default);
 		grid-area: footer;
 		margin-top: var(--spacing-sm);
 		padding: var(--spacing-md);

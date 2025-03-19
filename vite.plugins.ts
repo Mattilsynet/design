@@ -30,14 +30,14 @@ export const cssToTailwind: Plugin = {
       (m) => m,
     ).sort(collator.compare);
 
-    const tailwind: string[] = ['--font-default: var(--ds-font-family)'];
+    const tailwind: string[] = ['--font-sans: var(--ds-font-family)'];
 
     for (const token of tokens) {
       if (token.startsWith('--mtds-color-') && !token.startsWith('--mtds-color-focus')){
         tailwind.push(`--color-${token.replace('--mtds-color-', '')}: var(${token})`);
       } else if (token.startsWith('--mtds-font-weight-')){
         tailwind.push(`--font-weight-${token.replace('--mtds-font-weight-', '')}: var(${token})`);
-      } else if (token.match(/--mtds-border-radius-(sm|lg|xl|full)/)){
+      } else if (token.match(/--mtds-border-radius-(sm|md|lg|xl)/)){ // Not including "full" as this crashes with Tailwind
         tailwind.push(`--radius-${token.replace('--mtds-border-radius-', '')}: var(${token})`);
       } else if (token.match(/--mtds-body-(sm|mg|lg)-body-font-size/)){
         tailwind.push(`--text-${token.replace('--mtds-body-', '').replace('-font-size', '')}: var(${token})`);

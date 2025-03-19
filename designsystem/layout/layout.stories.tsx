@@ -523,7 +523,7 @@ export const App: Story = {
 					</fieldset>
 				</form>
 			</aside>
-			<footer className={styles.app_footer} hidden>
+			<footer hidden>
 				<a href="#none" className={styles.logo}></a>
 			</footer>
 		</div>
