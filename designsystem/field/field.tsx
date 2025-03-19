@@ -49,7 +49,6 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		className: clsx(styles.field, className),
 		style,
 	};
-	console.log("EIRIK");
 	const affixes = !!suffix || !!prefix;
 	const input = (
 		<Tag className={styles.input} aria-invalid={!!error} ref={ref} {...rest} />
