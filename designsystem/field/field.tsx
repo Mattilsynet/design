@@ -8,7 +8,6 @@ import type {
 import styles from "../styles.module.css";
 
 type FieldBaseProps = InputProps & {
-	"data-size"?: string;
 	className?: InputProps["className"];
 	style?: InputProps["style"];
 	label?: React.ReactNode;
@@ -45,19 +44,19 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	ref?: PolymorphicRef<As>,
 ) {
 	const Tag = as || "div";
-
-	if (!as)
-		return (
-			<div className={clsx(styles.field, className)} ref={ref} {...rest} />
-		);
-
+	const shared = {
+		"data-size": size,
+		className: clsx(styles.field, className),
+		style,
+	};
+	console.log("EIRIK");
 	const affixes = !!suffix || !!prefix;
 	const input = (
 		<Tag className={styles.input} aria-invalid={!!error} ref={ref} {...rest} />
 	);
 
-	return (
-		<Field className={className} data-size={size} style={style}>
+	return as ? (
+		<div {...shared}>
 			{!!label && <label>{label}</label>}
 			{!!description && <p>{description}</p>}
 			{affixes ? (
@@ -71,7 +70,9 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			)}
 			{!!error && <div className={styles.validation}>{error}</div>}
 			{!!count && <p data-count={count} />}
-		</Field>
+		</div>
+	) : (
+		<div ref={ref} {...shared} {...rest} />
 	);
 }) as FieldComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
