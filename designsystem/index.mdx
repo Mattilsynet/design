@@ -80,8 +80,8 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       <u-tablist>
         <u-tab>JS</u-tab>
         <u-tab>CSS</u-tab>
-        <u-tab>TailwindCSS v1, v2, v3</u-tab>
         <u-tab>TailwindCSS v4</u-tab>
+        <u-tab>TailwindCSS v3 and older</u-tab>
       </u-tablist>
       <u-tabpanel>
         ```js
@@ -91,6 +91,16 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
       <u-tabpanel>
         ```css
         @import url("@mattilsynet/design/styles.css");
+        ```
+      </u-tabpanel>
+      <u-tabpanel>
+        ```css
+        /* Load @mattilsynet/design before Tailwind: */
+        @import '@mattilsynet/design/styles.css';
+        
+        /* Get Mattilsynet tokens as Tailwind config: */
+        @import '@mattilsynet/design/tailwind.css';
+        @import 'tailwindcss';
         ```
       </u-tabpanel>
       <u-tabpanel>
@@ -108,13 +118,6 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         @tailwind components;
         @tailwind utilities;
 
-        ```
-      </u-tabpanel>
-      <u-tabpanel>
-        ```css
-        /* Load @mattilsynet/design before Tailwind */
-        @import url('@mattilsynet/design/styles.css');
-        @import url('tailwindcss');
         ```
       </u-tabpanel>
     </u-tabs>
