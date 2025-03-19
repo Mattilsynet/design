@@ -4,11 +4,11 @@ import { QUICK_EVENT, anchorPosition, attr, off, on } from "../utils";
 const CSS_POPOVER = styles.popover.split(" ")[0];
 
 export function observe(el: Node) {
-  on(el, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+  on(el, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
   on(el, "click", handleLinkClick); // Allow `<a>` to use `popovertarget` as well
 }
 export function unobserve(el: Node) {
-  off(el, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+  off(el, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
   off(el, "click", handleLinkClick);
 }
 

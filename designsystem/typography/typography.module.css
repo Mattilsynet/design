@@ -7,12 +7,9 @@
 			text-align: center;
 		}
 	}
-	.prose {
-		padding-block: 3rem;
-		max-width: 65ch;
-	}
 	.prose > * {
 		margin-block: var(--ds-size-6);
+		max-width: 65ch;
 	}
 	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
 		margin-block: 1em 0;

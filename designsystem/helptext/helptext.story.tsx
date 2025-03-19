@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HelpText } from "../react";
 import styles from "../styles.module.css";
+import { HelpText } from "./helptext";
 
 const meta = {
 	title: "Designsystem/Help text",

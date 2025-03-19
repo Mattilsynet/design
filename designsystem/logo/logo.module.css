@@ -22,7 +22,7 @@
 	}
 	.logo:not(:has(svg)) {
 		padding-left: var(--indent);
-		mask: var(--icon), var(--solid) var(--indent) / 100% no-repeat;
+		mask: var(--icon), var(--solid) calc(var(--indent) + 1px) / 100% no-repeat; /* 1px is used to avoid pixel glitch in Safari */
 		background: linear-gradient(
 			to right,
 			currentColor var(--indent),
@@ -56,7 +56,7 @@
 		height: auto;
 		line-height: 1.05;
 		mask: var(--icon), var(--solid) calc(var(--icon-size) + .45em) / .04em 100%
-			no-repeat, var(--solid) var(--indent) / 100% no-repeat;
+			no-repeat, var(--solid) calc(var(--indent) + 1px) / 100% no-repeat; /* 1px is used to avoid pixel glitch in Safari */
 
 		&::before {
 			content: var(--mtds-text-logo);
@@ -111,8 +111,9 @@
 		font-size: min(1em, var(--ds-body-lg-font-size));
 		font-weight: 400;
 		margin-left: .2em;
+		text-transform: lowercase;
 	}
-	html:has(.logo[data-env])::after {
+	html:has(.logo[data-env])::before {
 		border-top: 5px solid var(--mtds-logo-color);
 		content: "";
 		inset: 0 0 auto;
