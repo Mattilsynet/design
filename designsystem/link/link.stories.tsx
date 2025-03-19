@@ -1,3 +1,4 @@
+import { Heart } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Link } from "../react";
 
@@ -24,6 +25,18 @@ export const React: Story = {
 			<Link href="https://www.mattilsynet.no/">Mattilsynet</Link> er et statlig
 			tilsyn og direktorat som har som visjon å trygge framtiden for mennesker,
 			dyr og natur.
+		</>
+	),
+};
+
+export const WithIcon: Story = {
+	render: () => (
+		<>
+			<a href="https://www.mattilsynet.no/">
+				Mattilsynet
+				<Heart />
+			</a>{" "}
+			trygger framtiden for mennesker, dyr og natur.
 		</>
 	),
 };

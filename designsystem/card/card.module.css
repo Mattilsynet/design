@@ -1,12 +1,12 @@
 @layer mt.design {
 	.card {
-		--mtds-card-border-color: var(--ds-color-neutral-border-subtle);
-		--mtds-card-border-color--hover: var(--ds-color-neutral-border-strong);
+		--mtds-card-border-color: var(--ds-color-border-subtle);
+		--mtds-card-border-color--hover: var(--ds-color-border-strong);
 		--mtds-card-border-radius: var(--ds-border-radius-lg);
 		--mtds-card-padding: var(--ds-size-5);
 		--mtds-card-gap: var(--ds-size-4);
 
-		background-color: var(--ds-color-neutral-surface-default);
+		background-color: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-lg);
 		border: 1px solid var(--mtds-card-border-color);
 		box-sizing: border-box;
@@ -59,7 +59,7 @@
 
 	.group {
 		background-color: var(--ds-color-background-tinted);
-		border-radius: var(--ds-border-radius-lg);
+		border-radius: var(--ds-border-radius-xl);
 		box-sizing: border-box;
 		padding: var(--ds-size-5);
 	}

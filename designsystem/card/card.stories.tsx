@@ -13,7 +13,8 @@ import { Card } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
-	title: "Designsystem/Card",
+	title: "Designsystem/Card og Group",
+	id: "designsystem-card",
 	parameters: {
 		layout: "fullscreen",
 	},
@@ -294,14 +295,12 @@ export const Responsive: Story = {
 
 export const Group: Story = {
 	render: () => (
-		<>
-			<div className={styles.group}>
-				<div className={styles.grid}>
-					<div className={styles.card}>Card</div>
-					<div className={styles.card}>Card</div>
-					<div className={styles.card}>Card</div>
-				</div>
+		<div className={styles.group}>
+			<div className={styles.grid} data-gap="1">
+				<div className={styles.card}>Card</div>
+				<div className={styles.card}>Card</div>
+				<div className={styles.card}>Card</div>
 			</div>
-		</>
+		</div>
 	),
 };
