@@ -26,7 +26,8 @@
 		"./index.iife.js.map": "./mtds/index.iife.js.map",
 		"./package.json": "./package.json",
 		"./styles.css": "./mtds/styles.css",
-		"./styles.json": "./mtds/styles.json"
+		"./styles.json": "./mtds/styles.json",
+		"./tailwind.css": "./mtds/tailwind.css"
 	},
 	"scripts": {
 		"build": "vite build --mode iife && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",

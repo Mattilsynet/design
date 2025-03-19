@@ -16,7 +16,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const HeadingStory: Story = {
+	name: "Heading",
 	render: () => <h2 className={styles.heading}>Heading</h2>,
 };
 export const Sizes: Story = {
@@ -98,7 +99,7 @@ export const Prose: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.body}>
+		<div className={styles.body} style={{ paddingBlock: "5vw" }}>
 			<div className={styles.grid} data-center="md">
 				<div className={styles.prose}>
 					<h1 className={styles.heading} data-size="xl">

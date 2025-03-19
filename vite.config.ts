@@ -2,26 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
-import { type Plugin, defineConfig } from "vite";
+import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import { cssPropsRename, cssToTailwind } from "./vite.plugins";
 
 const root = path.resolve(__dirname, "designsystem");
 const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
-const { version } = JSON.parse(fs.readFileSync(path.resolve(__dirname, "package.json"), "utf-8")); // Read version from package.json
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
-const cssPropsRename: Plugin = {
-  name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations",
-  transform: (code) => ({
-    map: null,
-    code: code
-      .replace(/--ds-color-primary-/g, "--ds-color-main-")
-      .replace(/--ds-size-/g, "--mtds-")
-      .replace(/--ds(c?)-/g, '--mtds$1-')
-      .replace(/@layer [^;]+/g, (m) =>
-        m.replace(/\b(ds|mt)\./g, `$1.v${version.replace(/\./g, "-")}`)
-      ),
-  }),
-};
 
 export default defineConfig(({ mode }) =>
   mode === "iife"
@@ -81,6 +68,7 @@ export default defineConfig(({ mode }) =>
               fs.writeFileSync(json, JSON.stringify(cssModulesMap, null, 2));
             },
           },
+          cssToTailwind,
           cssPropsRename,
         ],
         build: {

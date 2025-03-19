@@ -8,16 +8,19 @@
 		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;
 		color: var(--ds-color-text-default); /* Needed to overwrite browser default */
+		height: auto;
 		inset: auto;
 		list-style: none;
-		margin: -2px 0 0;
+		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		opacity: 0;
 		padding: var(--mtds-popover-padding);
 		position: fixed;
 		transition-duration: .2s;
-		transition-property: opacity, margin, visibility;
+		transition-property: opacity, transform, visibility;
 		visibility: hidden;
+		width: max-content;
+		transform: translateY(-2px);
 		z-index: 9999;
 
 		&:where(:not([hidden])) {
@@ -25,8 +28,8 @@
 		}
 
 		&:popover-open {
-			margin: 0;
 			opacity: 1;
+			transform: none;
 			visibility: visible;
 		}
 

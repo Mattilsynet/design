@@ -83,6 +83,7 @@
 		--ds-heading-2xs-font-size: clamp(1rem, 0.955rem + 0.2vw, 1.125rem); /* 16px => 18px */
 
 		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
+		--ds-font-weight-bold: 700; /* Add missing font-weight */
 		--ds-color-focus-outer: var(--ds-color-text-default);
 		--ds-border-width-focus: 2px;
 		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
@@ -118,6 +119,12 @@
 
 	:where(b, h1, h2, h3, h4, h5, h6, label, legend, strong) {
 		font-weight: 700;
+	}
+
+	/* TMP fix so Safari does not use "fake" italic, but rather the version availabe in the font */
+	:where(i, em) {
+		font-variation-settings: "ital" 1;
+		font-synthesis: none;
 	}
 
 	/* Activate smooth scroll */
