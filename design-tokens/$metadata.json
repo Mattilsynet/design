@@ -16,7 +16,12 @@
     "primitives/modes/color-scheme/light/mattilsynet",
     "themes/mattilsynet",
     "semantic/color",
-    "semantic/modes/main-color/primary",
+    "semantic/modes/colors/main",
+    "semantic/modes/colors/inverted",
+    "semantic/modes/colors/success",
+    "semantic/modes/colors/danger",
+    "semantic/modes/colors/info",
+    "semantic/modes/colors/warning",
     "semantic/style"
   ]
 }

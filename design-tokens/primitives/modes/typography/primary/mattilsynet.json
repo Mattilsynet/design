@@ -16,6 +16,10 @@
       "regular": {
         "$type": "fontWeights",
         "$value": "Regular"
+      },
+      "italic": {
+        "$type": "fontWeights",
+        "$value": "Italic"
       }
     }
   }

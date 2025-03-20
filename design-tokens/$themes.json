@@ -196,7 +196,24 @@
       "border-radius.5": "2e84c24d4523be90410634d19a28a6c8dbd3ecf9",
       "border-radius.6": "92809fc6f4531ed505734e060fafbae2f33c789a",
       "border-radius.base": "ad2db7f2cd772df85ff1e8b79e059e197469d87f",
-      "border-radius.scale": "0dc31df00a16b338523e8f926c59f88cdb165d00"
+      "border-radius.scale": "0dc31df00a16b338523e8f926c59f88cdb165d00",
+      "color.inverted.1": "bc3ed4514dcdc2c8962e9498fdfac9f3fed614a0",
+      "color.inverted.2": "70ab6c0d50919eabc66869b43d843488e6eeb534",
+      "color.inverted.3": "347b8d1e723d09f2b3f372638415c9fdae57ffdc",
+      "color.inverted.4": "36ef669a4129d28073ed3c6fd40c83ca86c26a9a",
+      "color.inverted.5": "bdc142db9f57afdaf746fd5c690ece493d20bd07",
+      "color.inverted.6": "2d127289ec867e8e64881414146be8da881af171",
+      "color.inverted.7": "6508163f2db734f9e6a370856163a4970121a184",
+      "color.inverted.8": "7640b111a5258c8108ad915e93ed60bd6fdcc508",
+      "color.inverted.9": "064d7bbd8daafb03710b8ca6b07a67af00eb9708",
+      "color.inverted.10": "c9c72252829f737fe818ab6b6b0dabba0feedc4b",
+      "color.inverted.11": "f716ae9b81b2f0949a8acf83527c8b50bbc55170",
+      "color.inverted.12": "a0b9f7884ae05defc6640528c800b7eaf6cd0315",
+      "color.inverted.13": "3bee46fce0fbd38441992998ba797120006b6a35",
+      "color.inverted.14": "706e6cbea677806462f5480a77a1e8d0f98c96dc",
+      "color.inverted.15": "5a1b53acf331662e0285c000968ccebaade0984d",
+      "color.inverted.16": "6d546214722232fd06f9e60a5641ac2d0509726f",
+      "font-weight.italic": "383b56fae1ab0a75c32a658de60c74abac1a0acd"
     }
   },
   {
@@ -212,7 +229,8 @@
       "mattilsynet.font-family": "86d339c889af567eb59aa5501b225a0b904a0c8f",
       "mattilsynet.font-weight.medium": "2d63a697705ba926031e9715999f2b03dc7eab47",
       "mattilsynet.font-weight.semibold": "45accc53705071bdd0de11d5729fe232a005e0ef",
-      "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e"
+      "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e",
+      "mattilsynet.font-weight.italic": "cc891f6879123204224cf94f27a2d9498a2c456c"
     }
   },
   {
@@ -228,7 +246,8 @@
       "mattilsynet.font-family": "86d339c889af567eb59aa5501b225a0b904a0c8f",
       "mattilsynet.font-weight.medium": "2d63a697705ba926031e9715999f2b03dc7eab47",
       "mattilsynet.font-weight.semibold": "45accc53705071bdd0de11d5729fe232a005e0ef",
-      "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e"
+      "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e",
+      "mattilsynet.font-weight.italic": "cc891f6879123204224cf94f27a2d9498a2c456c"
     }
   },
   {
@@ -353,7 +372,23 @@
       "mattilsynet.neutral.13": "220d6ea480539896fba7a7838eeec0ae091ae344",
       "mattilsynet.neutral.14": "9e34a574ee7fe8aa9486a089fa4f285ed80d9716",
       "mattilsynet.neutral.15": "13616e55e098208e94664db86a4bb2d4131cf06d",
-      "mattilsynet.neutral.16": "42d21bb463959263b561864ad7f9e999fbc29c6d"
+      "mattilsynet.neutral.16": "42d21bb463959263b561864ad7f9e999fbc29c6d",
+      "mattilsynet.inverted.1": "21bb7ce37b9b7fc1f86e56947c8457d0a7737284",
+      "mattilsynet.inverted.2": "e56bd973dc065ce514d271dfc552e5399bf02a72",
+      "mattilsynet.inverted.3": "797ea190743489d510ecdc0cfdb3d68818de36d3",
+      "mattilsynet.inverted.4": "5f82a6ef163d6c6c4180fa94e357da870e33c4e4",
+      "mattilsynet.inverted.5": "02c18c5dcb02a4244ec46ae6d2dd65297e724b12",
+      "mattilsynet.inverted.6": "c1ff155383471490f534908be8d6074b086814cd",
+      "mattilsynet.inverted.7": "b90604428bed2875dcb55b7c8e14bd705b685ee7",
+      "mattilsynet.inverted.8": "4df7659810d388637fc70849c5d1326a40dbe4ed",
+      "mattilsynet.inverted.9": "0b213e28fa3f53db3ef824741e7a9382dd36db34",
+      "mattilsynet.inverted.10": "b813e7272545541d12b0d825119e748ea4d56e8d",
+      "mattilsynet.inverted.11": "bbeb92ecf75f0205011b54d7c5ba720937188b65",
+      "mattilsynet.inverted.12": "352b388214d2e8b28853762cb3b3ac2e83615483",
+      "mattilsynet.inverted.13": "a204603a17bd28c281cc010d41b54e969ba794f0",
+      "mattilsynet.inverted.14": "3b1bf2f9f3cd0ca5352c4ddfcc9d090344ef84bd",
+      "mattilsynet.inverted.15": "f0f3c9b9fb0ea4883d46432760aeaf43c98bf0cb",
+      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a"
     }
   },
   {
@@ -478,7 +513,23 @@
       "mattilsynet.neutral.13": "220d6ea480539896fba7a7838eeec0ae091ae344",
       "mattilsynet.neutral.14": "9e34a574ee7fe8aa9486a089fa4f285ed80d9716",
       "mattilsynet.neutral.15": "13616e55e098208e94664db86a4bb2d4131cf06d",
-      "mattilsynet.neutral.16": "42d21bb463959263b561864ad7f9e999fbc29c6d"
+      "mattilsynet.neutral.16": "42d21bb463959263b561864ad7f9e999fbc29c6d",
+      "mattilsynet.inverted.1": "21bb7ce37b9b7fc1f86e56947c8457d0a7737284",
+      "mattilsynet.inverted.2": "e56bd973dc065ce514d271dfc552e5399bf02a72",
+      "mattilsynet.inverted.3": "797ea190743489d510ecdc0cfdb3d68818de36d3",
+      "mattilsynet.inverted.4": "5f82a6ef163d6c6c4180fa94e357da870e33c4e4",
+      "mattilsynet.inverted.5": "02c18c5dcb02a4244ec46ae6d2dd65297e724b12",
+      "mattilsynet.inverted.6": "c1ff155383471490f534908be8d6074b086814cd",
+      "mattilsynet.inverted.7": "b90604428bed2875dcb55b7c8e14bd705b685ee7",
+      "mattilsynet.inverted.8": "4df7659810d388637fc70849c5d1326a40dbe4ed",
+      "mattilsynet.inverted.9": "0b213e28fa3f53db3ef824741e7a9382dd36db34",
+      "mattilsynet.inverted.10": "b813e7272545541d12b0d825119e748ea4d56e8d",
+      "mattilsynet.inverted.11": "bbeb92ecf75f0205011b54d7c5ba720937188b65",
+      "mattilsynet.inverted.12": "352b388214d2e8b28853762cb3b3ac2e83615483",
+      "mattilsynet.inverted.13": "a204603a17bd28c281cc010d41b54e969ba794f0",
+      "mattilsynet.inverted.14": "3b1bf2f9f3cd0ca5352c4ddfcc9d090344ef84bd",
+      "mattilsynet.inverted.15": "f0f3c9b9fb0ea4883d46432760aeaf43c98bf0cb",
+      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a"
     }
   },
   {
@@ -525,6 +576,22 @@
       "color.neutral.base-active": "cc9b20bd8ce62b2c729bf4261c722c33a95a4ddc",
       "color.neutral.base-contrast-subtle": "6affe901aef8d4dac358fa233883329ec4934e59",
       "color.neutral.base-contrast-default": "cd9acfcd1d2d63d7e5179c0da923f0ac263214e8",
+      "color.inverted.background-default": "60d15afbb6a2a534a9ca8b98bd2a6f19e8e8dec6",
+      "color.inverted.background-tinted": "2e67602f48864601efa1cf9d68bdd86269a86f85",
+      "color.inverted.surface-default": "38248e92d429d11cbce7cb2b1d3208ce6330a168",
+      "color.inverted.surface-tinted": "14f9ab34d1012eedf184291adec4a235bfe5ae5d",
+      "color.inverted.surface-hover": "25496cbcd3a5d0b3330a53ee18a7991992cebb87",
+      "color.inverted.surface-active": "19e1bead92f0080b9a88e6dc008ceb7a676368f6",
+      "color.inverted.border-subtle": "cbc86e0b9c8038ec07986c18903af54e52e07fcb",
+      "color.inverted.border-default": "e3ee0e185998cd34bdac3cd78d256a420bd1103f",
+      "color.inverted.border-strong": "304ff2d15da9fa2fbcf485b4100392de87368fee",
+      "color.inverted.text-subtle": "a925f751dca7ebb5faa6c71db66e06d6aa97548a",
+      "color.inverted.text-default": "34121e985e371f226ee221fda77fa442291c37d2",
+      "color.inverted.base-default": "32d3fd8ce1c6b93537add89fd7c012686bf9e12d",
+      "color.inverted.base-hover": "bddb8881ac91027670da2b776c417e5ee44bc58c",
+      "color.inverted.base-active": "c7a18811b339c161473f0daeae2dbe28aa353303",
+      "color.inverted.base-contrast-subtle": "f86414e942c58ea6421d0ab15873e8aad5beb96c",
+      "color.inverted.base-contrast-default": "9df053208e98d7a107b6a4e4bd16a68f23e9afb7",
       "color.success.background-default": "278489ff3cfb5ac1f94fb68c76271d703c873400",
       "color.success.background-tinted": "7e12b1ca3a718a502cab32bc1b455ce9bdcf1dbf",
       "color.success.surface-default": "1f21f006fbc30a26819232049060399c554eb06f",
@@ -654,13 +721,159 @@
   },
   {
     "id": "593774a74235b661fff40693ca7bda160aadfb74",
-    "name": "primary",
+    "name": "main",
     "selectedTokenSets": {
-      "semantic/modes/main-color/primary": "enabled"
+      "semantic/modes/colors/main": "enabled"
     },
-    "group": "Main color",
     "$figmaCollectionId": "VariableCollectionId:40350:32139",
     "$figmaModeId": "44797:1",
+    "$figmaVariableReferences": {
+      "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
+      "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
+      "color.main.surface-default": "f78d49db7194a2460ed29acc66e52958199442a2",
+      "color.main.surface-tinted": "f792e7ee4f0bd6836e7576ed665be52acb4fac2b",
+      "color.main.surface-hover": "395b85a8d47c2c97ae27d7d77eea29ea1b2e0850",
+      "color.main.surface-active": "e0889d1c43743a95ba7eaa62b1b417a24a1280f8",
+      "color.main.border-subtle": "beca8258e32d674aea9bb12eb22adc96e1808e28",
+      "color.main.border-default": "8ec9d4fa171188dc878f56795ccaec73163bf037",
+      "color.main.border-strong": "4ee331dde3eb8f7b45ed1e79e06850d5eddef523",
+      "color.main.text-subtle": "9fff06aefef13c9dfd298037d736941620dfe0db",
+      "color.main.text-default": "963d51a02db273d3effb78cb02f88fd94719ed18",
+      "color.main.base-default": "db17bacaa54d610f0049ba41abc502b627c75bb6",
+      "color.main.base-hover": "eacebcdbd5aef794de6749bbe5b90c7bc7082022",
+      "color.main.base-active": "1e8249b4e399026468528b3e29e9939ef68b5363",
+      "color.main.base-contrast-subtle": "37451bd373b7b3a9f9cd2cf489b0edf4701c8131",
+      "color.main.base-contrast-default": "d4f8eb94cae91b4df9a72c29834f542264b466e4"
+    },
+    "$figmaStyleReferences": {},
+    "group": "Colors"
+  },
+  {
+    "id": "8c92398ccb4f29866a4b66a7f2f44c30f2eaaaa5",
+    "name": "inverted",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "semantic/modes/colors/inverted": "enabled"
+    },
+    "group": "Colors",
+    "$figmaCollectionId": "VariableCollectionId:40350:32139",
+    "$figmaModeId": "12960:0",
+    "$figmaVariableReferences": {
+      "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
+      "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
+      "color.main.surface-default": "f78d49db7194a2460ed29acc66e52958199442a2",
+      "color.main.surface-tinted": "f792e7ee4f0bd6836e7576ed665be52acb4fac2b",
+      "color.main.surface-hover": "395b85a8d47c2c97ae27d7d77eea29ea1b2e0850",
+      "color.main.surface-active": "e0889d1c43743a95ba7eaa62b1b417a24a1280f8",
+      "color.main.border-subtle": "beca8258e32d674aea9bb12eb22adc96e1808e28",
+      "color.main.border-default": "8ec9d4fa171188dc878f56795ccaec73163bf037",
+      "color.main.border-strong": "4ee331dde3eb8f7b45ed1e79e06850d5eddef523",
+      "color.main.text-subtle": "9fff06aefef13c9dfd298037d736941620dfe0db",
+      "color.main.text-default": "963d51a02db273d3effb78cb02f88fd94719ed18",
+      "color.main.base-default": "db17bacaa54d610f0049ba41abc502b627c75bb6",
+      "color.main.base-hover": "eacebcdbd5aef794de6749bbe5b90c7bc7082022",
+      "color.main.base-active": "1e8249b4e399026468528b3e29e9939ef68b5363",
+      "color.main.base-contrast-subtle": "37451bd373b7b3a9f9cd2cf489b0edf4701c8131",
+      "color.main.base-contrast-default": "d4f8eb94cae91b4df9a72c29834f542264b466e4"
+    }
+  },
+  {
+    "id": "2d7cd8df3227ed8ee08806ffc0426323ec50e46e",
+    "name": "success",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "semantic/modes/colors/success": "enabled"
+    },
+    "group": "Colors",
+    "$figmaCollectionId": "VariableCollectionId:40350:32139",
+    "$figmaModeId": "13035:0",
+    "$figmaVariableReferences": {
+      "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
+      "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
+      "color.main.surface-default": "f78d49db7194a2460ed29acc66e52958199442a2",
+      "color.main.surface-tinted": "f792e7ee4f0bd6836e7576ed665be52acb4fac2b",
+      "color.main.surface-hover": "395b85a8d47c2c97ae27d7d77eea29ea1b2e0850",
+      "color.main.surface-active": "e0889d1c43743a95ba7eaa62b1b417a24a1280f8",
+      "color.main.border-subtle": "beca8258e32d674aea9bb12eb22adc96e1808e28",
+      "color.main.border-default": "8ec9d4fa171188dc878f56795ccaec73163bf037",
+      "color.main.border-strong": "4ee331dde3eb8f7b45ed1e79e06850d5eddef523",
+      "color.main.text-subtle": "9fff06aefef13c9dfd298037d736941620dfe0db",
+      "color.main.text-default": "963d51a02db273d3effb78cb02f88fd94719ed18",
+      "color.main.base-default": "db17bacaa54d610f0049ba41abc502b627c75bb6",
+      "color.main.base-hover": "eacebcdbd5aef794de6749bbe5b90c7bc7082022",
+      "color.main.base-active": "1e8249b4e399026468528b3e29e9939ef68b5363",
+      "color.main.base-contrast-subtle": "37451bd373b7b3a9f9cd2cf489b0edf4701c8131",
+      "color.main.base-contrast-default": "d4f8eb94cae91b4df9a72c29834f542264b466e4"
+    }
+  },
+  {
+    "id": "17f8cf0070150464d3ffa0fd0fb20b3013ef670a",
+    "name": "danger",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "semantic/modes/colors/danger": "enabled"
+    },
+    "group": "Colors",
+    "$figmaCollectionId": "VariableCollectionId:40350:32139",
+    "$figmaModeId": "13035:1",
+    "$figmaVariableReferences": {
+      "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
+      "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
+      "color.main.surface-default": "f78d49db7194a2460ed29acc66e52958199442a2",
+      "color.main.surface-tinted": "f792e7ee4f0bd6836e7576ed665be52acb4fac2b",
+      "color.main.surface-hover": "395b85a8d47c2c97ae27d7d77eea29ea1b2e0850",
+      "color.main.surface-active": "e0889d1c43743a95ba7eaa62b1b417a24a1280f8",
+      "color.main.border-subtle": "beca8258e32d674aea9bb12eb22adc96e1808e28",
+      "color.main.border-default": "8ec9d4fa171188dc878f56795ccaec73163bf037",
+      "color.main.border-strong": "4ee331dde3eb8f7b45ed1e79e06850d5eddef523",
+      "color.main.text-subtle": "9fff06aefef13c9dfd298037d736941620dfe0db",
+      "color.main.text-default": "963d51a02db273d3effb78cb02f88fd94719ed18",
+      "color.main.base-default": "db17bacaa54d610f0049ba41abc502b627c75bb6",
+      "color.main.base-hover": "eacebcdbd5aef794de6749bbe5b90c7bc7082022",
+      "color.main.base-active": "1e8249b4e399026468528b3e29e9939ef68b5363",
+      "color.main.base-contrast-subtle": "37451bd373b7b3a9f9cd2cf489b0edf4701c8131",
+      "color.main.base-contrast-default": "d4f8eb94cae91b4df9a72c29834f542264b466e4"
+    }
+  },
+  {
+    "id": "119c173bcffd5af3bdbef4b9591d6d47e8768417",
+    "name": "info",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "semantic/modes/colors/info": "enabled"
+    },
+    "group": "Colors",
+    "$figmaCollectionId": "VariableCollectionId:40350:32139",
+    "$figmaModeId": "13035:2",
+    "$figmaVariableReferences": {
+      "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
+      "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
+      "color.main.surface-default": "f78d49db7194a2460ed29acc66e52958199442a2",
+      "color.main.surface-tinted": "f792e7ee4f0bd6836e7576ed665be52acb4fac2b",
+      "color.main.surface-hover": "395b85a8d47c2c97ae27d7d77eea29ea1b2e0850",
+      "color.main.surface-active": "e0889d1c43743a95ba7eaa62b1b417a24a1280f8",
+      "color.main.border-subtle": "beca8258e32d674aea9bb12eb22adc96e1808e28",
+      "color.main.border-default": "8ec9d4fa171188dc878f56795ccaec73163bf037",
+      "color.main.border-strong": "4ee331dde3eb8f7b45ed1e79e06850d5eddef523",
+      "color.main.text-subtle": "9fff06aefef13c9dfd298037d736941620dfe0db",
+      "color.main.text-default": "963d51a02db273d3effb78cb02f88fd94719ed18",
+      "color.main.base-default": "db17bacaa54d610f0049ba41abc502b627c75bb6",
+      "color.main.base-hover": "eacebcdbd5aef794de6749bbe5b90c7bc7082022",
+      "color.main.base-active": "1e8249b4e399026468528b3e29e9939ef68b5363",
+      "color.main.base-contrast-subtle": "37451bd373b7b3a9f9cd2cf489b0edf4701c8131",
+      "color.main.base-contrast-default": "d4f8eb94cae91b4df9a72c29834f542264b466e4"
+    }
+  },
+  {
+    "id": "217d91decea6b7ce18833e6d74a7ad57e195bb84",
+    "name": "warning",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "semantic/modes/colors/warning": "enabled"
+    },
+    "group": "Colors",
+    "$figmaCollectionId": "VariableCollectionId:40350:32139",
+    "$figmaModeId": "13035:3",
     "$figmaVariableReferences": {
       "color.main.background-default": "fdb022f65067da0bfefc08ba85d11ce158a1923d",
       "color.main.background-tinted": "ea1ee5919ea3209d1590d11ea988a6d107363529",
