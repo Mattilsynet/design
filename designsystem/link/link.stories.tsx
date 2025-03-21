@@ -33,8 +33,7 @@ export const WithIcon: Story = {
 	render: () => (
 		<>
 			<a href="https://www.mattilsynet.no/">
-				Mattilsynet
-				<Heart />
+				Mattilsynet <Heart />
 			</a>{" "}
 			trygger framtiden for mennesker, dyr og natur.
 		</>

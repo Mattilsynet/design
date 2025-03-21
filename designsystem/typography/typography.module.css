@@ -1,6 +1,8 @@
 @layer mt.design {
 	.heading {
 		composes: ds-heading from "@digdir/designsystemet-css";
+
+		scroll-margin-block: 4em; /* Ensure scrolling to headings still have some comfortable spacing above */
 		text-wrap: balance;
 
 		&[data-justify="center"] {
