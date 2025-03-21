@@ -1,4 +1,4 @@
-import tokens from "../design-tokens-build/mattilsynet.css?raw";
+import css from "../design-tokens-build/mattilsynet.css?raw";
 import styles from "./styles.module.css";
 import { anchorPosition } from "./utils";
 
@@ -14,11 +14,11 @@ const GAPS: Record<number, string> = {
 };
 const RADIUS = ["sm", "md", "lg", "full"] as const;
 const SIZES = toUnique(
-	Array.from(tokens.matchAll(/--mtds-(\d+)/g), ([, d]) => Number(d)),
+	Array.from(css.matchAll(/--mtds-(\d+)/g), ([, d]) => Number(d)),
 );
 const COLORS = toUnique(
 	Array.from(
-		tokens.matchAll(/--mtds-color-([^-]+)(-[^-]+){3}/g), // Match minium 3 variants to avoid dynamic tokens without color name
+		css.matchAll(/--mtds-color-([^-]+)(-[^-:)]+){3}/g), // Match minium 3 variants to avoid dynamic tokens without color name
 		([, name]) => name,
 	),
 );

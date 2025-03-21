@@ -1,7 +1,7 @@
 @layer mt.design {
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
-		scroll-margin-block-start: 7em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
+		scroll-margin-block: 8em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
 
 		--dsc-input-border-width--toggle: 1px;
 		--dsc-input-stroke: 0.045em;
