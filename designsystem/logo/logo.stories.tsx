@@ -61,10 +61,6 @@ export const React: Story = {
 				<wbr />
 				sertifikat
 			</Logo>
-			<Logo href="/">
-				<Plant weight="fill" />
-				Digiplant
-			</Logo>
 			<Logo href="/" data-env="test">
 				<Plant weight="fill" />
 				Digiplant
@@ -123,7 +119,16 @@ export const WithSubbrandEnvironmentBlue: Story = {
 	),
 };
 
+const decorators: Story["decorators"] = [
+	(Story) => (
+		<div style={{ "--mtds-logo-color": "#bcdcd0" } as React.CSSProperties}>
+			<Story />
+		</div>
+	),
+];
+
 export const WithAppIcon: Story = {
+	decorators,
 	render: () => (
 		<a className={styles.logo} href="/">
 			<Plant weight="fill" />

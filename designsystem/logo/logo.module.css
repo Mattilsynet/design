@@ -1,4 +1,7 @@
 @layer mt.design {
+	:root {
+		--mtds-logo-color: #bcdcd0;
+	}
 	.logo {
 		--solid: linear-gradient(currentcolor, currentcolor);
 		--indent: var(--icon-size);
@@ -81,11 +84,11 @@
 		line-height: var(--icon-size);
 
 		&:before {
-			background: #bcdcd0;
+			background: var(--mtds-logo-color);
+			border-radius: var(--ds-border-radius-full);
 			content: "";
 			float: left;
 			height: var(--icon-size);
-			border-radius: var(--ds-border-radius-full);
 			margin-right: calc(var(--icon-size) * -1);
 			mask: center / contain no-repeat var(--solig);
 			width: var(--icon-size);
