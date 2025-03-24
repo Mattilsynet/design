@@ -24,8 +24,11 @@ import * as stories from './popover.stories';
 
 ## Lukkeknapp
 - Bruk `popovertarget="ID" popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
-
 <Canvas of={stories.WithClose} />
+
+## Tekst inline
+- Bruk `data-popover="inline"` på `<button>` for popover fra brødtekst:
+<Canvas of={stories.WithTextInline} />
 
 ## Pil
 - Bruk `data-arrow` på `<button>` for å få ikon:

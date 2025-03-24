@@ -1,8 +1,10 @@
 import { Meta } from '@storybook/blocks';
 import { getPkgVersion } from '../.storybook/blocks';
+import { ArrowSquareOut } from "@phosphor-icons/react";
 import { styles } from './';
 
 <Meta title="Designsystem/Introduksjon" />
+<style>{`u-tabs{--mtdsc-tabs-content-padding: 0}`}</style>
 
 # Designsystem
 
@@ -28,6 +30,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         <u-tab>PNPM</u-tab>
         <u-tab>Yarn</u-tab>
         <u-tab>Bun</u-tab>
+        <u-tab>Clojure</u-tab>
       </u-tablist>
       <u-tabpanel>
         ```bash
@@ -48,6 +51,9 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```bash
         bun add @mattilsynet/design
         ```
+      </u-tabpanel>
+      <u-tabpanel style={{ padding: 20 }}>
+        <a className={styles.button} data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOut /></a>
       </u-tabpanel>
     </u-tabs>
 

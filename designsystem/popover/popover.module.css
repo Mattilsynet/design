@@ -1,6 +1,6 @@
 @layer mt.design {
 	.popover {
-		--mtdsc-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+		--mtdsc-box-shadow: var(--ds-shadow-md);
 		--mtdsc-popover-background: var(--ds-color-surface-default);
 		--mtdsc-popover-border-color: var(--ds-color-border-subtle);
 		--mtdsc-popover-border-radius: var(--ds-border-radius-md);
