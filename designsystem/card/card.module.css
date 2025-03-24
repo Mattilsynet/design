@@ -1,18 +1,20 @@
 @layer mt.design {
 	.card {
-		--mtds-card-border-color: var(--ds-color-border-subtle);
-		--mtds-card-border-color--hover: var(--ds-color-border-strong);
-		--mtds-card-border-radius: var(--ds-border-radius-lg);
-		--mtds-card-padding: var(--ds-size-5);
-		--mtds-card-gap: var(--ds-size-4);
+		--mtdsc-card-background: var(--ds-color-surface-default);
+		--mtdsc-card-border-color--hover: var(--ds-color-border-strong);
+		--mtdsc-card-border-color: var(--ds-color-border-subtle);
+		--mtdsc-card-border-radius: var(--ds-border-radius-lg);
+		--mtdsc-card-color: var(--ds-color-text-default);
+		--mtdsc-card-padding: var(--ds-size-5);
 
-		background-color: var(--ds-color-surface-default);
+		background: var(--mtdsc-card-background);
 		border-radius: var(--ds-border-radius-lg);
-		border: 1px solid var(--mtds-card-border-color);
+		border: 1px solid var(--mtdsc-card-border-color);
 		box-sizing: border-box;
+		color: var(--mtdsc-card-color);
 		font: inherit;
 		margin: 0;
-		padding: var(--mtds-card-padding);
+		padding: var(--mtdsc-card-padding);
 		text-align: inherit;
 		text-decoration: none;
 		transition-duration: .15s;
@@ -28,7 +30,7 @@
 	}
 
 	.card:is(:any-link, button, [role="button"]):hover {
-		border-color: var(--mtds-card-border-color--hover);
+		border-color: var(--mtdsc-card-border-color--hover);
 	}
 
 	.card:is(:any-link, button, [role="button"]):active {
@@ -36,9 +38,9 @@
 	}
 
 	.info {
-		--mtds-info-icon-size: var(--mtds-icon-size);
-		--mtds-info-gap: var(--ds-size-2);
-		--mtds-info-x: calc(var(--mtds-info-icon-size) + var(--mtds-info-gap));
+		--mtdsc-info-icon-size: var(--mtdsc-icon-size);
+		--mtdsc-info-gap: var(--ds-size-2);
+		--mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 
 		overflow: clip;
 		text-overflow: ellipsis;
@@ -46,15 +48,15 @@
 
 	/* TODO: Document, add label */
 	.info:has(> svg) {
-		padding-left: var(--mtds-info-x);
+		padding-left: var(--mtdsc-info-x);
 	}
 
 	.info > svg {
 		position: absolute;
-		margin-left: calc(var(--mtds-info-x) * -1);
+		margin-left: calc(var(--mtdsc-info-x) * -1);
 		height: calc(var(--ds-line-height-md) * 1em); /* Fallback if not supporting lh unit */
 		height: 1lh; /* But use 1lh if available to align with line-height */
-		width: var(--mtds-info-icon-size);
+		width: var(--mtdsc-info-icon-size);
 	}
 
 	.group {

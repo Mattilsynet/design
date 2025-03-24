@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './popover.stories';
 
 <Meta of={stories} />
@@ -38,3 +39,5 @@ import * as stories from './popover.stories';
 - Bruk `<li><hr />` i `<menu>` for å få skillelinje:
 <Canvas of={stories.WithDivider} />
 <Canvas of={stories.Dropdown} />
+
+<CssVariables component="popover" />

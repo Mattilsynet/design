@@ -15,7 +15,7 @@ const meta = {
 					<Story />
 					<style>{`
 						body { background: var(--ds-color-background-default) }
-						html:has(.sbdocs-preview)::after { display: none } /* Hide environment bar in Storybook */
+						html:has(.sbdocs-preview)::before { display: none } /* Hide environment bar in Storybook */
 						.demo-resize {
 							box-sizing: border-box;
 							border-radius: 2px;

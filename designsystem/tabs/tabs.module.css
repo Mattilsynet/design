@@ -1,6 +1,5 @@
 @layer mt.design {
 	.tabs {
 		composes: ds-tabs from "@digdir/designsystemet-css";
-		--dsc-tabs-content-padding: 0;
 	}
 }

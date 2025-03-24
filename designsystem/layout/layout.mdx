@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import { Alert } from '../react.tsx';
 import * as stories from './layout.stories';
 
@@ -60,3 +61,5 @@ import * as stories from './layout.stories';
 - Bruk klassen `app` og legg `<header>`, `<nav>`, `<main>`, `<aside>` og `<footer>` som barn
 - Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
 <Canvas of={stories.App} />
+
+<CssVariables component="layout" />

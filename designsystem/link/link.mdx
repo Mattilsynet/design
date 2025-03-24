@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './link.stories';
 
 <Meta of={stories} />
@@ -10,3 +11,5 @@ import * as stories from './link.stories';
 - Bruk klassen `link` om du mot formodning trenger lenkestil på andre element
 
 <Canvas of={stories.Default} />
+
+<CssVariables component="link" />

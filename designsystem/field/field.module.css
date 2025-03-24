@@ -1,7 +1,7 @@
 @layer mt.design {
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
-		row-gap: var(--ds-size-2);
+		row-gap: var(--dsc-field-content-spacing);
 		position: relative; /* To support <u-datalist> positioning */
 	}
 

@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './field.stories';
 
 <Meta of={stories} />
@@ -36,3 +37,5 @@ import * as stories from './field.stories';
   `--mtds-text-count-under: "%d characters remaining";`
   `--mtds-text-count-over: "%d characters too many";`
 <Canvas of={stories.WithCharacterCount} />
+
+<CssVariables component="field" />

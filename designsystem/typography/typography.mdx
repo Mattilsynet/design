@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './typography.stories';
 
 <Meta of={stories} />
@@ -18,3 +19,5 @@ import * as stories from './typography.stories';
 ## Prose - typografisk stack (Eksperimentell)
 - Bruk klassen `prose` på typisk `div` eller annen container som har typografisk innhold
 <Canvas of={stories.Prose} />
+
+<CssVariables component="typography" />

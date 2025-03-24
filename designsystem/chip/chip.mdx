@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './chip.stories';
 
 <Meta of={stories} />
@@ -19,3 +20,5 @@ import * as stories from './chip.stories';
 ## Innhold på en linje
 - Bruk `<span data-nowrap>` rundt tekst dersom du ønsker å tvinge tekst til en linje
 <Canvas of={stories.Nowrap} />
+
+<CssVariables component="chip" />

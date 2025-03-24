@@ -68,6 +68,7 @@ function renderDatalist(
   const style = window.getComputedStyle(list);
   const singular = style.getPropertyValue("--mtds-text-datalist-singular");
   const plural = style.getPropertyValue("--mtds-text-datalist-plural");
+  // TODO: Translate <u-tags>
 
   attr(list, "data-sr-plural", plural);
   attr(list, "data-sr-singular", singular);

@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './dialog.stories';
 
 <Meta of={stories} />
@@ -19,3 +20,5 @@ import * as stories from './dialog.stories';
 ## Klikk utenfor dialog for å lukke
 - Legg `data-closedby="any"` på `<dialog>`
 <Canvas of={stories.WithBackdropClose} />
+
+<CssVariables component="dialog" exclude="divider" />

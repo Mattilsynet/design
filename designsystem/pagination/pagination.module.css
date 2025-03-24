@@ -1,6 +1,7 @@
 @layer mt.design {
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
+		--dsc-pagination-icon-url: var(--mtds-icon-chevron);
 	}
 	.pagination :is(a, button) {
 		border-radius: var(--ds-border-radius-full);
@@ -15,7 +16,7 @@
 		background: currentcolor;
 		content: "";
 		height: var(--mtds-icon-size);
-		mask: center / contain no-repeat var(--mtds-icon-chevron);
+		mask: center / contain no-repeat var(--dsc-pagination-icon-url);
 		rotate: -90deg;
 		order: 1;
 		width: var(--mtds-icon-size);

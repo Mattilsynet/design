@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './table.stories';
 
 <Meta of={stories} />
@@ -86,3 +87,5 @@ import * as stories from './table.stories';
 - Legg `data-border="true"` på `<table>` for å få kant rundt tabellen
 - **Merk:** Skal hovedsakelig kun brukes når tabell ligger rett på gåsunge bakgrunn
 <Canvas of={stories.WithBorderAround} />
+
+<CssVariables component="table" exclude="zebra,sticky,hover,sorted" />

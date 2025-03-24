@@ -2,7 +2,7 @@
 	.alert {
 		composes: ds-alert from "@digdir/designsystemet-css";
 
-		--dsc-alert-border-color: var(--ds-color-info-border-subtle);
+		--dsc-alert-border-color: var(--ds-color-border-subtle);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
 
 		/* Force info if not set */
@@ -20,10 +20,10 @@
 			--ds-color-base-active: var(--ds-color-info-base-active);
 			--ds-color-text-subtle: var(--ds-color-info-text-subtle);
 			--ds-color-text-default: var(--ds-color-info-text-default);
+			--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
 			--ds-color-base-contrast-default: var(
 				--ds-color-info-base-contrast-default
 			);
-			--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
 		}
 
 		&:where(:not([hidden])) {
@@ -53,7 +53,7 @@
 		& > :not(h2, h3, h4, h5, h6) + * {
 			margin-top: 1em;
 		}
-		& :is(h2, h3, h3, h4):first-child {
+		& :is(h2, h3, h3, h4):not([data-size]):first-child {
 			font-size: 1em;
 		}
 

@@ -2,12 +2,16 @@
 @layer ds.base {
 	a,
 	.link {
+		--mtdsc-link-text-decoration-thickness--hover: 0.125em;
+		--mtdsc-link-text-decoration-thickness: 0.0625em;
+		--mtdsc-link-text-decoration-offset: 0.27em;
+
 		all: unset; /* In case used on <button> */
 		color: inherit;
 		cursor: pointer;
 		text-decoration: underline;
-		text-decoration-thickness: 0.0625em; /* 1px ish */
-		text-underline-offset: 0.27em; /* 5px ish */
+		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness); /* 1px ish */
+		text-underline-offset: var(--mtdsc-link-text-decoration-offset); /* 5px ish */
 		outline-offset: 2px;
 		outline: 2px none currentcolor;
 
@@ -18,7 +22,7 @@
 		}
 
 		&:hover {
-			text-decoration-thickness: 0.125em; /* 2px ish */
+			text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness--hover); /* 2px ish */
 		}
 
 		&:focus-visible {

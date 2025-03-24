@@ -1,8 +1,13 @@
 @layer mt.design {
 	.errorsummary {
 		composes: ds-error-summary from "@digdir/designsystemet-css";
-		width: fit-content;
+		--dsc-errorsummary-link-color: var(--ds-color-danger-text-default);
+		--dsc-errorsummary-heading-color: var(--ds-color-danger-text-default);
+		--dsc-errorsummary-color: var(--ds-color-danger-text-default);
+
 		animation: _errorsummary .2s ease-out forwards;
+		color: var(--mtdsc-errorsummary-color);
+		width: fit-content;
 	}
 	.errorsummary > :is(h2, h3, h4, h5, h6):first-child {
 		margin-block: 0;

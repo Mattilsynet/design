@@ -1,5 +1,9 @@
 @layer mt.design {
 	.spinner {
+		--mtdsc-spinner-color: inherit;
+		--mtdsc-spinner-size: var(--mtds-11);
+
+		color: var(--mtdsc-spinner-color);
 		gap: var(--ds-size-2);
 		place-items: center;
 		vertical-align: middle;
@@ -11,7 +15,7 @@
 	.spinner::before {
 		background: currentcolor;
 		content: "";
-		font-size: var(--mtds-11);
+		font-size: var(--mtdsc-spinner-size);
 		height: var(--mtds-icon-size);
 		mask: center / contain no-repeat var(--mtds-icon-spinner);
 		width: var(--mtds-icon-size);
@@ -20,12 +24,12 @@
 		content: var(--mtds-text-loading); /* Ensure content for screen readers */
 	}
 	.spinner[data-size="xs"]::before {
-		font-size: var(--mtds-5);
+		--mtdsc-spinner-size: var(--mtds-5);
 	}
 	.spinner[data-size="sm"]::before {
-		font-size: var(--mtds-7);
+		--mtdsc-spinner-size: var(--mtds-7);
 	}
 	.spinner[data-size="lg"]::before {
-		font-size: var(--mtds-15);
+		--mtdsc-spinner-size: var(--mtds-15);
 	}
 }

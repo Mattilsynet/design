@@ -89,7 +89,7 @@ export const Svgs = ({
 								download={name}
 							>
 								<span
-									data-color="primary"
+									data-color="main"
 									dangerouslySetInnerHTML={{ __html: svg }}
 								/>
 								{name}

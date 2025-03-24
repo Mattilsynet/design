@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { PkgInfo } from '../../.storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './card.stories';
 
 <Meta of={stories} />
@@ -21,3 +22,5 @@ import * as stories from './card.stories';
 ## Gruppering
 - Bruk `group` på typisk en `grid` eller `flex` for å gruppere flere `card`
 <Canvas of={stories.Group} />
+
+<CssVariables component="card" />

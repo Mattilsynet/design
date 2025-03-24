@@ -1,14 +1,14 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './avatar.stories';
 
 <Meta of={stories} />
 
 # Avatar
-
 - Bruk klassen `avatar` på typisk `<span>`
-
 <Canvas of={stories.Default} />
 
 ## Sizes
-
 <Canvas of={stories.Sizes} />
+
+<CssVariables component="avatar" />

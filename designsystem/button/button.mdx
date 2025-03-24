@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './button.stories';
 
 <Meta of={stories} />
@@ -64,3 +65,5 @@ import * as stories from './button.stories';
 - Legger du `button` i `<menu><li>` vil knappene ha samme bredde og venstrestilt tekst
 - Ved bruk av attributten `aria-pressed="true"` får knappen et sjekk-symbol
 <Canvas of={stories.InMenu} />
+
+<CssVariables component="button" />

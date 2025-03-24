@@ -3,9 +3,14 @@
 		composes: ds-input from "@digdir/designsystemet-css";
 		scroll-margin-block: 8em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
 
-		--dsc-input-border-width--toggle: 1px;
-		--dsc-input-stroke: 0.045em;
+		--dsc-input-background--readonly: var(--ds-color-background-tinted);
+		--dsc-input-background: var(--ds-color-surface-default);
+		--dsc-input-border-color--readonly: var(--ds-color-border-subtle);
+		--dsc-input-border-color: var(--ds-color-border-default);
+		--dsc-input-border-width--toggle: var(--ds-border-width-default);
+		--dsc-input-color--readonly: var(--ds-color-text-default);
 		--dsc-input-color: inherit;
+		--dsc-input-stroke: 0.045em;
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 		&[readonly]:disabled {

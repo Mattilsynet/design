@@ -19,6 +19,7 @@
 		min-height: var(--icon-size);
 		overflow: hidden;
 		text-decoration: none;
+		white-space: normal; /* Allow wrap */
 	}
 	.logo:not(:has(svg)) {
 		padding-left: var(--indent);
@@ -38,6 +39,10 @@
 	/**
 	 * Main logo
 	 */
+	.logo:empty::before {
+		content: "";
+		display: inline-block; /* Needed to make logo text wrap on smaller screens */
+	}
 	.logo:empty::after {
 		background: currentColor;
 		content: var(--mtds-text-logo);

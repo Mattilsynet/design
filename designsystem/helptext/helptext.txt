@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './helptext.stories';
 
 <Meta of={stories} />
@@ -7,3 +8,5 @@ import * as stories from './helptext.stories';
 - Bruk klassen `helptext` på `<button>` og `popovertarget="MIN-ID"`
 - Legg klassen `popover`, attributten `popover` og `id` på `<div>` direkte etter `<button>`
 <Canvas of={stories.Default} />
+
+<CssVariables component="helptext" />
