@@ -22,6 +22,7 @@
     "semantic/modes/colors/danger",
     "semantic/modes/colors/info",
     "semantic/modes/colors/warning",
+    "semantic/modes/colors/neutral",
     "semantic/style"
   ]
 }

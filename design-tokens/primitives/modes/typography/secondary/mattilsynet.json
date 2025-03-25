@@ -19,7 +19,7 @@
       },
       "italic": {
         "$type": "fontWeights",
-        "$value": "italic"
+        "$value": "Regular italic"
       }
     }
   }
