@@ -3,7 +3,7 @@ import { attr, isInputLike, onMutation, useId } from "../utils";
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
 
-function process(fieldsets: HTMLCollectionOf<Element>) {
+function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
   for (const fieldset of fieldsets) {
     const inputs: HTMLInputElement[] = [];
     let validationId: string | null = null;
@@ -20,5 +20,5 @@ function process(fieldsets: HTMLCollectionOf<Element>) {
   }
 }
 
-export const observe = (el: Element) => onMutation(el, CSS_FIELDSET, process);
+export const observe = (el: Element) => onMutation(el, CSS_FIELDSET, handleMutation);
 export const unobserve = (el: Element) => onMutation(el, CSS_FIELDSET, false);

@@ -3,7 +3,7 @@
 		composes: ds-heading from "@digdir/designsystemet-css";
 
 		scroll-margin-block: 4em; /* Ensure scrolling to headings still have some comfortable spacing above */
-		text-wrap: balance;
+		text-wrap: pretty;
 
 		&[data-justify="center"] {
 			text-align: center;

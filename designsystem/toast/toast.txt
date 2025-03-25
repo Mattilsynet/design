@@ -1,0 +1,11 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './toast.stories';
+
+<Meta of={stories} />
+
+# Toast (Eksperimentell)
+- Bruk klassen `toast` på `<dialog>`
+<Canvas of={stories.Default} />
+
+<CssVariables component="toast" />

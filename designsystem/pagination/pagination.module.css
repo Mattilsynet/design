@@ -17,8 +17,10 @@
 		content: "";
 		height: var(--mtds-icon-size);
 		mask: center / contain no-repeat var(--dsc-pagination-icon-url);
-		rotate: -90deg;
 		order: 1;
+		overflow: clip;
+		rotate: -90deg;
+		white-space: nowrap;
 		width: var(--mtds-icon-size);
 	}
 	.pagination li:first-child > :is(a, button)::before {

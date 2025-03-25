@@ -12,6 +12,10 @@
 	.field > * {
 		opacity: 1; /* Overwrite DigiDir disabled */
 	}
+	.field textarea {
+		/* Set height through CSS custom property instead of directly in JS for easier overwrite */
+		height: var(--mtds-textarea-height);
+	}
 
 	/**
 	 * Mark <label> as required

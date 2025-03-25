@@ -162,6 +162,10 @@ export const onMutation = (
 	}
 	if (callback) mutator.collections.set(className, () => callback(collection));
 	else mutator.collections.delete(className);
+	if (!mutator.collections.size) {
+		mutator.observer.disconnect(); // Remove mutation observer if no more callbacks
+		MUTATORS.delete(element);
+	}
 }
 
 export const isInputLike = (el: unknown): el is HTMLInputElement =>

@@ -18,6 +18,8 @@
 		font-size: var(--mtdsc-spinner-size);
 		height: var(--mtds-icon-size);
 		mask: center / contain no-repeat var(--mtds-icon-spinner);
+		overflow: clip;
+		white-space: nowrap;
 		width: var(--mtds-icon-size);
 	}
 	.spinner:empty:before {

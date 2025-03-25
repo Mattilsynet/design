@@ -38,7 +38,7 @@
 	}
 
 	.info {
-		--mtdsc-info-icon-size: var(--mtdsc-icon-size);
+		--mtdsc-info-icon-size: var(--mtds-icon-size);
 		--mtdsc-info-gap: var(--ds-size-2);
 		--mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 

@@ -428,8 +428,8 @@ export const App: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav data-expanded="true">
-				<button type="button"></button>
+			<nav>
+				<button type="button" data-command="toggle-app-expanded"></button>
 				<menu>
 					<li>
 						<a
@@ -453,7 +453,7 @@ export const App: Story = {
 					</li>
 				</menu>
 				<hr className={styles.divider} data-gap="8" />
-				<form className={styles.grid} data-expanded="true">
+				<form className={styles.grid} data-app-expanded="true">
 					<fieldset className={styles.fieldset}>
 						<legend>Velg type iskrem</legend>
 						<div className={styles.field}>
@@ -472,7 +472,7 @@ export const App: Story = {
 				</form>
 			</nav>
 			<main>
-				<div className={styles.card} style={{ height: "100%" }}>
+				<div className={styles.card}>
 					<img
 						style={{ width: "100%", height: 600, objectFit: "cover" }}
 						src="https://mattilsynet-xp7prod.enonic.cloud/_/image/8fe5f0c4-49c2-4d27-9dca-764cdfc7e110:64ec235cca8f61e8e8e590ca1cf3a7fb28e132ba/width-1440/Forsidebanner.png"
@@ -497,7 +497,7 @@ export const App: Story = {
 					</fieldset>
 				</div>
 			</main>
-			<aside data-expanded="false">
+			<aside hidden>
 				<form className={styles.grid} data-gap="4">
 					<h2 className={styles.heading} data-size="xs">
 						Filters

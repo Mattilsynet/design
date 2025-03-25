@@ -172,7 +172,6 @@ function getCssVars(component: string) {
 		const [key, val] = delc[0].split(":");
 		const isMTDS = delc.index > mtdsIndex; // Is a token set by us a not Designsystemet
 		const isDSC = styles[component]?.includes(" "); // Is composed by from Designsystemet
-		console.log(key, val, isMTDS, isDSC);
 
 		if (isMTDS ? !res[key]?.mtds : isDSC && !res[key])
 			res[key] = { val: decodeURIComponent(val), mtds: isMTDS };

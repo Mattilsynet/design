@@ -40,7 +40,7 @@ function handleMoveThrottled(target: Element | null) {
     (anchor && attr(anchor, "data-tooltip-position")) ||
     window
       .getComputedStyle(anchor || document.body)
-      .getPropertyValue(POSITION_CSS_PROPERTY) ||
+      .getPropertyValue(POSITION_CSS_PROPERTY)?.trim() ||
     "top";
 
   const isHidden =

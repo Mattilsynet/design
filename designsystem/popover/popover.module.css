@@ -49,4 +49,8 @@
 			margin-block: var(--ds-size-2);
 		}
 	}
+
+	[data-popover="inline"] {
+		border-radius: var(--ds-border-radius-sm);
+	}
 }

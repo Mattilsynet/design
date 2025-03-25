@@ -9,7 +9,7 @@
 		--dsc-input-border-color: var(--ds-color-border-default);
 		--dsc-input-border-width--toggle: var(--ds-border-width-default);
 		--dsc-input-color--readonly: var(--ds-color-text-default);
-		--dsc-input-color: inherit;
+		--dsc-input-color: var(--ds-color-text-default);
 		--dsc-input-stroke: 0.045em;
 
 		/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */

@@ -1,8 +1,7 @@
+import type * as UTabs from "@u-elements/u-tabs";
 import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
-import "@u-elements/u-tabs";
-import type * as UTabs from "@u-elements/u-tabs";
 
 export type TabsProps = UTabs.ReactUtabs;
 const TabsComp = forwardRef<UTabs.UHTMLTabsElement, TabsProps>(function Tabs(
