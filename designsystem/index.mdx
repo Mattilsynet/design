@@ -75,9 +75,16 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```
       </u-tabpanel>
       <u-tabpanel>
-        ```jsx
-        import { Button } from "@mattilsynet/design/react";
-        ```
+        1. Én fil i prosjektet må inneholde javscript-import og `"use client"` for at Next.js og kjøre nødvendig Javascript i nettleser.
+            Dette trenger ikke være samme fil som lager HTML - alt kan server-side-rendres.
+            ```js
+            "use client"
+            import "@mattilsynet/design";
+            ```
+        2. Deretter kan du i andre filer benytte komponenter fra `@mattilsynet/design/react`:
+            ```jsx
+            import { Button } from "@mattilsynet/design/react";
+            ```
       </u-tabpanel>
     </u-tabs>
 3. **Importer stiler** enten via JavaScript, CSS eller med TailwindCSS:

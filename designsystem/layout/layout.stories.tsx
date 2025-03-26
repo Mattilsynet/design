@@ -26,6 +26,7 @@ const meta = {
 			<div className="mt-story">
 				<Story />
 				<style>{`
+					body { background: var(--mtds-color-background-default) }
 					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
 						display: grid;
 						gap: 1rem;
@@ -370,7 +371,7 @@ export const AlignContent: Story = {
 };
 
 export const Prose: Story = {
-	name: "Prose (Eksperimentell)",
+	name: "Prose",
 	parameters: {
 		layout: "fullscreen",
 		showInOverview: true,

@@ -1,26 +1,28 @@
 @layer mt.design {
+	/* html:has(.app),
+	body:has(.app) {
+		overscroll-behavior: none;
+	} */
 	/**
 	 * App layout
 	 */
 	.app {
 		--mtdsc-app-spacing-md: var(--ds-size-6);
 		--mtdsc-app-spacing-sm: var(--ds-size-3);
-		--mtdsc-app-nav--collapsed: 4.25rem; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-nav--collapsed: 5rem; /* Using rem and not -ds-size as we do not want this to be fluid */
 		--mtdsc-app-nav--expanded: 14em;
 
-		position: relative;
 		box-sizing: border-box;
+		min-height: 100vh;
+		min-height: 100svh; /* Use small viewport height if supported */
+		transition: grid-template-columns .3s ease-out;
 		grid-template:
 			"header header header" auto
 			"nav main aside" 1fr
 			"footer footer footer" auto / auto 1fr auto;
-		min-height: 100vh;
-		min-height: 100svh; /* Use small viewport height if supported */
-		transition: grid-template-columns .3s ease-out;
-
-		&:where(:not([hidden])) {
-			display: grid;
-		}
+	}
+	.app:where(:not([hidden])) {
+		display: grid;
 	}
 	.app > * {
 		box-sizing: border-box;
@@ -44,15 +46,13 @@
 	.app [data-app-expanded="false"] {
 		display: var(--mtds-app-expanded--true, none); /* Hide relevant child elements with data-expanded attribute */
 	}
-
-	/* TODO: Position toggle button */
 	.app [data-command="toggle-app-expanded"] {
 		all: unset;
 		bottom: 20px;
 		cursor: pointer;
 		height: 40px;
 		left: 20px;
-		position: absolute;
+		position: absolute; /* TODO: Position toggle button */
 		text-align: center;
 		width: 40px;
 		z-index: 2;
@@ -93,22 +93,25 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, right);
 
-		position: sticky;
-		top: 0;
 		align-content: start; /* Set default alignment in case used as grid */
 		grid-area: nav;
+		background: red;
 		overflow-y: auto;
-		padding-left: var(--mtdsc-app-spacing-md);
+		overscroll-behavior: contain;
+		padding-inline: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-sm);
 		padding-top: var(--mtdsc-app-spacing-md);
-		position: relative;
+		position: sticky;
+		/* max-height: 100vh; */
+		/* top: 0; */
+		/* bottom: 0; */
 		view-transition-name: mtds-laytout-app--left;
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav--expanded))
 			var(--mtds-app-expanded--false, var(--mtdsc-app-nav--collapsed));
 
-		& menu > li {
+		& menu {
 			margin-left: calc(var(--mtdsc-app-spacing-md) * -2);
 		}
-		& menu > li > [data-tooltip] {
+		& menu > li > :is(a, button) {
 			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
 		}
 		& menu > li > [data-tooltip]::after {
@@ -140,17 +143,9 @@
 	 */
 	.app main {
 		grid-area: main;
-		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm);
+		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm) 0;
 		view-transition-name: mtds-laytout-app--main;
 	}
-	/* .app > *,
-	.app main > [class*="card"]:only-child {
-		max-height: 100%;
-		overflow: auto;
-		scroll-behavior: smooth;
-		scrollbar-color: auto;
-		scrollbar-width: thin;
-	} */
 
 	/**
 	 * App layout: Right side
@@ -167,7 +162,7 @@
 		&[hidden] {
 			display: block;
 			opacity: 0;
-			overflow: hidden;
+			overflow: clip;
 			padding-inline: 0;
 			visibility: hidden;
 			width: 0;
@@ -180,8 +175,8 @@
 	 */
 	.app > footer,
 	.app main ~ footer {
-		background: var(--ds-color-background-default);
-		color: var(--ds-color-text-default);
+		background: var(--ds-color-base-default);
+		color: var(--ds-color-base-contrast-default);
 		grid-area: footer;
 		margin-top: var(--mtdsc-app-spacing-sm);
 		padding: var(--mtdsc-app-spacing-md);

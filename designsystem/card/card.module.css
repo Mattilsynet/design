@@ -19,14 +19,12 @@
 		text-decoration: none;
 		transition-duration: .15s;
 		transition-property: border-color, scale;
-
-		&:where(:not(tr, [hidden])) {
-			display: block;
-		}
-
-		&:is(button:enabled, button:not([aria-disabled="true"])) {
-			cursor: pointer;
-		}
+	}
+	.card:where(:not(tr, [hidden])) {
+		display: block;
+	}
+	.card:is(button:enabled, button:not([aria-disabled="true"])) {
+		cursor: pointer;
 	}
 
 	.card:is(:any-link, button, [role="button"]):hover {
