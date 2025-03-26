@@ -1,8 +1,4 @@
 @layer mt.design {
-	/* html:has(.app),
-	body:has(.app) {
-		overscroll-behavior: none;
-	} */
 	/**
 	 * App layout
 	 */
@@ -95,7 +91,6 @@
 
 		align-content: start; /* Set default alignment in case used as grid */
 		grid-area: nav;
-		background: red;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		padding-inline: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-sm);
