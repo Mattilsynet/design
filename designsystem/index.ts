@@ -1,3 +1,4 @@
+"use client"; // Enable client side code
 export * as styles from "./styles.module.css";
 export { pagination } from "./pagination/pagination-helper";
 import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
