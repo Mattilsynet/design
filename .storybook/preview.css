@@ -83,3 +83,26 @@ u-tabpanel > pre > .docblock-source {
 	font-size: 1rem;
 	line-height: 1.5;
 }
+
+.sbdocs-canvas-thumbnail,
+.sbdocs-canvas-thumbnail > div {
+	max-height: 250px;
+	position: relative;
+	margin-bottom: 3rem;
+}
+.sbdocs-canvas-thumbnail > div::after {
+	backdrop-filter: blur(3px);
+	background: linear-gradient(rgba(255, 255, 255, 0.5), white);
+	content: "";
+	display: block;
+	inset: 0;
+	position: absolute;
+	z-index: 99;
+}
+.sbdocs-canvas-thumbnail > a {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	translate: -50% -50%;
+	z-index: 100;
+}

@@ -1,12 +1,10 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
-import * as stories from './typography.stories';
+import * as stories from './heading.stories';
 
 <Meta of={stories} />
 
-# Typography
-
-## Heading
+# Heading
 - Bruk klassen `heading` på typisk `<h1>` til `<h6>`
 - Bruk `data-justify="center"` for å midtstille tekst
 <Canvas of={stories.HeadingStory} />
@@ -16,8 +14,4 @@ import * as stories from './typography.stories';
 - **Merk:** `heading` endrer kun størrelse - ikke overskriftsnivå.<br />Benytt [korrekt HTML h-tag for god universell utforming &rarr;](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253)
 <Canvas of={stories.Sizes} />
 
-## Prose - typografisk stack (Eksperimentell)
-- Bruk klassen `prose` på typisk `div` eller annen container som har typografisk innhold
-<Canvas of={stories.Prose} />
-
-<CssVariables component="typography" />
+<CssVariables component="heading" />

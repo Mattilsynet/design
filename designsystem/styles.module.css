@@ -14,6 +14,7 @@
 @import url("./field/field.module.css");
 @import url("./fieldset/fieldset.module.css");
 @import url("./font.css");
+@import url("./heading/heading.module.css");
 @import url("./helptext/helptext.module.css");
 @import url("./input/input.module.css");
 @import url("./layout/app.module.css");
@@ -28,7 +29,6 @@
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
 @import url("./tooltip/tooltip.module.css");
-@import url("./typography/typography.module.css");
 @import url("./validation/validation.module.css");
 
 /* @import url("./toast/toast.module.css"); */
