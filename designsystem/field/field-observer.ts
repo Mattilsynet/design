@@ -1,5 +1,3 @@
-import "@u-elements/u-datalist";
-import "@u-elements/u-tags";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
@@ -51,8 +49,8 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
 // iOS does not support field-sizing: content, so we need to manually resize
 function renderTextareaSize(textarea: Element) {
   if (textarea instanceof HTMLTextAreaElement) {
-    textarea.style.height = "auto";
-    textarea.style.height = `${textarea.scrollHeight}px`;
+    textarea.style.setProperty('--mtds-textarea-height', 'auto');
+    textarea.style.setProperty('--mtds-textarea-height', `${textarea.scrollHeight}px`);
   }
 }
 
@@ -66,11 +64,19 @@ function renderDatalist(
   if (!input.hasAttribute("placeholder")) attr(input, "placeholder", ""); // Needed to render dropdown chevron when <datalist> is present
 
   const style = window.getComputedStyle(list);
-  const singular = style.getPropertyValue("--mtds-text-datalist-singular");
-  const plural = style.getPropertyValue("--mtds-text-datalist-plural");
+  const tags = input.closest('u-tags');
 
-  attr(list, "data-sr-plural", plural);
-  attr(list, "data-sr-singular", singular);
+  attr(list, "data-sr-plural", style.getPropertyValue("--mtds-text-datalist-plural"));
+  attr(list, "data-sr-singular", style.getPropertyValue("--mtds-text-datalist-singular"));
+
+  if (tags) {
+    attr(tags,'data-sr-added', style.getPropertyValue("--mtds-text-tags-added"));
+    attr(tags,'data-sr-empty', style.getPropertyValue("--mtds-text-tags-empty"));
+    attr(tags,'data-sr-found', style.getPropertyValue("--mtds-text-tags-found"));
+    attr(tags,'data-sr-of', style.getPropertyValue("--mtds-text-tags-of"));
+    attr(tags,'data-sr-remove', style.getPropertyValue("--mtds-text-tags-remove"));
+    attr(tags,'data-sr-removed', style.getPropertyValue("--mtds-text-tags-removed"));
+  }
 }
 
 function renderCounter(input: HTMLInputElement) {

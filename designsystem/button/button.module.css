@@ -105,8 +105,10 @@
 			display: inline-block;
 			height: var(--mtds-icon-size);
 			mask: center / contain no-repeat var(--mtds-icon-spinner);
+			overflow: clip;
 			text-align: center;
 			vertical-align: middle;
+			white-space: nowrap;
 			width: var(--mtds-icon-size);
 		}
 
@@ -129,6 +131,10 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
+
+		& > li + li {
+			margin-top: 0.125rem; /* Add 2px space between buttons in menu */
+		}
 
 		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
 		& > li::before {

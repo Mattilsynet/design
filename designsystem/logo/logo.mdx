@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './logo.stories';
 
 <Meta of={stories} />
@@ -11,6 +12,7 @@ import * as stories from './logo.stories';
 <Canvas of={stories.Default} />
 
 ## App logo
+- Applikasjonsnavn i Mattilsynet følger [språkrådets retningslinjer for statlige navn](https://sprakradet.no/stedsnavn-og-navn-pa-statsorgan/veiledning-om-valg-av-navn-i-staten/krav-til-og-rad-om-selve-navnet/)
 - Legg en `<svg>` fra `phosphoricons.com` som første barn for å lage en app-logo
 - Legg appnavn inn i `logo` som tekst
 - Applogo endrer automatisk favion
@@ -41,3 +43,5 @@ import * as stories from './logo.stories';
   <link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
 </head>
 ```
+
+<CssVariables component="logo" />

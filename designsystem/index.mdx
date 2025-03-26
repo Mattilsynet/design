@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import { getPkgVersion } from '../.storybook/blocks';
+import { ArrowSquareOut } from "@phosphor-icons/react";
 import { styles } from './';
 
 <Meta title="Designsystem/Introduksjon" />
@@ -28,6 +29,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         <u-tab>PNPM</u-tab>
         <u-tab>Yarn</u-tab>
         <u-tab>Bun</u-tab>
+        <u-tab>Clojure</u-tab>
       </u-tablist>
       <u-tabpanel>
         ```bash
@@ -48,6 +50,9 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```bash
         bun add @mattilsynet/design
         ```
+      </u-tabpanel>
+      <u-tabpanel style={{ padding: 20 }}>
+        <a className={styles.button} data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOut /></a>
       </u-tabpanel>
     </u-tabs>
 
@@ -70,9 +75,16 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```
       </u-tabpanel>
       <u-tabpanel>
-        ```jsx
-        import { Button } from "@mattilsynet/design/react";
-        ```
+        1. Én fil i prosjektet må inneholde javscript-import og `"use client"` for at Next.js og kjøre nødvendig Javascript i nettleser.
+            Dette trenger ikke være samme fil som lager HTML - alt kan server-side-rendres.
+            ```js
+            "use client"
+            import "@mattilsynet/design";
+            ```
+        2. Deretter kan du i andre filer benytte komponenter fra `@mattilsynet/design/react`:
+            ```jsx
+            import { Button } from "@mattilsynet/design/react";
+            ```
       </u-tabpanel>
     </u-tabs>
 3. **Importer stiler** enten via JavaScript, CSS eller med TailwindCSS:
@@ -129,7 +141,6 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     > Dette er super lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) 💚
 4. **Ta i bruk stiler**
     - **Størrelser kan endres** med `data-size="sm | md | lg"` på *alle* HTML elementer - også HTML elementer uten designsystem-klasse
-    - **Nøst elementer** som f.eks.  `<dialog className={styles.dialog}><div className={styles.grid}>`, heller enn å kombinere flere designsystem-klasser på samme element
     - **Klassenavn** hentes fra  `styles` objektet:
 
     <u-tabs class={styles.tabs} data-size="sm">

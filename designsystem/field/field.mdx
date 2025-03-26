@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './field.stories';
 
 <Meta of={stories} />
@@ -6,7 +7,6 @@ import * as stories from './field.stories';
 # Field
 - Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
 - Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `<p>` og klassen `validation`
-- **Merk:** automatisk oppkobling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
 <Canvas of={stories.Default} />
 
 ## Obligatorisk felt
@@ -36,3 +36,5 @@ import * as stories from './field.stories';
   `--mtds-text-count-under: "%d characters remaining";`
   `--mtds-text-count-over: "%d characters too many";`
 <Canvas of={stories.WithCharacterCount} />
+
+<CssVariables component="field" />

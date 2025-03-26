@@ -1,6 +1,7 @@
 @layer mt.design {
 	.skeleton {
 		composes: ds-skeleton from "@digdir/designsystemet-css";
+		--dsc-skeleton-background: var(--mtds-color-surface-tinted);
 		--dsc-skeleton-animation: _skeleton var(--dsc-skeleton-animation-duration)
 			linear infinite alternate;
 

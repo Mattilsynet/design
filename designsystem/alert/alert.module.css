@@ -1,104 +1,101 @@
 @layer mt.design {
 	.alert {
 		composes: ds-alert from "@digdir/designsystemet-css";
-
-		--dsc-alert-border-color: var(--ds-color-info-border-subtle);
+		--dsc-alert-border-color: var(--ds-color-border-subtle);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
+		position: relative; /* To position close */
+	}
 
-		/* Force info if not set */
-		&:not([data-color]) {
-			--ds-color-background-default: var(--ds-color-info-background-default);
-			--ds-color-background-tinted: var(--ds-color-info-background-tinted);
-			--ds-color-surface-tinted: var(--ds-color-info-surface-tinted);
-			--ds-color-surface-hover: var(--ds-color-info-surface-hover);
-			--ds-color-surface-active: var(--ds-color-info-surface-active);
-			--ds-color-border-subtle: var(--ds-color-info-border-subtle);
-			--ds-color-border-default: var(--ds-color-info-border-default);
-			--ds-color-border-strong: var(--ds-color-info-border-strong);
-			--ds-color-base-default: var(--ds-color-info-base-default);
-			--ds-color-base-hover: var(--ds-color-info-base-hover);
-			--ds-color-base-active: var(--ds-color-info-base-active);
-			--ds-color-text-subtle: var(--ds-color-info-text-subtle);
-			--ds-color-text-default: var(--ds-color-info-text-default);
-			--ds-color-base-contrast-default: var(
-				--ds-color-info-base-contrast-default
-			);
-			--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
+	/* Force info if not set */
+	.alert:not([data-color]) {
+		--ds-color-background-default: var(--ds-color-info-background-default);
+		--ds-color-background-tinted: var(--ds-color-info-background-tinted);
+		--ds-color-surface-tinted: var(--ds-color-info-surface-tinted);
+		--ds-color-surface-hover: var(--ds-color-info-surface-hover);
+		--ds-color-surface-active: var(--ds-color-info-surface-active);
+		--ds-color-border-subtle: var(--ds-color-info-border-subtle);
+		--ds-color-border-default: var(--ds-color-info-border-default);
+		--ds-color-border-strong: var(--ds-color-info-border-strong);
+		--ds-color-base-default: var(--ds-color-info-base-default);
+		--ds-color-base-hover: var(--ds-color-info-base-hover);
+		--ds-color-base-active: var(--ds-color-info-base-active);
+		--ds-color-text-subtle: var(--ds-color-info-text-subtle);
+		--ds-color-text-default: var(--ds-color-info-text-default);
+		--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
+		--ds-color-base-contrast-default: var(--ds-color-info-base-contrast-default);
+	}
+
+	.alert:where(:not([hidden])) {
+		display: block; /* Ensure display block, even when <output> */
+	}
+
+	/**
+	 * Custom icons
+	 */
+	.alert[data-color="warning"] {
+		--dsc-alert-icon-url: var(--mtds-icon-warning);
+	}
+	.alert[data-color="success"] {
+		--dsc-alert-icon-url: var(--mtds-icon-success);
+	}
+	.alert[data-color="danger"] {
+		--dsc-alert-icon-url: var(--mtds-icon-danger);
+	}
+	.alert[data-color="neutral"] {
+		--dsc-alert-icon-url: var(--mtds-icon-question);
+	}
+
+	/* https://every-layout.dev/layouts/stack/ */
+	.alert > * {
+		margin-block: 0;
+	}
+	.alert > :not(h2, h3, h4, h5, h6) + * {
+		margin-top: 1em;
+	}
+	.alert :is(h2, h3, h3, h4):not([data-size]):first-child {
+		font-size: 1em;
+	}
+
+	/**
+	 * Close button
+	 */
+	.alert:has(> button:last-child:empty) {
+		padding-right: var(--ds-size-12);
+	}
+	.alert > button:last-child:empty {
+		all: unset;
+		border-radius: var(--ds-border-radius-md);
+		cursor: pointer;
+		margin: var(--dsc-alert-spacing);
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition: scale .2s;
+
+		&:focus-visible {
+			box-shadow: var(--dsc-focus-boxShadow);
+			outline: var(--dsc-focus-outline);
+			outline-offset: var(--ds-border-width-focus);
 		}
 
-		&:where(:not([hidden])) {
-			display: block; /* Ensure display block, even when <output> */
+		&:active {
+			scale: 0.9;
 		}
 
-		/**
-		 * Custom icons
-		 */
-		&[data-color="warning"] {
-			--dsc-alert-icon-url: var(--mtds-icon-warning);
+		&::before {
+			background: currentcolor;
+			box-sizing: border-box;
+			content: "";
+			display: block;
+			height: var(--mtds-icon-size);
+			mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+			position: relative;
+			width: var(--mtds-icon-size);
 		}
-		&[data-color="success"] {
-			--dsc-alert-icon-url: var(--mtds-icon-success);
-		}
-		&[data-color="danger"] {
-			--dsc-alert-icon-url: var(--mtds-icon-danger);
-		}
-		&[data-color="neutral"] {
-			--dsc-alert-icon-url: var(--mtds-icon-question);
-		}
-
-		/* https://every-layout.dev/layouts/stack/ */
-		& > * {
-			margin-block: 0;
-		}
-		& > :not(h2, h3, h4, h5, h6) + * {
-			margin-top: 1em;
-		}
-		& :is(h2, h3, h3, h4):first-child {
-			font-size: 1em;
-		}
-
-		/**
-		 * Close button
-		 */
-		position: relative;
-		&:has(> button:last-child:empty) {
-			padding-right: var(--ds-size-12);
-		}
-		& > button:last-child:empty {
-			all: unset;
-			border-radius: var(--ds-border-radius-md);
-			cursor: pointer;
-			margin: var(--dsc-alert-spacing);
-			position: absolute;
-			right: 0;
-			top: 0;
-			transition: scale .2s;
-
-			&:focus-visible {
-				box-shadow: var(--dsc-focus-boxShadow);
-				outline: var(--dsc-focus-outline);
-				outline-offset: var(--ds-border-width-focus);
-			}
-
-			&:active {
-				scale: 0.9;
-			}
-
-			&::before {
-				background: currentcolor;
-				box-sizing: border-box;
-				content: "";
-				display: block;
-				height: var(--mtds-icon-size);
-				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
-				position: relative;
-				width: var(--mtds-icon-size);
-			}
-			&::after {
-				content: "";
-				position: absolute; /* Increase click surface */
-				inset: -.5em;
-			}
+		&::after {
+			content: "";
+			position: absolute; /* Increase click surface */
+			inset: -.5em;
 		}
 	}
 }

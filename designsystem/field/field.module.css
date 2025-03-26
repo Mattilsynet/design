@@ -1,7 +1,7 @@
 @layer mt.design {
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
-		row-gap: var(--ds-size-2);
+		row-gap: var(--dsc-field-content-spacing);
 		position: relative; /* To support <u-datalist> positioning */
 	}
 
@@ -11,6 +11,10 @@
 	}
 	.field > * {
 		opacity: 1; /* Overwrite DigiDir disabled */
+	}
+	.field textarea {
+		/* Set height through CSS custom property instead of directly in JS for easier overwrite */
+		height: var(--mtds-textarea-height);
 	}
 
 	/**
@@ -57,7 +61,7 @@
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
-		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+		box-shadow: var(--ds-shadow-md);
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
 		left: 0;

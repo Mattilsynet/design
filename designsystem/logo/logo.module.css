@@ -1,4 +1,7 @@
 @layer mt.design {
+	:root {
+		--mtds-logo-color: #bcdcd0;
+	}
 	.logo {
 		--solid: linear-gradient(currentcolor, currentcolor);
 		--indent: var(--icon-size);
@@ -8,6 +11,7 @@
 		--icon-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 55'%3E%3Crect fill='none' width='51' height='51' x='2' y='2' stroke='black' stroke-dasharray='0.09 6.38' stroke-linecap='round' stroke-opacity='.6' stroke-width='2.3' rx='25.5'/%3E%3C/svg%3E");
 		--icon-size: 1.657em;
 
+		animation: _onInjectLogo 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		border-radius: var(--ds-border-radius-sm);
 		box-sizing: border-box;
 		display: block;
@@ -17,9 +21,17 @@
 		line-height: calc(var(--icon-size) + .15em); /* Align environment with logo */
 		margin: 0; /* If <h1> */
 		min-height: var(--icon-size);
-		overflow: hidden;
+		overflow: clip;
 		text-decoration: none;
+		white-space: normal; /* Allow wrap */
 	}
+
+	@keyframes _onInjectLogo {
+		to {
+			opacity: 1;
+		}
+	}
+
 	.logo:not(:has(svg)) {
 		padding-left: var(--indent);
 		mask: var(--icon), var(--solid) calc(var(--indent) + 1px) / 100% no-repeat; /* 1px is used to avoid pixel glitch in Safari */
@@ -38,6 +50,10 @@
 	/**
 	 * Main logo
 	 */
+	.logo:empty::before {
+		content: "";
+		display: inline-block; /* Needed to make logo text wrap on smaller screens */
+	}
 	.logo:empty::after {
 		background: currentColor;
 		content: var(--mtds-text-logo);
@@ -45,6 +61,8 @@
 		height: var(--icon-size);
 		margin-left: .5em;
 		mask: bottom / contain no-repeat var(--icon-text);
+		overflow: hidden;
+		white-space: nowrap;
 		width: 7.38em;
 	}
 
@@ -60,10 +78,12 @@
 
 		&::before {
 			content: var(--mtds-text-logo);
+			display: block;
 			font-size: .63em;
 			line-height: 1.25;
 			margin-bottom: .1em;
-			display: block;
+			overflow: clip;
+			white-space: nowrap;
 		}
 	}
 
@@ -76,11 +96,11 @@
 		line-height: var(--icon-size);
 
 		&:before {
-			background: #bcdcd0;
+			background: var(--mtds-logo-color);
+			border-radius: var(--ds-border-radius-full);
 			content: "";
 			float: left;
 			height: var(--icon-size);
-			border-radius: var(--ds-border-radius-full);
 			margin-right: calc(var(--icon-size) * -1);
 			mask: center / contain no-repeat var(--solig);
 			width: var(--icon-size);

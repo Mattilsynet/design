@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './errorsummary.stories';
 
 <Meta of={stories} />
@@ -16,3 +17,5 @@ import * as stories from './errorsummary.stories';
 ## Komplett eksempel
 - **Merk:** React kan ikke vise og flytte fokus i samme operasjon på grunn av asynkron uttegning. Bruk `setTimeout(() => { din-fokus-her })` for å flytte fokus etter at feilmeldingen er synlig.
 <Canvas of={stories.WithForm} />
+
+<CssVariables component="errorsummary" />

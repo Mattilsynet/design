@@ -3,15 +3,17 @@
 		composes: ds-table from "@digdir/designsystemet-css";
 
 		--dsc-table-background: transparent;
-		--dsc-table-border-color: var(--ds-color-neutral-border-subtle);
+		--dsc-table-border-color: var(--ds-color-border-subtle);
 		--dsc-table-border-radius: var(--ds-border-radius-md);
 		--dsc-table-color: inherit;
-		--dsc-table-divider-border-width: 1px;
+		--dsc-table-divider-border-color: var(--ds-color-border-strong);
+		--dsc-table-divider-border-width: var(--ds-border-width-default);
 		--dsc-table-header-background--hover: transparent;
 		--dsc-table-header-background--sorted: transparent;
 		--dsc-table-header-background: transparent;
-		--mtds-divided: 50; /* Need to be unitless */
+		--mtdsc-table-divided: 50; /* Need to be unitless */
 
+		animation: _onInjectTable 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		background: var(--dsc-table-background);
 		vertical-align: top;
 
@@ -23,10 +25,15 @@
 			--dsc-table-border-radius: calc(
 				var(--ds-border-radius-md) -
 				var(--dsc-table-border-width)
-			); /* TODO: Move to DigiDir: Fix to align background inside border */
+			); /* TODO: Report to DigiDir: Fix to align background inside border */
 		}
 		&[data-align="center"] {
 			vertical-align: middle;
+		}
+	}
+	@keyframes _onInjectTable {
+		to {
+			opacity: 1;
 		}
 	}
 	.table th {
@@ -54,17 +61,18 @@
 	 * Table border and heading fix
 	 */
 	.table:not([data-border]) > thead > tr:last-child > :is(td, th) {
-		border-bottom-color: var(--mtds-color-border-strong);
+		border-bottom-color: var(--dsc-table-divider-border-color);
 		vertical-align: bottom;
 	}
 	.table[data-border] {
 		--dsc-table-background: var(--ds-color-surface-default);
 	}
 	.table[data-border] > thead > tr > :is(th, td) {
-		background-color: var(--ds-color-surface-tinted);
+		--dsc-table-header-background: var(--ds-color-surface-tinted);
 	}
 	.table[data-border] > tbody > tr > :not(:last-child) {
-		border-right: 1px solid var(--ds-color-neutral-border-subtle);
+		border-right: var(--dsc-table-border-width) var(--dsc-table-border-style)
+			var(--dsc-table-border-color);
 	}
 
 	/**
@@ -231,8 +239,12 @@
 		}
 
 		.table[data-mobile="divided"] > tbody > tr > :not([colspan]) {
-			--_margin: calc(100% / (100 - var(--mtds-divided)) * var(--mtds-divided)); /* Percentage based on parent width and not self */
-			padding-inline: calc(var(--mtds-divided) * 1%) 0; /* Times 1% to force percentage unit */
+			--_margin: calc(
+				100% /
+				(100 - var(--mtdsc-table-divided)) *
+				var(--mtdsc-table-divided)
+			); /* Percentage based on parent width and not self */
+			padding-inline: calc(var(--mtdsc-table-divided) * 1%) 0; /* Times 1% to force percentage unit */
 
 			&::before {
 				display: inline-block;

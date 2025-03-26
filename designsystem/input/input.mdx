@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './input.stories';
 
 <Meta of={stories} />
@@ -44,3 +45,5 @@ import * as stories from './input.stories';
 - Skal tallet ikke øke (f.eks. referansenummer, fødselsnummer, etc.)? Bruk `type="text" inputmode="numeric"`
 - Nysgjerrig? [Les mer om input og tall på GOV.uk](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)
 <Canvas of={stories.TypeNumber} />
+
+<CssVariables component="input" />

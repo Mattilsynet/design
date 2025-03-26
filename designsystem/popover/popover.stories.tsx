@@ -175,6 +175,25 @@ export const WithClose: Story = {
 	),
 };
 
+export const WithTextInline: Story = {
+	render: () => (
+		<>
+			Vi bruker{" "}
+			<button popoverTarget="pop-inline" type="button" data-popover="inline">
+				design tokens
+			</button>{" "}
+			for å sikre at vi har en konsistent design.
+			<div popover="auto" id="pop-inline" className={styles.popover}>
+				Design tokens er en samling
+				<br />
+				av variabler som definerer
+				<br />
+				designet i et designsystem.
+			</div>
+		</>
+	),
+};
+
 export const WithArrow: Story = {
 	render: () => (
 		<>

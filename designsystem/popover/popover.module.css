@@ -1,20 +1,28 @@
 @layer mt.design {
 	.popover {
-		--mtds-popover-padding: var(--ds-size-5);
+		--mtdsc-box-shadow: var(--ds-shadow-md);
+		--mtdsc-popover-background: var(--ds-color-surface-default);
+		--mtdsc-popover-border-color: var(--ds-color-border-subtle);
+		--mtdsc-popover-border-radius: var(--ds-border-radius-md);
+		--mtdsc-popover-border-style: solid;
+		--mtdsc-popover-border-width: var(--ds-border-width-default);
+		--mtdsc-popover-color: var(--ds-color-text-default);
+		--mtdsc-popover-padding: var(--ds-size-5);
 
-		background: var(--ds-color-surface-default);
-		border-radius: var(--ds-border-radius-md);
-		border: 1px solid var(--ds-color-border-subtle);
-		box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+		background: var(--mtdsc-popover-background);
+		border-radius: var(--mtdsc-popover-border-radius);
+		border: var(--mtdsc-popover-border-width) var(--mtdsc-popover-border-solid)
+			var(--mtdsc-popover-border-color);
+		box-shadow: var(--mtdsc-box-shadow);
 		box-sizing: border-box;
-		color: var(--ds-color-text-default); /* Needed to overwrite browser default */
+		color: var(--mtdsc-popover-color); /* Needed to overwrite browser default */
 		height: auto;
 		inset: auto;
 		list-style: none;
 		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		opacity: 0;
-		padding: var(--mtds-popover-padding);
+		padding: var(--mtdsc-popover-padding);
 		position: fixed;
 		transition-duration: .2s;
 		transition-property: opacity, transform, visibility;
@@ -35,10 +43,14 @@
 
 		&:is(menu),
 		&:has(> menu:only-child) {
-			--mtds-popover-padding: var(--ds-size-2);
+			--mtdsc-popover-padding: var(--ds-size-2);
 		}
 		&:is(menu) > li > hr {
 			margin-block: var(--ds-size-2);
 		}
+	}
+
+	[data-popover="inline"] {
+		border-radius: var(--ds-border-radius-sm);
 	}
 }

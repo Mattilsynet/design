@@ -1,0 +1,27 @@
+@layer mt.design {
+	.toast {
+		--mtdsc-toast-padding: var(--ds-size-3);
+
+		animation: _onInjectToast .3s ease-out forwards;
+		background: var(--ds-color-main-base-default);
+		border-radius: var(--ds-border-radius-md);
+		border: 0;
+		box-shadow: var(--ds-shadow-lg);
+		box-sizing: border-box;
+		color: var(--ds-color-main-base-contrast-default);
+		font-size: var(--ds-font-size-minus-1);
+		inset: 0 0 auto auto;
+		margin: var(--ds-size-6);
+		max-width: 40ch;
+		padding: var(--mtdsc-toast-padding);
+		position: absolute;
+		z-index: 99999;
+	}
+
+	@keyframes _onInjectToast {
+		from {
+			opacity: 0;
+			translate: 0 -1rem;
+		}
+	}
+}

@@ -1,4 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import styles from "../styles.module.css";
 import * as stories from './table.stories';
 
 <Meta of={stories} />
@@ -61,28 +63,35 @@ import * as stories from './table.stories';
 ## Mobil: Scroll
 - Plasser tabellen inni en `<figure>` for å få scroll på mobil
 - Bruk `data-nowrap` hvor du vil på tabellen, rader eller celler for å hindre linjeskift
-- **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-scroll)
-<Canvas of={stories.MobileScroll} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-table--mobile-scroll">Se scroll tabell i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.MobileDivided} />
+</div>
 
 ## Mobile: Divided
 - Legg `data-mobile="divided"` på `<table>` for todelt visning opp til `960px`
-- **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-- **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-divided)
-<Canvas of={stories.MobileDivided} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-table--mobile-divided">Se divided tabell i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.MobileDivided} />
+</div>
 
 ## Mobile: Spaced
 - Legg `data-mobile="spaced"` på `<table>` for todelt visning opp til `960px`
-- **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-- **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-spaced)
-<Canvas of={stories.MobileSpaced} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-table--mobile-spaced">Se spaced tabell i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.MobileSpaced} />
+</div>
 
 ## Mobile: Stacked
 - Legg `data-mobile="stacked"` på `<table>` for stablet visning opp til `960px`
-- **Merk:** todeling krever at du har importert javascript pakken: `import "@mattilsynet/design"`
-- **Merk:** [Se egen mobilvisning](?path=/story/designsystem-table--mobile-stacked)
-<Canvas of={stories.MobileStacked} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-table--mobile-stacked">Se stacked tabell i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.MobileStacked} />
+</div>
 
 ## Kant rundt
 - Legg `data-border="true"` på `<table>` for å få kant rundt tabellen
 - **Merk:** Skal hovedsakelig kun brukes når tabell ligger rett på gåsunge bakgrunn
 <Canvas of={stories.WithBorderAround} />
+
+<CssVariables component="table" exclude="zebra,sticky,hover,sorted" />

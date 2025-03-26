@@ -5,7 +5,7 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"ignore": ["divider.module.css", "layout.module.css"]
+		"ignore": ["divider.module.css", "layout.module.css", "link.module.css"]
 	},
 	"javascript": {
 		"formatter": {

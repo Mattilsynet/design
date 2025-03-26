@@ -1,0 +1,17 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './helptext.stories';
+
+<Meta of={stories} />
+
+# Help text
+- **Merk:** Prøv å [unngå å bruke HelpText](https://www.designsystemet.no/bloggen/2025/helptext-blir-fjerna-kva-gjer-du) - vurder heller [popover inline](?path=/story/designsystem-popover--with-text-inline)
+- Bruk klassen `helptext` på `<button>` og `popovertarget="MIN-ID"`
+- Legg klassen `popover`, attributten `popover` og `id` på `<div>` direkte etter `<button>`
+<Canvas of={stories.Default} />
+
+## I field
+- Legg `helptext` like etter `label` i `field`
+<Canvas of={stories.InField} />
+
+<CssVariables component="helptext" />

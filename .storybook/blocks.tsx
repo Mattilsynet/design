@@ -1,6 +1,7 @@
 import { Story, useOf } from "@storybook/blocks";
 import { useEffect, useMemo, useState } from "react";
 import styles from "../designsystem/styles.module.css";
+import css from "../designsystem/styles.module.css?inline";
 
 // Jump to navigation
 export const JumpTo = () => {
@@ -112,6 +113,72 @@ export const PkgInfo = () => {
 		</div>
 	);
 };
+
+type CssVariablesProps = { component: string; exclude?: string };
+export function CssVariables({ component = "", exclude }: CssVariablesProps) {
+	const [cssVars, setCssVars] = useState<ReturnType<typeof getCssVars>>({});
+	const excludes = exclude?.split(",").map((ex) => ex.trim()) || [];
+	useEffect(() => setCssVars(getCssVars(component)), [component]);
+
+	return (
+		<>
+			<h2
+				id="komponenttokens"
+				className="sbdocs-h2"
+				style={{ marginTop: "2em" }}
+			>
+				Komponenttokens
+			</h2>
+			{Object.keys(cssVars).length ? (
+				<table className={styles.table} data-fixed>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						{Object.entries(cssVars).map(
+							([name, { val }]) =>
+								!excludes.some((exclude) => name.includes(exclude)) && (
+									<tr key={name}>
+										<td>{name}</td>
+										<td>{val}</td>
+									</tr>
+								),
+						)}
+					</tbody>
+				</table>
+			) : (
+				"Ingen"
+			)}
+		</>
+	);
+}
+
+/* get variables and its value from css file */
+function getCssVars(component: string) {
+	// temporarily remove inline strings, as they may contain ; and } characters
+	// and thus ruin the matching for property declarations
+	const res: Record<string, { val: string; mtds: boolean }> = {};
+	const clean = css.replace(/"[^"]*"/g, encodeURIComponent);
+	const regex = new RegExp(`(?<!var\\\()--(mt)?dsc-${component}-[^;}]+`, "g");
+	const mtdsIndex = clean.indexOf("@layer mt.");
+
+	// Choose the earliest declaration of the property.
+	// We assume later declarations are part of a sub-selector.
+	// Return the original inline string from the value, if it was removed earlier
+	for (const delc of clean.matchAll(regex)) {
+		const [key, val] = delc[0].split(":");
+		const isMTDS = delc.index > mtdsIndex; // Is a token set by us a not Designsystemet
+		const isDSC = styles[component]?.includes(" "); // Is composed by from Designsystemet
+
+		if (isMTDS ? !res[key]?.mtds : isDSC && !res[key])
+			res[key] = { val: decodeURIComponent(val), mtds: isMTDS };
+	}
+
+	return res;
+}
 
 type OverviewProps = {
 	fullWidth?: boolean;

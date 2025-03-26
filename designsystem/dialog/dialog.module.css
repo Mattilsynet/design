@@ -1,11 +1,10 @@
 @layer mt.design {
 	.dialog {
 		composes: ds-dialog from "@digdir/designsystemet-css";
-
-		background: var(--ds-color-surface-default);
-		color: var(--ds-color-text-default);
-		max-height: 90vh;
-		max-height: 90svh;
+		--dsc-dialog-background: var(--ds-color-surface-default);
+		--dsc-dialog-color: var(--ds-color-text-default);
+		--dsc-dialog-border-width: 0px;
+		--dsc-dialog-max-height: 90vh;
 		z-index: 1000; /* Place above also when non-modal */
 
 		&[data-closedby="any"]::backdrop {
@@ -18,8 +17,8 @@
 			border-radius: var(--ds-border-radius-md);
 			cursor: pointer;
 			float: right;
-			margin: -.5em;
-			padding: .5em;
+			margin: calc(var(--dsc-dialog-icon-spacing) * -1);
+			padding: var(--dsc-dialog-icon-spacing);
 			transition: scale .2s;
 
 			&:focus-visible {
@@ -42,7 +41,7 @@
 				content: "";
 				display: block;
 				height: var(--mtds-icon-size);
-				mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+				mask: center / contain no-repeat var(--dsc-dialog-icon-url) content-box;
 				width: var(--mtds-icon-size);
 			}
 		}

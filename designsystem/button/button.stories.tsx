@@ -319,9 +319,9 @@ export const WithMenu: Story = {
 		<>
 			<button
 				aria-label="Handlinger"
+				className={styles.button}
 				popoverTarget="pop-2"
 				type="button"
-				className={styles.button}
 			/>
 			<menu popover="auto" id="pop-2" className={styles.popover}>
 				<li>

@@ -2,6 +2,7 @@
 	.chip {
 		composes: ds-chip from "@digdir/designsystemet-css";
 		--dsc-chip-input-accent-color: var(--ds-color-base-contrast-default);
+		--dsc-chip-border-radius: var(--ds-border-radius-xl); /* Prevent larger radius when growing in height */
 
 		max-width: 100%;
 		text-align: left;
@@ -17,13 +18,10 @@
 		white-space: nowrap;
 		min-width: 0;
 	}
-	.chip:not(:has(input[type="checkbox"])) {
-		border-radius: var(--ds-border-radius-xl); /* Prevent larger radius when growing in height */
-	}
 
 	/* Double selector to win specificity */
 	.chip.chip input[type="checkbox"] {
-		border-radius: var(--ds-border-radius-sm);
+		border-radius: var(--dsc-chip-border-radius--checkbox-input);
 	}
 
 	.chip[data-removable] {

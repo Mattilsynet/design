@@ -1,7 +1,8 @@
+import { PencilSimple } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { Tabs } from "../react";
 import styles from "../styles.module.css";
-import "@u-elements/u-tabs";
 
 const meta = {
 	title: "Designsystem/Tabs",
@@ -16,7 +17,10 @@ export const Default: Story = {
 			<u-tablist>
 				<u-tab aria-selected="true">Tab 1</u-tab>
 				<u-tab>Tab 2</u-tab>
-				<u-tab>Tab 3</u-tab>
+				<u-tab>
+					<PencilSimple />
+					Tab 3
+				</u-tab>
 			</u-tablist>
 			<u-tabpanel>
 				Panel 1 with <a href="#none">link</a>

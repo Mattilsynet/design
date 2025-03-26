@@ -1,11 +1,17 @@
 @layer mt.design {
 	.tag {
 		composes: ds-tag from "@digdir/designsystemet-css";
+		--mtdsc-tag-border-color: var(--ds-color-border-subtle);
+		--mtdsc-tag-border-radius: var(--ds-border-radius-md);
+		--mtdsc-tag-border-solid: solid;
+		--mtdsc-tag-border-width: var(--ds-border-width-default);
+		--mtdsc-tag-gap: var(--ds-size-1);
 
-		border-radius: var(--ds-border-radius-md);
-		border: 1px solid var(--ds-color-border-subtle);
+		border-radius: var(--mtdsc-tag-border-radius);
+		border: var(--mtdsc-tag-border-width) var(--mtdsc-tag-border-solid)
+			var(--ds-color-border-subtle);
 		font-variant-numeric: tabular-nums;
-		gap: var(--ds-size-1);
+		gap: var(--mtdsc-tag-gap);
 		flex-shrink: 0; /* If placed in display: flex */
 
 		/**

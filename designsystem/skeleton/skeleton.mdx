@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './skeleton.stories';
 
 <Meta of={stories} />
@@ -18,3 +19,5 @@ import * as stories from './skeleton.stories';
 - Bruk `data-variant="text"` på en `span`
 - Innholdet bestemmer størrelsen på tekst-skeleton
 <Canvas of={stories.Text} />
+
+<CssVariables component="skeleton" />

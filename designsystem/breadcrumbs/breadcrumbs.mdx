@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './breadcrumbs.stories';
 
 <Meta of={stories} />
@@ -27,3 +28,5 @@ import * as stories from './breadcrumbs.stories';
 - Bruk `<div>` istedenfor `<nav>` og `<span>` istedenfor `<a>`
 
 <Canvas of={stories.WithoutLinks} />
+
+<CssVariables component="breadcrumbs" />

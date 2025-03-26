@@ -15,7 +15,7 @@ const meta = {
 					<Story />
 					<style>{`
 						body { background: var(--ds-color-background-default) }
-						html:has(.sbdocs-preview)::after { display: none } /* Hide environment bar in Storybook */
+						html:has(.sbdocs-preview)::before { display: none } /* Hide environment bar in Storybook */
 						.demo-resize {
 							box-sizing: border-box;
 							border-radius: 2px;
@@ -60,10 +60,6 @@ export const React: Story = {
 				Helse
 				<wbr />
 				sertifikat
-			</Logo>
-			<Logo href="/">
-				<Plant weight="fill" />
-				Digiplant
 			</Logo>
 			<Logo href="/" data-env="test">
 				<Plant weight="fill" />
@@ -123,7 +119,16 @@ export const WithSubbrandEnvironmentBlue: Story = {
 	),
 };
 
+const decorators: Story["decorators"] = [
+	(Story) => (
+		<div style={{ "--mtds-logo-color": "#bcdcd0" } as React.CSSProperties}>
+			<Story />
+		</div>
+	),
+];
+
 export const WithAppIcon: Story = {
+	decorators,
 	render: () => (
 		<a className={styles.logo} href="/">
 			<Plant weight="fill" />

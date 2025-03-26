@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './tag.stories';
 
 <Meta of={stories} />
@@ -26,3 +27,5 @@ import * as stories from './tag.stories';
 - Bruk `data-tooltip-position="top | right | bottom | left"` for å endre plassering
 - Teksten blir også automatisk tilgjengelig for skjermlesere
 <Canvas of={stories.WithTooltip} />
+
+<CssVariables component="tag" />

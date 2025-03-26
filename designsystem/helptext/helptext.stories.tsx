@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Field, Grid, HelpText, Input } from "../react";
 import styles from "../styles.module.css";
-import { HelpText } from "./helptext";
 
 const meta = {
 	title: "Designsystem/Help text",
-	tags: ["!dev"],
 } satisfies Meta;
 
 export default meta;
@@ -17,9 +16,8 @@ export const Default: Story = {
 				type="button"
 				className={styles.helptext}
 				popoverTarget="my-helptext-1"
-			>
-				Hva menes med mottaker
-			</button>
+				aria-label="Hva menes med mottaker"
+			></button>
 			<div className={styles.popover} id="my-helptext-1" popover="auto">
 				Tekst som forklarer hva som menes med mottaker
 			</div>
@@ -30,18 +28,15 @@ export const Default: Story = {
 export const InField: Story = {
 	render: () => (
 		<div className={styles.field}>
-			<div className={styles.flex}>
-				<label>Ledetekst</label>
-				<button
-					type="button"
-					className={styles.helptext}
-					popoverTarget="my-helptext-1"
-				>
-					Hva menes med mottaker
-				</button>
-				<div className={styles.popover} id="my-helptext-1" popover="auto">
-					Tekst som forklarer hva som menes med mottaker
-				</div>
+			<label>Ledetekst</label>
+			<button
+				type="button"
+				className={styles.helptext}
+				aria-label="Hva menes med mottaker"
+				popoverTarget="my-helptext-1"
+			></button>
+			<div className={styles.popover} id="my-helptext-1" popover="auto">
+				Tekst som forklarer hva som menes med mottaker
 			</div>
 			<p>Beskrivelse</p>
 			<input type="text" className={styles.input} />
@@ -51,9 +46,16 @@ export const InField: Story = {
 
 export const React: Story = {
 	render: () => (
-		<>
+		<Grid data-gap="10">
 			<HelpText>Hva menes med mottaker</HelpText>
-			<div>Tekst som forklarer hva som menes med mottaker</div>
-		</>
+			<Field>
+				<label>Ledetekst</label>
+				<HelpText aria-label="Hva menes med mottaker">
+					Tekst som forklarer hva som menes med mottaker
+				</HelpText>
+				<p>Beskrivelse</p>
+				<Input />
+			</Field>
+		</Grid>
 	),
 };

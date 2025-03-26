@@ -3,33 +3,59 @@
 	 * App layout
 	 */
 	.app {
-		--spacing-md: var(--ds-size-6);
-		--spacing-sm: var(--ds-size-3);
-		--sides--collapsed: 4.25rem; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--sides: 14em;
+		--mtdsc-app-spacing-md: var(--ds-size-6);
+		--mtdsc-app-spacing-sm: var(--ds-size-3);
+		--mtdsc-app-nav--collapsed: 5rem; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-nav--expanded: 14em;
 
 		box-sizing: border-box;
+		min-height: 100vh;
+		min-height: 100svh; /* Use small viewport height if supported */
+		transition: grid-template-columns .3s ease-out;
 		grid-template:
 			"header header header" auto
 			"nav main aside" 1fr
 			"footer footer footer" auto / auto 1fr auto;
-		min-height: 100vh;
-		min-height: 100svh; /* Use small viewport height if supported */
-		transition: grid-template-columns .3s ease-out;
-
-		&:where(:not([hidden])) {
-			display: grid;
-		}
-
-		& > * {
-			box-sizing: border-box;
-			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
-			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
-		}
+	}
+	.app:where(:not([hidden])) {
+		display: grid;
+	}
+	.app > * {
+		box-sizing: border-box;
+		display: content; /* Allow nesting <div> inside app for easier island architecture  */
+		margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
+		min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
 	}
 
-	.app > * {
-		display: content;
+	/**
+	 * App layout: Expanding
+	 */
+	/* Using cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+	:root {
+		--mtds-app-expanded: var(--mtds-app-expanded--true);
+		--mtds-app-expanded--true: var(--mtds-app-expanded,);
+		--mtds-app-expanded--false: var(--mtds-app-expanded,);
+	}
+	.app [data-app-expanded="true"] {
+		display: var(--mtds-app-expanded--false, none); /* Hide relevant child elements with data-expanded attribute */
+	}
+	.app [data-app-expanded="false"] {
+		display: var(--mtds-app-expanded--true, none); /* Hide relevant child elements with data-expanded attribute */
+	}
+	.app [data-command="toggle-app-expanded"] {
+		all: unset;
+		bottom: 20px;
+		cursor: pointer;
+		height: 40px;
+		left: 20px;
+		position: absolute; /* TODO: Position toggle button */
+		text-align: center;
+		width: 40px;
+		z-index: 2;
+	}
+	.app [data-command="toggle-app-expanded"]:after {
+		content: var(--mtds-app-expanded--true, "<")
+			var(--mtds-app-expanded--false, ">");
 	}
 
 	/**
@@ -41,7 +67,8 @@
 		align-items: center;
 		gap: var(--ds-size-2);
 		grid-area: header;
-		padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+		padding: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-md)
+			var(--mtdsc-app-spacing-sm);
 
 		&:not([hidden]) {
 			display: flex;
@@ -59,56 +86,32 @@
 	 */
 	.app > nav,
 	.app nav:has(+ main) {
-		align-content: start; /* TODO: Set default alignment in case used as grid */
+		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
+			var(--mtds-app-expanded--false, right);
+
+		align-content: start; /* Set default alignment in case used as grid */
 		grid-area: nav;
 		overflow-y: auto;
-		padding-left: var(--spacing-md);
-		padding-top: var(--spacing-md);
-		position: relative;
+		overscroll-behavior: contain;
+		padding-inline: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-sm);
+		padding-top: var(--mtdsc-app-spacing-md);
+		position: sticky;
+		/* max-height: 100vh; */
+		/* top: 0; */
+		/* bottom: 0; */
 		view-transition-name: mtds-laytout-app--left;
-		width: var(--sides);
+		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav--expanded))
+			var(--mtds-app-expanded--false, var(--mtdsc-app-nav--collapsed));
 
-		/* Hide relevant child elements with data-expanded attribute */
-		&[data-expanded="false"] [data-expanded="true"],
-		&:not([data-expanded="false"]) [data-expanded="false"] {
-			display: none;
+		& menu {
+			margin-left: calc(var(--mtdsc-app-spacing-md) * -2);
 		}
-		&[data-expanded="false"] {
-			--mtds-tooltip-position: right;
+		& menu > li > :is(a, button) {
+			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
 		}
-
-		/* TODO: Position toggle button */
-		& > button:first-child:empty {
-			all: unset;
-			bottom: 20px;
-			cursor: pointer;
-			height: 40px;
-			left: 20px;
-			position: absolute;
-			text-align: center;
-			width: 40px;
-			z-index: 2;
-
-			&:after {
-				content: "<";
-			}
-		}
-
-		& menu > li {
-			margin-left: calc(var(--spacing-md) * -2);
-
-			& > [data-tooltip] {
-				padding-left: calc(var(--spacing-md) * 2);
-			}
-		}
-
-		/* Move tooltips to button content when expanded */
-		&:not([data-expanded="false"]) menu > li > [data-tooltip] {
-			--mtds-tooltip-position: none;
-
-			&::after {
-				content: attr(data-tooltip);
-			}
+		& menu > li > [data-tooltip]::after {
+			content: var(--mtds-app-expanded--true, attr(data-tooltip))
+				var(--mtds-app-expanded--false, none);
 		}
 
 		/* 960px */
@@ -116,7 +119,7 @@
 			background-color: var(--ds-color-surface-default);
 			border-top: 1px solid var(--ds-color-border-subtle);
 			left: 0;
-			padding: var(--spacing-sm);
+			padding: var(--mtdsc-app-spacing-sm);
 			position: fixed;
 			right: 0;
 			top: calc(100vh - var(--ds-size-13));
@@ -124,7 +127,7 @@
 			z-index: 99;
 
 			&::before {
-				content: "Navigasjon";
+				content: var(--mtds-text-navigation);
 			}
 		}
 	}
@@ -134,9 +137,8 @@
 	 * NOTE: <main> can only appear once on a page so no need for direct child selector
 	 */
 	.app main {
-		container: main / inline-size;
 		grid-area: main;
-		margin: 0 var(--spacing-sm) var(--spacing-sm);
+		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm) 0;
 		view-transition-name: mtds-laytout-app--main;
 	}
 
@@ -147,17 +149,18 @@
 	.app > aside,
 	.app main + aside {
 		grid-area: aside;
-		padding-right: var(--spacing-sm);
-		padding-top: var(--spacing-md);
+		padding-right: var(--mtdsc-app-spacing-sm);
+		padding-top: var(--mtdsc-app-spacing-md);
 		view-transition-name: mtds-laytout-app--right;
-		width: var(--sides);
+		width: 14em;
 
-		&[data-expanded="false"] {
-			padding-inline: 0;
-			width: 0;
+		&[hidden] {
+			display: block;
 			opacity: 0;
+			overflow: clip;
+			padding-inline: 0;
 			visibility: hidden;
-			overflow: hidden;
+			width: 0;
 		}
 	}
 
@@ -167,11 +170,11 @@
 	 */
 	.app > footer,
 	.app main ~ footer {
-		background: var(--ds-color-background-default);
-		color: var(--ds-color-text-default);
+		background: var(--ds-color-base-default);
+		color: var(--ds-color-base-contrast-default);
 		grid-area: footer;
-		margin-top: var(--spacing-sm);
-		padding: var(--spacing-md);
+		margin-top: var(--mtdsc-app-spacing-sm);
+		padding: var(--mtdsc-app-spacing-md);
 	}
 }
 
@@ -187,10 +190,4 @@
 ::view-transition-old(mtds-laytout-app--main),
 ::view-transition-new(mtds-laytout-app--main) {
 	height: 100%;
-}
-
-/* Declare outside @layer to ensure specificity */
-.app > nav[data-expanded="false"] {
-	min-width: var(--sides--collapsed) !important; /* Prevent shrinking */
-	width: var(--sides--collapsed) !important;
 }

@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './validation.stories';
 
 <Meta of={stories} />
@@ -10,3 +11,5 @@ import * as stories from './validation.stories';
 # Farger
 - Bruk `data-color="danger | success | info | warning"`
 <Canvas of={stories.Colors} />
+
+<CssVariables component="validation" />

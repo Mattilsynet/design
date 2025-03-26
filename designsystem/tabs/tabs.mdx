@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './tabs.stories';
 
 <Meta of={stories} />
@@ -15,3 +16,5 @@ import * as stories from './tabs.stories';
 - Bruk `data-size="sm | md | lg"`
 
 <Canvas of={stories.Sizes} />
+
+<CssVariables component="tabs" />

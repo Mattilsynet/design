@@ -1,13 +1,20 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
 import { Alert } from '../react.tsx';
+import styles from '../styles.module.css';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
 
 # Layout
-- Bruk klassene `flex` for `display: flex` eller `grid` for `display: grid`
-- Begge klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`, `data-nowrap`
-- Begge klassene støtter `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
+
+<JumpTo />
+
+## Layout typer
+- Velg mellom klassene `flex`, `grid` eller `prose` 
+- Bruk `prose` for god visuell vertikal layout - typisk på artikkel, skjema, eller inni `details`
+- Både `flex` og `grid` klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`, `data-nowrap`
+- Både `flex` og `grid` klassene støtter `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
 
 
 <Alert data-color='info'>
@@ -39,7 +46,10 @@ import * as stories from './layout.stories';
 - Elementet vil allid ha minimum `5vw` luft på venste og høyre side
 - Vi bruker hovedsakelig `2xl` som hoved container for innhold
 - Virker på både `flex` og `grid`
-<Canvas of={stories.Center} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-layout--center">Se center i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.Center} />
+</div>
 
 ## Align
 - `data-align="normal | start | center | end | stretch"` (`normal` er default) setter vertikal plassering med [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) 
@@ -56,7 +66,20 @@ import * as stories from './layout.stories';
 - Virker på både `flex` og `grid`
 <Canvas of={stories.AlignContent} />
 
-## App (Experimental)
+## Prose
+- Bruk klassen `prose` på typisk `div` eller annen container som har prosa/skjema/typografisk innhold
+
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-layout--prose">Se prose-layout i egen visning</a>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.Prose} />
+</div>
+
+## App (Eksperimentell)
 - Bruk klassen `app` og legg `<header>`, `<nav>`, `<main>`, `<aside>` og `<footer>` som barn
 - Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
-<Canvas of={stories.App} />
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-layout--app">Se app-layout i egen visning</a>
+  <Canvas of={stories.App} />
+</div>
+
+<CssVariables component="layout" />
