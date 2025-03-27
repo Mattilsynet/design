@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import styles from "../styles.module.css";

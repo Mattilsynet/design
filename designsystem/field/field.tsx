@@ -1,12 +1,6 @@
 import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
 import clsx from "clsx";
-import {
-	type JSX,
-	forwardRef,
-	useEffect,
-	useImperativeHandle,
-	useRef,
-} from "react";
+import { type JSX, forwardRef } from "react";
 import type { InputProps } from "../input/input";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -108,30 +102,11 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	},
 );
 
-export type FieldTagsProps = ReactUtags & {
-	onTags?: (
-		event: CustomEvent<{ item: HTMLDataElement; action: "add" | "remove" }>,
-	) => void;
-};
+export type FieldTagsProps = ReactUtags;
 
 const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
-	function FieldTags({ onTags, ...rest }, ref) {
-		const innerRef = useRef<UHTMLTagsElement>(null);
-		const onTagsRef = useRef<(event: CustomEvent) => void>(undefined); // Use ref to cache callback to reduce re-renders
-
-		onTagsRef.current = onTags;
-		useImperativeHandle(ref, () => innerRef.current as UHTMLTagsElement); // Forward innerRef
-		useEffect(() => {
-			const handleTags: FieldTagsProps["onTags"] = (event) => {
-				event.preventDefault();
-				onTagsRef.current?.(event);
-			};
-
-			innerRef.current?.addEventListener("tags", handleTags);
-			return () => innerRef.current?.removeEventListener("tags", handleTags);
-		}, []);
-
-		return <u-tags ref={innerRef} {...rest} />;
+	function FieldTags(rest, ref) {
+		return <u-tags ref={ref} {...rest} />;
 	},
 );
 

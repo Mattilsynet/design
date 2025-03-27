@@ -69,7 +69,7 @@ export const React: Story = {
 					open={open}
 					modal
 				>
-					<button aria-label="Lukk" data-command="close" type="button"></button>
+					<Button aria-label="Lukk" data-command="close" />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
 					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.
 					Fusce varius urna odio, vel bibendum odio imperdiet eget. Aliquam
