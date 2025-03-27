@@ -9,7 +9,7 @@ import {
 	UploadSimple,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Card } from "../react";
+import { Card, Grid, Group } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -50,6 +50,13 @@ export const React: Story = {
 			<Card as="button" onClick={() => alert("Click!")}>
 				Knapp
 			</Card>
+			<Group>
+				<Grid data-gap="1">
+					<Card>Card in group</Card>
+					<Card>Card in group</Card>
+					<Card>Card in group</Card>
+				</Grid>
+			</Group>
 		</>
 	),
 };
@@ -293,7 +300,8 @@ export const Responsive: Story = {
 	),
 };
 
-export const Group: Story = {
+export const GroupStory: Story = {
+	name: "Group",
 	render: () => (
 		<div className={styles.group}>
 			<div className={styles.grid} data-gap="1">

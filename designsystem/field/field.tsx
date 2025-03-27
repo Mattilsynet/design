@@ -1,5 +1,12 @@
+import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
 import clsx from "clsx";
-import { type JSX, forwardRef } from "react";
+import {
+	type JSX,
+	forwardRef,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+} from "react";
 import type { InputProps } from "../input/input";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -83,6 +90,54 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 	},
 );
 
+export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
+	"data-filter"?: boolean | "true" | "false"; // Need string "false" as well as false is used as a value in field-observer
+};
+
+const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
+	function FieldDatalist(rest, ref) {
+		return <u-datalist ref={ref} {...rest} />;
+	},
+);
+
+export type FieldOptionProps = React.ComponentPropsWithoutRef<"option">;
+
+const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
+	function FieldOption(rest, ref) {
+		return <u-option ref={ref} {...rest} />;
+	},
+);
+
+export type FieldTagsProps = ReactUtags & {
+	onTags?: (
+		event: CustomEvent<{ item: HTMLDataElement; action: "add" | "remove" }>,
+	) => void;
+};
+
+const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
+	function FieldTags({ onTags, ...rest }, ref) {
+		const innerRef = useRef<UHTMLTagsElement>(null);
+		const onTagsRef = useRef<(event: CustomEvent) => void>(undefined); // Use ref to cache callback to reduce re-renders
+
+		onTagsRef.current = onTags;
+		useImperativeHandle(ref, () => innerRef.current as UHTMLTagsElement); // Forward innerRef
+		useEffect(() => {
+			const handleTags: FieldTagsProps["onTags"] = (event) => {
+				event.preventDefault();
+				onTagsRef.current?.(event);
+			};
+
+			innerRef.current?.addEventListener("tags", handleTags);
+			return () => innerRef.current?.removeEventListener("tags", handleTags);
+		}, []);
+
+		return <u-tags ref={innerRef} {...rest} />;
+	},
+);
+
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
+	Datalist: FieldDatalist,
+	Tags: FieldTags,
+	Option: FieldOption,
 });

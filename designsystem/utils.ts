@@ -170,23 +170,3 @@ export const onMutation = (
 
 export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	el instanceof HTMLElement && 'validity' in el && !(el instanceof HTMLButtonElement);
-
-// Make React support popover attributes
-// https://github.com/facebook/react/issues/27479
-type Popover = "" | "auto" | "manual" | undefined;
-declare global {
-	namespace React.JSX {
-		interface IntrinsicAttributes {
-			popovertargetaction?: string;
-			popovertarget?: string;
-			popover?: Popover;
-		}
-	}
-	namespace React {
-		interface HTMLAttributes<T> {
-			popovertargetaction?: string;
-			popovertarget?: string;
-			popover?: Popover;
-		}
-	}
-}

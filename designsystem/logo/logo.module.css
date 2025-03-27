@@ -112,6 +112,7 @@
 	}
 	.logo svg {
 		box-sizing: border-box;
+		fill: currentColor; /* Specify fill for custom svgs */
 		float: left;
 		height: var(--icon-size);
 		margin-right: .45em;

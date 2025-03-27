@@ -1,4 +1,4 @@
-import { QUICK_EVENT, off, on } from "../utils";
+import { IS_BROWSER, QUICK_EVENT, on } from "../utils";
 
 // Setting app-expanded state on the root element for less flash of unstyled content
 const CSS_TOGGLE = '--mtds-app-expanded';
@@ -18,11 +18,7 @@ const toggleExpaned = (force?: boolean) => {
   window.localStorage.setItem(KEY_TOGGLE, `${isExpanded}`);
 };
 
-export function observe(el: Element) {
+if (IS_BROWSER) {
   toggleExpaned(window.localStorage.getItem(KEY_TOGGLE) !== "false");
-  on(el, "click", handleToggleClick, QUICK_EVENT);
-}
-
-export function unobserve(el: Element) {
-  off(el, "click", handleToggleClick, QUICK_EVENT);
+  on(document, "click", handleToggleClick, QUICK_EVENT);
 }

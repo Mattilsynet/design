@@ -43,7 +43,13 @@ export type DividerProps = React.ComponentPropsWithoutRef<"hr"> & {
 		| 18
 		| 22
 		| 26
-		| 30;
+		| 30
+		// Backwards compatibility:
+		| "none"
+		| "sm"
+		| "md"
+		| "lg"
+		| "xl";
 };
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(function Divider(

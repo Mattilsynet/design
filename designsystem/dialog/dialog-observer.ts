@@ -1,4 +1,4 @@
-import { QUICK_EVENT, attr, off, on } from '../utils';
+import { IS_BROWSER, QUICK_EVENT, attr, on } from '../utils';
 
 const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
   if (el instanceof HTMLDialogElement && attr(el, 'data-closedby') === 'any') {
@@ -11,10 +11,6 @@ const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
   }
 };
 
-export function observe(el: Element) {
-  on(el, 'click', handleClick as EventListener, QUICK_EVENT);
-}
-
-export function unobserve(el: Element) {
-  off(el, 'click', handleClick as EventListener, QUICK_EVENT);
+if (IS_BROWSER) {
+  on(document, 'click', handleClick as EventListener, QUICK_EVENT);
 }

@@ -4,44 +4,48 @@
 		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-padding: 0 calc(var(--ds-size-1) * 1.5);
 		--dsc-badge-size: var(--ds-size-6);
+		--mtdsc-badge-offset: 0px;
 
 		position: relative;
 		place-items: center;
 		vertical-align: middle;
+	}
+	.badge:where(:not([hidden])) {
+		display: inline-grid;
+	}
 
-		&:where(:not([hidden])) {
-			display: inline-grid;
-		}
+	.badge::before {
+		background: var(--dsc-badge-background);
+		border-radius: var(--ds-border-radius-full);
+		box-sizing: border-box;
+		color: var(--dsc-badge-color);
+		content: attr(data-badge) ""; /* Need to add whitespace to ensure bade is shown even when empty */
+		display: grid;
+		font-size: var(--ds-body-xs-font-size);
+		font-variant-numeric: tabular-nums;
+		font-weight: 700;
+		line-height: 1;
+		min-height: var(--dsc-badge-size);
+		min-width: var(--dsc-badge-size);
+		padding: var(--dsc-badge-padding);
+		place-items: center;
+	}
 
-		&::before {
-			background: var(--dsc-badge-background);
-			border-radius: var(--ds-border-radius-full);
-			box-sizing: border-box;
-			color: var(--dsc-badge-color);
-			content: attr(data-badge);
-			display: grid;
-			font-size: var(--ds-body-xs-font-size);
-			font-variant-numeric: tabular-nums;
-			font-weight: 700;
-			line-height: 1;
-			min-height: var(--dsc-badge-size);
-			min-width: var(--dsc-badge-size);
-			padding: var(--dsc-badge-padding);
-			place-items: center;
-		}
+	.badge[data-badge=""],
+	.badge:not([data-badge]) {
+		--dsc-badge-size: var(--ds-size-3);
+	}
 
-		&[data-badge=""],
-		&:not([data-badge]) {
-			--dsc-badge-size: var(--ds-size-3);
-		}
-
-		&:not(:empty)::before {
-			position: absolute;
-			right: 0%;
-			top: 0%;
-			translate: 50% -50%;
-			font-size: .75rem;
-		}
+	.badge:not(:empty)::before {
+		position: absolute;
+		right: 0%;
+		top: 0%;
+		translate: 50% -50%;
+		margin: var(--mtdsc-badge-offset);
+		font-size: .75rem;
+	}
+	.badge:has([class*="avatar"]) {
+		--mtdsc-badge-offset: var(--ds-size-2);
 	}
 	:is(h1, h2, h3, h4, h5, h6) > .badge::before {
 		translate: 0 -.1em;

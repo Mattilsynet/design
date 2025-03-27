@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { Field, Input } from "../react";
 import styles from "../styles.module.css";
 
@@ -177,9 +178,34 @@ export const WithSuggestion: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
+		<div className={styles.field}>
+			<label>With suggestion</label>
+			<input type="search" className={styles.input} />
+			<u-datalist>
+				<u-option role="none">Tomt</u-option>
+				<u-option value="Sogndal">Sogndal</u-option>
+				<u-option value="Oslo">Oslo</u-option>
+				<u-option value="Brønnøysund">Brønnøysund</u-option>
+				<u-option value="Stavanger">Stavanger</u-option>
+				<u-option value="Trondheim">Trondheim</u-option>
+				<u-option value="Bergen">Bergen</u-option>
+				<u-option value="Lillestrøm">Lillestrøm</u-option>
+			</u-datalist>
+		</div>
+	),
+};
+
+export const WithMultiSuggestion: Story = {
+	name: "With multi suggestion (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<div className={styles.field}>
+			<label>With multi suggestion</label>
+			<u-tags>
+				<data value="Sogndal">Sogndal</data>
 				<input type="search" className={styles.input} />
 				<u-datalist>
 					<u-option role="none">Tomt</u-option>
@@ -191,36 +217,57 @@ export const WithSuggestion: Story = {
 					<u-option value="Bergen">Bergen</u-option>
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
-			</div>
-		</>
+			</u-tags>
+		</div>
 	),
 };
 
-export const WithMultiSuggestion: Story = {
-	name: "With multi suggestion (Eksperimentell)",
+export const ReactWithSuggestion: Story = {
+	name: "React With suggestion (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<u-tags>
-					<data value="Sogndal">Sogndal</data>
-					<input type="search" className={styles.input} />
-					<u-datalist>
-						<u-option role="none">Tomt</u-option>
-						<u-option value="Sogndal">Sogndal</u-option>
-						<u-option value="Oslo">Oslo</u-option>
-						<u-option value="Brønnøysund">Brønnøysund</u-option>
-						<u-option value="Stavanger">Stavanger</u-option>
-						<u-option value="Trondheim">Trondheim</u-option>
-						<u-option value="Bergen">Bergen</u-option>
-						<u-option value="Lillestrøm">Lillestrøm</u-option>
-					</u-datalist>
-				</u-tags>
-			</div>
-		</>
+		<Field>
+			<label>React With suggestion</label>
+			<p>Beskrivelse</p>
+			<Input className={styles.input} />
+			<Field.Datalist>
+				<Field.Option>Saft</Field.Option>
+				<Field.Option>Suse</Field.Option>
+			</Field.Datalist>
+		</Field>
 	),
+};
+
+export const ReactWithMultiSuggestion: Story = {
+	name: "React With multi suggestion (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => {
+		const [values, setValues] = useState<string[]>(["Saft"]);
+		const handleInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
+			console.log(event);
+		};
+
+		return (
+			<Field>
+				<label>React With suggestion</label>
+				<p>Beskrivelse</p>
+				<Field.Tags onTags={console.log}>
+					{values.map((value) => (
+						<data key={value}>{value}</data>
+					))}
+					<Input className={styles.input} onInput={handleInput} />
+					<Field.Datalist data-filter="false">
+						<Field.Option>Saft</Field.Option>
+						<Field.Option>Suse</Field.Option>
+					</Field.Datalist>
+				</Field.Tags>
+			</Field>
+		);
+	},
 };
