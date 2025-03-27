@@ -19,7 +19,7 @@
 		border-radius: var(--ds-border-radius-full);
 		box-sizing: border-box;
 		color: var(--dsc-badge-color);
-		content: attr(data-badge) ""; /* Need to add whitespace to ensure bade is shown even when empty */
+		content: attr(data-badge) ""; /* Empty string need to ensure bade is shown even when data-badge is empty */
 		display: grid;
 		font-size: var(--ds-body-xs-font-size);
 		font-variant-numeric: tabular-nums;
@@ -32,8 +32,13 @@
 	}
 
 	.badge[data-badge=""],
+	.badge[data-badge="true"],
 	.badge:not([data-badge]) {
 		--dsc-badge-size: var(--ds-size-3);
+	}
+
+	.badge[data-badge="true"] {
+		content: ""; /* Ensure "true" is not rendered */
 	}
 
 	.badge:not(:empty)::before {
