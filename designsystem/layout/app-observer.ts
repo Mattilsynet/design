@@ -6,19 +6,21 @@ const KEY_TOGGLE = 'mtds-app-menu';
 
 const handleToggleClick = ({ target: el }: Event) => {
   if ((el as Element)?.closest('[data-command="toggle-app-expanded"]')) {
-    if (!document.startViewTransition) toggleExpaned();
-    else document.startViewTransition(() => toggleExpaned());
+    if (!document.startViewTransition) setExpaned(!getExpanded());
+    else document.startViewTransition(() => setExpaned(!getExpanded()));
   }
 };
 
-const toggleExpaned = (force?: boolean) => {
-  const html = document.documentElement;
-  const isExpanded = force ?? !!html.style.getPropertyValue(CSS_TOGGLE)?.includes('--false');
-  html.style.setProperty(CSS_TOGGLE, `var(${CSS_TOGGLE}--${isExpanded})`);
-  window.localStorage.setItem(KEY_TOGGLE, `${isExpanded}`);
+const getExpanded = () =>
+  !document.documentElement.style.getPropertyValue(CSS_TOGGLE)?.includes('--false');
+
+const setExpaned = (state: boolean) => {
+  document.documentElement.style.setProperty(CSS_TOGGLE, `var(${CSS_TOGGLE}--${state})`);
+  window.localStorage.setItem(KEY_TOGGLE, `${state}`);
 };
 
 if (IS_BROWSER) {
-  toggleExpaned(window.localStorage.getItem(KEY_TOGGLE) !== "false");
+  const store = window.localStorage.getItem(KEY_TOGGLE);
+  setExpaned(store ? store === 'true' : getExpanded());
   on(document, "click", handleToggleClick, QUICK_EVENT);
 }
