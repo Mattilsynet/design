@@ -27,12 +27,18 @@
 		cursor: pointer;
 	}
 
+	.card:is(u-details, details):has(> :is(u-summary, summary):hover),
 	.card:is(:any-link, button, [role="button"]):hover {
 		border-color: var(--mtdsc-card-border-color--hover);
 	}
 
 	.card:is(:any-link, button, [role="button"]):active {
 		scale: 0.99;
+	}
+
+	.card:is(u-details, details) > :is(u-summary, summary) {
+		margin: calc(var(--mtdsc-card-padding) * -1);
+		padding: var(--mtdsc-card-padding);
 	}
 
 	.info {

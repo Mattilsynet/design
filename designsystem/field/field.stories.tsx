@@ -171,8 +171,8 @@ export const WithCharacterCount: Story = {
 	),
 };
 
-export const WithSuggestion: Story = {
-	name: "With suggestion (Eksperimentell)",
+export const WithDatalist: Story = {
+	name: "With Datalist (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -195,8 +195,8 @@ export const WithSuggestion: Story = {
 	),
 };
 
-export const WithMultiSuggestion: Story = {
-	name: "With multi suggestion (Eksperimentell)",
+export const WithTags: Story = {
+	name: "With Tags (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -222,8 +222,8 @@ export const WithMultiSuggestion: Story = {
 	),
 };
 
-export const ReactWithSuggestion: Story = {
-	name: "React With suggestion (Eksperimentell)",
+export const ReactWithDatalist: Story = {
+	name: "React With Datalist (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -241,8 +241,8 @@ export const ReactWithSuggestion: Story = {
 	),
 };
 
-export const ReactWithMultiSuggestion: Story = {
-	name: "React With multi suggestion (Eksperimentell)",
+export const ReactWithTags: Story = {
+	name: "React With Tags (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,

@@ -61,6 +61,15 @@ export const React: Story = {
 	),
 };
 
+// export const AsDetails: Story = {
+// 	render: () => (
+// 		<u-details className={styles.card}>
+// 			<u-summary>As details</u-summary>
+// 			Content
+// 		</u-details>
+// 	),
+// };
+
 export const Interactive: Story = {
 	render: () => (
 		<>
