@@ -248,20 +248,17 @@ export const ReactWithMultiSuggestion: Story = {
 		showInOverview: true,
 	},
 	render: () => {
-		const [values, setValues] = useState<string[]>(["Saft"]);
-		const handleInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
-			console.log(event);
-		};
+		const [values] = useState<string[]>(["Saft"]);
 
 		return (
 			<Field>
 				<label>React With suggestion</label>
 				<p>Beskrivelse</p>
-				<Field.Tags onTags={console.log}>
+				<Field.Tags>
 					{values.map((value) => (
 						<data key={value}>{value}</data>
 					))}
-					<Input className={styles.input} onInput={handleInput} />
+					<Input className={styles.input} />
 					<Field.Datalist data-filter="false">
 						<Field.Option>Saft</Field.Option>
 						<Field.Option>Suse</Field.Option>
