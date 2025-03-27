@@ -37,7 +37,7 @@
 		--dsc-badge-size: var(--ds-size-3);
 	}
 
-	.badge[data-badge="true"] {
+	.badge[data-badge="true"]::before {
 		content: ""; /* Ensure "true" is not rendered */
 	}
 

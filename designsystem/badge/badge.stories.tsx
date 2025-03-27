@@ -22,7 +22,14 @@ export const Default: Story = {
 };
 
 export const React: Story = {
-	render: () => <Badge data-badge="2"></Badge>,
+	render: () => (
+		<>
+			<Badge data-badge="2"></Badge>
+			<Badge data-badge>
+				<Envelope />
+			</Badge>
+		</>
+	),
 };
 
 export const Color: Story = {
