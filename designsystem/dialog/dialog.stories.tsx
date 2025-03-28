@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Button, Dialog } from "../react";
 import styles from "../styles.module.css";
 
