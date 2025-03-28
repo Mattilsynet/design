@@ -65,7 +65,7 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
 		left: 0;
-		margin: 0;
+		margin: var(--ds-size-1) 0;
 		max-height: 400px;
 		overflow: auto;
 		padding: var(--ds-size-2);

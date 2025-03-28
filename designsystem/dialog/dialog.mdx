@@ -7,7 +7,7 @@ import * as stories from './dialog.stories';
 # Dialog
 
 - Legg klassen `dialog` på `<dialog>`
-- Åpne med metoden [`.showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal)
+- Åpnes enten med `open` attribute eller `.show()` metoden
 - **Merk:** Dialog sentreres med `transform`, så skal du plassere den et annet sted, sett `transform: none`
 <Canvas of={stories.Default} />
 
@@ -20,5 +20,9 @@ import * as stories from './dialog.stories';
 ## Klikk utenfor dialog for å lukke
 - Legg `data-closedby="any"` på `<dialog>`
 <Canvas of={stories.WithBackdropClose} />
+
+## Ikke-modal
+- Legg `data-modal="false"` på `<dialog>`
+<Canvas of={stories.WithoutBackdrop} />
 
 <CssVariables component="dialog" exclude="divider" />

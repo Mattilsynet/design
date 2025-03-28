@@ -1,50 +1,31 @@
-export * as styles from "./styles.module.css";
+"use client"; // Enable client side code
+
+// Expose custom elements not matching HTML elements
+export type { UHTMLTabsElement, UHTMLTabElement, UHTMLTabListElement, UHTMLTabPanelElement } from "@u-elements/u-tabs";
+export type { UHTMLTagsElement } from "@u-elements/u-tags";
+
+// Expose API
 export { pagination } from "./pagination/pagination-helper";
-import "./tooltip/tooltip-observer"; // Load data-tooltip behaviour
+export * as styles from "./styles.module.css";
+
+// Load beahviours
+// import "./toast/toast-observer";
+import "./breadcrumbs/breadcrumbs-observer";
+import "./errorsummary/errorsummary-observer";
+import "./dialog/dialog-observer";
+import "./field/field-observer";
+import "./fieldset/fieldset-observer";
+import "./layout/app-observer";
+import "./logo/logo-observer";
+import "./popover/popover-observer";
+import "./table/table-observer";
+import "./tooltip/tooltip-observer";
 import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element
 import "@u-elements/u-tabs";
 import "@u-elements/u-tags";
-import * as dialog from "./dialog/dialog-observer";
-import * as field from "./field/field-observer";
-import * as fieldset from "./fieldset/fieldset-observer";
-import * as app from "./layout/app-observer";
-import * as logo from "./logo/logo-observer";
-import * as popover from "./popover/popover-observer";
-import * as table from "./table/table-observer";
-// import * as toast from "./toast/toast-observer";
-import { IS_BROWSER } from "./utils";
 
+// Expose types
 export type Size = "sm" | "md" | "lg";
 export type HeadingSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
-// Automatic observe on browser
-if (IS_BROWSER) {
-  const isLoading = document.readyState === "loading"; // Check if the page is still loading - might happen if the script is in <head>
-  const onLoaded = () => observe(document.body);
-
-  if (isLoading) document.addEventListener("DOMContentLoaded", onLoaded);
-  else onLoaded();
-}
-
-export function observe(el: Element) {
-  app.observe(el);
-  dialog.observe(el);
-  field.observe(el);
-  fieldset.observe(el);
-  logo.observe(el);
-  popover.observe(el);
-  table.observe(el);
-  // toast.observe(el);
-}
-
-export function unobserve(el: Element) {
-  app.unobserve(el);
-  dialog.unobserve(el);
-  field.unobserve(el);
-  fieldset.unobserve(el);
-  logo.unobserve(el);
-  popover.unobserve(el);
-  table.unobserve(el);
-  // toast.unobserve(el);
-}

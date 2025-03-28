@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, attr, off, on } from "../utils";
+import { IS_BROWSER, QUICK_EVENT, attr, on } from "../utils";
 
 function handleInject(event: Event & { animationName?: string }) {
   if (event.animationName !== styles._onInjectTable) return;
@@ -28,5 +28,6 @@ function handleInject(event: Event & { animationName?: string }) {
     }
 }
 
-export const observe = (el: Element) => on(el, 'animationend', handleInject, QUICK_EVENT);
-export const unobserve = (el: Element) => off(el, 'animationend', handleInject, QUICK_EVENT);
+if (IS_BROWSER) {
+  on(document, 'animationend', handleInject, QUICK_EVENT);
+}

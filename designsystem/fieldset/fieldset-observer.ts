@@ -1,5 +1,6 @@
 import styles from "../styles.module.css";
-import { attr, isInputLike, onMutation, useId } from "../utils";
+import { IS_BROWSER, attr, isInputLike, onMutation, useId } from "../utils";
+
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
 
@@ -20,5 +21,6 @@ function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
   }
 }
 
-export const observe = (el: Element) => onMutation(el, CSS_FIELDSET, handleMutation);
-export const unobserve = (el: Element) => onMutation(el, CSS_FIELDSET, false);
+if (IS_BROWSER) {
+  onMutation(document.documentElement, CSS_FIELDSET, handleMutation);
+}

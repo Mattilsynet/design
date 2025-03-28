@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
 export type BadgeProps = React.ComponentPropsWithoutRef<"span"> & {
-	"data-badge"?: string | number;
+	"data-badge"?: string | number | boolean;
 };
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(

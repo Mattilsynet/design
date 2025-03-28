@@ -1,3 +1,4 @@
+import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
 import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type { InputProps } from "../input/input";
@@ -83,6 +84,33 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 	},
 );
 
+export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist">;
+
+const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
+	function FieldDatalist({ className, ...rest }, ref) {
+		return <u-datalist class={className} ref={ref} {...rest} />;
+	},
+);
+
+export type FieldOptionProps = React.ComponentPropsWithoutRef<"option">;
+
+const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
+	function FieldOption({ className, ...rest }, ref) {
+		return <u-option class={className} ref={ref} {...rest} />;
+	},
+);
+
+export type FieldTagsProps = ReactUtags;
+
+const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
+	function FieldTags({ className, ...rest }, ref) {
+		return <u-tags class={className} ref={ref} {...rest} />;
+	},
+);
+
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
+	Datalist: FieldDatalist,
+	Tags: FieldTags,
+	Option: FieldOption,
 });

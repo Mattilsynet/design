@@ -1,16 +1,7 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, anchorPosition, attr, off, on } from "../utils";
+import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on } from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
-
-export function observe(el: Node) {
-  on(el, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
-  on(el, "click", handleLinkClick); // Allow `<a>` to use `popovertarget` as well
-}
-export function unobserve(el: Node) {
-  off(el, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
-  off(el, "click", handleLinkClick);
-}
 
 function handleToggle({ target: el, newState }: Event & { newState?: string }) {
   if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
@@ -40,4 +31,9 @@ function handleLinkClick({ target }: Event) {
       action === "show" || (action === "hide" ? false : undefined)
     );
   }
+}
+
+if (IS_BROWSER) {
+  on(document, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+  on(document, "click", handleLinkClick); // Allow `<a>` to use `popovertarget` as well
 }

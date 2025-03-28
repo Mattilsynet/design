@@ -1,4 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+// import { useEffect, useRef, useState } from "react";
+// import {
+// 	type UHTMLTagsElement,
+// 	debounce,
+// 	isDatalistClick,
+// 	syncDatalistState,
+// } from "../index";
 import { Field, Input } from "../react";
 import styles from "../styles.module.css";
 
@@ -170,16 +177,137 @@ export const WithCharacterCount: Story = {
 	),
 };
 
-export const WithSuggestion: Story = {
-	name: "With suggestion (Eksperimentell)",
+export const WithDatalist: Story = {
+	name: "With Datalist (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
+		<div className={styles.field}>
+			<label>With datalist</label>
+			<input type="search" className={styles.input} />
+			<u-datalist>
+				<u-option role="none">Tomt</u-option>
+				<u-option value="Sogndal">Sogndal</u-option>
+				<u-option value="Oslo">Oslo</u-option>
+				<u-option value="Brønnøysund">Brønnøysund</u-option>
+				<u-option value="Stavanger">Stavanger</u-option>
+				<u-option value="Trondheim">Trondheim</u-option>
+				<u-option value="Bergen">Bergen</u-option>
+				<u-option value="Lillestrøm">Lillestrøm</u-option>
+			</u-datalist>
+		</div>
+	),
+};
+
+// export const WithDatalistCustomFilter: Story = {
+// 	name: "With Datalist Custom Filter (Eksperimentell)",
+// 	parameters: {
+// 		layout: "padded",
+// 		showInOverview: true,
+// 	},
+// 	render: () => {
+// 		const handleInput = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+// 			// Your custom filtering here:
+// 			const needle = target.value.trim().toLowerCase();
+// 			const options = (target.list?.children || []) as HTMLOptionElement[];
+// 			for (const option of options) {
+// 				option.disabled = !option.text.toLowerCase().startsWith(needle);
+// 			}
+// 			syncDatalistState(target);
+// 		};
+
+// 		return (
+// 			<div className={styles.field}>
+// 				<label>With datalist - only matches start of words</label>
+// 				<input type="search" className={styles.input} onInput={handleInput} />
+// 				<u-datalist>
+// 					<u-option role="none">Tomt</u-option>
+// 					<u-option value="Sogndal">Sogndal</u-option>
+// 					<u-option value="Oslo">Oslo</u-option>
+// 					<u-option value="Brønnøysund">Brønnøysund</u-option>
+// 					<u-option value="Stavanger">Stavanger</u-option>
+// 					<u-option value="Trondheim">Trondheim</u-option>
+// 					<u-option value="Bergen">Bergen</u-option>
+// 					<u-option value="Lillestrøm">Lillestrøm</u-option>
+// 				</u-datalist>
+// 			</div>
+// 		);
+// 	},
+// };
+
+// export const WithDatalistAPI: Story = {
+// 	name: "With Datalist API (Eksperimentell)",
+// 	parameters: {
+// 		layout: "padded",
+// 		showInOverview: true,
+// 	},
+// 	render: () => {
+// 		const inputRef = useRef<HTMLInputElement>(null);
+// 		const [options, setOptions] = useState<string[] | string>("Name a country"); // Store results
+// 		const [debounced, setDebounced] = useState<(value: string) => void>();
+
+// 		const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+// 			if (isDatalistClick(event.nativeEvent)) return; // User clicked option element
+// 			const value = encodeURIComponent(event.target.value.trim());
+
+// 			setOptions(value ? "Loading..." : "Name a country");
+// 			debounced?.(value);
+// 		};
+
+// 		// Debounce to avoid too many API calls
+// 		useEffect(() => {
+// 			const apiCall = async (value: string) => {
+// 				const api = `https://restcountries.com/v2/name/${value}?fields=name`;
+// 				const countries = await (await fetch(api)).json();
+
+// 				setOptions(
+// 					Array.isArray(countries)
+// 						? countries.map(({ name }) => name)
+// 						: "No results",
+// 				);
+// 			};
+// 			setDebounced(() => debounce(apiCall, 500));
+// 		}, []);
+
+// 		// Prevent native datalist filtering so we can control state
+// 		useEffect(() => {
+// 			if (inputRef.current) syncDatalistState(inputRef.current);
+// 		});
+
+// 		return (
+// 			<div className={styles.field}>
+// 				<label>With datalist API search</label>
+// 				<input
+// 					type="search"
+// 					className={styles.input}
+// 					onInput={handleInput}
+// 					ref={inputRef}
+// 				/>
+// 				<u-datalist>
+// 					{Array.isArray(options) ? (
+// 						options.map((option) => <u-option key={option}>{option}</u-option>)
+// 					) : (
+// 						<u-option role="none">{options}</u-option>
+// 					)}
+// 				</u-datalist>
+// 			</div>
+// 		);
+// 	},
+// };
+
+export const WithTags: Story = {
+	name: "With Tags (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<div className={styles.field}>
+			<label>With tags</label>
+			<u-tags>
+				<data value="Sogndal">Sogndal</data>
 				<input type="search" className={styles.input} />
 				<u-datalist>
 					<u-option role="none">Tomt</u-option>
@@ -191,36 +319,48 @@ export const WithSuggestion: Story = {
 					<u-option value="Bergen">Bergen</u-option>
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
-			</div>
-		</>
+			</u-tags>
+		</div>
 	),
 };
 
-export const WithMultiSuggestion: Story = {
-	name: "With multi suggestion (Eksperimentell)",
+export const ReactWithDatalist: Story = {
+	name: "React With Datalist (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<u-tags>
-					<data value="Sogndal">Sogndal</data>
-					<input type="search" className={styles.input} />
-					<u-datalist>
-						<u-option role="none">Tomt</u-option>
-						<u-option value="Sogndal">Sogndal</u-option>
-						<u-option value="Oslo">Oslo</u-option>
-						<u-option value="Brønnøysund">Brønnøysund</u-option>
-						<u-option value="Stavanger">Stavanger</u-option>
-						<u-option value="Trondheim">Trondheim</u-option>
-						<u-option value="Bergen">Bergen</u-option>
-						<u-option value="Lillestrøm">Lillestrøm</u-option>
-					</u-datalist>
-				</u-tags>
-			</div>
-		</>
+		<Field>
+			<label>React with datalist</label>
+			<p>Beskrivelse</p>
+			<Input className={styles.input} />
+			<Field.Datalist>
+				<Field.Option>Saft</Field.Option>
+				<Field.Option>Suse</Field.Option>
+			</Field.Datalist>
+		</Field>
+	),
+};
+
+export const ReactWithTags: Story = {
+	name: "React With Tags (Eksperimentell)",
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<Field>
+			<label>React with tags</label>
+			<p>Beskrivelse</p>
+			<Field.Tags>
+				<data>Saft</data>
+				<Input className={styles.input} />
+				<Field.Datalist>
+					<Field.Option>Saft</Field.Option>
+					<Field.Option>Suse</Field.Option>
+				</Field.Datalist>
+			</Field.Tags>
+		</Field>
 	),
 };

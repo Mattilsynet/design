@@ -3,16 +3,31 @@
 		composes: ds-details from "@digdir/designsystemet-css";
 
 		--dsc-details-background: transparent;
-		--dsc-details-summary-background: transparent;
+		--dsc-details-icon-size: var(--ds-size-3);
+		--dsc-details-icon-url: var(--mtds-icon-chevron);
 		--dsc-details-summary-background--hover: transparent;
 		--dsc-details-summary-background--open: transparent;
+		--dsc-details-summary-background: transparent;
+		--mtdsc-details-content-padding: 0px;
+	}
 
-		& > :is(summary, u-summary)::before {
-			transition: rotate .2s ease-out;
-		}
+	.details > :is(summary, u-summary)::before {
+		transition: rotate .2s ease-out;
+	}
 
-		&[open] > :is(summary, u-summary)::before {
-			rotate: -180deg;
-		}
+	.details[open] > :is(summary, u-summary)::before {
+		rotate: -180deg;
+	}
+
+	.details::details-content,
+	.details::part(details-content) {
+		padding: var(--mtdsc-details-content-padding);
+		transition-duration: 400ms;
+		transition-property: content-visibility, height, padding;
+	}
+
+	.details:not([open])::details-content,
+	.details:not([open])::part(details-content) {
+		padding-block: 0px;
 	}
 }

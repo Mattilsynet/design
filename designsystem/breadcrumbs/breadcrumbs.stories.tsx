@@ -33,9 +33,7 @@ export const Default: Story = {
 					<a href="#none">Nivå 3</a>
 				</li>
 				<li>
-					<a href="#none" aria-current="page">
-						Nivå 4
-					</a>
+					<a href="#none">Nivå 4</a>
 				</li>
 			</ol>
 		</nav>
@@ -92,9 +90,7 @@ export const WithBackbutton: Story = {
 						<a href="#none">Nivå 3</a>
 					</li>
 					<li>
-						<a href="#none" aria-current="page">
-							Nivå 4
-						</a>
+						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
 			</nav>
@@ -114,9 +110,7 @@ export const WithBackbutton: Story = {
 						<a href="#none">Nivå 3</a>
 					</li>
 					<li>
-						<a href="#none" aria-current="page">
-							Nivå 4
-						</a>
+						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
 			</nav>
@@ -146,9 +140,7 @@ export const Sizes: Story = {
 						<a href="#none">Nivå 3</a>
 					</li>
 					<li>
-						<a href="#none" aria-current="page">
-							Nivå 4
-						</a>
+						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
 			</nav>

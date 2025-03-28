@@ -13,12 +13,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
-		const dialogRef = useRef<HTMLDialogElement>(null);
-
-		useEffect(() => {
-			if (open) dialogRef.current?.showModal();
-			else dialogRef.current?.close();
-		}, [open]);
 
 		return (
 			<>
@@ -32,7 +26,7 @@ export const Default: Story = {
 				<dialog
 					className={styles.dialog}
 					onClose={() => setOpen(false)}
-					ref={dialogRef}
+					open={open}
 				>
 					<button aria-label="Lukk" data-command="close" type="button"></button>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -67,9 +61,8 @@ export const React: Story = {
 					className={styles.dialog}
 					onClose={() => setOpen(false)}
 					open={open}
-					modal
 				>
-					<button aria-label="Lukk" data-command="close" type="button"></button>
+					<Button aria-label="Lukk" data-command="close" />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
 					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.
 					Fusce varius urna odio, vel bibendum odio imperdiet eget. Aliquam
@@ -94,12 +87,6 @@ export const React: Story = {
 export const WithClose: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
-		const dialogRef = useRef<HTMLDialogElement>(null);
-
-		useEffect(() => {
-			if (open) dialogRef.current?.showModal();
-			else dialogRef.current?.close();
-		}, [open]);
 
 		return (
 			<>
@@ -113,7 +100,7 @@ export const WithClose: Story = {
 				<dialog
 					className={styles.dialog}
 					onClose={() => setOpen(false)}
-					ref={dialogRef}
+					open={open}
 				>
 					<button type="button" data-command="close" aria-label="Lukk"></button>
 					<div className={styles.grid}>
@@ -141,12 +128,6 @@ export const WithClose: Story = {
 export const WithBackdropClose: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
-		const dialogRef = useRef<HTMLDialogElement>(null);
-
-		useEffect(() => {
-			if (open) dialogRef.current?.showModal();
-			else dialogRef.current?.close();
-		}, [open]);
 
 		return (
 			<>
@@ -161,9 +142,35 @@ export const WithBackdropClose: Story = {
 					className={styles.dialog}
 					data-closedby="any"
 					onClose={() => setOpen(false)}
-					ref={dialogRef}
+					open={open}
 				>
 					Klikk på utsiden for å lukke
+				</dialog>
+			</>
+		);
+	},
+};
+
+export const WithoutBackdrop: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState(false);
+
+		return (
+			<>
+				<button
+					className={styles.button}
+					type="button"
+					onClick={() => setOpen(true)}
+				>
+					Open
+				</button>
+				<dialog
+					className={styles.dialog}
+					data-modal="false"
+					onClose={() => setOpen(false)}
+					open={open}
+				>
+					Uten backdrop
 				</dialog>
 			</>
 		);

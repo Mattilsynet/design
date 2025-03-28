@@ -1,6 +1,9 @@
 @layer mt.design {
 	.avatar {
 		composes: ds-avatar from "@digdir/designsystemet-css";
+		--dsc-avatar-color: var(--ds-color-base-contrast-subtle);
+		--dsc-avatar-icon-url: var(--mtds-icon-user);
+
 		border: 0; /* In case button */
 		flex-shrink: 0; /* If placed in flex */
 	}

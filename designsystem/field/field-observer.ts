@@ -1,10 +1,10 @@
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
+  IS_BROWSER,
   QUICK_EVENT,
   attr,
   isInputLike,
-  off,
   on,
   onMutation,
   useId,
@@ -63,19 +63,21 @@ function renderDatalist(
   if (!list) return;
   if (!input.hasAttribute("placeholder")) attr(input, "placeholder", ""); // Needed to render dropdown chevron when <datalist> is present
 
+  // Setup translations from CSS custom properties
   const style = window.getComputedStyle(list);
   const tags = input.closest('u-tags');
+  const i11n = (key: string) => style.getPropertyValue(`--mtds-text-${key}`);
 
-  attr(list, "data-sr-plural", style.getPropertyValue("--mtds-text-datalist-plural"));
-  attr(list, "data-sr-singular", style.getPropertyValue("--mtds-text-datalist-singular"));
+  attr(list, "data-sr-plural", i11n("datalist-plural"));
+  attr(list, "data-sr-singular", i11n("datalist-singular"));
 
   if (tags) {
-    attr(tags,'data-sr-added', style.getPropertyValue("--mtds-text-tags-added"));
-    attr(tags,'data-sr-empty', style.getPropertyValue("--mtds-text-tags-empty"));
-    attr(tags,'data-sr-found', style.getPropertyValue("--mtds-text-tags-found"));
-    attr(tags,'data-sr-of', style.getPropertyValue("--mtds-text-tags-of"));
-    attr(tags,'data-sr-remove', style.getPropertyValue("--mtds-text-tags-remove"));
-    attr(tags,'data-sr-removed', style.getPropertyValue("--mtds-text-tags-removed"));
+    attr(tags,'data-sr-added', i11n("tags-added"));
+    attr(tags,'data-sr-empty', i11n("tags-empty"));
+    attr(tags,'data-sr-found', i11n("tags-found"));
+    attr(tags,'data-sr-of', i11n("tags-of"));
+    attr(tags,'data-sr-remove', i11n("tags-remove"));
+    attr(tags,'data-sr-removed', i11n("tags-removed"));
   }
 }
 
@@ -104,10 +106,18 @@ function renderCounter(input: HTMLInputElement) {
 }
 
 // Update when typing
-function handleInput({ target }: Event) {
+function handleInput({target}: Event) {
   if (isInputLike(target)) {
     renderCounter(target);
     renderTextareaSize(target);
+
+    // const input = event.target;
+    // const list = input.list;
+    // if (list) {
+    //   console.log('etterpå');
+    //   if (isDatalistClick(event)) return; // User clicked option element
+    //   if (attr(list, 'data-filter') === 'false') syncDatalistState(input); // Allow custom filtering
+    // }
   }
 }
 
@@ -117,14 +127,8 @@ function handleInvalid(event: Event) {
     event.preventDefault();
 }
 
-export function observe(el: Element) {
-  onMutation(el, CSS_FIELD, renderAria);
-  on(el, "input", handleInput, QUICK_EVENT);
-  on(el, "invalid", handleInvalid, true); // Use capture as invalid does noe buttle
-}
-
-export function unobserve(el: Element) {
-  onMutation(el, CSS_FIELD, false);
-  off(el, "input", handleInput, QUICK_EVENT);
-  off(el, "invalid", handleInvalid, true);
+if (IS_BROWSER) {
+  onMutation(document.documentElement, CSS_FIELD, renderAria);
+  on(document, "input", handleInput, QUICK_EVENT);
+  on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe buttle
 }
