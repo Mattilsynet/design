@@ -383,13 +383,11 @@ export const Prose: Story = {
 					<h1 className={styles.heading} data-size="xl">
 						Her søker du om helsesertifikat for sjømat til Australia
 					</h1>
-					<div>
-						<div style={{ fontSize: "1.45em", marginBottom: 5 }}>
-							Se hvilken løsning du skal bruke når du søker, hva sertifikatet
-							koster og når sertifikatkontoret holder åpent.
-						</div>
-						<small>Publisert 14.01.2025</small>
-					</div>
+					<p data-size="xl">
+						Se hvilken løsning du skal bruke når du søker, hva sertifikatet
+						koster og når sertifikatkontoret holder åpent.
+					</p>
+					<small>Publisert 14.01.2025</small>
 					<h2 className={styles.heading} data-size="sm">
 						Innhold på denne siden
 					</h2>

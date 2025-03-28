@@ -13,6 +13,8 @@ type ButtonBaseProps<Href> = {
 	"data-nowrap"?: boolean;
 	"data-variant"?: "primary" | "secondary" | "tertiary";
 	href?: Href;
+	popovertarget?: string;
+	popovertargetaction?: string;
 };
 
 export type ButtonProps<

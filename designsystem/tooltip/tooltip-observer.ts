@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, anchorPosition, attr, on } from "../utils";
+import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on } from "../utils";
 
 const DESCRIBEDBY = "aria-describedby";
 const ESC = "Escape";
@@ -74,6 +74,8 @@ function handleMoveThrottled(target: Element | null) {
   anchorPosition(TOOLTIP, anchor || false, position);
 }
 
-on(document, "blur,focus,mouseout,mouseover", handleMove, QUICK_EVENT);
-on(window, "keydown", handleMove, QUICK_EVENT);
-on(window, "blur", handleMove, QUICK_EVENT);
+if (IS_BROWSER) {
+  on(document, "blur,focus,mouseout,mouseover", handleMove, QUICK_EVENT);
+  on(window, "keydown", handleMove, QUICK_EVENT);
+  on(window, "blur", handleMove, QUICK_EVENT);
+}

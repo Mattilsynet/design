@@ -3,6 +3,7 @@ import { type JSX, forwardRef } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
+	PopoverValues,
 } from "../react-types";
 import styles from "../styles.module.css";
 
@@ -11,6 +12,7 @@ export type PopoverProps<As extends React.ElementType = "div"> =
 		As,
 		{
 			"data-position"?: "top" | "bottom" | "left" | "right";
+			popover?: PopoverValues;
 		}
 	>;
 
