@@ -21,6 +21,5 @@ function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
   }
 }
 
-if (IS_BROWSER) {
+if (IS_BROWSER)
   onMutation(document.documentElement, CSS_FIELDSET, handleMutation);
-}

@@ -166,6 +166,7 @@
 		margin-inline: 0;
 		overflow: auto;
 		overscroll-behavior-x: contain; /* Prevent browser back/forward history on end of scroll */
+		position: relative; /* Ensure also inner position: absolute elements are scrolled */
 	}
 	@keyframes _scrollShadow {
 		from {

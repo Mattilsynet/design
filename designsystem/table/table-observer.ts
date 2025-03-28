@@ -28,6 +28,5 @@ function handleInject(event: Event & { animationName?: string }) {
     }
 }
 
-if (IS_BROWSER) {
+if (IS_BROWSER)
   on(document, 'animationend', handleInject, QUICK_EVENT);
-}

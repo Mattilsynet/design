@@ -24,6 +24,5 @@ function handleInject(event: Event & { animationName?: string }) {
   FAVICON.href = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 55'><rect fill='${isDot ? "none" : back}' width='51' height='51' x='2' y='2' stroke='${text}' stroke-dasharray='0.09 6.38' stroke-linecap='round' stroke-opacity='${isDot ? 0.6 : 0}' stroke-width='2.3' rx='25.5'/><g transform="translate(7.5 7.5)">${svg.outerHTML.replace(/(fill|width|height|xmlns)=\S+/gi, "").replace("<svg", `<svg width="40" height="40" fill="${text}"`)}</g></svg>`)}`;
 }
 
-if (IS_BROWSER) {
+if (IS_BROWSER)
   on(document, 'animationend', handleInject, QUICK_EVENT);
-}
