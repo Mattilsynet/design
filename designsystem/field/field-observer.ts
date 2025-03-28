@@ -1,4 +1,4 @@
-import { UHTMLDataListElement, syncDatalistState } from "@u-elements/u-datalist";
+import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
   IS_BROWSER,
@@ -106,13 +106,18 @@ function renderCounter(input: HTMLInputElement) {
 }
 
 // Update when typing
-function handleInput({ target }: Event) {
+function handleInput({target}: Event) {
   if (isInputLike(target)) {
     renderCounter(target);
     renderTextareaSize(target);
 
-    const noFilter = target.list?.getAttribute('data-filter') === 'false';
-    if (noFilter) syncDatalistState(target);
+    // const input = event.target;
+    // const list = input.list;
+    // if (list) {
+    //   console.log('etterpå');
+    //   if (isDatalistClick(event)) return; // User clicked option element
+    //   if (attr(list, 'data-filter') === 'false') syncDatalistState(input); // Allow custom filtering
+    // }
   }
 }
 

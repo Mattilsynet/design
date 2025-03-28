@@ -84,29 +84,27 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 	},
 );
 
-export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
-	"data-filter"?: boolean | "true" | "false"; // Need string "false" as well as false is used as a value in field-observer
-};
+export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist">;
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
-	function FieldDatalist(rest, ref) {
-		return <u-datalist ref={ref} {...rest} />;
+	function FieldDatalist({ className, ...rest }, ref) {
+		return <u-datalist class={className} ref={ref} {...rest} />;
 	},
 );
 
 export type FieldOptionProps = React.ComponentPropsWithoutRef<"option">;
 
 const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
-	function FieldOption(rest, ref) {
-		return <u-option ref={ref} {...rest} />;
+	function FieldOption({ className, ...rest }, ref) {
+		return <u-option class={className} ref={ref} {...rest} />;
 	},
 );
 
 export type FieldTagsProps = ReactUtags;
 
 const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
-	function FieldTags(rest, ref) {
-		return <u-tags ref={ref} {...rest} />;
+	function FieldTags({ className, ...rest }, ref) {
+		return <u-tags class={className} ref={ref} {...rest} />;
 	},
 );
 

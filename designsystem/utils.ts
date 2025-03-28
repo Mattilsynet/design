@@ -1,6 +1,19 @@
 export const IS_BROWSER = typeof window !== 'undefined' && typeof document !== 'undefined';
 export const QUICK_EVENT = { capture: true, passive: true };
 
+export function debounce<T extends unknown[]>(
+  callback: (...args: T) => void,
+  delay: number,
+) {
+  let timer: ReturnType<typeof setTimeout>;
+
+  return (...args: T) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => callback(...args), delay);
+  };
+};
+ 
+
 /**
  * attr
  * @description Utility to quickly get, set and remove attributes
@@ -147,12 +160,12 @@ const MUTATORS_CALLBACK = (element: Element) => {
  * @param className The class name to observe
  * @param callback The callback to run when mutations are detected or false to stop observing
  */
-export const onMutation = (
+export const onMutation = <T extends Element>(
 	element: Element,
 	className: string,
-	callback: ((collection: HTMLCollection) => void) | false
+	callback: ((collection: HTMLCollectionOf<T>) => void) | false
 ) => {
-	const collection = element.getElementsByClassName(className);
+	const collection = element.getElementsByClassName(className) as HTMLCollectionOf<T>;
 	let mutator = MUTATORS.get(element);
 
 	if (!mutator) {

@@ -1,11 +1,17 @@
 "use client"; // Enable client side code
 
+// Expose custom elements not matching HTML elements
+export type { UHTMLTabsElement, UHTMLTabElement, UHTMLTabListElement, UHTMLTabPanelElement } from "@u-elements/u-tabs";
+export type { UHTMLTagsElement } from "@u-elements/u-tags";
+
 // Expose API
 export { pagination } from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 
 // Load beahviours
 // import "./toast/toast-observer";
+import "./breadcrumbs/breadcrumbs-observer";
+import "./errorsummary/errorsummary-observer";
 import "./dialog/dialog-observer";
 import "./field/field-observer";
 import "./fieldset/fieldset-observer";
