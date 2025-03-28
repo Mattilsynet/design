@@ -20,7 +20,8 @@ const setExpanded = (state: boolean) => {
 };
 
 if (IS_BROWSER) {
-  const store = window.localStorage.getItem(KEY_TOGGLE);
-  setExpanded(store ? store === 'true' : getExpanded());
+  // TODO: Need to find solution for https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU/p1743170420896739?thread_ts=1743169208.287529&cid=C03FAJ7N1EU
+  // const store = window.localStorage.getItem(KEY_TOGGLE);
+  // setExpanded(store ? store === 'true' : getExpanded());
   on(document, "click", handleToggleClick, QUICK_EVENT);
 }
