@@ -203,7 +203,7 @@
       "color.inverted.16": "6d546214722232fd06f9e60a5641ac2d0509726f",
       "font-family": "6348d3fd6ffd6acb34370e60a380bf4e8db0fa32",
       "font-weight.medium": "0a68a0c347513146fbd3897759e29ddc2f75f1aa",
-      "font-weight.semibold": "008c96f9bad2b9e0f94b4e9c7079ad773aeaeb71",
+      "font-weight.bold": "008c96f9bad2b9e0f94b4e9c7079ad773aeaeb71",
       "font-weight.regular": "8614e735bc1bb0fb99cf7ba1374f33ea41064cda",
       "font-weight.italic": "383b56fae1ab0a75c32a658de60c74abac1a0acd",
       "border-radius.1": "1eaf069d538c0ef2219d1c01751b17e1c2ed3bc3",
@@ -228,7 +228,7 @@
     "$figmaVariableReferences": {
       "mattilsynet.font-family": "86d339c889af567eb59aa5501b225a0b904a0c8f",
       "mattilsynet.font-weight.medium": "2d63a697705ba926031e9715999f2b03dc7eab47",
-      "mattilsynet.font-weight.semibold": "45accc53705071bdd0de11d5729fe232a005e0ef",
+      "mattilsynet.font-weight.bold": "9025c76d9f0f7c3c9ddbf3bccdf0227aad060ba2",
       "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e",
       "mattilsynet.font-weight.italic": "cc891f6879123204224cf94f27a2d9498a2c456c"
     }
@@ -245,7 +245,7 @@
     "$figmaVariableReferences": {
       "mattilsynet.font-family": "86d339c889af567eb59aa5501b225a0b904a0c8f",
       "mattilsynet.font-weight.medium": "2d63a697705ba926031e9715999f2b03dc7eab47",
-      "mattilsynet.font-weight.semibold": "45accc53705071bdd0de11d5729fe232a005e0ef",
+      "mattilsynet.font-weight.bold": "9025c76d9f0f7c3c9ddbf3bccdf0227aad060ba2",
       "mattilsynet.font-weight.regular": "a0cd2429e873141ea47311750b0ba501c349903e",
       "mattilsynet.font-weight.italic": "cc891f6879123204224cf94f27a2d9498a2c456c"
     }

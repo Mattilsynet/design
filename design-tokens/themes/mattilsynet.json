@@ -208,9 +208,9 @@
       "$type": "fontWeights",
       "$value": "{mattilsynet.font-weight.medium}"
     },
-    "semibold": {
+    "bold": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.semibold}"
+      "$value": "{mattilsynet.font-weight.bold}"
     },
     "regular": {
       "$type": "fontWeights",

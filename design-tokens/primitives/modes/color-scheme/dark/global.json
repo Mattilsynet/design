@@ -16,7 +16,7 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#0D284F",
+        "$value": "#18222f",
         "$description": "surface-tinted"
       },
       "5": {
@@ -29,7 +29,8 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#07538d"
+        "$value": "#a2c8fa59",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
@@ -45,7 +46,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#d6e7f4"
+        "$value": "#a2c8fa",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
@@ -83,7 +85,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#033e0b"
+        "$value": "#1c2a2b",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
@@ -95,7 +98,8 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#045f11"
+        "$value": "#96da8859",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
@@ -111,7 +115,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#d4ead7"
+        "$value": "#96da88",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
@@ -149,7 +154,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#483008"
+        "$value": "#272116",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
@@ -161,7 +167,8 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#6f490d"
+        "$value": "#f2d98859",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
@@ -177,7 +184,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#f9e2bc"
+        "$value": "#f2d988",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
@@ -281,7 +289,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#6b0f0f"
+        "$value": "#2d1b1b",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
@@ -293,7 +302,8 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#a11717"
+        "$value": "#ff9694",
+        "$description": "border-subtle"
       },
       "8": {
         "$type": "color",
@@ -309,7 +319,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#f6dfdf"
+        "$value": "#ff9694",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
