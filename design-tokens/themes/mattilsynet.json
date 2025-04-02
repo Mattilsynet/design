@@ -131,6 +131,72 @@
         "$type": "color",
         "$value": "{mattilsynet.neutral.16}"
       }
+    },
+    "inverted": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.inverted.16}"
+      }
     }
   },
   "font-family": {
@@ -142,13 +208,17 @@
       "$type": "fontWeights",
       "$value": "{mattilsynet.font-weight.medium}"
     },
-    "semibold": {
+    "bold": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.semibold}"
+      "$value": "{mattilsynet.font-weight.bold}"
     },
     "regular": {
       "$type": "fontWeights",
       "$value": "{mattilsynet.font-weight.regular}"
+    },
+    "italic": {
+      "$type": "fontWeights",
+      "$value": "{mattilsynet.font-weight.italic}"
     }
   },
   "border-radius": {

@@ -163,6 +163,88 @@
         "$value": "#FFFFFF",
         "$description": "base-contrast-default"
       }
+    },
+    "inverted": {
+      "1": {
+        "$type": "color",
+        "$value": "#054449",
+        "$description": "background-default\ngranskog"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#FFFFFF0F",
+        "$description": "background-tinted\n6% opacity"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#116E6B",
+        "$description": "surface-default\nhavdyp"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#0e5855",
+        "$description": "surface-tinted\n"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#0a4e4f",
+        "$description": "surface-hover\n"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "#054449",
+        "$description": "surface-active\n"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "#E2F1DF26",
+        "$description": "border-subtle\nlav 15%"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "#E2F1DF",
+        "$description": "border-default"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "border-strong\n"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "#E2F1DF",
+        "$description": "text-subtle\nlav"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "text-default"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "#E2F1DF",
+        "$description": "base-default"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "#D8EED8",
+        "$description": "base-hover\n"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "#CAE8CA",
+        "$description": "base-active"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "#116e6b",
+        "$description": "base-contrast-subtle\n"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "#054449",
+        "$description": "base-contrast-default"
+      }
     }
   }
 }

@@ -2,20 +2,24 @@
   "mattilsynet": {
     "font-family": {
       "$type": "fontFamilies",
-      "$value": "Mattilsynet Sans Variable"
+      "$value": "\"Mattilsynet Sans Variable\""
     },
     "font-weight": {
       "medium": {
         "$type": "fontWeights",
         "$value": "Medium"
       },
-      "semibold": {
+      "bold": {
         "$type": "fontWeights",
-        "$value": "SemiBold"
+        "$value": "Bold"
       },
       "regular": {
         "$type": "fontWeights",
         "$value": "Regular"
+      },
+      "italic": {
+        "$type": "fontWeights",
+        "$value": "Regular Italic"
       }
     }
   }
