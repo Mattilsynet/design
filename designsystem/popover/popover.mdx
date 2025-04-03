@@ -8,6 +8,9 @@ import * as stories from './popover.stories';
 - Legg klassen `popover`, attributten `popover` og `id` på `<div>` eller `<menu>`
 - Legg `popovertarget="ID"` på typisk `<button>` som trigger element
 - Plassiering vil automatisk tilpasse seg scroll og tilgjengelig plass
+
+> **Merk:** I React 19 kan du skrive `popoverTarget` og `popoverTargetAction`. Eldre versjoner av React krever `popovertarget` og `popovertargetaction`
+
 <Canvas of={stories.Default} />
 
 ## Nedtrekksmeny / Dropdown
@@ -22,7 +25,7 @@ import * as stories from './popover.stories';
 <Canvas of={stories.Position} />
 
 ## Lukkeknapp
-- Bruk `popovertarget="ID" popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
+- Bruk `popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
 <Canvas of={stories.WithClose} />
 
 ## Tekst inline

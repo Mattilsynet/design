@@ -3,7 +3,7 @@ import { IS_BROWSER, QUICK_EVENT, on } from "../utils";
 let FAVICON: HTMLLinkElement;
 
 function handleInject(event: Event & { animationName?: string }) {
-  if (event.animationName !== styles._onInjectLogo) return;
+  if (event.animationName !== styles._onInjectLogo && event.animationName !== styles._onChangeLogo) return;
   const logo = event.target as HTMLElement;
   const svg = logo?.firstElementChild;
 

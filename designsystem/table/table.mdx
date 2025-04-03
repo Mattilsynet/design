@@ -94,4 +94,9 @@ import * as stories from './table.stories';
 - **Merk:** Skal hovedsakelig kun brukes når tabell ligger rett på gåsunge bakgrunn
 <Canvas of={stories.WithBorderAround} />
 
+## Uten kant
+- Legg `data-border="false"` på `<table>` for å fjerne alle `border` linjer
+- **Merk:** Skal hovedsakelig kun brukes når tabell har kun to kolonner
+<Canvas of={stories.WithoutBorders} />
+
 <CssVariables component="table" exclude="zebra,sticky,hover,sorted" />

@@ -82,6 +82,7 @@
 		/* Min 360px/22.5rem => Max 1360px/85rem */
 		/* Calculations from https://royalfig.github.io/fluid-typography-calculator/ */
 		--ds-heading-size: calc(16 / 18);
+		--ds-body-xs-font-size: 0.875rem; /* 14px */
 		--ds-body-sm-font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem); /* 14px => 16px */
 		--ds-body-md-font-size: clamp(1rem, 0.955rem + 0.2vw, 1.125rem); /* 16px => 18px */
 		--ds-body-lg-font-size: clamp(1.125rem, 1.0575rem + 0.3vw, 1.3125rem); /* 18px => 21px */

@@ -2,6 +2,7 @@ import styles from "../styles.module.css";
 import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on } from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
+let OPEN_POPOVERS = 0; // Speed up by only checking clicks if we have open popovers
 
 function handleToggle({ target: el, newState }: Event & { newState?: string }) {
   if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
@@ -9,9 +10,13 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
       `[popovertarget="${el.id}"]`
     );
 
-    if (newState === "closed") anchorPosition(el, false);
-    else if (anchor)
+    if (newState === "closed") {
+      OPEN_POPOVERS -= 1;
+      anchorPosition(el, false);
+    } else if (anchor) {
+      OPEN_POPOVERS += 1;
       anchorPosition(el, anchor, attr(el, "data-position") || "bottom");
+    }
   }
 }
 
@@ -19,13 +24,13 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 // and automatically assume popovertarget is the closest parent popover
 // but respect the popovertarget and popovertargetaction attribute
 function handleLinkClick({ target }: Event) {
-  const link = (target as Element)?.closest?.("a");
-  if (link) {
-    const root = link.getRootNode() as ShadowRoot;
+  const close = OPEN_POPOVERS && (target as Element)?.closest?.("a,[popovertargetaction]");
+
+  if (close) {
+    const action = attr(close, "popovertargetaction") || "toggle";
     const target =
-      root.getElementById?.(attr(link, "popovertarget") || "") ||
-      link.closest(`.${CSS_POPOVER}`);
-    const action = attr(link, "popovertargetaction") || "toggle";
+      document.getElementById?.(attr(close, "popovertarget") || "") ||
+      close.closest(`.${CSS_POPOVER}`);
 
     target?.togglePopover(
       action === "show" || (action === "hide" ? false : undefined)

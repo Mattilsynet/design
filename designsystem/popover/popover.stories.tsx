@@ -20,18 +20,22 @@ export const Default: Story = {
 		return (
 			<>
 				<button
+					className={styles.button}
+					data-arrow
+					data-variant="secondary"
 					popoverTarget={popId}
 					type="button"
-					className={styles.button}
-					data-variant="secondary"
-					data-arrow
 				>
 					Knapp
 				</button>
 				<menu popover="auto" id={popId} className={styles.popover}>
 					{range.map((num) => (
 						<li key={num}>
-							<button type="button" className={styles.button}>
+							<button
+								className={styles.button}
+								popoverTargetAction="hide"
+								type="button"
+							>
 								Knapp {num}
 							</button>
 						</li>
@@ -162,7 +166,6 @@ export const WithClose: Story = {
 			</button>
 			<div popover="auto" id="pop-3" className={styles.popover}>
 				<button
-					popoverTarget="pop-3"
 					popoverTargetAction="hide"
 					type="button"
 					className={styles.button}

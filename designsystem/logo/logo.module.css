@@ -102,12 +102,11 @@
 			float: left;
 			height: var(--icon-size);
 			margin-right: calc(var(--icon-size) * -1);
-			mask: center / contain no-repeat var(--solig);
 			width: var(--icon-size);
 		}
 		&[data-env]::before {
 			background: currentcolor;
-			mask-image: var(--icon-dots);
+			mask: center / contain no-repeat var(--icon-dots);
 		}
 	}
 	.logo svg {
@@ -125,6 +124,7 @@
 	 */
 	.logo[data-env] {
 		color: var(--mtds-logo-color);
+		animation: _onChangeLogo 1ms; /* Detect if data-env is set after page load */
 	}
 	.logo[data-env]:empty::before,
 	.logo[data-env]:not(:empty)::after {
@@ -147,5 +147,10 @@
 	}
 	html:has(.logo[data-env][data-color="info"]) {
 		--mtds-logo-color: var(--ds-color-info-text-subtle);
+	}
+	@keyframes _onChangeLogo {
+		to {
+			opacity: 1;
+		}
 	}
 }

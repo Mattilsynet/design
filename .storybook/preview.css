@@ -59,6 +59,10 @@ u-tabpanel > pre > .docblock-source {
 	}
 }
 
+.sbdocs-p code {
+	display: inline;
+}
+
 .sbdocs-ol,
 .sbdocs-ul {
 	padding-left: 1em;
