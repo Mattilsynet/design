@@ -1,5 +1,3 @@
-"use client"; // Enable client side code
-
 // Expose custom elements not matching HTML elements
 export type { UHTMLTabsElement, UHTMLTabElement, UHTMLTabListElement, UHTMLTabPanelElement } from "@u-elements/u-tabs";
 export type { UHTMLTagsElement } from "@u-elements/u-tags";

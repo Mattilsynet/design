@@ -7,6 +7,14 @@
 		border: 0; /* In case button */
 		flex-shrink: 0; /* If placed in flex */
 	}
+
+	.avatar[data-size="xs"] {
+		font-size: .65em; /* Custom size to make it fit in <button> */
+	}
+
+	/**
+	 * Avatar is <button>
+	 */
 	button.avatar {
 		cursor: pointer;
 	}

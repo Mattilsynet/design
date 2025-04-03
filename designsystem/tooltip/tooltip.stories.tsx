@@ -1,3 +1,4 @@
+import { Heart } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../react";
 import styles from "../styles.module.css";
@@ -26,4 +27,8 @@ export const Default: Story = {
 
 export const React: Story = {
 	render: () => <Button data-tooltip="Innhold her">Hold over meg</Button>,
+};
+
+export const Icon: Story = {
+	render: () => <Heart data-tooltip="Innhold her" tabIndex={0} />,
 };
