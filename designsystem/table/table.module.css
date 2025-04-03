@@ -45,7 +45,6 @@
 	 */
 	.table :where([data-numeric]:not([data-numeric="false"])):where(td, th) {
 		font-variant-numeric: tabular-nums;
-		text-align: end;
 		white-space: nowrap;
 	}
 
@@ -180,7 +179,7 @@
 	/**
 	 * Mobile versions (up to 960px)
 	 */
-	@media screen and (max-width: 60em) {
+	@media (max-width: 60em) {
 		.table[data-mobile],
 		.table[data-mobile] > tbody,
 		.table[data-mobile] > tbody > tr,

@@ -3,15 +3,23 @@
 		composes: ds-details from "@digdir/designsystemet-css";
 
 		--dsc-details-background: transparent;
-		--dsc-details-icon-size: var(--ds-size-3);
+		--dsc-details-icon-size: var(--mtds-icon-size);
 		--dsc-details-icon-url: var(--mtds-icon-chevron);
 		--dsc-details-summary-background--hover: transparent;
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
-		--mtdsc-details-content-padding: 0px;
+		--mtdsc-details-content-padding: 0 0 var(--ds-size-4)
+			calc(
+				var(--ds-size-4) +
+				var(--dsc-details-icon-size) +
+				var(--dsc-details-icon-gap)
+			);
 	}
 
 	.details > :is(summary, u-summary)::before {
+		border: 0;
+		margin: 0;
+		padding: 0;
 		transition: rotate .2s ease-out;
 	}
 

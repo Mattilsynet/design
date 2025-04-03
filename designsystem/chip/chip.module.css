@@ -3,7 +3,9 @@
 		composes: ds-chip from "@digdir/designsystemet-css";
 		--dsc-chip-input-accent-color: var(--ds-color-base-contrast-default);
 		--dsc-chip-border-radius: var(--ds-border-radius-xl); /* Prevent larger radius when growing in height */
+		--dsc-chip-color: var(--ds-color-text-subtle);
 
+		font-weight: normal; /* Reset <label> */
 		max-width: 100%;
 		text-align: left;
 		transition-duration: .2s;
@@ -28,8 +30,9 @@
 		background: var(--dsc-chip-background);
 		border-color: var(--dsc-chip-border-color);
 		color: var(--dsc-chip-color);
+		padding-right: var(--ds-size-1);
 	}
-	.chip[data-removable]:hover {
-		background: var(--dsc-chip-background--hover);
+	.chip[data-removable]:hover::after {
+		mask-image: var(--mtds-icon-close--filled);
 	}
 }

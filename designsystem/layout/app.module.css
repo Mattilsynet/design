@@ -48,10 +48,15 @@
 		cursor: pointer;
 		height: 40px;
 		left: 20px;
-		position: absolute; /* TODO: Position toggle button */
+		position: fixed; /* TODO: Position toggle button */
 		text-align: center;
 		width: 40px;
 		z-index: 2;
+
+		/* Maxium 960px */
+		@media (max-width: 60em) {
+			display: none; /* Hide toggler on mobile */
+		}
 	}
 	.app [data-command="toggle-app-expanded"]:after {
 		content: var(--mtds-app-expanded--true, "<")
@@ -77,6 +82,7 @@
 		/* Push logo to left */
 		& > :first-child {
 			margin-right: auto;
+			min-width: 0; /* Allow shrinking if using breadcrumbs */
 		}
 	}
 
@@ -90,6 +96,7 @@
 			var(--mtds-app-expanded--false, right);
 
 		align-content: start; /* Set default alignment in case used as grid */
+		box-sizing: border-box;
 		grid-area: nav;
 		overflow-y: auto;
 		overscroll-behavior: contain;
@@ -103,31 +110,66 @@
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav--expanded))
 			var(--mtds-app-expanded--false, var(--mtdsc-app-nav--collapsed));
 
-		& menu {
-			margin-left: calc(var(--mtdsc-app-spacing-md) * -2);
-		}
-		& menu > li > :is(a, button) {
-			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
-		}
 		& menu > li > [data-tooltip]::after {
 			content: var(--mtds-app-expanded--true, attr(data-tooltip))
 				var(--mtds-app-expanded--false, none);
 		}
 
-		/* 960px */
-		@media screen and (max-width: 60em) {
+		/* Minimum 961px */
+		/* @media (min-width: 60.0625em) {
+		} */
+		& menu {
+			margin-left: calc(var(--mtdsc-app-spacing-sm) * -1);
+		}
+		/* & menu > li > :is(a, button) {
+			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
+		} */
+
+		/* Maxium 960px */
+		@media (max-width: 60em) {
 			background-color: var(--ds-color-surface-default);
 			border-top: 1px solid var(--ds-color-border-subtle);
-			left: 0;
+			min-height: 100svh;
+			min-height: 100vh;
 			padding: var(--mtdsc-app-spacing-sm);
-			position: fixed;
-			right: 0;
-			top: calc(100vh - var(--ds-size-13));
-			width: auto;
+			pointer-events: none; /* No pointer-events makes it easier to detect pseudo-element click */
+			position: absolute;
+			right: 100%;
+			top: calc(100vh - var(--ds-size-13)); /**/
+			width: min(var(--mtdsc-app-nav--expanded), 100vh);
 			z-index: 99;
 
+			& > * {
+				pointer-events: auto;
+			}
+
 			&::before {
+				display: block;
+				padding-block: inherit;
+				padding-inline: calc(
+					var(--mtdsc-app-spacing-sm) *
+					2 +
+					var(--mtds-icon-size)
+				);
+				margin: calc(var(--mtdsc-app-spacing-sm) * -1)
+					calc(var(--mtdsc-app-spacing-sm) * -1) var(--mtdsc-app-spacing-sm);
 				content: var(--mtds-text-navigation);
+				pointer-events: auto; /* Allow click on pseudo-element */
+			}
+			&::after {
+				position: fixed;
+				top: 0;
+				right: 0;
+				background: currentcolor;
+				content: var(--mtds-text-navigation);
+				/* height: 1.5em;
+				height: 1lh; */
+				/* left: var(--mtdsc-app-spacing-sm); */
+				mask: center / contain no-repeat var(--mtds-icon-burger);
+				/* top: var(--mtdsc-app-spacing-sm); */
+				height: var(--mtds-icon-size);
+				width: var(--mtds-icon-size);
+				overflow: clip;
 			}
 		}
 	}
@@ -140,6 +182,10 @@
 		grid-area: main;
 		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm) 0;
 		view-transition-name: mtds-laytout-app--main;
+
+		@media (max-width: 60em) {
+			margin-inline: var(--ds-size-2);
+		}
 	}
 
 	/**
@@ -184,7 +230,7 @@
 ::view-transition-new(mtds-laytout-app--right) {
 	height: 100%;
 	object-fit: none;
-	object-position: left;
+	object-position: top left;
 }
 
 ::view-transition-old(mtds-laytout-app--main),

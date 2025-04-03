@@ -20,6 +20,14 @@
 	/**
 	 * Mark <label> as required
 	 */
+	.field label {
+		display: inline-flex;
+		gap: var(--ds-size-2);
+		align-items: center;
+	}
+	.field label::before {
+		margin-inline-end: calc(var(--ds-size-1) * -1); /* Remove margin from read-only-icon */
+	}
 	.field:has(:required, [aria-required="true"]) label::after {
 		background: var(--ds-color-info-surface-tinted);
 		border-radius: var(--ds-border-radius-md);
@@ -27,14 +35,11 @@
 		box-sizing: border-box;
 		color: var(--ds-color-info-text-default);
 		content: var(--mtds-text-required);
-		display: inline-block;
 		font-size: var(--ds-body-xs-font-size);
 		font-weight: normal;
 		height: var(--ds-size-8);
-		line-height: 1.5;
-		margin-inline-start: var(--ds-size-3);
+		line-height: var(--ds-body-xs-line-height);
 		padding: 0 var(--ds-size-2);
-		vertical-align: middle;
 	}
 
 	/**
@@ -150,7 +155,7 @@
 		border-radius: var(--ds-border-radius-full);
 	}
 	.field u-tags > data:hover::after {
-		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M128 24a104 104 0 1 0 104 104A104.1 104.1 0 0 0 128 24Zm37.7 130.3a8 8 0 0 1-11.4 11.4L128 139.3l-26.3 26.4a8 8 0 0 1-11.4-11.4l26.4-26.3-26.4-26.3a8 8 0 0 1 11.4-11.4l26.3 26.4 26.3-26.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
+		mask-image: var(--mtds-icon-close--filled);
 		mask-size: 100%;
 	}
 	.field u-tags > u-datalist {

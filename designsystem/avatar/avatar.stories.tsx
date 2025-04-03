@@ -74,3 +74,19 @@ export const WithBadge: Story = {
 		</div>
 	),
 };
+
+export const InButton: Story = {
+	render: () => (
+		<>
+			<button type="button" className={styles.button}>
+				<div className={styles.avatar} data-size="xs">
+					NN
+				</div>
+				Navn Navnesen
+			</button>
+			<button type="button" className={styles.button}>
+				More buttons
+			</button>
+		</>
+	),
+};

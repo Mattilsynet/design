@@ -17,7 +17,7 @@
 			--dsc-button-background: transparent;
 			--dsc-button-background--active: var(--ds-color-surface-active);
 			--dsc-button-background--hover: var(--ds-color-surface-hover);
-			--dsc-button-color: var(--ds-color-text-default);
+			--dsc-button-color: var(--ds-color-text-subtle);
 			--dsc-button-color--hover: var(--ds-color-text-default);
 		}
 
@@ -25,7 +25,7 @@
 			border: 0; /* Hide border to ensure equal heights */
 		}
 		&[data-variant="secondary"] {
-			--dsc-button-border-color: var(--ds-color-border-default);
+			--dsc-button-border-color: var(--ds-color-text-subtle);
 		}
 
 		&[aria-current]:not([aria-current="false"]) {
@@ -53,7 +53,7 @@
 		}
 
 		&:active {
-			scale: 0.95;
+			scale: 0.975;
 		}
 
 		& [data-nowrap] {
