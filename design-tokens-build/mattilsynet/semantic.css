@@ -6,6 +6,7 @@
 :root {
   --ds-size-base: 18;
   --ds-size-step: 4;
+  --ds-font-weight-italic-style: italic;
   --ds-border-radius-base: 0.3125rem;
   --ds-border-radius-scale: 0.25rem;
   --ds-border-radius-sm: min(var(--ds-border-radius-base)*0.5,var(--ds-border-radius-scale));

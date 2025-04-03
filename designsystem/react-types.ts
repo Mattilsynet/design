@@ -27,7 +27,7 @@ declare global {
     interface HTMLAttributes<T> {
 			popover?: PopoverValues;
 			popovertarget?: string;
-      "data-color"?: "main" | "neutral" | "success" | "danger" | "info" | "warning";
+      "data-color"?: "main" | "neutral" | "success" | "danger" | "info" | "warning" | "inverted";
       "data-size"?: "sm" | "md" | "lg" | (string & {});
       "data-tooltip"?: string;
       popovertargetaction?: string;
