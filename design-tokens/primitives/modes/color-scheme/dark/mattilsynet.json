@@ -3,57 +3,57 @@
     "primary": {
       "1": {
         "$type": "color",
-        "$value": "#1E2224",
+        "$value": "#081E21",
         "$description": "background-default"
       },
       "2": {
         "$type": "color",
-        "$value": "#6B6B6B614",
-        "$description": "background-tinted\n8%"
+        "$value": "#00000029",
+        "$description": "background-tinted\n16%"
       },
       "3": {
         "$type": "color",
-        "$value": "#24282a",
-        "$description": "surface-default"
+        "$value": "#1B2E32",
+        "$description": "surface-default\n"
       },
       "4": {
         "$type": "color",
         "$value": "#054449",
-        "$description": "surface-tinted\ngranskog"
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#0f6160",
-        "$description": "surface-hover\nhavdyp"
+        "$value": "#113B3F",
+        "$description": "surface-hover\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#0f6160",
+        "$value": "#054449",
         "$description": "surface-active\nhavdyp"
       },
       "7": {
         "$type": "color",
-        "$value": "#6c6a691a",
-        "$description": "border-subtle\n10%"
+        "$value": "#FFFFFF33",
+        "$description": "border-subtle\n20%"
       },
       "8": {
         "$type": "color",
-        "$value": "#6c6a6933",
-        "$description": "border-default\n20%"
+        "$value": "#5E6E68",
+        "$description": "border-default\nfuru"
       },
       "9": {
         "$type": "color",
-        "$value": "#68b096",
-        "$description": "border-strong"
+        "$value": "#68B096",
+        "$description": "border-strong\n"
       },
       "10": {
         "$type": "color",
-        "$value": "#9BCAB9",
-        "$description": "text-subtle\nlys furu"
+        "$value": "#68b096",
+        "$description": "text-subtle\n"
       },
       "11": {
         "$type": "color",
-        "$value": "#dee6e7",
+        "$value": "#C2D4D6",
         "$description": "text-default"
       },
       "12": {
@@ -63,8 +63,8 @@
       },
       "13": {
         "$type": "color",
-        "$value": "#abe1cd",
-        "$description": "base-hover"
+        "$value": "#9BCAB9",
+        "$description": "base-hover\nlys furu"
       },
       "14": {
         "$type": "color",
@@ -73,8 +73,8 @@
       },
       "15": {
         "$type": "color",
-        "$value": "#181c1c",
-        "$description": "base-contrast-subtle"
+        "$value": "#032C30",
+        "$description": "base-contrast-subtle\nmørk granskog"
       },
       "16": {
         "$type": "color",
@@ -97,7 +97,8 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#353434"
+        "$value": "#242424",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
@@ -109,7 +110,8 @@
       },
       "7": {
         "$type": "color",
-        "$value": "#525150"
+        "$value": "#aeb1b759",
+        "$description": "border-subtle 25%"
       },
       "8": {
         "$type": "color",
@@ -125,7 +127,8 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#e8e4e1"
+        "$value": "#aeb1b7",
+        "$description": "text-default"
       },
       "12": {
         "$type": "color",
@@ -146,6 +149,88 @@
       "16": {
         "$type": "color",
         "$value": "#ffffff"
+      }
+    },
+    "inverted": {
+      "1": {
+        "$type": "color",
+        "$value": "#032C30",
+        "$description": "background-default\n(mørk granskog)"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#6B6B6B614",
+        "$description": "background-tinted\n8%"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#2A2E30",
+        "$description": "surface-default"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#116E6B",
+        "$description": "surface-tinted\nHavdyp"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#0A595C",
+        "$description": "surface-hover\n"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "#116E6B",
+        "$description": "surface-active\nhavdyp"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "#FFFFFF1a",
+        "$description": "border-subtle\n10%"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "#68b096",
+        "$description": "border-default\nfuru"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "#abe1cd",
+        "$description": "border-strong\nbrevann"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "#9BCAC2",
+        "$description": "text-subtle\n"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "#dee6e7",
+        "$description": "text-default"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "#68b096",
+        "$description": "base-default"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "#9BCAB9",
+        "$description": "base-hover\nlys furu"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "#abe1cd",
+        "$description": "base-active"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "#032C30",
+        "$description": "base-contrast-subtle\nmørk granskog"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "base-contrast-default"
       }
     }
   }

@@ -3,7 +3,7 @@
     "blue": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
@@ -81,7 +81,7 @@
     "green": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
@@ -159,7 +159,7 @@
     "orange": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
@@ -236,7 +236,7 @@
     "purple": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
@@ -302,7 +302,7 @@
     "red": {
       "1": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#FAF7F4"
       },
       "2": {
         "$type": "color",
