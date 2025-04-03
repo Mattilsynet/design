@@ -1,5 +1,7 @@
 import { Meta } from '@storybook/blocks';
 import kompasset from './kompasset.jpg';
+import { FilePdf } from '@phosphor-icons/react'
+import styles from '../designsystem/styles.module.css';
 
 <Meta title="Identitet/Kompasset og roller" />
 
@@ -7,9 +9,19 @@ import kompasset from './kompasset.jpg';
 
 ## Kompasset
 
-<a href="/docs/kompasset.pdf" aria-label="Last ned stategisk kompass som PDF" style={{ display: 'block' }}>
+<a href="/docs/mattilsynet-kompasset-nb.pdf" aria-label="Last ned stategisk kompass som PDF" style={{ display: 'block' }}>
   <img src={kompasset} alt="" style={{ display: 'block', maxWidth: '100%' }} />
 </a>
+
+### Last ned kompasset
+<div class={styles.flex}>
+<a href="/docs/mattilsynet-kompasset-nb.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Bokmål</a>
+<a href="/docs/mattilsynet-kompasset-nn.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Nynorsk</a>
+<a href="/docs/mattilsynet-kompasset-en.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Engelsk</a>
+</div>
+
+### Last ned roller
+<a href="/docs/mattilsynet-roller.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Bokmål</a>
 
 ### Bakgrunn
 Mattilsynet er i endring og brukerne våre trenger å forstå hvor vi er på vei. For å bli oppfattet som tydelige og enhetlige, må det synes at vi alle jobber for de samme overordnede målene. Dette kompasset skal bidra til å samle oss, sette ord på hvem vi er og hva som er vår strategiske retning. Slik kan det bli et verktøy i arbeidshverdagen, enten vi utvikler nye nettsider eller rekrutterer nye kolleger.

@@ -188,7 +188,7 @@ export const WithDatalist: Story = {
 			<label>With datalist</label>
 			<input type="search" className={styles.input} />
 			<u-datalist>
-				<u-option role="none">Tomt</u-option>
+				<u-option role="none">Ingen treff</u-option>
 				<u-option value="Sogndal">Sogndal</u-option>
 				<u-option value="Oslo">Oslo</u-option>
 				<u-option value="Brønnøysund">Brønnøysund</u-option>
@@ -223,7 +223,7 @@ export const WithDatalist: Story = {
 // 				<label>With datalist - only matches start of words</label>
 // 				<input type="search" className={styles.input} onInput={handleInput} />
 // 				<u-datalist>
-// 					<u-option role="none">Tomt</u-option>
+// 					<u-option role="none">Ingen treff</u-option>
 // 					<u-option value="Sogndal">Sogndal</u-option>
 // 					<u-option value="Oslo">Oslo</u-option>
 // 					<u-option value="Brønnøysund">Brønnøysund</u-option>
@@ -310,7 +310,7 @@ export const WithTags: Story = {
 				<data value="Sogndal">Sogndal</data>
 				<input type="search" className={styles.input} />
 				<u-datalist>
-					<u-option role="none">Tomt</u-option>
+					<u-option role="none">Ingen treff</u-option>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
 					<u-option value="Brønnøysund">Brønnøysund</u-option>

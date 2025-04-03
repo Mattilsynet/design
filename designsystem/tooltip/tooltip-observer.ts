@@ -8,7 +8,7 @@ const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
 const THROTTLE_DELAY = 300;
 const TOOLTIP_ID = "mtds-tooltip";
 
-let ANCHOR: HTMLElement | null = null;
+let ANCHOR: Element | null = null;
 let LAST_CALL = Number.NEGATIVE_INFINITY;
 let THROTTLE: number | ReturnType<typeof setTimeout> = 0;
 let TOOLTIP: HTMLElement | null = null;
@@ -37,7 +37,7 @@ function handleMoveThrottled(target: Element | null) {
 
   if (!TOOLTIP) TOOLTIP = document.body.appendChild(createTooltip());
   if (target === TOOLTIP) return; // Allow tooltip to be hovered, following https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus
-  let anchor = target?.closest?.<HTMLElement>("[data-tooltip]") || null;
+  let anchor = target?.closest?.<Element>("[data-tooltip]") || null;
 
   // No need to update
   if (anchor === ANCHOR) return;
@@ -61,7 +61,7 @@ function handleMoveThrottled(target: Element | null) {
 
   const hadLabel = ANCHOR && attr(ANCHOR, LABELLEDBY) === TOOLTIP_ID;
   const hasLabel =
-    Boolean(anchor?.innerText.trim()) ||
+    (anchor instanceof HTMLElement ? anchor.innerText : anchor?.textContent)?.trim() ||
     anchor?.hasAttribute(LABELLEDBY) ||
     anchor?.hasAttribute("aria-label");
 

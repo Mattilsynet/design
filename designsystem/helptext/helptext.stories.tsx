@@ -44,6 +44,27 @@ export const InField: Story = {
 	),
 };
 
+export const InFieldset: Story = {
+	render: () => (
+		<fieldset className={styles.fieldset}>
+			<legend>Legendtekst</legend>
+			<button
+				type="button"
+				className={styles.helptext}
+				aria-label="Hva menes med mottaker"
+				popoverTarget="my-helptext-1"
+			></button>
+			<div className={styles.popover} id="my-helptext-1" popover="auto">
+				Tekst som forklarer hva som menes med mottaker
+			</div>
+			<div className={styles.field}>
+				<label>Labeltekst</label>
+				<input type="checkbox" className={styles.input} />
+			</div>
+		</fieldset>
+	),
+};
+
 export const React: Story = {
 	render: () => (
 		<Grid data-gap="10">

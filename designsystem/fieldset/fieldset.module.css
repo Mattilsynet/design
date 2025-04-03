@@ -1,45 +1,51 @@
 @layer mt.design {
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
+	}
+	/* Reset designsystemet */
+	.fieldset > * {
+		margin-top: var(--ds-size-3);
+	}
+	.fieldset > legend,
+	.fieldset > legend + p {
+		color: inherit;
+		margin: 0;
+		opacity: 1;
+	}
+	.fieldset > legend {
+		align-items: center;
+		display: flex;
+		gap: var(--ds-size-2);
+		padding: 0;
+	}
+	.fieldset > legend::before {
+		margin-inline-end: calc(var(--ds-size-1) * -1); /* Remove margin from read-only-icon */
+	}
 
-		/* Reset designsystemet */
-		& > * {
-			margin-top: var(--ds-size-3);
+	/* Mark <legend> with "Required" if all inputs inside are required */
+	.fieldset:has(:required, [aria-required="true"]):not(
+			:has(
+					:optional:not(button):not([aria-required="true"]),
+					[aria-required="false"]
+				)
+		) {
+		& > legend::after {
+			background: var(--ds-color-info-surface-tinted);
+			border-radius: var(--ds-border-radius-md);
+			border: 1px solid var(--ds-color-info-border-subtle);
+			box-sizing: border-box;
+			color: var(--ds-color-info-text-default);
+			content: var(--mtds-text-required);
+			display: inline-block;
+			font-size: var(--ds-body-xs-font-size);
+			font-weight: normal;
+			height: var(--ds-size-8);
+			line-height: var(--ds-body-xs-line-height);
+			padding: 0 var(--ds-size-2);
+			vertical-align: middle;
 		}
-		& > legend,
-		& > legend + p {
-			color: inherit;
-			margin: 0;
-			opacity: 1;
-			padding: 0;
-		}
-
-		/* Mark <legend> with "Required" if all inputs inside are required */
-		&:has(:required, [aria-required="true"]):not(
-				:has(
-						:optional:not(button):not([aria-required="true"]),
-						[aria-required="false"]
-					)
-			) {
-			& > legend::after {
-				background: var(--ds-color-info-surface-tinted);
-				border-radius: var(--ds-border-radius-md);
-				border: 1px solid var(--ds-color-info-border-subtle);
-				box-sizing: border-box;
-				color: var(--ds-color-info-text-default);
-				content: var(--mtds-text-required);
-				display: inline-block;
-				font-size: var(--ds-body-xs-font-size);
-				font-weight: normal;
-				height: var(--ds-size-8);
-				line-height: 1.5;
-				margin-inline-start: var(--ds-size-3);
-				padding: 0 var(--ds-size-2);
-				vertical-align: middle;
-			}
-			& label::after {
-				content: none;
-			}
+		& label::after {
+			content: none;
 		}
 	}
 }

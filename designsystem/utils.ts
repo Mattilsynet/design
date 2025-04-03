@@ -1,6 +1,13 @@
 export const IS_BROWSER = typeof window !== 'undefined' && typeof document !== 'undefined';
 export const QUICK_EVENT = { capture: true, passive: true };
 
+// TODO: Documentation for prettyNumber
+let INTL_NUM: Intl.NumberFormat | undefined;
+export function prettyNumber (number: number | string) {
+	if (!INTL_NUM) INTL_NUM = new Intl.NumberFormat((IS_BROWSER && attr(document.documentElement, 'lang')) || 'no');
+	return INTL_NUM.format(Number(number));
+}
+
 export function debounce<T extends unknown[]>(
   callback: (...args: T) => void,
   delay: number,
@@ -94,7 +101,7 @@ if (IS_BROWSER){
  */
 const POSITION = { top: 0, right: 1, bottom: 2, left: 3 }; // Speed up by using a const map
 
-export function anchorPosition (target: HTMLElement, anchor: HTMLElement | false, position?: string | number) {
+export function anchorPosition (target: HTMLElement, anchor: Element | false, position?: string | number) {
 	if (anchor === false || !anchor.isConnected || !target.isConnected) return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ''); // Ensure we have t´he scroller
 	if (!TARGETS.has(target)) { // Setup new target or update position
@@ -102,8 +109,10 @@ export function anchorPosition (target: HTMLElement, anchor: HTMLElement | false
 		return TARGETS.set(target, () => anchorPosition(target, anchor, place)).get(target)?.(); // Start watching if not already watching
 	}
 
+	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
   const { offsetWidth: targetW, offsetHeight: targetH } = target;
-  const { offsetWidth: anchorW, offsetHeight: anchorH } = anchor;
+	const anchorW = isHTMLAnchor ? anchor.offsetWidth : anchor.clientWidth;
+	const anchorH = isHTMLAnchor ? anchor.offsetHeight : anchor.clientHeight;
   const { width, height, left, top } = anchor.getBoundingClientRect();
 	const anchorX = Math.round(left - (anchorW - width) / 2); // Correct for CSS transform scale
   const anchorY = Math.round(top - (anchorH - height) / 2); // Correct for CSS transform scale

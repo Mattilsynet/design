@@ -816,19 +816,10 @@ export const App: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<nav className={styles.breadcrumbs} aria-label="Du er her">
-					<ul>
-						<li>
-							<a href="#none" className={styles.logo}>
-								<Plant weight="fill" />
-								Digiplant
-							</a>
-						</li>
-						<li>
-							<a href="#none">Søknader</a>
-						</li>
-					</ul>
-				</nav>
+				<a href="#none" className={styles.logo}>
+					<Plant weight="fill" />
+					Digiplant
+				</a>
 				<button type="button" className={styles.button}>
 					<Bell />
 				</button>
@@ -905,7 +896,7 @@ export const App: Story = {
 			<main>
 				<div className={styles.card}>
 					<img
-						style={{ width: "100%", height: 600, objectFit: "cover" }}
+						style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover" }}
 						src="https://mattilsynet-xp7prod.enonic.cloud/_/image/8fe5f0c4-49c2-4d27-9dca-764cdfc7e110:64ec235cca8f61e8e8e590ca1cf3a7fb28e132ba/width-1440/Forsidebanner.png"
 						alt=""
 					/>
