@@ -30,24 +30,21 @@
 		width: max-content;
 		transform: translateY(-2px);
 		z-index: 9999;
-
-		&:where(:not([hidden])) {
-			display: block;
-		}
-
-		&:popover-open {
-			opacity: 1;
-			transform: none;
-			visibility: visible;
-		}
-
-		&:is(menu),
-		&:has(> menu:only-child) {
-			--mtdsc-popover-padding: var(--ds-size-2);
-		}
-		&:is(menu) > li > hr {
-			margin-block: var(--ds-size-2);
-		}
+	}
+	:where(.popover:not([hidden])) {
+		display: block;
+	}
+	.popover:popover-open {
+		opacity: 1;
+		transform: none;
+		visibility: visible;
+	}
+	.popover:is(menu),
+	.popover:has(> menu:only-child) {
+		--mtdsc-popover-padding: var(--ds-size-2);
+	}
+	.popover:is(menu) > li > hr {
+		margin-block: var(--ds-size-2);
 	}
 
 	[data-popover="inline"] {

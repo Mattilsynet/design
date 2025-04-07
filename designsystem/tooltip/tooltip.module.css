@@ -9,14 +9,10 @@
 		pointer-events: all;
 	}
 
-	[data-tooltip][tabindex="0"] {
-		border-radius: var(--ds-border-radius-sm);
-
-		&:focus-visible {
-			box-shadow: var(--dsc-focus-boxShadow);
-			outline: var(--dsc-focus-outline);
-			outline-offset: var(--ds-border-width-focus);
-		}
+	[data-tooltip]:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
 	}
 
 	._tooltip {
@@ -40,11 +36,10 @@
 		transition-property: opacity, visibility, scale;
 		visibility: hidden;
 		z-index: 99999;
-
-		&:popover-open {
-			opacity: 1;
-			scale: 1;
-			visibility: visible;
-		}
+	}
+	._tooltip:popover-open {
+		opacity: 1;
+		scale: 1;
+		visibility: visible;
 	}
 }

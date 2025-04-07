@@ -6,44 +6,44 @@
 		--dsc-dialog-border-width: 0px;
 		--dsc-dialog-max-height: 90vh;
 		z-index: 1000; /* Place above also when non-modal */
+	}
 
-		&[data-closedby="any"]::backdrop {
-			cursor: pointer;
+	.dialog[data-closedby="any"]::backdrop {
+		cursor: pointer;
+	}
+
+	.dialog > button:first-child:empty,
+	.dialog > form[method="dialog"]:first-child > button:only-child {
+		all: unset;
+		border-radius: var(--ds-border-radius-md);
+		cursor: pointer;
+		float: right;
+		margin: calc(var(--dsc-dialog-icon-spacing) * -1);
+		padding: var(--dsc-dialog-icon-spacing);
+		transition: scale .2s;
+
+		&:focus-visible {
+			box-shadow: var(--dsc-focus-boxShadow);
+			outline: var(--dsc-focus-outline);
+			outline-offset: var(--ds-border-width-focus);
 		}
 
-		& > button:first-child:empty,
-		& > form[method="dialog"]:first-child > button:only-child {
-			all: unset;
-			border-radius: var(--ds-border-radius-md);
-			cursor: pointer;
-			float: right;
-			margin: calc(var(--dsc-dialog-icon-spacing) * -1);
-			padding: var(--dsc-dialog-icon-spacing);
-			transition: scale .2s;
+		&:hover {
+			background: var(--ds-color-surface-hover);
+		}
 
-			&:focus-visible {
-				box-shadow: var(--dsc-focus-boxShadow);
-				outline: var(--dsc-focus-outline);
-				outline-offset: var(--ds-border-width-focus);
-			}
-
-			&:hover {
-				background: var(--ds-color-surface-hover);
-			}
-
-			&:active {
-				background: var(--ds-color-surface-active);
-				scale: 0.9;
-			}
-			&::before {
-				background: currentcolor;
-				box-sizing: border-box;
-				content: "";
-				display: block;
-				height: var(--mtds-icon-size);
-				mask: center / contain no-repeat var(--dsc-dialog-icon-url) content-box;
-				width: var(--mtds-icon-size);
-			}
+		&:active {
+			background: var(--ds-color-surface-active);
+			scale: 0.9;
+		}
+		&::before {
+			background: currentcolor;
+			box-sizing: border-box;
+			content: "";
+			display: block;
+			height: var(--mtds-icon-size);
+			mask: center / contain no-repeat var(--dsc-dialog-icon-url) content-box;
+			width: var(--mtds-icon-size);
 		}
 	}
 }
