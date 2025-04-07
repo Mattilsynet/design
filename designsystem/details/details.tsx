@@ -4,9 +4,14 @@ import styles from "../styles.module.css";
 
 export type DetailsProps = React.ComponentPropsWithoutRef<"details">;
 const DetailsComp = forwardRef<HTMLDetailsElement, DetailsProps>(
-	function Details({ className, ...rest }, ref) {
+	function Details({ className, open, ...rest }, ref) {
 		return (
-			<u-details class={clsx(styles.details, className)} ref={ref} {...rest} />
+			<u-details
+				class={clsx(styles.details, className)}
+				open={!!open || undefined} // Fallback to undefined so open={false} does not print boolean attribute
+				ref={ref}
+				{...rest}
+			/>
 		);
 	},
 );

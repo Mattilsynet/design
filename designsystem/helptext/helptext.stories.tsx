@@ -27,19 +27,35 @@ export const Default: Story = {
 
 export const InField: Story = {
 	render: () => (
-		<div className={styles.field}>
-			<label>Ledetekst</label>
-			<button
-				type="button"
-				className={styles.helptext}
-				aria-label="Hva menes med mottaker"
-				popoverTarget="my-helptext-field"
-			></button>
-			<div className={styles.popover} id="my-helptext-field" popover="auto">
-				Tekst som forklarer hva som menes med mottaker
+		<div className={styles.grid}>
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<button
+					type="button"
+					className={styles.helptext}
+					aria-label="Hva menes med mottaker"
+					popoverTarget="my-helptext-field"
+				></button>
+				<div className={styles.popover} id="my-helptext-field" popover="auto">
+					Tekst som forklarer hva som menes med mottaker
+				</div>
+				<p>Beskrivelse</p>
+				<input type="text" className={styles.input} />
 			</div>
-			<p>Beskrivelse</p>
-			<input type="text" className={styles.input} />
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<button
+					type="button"
+					className={styles.helptext}
+					aria-label="Hva menes med mottaker"
+					popoverTarget="my-helptext-field"
+				></button>
+				<div className={styles.popover} id="my-helptext-field" popover="auto">
+					Tekst som forklarer hva som menes med mottaker
+				</div>
+				<p>Beskrivelse</p>
+				<input type="text" className={styles.input} readOnly disabled />
+			</div>
 		</div>
 	),
 };

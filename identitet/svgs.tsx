@@ -85,7 +85,7 @@ export const Svgs = ({
 
 						return (
 							<a
-								data-mode={mode}
+								data-color-scheme={mode === "dark" ? "dark" : undefined}
 								className={styles.card}
 								key={file}
 								href={href}
