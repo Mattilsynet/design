@@ -111,6 +111,9 @@
 		padding: .25em;
 		width: var(--icon-size);
 	}
+	.logo:not([data-env]) svg {
+		color: #054449; /* Hard code granskog */
+	}
 
 	/**
 	 * Environment

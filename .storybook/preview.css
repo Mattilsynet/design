@@ -1,5 +1,5 @@
 html:not([data-color-scheme="dark"]) {
-	background: var(--mtds-color-surface-default); /* White preview area */
+	background: none; /* White preview area */
 }
 
 u-tabpanel > pre,

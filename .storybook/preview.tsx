@@ -25,9 +25,10 @@ export default {
 			return <Story />;
 		},
 		withThemeByDataAttribute({
-			defaultTheme: "Light",
+			defaultTheme: "Auto light/dark",
 			attributeName: "data-color-scheme",
 			themes: {
+				"Auto light/dark": "auto",
 				Light: "light",
 				Dark: "dark",
 			},
