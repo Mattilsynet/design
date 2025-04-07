@@ -95,17 +95,15 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, right);
 
-		align-content: start; /* Set default alignment in case used as grid */
+		/* Sticky position */
+		align-self: var(--mtds-app-nav-align, start);
+		bottom: var(--mtds-app-nav-bottom);
+		position: var(--mtds-app-nav-position);
+		top: var(--mtds-app-nav-top);
+
 		box-sizing: border-box;
 		grid-area: nav;
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		padding-inline: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-sm);
-		padding-top: var(--mtdsc-app-spacing-md);
-		position: sticky;
-		/* max-height: 100vh; */
-		/* top: 0; */
-		/* bottom: 0; */
+		padding: var(--mtdsc-app-spacing-md);
 		view-transition-name: mtds-laytout-app--left;
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav--expanded))
 			var(--mtds-app-expanded--false, var(--mtdsc-app-nav--collapsed));
@@ -115,15 +113,9 @@
 				var(--mtds-app-expanded--false, none);
 		}
 
-		/* Minimum 961px */
-		/* @media (min-width: 60.0625em) {
-		} */
 		& menu {
-			margin-left: calc(var(--mtdsc-app-spacing-sm) * -1);
+			margin-inline: calc(var(--mtdsc-app-spacing-sm) * -1);
 		}
-		/* & menu > li > :is(a, button) {
-			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
-		} */
 
 		/* Maxium 960px */
 		@media (max-width: 60em) {

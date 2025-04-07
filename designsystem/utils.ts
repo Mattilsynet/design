@@ -84,7 +84,9 @@ export const off = (
 	...rest: Parameters<typeof Element.prototype.removeEventListener>
 ): void => events("remove", element, rest);
 
-
+/**
+ * Scroller targes helping anchorPosition
+ */
 const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
 const SCROLLER = IS_BROWSER ? document.createElement('div') : null // Used to ensure we have scrollability under
 if (SCROLLER) attr(SCROLLER, 'style', 'position:absolute;padding:1px;top:0;left:0px');
@@ -159,7 +161,10 @@ const MUTATORS_CALLBACK = (element: Element) => {
 	if (!mutator || !element.isConnected) {
 		mutator?.observer?.disconnect();
 		MUTATORS.delete(element);
-	} else for(const [, callback] of mutator.collections) callback();
+	} else {
+		for(const [, callback] of mutator.collections) callback();
+		mutator.observer.takeRecords(); // Clear records to avoid running callback multiple times
+	}
 };
 
 /**
@@ -189,6 +194,17 @@ export const onMutation = <T extends Element>(
 		MUTATORS.delete(element);
 	}
 }
+
+/**
+ * onLoaded
+ * @description Runs a callback when window is loaded in browser
+ * @param callback The callback to run when the page is ready
+ */
+export const onLoaded = (callback: () => void) => {
+	if (!IS_BROWSER) return;
+	if (document.readyState === 'complete') window.requestAnimationFrame(callback); // Ensure we run after all other load events
+	else on(window, "load", callback);
+};
 
 export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	el instanceof HTMLElement && 'validity' in el && !(el instanceof HTMLButtonElement);

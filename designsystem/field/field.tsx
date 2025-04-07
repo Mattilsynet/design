@@ -2,6 +2,7 @@ import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
 import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import type { InputProps } from "../input/input";
+import { HelpText } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -10,13 +11,17 @@ import styles from "../styles.module.css";
 
 type FieldBaseProps = InputProps & {
 	className?: InputProps["className"];
-	style?: InputProps["style"];
-	label?: React.ReactNode;
-	description?: React.ReactNode;
-	prefix?: string;
-	suffix?: string;
-	error?: React.ReactNode;
 	count?: number;
+	description?: React.ReactNode;
+	error?: React.ReactNode; // Kept for backwards compatibility
+	helpText?: React.ReactNode;
+	helpTextLabel?: string;
+	label?: React.ReactNode;
+	options?: Array<string | { label: string; value: string }>;
+	prefix?: string;
+	style?: InputProps["style"];
+	suffix?: string;
+	validation?: React.ReactNode;
 };
 
 export type FieldProps<As extends React.ElementType = "div"> =
@@ -36,28 +41,51 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		count,
 		description,
 		error,
+		helpText,
+		helpTextLabel,
 		label,
+		options,
 		prefix,
 		style,
 		suffix,
+		validation,
 		...rest
 	}: FieldProps<As>,
 	ref?: PolymorphicRef<As>,
 ) {
 	const Tag = as || "div";
+	const affixes = !!suffix || !!prefix;
+	const valid = validation || error; // error kept for backwards compatibility
 	const shared = {
 		"data-size": size,
 		className: clsx(styles.field, className),
 		style,
 	};
-	const affixes = !!suffix || !!prefix;
+
+	// Render options if select
+	if (as === "select" && !rest.children)
+		Object.assign(rest, {
+			children: (
+				<>
+					{options
+						?.map((o) => (typeof o === "string" ? { label: o, value: o } : o))
+						.map(({ label, value }) => (
+							<option key={value} value={value}>
+								{label}
+							</option>
+						))}
+				</>
+			),
+		});
+
 	const input = (
-		<Tag className={styles.input} aria-invalid={!!error} ref={ref} {...rest} />
+		<Tag className={styles.input} aria-invalid={!!valid} ref={ref} {...rest} />
 	);
 
 	return as ? (
 		<div {...shared}>
 			{!!label && <label>{label}</label>}
+			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
 			{!!description && <p>{description}</p>}
 			{affixes ? (
 				<FieldAffixes>
@@ -68,7 +96,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			) : (
 				input
 			)}
-			{!!error && <div className={styles.validation}>{error}</div>}
+			{!!valid && <div className={styles.validation}>{valid}</div>}
 			{!!count && <p data-count={count} />}
 		</div>
 	) : (

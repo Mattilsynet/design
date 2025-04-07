@@ -59,6 +59,10 @@
 			scale: 0.975;
 		}
 
+		&:has([data-nowrap]) {
+			flex-shrink: 1;
+		}
+
 		& [data-nowrap] {
 			overflow: clip;
 			text-overflow: ellipsis;

@@ -1,4 +1,4 @@
-const getSteps = (now: number, max: number, show: number) => {
+const getSteps = (now: number, max: number, show = Number.POSITIVE_INFINITY) => {
   const offset = (show - 1) / 2;
   const start = Math.max(Math.min(now - Math.floor(offset), max - show + 1), 1);
   const end = Math.min(Math.max(now + Math.ceil(offset), show), max);

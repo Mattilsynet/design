@@ -32,6 +32,43 @@ export const React: Story = {
 	),
 };
 
+export const Sizes: Story = {
+	render: () => (
+		<>
+			<label className={styles.chip} data-size="sm">
+				<input
+					className={styles.input}
+					type="radio"
+					value="sm"
+					defaultChecked
+					name="my-size"
+				/>
+				Small
+			</label>
+			<label className={styles.chip} data-size="md">
+				<input
+					className={styles.input}
+					type="radio"
+					value="md"
+					defaultChecked
+					name="my-size"
+				/>
+				Medium
+			</label>
+			<label className={styles.chip} data-size="lg">
+				<input
+					className={styles.input}
+					type="radio"
+					value="lg"
+					defaultChecked
+					name="my-size"
+				/>
+				Large
+			</label>
+		</>
+	),
+};
+
 export const Radio: Story = {
 	render: () => (
 		<>

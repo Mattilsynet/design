@@ -15,10 +15,10 @@ export const Default: Story = {
 			<button
 				type="button"
 				className={styles.helptext}
-				popoverTarget="my-helptext-1"
+				popoverTarget="my-helptext"
 				aria-label="Hva menes med mottaker"
 			></button>
-			<div className={styles.popover} id="my-helptext-1" popover="auto">
+			<div className={styles.popover} id="my-helptext" popover="auto">
 				Tekst som forklarer hva som menes med mottaker
 			</div>
 		</>
@@ -33,9 +33,9 @@ export const InField: Story = {
 				type="button"
 				className={styles.helptext}
 				aria-label="Hva menes med mottaker"
-				popoverTarget="my-helptext-1"
+				popoverTarget="my-helptext-field"
 			></button>
-			<div className={styles.popover} id="my-helptext-1" popover="auto">
+			<div className={styles.popover} id="my-helptext-field" popover="auto">
 				Tekst som forklarer hva som menes med mottaker
 			</div>
 			<p>Beskrivelse</p>
@@ -52,9 +52,9 @@ export const InFieldset: Story = {
 				type="button"
 				className={styles.helptext}
 				aria-label="Hva menes med mottaker"
-				popoverTarget="my-helptext-1"
+				popoverTarget="my-helptext-fieldset"
 			></button>
-			<div className={styles.popover} id="my-helptext-1" popover="auto">
+			<div className={styles.popover} id="my-helptext-fieldset" popover="auto">
 				Tekst som forklarer hva som menes med mottaker
 			</div>
 			<div className={styles.field}>
@@ -77,6 +77,12 @@ export const React: Story = {
 				<p>Beskrivelse</p>
 				<Input />
 			</Field>
+			<Field
+				as="input"
+				label="Ledetekst"
+				helpText="Tekst som forklarer hva som menes med mottaker"
+				helpTextLabel="Hva menes med mottaker"
+			/>
 		</Grid>
 	),
 };

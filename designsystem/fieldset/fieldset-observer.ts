@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, attr, isInputLike, onMutation, useId } from "../utils";
+import { attr, isInputLike, onLoaded, onMutation, useId } from "../utils";
 
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
@@ -21,5 +21,6 @@ function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
   }
 }
 
-if (IS_BROWSER)
+onLoaded(() => {
   onMutation(document.documentElement, CSS_FIELDSET, handleMutation);
+});

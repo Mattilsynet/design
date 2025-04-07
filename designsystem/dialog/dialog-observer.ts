@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, QUICK_EVENT, attr, createOptimizedMutationObserver, on } from '../utils';
+import { IS_BROWSER, QUICK_EVENT, attr, createOptimizedMutationObserver, on, onLoaded } from '../utils';
 
 const CSS_DIALOG = styles.dialog.split(" ")[0];
 const DIALOGS = IS_BROWSER ? document.getElementsByClassName(CSS_DIALOG) as HTMLCollectionOf<HTMLDialogElement> : [];
@@ -29,7 +29,7 @@ const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
   }
 };
 
-if (IS_BROWSER) {
+onLoaded(() => {
   on(document, 'click', handleClick as EventListener, QUICK_EVENT);
   createOptimizedMutationObserver(handleModal).observe(document.documentElement, {
     attributeFilter: ['open'],
@@ -37,4 +37,4 @@ if (IS_BROWSER) {
     childList: true,
     subtree: true,
   });
-}
+});
