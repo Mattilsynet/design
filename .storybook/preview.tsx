@@ -6,8 +6,6 @@ import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
 import { styles } from "../designsystem";
 import "./preview.css";
-import "@u-elements/u-tabs";
-import "@u-elements/u-details";
 
 const CSS = styles as unknown as Record<string, string>; // Fix internal typings
 const CSS_ALERT = CSS.alert.split(" ");

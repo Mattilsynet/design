@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, QUICK_EVENT, anchorPosition, attr, on } from "../utils";
+import { QUICK_EVENT, anchorPosition, attr, on, onLoaded } from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
 let OPEN_POPOVERS = 0; // Speed up by only checking clicks if we have open popovers
@@ -28,17 +28,16 @@ function handleLinkClick({ target }: Event) {
 
   if (close) {
     const action = attr(close, "popovertargetaction") || "toggle";
+    const open = action === "show" || (action === "hide" ? false : undefined);
     const target =
       document.getElementById?.(attr(close, "popovertarget") || "") ||
       close.closest(`.${CSS_POPOVER}`);
 
-    target?.togglePopover(
-      action === "show" || (action === "hide" ? false : undefined)
-    );
+    target?.togglePopover(open);
   }
 }
 
-if (IS_BROWSER) {
+onLoaded(() => {
   on(document, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
   on(document, "click", handleLinkClick); // Allow `<a>` to use `popovertarget` as well
-}
+});

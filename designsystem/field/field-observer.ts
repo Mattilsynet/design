@@ -1,11 +1,11 @@
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
-  IS_BROWSER,
   QUICK_EVENT,
   attr,
   isInputLike,
   on,
+  onLoaded,
   onMutation,
   useId,
 } from "../utils";
@@ -16,7 +16,7 @@ const CSS_PROPERTY_UNDER = "--mtds-text-count-under";
 const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 
-function renderAria(fields: HTMLCollectionOf<Element>) {
+function handleMutation(fields: HTMLCollectionOf<Element>) {
   for (const field of fields) {
     const labels: HTMLLabelElement[] = [];
     const descs: string[] = [];
@@ -30,7 +30,7 @@ function renderAria(fields: HTMLCollectionOf<Element>) {
       else if (isInputLike(el)) input = el;
       else if (el.classList.contains(CSS_VALIDATION)) {
         // Must be before instanceof HTMLParagraphElement since validation can also be a <p>
-        valid = attr(el, "data-color") === "success";
+        valid = attr(el, "data-color") === "success" || !el.clientWidth || !el.clientHeight; // Only set invalid if Validation is visible
         descs.unshift(useId(el));
       } else if (el instanceof HTMLParagraphElement) descs.push(useId(el));
     }
@@ -127,8 +127,8 @@ function handleInvalid(event: Event) {
     event.preventDefault();
 }
 
-if (IS_BROWSER) {
-  onMutation(document.documentElement, CSS_FIELD, renderAria);
+onLoaded(() => {
+  onMutation(document.documentElement, CSS_FIELD, handleMutation);
   on(document, "input", handleInput, QUICK_EVENT);
   on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe buttle
-}
+});

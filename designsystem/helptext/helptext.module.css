@@ -38,11 +38,12 @@
 	.helptext + [popover] {
 		max-width: 40ch;
 	}
-	label + .helptext {
+	label + .helptext,
+	legend + .helptext {
 		margin-left: .2em;
+		margin-top: -.2em;
 	}
 	legend:has(+ .helptext) {
 		float: left; /* Since <legend> does not support display: inline */
-		margin-right: .2em;
 	}
 }

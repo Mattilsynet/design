@@ -37,12 +37,14 @@
 			color: var(--ds-color-info-text-default);
 			content: var(--mtds-text-required);
 			display: inline-block;
+			flex-shrink: 0;
 			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
 			height: var(--ds-size-8);
 			line-height: var(--ds-body-xs-line-height);
 			padding: 0 var(--ds-size-2);
 			vertical-align: middle;
+			white-space: nowrap;
 		}
 		& label::after {
 			content: none;

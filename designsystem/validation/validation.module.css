@@ -4,6 +4,10 @@
 		--dsc-validation-message-icon-url: var(--mtds-icon-danger--filled);
 	}
 
+	.validation:empty {
+		display: none; /* Hide if empty */
+	}
+
 	.validation[data-color="success"] {
 		--dsc-validation-message-icon-url: var(--mtds-icon-success);
 	}

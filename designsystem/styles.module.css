@@ -23,6 +23,7 @@
 @import url("./logo/logo.module.css");
 @import url("./pagination/pagination.module.css");
 @import url("./popover/popover.module.css");
+@import url("./progress/progress.module.css");
 @import url("./skeleton/skeleton.module.css");
 @import url("./spinner/spinner.module.css");
 @import url("./table/table.module.css");

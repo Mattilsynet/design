@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, QUICK_EVENT, attr, on } from "../utils";
+import { QUICK_EVENT, attr, on, onLoaded } from "../utils";
 
 function handleInject(event: Event & { animationName?: string }) {
   if (event.animationName !== styles._errorsummary) return;
@@ -11,5 +11,6 @@ function handleInject(event: Event & { animationName?: string }) {
   }
 }
 
-if (IS_BROWSER)
+onLoaded(() => {
   on(document, 'animationend', handleInject, QUICK_EVENT);
+});

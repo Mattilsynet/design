@@ -1,0 +1,16 @@
+@layer mt.design {
+	.progress {
+		display: block;
+		border-radius: var(--ds-border-radius-full);
+		border-width: 0;
+		background: var(--ds-color-surface-active);
+		color: var(--ds-color-text-subtle);
+		height: var(--ds-size-3);
+	}
+	.progress::before {
+		border-radius: inherit;
+	}
+	.progress:not([value]) {
+		background: red;
+	}
+}

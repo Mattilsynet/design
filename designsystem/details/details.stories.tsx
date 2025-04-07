@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Details } from "../react";
 import styles from "../styles.module.css";
-import "@u-elements/u-details";
 
 const meta = {
 	title: "Designsystem/Details",

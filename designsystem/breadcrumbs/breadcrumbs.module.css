@@ -14,13 +14,6 @@
 		text-overflow: ellipsis;
 	}
 	.breadcrumbs > :is(ol, ul) > li:last-child > a {
-		animation: _onInjectCrumb 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		text-decoration: none;
-	}
-
-	@keyframes _onInjectCrumb {
-		to {
-			opacity: 1;
-		}
 	}
 }

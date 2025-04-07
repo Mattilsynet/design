@@ -9,8 +9,8 @@ export * as styles from "./styles.module.css";
 // Load beahviours
 // import "./toast/toast-observer";
 import "./breadcrumbs/breadcrumbs-observer";
-import "./errorsummary/errorsummary-observer";
 import "./dialog/dialog-observer";
+import "./errorsummary/errorsummary-observer";
 import "./field/field-observer";
 import "./fieldset/fieldset-observer";
 import "./layout/app-observer";
@@ -20,6 +20,7 @@ import "./table/table-observer";
 import "./tooltip/tooltip-observer";
 import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element
+import "@u-elements/u-progress";
 import "@u-elements/u-tabs";
 import "@u-elements/u-tags";
 

@@ -92,7 +92,7 @@
 	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
 	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
-	.flex > [data-nowrap] { min-width: max-content }
+	.flex > [data-nowrap]:not(.flex) { min-width: max-content } /* .flex[data-nowrap] is allready controlled by flex-wrap: nowrap */
 	.flex[data-items="50"] > *, .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
 	.flex[data-items="100"] > *, .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
 	.flex[data-items="150"] > *, .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }

@@ -1,0 +1,25 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './progress.stories';
+
+<Meta of={stories} />
+
+# Progress (Eksperimentell)
+
+- Legg klassen `progress` på `<u-progress>`
+
+<Canvas of={stories.Default} />
+
+## Størrelser
+- Bruk `data-size="sm | md | lg"`
+<Canvas of={stories.Sizes} />
+
+## Farger
+- Bruk `data-size="main | neutral | success | info | warning | danger"`
+<Canvas of={stories.Colors} />
+
+## Uten synlig label
+- Bruk `aria-label` istedefor `<label>` for å visuelt skjult label
+<Canvas of={stories.WithoutVisibleLabel} />
+
+<CssVariables component="progress" />

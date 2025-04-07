@@ -11,7 +11,6 @@
 		--icon-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 55'%3E%3Crect fill='none' width='51' height='51' x='2' y='2' stroke='black' stroke-dasharray='0.09 6.38' stroke-linecap='round' stroke-opacity='.6' stroke-width='2.3' rx='25.5'/%3E%3C/svg%3E");
 		--icon-size: 1.657em;
 
-		animation: _onInjectLogo 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		border-radius: var(--ds-border-radius-sm);
 		box-sizing: border-box;
 		display: block;
@@ -24,12 +23,6 @@
 		overflow: clip;
 		text-decoration: none;
 		white-space: normal; /* Allow wrap */
-	}
-
-	@keyframes _onInjectLogo {
-		to {
-			opacity: 1;
-		}
 	}
 
 	.logo:not(:has(svg)) {
@@ -124,7 +117,6 @@
 	 */
 	.logo[data-env] {
 		color: var(--mtds-logo-color);
-		animation: _onChangeLogo 1ms; /* Detect if data-env is set after page load */
 	}
 	.logo[data-env]:empty::before,
 	.logo[data-env]:not(:empty)::after {
@@ -147,10 +139,5 @@
 	}
 	html:has(.logo[data-env][data-color="info"]) {
 		--mtds-logo-color: var(--ds-color-info-text-subtle);
-	}
-	@keyframes _onChangeLogo {
-		to {
-			opacity: 1;
-		}
 	}
 }
