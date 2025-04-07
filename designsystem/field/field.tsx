@@ -78,10 +78,6 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			),
 		});
 
-	const input = (
-		<Tag className={styles.input} aria-invalid={!!valid} ref={ref} {...rest} />
-	);
-
 	return as ? (
 		<div {...shared}>
 			{!!label && <label>{label}</label>}
@@ -90,11 +86,11 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			{affixes ? (
 				<FieldAffixes>
 					{!!prefix && <span>{prefix}</span>}
-					{input}
+					<Tag className={styles.input} ref={ref} {...rest} />
 					{!!suffix && <span>{suffix}</span>}
 				</FieldAffixes>
 			) : (
-				input
+				<Tag className={styles.input} ref={ref} {...rest} />
 			)}
 			{!!valid && <div className={styles.validation}>{valid}</div>}
 			{!!count && <p data-count={count} />}
