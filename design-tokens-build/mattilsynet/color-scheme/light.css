@@ -39,7 +39,7 @@
   --ds-color-inverted-background-default: #054449;
   --ds-color-inverted-background-tinted: #FFFFFF0F;
   --ds-color-inverted-surface-default: #116E6B;
-  --ds-color-inverted-surface-tinted: #0e5855;
+  --ds-color-inverted-surface-tinted: #116E6B;
   --ds-color-inverted-surface-hover: #0a4e4f;
   --ds-color-inverted-surface-active: #054449;
   --ds-color-inverted-border-subtle: #E2F1DF26;
@@ -160,7 +160,7 @@
   --ds-color-inverted-background-default: #054449;
   --ds-color-inverted-background-tinted: #FFFFFF0F;
   --ds-color-inverted-surface-default: #116E6B;
-  --ds-color-inverted-surface-tinted: #0e5855;
+  --ds-color-inverted-surface-tinted: #116E6B;
   --ds-color-inverted-surface-hover: #0a4e4f;
   --ds-color-inverted-surface-active: #054449;
   --ds-color-inverted-border-subtle: #E2F1DF26;

@@ -181,7 +181,10 @@
 	.affixes {
 		composes: ds-field-affixes from "@digdir/designsystemet-css";
 
+		--dsc-field-affix-border-color: var(--ds-color-border-default);
+
 		align-items: center;
+		background: var(--ds-color-background-tinted);
 		box-shadow: inset 0 0 0 1px var(--dsc-field-affix-border-color);
 		color: inherit;
 

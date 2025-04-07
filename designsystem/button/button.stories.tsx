@@ -377,14 +377,9 @@ export const InMenu: Story = {
 export const Invert: Story = {
 	name: "Invert",
 	render: () => (
-		<div
-			data-color-scheme="dark"
-			className={styles.flex}
-			style={{ padding: 15 }}
-		>
+		<div data-color="inverted" className={`${styles.card} ${styles.flex}`}>
 			<p style={{ flex: "1 0 100%" }}>
-				Use data-color-scheme="dark" on parent element or button itself to
-				invert
+				Use data-color="inverted" on parent element or button itself to invert
 			</p>
 			<button type="button" className={styles.button} data-variant="primary">
 				Primary

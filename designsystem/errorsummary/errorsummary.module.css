@@ -29,3 +29,8 @@
 		}
 	}
 }
+
+/* TODO: TMP workaround to avoid focus in storybook */
+[data-story-block="true"] .errorsummary {
+	animation: none;
+}

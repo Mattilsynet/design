@@ -10,7 +10,17 @@
 	.progress::before {
 		border-radius: inherit;
 	}
-	.progress:not([value]) {
-		background: red;
+	.progress:not([value])::before {
+		animation: _indeterminate 1.5s infinite ease-in-out;
+		width: 75%;
+	}
+
+	@keyframes _indeterminate {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(150%);
+		}
 	}
 }

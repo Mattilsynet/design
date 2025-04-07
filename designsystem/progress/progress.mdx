@@ -7,7 +7,7 @@ import * as stories from './progress.stories';
 # Progress (Eksperimentell)
 
 - Legg klassen `progress` på `<u-progress>`
-
+- Sett numerisk verdi i attributtene `value` og `max`
 <Canvas of={stories.Default} />
 
 ## Størrelser
@@ -21,5 +21,10 @@ import * as stories from './progress.stories';
 ## Uten synlig label
 - Bruk `aria-label` istedefor `<label>` for å visuelt skjult label
 <Canvas of={stories.WithoutVisibleLabel} />
+
+## Ubestemt
+- Uten `value` blir `progress` ubestemt
+<Canvas of={stories.Indeterminate} />
+
 
 <CssVariables component="progress" />

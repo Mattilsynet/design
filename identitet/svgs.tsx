@@ -78,11 +78,14 @@ export const Svgs = ({
 					)
 					.map(({ file, svg }) => {
 						const href = mode === "dark" ? encodeSVG(svg, mode) : file;
-						const name = file.split("/").pop();
+						const name = file
+							.split("/")
+							.pop()
+							?.replace(/\.[^.]+$/, `${mode === "dark" ? "-dark" : ""}$&`);
 
 						return (
 							<a
-								data-color-scheme={mode}
+								data-mode={mode}
 								className={styles.card}
 								key={file}
 								href={href}
@@ -98,7 +101,7 @@ export const Svgs = ({
 					})}
 				<style>{`
         .svgs { margin-block: 2rem }
-				.svgs a[data-color-scheme="dark"] { color: var(--ds-color-text-subtle) }
+				.svgs a[data-mode="dark"] { color: var(--ds-color-text-subtle) }
         .svgs a { display: grid; align-items: center; grid-template-rows: 1fr max-content; gap: 1em; text-align: center }
         .svgs svg { height: auto; max-height: 100px; width: 100% }
       `}</style>

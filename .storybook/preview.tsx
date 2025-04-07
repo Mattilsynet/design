@@ -1,5 +1,5 @@
-// import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { MDXProvider } from "@mdx-js/react";
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
@@ -24,14 +24,14 @@ export default {
 			useEffect(() => document.documentElement.setAttribute("lang", "no"), []); // Set Nowegian language
 			return <Story />;
 		},
-		// withThemeByDataAttribute({
-		//   defaultTheme: 'Light',
-		//   attributeName: 'data-theme',
-		//   themes: {
-		//     'Light': 'light',
-		//     'Dark preview': 'dark',
-		//   }
-		// })
+		withThemeByDataAttribute({
+			defaultTheme: "Light",
+			attributeName: "data-color-scheme",
+			themes: {
+				Light: "light",
+				Dark: "dark",
+			},
+		}),
 	],
 	parameters: {
 		controls: {

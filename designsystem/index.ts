@@ -1,5 +1,10 @@
 // Expose custom elements not matching HTML elements
-export type { UHTMLTabsElement, UHTMLTabElement, UHTMLTabListElement, UHTMLTabPanelElement } from "@u-elements/u-tabs";
+export type {
+	UHTMLTabsElement,
+	UHTMLTabElement,
+	UHTMLTabListElement,
+	UHTMLTabPanelElement,
+} from "@u-elements/u-tabs";
 export type { UHTMLTagsElement } from "@u-elements/u-tags";
 
 // Expose API
@@ -27,4 +32,3 @@ import "@u-elements/u-tags";
 // Expose types
 export type Size = "sm" | "md" | "lg";
 export type HeadingSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-

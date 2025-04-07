@@ -8,6 +8,13 @@ const meta = {
 	parameters: {
 		layout: "padded",
 	},
+	decorators: [
+		(Story) => (
+			<div className={styles.grid}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
@@ -15,22 +22,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<>
-			<label>
-				Fremdrift
-				<u-progress class={styles.progress} value="33" max="100"></u-progress>
-			</label>
-			<label>
-				Ubestemt
-				<u-progress class={styles.progress}></u-progress>
-			</label>
-		</>
+		<label>
+			Fremdrift
+			<u-progress class={styles.progress} value="33" max="100"></u-progress>
+		</label>
 	),
 };
 
 export const Sizes: Story = {
 	render: () => (
-		<div className={styles.grid}>
+		<>
 			<label>
 				Small
 				<u-progress
@@ -58,13 +59,13 @@ export const Sizes: Story = {
 					data-size="lg"
 				></u-progress>
 			</label>
-		</div>
+		</>
 	),
 };
 
 export const Colors: Story = {
 	render: () => (
-		<div className={styles.grid}>
+		<>
 			<label>
 				Main
 				<u-progress
@@ -119,7 +120,7 @@ export const Colors: Story = {
 					data-color="danger"
 				></u-progress>
 			</label>
-		</div>
+		</>
 	),
 };
 
@@ -146,5 +147,13 @@ export const WithoutVisibleLabel: Story = {
 			value="33"
 			max="100"
 		></u-progress>
+	),
+};
+export const Indeterminate: Story = {
+	render: () => (
+		<label>
+			Ubestemt
+			<u-progress class={styles.progress}></u-progress>
+		</label>
 	),
 };

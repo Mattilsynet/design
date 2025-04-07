@@ -1,10 +1,15 @@
-body {
-	background: white;
+html:not([data-color-scheme="dark"]) {
+	background: var(--mtds-color-surface-default); /* White preview area */
 }
 
 u-tabpanel > pre,
 u-tabpanel > pre > .docblock-source {
 	margin-block: 0;
+}
+
+.sbdocs-preview.sbdocs-preview,
+.sbdocs-wrapper.sbdocs-wrapper {
+	background: none;
 }
 
 .sbdocs-content.sbdocs-content {
@@ -59,7 +64,10 @@ u-tabpanel > pre > .docblock-source {
 	}
 }
 
-.sbdocs-p code {
+.sbdocs-content.sbdocs-content code {
+	color: var(--mtds-color-text-default);
+	border-color: var(--mtds-color-border-subtle);
+	background: var(--mtds-color-background-tinted);
 	display: inline;
 }
 
@@ -72,15 +80,16 @@ u-tabpanel > pre > .docblock-source {
 	margin-block-start: 2rem;
 }
 
+/* Story */
+.docs-story [scale="1"] {
+	transform: none; /* Avoid conflicts with position: fixed <dialog> */
+}
+
 /** Source */
-.docblock-source.docblock-source,
-.docblock-source button {
-	background: #032c30;
+.docblock-code-toggle.docblock-code-toggle {
+	background: var(--mtds-color-surface-default);
+	color: var(--mtds-color-text-default);
 	border-radius: 0;
-	border: none;
-	box-shadow: none;
-	color: white;
-	margin: 0;
 }
 .docblock-source .prismjs * {
 	color: inherit !important;
@@ -88,6 +97,14 @@ u-tabpanel > pre > .docblock-source {
 	line-height: 1.5;
 }
 
+/** Table */
+.docblock-colorpalette div,
+.docblock-argstable :is(th, td) {
+	color: var(--mtds-color-text-default) !important;
+	background: none !important;
+}
+
+/** Canvas thumbnails */
 .sbdocs-canvas-thumbnail,
 .sbdocs-canvas-thumbnail > div {
 	max-height: 250px;
