@@ -7,7 +7,7 @@ const CSS_SHEET = IS_BROWSER ? new CSSStyleSheet() : null;
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_NAV = `.${CSS_APP} > nav, .${CSS_APP} nav:has(+ main)`;
 const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
-const KEY_TOGGLE = "--mtds-app-expanded";
+const KEY_TOGGLE = "--mtdsc-app-expanded";
 const MOBILE_NAV_BREAKPOINT = 960;
 
 function handleToggleClick(event: Event) {
@@ -60,10 +60,10 @@ let SCROLL_UP: boolean;
 let STICK_DIR = 0; // -1 = stick top, 0 = relative, 1 = stick bottom
 let WIN_H = 0;
 let WIN_Y = 0;
-const KEY_NAV_ALIGN = "--mtds-app-nav-align";
-const KEY_NAV_BOTTOM = "--mtds-app-nav-bottom";
-const KEY_NAV_POS = "--mtds-app-nav-position";
-const KEY_NAV_TOP = "--mtds-app-nav-top";
+const KEY_NAV_ALIGN = "--mtdsc-app-nav-align";
+const KEY_NAV_BOTTOM = "--mtdsc-app-nav-bottom";
+const KEY_NAV_POS = "--mtdsc-app-nav-position";
+const KEY_NAV_TOP = "--mtdsc-app-nav-top";
 
 function handleScroll() {
 	if (!NAV?.isConnected) return;

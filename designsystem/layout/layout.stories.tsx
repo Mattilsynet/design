@@ -26,7 +26,6 @@ const meta = {
 			<div className="mt-story">
 				<Story />
 				<style>{`
-					body { background: var(--mtds-color-background-default) }
 					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
 						display: grid;
 						gap: 1rem;
