@@ -18,18 +18,18 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#054449",
+        "$value": "#05433B",
         "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#113B3F",
+        "$value": "#06554B",
         "$description": "surface-hover\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#054449",
-        "$description": "surface-active\nhavdyp"
+        "$value": "#08685C",
+        "$description": "surface-active\n"
       },
       "7": {
         "$type": "color",
@@ -63,8 +63,8 @@
       },
       "13": {
         "$type": "color",
-        "$value": "#9BCAB9",
-        "$description": "base-hover\nlys furu"
+        "$value": "#89C9B1",
+        "$description": "base-hover\n"
       },
       "14": {
         "$type": "color",
@@ -78,77 +78,89 @@
       },
       "16": {
         "$type": "color",
-        "$value": "#000000",
+        "$value": "#081E21",
         "$description": "base-contrast-default"
       }
     },
     "neutral": {
       "1": {
         "$type": "color",
-        "$value": "#1b1b1b"
+        "$value": "#191A1D"
       },
       "2": {
         "$type": "color",
-        "$value": "#242323"
+        "$value": "#00000029",
+        "$description": "background-tinted\n(16%)"
       },
       "3": {
         "$type": "color",
-        "$value": "#2c2c2b"
+        "$value": "#212527",
+        "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#242424",
+        "$value": "#222326",
         "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#3c3b3a"
+        "$value": "#2C2D30",
+        "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#444343"
+        "$value": "#36373A",
+        "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#aeb1b759",
-        "$description": "border-subtle 25%"
+        "$value": "#3D3E40",
+        "$description": "border-subtle \n(25% av tekst-default)"
       },
       "8": {
         "$type": "color",
-        "$value": "#7d7b7a"
+        "$value": "#61646A",
+        "$description": "border-default"
       },
       "9": {
         "$type": "color",
-        "$value": "#a4a19f"
+        "$value": "#9EA2A9",
+        "$description": "border-strong"
       },
       "10": {
         "$type": "color",
-        "$value": "#a4a19f"
+        "$value": "#9EA2A9",
+        "$description": "text-subtle"
       },
       "11": {
         "$type": "color",
-        "$value": "#aeb1b7",
+        "$value": "#BBBEC3",
         "$description": "text-default"
       },
       "12": {
         "$type": "color",
-        "$value": "#0b0b0b"
+        "$value": "#9EA2A9",
+        "$description": "base-default"
       },
       "13": {
         "$type": "color",
-        "$value": "#1d1d1d"
+        "$value": "#A8ACB2",
+        "$description": "base-hover"
       },
       "14": {
         "$type": "color",
-        "$value": "#2f2e2d"
+        "$value": "#B3B6BC",
+        "$description": "base-active"
       },
       "15": {
         "$type": "color",
-        "$value": "#989898"
+        "$value": "#1B1C1F",
+        "$description": "base-contrast-subtle"
       },
       "16": {
         "$type": "color",
-        "$value": "#ffffff"
+        "$value": "#131416",
+        "$description": "base-contrast-default"
       }
     },
     "inverted": {
@@ -159,43 +171,42 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#6B6B6B614",
-        "$description": "background-tinted\n8%"
+        "$value": "#00000029",
+        "$description": "background-tinted\n16%"
       },
       "3": {
         "$type": "color",
-        "$value": "#2A2E30",
+        "$value": "#0E5856",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#116E6B",
-        "$description": "surface-tinted\nHavdyp"
+        "$value": "#0E5856",
+        "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#0A595C",
-        "$description": "surface-hover\n"
+        "$value": "#116E6B",
+        "$description": "surface-hover\nHavdyp\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#116E6B",
-        "$description": "surface-active\nhavdyp"
+        "$value": "#147B78",
+        "$description": "surface-active\n"
       },
       "7": {
         "$type": "color",
-        "$value": "#FFFFFF1a",
-        "$description": "border-subtle\n10%"
+        "$value": "#FFFFFF33",
+        "$description": "border-subtle\n20%"
       },
       "8": {
         "$type": "color",
-        "$value": "#68b096",
-        "$description": "border-default\nfuru"
+        "$value": "#5E807D"
       },
       "9": {
         "$type": "color",
-        "$value": "#abe1cd",
-        "$description": "border-strong\nbrevann"
+        "$value": "#9BCAC2",
+        "$description": "border-strong\n"
       },
       "10": {
         "$type": "color",
@@ -209,17 +220,17 @@
       },
       "12": {
         "$type": "color",
-        "$value": "#68b096",
+        "$value": "#9BCAC2",
         "$description": "base-default"
       },
       "13": {
         "$type": "color",
-        "$value": "#9BCAB9",
-        "$description": "base-hover\nlys furu"
+        "$value": "#A8D1CA",
+        "$description": "base-hover\n"
       },
       "14": {
         "$type": "color",
-        "$value": "#abe1cd",
+        "$value": "#B6D8D2",
         "$description": "base-active"
       },
       "15": {
@@ -229,7 +240,7 @@
       },
       "16": {
         "$type": "color",
-        "$value": "#000000",
+        "$value": "#081E21",
         "$description": "base-contrast-default"
       }
     }
