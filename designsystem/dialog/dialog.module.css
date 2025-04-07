@@ -5,13 +5,15 @@
 		--dsc-dialog-color: var(--ds-color-text-default);
 		--dsc-dialog-border-width: 0px;
 		--dsc-dialog-max-height: 90vh;
-		z-index: 1000; /* Place above also when non-modal */
 	}
-
+	.dialog:not(:modal) {
+		z-index: 1000; /* Needed as non-modal does not use #top-layer */
+	}
 	.dialog[data-closedby="any"]::backdrop {
 		cursor: pointer;
 	}
 
+	/* Close button */
 	.dialog > button:first-child:empty,
 	.dialog > form[method="dialog"]:first-child > button:only-child {
 		all: unset;
