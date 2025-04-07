@@ -13,7 +13,6 @@
 		--dsc-table-header-background: transparent;
 		--mtdsc-table-divided: 50; /* Need to be unitless */
 
-		animation: _onInjectTable 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		background: var(--dsc-table-background);
 		vertical-align: top;
 
@@ -29,11 +28,6 @@
 		}
 		&[data-align="center"] {
 			vertical-align: middle;
-		}
-	}
-	@keyframes _onInjectTable {
-		to {
-			opacity: 1;
 		}
 	}
 	.table th {
@@ -63,15 +57,20 @@
 		border-bottom-color: var(--dsc-table-divider-border-color);
 		vertical-align: bottom;
 	}
-	.table[data-border] {
+	.table[data-border]:not([data-border="false"]) {
 		--dsc-table-background: var(--ds-color-surface-default);
+
+		& > thead > tr > :is(th, td) {
+			--dsc-table-header-background: var(--ds-color-surface-tinted);
+		}
+		& > tbody > tr > :not(:last-child) {
+			border-right: var(--dsc-table-border-width) var(--dsc-table-border-style)
+				var(--dsc-table-border-color);
+		}
 	}
-	.table[data-border] > thead > tr > :is(th, td) {
-		--dsc-table-header-background: var(--ds-color-surface-tinted);
-	}
-	.table[data-border] > tbody > tr > :not(:last-child) {
-		border-right: var(--dsc-table-border-width) var(--dsc-table-border-style)
-			var(--dsc-table-border-color);
+	.table[data-border="false"] {
+		--dsc-table-border-color: transparent;
+		--dsc-table-padding: var(--mtds-1) 0;
 	}
 
 	/**
@@ -257,21 +256,22 @@
 		/**
 		 * Mobile data-border
 		 */
-		.table[data-mobile][data-border] {
+		.table[data-mobile][data-border]:not([data-border="false"]) {
 			padding: var(--dsc-table-padding);
 			border: var(--dsc-table-border-width) var(--dsc-table-border-style)
 				var(--dsc-table-border-color);
-		}
-		.table[data-mobile][data-border] > tbody > tr:first-child {
-			border-top: 0;
-			padding-top: 0;
-		}
-		.table[data-mobile][data-border] > tbody > tr:last-child {
-			border-bottom: 0;
-			padding-bottom: 0;
-		}
-		.table[data-mobile][data-border] > tbody > tr > * {
-			border-inline: 0;
+
+			& > tbody > tr:first-child {
+				border-top: 0;
+				padding-top: 0;
+			}
+			& > tbody > tr:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+			& > tbody > tr > * {
+				border-inline: 0;
+			}
 		}
 	}
 }

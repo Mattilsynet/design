@@ -1,7 +1,7 @@
 import { List, X } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useId } from "react";
-import { Button, Popover } from "../react";
+import { Button, Field, Input, Popover } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -20,18 +20,22 @@ export const Default: Story = {
 		return (
 			<>
 				<button
+					className={styles.button}
+					data-arrow
+					data-variant="secondary"
 					popoverTarget={popId}
 					type="button"
-					className={styles.button}
-					data-variant="secondary"
-					data-arrow
 				>
 					Knapp
 				</button>
 				<menu popover="auto" id={popId} className={styles.popover}>
 					{range.map((num) => (
 						<li key={num}>
-							<button type="button" className={styles.button}>
+							<button
+								className={styles.button}
+								popoverTargetAction="hide"
+								type="button"
+							>
 								Knapp {num}
 							</button>
 						</li>
@@ -45,21 +49,52 @@ export const Default: Story = {
 export const React: Story = {
 	render: function Render() {
 		const popId = useId();
+		const popInlineId = useId();
+		const popLabelId = useId();
 
 		return (
 			<>
 				<Button popoverTarget={popId} data-variant="secondary" data-arrow>
 					Knapp
 				</Button>
-				<Popover as="menu" id={popId} className={styles.popover}>
+				<Popover as="menu" id={popId}>
 					{range.map((num) => (
 						<li key={num}>
-							<button type="button" className={styles.button}>
-								Knapp {num}
-							</button>
+							<Button>Knapp {num}</Button>
 						</li>
 					))}
 				</Popover>
+				<br />
+				<p>
+					En{" "}
+					<button
+						type="button"
+						data-popover="inline"
+						popoverTarget={popInlineId}
+					>
+						popover i test
+					</button>
+				</p>
+				<Popover id={popInlineId}>Popover i tekst</Popover>
+				<br />
+				<Field>
+					<label>
+						Et{" "}
+						<button
+							type="button"
+							data-popover="inline"
+							popoverTarget={popLabelId}
+						>
+							vanskelig ord
+						</button>{" "}
+						i ledetekst
+					</label>
+					<Popover id={popLabelId}>
+						Legg popover elementet <i>etter</i> label elementet (ikke inni), for
+						å oppnå semantisk riktig HTML
+					</Popover>
+					<Input />
+				</Field>
 			</>
 		);
 	},
@@ -162,7 +197,6 @@ export const WithClose: Story = {
 			</button>
 			<div popover="auto" id="pop-3" className={styles.popover}>
 				<button
-					popoverTarget="pop-3"
 					popoverTargetAction="hide"
 					type="button"
 					className={styles.button}
@@ -184,11 +218,24 @@ export const WithTextInline: Story = {
 			</button>{" "}
 			for å sikre at vi har en konsistent design.
 			<div popover="auto" id="pop-inline" className={styles.popover}>
-				Design tokens er en samling
-				<br />
-				av variabler som definerer
-				<br />
-				designet i et designsystem.
+				Design tokens er en samling av variabler som definerer designet i et
+				designsystem.
+			</div>
+			<br />
+			<br />
+			<div className={styles.field}>
+				<label>
+					Et{" "}
+					<button popoverTarget="pop-label" type="button" data-popover="inline">
+						vanskelig ord
+					</button>{" "}
+					i ledetekst
+				</label>
+				<div popover="auto" id="pop-label" className={styles.popover}>
+					Legg popover elementet <i>etter</i> label elementet (ikke inni), for å
+					oppnå semantisk riktig HTML
+				</div>
+				<input className={styles.input} />
 			</div>
 		</>
 	),

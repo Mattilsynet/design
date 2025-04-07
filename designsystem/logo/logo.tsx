@@ -8,7 +8,7 @@ import styles from "../styles.module.css";
 
 type LogoBaseProps<Href> = {
 	"data-color"?: "danger" | "info";
-	"data-env"?: string;
+	"data-env"?: string | null;
 	href?: Href;
 };
 

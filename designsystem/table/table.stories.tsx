@@ -1320,6 +1320,38 @@ export const WithBorderAround: Story = {
 	),
 };
 
+export const WithoutBorders: Story = {
+	render: () => (
+		<div className={styles.grid} style={{ minWidth: 400 }}>
+			<h2 className={styles.heading}>Table heading</h2>
+			<table
+				className={styles.table}
+				data-border="false"
+				aria-label="Table without borders"
+			>
+				<tbody>
+					<tr>
+						<th>Antoni Foyston</th>
+						<td>74</td>
+					</tr>
+					<tr>
+						<th>Jenine Healey</th>
+						<td>22</td>
+					</tr>
+					<tr>
+						<th>Leigh Klein</th>
+						<td>14</td>
+					</tr>
+					<tr>
+						<th>Zara Greenrodd</th>
+						<td>28</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	),
+};
+
 export const Sizes: Story = {
 	render: () => (
 		<table data-size="sm" className={styles.table} aria-label="Small table">

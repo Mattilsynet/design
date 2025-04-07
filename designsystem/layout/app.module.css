@@ -3,10 +3,11 @@
 	 * App layout
 	 */
 	.app {
-		--mtdsc-app-spacing-md: var(--ds-size-6);
-		--mtdsc-app-spacing-sm: var(--ds-size-3);
+		--mtdsc-app-expand-size: var(--ds-size-8);
 		--mtdsc-app-nav--collapsed: 5rem; /* Using rem and not -ds-size as we do not want this to be fluid */
 		--mtdsc-app-nav--expanded: 14em;
+		--mtdsc-app-spacing-md: var(--ds-size-6);
+		--mtdsc-app-spacing-sm: var(--ds-size-3);
 
 		box-sizing: border-box;
 		min-height: 100vh;
@@ -32,35 +33,60 @@
 	 */
 	/* Using cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
 	:root {
-		--mtds-app-expanded: var(--mtds-app-expanded--true);
-		--mtds-app-expanded--true: var(--mtds-app-expanded,);
-		--mtds-app-expanded--false: var(--mtds-app-expanded,);
+		--mtdsc-app-expanded: var(--mtdsc-app-expanded--true);
+		--mtdsc-app-expanded--true: var(--mtdsc-app-expanded,);
+		--mtdsc-app-expanded--false: var(--mtdsc-app-expanded,);
 	}
+	/* Hide relevant child elements with data-expanded attribute */
 	.app [data-app-expanded="true"] {
-		display: var(--mtds-app-expanded--false, none); /* Hide relevant child elements with data-expanded attribute */
+		display: var(--mtdsc-app-expanded--false, none);
 	}
 	.app [data-app-expanded="false"] {
-		display: var(--mtds-app-expanded--true, none); /* Hide relevant child elements with data-expanded attribute */
+		display: var(--mtdsc-app-expanded--true, none);
 	}
 	.app [data-command="toggle-app-expanded"] {
 		all: unset;
-		bottom: 20px;
+		background: var(--ds-color-background-tinted);
+		border-radius: var(--ds-border-radius-md);
+		bottom: var(--mtdsc-app-spacing-md);
 		cursor: pointer;
-		height: 40px;
-		left: 20px;
+		height: var(--mtdsc-app-expand-size);
+		left: var(--mtdsc-app-spacing-md);
 		position: fixed; /* TODO: Position toggle button */
 		text-align: center;
-		width: 40px;
+		transition: .2s;
+		width: var(--mtdsc-app-expand-size);
 		z-index: 2;
 
 		/* Maxium 960px */
 		@media (max-width: 60em) {
 			display: none; /* Hide toggler on mobile */
 		}
-	}
-	.app [data-command="toggle-app-expanded"]:after {
-		content: var(--mtds-app-expanded--true, "<")
-			var(--mtds-app-expanded--false, ">");
+
+		&::after {
+			background: currentColor;
+			content: var(--mtds-text-navigation);
+			display: block;
+			height: var(--mtds-icon-size);
+			mask: center / contain no-repeat var(--mtds-icon-chevron);
+			rotate: var(--mtdsc-app-expanded--true, 90deg)
+				var(--mtdsc-app-expanded--false, -90deg);
+			white-space: nowrap;
+			overflow: clip;
+		}
+
+		&:hover {
+			background: var(--ds-color-base-default);
+			color: var(--ds-color-base-contrast-default);
+		}
+		&:active {
+			scale: 0.9;
+		}
+		&:focus-visible {
+			box-shadow: var(--dsc-focus-boxShadow);
+			outline: var(--dsc-focus-outline);
+			outline-offset: var(--ds-border-width-focus);
+		}
 	}
 
 	/**
@@ -92,58 +118,57 @@
 	 */
 	.app > nav,
 	.app nav:has(+ main) {
-		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
-			var(--mtds-app-expanded--false, right);
+		--mtds-tooltip-position: var(--mtdsc-app-expanded--true, none)
+			var(--mtdsc-app-expanded--false, right);
 
-		align-content: start; /* Set default alignment in case used as grid */
+		/* Sticky position */
+		align-self: var(--mtdsc-app-nav-align, start);
+		bottom: var(--mtdsc-app-nav-bottom);
+		position: var(--mtdsc-app-nav-position);
+		top: var(--mtdsc-app-nav-top);
+		z-index: 2; /* Position above <main> to show toggle button */
+
 		box-sizing: border-box;
 		grid-area: nav;
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		padding-inline: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-sm);
-		padding-top: var(--mtdsc-app-spacing-md);
-		position: sticky;
-		/* max-height: 100vh; */
-		/* top: 0; */
-		/* bottom: 0; */
-		view-transition-name: mtds-laytout-app--left;
-		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav--expanded))
-			var(--mtds-app-expanded--false, var(--mtdsc-app-nav--collapsed));
+		padding: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-md)
+			var(--ds-size-18);
+		view-transition-name: mtds-app--left;
+		width: var(--mtdsc-app-expanded--true, var(--mtdsc-app-nav--expanded))
+			var(--mtdsc-app-expanded--false, var(--mtdsc-app-nav--collapsed));
 
 		& menu > li > [data-tooltip]::after {
-			content: var(--mtds-app-expanded--true, attr(data-tooltip))
-				var(--mtds-app-expanded--false, none);
+			content: var(--mtdsc-app-expanded--true, attr(data-tooltip))
+				var(--mtdsc-app-expanded--false, none);
 		}
 
-		/* Minimum 961px */
-		/* @media (min-width: 60.0625em) {
-		} */
 		& menu {
-			margin-left: calc(var(--mtdsc-app-spacing-sm) * -1);
+			margin-inline: calc(var(--mtdsc-app-spacing-sm) * -1);
 		}
-		/* & menu > li > :is(a, button) {
-			padding-left: calc(var(--mtdsc-app-spacing-md) * 2);
-		} */
 
 		/* Maxium 960px */
 		@media (max-width: 60em) {
+			display: none;
 			background-color: var(--ds-color-surface-default);
-			border-top: 1px solid var(--ds-color-border-subtle);
-			min-height: 100svh;
 			min-height: 100vh;
-			padding: var(--mtdsc-app-spacing-sm);
-			pointer-events: none; /* No pointer-events makes it easier to detect pseudo-element click */
+			min-height: 100svh;
 			position: absolute;
-			right: 100%;
-			top: calc(100vh - var(--ds-size-13)); /**/
+			left: 0;
+			top: 0;
 			width: min(var(--mtdsc-app-nav--expanded), 100vh);
 			z-index: 99;
+			box-shadow: 0 0 0 99vh rgba(0, 0, 0, 0.5);
 
-			& > * {
-				pointer-events: auto;
+			&::after,
+			&::before {
+				background: var(--ds-color-surface-default);
+				content: "";
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: var(--mtdsc-app-nav--expanded);
 			}
 
-			&::before {
+			/* &::before {
 				display: block;
 				padding-block: inherit;
 				padding-inline: calc(
@@ -154,23 +179,18 @@
 				margin: calc(var(--mtdsc-app-spacing-sm) * -1)
 					calc(var(--mtdsc-app-spacing-sm) * -1) var(--mtdsc-app-spacing-sm);
 				content: var(--mtds-text-navigation);
-				pointer-events: auto; /* Allow click on pseudo-element */
-			}
-			&::after {
+			} */
+			/* &::after {
 				position: fixed;
 				top: 0;
 				right: 0;
 				background: currentcolor;
 				content: var(--mtds-text-navigation);
-				/* height: 1.5em;
-				height: 1lh; */
-				/* left: var(--mtdsc-app-spacing-sm); */
 				mask: center / contain no-repeat var(--mtds-icon-burger);
-				/* top: var(--mtdsc-app-spacing-sm); */
 				height: var(--mtds-icon-size);
 				width: var(--mtds-icon-size);
 				overflow: clip;
-			}
+			} */
 		}
 	}
 
@@ -181,7 +201,7 @@
 	.app main {
 		grid-area: main;
 		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm) 0;
-		view-transition-name: mtds-laytout-app--main;
+		view-transition-name: mtds-app--main;
 
 		@media (max-width: 60em) {
 			margin-inline: var(--ds-size-2);
@@ -197,7 +217,7 @@
 		grid-area: aside;
 		padding-right: var(--mtdsc-app-spacing-sm);
 		padding-top: var(--mtdsc-app-spacing-md);
-		view-transition-name: mtds-laytout-app--right;
+		view-transition-name: mtds-app--right;
 		width: 14em;
 
 		&[hidden] {
@@ -224,16 +244,16 @@
 	}
 }
 
-::view-transition-old(mtds-laytout-app--left),
-::view-transition-new(mtds-laytout-app--left),
-::view-transition-old(mtds-laytout-app--right),
-::view-transition-new(mtds-laytout-app--right) {
+::view-transition-old(mtds-app--left),
+::view-transition-new(mtds-app--left),
+::view-transition-old(mtds-app--right),
+::view-transition-new(mtds-app--right) {
 	height: 100%;
 	object-fit: none;
 	object-position: top left;
 }
 
-::view-transition-old(mtds-laytout-app--main),
-::view-transition-new(mtds-laytout-app--main) {
+::view-transition-old(mtds-app--main),
+::view-transition-new(mtds-app--main) {
 	height: 100%;
 }

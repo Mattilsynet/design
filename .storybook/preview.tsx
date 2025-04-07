@@ -1,13 +1,11 @@
-// import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { MDXProvider } from "@mdx-js/react";
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
 import { styles } from "../designsystem";
 import "./preview.css";
-import "@u-elements/u-tabs";
-import "@u-elements/u-details";
 
 const CSS = styles as unknown as Record<string, string>; // Fix internal typings
 const CSS_ALERT = CSS.alert.split(" ");
@@ -26,14 +24,15 @@ export default {
 			useEffect(() => document.documentElement.setAttribute("lang", "no"), []); // Set Nowegian language
 			return <Story />;
 		},
-		// withThemeByDataAttribute({
-		//   defaultTheme: 'Light',
-		//   attributeName: 'data-theme',
-		//   themes: {
-		//     'Light': 'light',
-		//     'Dark preview': 'dark',
-		//   }
-		// })
+		withThemeByDataAttribute({
+			defaultTheme: "Auto light/dark",
+			attributeName: "data-color-scheme",
+			themes: {
+				"Auto light/dark": "auto",
+				Light: "light",
+				Dark: "dark",
+			},
+		}),
 	],
 	parameters: {
 		controls: {

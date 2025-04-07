@@ -27,6 +27,11 @@
 		rotate: -180deg;
 	}
 
+	.details > :not(summary, u-summary) {
+		border-radius: 0; /* Reset DigiDir */
+		padding: 0;
+	}
+
 	.details::details-content,
 	.details::part(details-content) {
 		padding: var(--mtdsc-details-content-padding);

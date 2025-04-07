@@ -26,7 +26,6 @@ const meta = {
 			<div className="mt-story">
 				<Story />
 				<style>{`
-					body { background: var(--mtds-color-background-default) }
 					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
 						display: grid;
 						gap: 1rem;
@@ -892,6 +891,16 @@ export const App: Story = {
 						</div>
 					</fieldset>
 				</form>
+				{/* <hr className={styles.divider} data-gap="8" />
+				<div>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+					velit orci, sagittis sodales viverra id, malesuada quis lacus. Nunc ac
+					vulputate enim, et feugiat lorem. Suspendisse metus est, semper in
+					tempor ut, ornare nec sapien. Maecenas dictum sodales leo, ut ultrices
+					ex. Quisque in interdum nisl. Fusce non est finibus, imperdiet diam
+					quis, sodales tellus. Maecenas vitae scelerisque ipsum. Maecenas
+					tempor leo orci, a lacinia leo interdum et.
+				</div> */}
 			</nav>
 			<main>
 				<div className={styles.card}>
@@ -918,6 +927,43 @@ export const App: Story = {
 						</div>
 					</fieldset>
 				</div>
+				{/* <div className={styles.prose}>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+						velit orci, sagittis sodales viverra id, malesuada quis lacus. Nunc
+						ac vulputate enim, et feugiat lorem. Suspendisse metus est, semper
+						in tempor ut, ornare nec sapien. Maecenas dictum sodales leo, ut
+						ultrices ex. Quisque in interdum nisl. Fusce non est finibus,
+						imperdiet diam quis, sodales tellus. Maecenas vitae scelerisque
+						ipsum. Maecenas tempor leo orci, a lacinia leo interdum et. Maecenas
+						dictum tortor ut nisi mollis, ac lobortis metus congue. Aliquam
+						pharetra leo at nulla molestie sagittis. Aenean condimentum viverra
+						blandit. Phasellus placerat imperdiet felis, vel mollis ante maximus
+						at. Nam pretium mattis augue, quis vehicula nisl facilisis in. Fusce
+						in dolor et enim sollicitudin lobortis. Etiam tincidunt eleifend
+						felis, sed faucibus ligula iaculis at. Fusce a venenatis nunc.
+					</p>
+					<p>
+						Quisque malesuada, tortor eget tempor rutrum, nunc diam volutpat
+						ligula, id tempus massa neque a sem. Donec odio enim, porta non odio
+						vel, sollicitudin facilisis tellus. Vestibulum eget mauris dictum,
+						dictum enim sed, aliquet ante. Nunc dictum quam ac feugiat lacinia.
+						Ut nec maximus nibh, in tristique orci. Suspendisse dolor metus,
+						scelerisque vel massa eu, dignissim dictum purus. Maecenas iaculis
+						in arcu sit amet tristique. Etiam ac neque rhoncus nibh laoreet
+						efficitur.
+					</p>
+					<p>
+						Quisque malesuada, tortor eget tempor rutrum, nunc diam volutpat
+						ligula, id tempus massa neque a sem. Donec odio enim, porta non odio
+						vel, sollicitudin facilisis tellus. Vestibulum eget mauris dictum,
+						dictum enim sed, aliquet ante. Nunc dictum quam ac feugiat lacinia.
+						Ut nec maximus nibh, in tristique orci. Suspendisse dolor metus,
+						scelerisque vel massa eu, dignissim dictum purus. Maecenas iaculis
+						in arcu sit amet tristique. Etiam ac neque rhoncus nibh laoreet
+						efficitur.
+					</p>
+				</div> */}
 			</main>
 			<aside hidden>
 				<form className={styles.grid} data-gap="4">

@@ -20,7 +20,7 @@
 		transition-duration: .15s;
 		transition-property: border-color, scale;
 	}
-	.card:where(:not(tr, [hidden])) {
+	:where(.card:not(tr, [hidden])) {
 		display: block;
 	}
 	.card:is(button:enabled, button:not([aria-disabled="true"])) {

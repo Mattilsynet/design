@@ -30,7 +30,7 @@ import * as stories from './pagination.stories';
     const { pages, next, prev } = pagination({
       current: 1,
       total: 20,
-      show: 7,
+      show: 7, // Optional, shows all if not proivded
     })
     ```
 2. Du får et hendig `object` i retur, som kan brukes til å generere HTML:

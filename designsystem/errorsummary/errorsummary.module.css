@@ -16,6 +16,7 @@
 	.errorsummary > h2:focus-visible {
 		box-shadow: var(--dsc-focus-boxShadow);
 		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
 	}
 	.errorsummary > ul {
 		margin-block: .5em 0;
@@ -28,4 +29,9 @@
 			translate: 0 .25rem;
 		}
 	}
+}
+
+/* TODO: TMP workaround to avoid focus in storybook */
+[data-story-block="true"] .errorsummary {
+	animation: none;
 }

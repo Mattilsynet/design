@@ -11,7 +11,6 @@
 		--icon-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 55'%3E%3Crect fill='none' width='51' height='51' x='2' y='2' stroke='black' stroke-dasharray='0.09 6.38' stroke-linecap='round' stroke-opacity='.6' stroke-width='2.3' rx='25.5'/%3E%3C/svg%3E");
 		--icon-size: 1.657em;
 
-		animation: _onInjectLogo 1ms; /* Detect Node injections: https://davidwalsh.name/detect-node-insertion */
 		border-radius: var(--ds-border-radius-sm);
 		box-sizing: border-box;
 		display: block;
@@ -24,12 +23,6 @@
 		overflow: clip;
 		text-decoration: none;
 		white-space: normal; /* Allow wrap */
-	}
-
-	@keyframes _onInjectLogo {
-		to {
-			opacity: 1;
-		}
 	}
 
 	.logo:not(:has(svg)) {
@@ -102,12 +95,11 @@
 			float: left;
 			height: var(--icon-size);
 			margin-right: calc(var(--icon-size) * -1);
-			mask: center / contain no-repeat var(--solig);
 			width: var(--icon-size);
 		}
 		&[data-env]::before {
 			background: currentcolor;
-			mask-image: var(--icon-dots);
+			mask: center / contain no-repeat var(--icon-dots);
 		}
 	}
 	.logo svg {
@@ -118,6 +110,9 @@
 		margin-right: .45em;
 		padding: .25em;
 		width: var(--icon-size);
+	}
+	.logo:not([data-env]) svg {
+		color: #054449; /* Hard code granskog */
 	}
 
 	/**

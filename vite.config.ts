@@ -11,92 +11,92 @@ const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for rea
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 
 export default defineConfig(({ mode }) =>
-  mode === "iife"
-    ? {
-        build: {
-          outDir: dist,
-          sourcemap: true,
-          lib: {
-            entry: path.resolve(root, "index.ts"),
-            cssFileName: "iife",
-            fileName: "[name]",
-            formats: ["iife"],
-            name: "mtds",
-          },
-        },
-      }
-    : {
-        css: {
-          postcss: { plugins: [postcssNesting] }, // Polyfill support modern CSS nesting for Samsung Internet
-          modules: {
-            // Cache, but await writing file as dist might be cleared
-            getJSON: (_, json) =>
-              Object.assign(
-                cssModulesMap,
-                Object.fromEntries(
-                  Object.entries(json).filter(([key]) => key[0] !== "_")
-                ) // Skip private keys (starting with _)
-              ),
-          },
-        },
-        plugins: [
-          react(),
-          dts({
-            beforeWriteFile: (filePath, content) => ({
-              filePath,
-              content: content.replace(
-                `export * as styles from './styles.module.css';`, // Fix CSS modules in .d.ts,
-                `export declare const styles: {\r\n${Object.keys(cssModulesMap)
-                  .map((key) => `${key}: string;\r\n`)
-                  .join("")}};`
-              ),
-            }),
-            entryRoot: root,
-            outDir: dist,
-          }),
-          {
-            name: "Generate CSS modules map to styles.json and add ensure correct order when loading with TailwindCSS",
-            writeBundle: () => {
-              const css = path.resolve(dist, "styles.css");
-              const json = path.resolve(dist, "styles.json");
+	mode === "iife"
+		? {
+				build: {
+					outDir: dist,
+					sourcemap: true,
+					lib: {
+						entry: path.resolve(root, "index.ts"),
+						cssFileName: "iife",
+						fileName: "[name]",
+						formats: ["iife"],
+						name: "mtds",
+					},
+				},
+			}
+		: {
+				css: {
+					postcss: { plugins: [postcssNesting] }, // Polyfill support modern CSS nesting for Samsung Internet
+					modules: {
+						// Cache, but await writing file as dist might be cleared
+						getJSON: (_, json) =>
+							Object.assign(
+								cssModulesMap,
+								Object.fromEntries(
+									Object.entries(json).filter(([key]) => key[0] !== "_"),
+								), // Skip private keys (starting with _)
+							),
+					},
+				},
+				plugins: [
+					react(),
+					dts({
+						beforeWriteFile: (filePath, content) => ({
+							filePath,
+							content: content.replace(
+								`export * as styles from './styles.module.css';`, // Fix CSS modules in .d.ts,
+								`export declare const styles: {\r\n${Object.keys(cssModulesMap)
+									.map((key) => `${key}: string;\r\n`)
+									.join("")}};`,
+							),
+						}),
+						entryRoot: root,
+						outDir: dist,
+					}),
+					{
+						name: "Generate CSS modules map to styles.json and add ensure correct order when loading with TailwindCSS",
+						writeBundle: () => {
+							const css = path.resolve(dist, "styles.css");
+							const json = path.resolve(dist, "styles.json");
 
-              // Insert @layer directive to ensure correct order when loading with TailwindCSS
-              fs.writeFileSync(
-                css,
-                `@layer base, tailwind-base, ds, mt;${fs.readFileSync(css, "utf-8").replace('@charset "UTF-8";', "")}`
-              );
-              fs.writeFileSync(json, JSON.stringify(cssModulesMap, null, 2));
-            },
-          },
-          cssToTailwind,
-          cssPropsRename,
-        ],
-        build: {
-          emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder
-          outDir: dist,
-          sourcemap: true,
-          lib: {
-            entry: [
-              path.resolve(root, "index.ts"),
-              path.resolve(root, "react.tsx"),
-            ],
-            cssFileName: "styles",
-            fileName: "[name]",
-            formats: ["es"],
-          },
-          rollupOptions: {
-            // Externalize React
-            external: ["react", "react-dom", "react/jsx-runtime"],
-            output: {
-              // Needed to truly enable being treeshakable when Vite is in lib mode
-              // https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
-              preserveModules: true,
-              preserveModulesRoot: root,
-              // See https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
-              entryFileNames: ({ name }) =>
-                `${name.includes("node_modules") ? name.replace(/node_modules/, "external") : "[name]"}.js`,
-            },
-          },
-        },
-      }
+							// Insert @layer directive to ensure correct order when loading with TailwindCSS
+							fs.writeFileSync(
+								css,
+								`@layer base, tailwind-base, ds, mt;${fs.readFileSync(css, "utf-8").replace('@charset "UTF-8";', "")}`,
+							);
+							fs.writeFileSync(json, JSON.stringify(cssModulesMap, null, 2));
+						},
+					},
+					cssToTailwind,
+					cssPropsRename,
+				],
+				build: {
+					emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder
+					outDir: dist,
+					sourcemap: true,
+					lib: {
+						entry: [
+							path.resolve(root, "index.ts"),
+							path.resolve(root, "react.tsx"),
+						],
+						cssFileName: "styles",
+						fileName: "[name]",
+						formats: ["es"],
+					},
+					rollupOptions: {
+						// Externalize React
+						external: ["react", "react-dom", "react/jsx-runtime"],
+						output: {
+							// Needed to truly enable being treeshakable when Vite is in lib mode
+							// https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
+							preserveModules: true,
+							preserveModulesRoot: root,
+							// See https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
+							entryFileNames: ({ name }) =>
+								`${name.includes("node_modules") ? name.replace(/node_modules/, "external") : "[name]"}.js`,
+						},
+					},
+				},
+			},
 );

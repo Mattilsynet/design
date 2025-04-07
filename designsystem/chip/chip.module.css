@@ -2,7 +2,7 @@
 	.chip {
 		composes: ds-chip from "@digdir/designsystemet-css";
 		--dsc-chip-input-accent-color: var(--ds-color-base-contrast-default);
-		--dsc-chip-border-radius: var(--ds-border-radius-xl); /* Prevent larger radius when growing in height */
+		--dsc-chip-border-radius: 1em; /* Prevent larger radius when growing in height */
 		--dsc-chip-color: var(--ds-color-text-subtle);
 
 		font-weight: normal; /* Reset <label> */

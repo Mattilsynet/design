@@ -6,20 +6,20 @@ export type HelpTextProps = React.ComponentPropsWithoutRef<"button">;
 
 export const HelpText = forwardRef<HTMLButtonElement, HelpTextProps>(
 	function HelpText({ className, children, ...rest }, ref) {
-    const popoverId = useId()
+		const popoverId = useId();
 		return (
 			<>
-        <button
-          className={clsx(styles.helptext, className)}
-          popoverTarget={popoverId}
-          ref={ref}
-          type="button"
-          {...rest}
-        />
-        <div className={styles.popover} id={popoverId} popover="auto">
-          {children}
-        </div>
-      </>
+				<button
+					className={clsx(styles.helptext, className)}
+					popoverTarget={popoverId}
+					ref={ref}
+					type="button"
+					{...rest}
+				/>
+				<div className={styles.popover} id={popoverId} popover="auto">
+					{children}
+				</div>
+			</>
 		);
 	},
 );

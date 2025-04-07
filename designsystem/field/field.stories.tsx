@@ -11,6 +11,100 @@ import styles from "../styles.module.css";
 
 const meta = {
 	title: "Designsystem/Field",
+	argTypes: {
+		as: {
+			description: "Element type `input | textarea | select`",
+			table: {
+				defaultValue: { summary: "input" },
+				type: { summary: undefined },
+			},
+		},
+		type: {
+			description: "Input type `text | checkbox | radio | ...`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		label: {
+			description: "Label text `React.ReactNode`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		description: {
+			description: "Description text `React.ReactNode`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		value: {
+			description: "Value `string`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		checked: {
+			description: 'If `type="checkbox"` or `type="radio"`: `boolean`',
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		validation: {
+			description: "Validation message `React.ReactNode`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		count: {
+			description: "Character count `number`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		options: {
+			description:
+				'If `as="select"`: `string[] | { label: string; value: string }[]`',
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		prefix: {
+			description: "Prefix affix `string`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		sufix: {
+			description: "Prefix affix `string`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		helpText: {
+			description: "What to display in HelpText `React.ReactNode`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		helpTextLabel: {
+			description: "Label of HelpText button `string`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+	},
 	decorators: [
 		(Story) => (
 			<div className={styles.grid}>
@@ -55,6 +149,8 @@ export const React: Story = {
 			<Field
 				as="input"
 				label="Ledetekst"
+				helpText="Hjelpetekst"
+				helpTextLabel="Vis hjelpetekst"
 				description="Beskrivelse"
 				error="Feilmelding"
 				prefix="Før"
@@ -80,13 +176,11 @@ export const React: Story = {
 			<h2>
 				Field med <code>as="select"</code>:
 			</h2>
-			<Field as="select" label="Ledetekst">
-				<option>Option 1</option>
-				<option>Option 2</option>
-				<option>Option 3</option>
-				<option>Option 4</option>
-				<option>Option 5</option>
-			</Field>
+			<Field
+				as="select"
+				label="Ledetekst"
+				options={["Option 1", { label: "Option 2", value: "option 2" }]}
+			/>
 		</>
 	),
 };

@@ -4,6 +4,7 @@
 
 		flex-shrink: 0; /* If placed in flex */
 		max-width: 100%;
+		text-align: center;
 		transition-duration: .2s;
 		transition-property: background-color, scale, translate;
 
@@ -34,9 +35,11 @@
 		}
 		&[data-justify="start"] {
 			justify-content: start;
+			text-align: start;
 		}
 		&[data-justify="end"] {
 			justify-content: end;
+			text-align: end;
 		}
 
 		&::before,
@@ -54,6 +57,10 @@
 
 		&:active {
 			scale: 0.975;
+		}
+
+		&:has([data-nowrap]) {
+			flex-shrink: 1;
 		}
 
 		& [data-nowrap] {

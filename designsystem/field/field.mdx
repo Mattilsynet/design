@@ -1,12 +1,24 @@
-import { Meta, Canvas } from '@storybook/blocks';
+import { ArgTypes, Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './field.stories';
+import styles from "../styles.module.css";
 
 <Meta of={stories} />
 
 # Field
+
+## Generelt
 - Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
 - Dette kobler automatisk sammen `<label>` og `<input>`, samt eventuelle element med `<p>` og klassen `validation`
+
+<u-details class={styles.details}>
+  <u-summary>Se egne parameter for React</u-summary>
+<div>
+I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full kontroll, eller med `as="input"`/`as="select"` og props for automatisk oppsett av elementer:
+<ArgTypes of={stories} />
+</div>
+</u-details>
+
 <Canvas of={stories.Default} />
 
 ## Obligatorisk felt

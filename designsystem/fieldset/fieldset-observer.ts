@@ -1,25 +1,26 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, attr, isInputLike, onMutation, useId } from "../utils";
+import { attr, isInputLike, onLoaded, onMutation, useId } from "../utils";
 
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
 
 function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
-  for (const fieldset of fieldsets) {
-    const inputs: HTMLInputElement[] = [];
-    let validationId: string | null = null;
+	for (const fieldset of fieldsets) {
+		const inputs: HTMLInputElement[] = [];
+		let validationId: string | null = null;
 
-    for (const el of fieldset.getElementsByTagName("*")) {
-      if (el.classList.contains(CSS_VALIDATION)) validationId = useId(el);
-      else if (isInputLike(el)) inputs.push(el);
-    }
+		for (const el of fieldset.getElementsByTagName("*")) {
+			if (el.classList.contains(CSS_VALIDATION)) validationId = useId(el);
+			else if (isInputLike(el)) inputs.push(el);
+		}
 
-    for (const input of inputs) {
-      attr(input, "aria-describedby", validationId);
-      attr(input, "aria-invalid", `${!!validationId}`);
-    }
-  }
+		for (const input of inputs) {
+			attr(input, "aria-describedby", validationId);
+			attr(input, "aria-invalid", `${!!validationId}`);
+		}
+	}
 }
 
-if (IS_BROWSER)
-  onMutation(document.documentElement, CSS_FIELDSET, handleMutation);
+onLoaded(() => {
+	onMutation(document.documentElement, CSS_FIELDSET, handleMutation);
+});

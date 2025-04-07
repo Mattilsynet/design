@@ -25,7 +25,7 @@ export const React: Story = {
 	render: () => (
 		<>
 			<Badge data-badge="2"></Badge>
-			<Badge data-badge>
+			<Badge>
 				<Envelope />
 			</Badge>
 		</>
@@ -60,7 +60,7 @@ export const WithPosition: Story = {
 		<>
 			<button type="button" className={styles.button}>
 				E-post{" "}
-				<span className={styles.badge} data-badge="">
+				<span className={styles.badge}>
 					<Envelope />
 				</span>
 			</button>
