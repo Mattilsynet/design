@@ -56,7 +56,7 @@ const GROUPS = [
 export const Colors = () => (
 	<>
 		<style>{`
-      .tokens { margin-inline: calc(50% - 50vw + 4em); font-size: 0.875rem }
+      .tokens { margin-inline: calc(50% - min(900px, 50vw) + 4em); font-size: 0.875rem }
 			.tokens table { min-width: 1140px } /* Prevent squeeze */
       .tokens :is(th, td):has(+ [data-i="0"]) { padding-right: var(--mtds-2) }
       .tokens :is(th, td)[data-i="0"] { padding-left: var(--mtds-2); border-left: 1px solid var(--mtds-color-border-subtle) }
@@ -96,26 +96,29 @@ export const Colors = () => (
 						<tr key={color}>
 							<th>{toUpper(color)}</th>
 							{GROUPS.map(([name, variants]) =>
-								variants.map(([variant], i) => (
-									<td key={`${name}-${variant}`} data-i={i}>
-										<button
-											type="button"
-											className={styles.card}
-											data-tooltip={`--mtds-color-${color === "main" ? "" : `${color}-`}${name}-${variant}`}
-											onClick={({ currentTarget: el }) => {
-												const tooltip = document.getElementById("mtds-tooltip");
-												const token = `var(--mtds-color-${color}-${name}-${variant})`;
+								variants.map(([variant], i) => {
+									const token = `var(--mtds-color-${color === "main" ? "" : `${color}-`}${name}-${variant})`;
 
-												navigator.clipboard.writeText(token);
-												tooltip?.replaceChildren("Kopiert!");
-												if (tooltip) anchorPosition(tooltip, el, 0);
-											}}
-											style={{
-												background: `var(--mtds-color-${color}-${name}-${variant})`,
-											}}
-										/>
-									</td>
-								)),
+									return (
+										<td key={`${name}-${variant}`} data-i={i}>
+											<button
+												type="button"
+												className={styles.card}
+												data-tooltip={token}
+												onClick={({ currentTarget: el }) => {
+													const tooltip =
+														document.getElementById("mtds-tooltip");
+													navigator.clipboard.writeText(token);
+													tooltip?.replaceChildren("Kopiert!");
+													if (tooltip) anchorPosition(tooltip, el, 0);
+												}}
+												style={{
+													background: `var(--mtds-color-${color}-${name}-${variant})`,
+												}}
+											/>
+										</td>
+									);
+								}),
 							)}
 						</tr>
 					))}

@@ -1,6 +1,8 @@
 @layer mt.design {
 	.tabs {
 		composes: ds-tabs from "@digdir/designsystemet-css";
+		--dsc-tabs-tab-color: var(--mtds-color-text-subtle);
+		--dsc-tabs-tab-color--hover: var(--mtds-color-text-subtle);
 		--dsc-tabs-content-padding: var(--ds-size-2) 0;
 		--dsc-tabs-gap: var(--ds-size-2);
 	}

@@ -21,9 +21,10 @@
 	 * Mark <label> as required
 	 */
 	.field label {
+		align-items: center;
 		display: inline-flex;
 		gap: var(--ds-size-2);
-		align-items: center;
+		vertical-align: bottom;
 	}
 	.field label::before {
 		margin-inline-end: calc(var(--ds-size-1) * -1); /* Remove margin from read-only-icon */

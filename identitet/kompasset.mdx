@@ -2,49 +2,70 @@ import { Meta } from '@storybook/blocks';
 import kompasset from './kompasset.jpg';
 import { FilePdf } from '@phosphor-icons/react'
 import styles from '../designsystem/styles.module.css';
+import { Button, Details, Flex, Grid } from '../designsystem/react';
 
 <Meta title="Identitet/Kompasset og roller" />
 
 # Kompasset og roller
 
-## Kompasset
-
 <a href="/docs/mattilsynet-kompasset-nb.pdf" aria-label="Last ned stategisk kompass som PDF" style={{ display: 'block' }}>
   <img src={kompasset} alt="" style={{ display: 'block', maxWidth: '100%' }} />
 </a>
 
-### Last ned kompasset
-<div class={styles.flex}>
-<a href="/docs/mattilsynet-kompasset-nb.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Bokmål</a>
-<a href="/docs/mattilsynet-kompasset-nn.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Nynorsk</a>
-<a href="/docs/mattilsynet-kompasset-en.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Engelsk</a>
-</div>
+<Flex data-gap="6">
+<Grid>
+<strong>Last ned kompasset</strong>
+<Flex>
+<Button href="/docs/mattilsynet-kompasset-nb.pdf" data-variant="secondary" download><FilePdf /> Bokmål</Button>
+<Button href="/docs/mattilsynet-kompasset-nn.pdf" data-variant="secondary" download><FilePdf /> Nynorsk</Button>
+<Button href="/docs/mattilsynet-kompasset-en.pdf" data-variant="secondary" download><FilePdf /> Engelsk</Button>
+</Flex>
+</Grid>
+<Grid>
+<strong>Last ned roller</strong>
+<Button href="/docs/mattilsynet-roller.pdf" data-variant="secondary" download><FilePdf /> Bokmål</Button>
+</Grid>
+</Flex>
 
-### Last ned roller
-<a href="/docs/mattilsynet-roller.pdf" className={styles.button} data-variant="secondary" download><FilePdf /> Bokmål</a>
+<br />
 
-### Bakgrunn
+<Details>
+<Details.Summary>Bakgrunn</Details.Summary>
+
 Mattilsynet er i endring og brukerne våre trenger å forstå hvor vi er på vei. For å bli oppfattet som tydelige og enhetlige, må det synes at vi alle jobber for de samme overordnede målene. Dette kompasset skal bidra til å samle oss, sette ord på hvem vi er og hva som er vår strategiske retning. Slik kan det bli et verktøy i arbeidshverdagen, enten vi utvikler nye nettsider eller rekrutterer nye kolleger.
 
-### Mål
+</Details>
+<Details>
+<Details.Summary>Mål</Details.Summary>
+
 Ambisjonen er at kompasset brukes i arbeidshverdagen, inn i alle aktiviteter og initiativer som en påminnelse om våre overordnede mål og planer for fremtiden, fordi det vil gi brukerne det etterlatte inntrykket vi ønsker at de skal ha av oss. Kompasset skal være lett å huske, og også egnet til å reflektere rundt, når vi står overfor litt større valg der vi spør oss: er dette vår rolle? Er dette i tråd med våre verdier? Er dette riktig retning? Da skal vi finne svar i kompasset. Målet er todelt: å bli oppfattet som mer tydelige og enhetlige av brukerne våre på tvers av alle flater, og at det blir enklere å samarbeide på tvers av team og fagområder internt. Får vi til det, vil vi jobbe mer effektivt med å oppnå våre overordnede mål for Mattilsynet.
 
-### Identiteten hjelperen
+</Details>
+<Details>
+<Details.Summary>Identiteten hjelperen</Details.Summary>
+
 Vi snakker om vår visuelle identitet og ikke vår profil da dette innebærer mer enn bare det visuelle. Dette handler om hvordan vi snakker, skriver, opptrer og ser ut. Hva ønsker vi at brukerne skal huske oss som? Vi er en hjelper, vi har en tydelig og seriøs grunnstemme som offentlig myndighet, samtidig som vi er en vennlig veileder og hjelper. Vi tror på at de fleste vil følge regelverket, og det skal vi legge til rette for. 
 
-### Kontakt
+</Details>
+<Details>
+<Details.Summary>Kontakt</Details.Summary>
+
 [internpost.digitale.kanaler@mattilsynet.no](mailto:internpost.digitale.kanaler@mattilsynet.no)
+
+</Details>
+
+<br />
+
 
 ## Våre roller
 
 Vår visuelle identitet skal fungere for oss i våre ulike roller og gjenspeiler personligheten vår:
-"Vi har en tydelig og seriøs grunnstemme som offentlig myndighet, samtidig som vi er en vennlig veileder og hjelper. Vi tror på at de fleste vil følge regelverket, og det skal vi legge til rette for."
+"Vi har en tydelig og seriøs grunnstemme som offentlig myndighet, samtidig som vi er en vennlig veileder og hjelper. Vi tror på at de fleste vil følge regelverket, og det skal vi legge til rette for." Vi må visuelt kommunisere på litt ulike måter i våre ulike roller og identiteten vår favner dette - slik at vi samtidig klarer å beholde det samlede, helhetlige uttrykket.
 
-Vi må visuelt kommunisere på litt ulike måter i våre ulike roller og identiteten vår favner dette - slik at vi samtidig klarer å beholde det samlede, helhetlige uttrykket.
+<br />
 
-[GRAFIKK]
-
-### Myndighetsutøver
+<Details>
+<Details.Summary>Myndighetsutøver</Details.Summary>
 
 Ved å være rettferdige, konstruktive og tydelige hjelper vi folk å gjøre rett, nå og i framtiden. Vi skal tydelig kommunisere hvorfor vi bruker sanksjoner. Ved å være strenge og myndige når det er behov for det, sikrer vi samfunnsmålene på våre områder. 
 
@@ -57,9 +78,9 @@ Som tilsyn
 - Håndhever regelverket ved hjelp av sanksjoner
 - Utøver skjønn og vurderer hvordan det følges opp når regelverksbrudd er konstatert
 
-[GRAFIKK]
-
-### Veileder
+</Details>
+<Details>
+<Details.Summary>Veileder</Details.Summary>
 
 Veiledning og kunnskap skaper trygghet, og vi skal motivere til å gjøre rett. Vi møter brukerne med tillit og tror på at de fleste vil følge reglene. Vi kan veilede, men det er virksomhetene selv som har ansvar for å følge reglene.
 
@@ -70,7 +91,9 @@ Som direktorat
 Som tilsyn
 - Veileder om regelverket når vi er ute på tilsyn, slik at det blir enklere for tilsynsobjekter å følge det
 
-### Beredskapsaktør
+</Details>
+<Details>
+<Details.Summary>Beredskapsaktør</Details.Summary>
 
 Vi jobber for å forebygge hendelser og håndterer hendelser når de inntreffer. Beredskap er en rolle som går på tvers av alle oppgavene våre. 
 
@@ -84,4 +107,4 @@ Som tilsyn
 - Forebygger gjennom tilsyn for å minske risikoen for nye hendelser
 - Håndterer regionale hendelser
 
-[GRAFIKK]
+</Details>

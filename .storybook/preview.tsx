@@ -25,10 +25,10 @@ export default {
 			return <Story />;
 		},
 		withThemeByDataAttribute({
-			defaultTheme: "Auto light/dark",
+			defaultTheme: "Auto",
 			attributeName: "data-color-scheme",
 			themes: {
-				"Auto light/dark": "auto",
+				Auto: "auto",
 				Light: "light",
 				Dark: "dark",
 			},
@@ -44,6 +44,13 @@ export default {
 				layout: "centered",
 			},
 			container: (props: DocsContainerProps) => {
+				let scheme = "auto";
+
+				try {
+					// @ts-expect-error store might not be set
+					scheme = props.context.store.userGlobals.globals.theme.toLowerCase();
+				} catch (err) {}
+
 				useEffect(() => {
 					// Setup Matomo tracking
 					const isLocal = window.location.hostname === "localhost";
@@ -67,6 +74,9 @@ export default {
 							}),
 						);
 					}
+
+					// Set color scheme
+					document.documentElement.setAttribute("data-color-scheme", scheme);
 
 					// Paint colors blockqoutes based on emojis
 					for (const el of document.querySelectorAll(
@@ -108,7 +118,7 @@ export default {
 								?.scrollIntoView({ behavior: "smooth" });
 						}
 					});
-				}, []);
+				}, [scheme]);
 
 				return (
 					<Unstyled>
