@@ -134,9 +134,8 @@
 		--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
 	}
 
-	:where([data-color-scheme]),
-	body,
-	.body {
+	/* Using :where to allow overwrites */
+	:where([data-color-scheme], body, .body) {
 		background: var(--ds-color-background-default);
 		color: var(--ds-color-text-default); /* Ensure we do not get neutal text color */
 	}
@@ -144,10 +143,9 @@
 		background: none; /* Reset Tailwind and avoid double background issues https://stackoverflow.com/a/76849201 */
 	}
 
-	body,
-	.body {
+	:where(body, .body) {
 		cursor: default; /* Avoid text cursor on non-form elements */
-		font: var(--ds-body-md-font-size) / 1.5 "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+		font-family: "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
 		font-feature-settings: "liga" 0; /* Disable ligatures */
 		margin: 0;
 		-webkit-font-smoothing: antialiased; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
@@ -170,31 +168,31 @@
 			scroll-behavior: smooth;
 		}
 	}
+}
 
-	/* TODO: Automate this */
-	@layer ds.theme.color {
-		[data-color="inverted"],
-		[data-color-scheme][data-color="inverted"] {
-			--ds-color-background-default: var(--ds-color-inverted-background-default);
-			--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
-			--ds-color-surface-default: var(--ds-color-inverted-surface-default);
-			--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
-			--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
-			--ds-color-surface-active: var(--ds-color-inverted-surface-active);
-			--ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
-			--ds-color-border-default: var(--ds-color-inverted-border-default);
-			--ds-color-border-strong: var(--ds-color-inverted-border-strong);
-			--ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
-			--ds-color-text-default: var(--ds-color-inverted-text-default);
-			--ds-color-base-default: var(--ds-color-inverted-base-default);
-			--ds-color-base-hover: var(--ds-color-inverted-base-hover);
-			--ds-color-base-active: var(--ds-color-inverted-base-active);
-			--ds-color-base-contrast-subtle: var(
-				--ds-color-inverted-base-contrast-subtle
-			);
-			--ds-color-base-contrast-default: var(
-				--ds-color-inverted-base-contrast-default
-			);
-		}
+/* TODO: Automate this */
+@layer ds.theme.color {
+	[data-color="inverted"],
+	[data-color-scheme][data-color="inverted"] {
+		--ds-color-background-default: var(--ds-color-inverted-background-default);
+		--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
+		--ds-color-surface-default: var(--ds-color-inverted-surface-default);
+		--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
+		--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
+		--ds-color-surface-active: var(--ds-color-inverted-surface-active);
+		--ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
+		--ds-color-border-default: var(--ds-color-inverted-border-default);
+		--ds-color-border-strong: var(--ds-color-inverted-border-strong);
+		--ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
+		--ds-color-text-default: var(--ds-color-inverted-text-default);
+		--ds-color-base-default: var(--ds-color-inverted-base-default);
+		--ds-color-base-hover: var(--ds-color-inverted-base-hover);
+		--ds-color-base-active: var(--ds-color-inverted-base-active);
+		--ds-color-base-contrast-subtle: var(
+			--ds-color-inverted-base-contrast-subtle
+		);
+		--ds-color-base-contrast-default: var(
+			--ds-color-inverted-base-contrast-default
+		);
 	}
 }
