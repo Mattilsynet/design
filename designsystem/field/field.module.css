@@ -107,22 +107,22 @@
 		outline: 0;
 		padding: var(--ds-size-2);
 		transition: .1s background-color;
-
-		&[aria-selected="true"] {
-			padding-left: var(--ds-size-10);
-		}
-		&[aria-selected="true"]::before {
-			background: currentcolor;
-			content: "";
-			mask: center / contain no-repeat var(--mtds-icon-check);
-			position: absolute;
-			inset: 0 auto 0 var(--ds-size-3);
-			width: var(--mtds-icon-size);
-		}
-		&[role="option"]:hover {
-			background: var(--ds-color-surface-hover);
-		}
 	}
+	.field u-option[aria-selected="true"] {
+		padding-left: var(--ds-size-10);
+	}
+	.field u-option[aria-selected="true"]::before {
+		background: currentcolor;
+		content: "";
+		mask: center / contain no-repeat var(--mtds-icon-check);
+		position: absolute;
+		inset: 0 auto 0 var(--ds-size-3);
+		width: var(--mtds-icon-size);
+	}
+	.field u-option[role="option"]:hover {
+		background: var(--ds-color-surface-hover);
+	}
+
 	.field u-option:focus,
 	.field u-tags > data:focus {
 		box-shadow: var(--dsc-focus-boxShadow);
@@ -188,19 +188,18 @@
 		background: var(--ds-color-background-tinted);
 		box-shadow: inset 0 0 0 1px var(--dsc-field-affix-border-color);
 		color: inherit;
+	}
+	.affixes:where(:not([hidden])) {
+		display: flex;
+	}
 
-		&:where(:not([hidden])) {
-			display: flex;
-		}
-
-		/* TMP: LastPass fix */
-		& > :not(:empty) {
-			padding-inline: var(--dsc-field-affix-padding-inline);
-		}
-		& > input:has(+ [data-lastpass-icon-root]) {
-			border-bottom-right-radius: var(--ds-border-radius-md);
-			border-top-right-radius: var(--ds-border-radius-md);
-		}
+	/* TMP: LastPass fix */
+	.affixes > :not(:empty) {
+		padding-inline: var(--dsc-field-affix-padding-inline);
+	}
+	.affixes > input:has(+ [data-lastpass-icon-root]) {
+		border-bottom-right-radius: var(--ds-border-radius-md);
+		border-top-right-radius: var(--ds-border-radius-md);
 	}
 }
 

@@ -14,21 +14,17 @@ const DIALOGS = IS_BROWSER
 			CSS_DIALOG,
 		) as HTMLCollectionOf<HTMLDialogElement>)
 	: [];
-const PREVENT_EVENT = (event: Event) => {
-	event.stopImmediatePropagation();
-	event.stopPropagation();
-};
 
 const handleModal = () => {
-	for (const dialog of DIALOGS)
+	for (const dialog of DIALOGS) {
 		if (dialog.matches('[open]:not([data-modal="false"]):not(:modal)')) {
-			dialog.addEventListener("close", PREVENT_EVENT, QUICK_EVENT); // Prevent closing events due to swapping to modal
-			dialog.close();
+			attr(dialog, "open", null); // Using attribute instead of .close to avoid `close` event
 			dialog.showModal();
-			window.requestAnimationFrame(
-				() => dialog.removeEventListener("close", PREVENT_EVENT, QUICK_EVENT), // Re-enable closing events
-			);
+		} else if (dialog.matches(":modal:not([open])")) {
+			attr(dialog, "open", ""); // Set as open
+			dialog.close(); // So we correclty can call .close, removing <dialog> from #top-layer
 		}
+	}
 };
 
 const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {

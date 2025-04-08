@@ -174,6 +174,7 @@ export function createOptimizedMutationObserver(callback: MutationCallback) {
 	const onFrame = () => setTimeout(onTimer, 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
 	const onTimer = () => {
 		callback([], observer);
+		observer.takeRecords(); // Clear records to avoid running callback multiple times
 		queue = 0;
 	};
 	const observer = new MutationObserver(() => {
@@ -194,10 +195,7 @@ const MUTATORS_CALLBACK = (element: Element) => {
 	if (!mutator || !element.isConnected) {
 		mutator?.observer?.disconnect();
 		MUTATORS.delete(element);
-	} else {
-		for (const [, callback] of mutator.collections) callback();
-		mutator.observer.takeRecords(); // Clear records to avoid running callback multiple times
-	}
+	} else for (const [, callback] of mutator.collections) callback();
 };
 
 /**

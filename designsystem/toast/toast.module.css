@@ -2,7 +2,7 @@
 	.toast {
 		--mtdsc-toast-padding: var(--ds-size-3);
 
-		animation: _onInjectToast .3s ease-out forwards;
+		animation: _toast .3s ease-out forwards;
 		background: var(--ds-color-main-base-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 0;
@@ -18,7 +18,7 @@
 		z-index: 99999;
 	}
 
-	@keyframes _onInjectToast {
+	@keyframes _toast {
 		from {
 			opacity: 0;
 			translate: 0 -1rem;

@@ -15,20 +15,20 @@
 
 		background: var(--dsc-table-background);
 		vertical-align: top;
+	}
 
-		&[data-fixed] {
-			table-layout: fixed;
-		}
-		& > :is(thead, tbody, tfoot) {
-			vertical-align: inherit;
-			--dsc-table-border-radius: calc(
-				var(--ds-border-radius-md) -
-				var(--dsc-table-border-width)
-			); /* TODO: Report to DigiDir: Fix to align background inside border */
-		}
-		&[data-align="center"] {
-			vertical-align: middle;
-		}
+	.table[data-fixed] {
+		table-layout: fixed;
+	}
+	.table > :is(thead, tbody, tfoot) {
+		vertical-align: inherit;
+		--dsc-table-border-radius: calc(
+			var(--ds-border-radius-md) -
+			var(--dsc-table-border-width)
+		); /* TODO: Report to DigiDir: Fix to align background inside border */
+	}
+	.table[data-align="center"] {
+		vertical-align: middle;
 	}
 	.table th {
 		font-weight: 500;

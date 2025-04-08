@@ -62,7 +62,7 @@ export const React: Story = {
 					onClose={() => setOpen(false)}
 					open={open}
 				>
-					<Button aria-label="Lukk" data-command="close" />
+					<Button aria-label="Lukk" onClick={() => setOpen(false)} />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
 					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.
 					Fusce varius urna odio, vel bibendum odio imperdiet eget. Aliquam
@@ -107,15 +107,18 @@ export const WithClose: Story = {
 						Dialog content here
 						<div className={styles.flex}>
 							<button
+								type="button"
+								data-variant="primary"
+								className={styles.button}
+							>
+								Lagre
+							</button>
+							<button
 								className={styles.button}
 								data-command="close"
-								data-variant="secondary"
 								type="button"
 							>
 								Avbryt
-							</button>
-							<button type="button" className={styles.button}>
-								Lagre
 							</button>
 						</div>
 					</div>
