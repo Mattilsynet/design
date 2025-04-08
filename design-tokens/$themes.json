@@ -1007,10 +1007,7 @@
       "typography.heading.sm": "S:1168d133babc6ba950d9ee8e47dfc67c1cd4f1cb,",
       "typography.heading.xs": "S:b78c10e52a1fd3c9a316f042fc04b7817b4cc709,",
       "typography.heading.2xs": "S:dc863ad00a5c3b8de351b8e08912d4d1e1829a4a,",
-      "typography.body.xl": "S:67dc5bd032796ea89825da92f2338be0dd8f08fb,",
       "typography.body.lg": "S:7298cb1e28f0b91f8a843508f134b2bfe567d44b,",
-      "typography.body.md": "S:0ff716e9b66e3fc1c1892856940f0251574de814,",
-      "typography.body.sm": "S:87d41f56925dffcf11abbd0b648f17a383fd6103,",
       "typography.body.xs": "S:25dc4f6814c50b12ba11dba9c3804ad70b9302df,",
       "typography.body.short.xl": "S:370f60e07b6528da3f815181be156c2b94cda406,",
       "typography.body.short.lg": "S:30b69464336ff7cef69359fea365dac73cfd3712,",
@@ -1029,7 +1026,6 @@
       "shadow.xl": "S:30f7cb2bad51eaf568cfbf085c30f297d923b4d6,",
       "typography.body-italic.xl": "S:92b8c4c67ca886334eba1bf7f3a0bff98f284b71,",
       "typography.body-italic.lg": "S:0a4ebd4e3a8568b6e0d019e3da86de29907fd228,",
-      "typography.body-italic.md": "S:39ebd007de1c3c658570484fd17e12255946d7ca,",
       "typography.body-italic.sm": "S:979f3d010de9bf28f55e1af36b66992b975903ef,",
       "typography.body-italic.xs": "S:53d8487d91886e64461533aea216e6282d31304f,",
       "typography.body-italic.short.xl": "S:23c7e1ba8b1bcf200ae3b76ba31614896fb6f63a,",
@@ -1156,7 +1152,12 @@
       "color.warning.base-contrast-default": "S:f67cebd5113b3d3b7f3a355157a264a1a1da13d9,",
       "color.focus.inner": "S:a3b38ff464a586328a863291ee83b973cb29ddf2,",
       "color.focus.outer": "S:638bdcca4a8b5bd6c1f6a12c5b7cbdbb8119acee,",
-      "link.color.visited": "S:2afd17ba5db26fed4850bd4eeb26d0c3f358cb87,"
+      "link.color.visited": "S:2afd17ba5db26fed4850bd4eeb26d0c3f358cb87,",
+      "typography.text.ingress": "S:67dc5bd032796ea89825da92f2338be0dd8f08fb,",
+      "typography.text.muted": "S:87d41f56925dffcf11abbd0b648f17a383fd6103,",
+      "typography.text.default": "S:0ff716e9b66e3fc1c1892856940f0251574de814,",
+      "typography.text.italic": "S:39ebd007de1c3c658570484fd17e12255946d7ca,",
+      "typography.text.bold": "S:5af0265fa12a0de7729717cafc3a5381cbf2803c,"
     }
   },
   {
