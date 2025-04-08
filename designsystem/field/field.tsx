@@ -8,6 +8,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
+import { toCustomElementProps } from "../utils";
 
 type FieldBaseProps = InputProps & {
 	className?: InputProps["className"];
@@ -111,24 +112,24 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist">;
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
-	function FieldDatalist({ className, ...rest }, ref) {
-		return <u-datalist class={className} ref={ref} {...rest} />;
+	function FieldDatalist(props, ref) {
+		return <u-datalist ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
 export type FieldOptionProps = React.ComponentPropsWithoutRef<"option">;
 
 const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
-	function FieldOption({ className, ...rest }, ref) {
-		return <u-option class={className} ref={ref} {...rest} />;
+	function FieldOption(props, ref) {
+		return <u-option ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
 export type FieldTagsProps = ReactUtags;
 
 const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
-	function FieldTags({ className, ...rest }, ref) {
-		return <u-tags class={className} ref={ref} {...rest} />;
+	function FieldTags(props, ref) {
+		return <u-tags ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 

@@ -1,16 +1,12 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
+import { toCustomElementProps } from "../utils";
 
 export type ProgressProps = React.ComponentPropsWithoutRef<"progress">;
 export const Progress = forwardRef<HTMLProgressElement, ProgressProps>(
-	function Progress({ className, ...rest }, ref) {
+	function Progress(props, ref) {
 		return (
-			<u-progress
-				class={clsx(styles.progress, className)}
-				ref={ref}
-				{...rest}
-			/>
+			<u-progress ref={ref} {...toCustomElementProps(props, styles.progress)} />
 		);
 	},
 );

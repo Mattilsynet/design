@@ -27,7 +27,12 @@
 
 	.logo:not(:has(svg)) {
 		padding-left: var(--indent);
-		mask: var(--icon), var(--solid) calc(var(--indent) + 1px) / 100% no-repeat; /* 1px is used to avoid pixel glitch in Safari */
+		mask:
+			var(--icon), var(--solid) calc(var(--indent) + 1px) / 100% no-repeat, /* 1px is used to avoid pixel glitch in Safari */
+			var(--solid) -1em -1em / calc(100% + 2em) 1em no-repeat, /* Show focus outline */
+			var(--solid) -1em calc(100% + 1em) / calc(100% + 2em) 1em no-repeat, /* Show focus outline */
+			var(--solid) -1em -1em / 1em calc(100% + 2em) no-repeat; /* Show focus outline */
+		mask-clip: no-clip; /* Show foucs outline */
 		background: linear-gradient(
 			to right,
 			currentColor var(--indent),
@@ -75,8 +80,6 @@
 			font-size: .63em;
 			line-height: 1.25;
 			margin-bottom: .1em;
-			overflow: clip;
-			white-space: nowrap;
 		}
 	}
 

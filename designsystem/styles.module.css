@@ -82,6 +82,7 @@
 
 		/* Min 360px/22.5rem => Max 1360px/85rem */
 		/* Calculations from https://royalfig.github.io/fluid-typography-calculator/ */
+		--ds-font-size-minus-1: max(.9em, .75rem); /* Default to 90% of font-size, but minimum 12px */
 		--ds-heading-size: calc(16 / 18);
 		--ds-body-xs-font-size: 0.875rem; /* 14px */
 		--ds-body-sm-font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem); /* 14px => 16px */
@@ -103,7 +104,7 @@
 		--ds-font-weight-bold: 700; /* Add missing font-weight */
 		--ds-color-focus-outer: var(--ds-color-text-default);
 		--ds-border-width-focus: 2px;
-		--dsc-focus-boxShadow: 0 0 0 var(--dsc-focus-border-width)
+		--dsc-focus-boxShadow: 0 0 0 var(--ds-border-width-focus)
 			var(--ds-color-focus-inner);
 	}
 

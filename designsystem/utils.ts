@@ -1,3 +1,5 @@
+import { clsx } from "clsx";
+
 export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
 	typeof window !== "undefined" && typeof document !== "undefined";
@@ -250,7 +252,29 @@ export const onLoaded = (callback: () => void) => {
 	else on(window, "load", callback);
 };
 
+/**
+ * isInputLike
+ * @description Check if element is an input like element
+ * @param el The element to check
+ * @returns True if the element is an input like element
+ */
 export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	el instanceof HTMLElement &&
 	"validity" in el &&
 	!(el instanceof HTMLButtonElement);
+
+/**
+ * reactCustomElementProps
+ * @description Utility to quickly convert props to custom element attributes
+ * @param props The props to convert
+ * @returns The converted props
+ */
+export const toCustomElementProps = (
+	{ className, hidden, open, ...rest }: Record<string, unknown>,
+	klass?: string,
+) => {
+	rest.class = clsx(klass, className || "") || undefined; // Use class instead of className
+	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
+	if (open) rest.open = true; // Ensure boolean prop behaviour
+	return rest;
+};

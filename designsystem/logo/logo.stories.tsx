@@ -14,7 +14,7 @@ const meta = {
 				<div className={`${styles.grid} demo-resize`} data-gap="8">
 					<Story />
 					<style>{`
-						body { background: var(--ds-color-background-default) }
+						body:not(:has(.sbdocs-preview)) { background: var(--ds-color-background-default) }
 						html:has(.sbdocs-preview)::before { display: none } /* Hide environment bar in Storybook */
 						.demo-resize {
 							box-sizing: border-box;
@@ -23,7 +23,7 @@ const meta = {
 							outline: 1px dashed transparent;
 							outline-offset: 5px;
 							overflow: hidden;
-							padding-bottom: 2em;
+							padding: 1em 1em 2em;
 							position: relative;
 							resize: horizontal;
 							

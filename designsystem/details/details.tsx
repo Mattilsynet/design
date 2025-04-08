@@ -1,25 +1,20 @@
-import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
+import { toCustomElementProps } from "../utils";
 
 export type DetailsProps = React.ComponentPropsWithoutRef<"details">;
 const DetailsComp = forwardRef<HTMLDetailsElement, DetailsProps>(
-	function Details({ className, open, ...rest }, ref) {
+	function Details(props, ref) {
 		return (
-			<u-details
-				class={clsx(styles.details, className)}
-				open={!!open || undefined} // Fallback to undefined so open={false} does not print boolean attribute
-				ref={ref}
-				{...rest}
-			/>
+			<u-details ref={ref} {...toCustomElementProps(props, styles.details)} />
 		);
 	},
 );
 
 export type SummaryProps = React.ComponentPropsWithoutRef<"summary">;
 const DetailsSummary = forwardRef<HTMLElement, SummaryProps>(
-	function DetailsSummary({ className, ...rest }, ref) {
-		return <u-summary class={className} ref={ref} {...rest} />;
+	function DetailsSummary(props, ref) {
+		return <u-summary ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 

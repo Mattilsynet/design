@@ -1,34 +1,33 @@
 import type * as UTabs from "@u-elements/u-tabs";
-import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
+import { toCustomElementProps } from "../utils";
 
 export type TabsProps = UTabs.ReactUtabs;
-const TabsComp = forwardRef<UTabs.UHTMLTabsElement, TabsProps>(function Tabs(
-	{ className, ...rest },
-	ref,
-) {
-	return <u-tabs class={clsx(styles.tabs, className)} ref={ref} {...rest} />;
-});
+const TabsComp = forwardRef<UTabs.UHTMLTabsElement, TabsProps>(
+	function Tabs(props, ref) {
+		return <u-tabs ref={ref} {...toCustomElementProps(props, styles.tabs)} />;
+	},
+);
 
 export type TabsListProps = UTabs.ReactUtablist;
 const TabsList = forwardRef<UTabs.UHTMLTabListElement, TabsListProps>(
-	function TabsList({ className, ...rest }, ref) {
-		return <u-tablist class={className} ref={ref} {...rest} />;
+	function TabsList(props, ref) {
+		return <u-tablist ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
 export type TabsPanelProps = UTabs.ReactUtabpanel;
 const TabsPanel = forwardRef<UTabs.UHTMLTabPanelElement, TabsPanelProps>(
-	function TabsPanel({ className, ...rest }, ref) {
-		return <u-tabpanel class={className} ref={ref} {...rest} />;
+	function TabsPanel(props, ref) {
+		return <u-tabpanel ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
 export type TabsTabProps = UTabs.ReactUtab;
 const TabsTab = forwardRef<UTabs.UHTMLTabElement, TabsTabProps>(
-	function TabsTab({ className, ...rest }, ref) {
-		return <u-tab class={className} ref={ref} {...rest} />;
+	function TabsTab(props, ref) {
+		return <u-tab ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
