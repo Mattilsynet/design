@@ -43,7 +43,9 @@ function handleMutation(fields: HTMLCollectionOf<Element>) {
 			renderDatalist(input, datalist);
 			renderCounter(input);
 			renderTextareaSize(input);
-			attr(input, "aria-describedby", descs.join(" "));
+			if(descs.length > 0) {
+        attr(input, "aria-describedby", descs.join(" "));
+      }
 			attr(input, "aria-invalid", `${!valid}`);
 		}
 	}
