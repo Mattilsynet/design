@@ -225,6 +225,53 @@ export const ItemSizes: Story = {
 	),
 };
 
+export const ItemFixed: Story = {
+	render: () => (
+		<>
+			<span>
+				Flex <code>data-items="100"</code> with <code>data-fixed</code> (does
+				not allow growing over <code>data-items</code> value):
+			</span>
+			<div className={styles.flex} data-items="100" data-fixed>
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Flex <code>data-items="100"</code> without <code>data-fixed</code>{" "}
+				(allows items to grow):
+			</span>
+			<div className={styles.flex} data-items="100">
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Grid <code>data-items="100"</code> with <code>data-fixed</code> (repeats
+				"fake" empty columns to align ish with <code>data-items</code>):
+			</span>
+			<div className={styles.grid} data-items="100" data-fixed>
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Grid <code>data-items="100"</code> without <code>data-fixed</code>
+				(fills grid with actual columns):
+			</span>
+			<div className={styles.grid} data-items="100">
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+		</>
+	),
+};
+
 export const Align: Story = {
 	render: () => (
 		<section

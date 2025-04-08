@@ -137,16 +137,9 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-
-		& > li + li {
-			margin-top: 0.125rem; /* Add 2px space between buttons in menu */
-		}
-
-		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
-		& > li::before {
-			content: "\200B";
-			position: absolute;
-		}
+	}
+	menu:where(:has(> li > .button)) > li + li {
+		margin-top: 0.125rem; /* Add 2px space between buttons in menu */
 	}
 	menu > li > .button {
 		border-radius: var(--ds-border-radius-md);
