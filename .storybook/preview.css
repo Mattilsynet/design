@@ -86,10 +86,17 @@ u-tabpanel > pre > .docblock-source {
 }
 
 /** Source */
-.docblock-code-toggle.docblock-code-toggle {
+.docblock-code-toggle.docblock-code-toggle,
+.docblock-source.docblock-source button {
 	background: var(--mtds-color-surface-default);
 	color: var(--mtds-color-text-default);
 	border-radius: 0;
+}
+.docblock-source.docblock-source {
+	background: var(--mtds-color-inverted-background-default);
+	border: 0;
+	box-shadow: none;
+	color: var(--mtds-color-inverted-text-default);
 }
 .docblock-source .prismjs * {
 	color: inherit !important;
