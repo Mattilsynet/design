@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) =>
 		? {
 				build: {
 					outDir: dist,
-					sourcemap: true,
+					sourcemap: "inline",
 					lib: {
 						entry: path.resolve(root, "index.ts"),
 						cssFileName: "iife",

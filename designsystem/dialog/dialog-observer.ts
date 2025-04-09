@@ -16,15 +16,16 @@ const DIALOGS = IS_BROWSER
 	: [];
 
 const handleModal = () => {
-	for (const dialog of DIALOGS) {
-		if (dialog.matches('[open]:not([data-modal="false"]):not(:modal)')) {
-			attr(dialog, "open", null); // Using attribute instead of .close to avoid `close` event
-			dialog.showModal();
-		} else if (dialog.matches(":modal:not([open])")) {
-			attr(dialog, "open", ""); // Set as open
-			dialog.close(); // So we correclty can call .close, removing <dialog> from #top-layer
+	for (const dialog of DIALOGS)
+		if (dialog.isConnected && dialog.showModal && dialog.close) {
+			if (dialog.matches('[open]:not([data-modal="false"]):not(:modal)')) {
+				attr(dialog, "open", null); // Using attribute instead of .close to avoid `close` event
+				dialog.showModal();
+			} else if (dialog.matches(":modal:not([open])")) {
+				attr(dialog, "open", ""); // Set as open
+				dialog.close(); // So we correclty can call .close, removing <dialog> from #top-layer
+			}
 		}
-	}
 };
 
 const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {

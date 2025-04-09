@@ -30,11 +30,10 @@ function handleLinkClick({ target }: Event) {
 	if (close) {
 		const action = attr(close, "popovertargetaction") || "toggle";
 		const open = action === "show" || (action === "hide" ? false : undefined);
-		const target =
-			document.getElementById?.(attr(close, "popovertarget") || "") ||
-			close.closest(`.${CSS_POPOVER}`);
+		const target = document.getElementById(attr(close, "popovertarget") || "");
+		const popover = (target || close).closest<HTMLElement>(`.${CSS_POPOVER}`);
 
-		target?.togglePopover(open);
+		if (popover?.togglePopover) popover.togglePopover(open);
 	}
 }
 
