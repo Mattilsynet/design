@@ -181,58 +181,39 @@ export function createOptimizedMutationObserver(callback: MutationCallback) {
 	return observer;
 }
 
-type Mutator = {
-	observer: MutationObserver;
-	collections: Map<string, () => void>;
-};
-const MUTATORS = new WeakMap<Element, Mutator>();
-const MUTATORS_CALLBACK = (element: Element) => {
-	const mutator = MUTATORS.get(element);
-
-	if (!mutator || !element.isConnected) {
-		mutator?.observer?.disconnect();
-		MUTATORS.delete(element);
-	} else for (const [, callback] of mutator.collections) callback();
-};
-
 /**
  * onMutation
  * @description Utility to quickly observe mutations on a specific class name
- * @param element The Element to use as EventTarget
+ * @param el The Element to use as EventTarget
  * @param className The class name to observe
- * @param callback The callback to run when mutations are detected or false to stop observing
+ * @param callback The callback to run when mutations are detected
  */
+const MUTATORS = new WeakMap<Element, Array<() => void>>();
 export const onMutation = <T extends Element>(
-	element: Element,
+	el: Element,
 	className: string,
-	callback: ((collection: HTMLCollectionOf<T>) => void) | false,
+	callback: (elems: HTMLCollectionOf<T>) => void,
 ) => {
-	const collection = element.getElementsByClassName(
-		className,
-	) as HTMLCollectionOf<T>;
-	let mutator = MUTATORS.get(element);
+	const elems = el.getElementsByClassName(className);
+	const mutator = MUTATORS.get(el) || [];
 
-	if (!mutator) {
-		mutator = {
-			collections: new Map(),
-			observer: createOptimizedMutationObserver(() =>
-				MUTATORS_CALLBACK(element),
-			),
-		};
-		mutator.observer.observe(element, {
+	if (!mutator.length) {
+		MUTATORS.set(el, mutator);
+		createOptimizedMutationObserver((_, observer) => {
+			if (el.isConnected && mutator?.length) {
+				for (const callback of mutator) callback();
+			} else {
+				observer?.disconnect();
+				MUTATORS.delete(el);
+			}
+		}).observe(el, {
+			attributeFilter: ["class"],
+			attributes: true,
 			childList: true,
 			subtree: true,
-			attributes: true,
-			attributeFilter: ["class"],
 		});
-		MUTATORS.set(element, mutator);
 	}
-	if (callback) mutator.collections.set(className, () => callback(collection));
-	else mutator.collections.delete(className);
-	if (!mutator.collections.size) {
-		mutator.observer.disconnect(); // Remove mutation observer if no more callbacks
-		MUTATORS.delete(element);
-	}
+	mutator.push(() => callback(elems as HTMLCollectionOf<T>));
 };
 
 /**
