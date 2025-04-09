@@ -29,12 +29,10 @@ function handleToggleClick(event: Event) {
 // TODO Better handle for when app is not in DOM
 let NAV: HTMLElement;
 let MAIN: HTMLElement;
-let FOOTER: HTMLElement;
 function handleMutation(apps: HTMLCollectionOf<HTMLElement>) {
 	for (const app of apps) {
 		NAV = app.querySelector<HTMLElement>(CSS_NAV) as HTMLElement;
 		MAIN = app.querySelector<HTMLElement>("main") as HTMLElement;
-		FOOTER = app.querySelector<HTMLElement>("footer") as HTMLElement;
 	}
 }
 
