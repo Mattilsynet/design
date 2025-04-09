@@ -32,32 +32,17 @@ export const Default: Story = {
 export const Sizes: Story = {
 	render: () => (
 		<>
-			<label>
+			<label data-size="sm">
 				Small
-				<u-progress
-					class={styles.progress}
-					value="33"
-					max="100"
-					data-size="sm"
-				></u-progress>
+				<u-progress class={styles.progress} value="33" max="100"></u-progress>
 			</label>
-			<label>
+			<label data-size="md">
 				Medium
-				<u-progress
-					class={styles.progress}
-					value="33"
-					max="100"
-					data-size="md"
-				></u-progress>
+				<u-progress class={styles.progress} value="33" max="100"></u-progress>
 			</label>
-			<label>
+			<label data-size="lg">
 				Large
-				<u-progress
-					class={styles.progress}
-					value="33"
-					max="100"
-					data-size="lg"
-				></u-progress>
+				<u-progress class={styles.progress} value="33" max="100"></u-progress>
 			</label>
 		</>
 	),

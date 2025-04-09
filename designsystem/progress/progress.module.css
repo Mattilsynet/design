@@ -15,6 +15,10 @@
 		width: 75%;
 	}
 
+	label > .progress {
+		margin-top: var(--ds-size-2);
+	}
+
 	@keyframes _indeterminate {
 		0% {
 			transform: translateX(-100%);

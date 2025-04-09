@@ -1,14 +1,24 @@
 import { Meta } from '@storybook/blocks';
 import { FileArrowDown } from "@phosphor-icons/react";
+import { Alert, Button, Flex, Details } from '../designsystem/react';
 import styles from '../designsystem/styles.module.css';
 
 <Meta title="Identitet/Typografi" />
 
 # Typografi
 
-> Skrifttypen er en viktig del av det visuelle uttrykket vårt. På mange flater er den nærmest den eneste identifiserende faktoren - gjerne i kombinasjon med farge og logo. Den er en del av den visuelle identiteten på samme måte som illustrasjoner, ikoner og bilder. God bruk av typografi er viktig for å gjøre innholdet vårt tilgjengelig - lett å finne, lett å forstå og lett å bruke.
+> Skrifttypen er en viktig del av det visuelle uttrykket vårt. På mange flater er den nærmest den eneste identifiserende faktoren - gjerne i kombinasjon med farge og logo. God bruk av typografi er viktig for å gjøre innholdet vårt tilgjengelig - lett å finne, lett å forstå og lett å bruke.
 
-## Mattilsynet Sans
+<Flex>
+<Button href="/docs/font/variable/MattilsynetSansVariableVF.ttf" data-variant="primary" download><FileArrowDown />Last ned Mattilsynet Sans Variable</Button>
+<Button href="/docs/font/ttf.zip" data-variant="secondary" download><FileArrowDown />Last ned Mattilsynet Sans individuelle vekter</Button>
+</Flex>
+<Alert><h2>Er du utvikler? Da trenger du ikke laste ned font filer 🙌</h2>`Mattilsynet Sans` er automatisk satt opp når laster `@mattilsynet/design/styles.css`</Alert>
+
+<br />
+<Details>
+<Details.Summary>Om Mattilsynet Sans</Details.Summary>
+
 Vår skrifttype heter Mattilsynet Sans. Dette er en omfattende skriftfamilie som inneholder et stort utvalg spesialtegn for alle språk og har et bredt spenn av vekter og tegnbredder som legger til rette for god og variert bruk uavhengig av flate og kontekst. 
 
 Vi bruker i hovedsak to snitt (tykkelser) av Mattilsynet Sans: Regular i brødtekst og Mattilsynet Sans Bold i overskrifter. På kommunikasjonsflater der hele budskapet skal fremheves, kan Mattilsynet Sans Extra Bold brukes på hele teksten. For brødtekst på mørke bakgrunner / negativ tekst anbefales Medium for å ivareta god lesbarhet.
@@ -19,13 +29,10 @@ Fonten finnes som både variabel og statiske versjoner i flere standard formater
 
 Mattilsynet Sans er en spesialtilpasset open source font tegnet av Andreas Rasmussen fra fontbyrået a.foundry i København.
 
-<div className={styles.flex}>
-<a className={styles.button} href="/docs/font/variable/MattilsynetSansVariableVF.ttf" data-variant="primary" download><FileArrowDown />Last ned Mattilsynet Sans Variable</a>
-<a className={styles.button} href="/docs/font/ttf.zip" data-variant="secondary" download><FileArrowDown />Last ned Mattilsynet Sans individuelle vekter</a>
-</div>
-<div className={styles.alert}><h2>Er du utvikler? Da trenger du ikke laste ned font filer 🙌</h2>`Mattilsynet Sans` er automatisk satt opp når laster `@mattilsynet/design/styles.css`</div>
-<br />
-<br />
+</Details>
+<Details>
+<Details.Summary>Erstatningsfont i presentasjoner og dokumenter</Details.Summary>
 
-## Erstatningsfont i presentasjoner og dokumenter
 Som erstatningsfont bruker vi Avenir Next eller Avenir. Dette gjelder for tilfeller der mottaker ikke har Mattilsynet Sans installert. Typisk eksempel på dette er i Microsoft-produktene og i epostmeldinger.
+
+</Details>

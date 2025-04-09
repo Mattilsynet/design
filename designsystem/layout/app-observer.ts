@@ -29,13 +29,12 @@ function handleToggleClick(event: Event) {
 // TODO Better handle for when app is not in DOM
 let NAV: HTMLElement;
 let MAIN: HTMLElement;
+let FOOTER: HTMLElement;
 function handleMutation(apps: HTMLCollectionOf<HTMLElement>) {
 	for (const app of apps) {
-		const nav = app.querySelector<HTMLElement>(CSS_NAV);
-		const main = app.querySelector<HTMLElement>("main");
-
-		NAV = nav as HTMLElement;
-		MAIN = main as HTMLElement;
+		NAV = app.querySelector<HTMLElement>(CSS_NAV) as HTMLElement;
+		MAIN = app.querySelector<HTMLElement>("main") as HTMLElement;
+		FOOTER = app.querySelector<HTMLElement>("footer") as HTMLElement;
 	}
 }
 
@@ -45,6 +44,7 @@ function toggleExpanded(toggle = true) {
 	CSS_SHEET?.replaceSync(
 		`:root { ${KEY_TOGGLE}: var(${KEY_TOGGLE}--${next}) }`,
 	);
+	// document.querySelector(`.${CSS_APP} aside`)?.toggleAttribute("hidden"); // Just for testing
 	window.localStorage.setItem(KEY_TOGGLE, `${next}`);
 }
 
@@ -60,6 +60,7 @@ let SCROLL_UP: boolean;
 let STICK_DIR = 0; // -1 = stick top, 0 = relative, 1 = stick bottom
 let WIN_H = 0;
 let WIN_Y = 0;
+let NAV_LT_WIN = false; // Used to figure if nav is larger than viewport
 const KEY_NAV_ALIGN = "--mtdsc-app-nav-align";
 const KEY_NAV_BOTTOM = "--mtdsc-app-nav-bottom";
 const KEY_NAV_POS = "--mtdsc-app-nav-position";
@@ -74,21 +75,22 @@ function handleScroll() {
 	// Only calculate if scroll direction has changed
 	if (NEXT_UP !== SCROLL_UP) {
 		NAV_H = NAV.offsetHeight;
+		NAV_LT_WIN = NAV.offsetHeight <= window.innerHeight;
 		NAV_Y = NAV.offsetTop;
 		OFFSET_Y = MAIN.offsetTop;
 		SCROLL_UP = NEXT_UP;
 		WIN_H = window.innerHeight;
 	}
 
-	if (STICK_DIR === -1 && NAV_H <= WIN_H) return; // Allways sticky when sidebar is smaller than viewport
-	if (STICK_DIR !== -1 && (NAV_H <= WIN_H || (SCROLL_UP && WIN_Y <= NAV_Y))) {
-		// Not sticking to top and scrolling down or sidebar is smaller than viewport
+	if (STICK_DIR === -1 && NAV_LT_WIN) return; // Allways sticky when sidebar is smaller than viewport
+	if (STICK_DIR !== -1 && (NAV_LT_WIN || (SCROLL_UP && WIN_Y <= NAV_Y))) {
+		// Not sticking to top and scrolling up or sidebar is smaller than viewport
 		NAV.style.setProperty(KEY_NAV_POS, "sticky");
 		NAV.style.setProperty(KEY_NAV_TOP, "0px");
 		NAV.style.removeProperty(KEY_NAV_BOTTOM);
 		NAV.style.setProperty(KEY_NAV_ALIGN, "start");
 		STICK_DIR = -1;
-		console;
+		// console.log("a");
 	} else if (STICK_DIR === -1 && !SCROLL_UP) {
 		// Sticking to top and scrolling down
 		NAV.style.setProperty(KEY_NAV_POS, "relative");
@@ -96,6 +98,7 @@ function handleScroll() {
 		NAV.style.removeProperty(KEY_NAV_BOTTOM);
 		NAV.style.setProperty(KEY_NAV_ALIGN, "start");
 		STICK_DIR = 0;
+		// console.log("b");
 	} else if (STICK_DIR !== 1 && !SCROLL_UP && WIN_Y + WIN_H >= NAV_Y + NAV_H) {
 		// Not sticking to bottom and scrolling down
 		NAV.style.setProperty(KEY_NAV_POS, "sticky");
@@ -103,6 +106,7 @@ function handleScroll() {
 		NAV.style.setProperty(KEY_NAV_BOTTOM, "0px");
 		NAV.style.setProperty(KEY_NAV_ALIGN, "end");
 		STICK_DIR = 1;
+		// console.log("c");
 	} else if (STICK_DIR === 1 && SCROLL_UP) {
 		NAV.style.setProperty(KEY_NAV_POS, "relative");
 		NAV.style.setProperty(
@@ -112,6 +116,7 @@ function handleScroll() {
 		NAV.style.removeProperty(KEY_NAV_BOTTOM);
 		NAV.style.setProperty(KEY_NAV_ALIGN, "start");
 		STICK_DIR = 0;
+		// console.log("d");
 	}
 }
 
