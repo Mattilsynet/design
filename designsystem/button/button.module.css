@@ -12,193 +12,119 @@
 		display: inline-flex;
 		vertical-align: middle;
 	}
-}
-.button:where(:not([hidden])) {
-	display: inline-flex;
-	vertical-align: middle;
-}
 
-/* Overwrite to same as tertiary from Designsystemet  */
-.button:not([data-variant="primary"]) {
-	--dsc-button-background: transparent;
-	--dsc-button-background--active: var(--ds-color-surface-active);
-	--dsc-button-background--hover: var(--ds-color-surface-hover);
-	--dsc-button-color: var(--ds-color-text-subtle);
-	--dsc-button-color--hover: var(--ds-color-text-default);
-}
-/* Overwrite to same as tertiary from Designsystemet  */
-.button:not([data-variant="primary"]) {
-	--dsc-button-background: transparent;
-	--dsc-button-background--active: var(--ds-color-surface-active);
-	--dsc-button-background--hover: var(--ds-color-surface-hover);
-	--dsc-button-color: var(--ds-color-text-subtle);
-	--dsc-button-color--hover: var(--ds-color-text-default);
-}
+	/* Overwrite to same as tertiary from Designsystemet  */
+	.button:not([data-variant="primary"]) {
+		--dsc-button-background: transparent;
+		--dsc-button-background--active: var(--ds-color-surface-active);
+		--dsc-button-background--hover: var(--ds-color-surface-hover);
+		--dsc-button-color: var(--ds-color-text-subtle);
+		--dsc-button-color--hover: var(--ds-color-text-default);
+	}
 
-.button[data-variant="primary"] {
-	border: 0; /* Hide border to ensure equal heights */
-}
-.button[data-variant="secondary"] {
-	--dsc-button-border-color: var(--ds-color-text-subtle);
-}
-.button[data-variant="primary"] {
-	border: 0; /* Hide border to ensure equal heights */
-}
-.button[data-variant="secondary"] {
-	--dsc-button-border-color: var(--ds-color-text-subtle);
-}
+	.button[data-variant="primary"] {
+		border: 0; /* Hide border to ensure equal heights */
+	}
+	.button[data-variant="secondary"] {
+		--dsc-button-border-color: var(--ds-color-text-subtle);
+	}
 
-.button[aria-current]:not([aria-current="false"]) {
-	--dsc-button-background: var(--ds-color-surface-tinted);
-	font-weight: 700;
-}
-.button[data-justify="start"] {
-	justify-content: start;
-	text-align: start;
-}
-.button[data-justify="end"] {
-	justify-content: end;
-	text-align: end;
-}
-.button[aria-current]:not([aria-current="false"]) {
-	--dsc-button-background: var(--ds-color-surface-tinted);
-	font-weight: 700;
-}
-.button[data-justify="start"] {
-	justify-content: start;
-	text-align: start;
-}
-.button[data-justify="end"] {
-	justify-content: end;
-	text-align: end;
-}
+	.button[aria-current]:not([aria-current="false"]) {
+		--dsc-button-background: var(--ds-color-surface-tinted);
+		font-weight: 700;
+	}
+	.button[data-justify="start"] {
+		justify-content: start;
+		text-align: start;
+	}
+	.button[data-justify="end"] {
+		justify-content: end;
+		text-align: end;
+	}
 
-.button::before,
-.button > svg {
-	fill: currentColor;
-	flex-shrink: 0;
-	height: var(--mtds-icon-size);
-	width: var(--mtds-icon-size);
-}
-.button::before,
-.button > svg {
-	fill: currentColor;
-	flex-shrink: 0;
-	height: var(--mtds-icon-size);
-	width: var(--mtds-icon-size);
-}
+	.button::before,
+	.button > svg {
+		fill: currentColor;
+		flex-shrink: 0;
+		height: var(--mtds-icon-size);
+		width: var(--mtds-icon-size);
+	}
 
-.button:disabled,
-.button[aria-disabled="true"] {
-	pointer-events: none;
-}
-.button:disabled,
-.button[aria-disabled="true"] {
-	pointer-events: none;
-}
+	.button:disabled,
+	.button[aria-disabled="true"] {
+		pointer-events: none;
+	}
 
-.button:active {
-	scale: 0.975;
-}
-.button:active {
-	scale: 0.975;
-}
+	.button:active {
+		scale: 0.975;
+	}
 
-.button:has([data-nowrap]) {
-	flex-shrink: 1;
-}
-.button:has([data-nowrap]) {
-	flex-shrink: 1;
-}
+	.button:has([data-nowrap]) {
+		flex-shrink: 1;
+	}
 
-.button [data-nowrap] {
-	overflow: clip;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	min-width: 0;
-}
+	.button [data-nowrap] {
+		overflow: clip;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		min-width: 0;
+	}
 
-/* Prepare for icon */
-.button::before {
-	background: currentcolor;
-	mask: center / contain no-repeat;
-	overflow: clip;
-	white-space: nowrap;
-}
+	/* Prepare for icon */
+	.button::before {
+		background: currentcolor;
+		mask: center / contain no-repeat;
+		overflow: clip;
+		white-space: nowrap;
+	}
 
-/**
- * Paint ellipsis when empty
- */
-.button:empty::before {
-	content: "";
-	mask-image: var(--mtds-icon-ellipsis);
-}
+	/**
+	 * Paint ellipsis when empty
+	 */
+	.button:empty::before {
+		content: "";
+		mask-image: var(--mtds-icon-ellipsis);
+	}
 
-/**
- * Arrows and popover
- */
-.button[data-arrow]::before {
-	content: "";
-	mask-image: var(--mtds-icon-ellipsis);
-	order: 1; /* Use ::before and change order so ::after is allways unused, and loading will be placed where arrow was */
-}
-.button[data-arrow="left"]::before {
-	order: -1;
-	rotate: 180deg;
-}
-.button[data-arrow][popovertarget]::before {
-	mask-image: var(--mtds-icon-chevron);
-	transition: rotate .2s ease-out;
-}
-.button[data-arrow][popovertarget]:has(+ :popover-open)::before {
-	rotate: -180deg;
-}
+	/**
+	 * Arrows and popover
+	 */
+	.button[data-arrow]::before {
+		content: "";
+		mask-image: var(--mtds-icon-arrow);
+		order: 1; /* Use ::before and change order so ::after is allways unused, and loading will be placed where arrow was */
+	}
+	.button[data-arrow="left"]::before {
+		order: -1;
+		rotate: 180deg;
+	}
+	.button[data-arrow][popovertarget]::before {
+		mask-image: var(--mtds-icon-chevron);
+		transition: rotate .2s ease-out;
+	}
+	.button[data-arrow][popovertarget]:has(+ :popover-open)::before {
+		rotate: -180deg;
+	}
 
-/**
- * Loading
- */
-.button[aria-busy="true"] {
-	pointer-events: none;
-}
-.button[aria-busy="true"]::before {
-	background: currentcolor;
-	content: var(--mtds-text-loading);
-	display: inline-block;
-	height: var(--mtds-icon-size);
-	mask: center / contain no-repeat var(--mtds-icon-spinner);
-	overflow: clip;
-	text-align: center;
-	vertical-align: middle;
-	white-space: nowrap;
-	width: var(--mtds-icon-size);
-}
-/**
- * Loading
- */
-.button[aria-busy="true"] {
-	pointer-events: none;
-}
-.button[aria-busy="true"]::before {
-	background: currentcolor;
-	content: var(--mtds-text-loading);
-	display: inline-block;
-	height: var(--mtds-icon-size);
-	mask: center / contain no-repeat var(--mtds-icon-spinner);
-	overflow: clip;
-	text-align: center;
-	vertical-align: middle;
-	white-space: nowrap;
-	width: var(--mtds-icon-size);
-}
+	/**
+	 * Loading
+	 */
+	.button[aria-busy="true"] {
+		pointer-events: none;
+	}
+	.button[aria-busy="true"]::before {
+		background: currentcolor;
+		content: var(--mtds-text-loading);
+		display: inline-block;
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat var(--mtds-icon-spinner);
+		overflow: clip;
+		text-align: center;
+		vertical-align: middle;
+		white-space: nowrap;
+		width: var(--mtds-icon-size);
+	}
 
-/**
- * Aria-pressed / Popover-open
- */
-.button[popovertarget]:has(+ :not(:popover-open)) [data-pressed="true"],
-.button[popovertarget]:has(+ :popover-open) [data-pressed="false"],
-.button[aria-pressed="false"] [data-pressed="true"],
-.button[aria-pressed="true"] [data-pressed="false"] {
-	display: none;
 	/**
 	 * Aria-pressed / Popover-open
 	 */
