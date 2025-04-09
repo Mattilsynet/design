@@ -240,7 +240,7 @@ export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	!(el instanceof HTMLButtonElement);
 
 /**
- * reactCustomElementProps
+ * toCustomElementProps
  * @description Utility to quickly convert props to custom element attributes
  * @param props The props to convert
  * @returns The converted props
