@@ -30,6 +30,4 @@ function handleMutation(tables: HTMLCollectionOf<HTMLTableElement>) {
 	}
 }
 
-onLoaded(() => {
-	onMutation(document.documentElement, CSS_TABLE, handleMutation);
-});
+onLoaded(() => onMutation(document.documentElement, CSS_TABLE, handleMutation));

@@ -4,7 +4,7 @@ import { onLoaded, onMutation } from "../utils";
 const CSS_LOGO = styles.logo.split(" ")[0];
 
 function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
-	if (logo?.firstElementChild instanceof SVGSVGElement) {
+	if (logo?.isConnected && logo?.firstElementChild instanceof SVGSVGElement) {
 		for (const icon of document.head.querySelectorAll("link[rel~='icon']"))
 			icon.remove();
 
@@ -23,6 +23,4 @@ function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 	}
 }
 
-onLoaded(() => {
-	onMutation(document.documentElement, CSS_LOGO, handleMutation);
-});
+onLoaded(() => onMutation(document.documentElement, CSS_LOGO, handleMutation));

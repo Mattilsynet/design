@@ -30,10 +30,11 @@ function handleToggleClick(event: Event) {
 let NAV: HTMLElement;
 let MAIN: HTMLElement;
 function handleMutation(apps: HTMLCollectionOf<HTMLElement>) {
-	for (const app of apps) {
-		NAV = app.querySelector<HTMLElement>(CSS_NAV) as HTMLElement;
-		MAIN = app.querySelector<HTMLElement>("main") as HTMLElement;
-	}
+	for (const app of apps)
+		if (app.isConnected) {
+			NAV = app.querySelector<HTMLElement>(CSS_NAV) as HTMLElement;
+			MAIN = app.querySelector<HTMLElement>("main") as HTMLElement;
+		}
 }
 
 function toggleExpanded(toggle = true) {
