@@ -46,23 +46,20 @@ export const Group: GroupComponent = forwardRef<null>(function Group<
 	return <Tag className={clsx(styles.group, className)} ref={ref} {...rest} />;
 }) as GroupComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
-export type CardDetailsProps = React.ComponentPropsWithoutRef<"details">;
-const CardDetails = forwardRef<HTMLDetailsElement, CardDetailsProps>(
-	function CardDetails({ className, ...rest }, ref) {
-		return (
-			<u-details class={clsx(styles.card, className)} ref={ref} {...rest} />
-		);
-	},
-);
+// export type CardDetailsProps = React.ComponentPropsWithoutRef<"details">;
+// const CardDetails = forwardRef<HTMLDetailsElement, CardDetailsProps>(
+// 	function CardDetails({ className, ...rest }, ref) {
+// 		return (
+// 			<u-details class={clsx(styles.card, className)} ref={ref} {...rest} />
+// 		);
+// 	},
+// );
 
-export type CardSummaryProps = React.ComponentPropsWithoutRef<"summary">;
-const CardSummary = forwardRef<HTMLElement, CardSummaryProps>(
-	function CardSummary({ className, ...rest }, ref) {
-		return <u-summary class={className} ref={ref} {...rest} />;
-	},
-);
+// export type CardSummaryProps = React.ComponentPropsWithoutRef<"summary">;
+// const CardSummary = forwardRef<HTMLElement, CardSummaryProps>(
+// 	function CardSummary({ className, ...rest }, ref) {
+// 		return <u-summary class={className} ref={ref} {...rest} />;
+// 	},
+// );
 
-export const Card = Object.assign(CardComp, {
-	Details: CardDetails,
-	Summary: CardSummary,
-});
+export const Card = CardComp;

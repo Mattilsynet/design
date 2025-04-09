@@ -6,20 +6,14 @@
 	.fieldset > * {
 		margin-top: var(--ds-size-3);
 	}
+	.fieldset > legend {
+		display: contents;
+	}
 	.fieldset > legend,
 	.fieldset > legend + p {
 		color: inherit;
 		margin: 0;
 		opacity: 1;
-	}
-	.fieldset > legend {
-		align-items: center;
-		display: flex;
-		gap: var(--ds-size-2);
-		padding: 0;
-	}
-	.fieldset > legend::before {
-		margin-inline-end: calc(var(--ds-size-1) * -1); /* Remove margin from read-only-icon */
 	}
 
 	/* Mark <legend> with "Required" if all inputs inside are required */
@@ -37,13 +31,13 @@
 			color: var(--ds-color-info-text-default);
 			content: var(--mtds-text-required);
 			display: inline-block;
-			flex-shrink: 0;
 			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
 			height: var(--ds-size-8);
 			line-height: var(--ds-body-xs-line-height);
+			margin-left: .25em;
 			padding: 0 var(--ds-size-2);
-			vertical-align: middle;
+			vertical-align: bottom;
 			white-space: nowrap;
 		}
 		& label::after {

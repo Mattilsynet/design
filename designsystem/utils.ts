@@ -1,3 +1,5 @@
+import { clsx } from "clsx";
+
 export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
 	typeof window !== "undefined" && typeof document !== "undefined";
@@ -90,20 +92,15 @@ export const off = (
 /**
  * Scroller targes helping anchorPosition
  */
-const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
 const SCROLLER = IS_BROWSER ? document.createElement("div") : null; // Used to ensure we have scrollability under
-if (SCROLLER)
-	attr(SCROLLER, "style", "position:absolute;padding:1px;top:0;left:0px");
+const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
+const TARGETS_UPDATE = () => {
+	for (const [_, update] of TARGETS) update();
+};
 
-if (IS_BROWSER) {
-	on(
-		window,
-		"load,resize,scroll",
-		() => {
-			for (const [_, update] of TARGETS) update();
-		},
-		QUICK_EVENT,
-	);
+if (SCROLLER) {
+	SCROLLER.style.cssText = "position:absolute;padding:1px;top:0;left:0px";
+	on(window, "load,resize,scroll", TARGETS_UPDATE, QUICK_EVENT);
 }
 
 /**
@@ -120,7 +117,7 @@ export function anchorPosition(
 ) {
 	if (anchor === false || !anchor.isConnected || !target.isConnected)
 		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
-	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have t´he scroller
+	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have the scroller
 	if (!TARGETS.has(target)) {
 		// Setup new target or update position
 		const place =
@@ -160,7 +157,7 @@ export function anchorPosition(
 	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;
 	SCROLLER?.style.setProperty(
 		"translate",
-		`${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)} ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`,
+		`${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)}px ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`,
 	);
 }
 
@@ -250,7 +247,29 @@ export const onLoaded = (callback: () => void) => {
 	else on(window, "load", callback);
 };
 
+/**
+ * isInputLike
+ * @description Check if element is an input like element
+ * @param el The element to check
+ * @returns True if the element is an input like element
+ */
 export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	el instanceof HTMLElement &&
 	"validity" in el &&
 	!(el instanceof HTMLButtonElement);
+
+/**
+ * reactCustomElementProps
+ * @description Utility to quickly convert props to custom element attributes
+ * @param props The props to convert
+ * @returns The converted props
+ */
+export const toCustomElementProps = (
+	{ className, hidden, open, ...rest }: Record<string, unknown>,
+	klass?: string,
+) => {
+	rest.class = clsx(klass, className || "") || undefined; // Use class instead of className
+	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
+	if (open) rest.open = true; // Ensure boolean prop behaviour
+	return rest;
+};

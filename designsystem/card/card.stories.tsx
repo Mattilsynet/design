@@ -24,7 +24,11 @@ const meta = {
 				className={`${styles.body} ${styles.grid}`}
 				style={{ padding: "2em" }}
 			>
-				<style>{"body{background:var(--ds-color-background-default)}"}</style>
+				<style>
+					{
+						"body:not(:has(.sbdocs-preview)) { background: var(--ds-color-background-default) }"
+					}
+				</style>
 				<Story />
 			</div>
 		),

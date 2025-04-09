@@ -70,22 +70,28 @@
 		min-width: 0;
 	}
 
+	/* Prepare for icon */
+	.button::before {
+		background: currentcolor;
+		mask: center / contain no-repeat;
+		overflow: clip;
+		white-space: nowrap;
+	}
+
 	/**
 	 * Paint ellipsis when empty
 	 */
 	.button:empty::before {
-		background: currentcolor;
 		content: "";
-		mask: center / contain no-repeat var(--mtds-icon-ellipsis);
+		mask-image: var(--mtds-icon-ellipsis);
 	}
 
 	/**
 	 * Arrows and popover
 	 */
 	.button[data-arrow]::before {
-		background: currentcolor;
 		content: "";
-		mask: center / contain no-repeat var(--mtds-icon-arrow);
+		mask-image: var(--mtds-icon-arrow);
 		order: 1; /* Use ::before and change order so ::after is allways unused, and loading will be placed where arrow was */
 	}
 	.button[data-arrow="left"]::before {
@@ -137,16 +143,9 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-
-		& > li + li {
-			margin-top: 0.125rem; /* Add 2px space between buttons in menu */
-		}
-
-		/* Add zero-width space to fix iOS VoiceOver list announcement https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html */
-		& > li::before {
-			content: "\200B";
-			position: absolute;
-		}
+	}
+	menu:where(:has(> li > .button)) > li + li {
+		margin-top: 0.125rem; /* Add 2px space between buttons in menu */
 	}
 	menu > li > .button {
 		border-radius: var(--ds-border-radius-md);

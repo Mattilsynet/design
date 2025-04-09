@@ -181,17 +181,17 @@
       },
       "4": {
         "$type": "color",
-        "$value": "#0E5856",
+        "$value": "#106663",
         "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#116E6B",
-        "$description": "surface-hover\nHavdyp\n"
+        "$value": "#13726F",
+        "$description": "surface-hover\n"
       },
       "6": {
         "$type": "color",
-        "$value": "#147B78",
+        "$value": "#13817D",
         "$description": "surface-active\n"
       },
       "7": {

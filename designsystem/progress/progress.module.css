@@ -3,7 +3,7 @@
 		display: block;
 		border-radius: var(--ds-border-radius-full);
 		border-width: 0;
-		background: var(--ds-color-surface-active);
+		background: var(--ds-color-surface-tinted);
 		color: var(--ds-color-text-subtle);
 		height: var(--ds-size-3);
 	}
@@ -13,6 +13,10 @@
 	.progress:not([value])::before {
 		animation: _indeterminate 1.5s infinite ease-in-out;
 		width: 75%;
+	}
+
+	label > .progress {
+		margin-top: var(--ds-size-2);
 	}
 
 	@keyframes _indeterminate {

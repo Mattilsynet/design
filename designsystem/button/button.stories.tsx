@@ -340,11 +340,22 @@ export const WithMenu: Story = {
 };
 
 export const WithTooltip: Story = {
-	render: () => (
-		<button data-tooltip="Favoritt" type="button" className={styles.button}>
-			<Star />
-		</button>
-	),
+	render: function Render() {
+		const [pressed, setPressed] = useState(false);
+
+		return (
+			<button
+				data-tooltip="Favoritt"
+				aria-pressed={pressed}
+				className={styles.button}
+				onClick={() => setPressed(!pressed)}
+				type="button"
+			>
+				<Star data-pressed="false" />
+				<Star data-pressed="true" weight="fill" />
+			</button>
+		);
+	},
 };
 
 export const InMenu: Story = {

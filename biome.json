@@ -5,7 +5,12 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"ignore": ["divider.module.css", "layout.module.css", "link.module.css"]
+		"ignore": [
+			"styles.module.css",
+			"divider.module.css",
+			"layout.module.css",
+			"link.module.css"
+		]
 	},
 	"javascript": {
 		"formatter": {
