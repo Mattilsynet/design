@@ -225,6 +225,53 @@ export const ItemSizes: Story = {
 	),
 };
 
+export const ItemFixed: Story = {
+	render: () => (
+		<>
+			<span>
+				Flex <code>data-items="100"</code> with <code>data-fixed</code> (does
+				not allow growing over <code>data-items</code> value):
+			</span>
+			<div className={styles.flex} data-items="100" data-fixed>
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Flex <code>data-items="100"</code> without <code>data-fixed</code>{" "}
+				(allows items to grow):
+			</span>
+			<div className={styles.flex} data-items="100">
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Grid <code>data-items="100"</code> with <code>data-fixed</code> (repeats
+				"fake" empty columns to align ish with <code>data-items</code>):
+			</span>
+			<div className={styles.grid} data-items="100" data-fixed>
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+			<span>
+				Grid <code>data-items="100"</code> without <code>data-fixed</code>
+				(fills grid with actual columns):
+			</span>
+			<div className={styles.grid} data-items="100">
+				<div>a</div>
+				<div>b</div>
+				<div>c</div>
+				<div>d</div>
+			</div>
+		</>
+	),
+};
+
 export const Align: Story = {
 	render: () => (
 		<section
@@ -653,15 +700,36 @@ export const Prose: Story = {
 					<h3 className={styles.heading} data-size="sm">
 						Helsesertifikater
 					</h3>
-					<ul>
-						<li>
-							<a href="#anchor">
-								1.1.302 Australia helsesertifikat, varmebehandlet rogn av
-								laksefisk, engelsk, specimen
-							</a>
-						</li>
-					</ul>
-					<p>The quick brown fox jumps over the lazy dog</p>
+					<div>
+						<u-details class={styles.details}>
+							<u-summary>Hva sier regelverket om lakserogn?</u-summary>
+							<div className={styles.prose}>
+								<p>
+									Sertifikatet kan utstedes for varmebehandlet rogn fra
+									laksefisk, til konsum, som er produsert i Norge.
+								</p>
+								<p>
+									Rognen kan komme fra hvilket som helst land, men den må være
+									varmebehandlet, i henhold til over angitt krav, av produsent i
+									Norge.
+								</p>
+							</div>
+						</u-details>
+						<u-details class={styles.details}>
+							<u-summary>Hva sier regelverket om lakserogn?</u-summary>
+							<div className={styles.prose}>
+								<p>
+									Sertifikatet kan utstedes for varmebehandlet rogn fra
+									laksefisk, til konsum, som er produsert i Norge.
+								</p>
+								<p>
+									Rognen kan komme fra hvilket som helst land, men den må være
+									varmebehandlet, i henhold til over angitt krav, av produsent i
+									Norge.
+								</p>
+							</div>
+						</u-details>
+					</div>
 					<h3 className={styles.heading} data-size="sm">
 						Overskrift
 					</h3>
@@ -824,10 +892,12 @@ export const App: Story = {
 				</button>
 				<button
 					type="button"
-					className={styles.avatar}
+					className={styles.button}
 					aria-label="Meny"
 					popoverTarget="menu"
-				></button>
+				>
+					<span className={styles.avatar} data-size="xs"></span>
+				</button>
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="#none">
@@ -850,7 +920,6 @@ export const App: Story = {
 				</menu>
 			</header>
 			<nav>
-				<button type="button" data-command="toggle-app-expanded"></button>
 				<menu>
 					<li>
 						<a
@@ -891,8 +960,8 @@ export const App: Story = {
 						</div>
 					</fieldset>
 				</form>
-				{/* <hr className={styles.divider} data-gap="8" />
-				<div>
+				<div hidden>
+					<hr className={styles.divider} data-gap="8" />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
 					velit orci, sagittis sodales viverra id, malesuada quis lacus. Nunc ac
 					vulputate enim, et feugiat lorem. Suspendisse metus est, semper in
@@ -900,8 +969,13 @@ export const App: Story = {
 					ex. Quisque in interdum nisl. Fusce non est finibus, imperdiet diam
 					quis, sodales tellus. Maecenas vitae scelerisque ipsum. Maecenas
 					tempor leo orci, a lacinia leo interdum et.
-				</div> */}
+				</div>
 			</nav>
+			<button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+			></button>
 			<main>
 				<div className={styles.card}>
 					<img
@@ -927,7 +1001,7 @@ export const App: Story = {
 						</div>
 					</fieldset>
 				</div>
-				{/* <div className={styles.prose}>
+				<div className={styles.prose} hidden>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
 						velit orci, sagittis sodales viverra id, malesuada quis lacus. Nunc
@@ -963,7 +1037,7 @@ export const App: Story = {
 						in arcu sit amet tristique. Etiam ac neque rhoncus nibh laoreet
 						efficitur.
 					</p>
-				</div> */}
+				</div>
 			</main>
 			<aside hidden>
 				<form className={styles.grid} data-gap="4">
@@ -991,7 +1065,7 @@ export const App: Story = {
 					</fieldset>
 				</form>
 			</aside>
-			<footer hidden>
+			<footer data-color="inverted" style={{ height: 300 }} hidden>
 				<a href="#none" className={styles.logo}></a>
 			</footer>
 		</div>

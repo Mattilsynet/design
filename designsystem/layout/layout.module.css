@@ -90,19 +90,18 @@
 	 * Flex
 	 */
 	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
-	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
-	.flex > [data-nowrap]:not(.flex) { min-width: max-content } /* .flex[data-nowrap] is allready controlled by flex-wrap: nowrap */
-	.flex[data-items="50"] > *, .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
-	.flex[data-items="100"] > *, .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
-	.flex[data-items="150"] > *, .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
-	.flex[data-items="200"] > *, .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
-	.flex[data-items="250"] > *, .flex > [data-self="250"] { flex-basis: calc(1rem / 16 * 250) }
-	.flex[data-items="300"] > *, .flex > [data-self="300"] { flex-basis: calc(1rem / 16 * 300) }
-	.flex[data-items="350"] > *, .flex > [data-self="350"] { flex-basis: calc(1rem / 16 * 350) }
-	.flex[data-items="400"] > *, .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
-	.flex[data-items="450"] > *, .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
-	.flex[data-items="500"] > *, .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
+	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0; min-width: max-content }
+	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
+	.flex[data-items="100"] > :not([data-self]), .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
+	.flex[data-items="150"] > :not([data-self]), .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
+	.flex[data-items="200"] > :not([data-self]), .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
+	.flex[data-items="250"] > :not([data-self]), .flex > [data-self="250"] { flex-basis: calc(1rem / 16 * 250) }
+	.flex[data-items="300"] > :not([data-self]), .flex > [data-self="300"] { flex-basis: calc(1rem / 16 * 300) }
+	.flex[data-items="350"] > :not([data-self]), .flex > [data-self="350"] { flex-basis: calc(1rem / 16 * 350) }
+	.flex[data-items="400"] > :not([data-self]), .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
+	.flex[data-items="450"] > :not([data-self]), .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
+	.flex[data-items="500"] > :not([data-self]), .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
 
 	/**
 	 * Grid

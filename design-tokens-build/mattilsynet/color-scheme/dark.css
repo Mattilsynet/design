@@ -39,9 +39,9 @@
   --ds-color-inverted-background-default: #032C30;
   --ds-color-inverted-background-tinted: #00000029;
   --ds-color-inverted-surface-default: #0E5856;
-  --ds-color-inverted-surface-tinted: #0E5856;
-  --ds-color-inverted-surface-hover: #116E6B;
-  --ds-color-inverted-surface-active: #147B78;
+  --ds-color-inverted-surface-tinted: #106663;
+  --ds-color-inverted-surface-hover: #13726F;
+  --ds-color-inverted-surface-active: #13817D;
   --ds-color-inverted-border-subtle: #FFFFFF33;
   --ds-color-inverted-border-default: #5E807D;
   --ds-color-inverted-border-strong: #9BCAC2;
@@ -160,9 +160,9 @@
   --ds-color-inverted-background-default: #032C30;
   --ds-color-inverted-background-tinted: #00000029;
   --ds-color-inverted-surface-default: #0E5856;
-  --ds-color-inverted-surface-tinted: #0E5856;
-  --ds-color-inverted-surface-hover: #116E6B;
-  --ds-color-inverted-surface-active: #147B78;
+  --ds-color-inverted-surface-tinted: #106663;
+  --ds-color-inverted-surface-hover: #13726F;
+  --ds-color-inverted-surface-active: #13817D;
   --ds-color-inverted-border-subtle: #FFFFFF33;
   --ds-color-inverted-border-default: #5E807D;
   --ds-color-inverted-border-strong: #9BCAC2;

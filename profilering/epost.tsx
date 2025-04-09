@@ -39,7 +39,7 @@ export function Epost() {
 	return (
 		<div
 			className={styles.grid}
-			data-gap="lg"
+			data-gap="6"
 			style={{
 				width: "80vw",
 				margin: "4rem calc(50% - 40vw)",
@@ -51,7 +51,7 @@ export function Epost() {
 				onSubmit={(event) => event.preventDefault()}
 				onInput={onInput}
 				className={styles.grid}
-				data-gap="md"
+				data-gap="5"
 			>
 				<div className={styles.field}>
 					<label>
@@ -79,56 +79,45 @@ export function Epost() {
 						required
 					/>
 				</div>
+				<fieldset className={styles.fieldset}>
+					<legend>
+						<IdentificationBadge aria-hidden="true" /> Tilknytning
+					</legend>
+					<div className={styles.field}>
+						<label>Mattilsynet, hovedkontoret</label>
+						<input
+							className={styles.input}
+							name="connection"
+							type="radio"
+							value="hovedkontoret"
+							defaultChecked={data.connection === "hovedkontoret"}
+							required
+						/>
+					</div>
+					<div className={styles.field}>
+						<label>Mattilsynet, tilsynet</label>
+						<input
+							className={styles.input}
+							name="connection"
+							type="radio"
+							value="tilsynet"
+							defaultChecked={data.connection === "tilsynet"}
+							required
+						/>
+					</div>
+				</fieldset>
 				<div className={styles.field}>
 					<label>
-						<MapPinArea aria-hidden="true" /> Tilknytning
+						<MapPinArea aria-hidden="true" /> Seksjon/avdeling
 					</label>
 					<input
 						className={styles.input}
 						name="office"
 						type="text"
 						autoComplete="off"
-						placeholder="kontorsted, seksjon"
+						placeholder="Seksjon/avdeling"
 						value={data.office}
-						list="office-list"
-						required
 					/>
-					<datalist id="office-list">
-						<option>Hovedkontoret</option>
-						<option>Agder</option>
-						<option>Bergen og omland</option>
-						<option>Finnmark</option>
-						<option>Gauldal</option>
-						<option>Glåmdal og Østerdal</option>
-						<option>Grensekontroll og import</option>
-						<option>Gudbrandsdal</option>
-						<option>Helgeland</option>
-						<option>Innherred og Fosen</option>
-						<option>Mat</option>
-						<option>Midtre Hålogaland</option>
-						<option>Mjøsområdet</option>
-						<option>Namdal</option>
-						<option>Nasjonale godkjenninger</option>
-						<option>Nasjonale oppgaver</option>
-						<option>Nordfjord</option>
-						<option>Nordmøre og Romsdal</option>
-						<option>Nordre Buskerud, Hadeland og Valdres</option>
-						<option>Romerike</option>
-						<option>Salten</option>
-						<option>Slakteritilsyn</option>
-						<option>Styring og administrasjon</option>
-						<option>Sunnfjord og Sogn</option>
-						<option>Sunnhordland og Haugalandet</option>
-						<option>Sunnmøre</option>
-						<option>Søndre Buskerud</option>
-						<option>Sør-Innherred</option>
-						<option>Sør-Rogaland, Sirdal og Flekkefjord</option>
-						<option>Telemark</option>
-						<option>Troms og Svalbard</option>
-						<option>Trondheim og omland</option>
-						<option>Vestfold</option>
-						<option>Østfold og Follo</option>
-					</datalist>
 				</div>
 				<div className={styles.field}>
 					<label>
@@ -159,13 +148,15 @@ export function Epost() {
 					<label>
 						<MapTrifold aria-hidden="true" /> Besøksadresse
 					</label>
-					<a
-						href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
-						target="_blank"
-						rel="noreferrer"
-					>
-						Se kontorsteder <ArrowSquareOut aria-hidden="true" />
-					</a>
+					<p>
+						<a
+							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
+						</a>
+					</p>
 					<input
 						className={styles.input}
 						name="visit"
@@ -194,9 +185,12 @@ export function Epost() {
 						<br />
 						<b>{data.name || "Navn"}</b>
 						<br />
-						{data.position || "stillingstittel"}
+						{data.position?.toLowerCase() || "stillingstittel"}
 						<br />
-						Mattilsynet, {data.office || "kontorsted, seksjon"}
+						<br />
+						Mattilsynet, {data.connection || "-"}
+						{data.office && <br />}
+						{data.office?.toLowerCase()}
 						<br />
 						Telefon:{" "}
 						{[toPhone(data.phone), toPhone(data.mobile)]
@@ -205,7 +199,7 @@ export function Epost() {
 						<br />
 						Besøksadresse:{" "}
 						<a
-							href={`https://maps.google.com/?q=${window.encodeURIComponent(data.visit)}`}
+							href={`https://maps.google.com/?q=${window.encodeURIComponent(data.visit || "Veigata 1, 2001 Byen")}`}
 						>
 							{data.visit || "Veigata 1, 2001 Byen"}
 						</a>

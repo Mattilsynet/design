@@ -92,20 +92,15 @@ export const off = (
 /**
  * Scroller targes helping anchorPosition
  */
-const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
 const SCROLLER = IS_BROWSER ? document.createElement("div") : null; // Used to ensure we have scrollability under
-if (SCROLLER)
-	attr(SCROLLER, "style", "position:absolute;padding:1px;top:0;left:0px");
+const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
+const TARGETS_UPDATE = () => {
+	for (const [_, update] of TARGETS) update();
+};
 
-if (IS_BROWSER) {
-	on(
-		window,
-		"load,resize,scroll",
-		() => {
-			for (const [_, update] of TARGETS) update();
-		},
-		QUICK_EVENT,
-	);
+if (SCROLLER) {
+	SCROLLER.style.cssText = "position:absolute;padding:1px;top:0;left:0px";
+	on(window, "load,resize,scroll", TARGETS_UPDATE, QUICK_EVENT);
 }
 
 /**
@@ -122,7 +117,7 @@ export function anchorPosition(
 ) {
 	if (anchor === false || !anchor.isConnected || !target.isConnected)
 		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
-	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have t´he scroller
+	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have the scroller
 	if (!TARGETS.has(target)) {
 		// Setup new target or update position
 		const place =
@@ -162,7 +157,7 @@ export function anchorPosition(
 	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;
 	SCROLLER?.style.setProperty(
 		"translate",
-		`${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)} ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`,
+		`${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)}px ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`,
 	);
 }
 

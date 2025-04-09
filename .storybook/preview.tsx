@@ -75,8 +75,9 @@ export default {
 						);
 					}
 
-					// Set color scheme
+					// Set color scheme and language
 					document.documentElement.setAttribute("data-color-scheme", scheme);
+					document.documentElement.setAttribute("lang", "no");
 
 					// Paint colors blockqoutes based on emojis
 					for (const el of document.querySelectorAll(

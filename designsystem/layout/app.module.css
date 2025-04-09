@@ -3,11 +3,10 @@
 	 * App layout
 	 */
 	.app {
-		--mtdsc-app-expand-size: var(--ds-size-8);
-		--mtdsc-app-nav--collapsed: 5rem; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--mtdsc-app-nav--expanded: 14em;
-		--mtdsc-app-spacing-md: var(--ds-size-6);
-		--mtdsc-app-spacing-sm: var(--ds-size-3);
+		--mtdsc-app-nav-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-spacing: var(--ds-size-4);
+		--negative: calc(var(--mtdsc-app-spacing) * -1);
+		--half: calc(var(--mtdsc-app-spacing) * 0.5);
 
 		box-sizing: border-box;
 		min-height: 100vh;
@@ -45,48 +44,33 @@
 		display: var(--mtdsc-app-expanded--true, none);
 	}
 	.app [data-command="toggle-app-expanded"] {
-		all: unset;
-		background: var(--ds-color-background-tinted);
-		border-radius: var(--ds-border-radius-md);
-		bottom: var(--mtdsc-app-spacing-md);
-		cursor: pointer;
-		height: var(--mtdsc-app-expand-size);
-		left: var(--mtdsc-app-spacing-md);
-		position: fixed; /* TODO: Position toggle button */
-		text-align: center;
-		transition: .2s;
-		width: var(--mtdsc-app-expand-size);
-		z-index: 2;
+		--dsc-button-background: var(--ds-color-background-default);
+		--dsc-button-border-color: var(--ds-color-border-subtle);
+		align-self: end;
+		bottom: var(--half);
+		grid-area: nav;
+		position: sticky;
+		translate: var(--half);
+		margin-bottom: var(--mtdsc-app-spacing);
+		z-index: 3;
+		justify-content: start;
+		width: min-content;
+		view-transition-name: mtds-app--toggle; /* Make the button a separate layer */
 
 		/* Maxium 960px */
 		@media (max-width: 60em) {
 			display: none; /* Hide toggler on mobile */
 		}
-
-		&::after {
-			background: currentColor;
-			content: var(--mtds-text-navigation);
-			display: block;
-			height: var(--mtds-icon-size);
-			mask: center / contain no-repeat var(--mtds-icon-chevron);
-			rotate: var(--mtdsc-app-expanded--true, 90deg)
-				var(--mtdsc-app-expanded--false, -90deg);
-			white-space: nowrap;
-			overflow: clip;
-		}
-
-		&:hover {
-			background: var(--ds-color-base-default);
-			color: var(--ds-color-base-contrast-default);
-		}
-		&:active {
-			scale: 0.9;
-		}
-		&:focus-visible {
-			box-shadow: var(--dsc-focus-boxShadow);
-			outline: var(--dsc-focus-outline);
-			outline-offset: var(--ds-border-width-focus);
-		}
+	}
+	.app [data-command="toggle-app-expanded"]::before {
+		content: var(--mtds-text-navigation);
+		width: 1.25em;
+		height: 1.25em;
+		mask-image: var(
+				--mtdsc-app-expanded--true,
+				var(--mtds-icon-sidebar-collapse)
+			)
+			var(--mtdsc-app-expanded--false, var(--mtds-icon-sidebar-expand));
 	}
 
 	/**
@@ -96,10 +80,9 @@
 	.app > header,
 	.app header:has(~ main) {
 		align-items: center;
-		gap: var(--ds-size-2);
 		grid-area: header;
-		padding: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-md)
-			var(--mtdsc-app-spacing-sm);
+		padding: var(--mtdsc-app-spacing);
+		margin-bottom: var(--negative);
 
 		&:not([hidden]) {
 			display: flex;
@@ -117,7 +100,7 @@
 	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
 	.app > nav,
-	.app nav:has(+ main) {
+	.app nav:has(~ main) {
 		--mtds-tooltip-position: var(--mtdsc-app-expanded--true, none)
 			var(--mtdsc-app-expanded--false, right);
 
@@ -130,11 +113,10 @@
 
 		box-sizing: border-box;
 		grid-area: nav;
-		padding: var(--mtdsc-app-spacing-md) var(--mtdsc-app-spacing-md)
-			var(--ds-size-18);
+		margin-right: var(--negative);
+		padding: var(--ds-size-10) var(--mtdsc-app-spacing) var(--ds-size-18);
+		width: var(--mtdsc-app-expanded--true, var(--mtdsc-app-nav-width));
 		view-transition-name: mtds-app--left;
-		width: var(--mtdsc-app-expanded--true, var(--mtdsc-app-nav--expanded))
-			var(--mtdsc-app-expanded--false, var(--mtdsc-app-nav--collapsed));
 
 		& menu > li > [data-tooltip]::after {
 			content: var(--mtdsc-app-expanded--true, attr(data-tooltip))
@@ -142,21 +124,21 @@
 		}
 
 		& menu {
-			margin-inline: calc(var(--mtdsc-app-spacing-sm) * -1);
+			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
 		}
 
 		/* Maxium 960px */
 		@media (max-width: 60em) {
-			display: none;
+			/* display: none; */
 			background-color: var(--ds-color-surface-default);
 			min-height: 100vh;
 			min-height: 100svh;
 			position: absolute;
-			left: 0;
+			right: 100%;
 			top: 0;
-			width: min(var(--mtdsc-app-nav--expanded), 100vh);
+			width: min(var(--mtdsc-app-nav-width), 100vh);
 			z-index: 99;
-			box-shadow: 0 0 0 99vh rgba(0, 0, 0, 0.5);
+			/* box-shadow: 0 0 0 99vh rgba(0, 0, 0, 0.5); */
 
 			&::after,
 			&::before {
@@ -165,21 +147,9 @@
 				position: fixed;
 				bottom: 0;
 				left: 0;
-				width: var(--mtdsc-app-nav--expanded);
+				width: var(--mtdsc-app-nav-width);
 			}
 
-			/* &::before {
-				display: block;
-				padding-block: inherit;
-				padding-inline: calc(
-					var(--mtdsc-app-spacing-sm) *
-					2 +
-					var(--mtds-icon-size)
-				);
-				margin: calc(var(--mtdsc-app-spacing-sm) * -1)
-					calc(var(--mtdsc-app-spacing-sm) * -1) var(--mtdsc-app-spacing-sm);
-				content: var(--mtds-text-navigation);
-			} */
 			/* &::after {
 				position: fixed;
 				top: 0;
@@ -200,12 +170,13 @@
 	 */
 	.app main {
 		grid-area: main;
-		margin: 0 var(--mtdsc-app-spacing-sm) var(--mtdsc-app-spacing-sm) 0;
+		/* padding: var(--mtdsc-app-spacing); */
+		padding: var(--mtdsc-app-spacing);
 		view-transition-name: mtds-app--main;
 
-		@media (max-width: 60em) {
+		/* @media (max-width: 60em) {
 			margin-inline: var(--ds-size-2);
-		}
+		} */
 	}
 
 	/**
@@ -213,10 +184,10 @@
 	 * NOTE: Selector supports both direct child or as sibling of <main> for easier island architecture
 	 */
 	.app > aside,
-	.app main + aside {
+	.app main ~ aside {
 		grid-area: aside;
-		padding-right: var(--mtdsc-app-spacing-sm);
-		padding-top: var(--mtdsc-app-spacing-md);
+		padding: var(--mtdsc-app-spacing);
+		margin-left: var(--negative);
 		view-transition-name: mtds-app--right;
 		width: 14em;
 
@@ -236,11 +207,10 @@
 	 */
 	.app > footer,
 	.app main ~ footer {
-		background: var(--ds-color-base-default);
-		color: var(--ds-color-base-contrast-default);
+		background: var(--ds-color-background-default);
+		color: var(--ds-color-text-subtle);
 		grid-area: footer;
-		margin-top: var(--mtdsc-app-spacing-sm);
-		padding: var(--mtdsc-app-spacing-md);
+		padding: var(--mtdsc-app-spacing);
 	}
 }
 
