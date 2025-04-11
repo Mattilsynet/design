@@ -4,18 +4,11 @@ Pakking av designsystemet for publisering til Clojars. Tilbyr systemets ressurer
 sammen med noen bekvemmelighets-API-er for å bruke CSS-moduler og laste SVG-er
 fra Clojure og ClojureScript.
 
-You need to install:
-```
-brew install clojure/tools/clojure
-brew install mvn
-```
-
 ```clj
-io.mattilsynet/design {:mvn/version "0.2.14.42"}
+io.mattilsynet/design {:mvn/version "x.y.z"}
 ```
 
-(Versjonsnummeret korresponderer med npm-pakkens, altså `0.0.3`, og har et
-løpenummer til slutt som angir versjon av Clojure-koden).
+Finn siste versjon [på Clojars](https://clojars.org/io.mattilsynet/design).
 
 ## Klasser
 
@@ -92,6 +85,13 @@ For en liste med tilgjengelige ikoner og/eller illustrasjoner:
 ```
 
 ## Slippe ny release
+
+Start med å installere Clojure:
+
+```sh
+brew install clojure/tools/clojure
+brew install mvn
+```
 
 Når det er endringer i npm-pakken til designsystemet, eller i koden i dette
 repoet bør det lages en ny versjon av Clojars-pakken. Det gjør du på følgende
