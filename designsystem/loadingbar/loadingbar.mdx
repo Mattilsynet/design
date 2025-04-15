@@ -1,0 +1,15 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './loadingbar.stories';
+
+<Meta of={stories} />
+
+# Loading bar
+- Bruk klassen `loadingbar` på typisk `<span>`
+- For reduced motion så settes hastigheten til animasjone ned, men skrus ikke av
+da den brukes til å indikere noe er pågående.
+- Brukes normalt som en indikator for en pågående handling, henges på elementet
+hvor handlingen skjer. Eller på toppen av siden ved sidenavigasjon.
+<Canvas of={stories.Default} />
+
+<CssVariables component="loadingbar" />
