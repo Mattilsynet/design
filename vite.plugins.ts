@@ -12,6 +12,7 @@ export const cssPropsRename: Plugin = {
 	transform: (code) => ({
 		map: null,
 		code: code
+			.replace(/::details-content/g, "::part(details-content)") // Fix for LightningCSS missing support in TurboPack
 			.replace(/--ds-color-primary-/g, "--ds-color-main-")
 			.replace(/--ds-size-/g, "--mtds-")
 			.replace(/--ds(c?)-/g, "--mtds$1-")

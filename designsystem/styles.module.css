@@ -1,6 +1,7 @@
 /* Do not load @digdir/designsystemet-css as is implicitt with "composes", and it creates lots of Typescript types we don't want */
 @import url("../design-tokens-build/mattilsynet.css");
 @import url("./alert/alert.module.css");
+@import url("./app/app.module.css");
 @import url("./avatar/avatar.module.css");
 @import url("./badge/badge.module.css");
 @import url("./breadcrumbs/breadcrumbs.module.css");
@@ -17,7 +18,6 @@
 @import url("./heading/heading.module.css");
 @import url("./helptext/helptext.module.css");
 @import url("./input/input.module.css");
-@import url("./layout/app.module.css");
 @import url("./layout/layout.module.css");
 @import url("./link/link.module.css");
 @import url("./logo/logo.module.css");
@@ -71,7 +71,6 @@
 		--mtds-text-datalist-singular: "%d forslag";
 		--mtds-text-loading: "Laster...";
 		--mtds-text-logo: "Mattilsynet";
-		--mtds-text-navigation: "Navigasjon";
 		--mtds-text-next: "Neste";
 		--mtds-text-previous: "Forrige";
 		--mtds-text-required: "Må fylles ut";
@@ -83,7 +82,7 @@
 		--mtds-text-tags-removed: "Fjernet";
 
 		/**
-		 * We need to specify ds-body-*-font-size again since these are 
+		 * We need to specify ds-body-*-font-size again since these are
 		 * removed from our Figma tokens, and since we want fluid design
 		 * Fluid scales from min 360px/22.5rem => Max 1360px/85rem
 		 * Calculations are mawe with https://royalfig.github.io/fluid-typography-calculator/
@@ -122,7 +121,6 @@
 		--mtds-text-datalist-singular: "%d suggestions";
 		--mtds-text-loading: "Loading...";
 		--mtds-text-logo: "Norwegian Food Safety Authority";
-		--mtds-text-navigation: "Navigation";
 		--mtds-text-next: "Next";
 		--mtds-text-previous: "Previous";
 		--mtds-text-required: "Required";
@@ -158,6 +156,11 @@
 		-moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
 	}
 
+	/* Avoid white-space under images */
+	:where(img, svg) {
+		vertical-align: middle;
+	}
+
 	:where(b, h1, h2, h3, h4, h5, h6, label, legend, strong) {
 		font-weight: 700;
 	}
@@ -172,6 +175,17 @@
 	@media (prefers-reduced-motion: no-preference) {
 		html {
 			scroll-behavior: smooth;
+		}
+	}
+
+	@media (max-width: 48em) {
+		[data-hidden="min-md"] { /* Show at minimum 768px */
+			display: none;
+		}
+	}
+	@media (min-width: 48.0625em) {
+		[data-hidden="max-md"] { /* Show to maximum 768px */
+			display: none;
 		}
 	}
 }
@@ -199,6 +213,29 @@
 		);
 		--ds-color-base-contrast-default: var(
 			--ds-color-inverted-base-contrast-default
+		);
+	}
+	[data-color="main"],
+	[data-color-scheme][data-color="main"] {
+		--ds-color-background-default: var(--ds-color-main-background-default);
+		--ds-color-background-tinted: var(--ds-color-main-background-tinted);
+		--ds-color-surface-default: var(--ds-color-main-surface-default);
+		--ds-color-surface-tinted: var(--ds-color-main-surface-tinted);
+		--ds-color-surface-hover: var(--ds-color-main-surface-hover);
+		--ds-color-surface-active: var(--ds-color-main-surface-active);
+		--ds-color-border-subtle: var(--ds-color-main-border-subtle);
+		--ds-color-border-default: var(--ds-color-main-border-default);
+		--ds-color-border-strong: var(--ds-color-main-border-strong);
+		--ds-color-text-subtle: var(--ds-color-main-text-subtle);
+		--ds-color-text-default: var(--ds-color-main-text-default);
+		--ds-color-base-default: var(--ds-color-main-base-default);
+		--ds-color-base-hover: var(--ds-color-main-base-hover);
+		--ds-color-base-active: var(--ds-color-main-base-active);
+		--ds-color-base-contrast-subtle: var(
+			--ds-color-main-base-contrast-subtle
+		);
+		--ds-color-base-contrast-default: var(
+			--ds-color-main-base-contrast-default
 		);
 	}
 }

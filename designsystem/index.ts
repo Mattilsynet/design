@@ -8,17 +8,18 @@ export type {
 export type { UHTMLTagsElement } from "@u-elements/u-tags";
 
 // Expose API
+export { version } from "../package.json"; // Expose version to make it easier to debug
 export { pagination } from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 
 // Load beahviours
 // import "./toast/toast-observer";
+import "./app/app-observer";
 import "./breadcrumbs/breadcrumbs-observer";
 import "./dialog/dialog-observer";
 import "./errorsummary/errorsummary-observer";
 import "./field/field-observer";
 import "./fieldset/fieldset-observer";
-import "./layout/app-observer";
 import "./logo/logo-observer";
 import "./popover/popover-observer";
 import "./table/table-observer";

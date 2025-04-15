@@ -92,12 +92,20 @@
 			background-position: calc(100% - var(--ds-size-3)) center;
 			background-repeat: no-repeat;
 			background-size: var(--ds-size-6);
+			min-width: 15ch; /* Prevent date icon from overlapping content */
 		}
 		/* Chrome: Keep, but hide native icon */
 		.input[type="date"]::-webkit-calendar-picker-indicator {
 			cursor: pointer;
 			opacity: 0;
 			width: var(--ds-size-6);
+		}
+	}
+
+	/* Fix Safari placeholder https://stackoverflow.com/q/73896040 */
+	@supports (-webkit-hyphens: none) {
+		.input[type="date"] {
+			color: initial;
 		}
 	}
 }

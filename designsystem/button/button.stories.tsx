@@ -362,8 +362,8 @@ export const InMenu: Story = {
 	render: () => (
 		<menu>
 			<li>
-				<button type="button" className={styles.button}>
-					Knapp 1
+				<button type="button" className={styles.button} aria-pressed="true">
+					Valgt knapp
 				</button>
 			</li>
 			<li>
@@ -372,8 +372,8 @@ export const InMenu: Story = {
 				</button>
 			</li>
 			<li>
-				<button type="button" className={styles.button}>
-					Knapp 3
+				<button type="button" className={styles.button} aria-current="page">
+					Nåværende side
 				</button>
 			</li>
 			<li>

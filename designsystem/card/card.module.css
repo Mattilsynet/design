@@ -23,7 +23,7 @@
 	:where(.card:not(tr, [hidden])) {
 		display: block;
 	}
-	.card:is(button:enabled, button:not([aria-disabled="true"])) {
+	.card:is(label, button:enabled, button:not([aria-disabled="true"])) {
 		cursor: pointer;
 	}
 

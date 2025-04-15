@@ -176,9 +176,9 @@
 	}
 
 	/**
-	 * Mobile versions (up to 960px)
+	 * Mobile versions (up to 768px)
 	 */
-	@media (max-width: 60em) {
+	@media (max-width: 48em) {
 		.table[data-mobile],
 		.table[data-mobile] > tbody,
 		.table[data-mobile] > tbody > tr,

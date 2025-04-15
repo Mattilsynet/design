@@ -52,6 +52,7 @@ type SharedProps = {
 		| 30
 		// Backwards compatibility:
 		| "none"
+		| "xs"
 		| "sm"
 		| "md"
 		| "lg"
@@ -148,21 +149,3 @@ export const Prose: ProseComponent = forwardRef<null>(function Prose<
 
 	return <Tag className={clsx(styles.prose, className)} ref={ref} {...rest} />;
 }) as ProseComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
-
-/**
- * App
- */
-export type AppProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
-
-type AppComponent = <As extends React.ElementType = "div">(
-	props: AppProps<As>,
-) => JSX.Element;
-
-export const App: AppComponent = forwardRef<null>(function App<
-	As extends React.ElementType = "div",
->({ as, className, ...rest }: AppProps<As>, ref?: PolymorphicRef<As>) {
-	const Tag = as || "div";
-
-	return <Tag className={clsx(styles.app, className)} ref={ref} {...rest} />;
-}) as AppComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

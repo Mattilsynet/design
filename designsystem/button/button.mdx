@@ -63,7 +63,7 @@ import * as stories from './button.stories';
 
 ## I meny
 - Legger du `button` i `<menu><li>` vil knappene ha samme bredde og venstrestilt tekst
-- Ved bruk av attributten `aria-pressed="true"` får knappen et sjekk-symbol
+- Ved bruk av `aria-pressed="true"` (for `button`) eller `aria-current="page"` (for lenke) indikeres aktivt valg i menyen
 <Canvas of={stories.InMenu} />
 
 <CssVariables component="button" />

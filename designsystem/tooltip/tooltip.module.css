@@ -36,6 +36,7 @@
 		transition-property: opacity, visibility, scale;
 		visibility: hidden;
 		z-index: 99999;
+		view-transition-name: mtds-tooltip;
 	}
 	._tooltip:popover-open {
 		opacity: 1;

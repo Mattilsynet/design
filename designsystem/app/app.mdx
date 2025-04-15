@@ -1,0 +1,34 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './app.stories';
+import styles from '../styles.module.css';
+
+<Meta of={stories} />
+
+# App (Eksperimentell)
+- Bruk klassen `app` på typisk `<body>` eller en element inni
+- Legg inn `<header>`, `<nav>`, `<main>`, `<aside>` og `<footer>` som barn
+- Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
+- I React kan du benytte `App`, `App.Header`, `App.Nav`,  `App.Sticky`,  `App.Main`,  `App.Aside` og `App.Footer`
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se app i ny fane</a>
+  <Canvas of={stories.Default} />
+</div>
+
+## Ekspander og minimer sideområde
+- Legg en `<button>` med klassen `button` og `data-command="app-expand"` som siste barn i `<nav>` for å få automatisk ekspandering/minimering av sideområde
+- Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se ekspandering i ny fane</a>
+  <Canvas of={stories.Default} />
+</div>
+
+## Sticky sideområde
+- Bruk klassen `sticky` rundt alt innholdet i `<nav>`, utenom ekspander/minimer-knappen
+- Dette gir deg en avansert implementasjon av sticky, som tar hensyn til scroll-retning
+<div className="sbdocs-canvas-thumbnail">
+  <a className={styles.button} data-arrow data-variant="primary"target="_blank" href="/iframe.html?globals=&id=designsystem-app--with-complex-content">Se sticky i ny fane</a>
+  <Canvas of={stories.Default} />
+</div>
+
+<CssVariables component="app" />

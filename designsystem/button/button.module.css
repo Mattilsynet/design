@@ -29,6 +29,7 @@
 		--dsc-button-border-color: var(--ds-color-text-subtle);
 	}
 
+	menu > li > .button[aria-pressed="true"],
 	.button[aria-current]:not([aria-current="false"]) {
 		--dsc-button-background: var(--ds-color-surface-tinted);
 		font-weight: 700;

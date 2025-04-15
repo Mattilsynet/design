@@ -1,11 +1,11 @@
 @layer mt.design {
 	.popover {
-		--mtdsc-box-shadow: var(--ds-shadow-md);
 		--mtdsc-popover-background: var(--ds-color-surface-default);
 		--mtdsc-popover-border-color: var(--ds-color-border-subtle);
 		--mtdsc-popover-border-radius: var(--ds-border-radius-md);
 		--mtdsc-popover-border-style: solid;
 		--mtdsc-popover-border-width: var(--ds-border-width-default);
+		--mtdsc-popover-box-shadow: var(--ds-shadow-md);
 		--mtdsc-popover-color: var(--ds-color-text-default);
 		--mtdsc-popover-padding: var(--ds-size-5);
 
@@ -13,7 +13,7 @@
 		border-radius: var(--mtdsc-popover-border-radius);
 		border: var(--mtdsc-popover-border-width) var(--mtdsc-popover-border-solid)
 			var(--mtdsc-popover-border-color);
-		box-shadow: var(--mtdsc-box-shadow);
+		box-shadow: var(--mtdsc-popover-box-shadow);
 		box-sizing: border-box;
 		color: var(--mtdsc-popover-color); /* Needed to overwrite browser default */
 		height: auto;

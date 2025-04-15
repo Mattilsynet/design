@@ -33,7 +33,9 @@ function handleLinkClick({ target }: Event) {
 		const target = document.getElementById(attr(close, "popovertarget") || "");
 		const popover = (target || close).closest<HTMLElement>(`.${CSS_POPOVER}`);
 
-		if (popover?.togglePopover) popover.togglePopover(open);
+		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
+		if (popover?.isConnected && popover?.togglePopover)
+			popover.togglePopover(open);
 	}
 }
 

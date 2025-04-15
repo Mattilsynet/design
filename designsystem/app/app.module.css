@@ -1,0 +1,263 @@
+@layer mt.design {
+	/**
+	 * App layout
+	 * NOTE1: Selectors supports both direct child or as sibling of <main> for easier island architecture
+	 * NOTE2: Negative margin is used to avoid double spacing when using <main> as a sibling, while keeping ability for background colors
+	 * NOTE3: Global variables used to avoid Next.js hydration conflict
+	 */
+	:root {
+		--mtdsc-app-expanded: var(--mtds-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+		--mtds-expanded--true: var(--mtdsc-app-expanded,);
+		--mtds-expanded--false: var(--mtdsc-app-expanded,);
+		--mtds-sticky-top: 0px;
+		--mtds-sticky-pos: relative;
+	}
+	.app {
+		--mtdsc-app-nav-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-spacing: var(--ds-size-4);
+		--negative: calc(var(--mtdsc-app-spacing) * -1);
+
+		box-sizing: border-box;
+		min-height: 100vh;
+		min-height: 100svh; /* Use small viewport height if supported */
+		padding: var(--mtdsc-app-spacing);
+		grid-template:
+			"header header header" auto
+			"nav main aside" 1fr
+			"footer footer footer" auto / auto 1fr auto;
+	}
+	.app:where(:not([hidden])) {
+		display: grid;
+	}
+	.app > :not([hidden]) {
+		display: content; /* Allow nesting <div> inside app for easier island architecture  */
+	}
+
+	/* Hide relevant child elements with data-expanded attribute */
+	.app [data-app-expanded="true"]:not([hidden]) {
+		content-visibility: var(--mtds-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-expanded--false, absolute);
+	}
+	.app [data-app-expanded="false"]:not([hidden]) {
+		content-visibility: var(--mtds-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-expanded--true, absolute);
+	}
+
+	/**
+	 * Header
+	 */
+	.app > header,
+	.app header:has(~ main) {
+		box-sizing: border-box;
+		align-items: center;
+		grid-area: header;
+		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
+		margin: var(--negative) var(--negative) var(--mtdsc-app-spacing);
+		padding: var(--mtdsc-app-spacing);
+
+		&:not([hidden]) {
+			display: flex;
+		}
+
+		& > :first-child {
+			margin-right: auto; /* Push logo to left */
+			min-width: 0; /* Allow shrinking if using breadcrumbs */
+		}
+
+		&[data-color] {
+			background: var(--ds-color-surface-default);
+			color: var(--ds-color-text-default);
+			border-bottom: var(--ds-border-width-default) solid
+				var(--ds-color-border-subtle);
+		}
+	}
+
+	/**
+	 * Left side
+	 */
+	.app > nav,
+	.app nav:has(~ main) {
+		all: unset; /* Undo popover styling */
+
+		--mtds-tooltip-position: var(--mtds-expanded--true, none)
+			var(--mtds-expanded--false, right);
+		background: var(--ds-color-background-default);
+		box-sizing: border-box;
+		color: var(--ds-color-text-default);
+		display: flex;
+		flex-direction: column;
+		grid-area: nav;
+		margin: var(--negative) 0 var(--negative) var(--negative);
+		padding: var(--mtdsc-app-spacing);
+		width: var(--mtds-expanded--true, var(--mtdsc-app-nav-width));
+		view-transition-name: mtds-app--left;
+
+		&[data-color] {
+			margin-right: var(--mtdsc-app-spacing);
+		}
+		& menu > li > [data-tooltip]::after {
+			content: var(--mtds-expanded--true, attr(data-tooltip));
+		}
+		& menu menu {
+			padding-left: var(--mtds-expanded--true, var(--mtdsc-app-spacing));
+		}
+		& > [data-command="toggle-app-expanded"] {
+			--dsc-button-background: var(--ds-color-background-default);
+			--dsc-button-border-color: var(--ds-color-border-subtle);
+			--mtds-tooltip-position: top;
+			bottom: var(--mtdsc-app-spacing);
+			margin-block: auto 0; /* Push to bottom of <nav> */
+			order: 1; /* Push to bottom of <nav> */
+			position: sticky;
+			width: min-content;
+			z-index: 3;
+		}
+		& > [data-command="toggle-app-expanded"]::before {
+			mask-image: var(--mtds-expanded--true, var(--mtds-icon-sidebar-collapse))
+				var(--mtds-expanded--false, var(--mtds-icon-sidebar-expand));
+		}
+	}
+
+	/* Sticky position */
+	.sticky {
+		margin: var(--negative);
+		padding: var(--mtdsc-app-spacing) var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
+		position: var(--mtds-sticky-pos);
+		top: var(--mtds-sticky-top);
+	}
+
+	/**
+	 * Main
+	 * NOTE: <main> can only appear once on a page so no need for direct child selector
+	 */
+	.app main {
+		grid-area: main;
+		view-transition-name: mtds-app--main;
+	}
+
+	/**
+	 * Right side
+	 */
+	.app > aside,
+	.app main ~ aside {
+		background: var(--ds-color-background-default);
+		box-sizing: border-box;
+		color: var(--ds-color-text-default);
+		grid-area: aside;
+		margin: var(--negative) var(--negative) var(--negative) 0;
+		padding: var(--mtdsc-app-spacing);
+		width: 14em;
+		view-transition-name: mtds-app--right;
+
+		&[data-color] {
+			margin-left: var(--mtdsc-app-spacing);
+		}
+	}
+
+	/**
+	 * Footer
+	 */
+	.app > footer,
+	.app main ~ footer {
+		background: var(--ds-color-background-default);
+		box-sizing: border-box;
+		color: var(--ds-color-text-subtle);
+		grid-area: footer;
+		margin: var(--mtdsc-app-spacing) var(--negative) var(--negative);
+		padding: var(--mtdsc-app-spacing);
+
+		/* Force info if not set */
+		&:not([data-color]) {
+			--ds-color-background-default: var(--ds-color-inverted-background-default);
+			--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
+			--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
+			--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
+			--ds-color-surface-active: var(--ds-color-inverted-surface-active);
+			--ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
+			--ds-color-border-default: var(--ds-color-inverted-border-default);
+			--ds-color-border-strong: var(--ds-color-inverted-border-strong);
+			--ds-color-base-default: var(--ds-color-inverted-base-default);
+			--ds-color-base-hover: var(--ds-color-inverted-base-hover);
+			--ds-color-base-active: var(--ds-color-inverted-base-active);
+			--ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
+			--ds-color-text-default: var(--ds-color-inverted-text-default);
+			--ds-color-base-contrast-subtle: var(
+				--ds-color-inverted-base-contrast-subtle
+			);
+			--ds-color-base-contrast-default: var(
+				--ds-color-inverted-base-contrast-default
+			);
+		}
+	}
+
+	/**
+	 * Maxium 768px
+	 */
+	@media (max-width: 48em) {
+		.app {
+			--mtds-mobile: true;
+			--mtds-expanded--true: initial;
+			--mtds-expanded--false: ;
+		}
+
+		.app > nav,
+		.app nav:has(~ main) {
+			border: 0;
+			inset: 0;
+			margin: 0;
+			min-height: 100vh;
+			min-height: 100svh;
+			overflow-x: clip;
+			overflow-y: auto;
+			position: fixed;
+			z-index: 999;
+			box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+
+			&:not(
+					:has(> [data-command="toggle-app-expanded"][aria-expanded="true"])
+				) {
+				left: -100px;
+				visibility: hidden;
+			}
+
+			& > [data-command="toggle-app-expanded"] {
+				--dsc-button-background: var(--ds-color-surface-default);
+				--dsc-button-border-color: transparent;
+				--mtds-tooltip-position: none;
+				box-shadow: var(--ds-shadow-lg);
+				inset: auto auto 0 0;
+				margin: var(--mtdsc-app-spacing);
+				position: fixed;
+				visibility: visible;
+			}
+			& > [data-command="toggle-app-expanded"]::before {
+				mask-image: var(--mtds-icon-sidebar-expand);
+			}
+			& > [data-command="toggle-app-expanded"][aria-expanded="true"]::before {
+				mask-image: var(--mtds-icon-sidebar-collapse);
+			}
+			& > [data-command="toggle-app-expanded"]::after {
+				content: attr(data-tooltip);
+			}
+		}
+
+		.app main {
+			margin-bottom: calc(var(--ds-size-12) + var(--mtdsc-app-spacing)); /* Make space for toggle-app-expanded button */
+			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
+			margin-top: var(--negative);
+		}
+
+		body:has([data-command="toggle-app-expanded"][aria-expanded="true"]) {
+			overflow: hidden; /* Prevent scroll when menu is open */
+		}
+	}
+}
+
+::view-transition-old(mtds-app--left),
+::view-transition-new(mtds-app--left),
+::view-transition-old(mtds-app--right),
+::view-transition-new(mtds-app--right) {
+	height: 100%;
+	object-fit: none;
+	object-position: top left;
+}

@@ -1,4 +1,5 @@
 export * from "./alert/alert";
+export * from "./app/app";
 export * from "./avatar/avatar";
 export * from "./badge/badge";
 export * from "./breadcrumbs/breadcrumbs";
