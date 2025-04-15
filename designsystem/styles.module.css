@@ -31,6 +31,7 @@
 @import url("./tag/tag.module.css");
 @import url("./tooltip/tooltip.module.css");
 @import url("./validation/validation.module.css");
+@import url("./loadingbar/loadingbar.module.css");
 
 /* @import url("./toast/toast.module.css"); */
 /*@media (prefers-reduced-motion: no-preference) {
@@ -42,163 +43,200 @@
 
 /* Using a @layer to make it is super easy for consumers to overwrite */
 @layer mt.design {
-	:root {
-		--mtds-icon-size: 1em;
-		--mtds-icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m221.7 133.7-72 72a8 8 0 0 1-11.4-11.4l58.4-58.3H40a8 8 0 0 1 0-16h156.7l-58.4-58.3a8 8 0 0 1 11.4-11.4l72 72a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
-		--mtds-icon-burger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z'/%3E%3C/svg%3E");
-		--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
-		--mtds-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M230 78 102 206a8 8 0 0 1-12 0l-56-56a8 8 0 0 1 12-12l50 51L218 66a8 8 0 0 1 12 12Z'/%3E%3C/svg%3E");
-		--mtds-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m214 102-80 80a8 8 0 0 1-12 0l-80-80a8 8 0 0 1 12-12l74 75 74-75a8 8 0 0 1 12 12Z'/%3E%3C/svg%3E");
-		--mtds-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M205.7 194.3a8 8 0 0 1-11.4 11.4L128 139.3l-66.3 66.4a8 8 0 0 1-11.4-11.4l66.4-66.3-66.4-66.3a8 8 0 0 1 11.4-11.4l66.3 66.4 66.3-66.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
-		--mtds-icon-close--filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M128 24a104 104 0 1 0 104 104A104.1 104.1 0 0 0 128 24Zm37.7 130.3a8 8 0 0 1-11.4 11.4L128 139.3l-26.3 26.4a8 8 0 0 1-11.4-11.4l26.4-26.3-26.4-26.3a8 8 0 0 1 11.4-11.4l26.3 26.4 26.3-26.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
-		--mtds-icon-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M25.86 9.1a2 2 0 0 0-.4-.6l-5.95-5.96a1.83 1.83 0 0 0-1.3-.54H9.8a1.87 1.87 0 0 0-1.31.54L2.54 8.5A1.83 1.83 0 0 0 2 9.8v8.42a1.77 1.77 0 0 0 .54 1.31l5.95 5.94A1.84 1.84 0 0 0 9.8 26h8.4a1.91 1.91 0 0 0 1.32-.54l5.94-5.94A1.84 1.84 0 0 0 26 18.2V9.79c0-.24-.05-.48-.14-.7Zm-1.7 9.12-5.95 5.94H9.8l-5.94-5.94V9.8L9.8 3.86h8.4l5.95 5.94v8.42ZM17.58 9.1a.92.92 0 1 1 1.3 1.3l-3.59 3.6 3.6 3.59a.92.92 0 1 1-1.3 1.3L14 15.3l-3.6 3.6a.92.92 0 1 1-1.3-1.3l3.6-3.6-3.6-3.59a.92.92 0 1 1 1.3-1.3l3.6 3.6 3.6-3.6Z'/%3E%3C/svg%3E");
-		--mtds-icon-danger--filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 28 28'%3E%3Cpath fill='%23000' d='M25.86 9.1a2 2 0 0 0-.4-.6l-5.95-5.96a1.83 1.83 0 0 0-1.3-.54H9.8a1.87 1.87 0 0 0-1.31.54L2.54 8.5A1.83 1.83 0 0 0 2 9.8v8.42a1.77 1.77 0 0 0 .54 1.31l5.95 5.94A1.84 1.84 0 0 0 9.8 26h8.4a1.91 1.91 0 0 0 1.32-.54l5.94-5.94A1.84 1.84 0 0 0 26 18.2V9.79c0-.24-.05-.48-.14-.7Zm-8.27.01a.92.92 0 1 1 1.3 1.3l-3.59 3.6 3.6 3.59a.92.92 0 1 1-1.3 1.3L14 15.3l-3.6 3.6a.92.92 0 1 1-1.3-1.3l3.6-3.6-3.6-3.59a.92.92 0 1 1 1.3-1.3l3.6 3.6 3.6-3.6Z'/%3E%3C/svg%3E");
-		--mtds-icon-ellipsis: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M144 128a16 16 0 1 1-16-16 16 16 0 0 1 16 16Zm-84-16a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm136 0a16 16 0 1 0 16 16 16 16 0 0 0-16-16Z'/%3E%3C/svg%3E");
-		--mtds-icon-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm0 22.15a10.15 10.15 0 1 1-.01-20.3 10.15 10.15 0 0 1 .01 20.3Zm.92-11.07v6.46c0 .5-.41.92-.92.92a.93.93 0 0 1-.92-.92v-6.46c0-.51.41-.93.92-.93.5 0 .92.42.92.93Zm.46-4.16a1.38 1.38 0 1 1-2.76 0 1.38 1.38 0 0 1 2.76 0Z'/%3E%3C/svg%3E");
-		--mtds-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16Zm-72 79v25a8 8 0 0 1-16 0v-25a24 24 0 1 1 16 0Zm24-79H96V56a32 32 0 0 1 64 0Z'/%3E%3C/svg%3E");
-		--mtds-icon-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M14.72 15.931h.674c.995 0 1.749-.205 2.24-.617.503-.411.743-1.074.743-1.977 0-.491-.091-.914-.286-1.28a1.908 1.908 0 0 0-.834-.811c-.366-.183-.788-.275-1.28-.275-.72 0-1.291.195-1.726.595-.434.4-.72.994-.868 1.794l-1.954-.48c.24-1.177.754-2.091 1.531-2.754.777-.663 1.783-.983 3.006-.983.891 0 1.68.171 2.365.503a3.869 3.869 0 0 1 1.623 1.428c.389.629.583 1.36.583 2.206 0 .846-.183 1.6-.537 2.206-.354.605-.823 1.074-1.394 1.383-.572.308-1.2.468-1.875.468l-.057 1.772h-1.897l-.08-3.189.023.011Zm.034 7.029a1.319 1.319 0 0 1-.4-.971c0-.389.137-.709.4-.972s.595-.388.995-.388.708.125.971.388.4.583.4.972c0 .388-.137.708-.4.971a1.327 1.327 0 0 1-.971.389 1.38 1.38 0 0 1-.995-.389Z M16 5C9.925 5 5 9.925 5 16s4.925 11 11 11 11-4.925 11-11S22.075 5 16 5ZM3 16C3 8.82 8.82 3 16 3s13 5.82 13 13-5.82 13-13 13S3 23.18 3 16Z' /%3E%3C/svg%3E");
-		--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
-		--mtds-icon-spinner: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3E%3Cstyle%3E @keyframes rotate %7B to %7B rotate:360deg %7D %7D @keyframes stroke %7B 50%25 %7Bstroke-dasharray:100,200;stroke-dashoffset:-15;transform:rotate(0deg)%7D to %7Bstroke-dasharray:1,200;stroke-dashoffset:-120;transform:rotate(15deg)%7D %7D circle:last-child%7Banimation:stroke ease-in-out infinite 2s,rotate linear infinite 2s;transform-origin:center%7D%3C/style%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='currentcolor' stroke-width='5' opacity='.1'%3E%3C/circle%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='currentcolor' stroke-width='5' stroke-dasharray='1, 200'%3E%3C/circle%3E%3C/svg%3E");
-		--mtds-icon-success: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M19.27 10.58a.92.92 0 0 1 0 1.3l-6.46 6.47a.92.92 0 0 1-1.3 0l-2.78-2.77a.92.92 0 0 1 1.3-1.31l2.12 2.12 5.81-5.81a.92.92 0 0 1 1.3 0ZM26 14a12 12 0 1 1-24 0 12 12 0 0 1 24 0Zm-1.85 0a10.15 10.15 0 1 0-20.3 0 10.15 10.15 0 0 0 20.3 0Z'/%3E%3C/svg%3E");
-		--mtds-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M231 212c-15-26-39-45-66-54a72 72 0 1 0-74 0c-27 9-51 28-66 54a8 8 0 1 0 14 8 102 102 0 0 1 178 0 8 8 0 1 0 14-8ZM72 96a56 56 0 1 1 56 56 56 56 0 0 1-56-56Z'/%3E%3C/svg%3E");
-		--mtds-icon-warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M25.65 20.57 16.3 4.31a2.65 2.65 0 0 0-4.58 0L2.35 20.57a2.49 2.49 0 0 0 0 2.54 2.6 2.6 0 0 0 2.28 1.3h18.74c.94.01 1.81-.49 2.28-1.3.47-.79.47-1.76 0-2.54Zm-1.48 1.7a.92.92 0 0 1-.8.45H4.63a.9.9 0 0 1-.8-.46.8.8 0 0 1 0-.83L13.2 5.17a.94.94 0 0 1 1.6 0l9.37 16.26c.15.26.15.57 0 .83ZM13.14 15V10.7a.86.86 0 0 1 1.71 0V15c0 .47-.38.85-.85.85a.86.86 0 0 1-.86-.85Zm2.15 3.85a1.28 1.28 0 1 1-2.57 0 1.28 1.28 0 0 1 2.57 0Z'/%3E%3C/svg%3E");
-		--mtds-icon-sidebar-expand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm7.84-3.48 3.94-3.94a.66.66 0 0 0 0-.93L18.34 9.6a.66.66 0 0 0-.93.93l2.82 2.81h-8.04a.66.66 0 0 0 0 1.32h8.04l-2.82 2.81a.66.66 0 0 0 .93.93Z'/%3E%3C/svg%3E");
-		--mtds-icon-sidebar-collapse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm5.16-3.48-3.93-3.94a.65.65 0 0 1 0-.93l3.93-3.93a.66.66 0 1 1 .93.93l-2.81 2.81h8.03a.66.66 0 0 1 0 1.32h-8.03l2.81 2.81a.66.66 0 1 1-.93.93Z'/%3E%3C/svg%3E");
+  :root {
+    --mtds-icon-size: 1em;
+    --mtds-icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m221.7 133.7-72 72a8 8 0 0 1-11.4-11.4l58.4-58.3H40a8 8 0 0 1 0-16h156.7l-58.4-58.3a8 8 0 0 1 11.4-11.4l72 72a8 8 0 0 1 0 11.4Z'/%3E%3C/svg%3E");
+    --mtds-icon-burger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z'/%3E%3C/svg%3E");
+    --mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
+    --mtds-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M230 78 102 206a8 8 0 0 1-12 0l-56-56a8 8 0 0 1 12-12l50 51L218 66a8 8 0 0 1 12 12Z'/%3E%3C/svg%3E");
+    --mtds-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m214 102-80 80a8 8 0 0 1-12 0l-80-80a8 8 0 0 1 12-12l74 75 74-75a8 8 0 0 1 12 12Z'/%3E%3C/svg%3E");
+    --mtds-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M205.7 194.3a8 8 0 0 1-11.4 11.4L128 139.3l-66.3 66.4a8 8 0 0 1-11.4-11.4l66.4-66.3-66.4-66.3a8 8 0 0 1 11.4-11.4l66.3 66.4 66.3-66.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
+    --mtds-icon-close--filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 256 256'%3E%3Cpath d='M128 24a104 104 0 1 0 104 104A104.1 104.1 0 0 0 128 24Zm37.7 130.3a8 8 0 0 1-11.4 11.4L128 139.3l-26.3 26.4a8 8 0 0 1-11.4-11.4l26.4-26.3-26.4-26.3a8 8 0 0 1 11.4-11.4l26.3 26.4 26.3-26.4a8 8 0 0 1 11.4 11.4L139.3 128Z'/%3E%3C/svg%3E");
+    --mtds-icon-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M25.86 9.1a2 2 0 0 0-.4-.6l-5.95-5.96a1.83 1.83 0 0 0-1.3-.54H9.8a1.87 1.87 0 0 0-1.31.54L2.54 8.5A1.83 1.83 0 0 0 2 9.8v8.42a1.77 1.77 0 0 0 .54 1.31l5.95 5.94A1.84 1.84 0 0 0 9.8 26h8.4a1.91 1.91 0 0 0 1.32-.54l5.94-5.94A1.84 1.84 0 0 0 26 18.2V9.79c0-.24-.05-.48-.14-.7Zm-1.7 9.12-5.95 5.94H9.8l-5.94-5.94V9.8L9.8 3.86h8.4l5.95 5.94v8.42ZM17.58 9.1a.92.92 0 1 1 1.3 1.3l-3.59 3.6 3.6 3.59a.92.92 0 1 1-1.3 1.3L14 15.3l-3.6 3.6a.92.92 0 1 1-1.3-1.3l3.6-3.6-3.6-3.59a.92.92 0 1 1 1.3-1.3l3.6 3.6 3.6-3.6Z'/%3E%3C/svg%3E");
+    --mtds-icon-danger--filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 28 28'%3E%3Cpath fill='%23000' d='M25.86 9.1a2 2 0 0 0-.4-.6l-5.95-5.96a1.83 1.83 0 0 0-1.3-.54H9.8a1.87 1.87 0 0 0-1.31.54L2.54 8.5A1.83 1.83 0 0 0 2 9.8v8.42a1.77 1.77 0 0 0 .54 1.31l5.95 5.94A1.84 1.84 0 0 0 9.8 26h8.4a1.91 1.91 0 0 0 1.32-.54l5.94-5.94A1.84 1.84 0 0 0 26 18.2V9.79c0-.24-.05-.48-.14-.7Zm-8.27.01a.92.92 0 1 1 1.3 1.3l-3.59 3.6 3.6 3.59a.92.92 0 1 1-1.3 1.3L14 15.3l-3.6 3.6a.92.92 0 1 1-1.3-1.3l3.6-3.6-3.6-3.59a.92.92 0 1 1 1.3-1.3l3.6 3.6 3.6-3.6Z'/%3E%3C/svg%3E");
+    --mtds-icon-ellipsis: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M144 128a16 16 0 1 1-16-16 16 16 0 0 1 16 16Zm-84-16a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm136 0a16 16 0 1 0 16 16 16 16 0 0 0-16-16Z'/%3E%3C/svg%3E");
+    --mtds-icon-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm0 22.15a10.15 10.15 0 1 1-.01-20.3 10.15 10.15 0 0 1 .01 20.3Zm.92-11.07v6.46c0 .5-.41.92-.92.92a.93.93 0 0 1-.92-.92v-6.46c0-.51.41-.93.92-.93.5 0 .92.42.92.93Zm.46-4.16a1.38 1.38 0 1 1-2.76 0 1.38 1.38 0 0 1 2.76 0Z'/%3E%3C/svg%3E");
+    --mtds-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16Zm-72 79v25a8 8 0 0 1-16 0v-25a24 24 0 1 1 16 0Zm24-79H96V56a32 32 0 0 1 64 0Z'/%3E%3C/svg%3E");
+    --mtds-icon-question: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M14.72 15.931h.674c.995 0 1.749-.205 2.24-.617.503-.411.743-1.074.743-1.977 0-.491-.091-.914-.286-1.28a1.908 1.908 0 0 0-.834-.811c-.366-.183-.788-.275-1.28-.275-.72 0-1.291.195-1.726.595-.434.4-.72.994-.868 1.794l-1.954-.48c.24-1.177.754-2.091 1.531-2.754.777-.663 1.783-.983 3.006-.983.891 0 1.68.171 2.365.503a3.869 3.869 0 0 1 1.623 1.428c.389.629.583 1.36.583 2.206 0 .846-.183 1.6-.537 2.206-.354.605-.823 1.074-1.394 1.383-.572.308-1.2.468-1.875.468l-.057 1.772h-1.897l-.08-3.189.023.011Zm.034 7.029a1.319 1.319 0 0 1-.4-.971c0-.389.137-.709.4-.972s.595-.388.995-.388.708.125.971.388.4.583.4.972c0 .388-.137.708-.4.971a1.327 1.327 0 0 1-.971.389 1.38 1.38 0 0 1-.995-.389Z M16 5C9.925 5 5 9.925 5 16s4.925 11 11 11 11-4.925 11-11S22.075 5 16 5ZM3 16C3 8.82 8.82 3 16 3s13 5.82 13 13-5.82 13-13 13S3 23.18 3 16Z' /%3E%3C/svg%3E");
+    --mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
+    --mtds-icon-spinner: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' width='50' height='50'%3E%3Cstyle%3E @keyframes rotate %7B to %7B rotate:360deg %7D %7D @keyframes stroke %7B 50%25 %7Bstroke-dasharray:100,200;stroke-dashoffset:-15;transform:rotate(0deg)%7D to %7Bstroke-dasharray:1,200;stroke-dashoffset:-120;transform:rotate(15deg)%7D %7D circle:last-child%7Banimation:stroke ease-in-out infinite 2s,rotate linear infinite 2s;transform-origin:center%7D%3C/style%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='currentcolor' stroke-width='5' opacity='.1'%3E%3C/circle%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='currentcolor' stroke-width='5' stroke-dasharray='1, 200'%3E%3C/circle%3E%3C/svg%3E");
+    --mtds-icon-success: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M19.27 10.58a.92.92 0 0 1 0 1.3l-6.46 6.47a.92.92 0 0 1-1.3 0l-2.78-2.77a.92.92 0 0 1 1.3-1.31l2.12 2.12 5.81-5.81a.92.92 0 0 1 1.3 0ZM26 14a12 12 0 1 1-24 0 12 12 0 0 1 24 0Zm-1.85 0a10.15 10.15 0 1 0-20.3 0 10.15 10.15 0 0 0 20.3 0Z'/%3E%3C/svg%3E");
+    --mtds-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M231 212c-15-26-39-45-66-54a72 72 0 1 0-74 0c-27 9-51 28-66 54a8 8 0 1 0 14 8 102 102 0 0 1 178 0 8 8 0 1 0 14-8ZM72 96a56 56 0 1 1 56 56 56 56 0 0 1-56-56Z'/%3E%3C/svg%3E");
+    --mtds-icon-warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M25.65 20.57 16.3 4.31a2.65 2.65 0 0 0-4.58 0L2.35 20.57a2.49 2.49 0 0 0 0 2.54 2.6 2.6 0 0 0 2.28 1.3h18.74c.94.01 1.81-.49 2.28-1.3.47-.79.47-1.76 0-2.54Zm-1.48 1.7a.92.92 0 0 1-.8.45H4.63a.9.9 0 0 1-.8-.46.8.8 0 0 1 0-.83L13.2 5.17a.94.94 0 0 1 1.6 0l9.37 16.26c.15.26.15.57 0 .83ZM13.14 15V10.7a.86.86 0 0 1 1.71 0V15c0 .47-.38.85-.85.85a.86.86 0 0 1-.86-.85Zm2.15 3.85a1.28 1.28 0 1 1-2.57 0 1.28 1.28 0 0 1 2.57 0Z'/%3E%3C/svg%3E");
+    --mtds-icon-sidebar-expand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm7.84-3.48 3.94-3.94a.66.66 0 0 0 0-.93L18.34 9.6a.66.66 0 0 0-.93.93l2.82 2.81h-8.04a.66.66 0 0 0 0 1.32h8.04l-2.82 2.81a.66.66 0 0 0 .93.93Z'/%3E%3C/svg%3E");
+    --mtds-icon-sidebar-collapse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm5.16-3.48-3.93-3.94a.65.65 0 0 1 0-.93l3.93-3.93a.66.66 0 1 1 .93.93l-2.81 2.81h8.03a.66.66 0 0 1 0 1.32h-8.03l2.81 2.81a.66.66 0 1 1-.93.93Z'/%3E%3C/svg%3E");
 
-		--mtds-text-count-over: "%d tegn for mye";
-		--mtds-text-count-under: "%d tegn igjen";
-		--mtds-text-datalist-plural: "%d forslag";
-		--mtds-text-datalist-singular: "%d forslag";
-		--mtds-text-loading: "Laster...";
-		--mtds-text-logo: "Mattilsynet";
-		--mtds-text-navigation: "Navigasjon";
-		--mtds-text-next: "Neste";
-		--mtds-text-previous: "Forrige";
-		--mtds-text-required: "Må fylles ut";
-		--mtds-text-tags-added: "La til";
-		--mtds-text-tags-empty: "Ingen valgte";
-		--mtds-text-tags-found: "Naviger til venstre for å finne %d valgte";
-		--mtds-text-tags-of: "av";
-		--mtds-text-tags-remove: "Trykk for å fjerne";
-		--mtds-text-tags-removed: "Fjernet";
+    --mtds-text-count-over: "%d tegn for mye";
+    --mtds-text-count-under: "%d tegn igjen";
+    --mtds-text-datalist-plural: "%d forslag";
+    --mtds-text-datalist-singular: "%d forslag";
+    --mtds-text-loading: "Laster...";
+    --mtds-text-logo: "Mattilsynet";
+    --mtds-text-navigation: "Navigasjon";
+    --mtds-text-next: "Neste";
+    --mtds-text-previous: "Forrige";
+    --mtds-text-required: "Må fylles ut";
+    --mtds-text-tags-added: "La til";
+    --mtds-text-tags-empty: "Ingen valgte";
+    --mtds-text-tags-found: "Naviger til venstre for å finne %d valgte";
+    --mtds-text-tags-of: "av";
+    --mtds-text-tags-remove: "Trykk for å fjerne";
+    --mtds-text-tags-removed: "Fjernet";
 
-		/**
-		 * We need to specify ds-body-*-font-size again since these are 
+    /**
+		 * We need to specify ds-body-*-font-size again since these are
 		 * removed from our Figma tokens, and since we want fluid design
 		 * Fluid scales from min 360px/22.5rem => Max 1360px/85rem
 		 * Calculations are mawe with https://royalfig.github.io/fluid-typography-calculator/
 		 */
-		--ds-font-size-minus-1: max(.9em, .75rem); /* Default to 90% of font-size, but minimum 12px */
-		--ds-body-xs-font-size: 0.875rem; /* 14px */
-		--ds-body-sm-font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem); /* 14px => 16px */
-		--ds-body-md-font-size: clamp(1rem, 0.955rem + 0.2vw, 1.125rem); /* 16px => 18px */
-		--ds-body-lg-font-size: clamp(1.125rem, 1.0575rem + 0.3vw, 1.3125rem); /* 18px => 21px */
-		--ds-body-xl-font-size: clamp(1.3125rem, 1.245rem + 0.3vw, 1.5rem); /* 21px => 24px */
-		--ds-body-md-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
+    --ds-font-size-minus-1: max(
+      0.9em,
+      0.75rem
+    ); /* Default to 90% of font-size, but minimum 12px */
+    --ds-body-xs-font-size: 0.875rem; /* 14px */
+    --ds-body-sm-font-size: clamp(
+      0.875rem,
+      0.83rem + 0.2vw,
+      1rem
+    ); /* 14px => 16px */
+    --ds-body-md-font-size: clamp(
+      1rem,
+      0.955rem + 0.2vw,
+      1.125rem
+    ); /* 16px => 18px */
+    --ds-body-lg-font-size: clamp(
+      1.125rem,
+      1.0575rem + 0.3vw,
+      1.3125rem
+    ); /* 18px => 21px */
+    --ds-body-xl-font-size: clamp(
+      1.3125rem,
+      1.245rem + 0.3vw,
+      1.5rem
+    ); /* 21px => 24px */
+    --ds-body-md-line-height: var(
+      --ds-line-height-md
+    ); /* Needed to keep line-heights */
 
-		/* TODO: Make all headings fluid and give to DigiDir */
-		--ds-md-rem: calc(16 / 18);
-		--ds-heading-2xs-font-size: calc(clamp(1em, 0.955em + 0.2vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
-		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.0575em + 0.3vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
-		--ds-heading-sm-font-size: calc(clamp(1.3125em, 1.245em + 0.3vw, 1.5em) * var(--ds-md-rem)); /* 21px => 24px */
-		--ds-heading-md-font-size: calc(clamp(1.5em, 1.365em + 0.6vw, 1.875em) * var(--ds-md-rem)); /* 24px => 30px */
-		--ds-heading-lg-font-size: calc(clamp(1.625em, 1.4em + 1vw, 2.25em) * var(--ds-md-rem)); /* 26px => 36px */
-		--ds-heading-xl-font-size: calc(clamp(1.875em, 1.47em + 1.8vw, 3em) * var(--ds-md-rem)); /* 30px => 48px */
-		--ds-heading-2xl-font-size: calc(clamp(2.25em, 1.71em + 2.4vw, 3.75em) * var(--ds-md-rem)); /* 36px => 60px */
+    /* TODO: Make all headings fluid and give to DigiDir */
+    --ds-md-rem: calc(16 / 18);
+    --ds-heading-2xs-font-size: calc(
+      clamp(1em, 0.955em + 0.2vw, 1.125em) * var(--ds-md-rem)
+    ); /* 16px => 18px */
+    --ds-heading-xs-font-size: calc(
+      clamp(1.125em, 1.0575em + 0.3vw, 1.3125em) * var(--ds-md-rem)
+    ); /* 18px => 21px */
+    --ds-heading-sm-font-size: calc(
+      clamp(1.3125em, 1.245em + 0.3vw, 1.5em) * var(--ds-md-rem)
+    ); /* 21px => 24px */
+    --ds-heading-md-font-size: calc(
+      clamp(1.5em, 1.365em + 0.6vw, 1.875em) * var(--ds-md-rem)
+    ); /* 24px => 30px */
+    --ds-heading-lg-font-size: calc(
+      clamp(1.625em, 1.4em + 1vw, 2.25em) * var(--ds-md-rem)
+    ); /* 26px => 36px */
+    --ds-heading-xl-font-size: calc(
+      clamp(1.875em, 1.47em + 1.8vw, 3em) * var(--ds-md-rem)
+    ); /* 30px => 48px */
+    --ds-heading-2xl-font-size: calc(
+      clamp(2.25em, 1.71em + 2.4vw, 3.75em) * var(--ds-md-rem)
+    ); /* 36px => 60px */
 
-		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
-		--ds-font-weight-bold: 700; /* Add missing font-weight */
-		--ds-color-focus-outer: var(--ds-color-text-default);
-		--ds-border-width-focus: 2px;
-		--dsc-focus-boxShadow: 0 0 0 var(--ds-border-width-focus)
-			var(--ds-color-focus-inner);
-	}
+    --ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
+    --ds-font-weight-bold: 700; /* Add missing font-weight */
+    --ds-color-focus-outer: var(--ds-color-text-default);
+    --ds-border-width-focus: 2px;
+    --dsc-focus-boxShadow: 0 0 0 var(--ds-border-width-focus)
+      var(--ds-color-focus-inner);
+  }
 
-	/* Change language of "required" */
-	[lang="en"] {
-		--mtds-text-count-over: "%d characters too many";
-		--mtds-text-count-under: "%d characters remaining";
-		--mtds-text-datalist-plural: "%d suggestions";
-		--mtds-text-datalist-singular: "%d suggestions";
-		--mtds-text-loading: "Loading...";
-		--mtds-text-logo: "Norwegian Food Safety Authority";
-		--mtds-text-navigation: "Navigation";
-		--mtds-text-next: "Next";
-		--mtds-text-previous: "Previous";
-		--mtds-text-required: "Required";
-		--mtds-text-tags-added: "Added";
-		--mtds-text-tags-empty: "No selected";
-		--mtds-text-tags-found: "Navigate left to find %d selected";
-		--mtds-text-tags-of: "of";
-		--mtds-text-tags-remove: "Press to remove";
-		--mtds-text-tags-removed: "Removed";
-	}
+  /* Change language of "required" */
+  [lang="en"] {
+    --mtds-text-count-over: "%d characters too many";
+    --mtds-text-count-under: "%d characters remaining";
+    --mtds-text-datalist-plural: "%d suggestions";
+    --mtds-text-datalist-singular: "%d suggestions";
+    --mtds-text-loading: "Loading...";
+    --mtds-text-logo: "Norwegian Food Safety Authority";
+    --mtds-text-navigation: "Navigation";
+    --mtds-text-next: "Next";
+    --mtds-text-previous: "Previous";
+    --mtds-text-required: "Required";
+    --mtds-text-tags-added: "Added";
+    --mtds-text-tags-empty: "No selected";
+    --mtds-text-tags-found: "Navigate left to find %d selected";
+    --mtds-text-tags-of: "of";
+    --mtds-text-tags-remove: "Press to remove";
+    --mtds-text-tags-removed: "Removed";
+  }
 
-	/* Used as background input, so need to swap */
-	[data-color-scheme="dark"] {
-		--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
-		--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
-	}
+  /* Used as background input, so need to swap */
+  [data-color-scheme="dark"] {
+    --mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
+    --mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
+  }
 
-	/* Using :where to allow overwrites */
-	:where([data-color-scheme], body, .body) {
-		background: var(--ds-color-background-default);
-		color: var(--ds-color-text-default); /* Ensure we do not get neutal text color */
-	}
-	html[data-color-scheme] body {
-		background: none; /* Reset Tailwind and avoid double background issues https://stackoverflow.com/a/76849201 */
-	}
+  /* Using :where to allow overwrites */
+  :where([data-color-scheme], body, .body) {
+    background: var(--ds-color-background-default);
+    color: var(
+      --ds-color-text-default
+    ); /* Ensure we do not get neutal text color */
+  }
+  html[data-color-scheme] body {
+    background: none; /* Reset Tailwind and avoid double background issues https://stackoverflow.com/a/76849201 */
+  }
 
-	:where(body, .body) {
-		cursor: default; /* Avoid text cursor on non-form elements */
-		font-family: "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
-		font-feature-settings: "liga" 0; /* Disable ligatures */
-		margin: 0;
-		-webkit-font-smoothing: antialiased; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
-		-moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
-	}
+  :where(body, .body) {
+    cursor: default; /* Avoid text cursor on non-form elements */
+    font-family: "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
+    font-feature-settings: "liga" 0; /* Disable ligatures */
+    margin: 0;
+    -webkit-font-smoothing: antialiased; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
+    -moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
+  }
 
-	:where(b, h1, h2, h3, h4, h5, h6, label, legend, strong) {
-		font-weight: 700;
-	}
+  :where(b, h1, h2, h3, h4, h5, h6, label, legend, strong) {
+    font-weight: 700;
+  }
 
-	/* TMP fix so Safari does not use "fake" italic, but rather the version availabe in the font */
-	:where(i, em) {
-		font-variation-settings: "ital" 1;
-		font-synthesis: none;
-	}
+  /* TMP fix so Safari does not use "fake" italic, but rather the version availabe in the font */
+  :where(i, em) {
+    font-variation-settings: "ital" 1;
+    font-synthesis: none;
+  }
 
-	/* Activate smooth scroll */
-	@media (prefers-reduced-motion: no-preference) {
-		html {
-			scroll-behavior: smooth;
-		}
-	}
+  /* Activate smooth scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 /* TODO: Automate this */
 @layer ds.theme.color {
-	[data-color="inverted"],
-	[data-color-scheme][data-color="inverted"] {
-		--ds-color-background-default: var(--ds-color-inverted-background-default);
-		--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
-		--ds-color-surface-default: var(--ds-color-inverted-surface-default);
-		--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
-		--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
-		--ds-color-surface-active: var(--ds-color-inverted-surface-active);
-		--ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
-		--ds-color-border-default: var(--ds-color-inverted-border-default);
-		--ds-color-border-strong: var(--ds-color-inverted-border-strong);
-		--ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
-		--ds-color-text-default: var(--ds-color-inverted-text-default);
-		--ds-color-base-default: var(--ds-color-inverted-base-default);
-		--ds-color-base-hover: var(--ds-color-inverted-base-hover);
-		--ds-color-base-active: var(--ds-color-inverted-base-active);
-		--ds-color-base-contrast-subtle: var(
-			--ds-color-inverted-base-contrast-subtle
-		);
-		--ds-color-base-contrast-default: var(
-			--ds-color-inverted-base-contrast-default
-		);
-	}
+  [data-color="inverted"],
+  [data-color-scheme][data-color="inverted"] {
+    --ds-color-background-default: var(--ds-color-inverted-background-default);
+    --ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
+    --ds-color-surface-default: var(--ds-color-inverted-surface-default);
+    --ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
+    --ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
+    --ds-color-surface-active: var(--ds-color-inverted-surface-active);
+    --ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
+    --ds-color-border-default: var(--ds-color-inverted-border-default);
+    --ds-color-border-strong: var(--ds-color-inverted-border-strong);
+    --ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
+    --ds-color-text-default: var(--ds-color-inverted-text-default);
+    --ds-color-base-default: var(--ds-color-inverted-base-default);
+    --ds-color-base-hover: var(--ds-color-inverted-base-hover);
+    --ds-color-base-active: var(--ds-color-inverted-base-active);
+    --ds-color-base-contrast-subtle: var(
+      --ds-color-inverted-base-contrast-subtle
+    );
+    --ds-color-base-contrast-default: var(
+      --ds-color-inverted-base-contrast-default
+    );
+  }
 }

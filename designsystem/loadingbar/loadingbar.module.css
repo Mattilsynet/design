@@ -1,0 +1,50 @@
+@layer mt.design {
+  @keyframes tab-pulse {
+    0% {
+      width: 0%;
+      left: 0;
+    }
+    50% {
+      width: 75%;
+      left: 10%;
+    }
+    50.1% {
+      width: 75%;
+      left: 10%;
+    }
+    100% {
+      width: 0%;
+      left: 100%;
+    }
+  }
+
+  .loadingbar {
+    --mtdsc-loadingbar-color: currentColor;
+    --mtdsc-loadingbar-size: var(--mtds-2);
+
+    background-color: var(--mtdsc-loadingbar-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    height: var(--mtdsc-loadingbar-size);
+    width: 0;
+    border-radius: var(--mtds-border-radius-sm);
+    transform-origin: center;
+    animation: tab-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+    &:where(:not([hidden])) {
+      display: inline-grid;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loadingbar {
+      animation-duration: 8s;
+    }
+  }
+
+  .spinner:empty:before {
+    content: var(--mtds-text-loading); /* Ensure content for screen readers */
+  }
+}

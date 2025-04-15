@@ -26,3 +26,4 @@ export * from "./table/table";
 export * from "./tabs/tabs";
 export * from "./tag/tag";
 export * from "./validation/validation";
+export * from "./loadingbar/loadingbar";
