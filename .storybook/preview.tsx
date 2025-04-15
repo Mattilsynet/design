@@ -132,19 +132,19 @@ export default {
 						quote.setAttribute("data-color", color || "info");
 					}
 
-					// Hide BR from screen readers
-					for (const br of document.getElementsByTagName("br"))
-						br.setAttribute("aria-hidden", "true");
+          // Hide BR from screen readers
+          for (const br of document.getElementsByTagName("br"))
+            br.setAttribute("aria-hidden", "true");
 
-					// Tables
-					for (const table of document.querySelectorAll("table:not([class])"))
-						table.classList.add(...CSS_TABLE);
+          // Tables
+          for (const table of document.querySelectorAll("table:not([class])"))
+            table.classList.add(...CSS_TABLE);
 
-					document.addEventListener("click", (e) => {
-						const base = (window.top || window).location.href.split("?")[0];
-						const link = e.target instanceof Element && e.target.closest("a");
-						const sameDomain = link && link.hostname === location.hostname;
-						const samePage = sameDomain && link.pathname === location.pathname;
+          document.addEventListener("click", (e) => {
+            const base = (window.top || window).location.href.split("?")[0];
+            const link = e.target instanceof Element && e.target.closest("a");
+            const sameDomain = link && link.hostname === location.hostname;
+            const samePage = sameDomain && link.pathname === location.pathname;
 
 						if (!sameDomain && link) link.target = "_blank"; // Open external links in new tab
 
@@ -212,6 +212,8 @@ export default {
 						"Slik skriver vi",
 						"*",
 					],
+					"Teknologi",
+          			["Team Kjøttkontroll", "*"],
 					"Designsystem",
 					["Introduksjon", "Komponenter", "Tokens", "Analyse", "Debug", "*"],
 					"Profilering",
