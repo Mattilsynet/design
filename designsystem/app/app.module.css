@@ -245,6 +245,7 @@
 			margin-bottom: calc(var(--ds-size-12) + var(--mtdsc-app-spacing)); /* Make space for toggle-app-expanded button */
 			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
 			margin-top: var(--negative);
+			view-transition-name: none; /* No need to animate on mobile */
 		}
 
 		body:has([data-command="toggle-app-expanded"][aria-expanded="true"]) {
