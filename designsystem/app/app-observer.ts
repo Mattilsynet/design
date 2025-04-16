@@ -1,56 +1,44 @@
 import styles from "../styles.module.css";
-import {
-	IS_BROWSER,
-	QUICK_EVENT,
-	attr,
-	on,
-	onMutation,
-	useCSSVariable,
-	useTransition,
-} from "../utils";
+import { QUICK_EVENT, attr, on, onLoaded, onMutation } from "../utils";
+import "./app-toggle";
 
 let IS_MOBILE_OPEN = false;
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_STICKY = styles.sticky.split(" ")[0];
 const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
-const KEY_TOGGLE = "--mtds-app-expanded";
 
-// Setting CSS custom properties on constructed style sheet to avoid
-// flash of unstyled content and still be Next.js hydration compatible
-const setToggle = useCSSVariable(KEY_TOGGLE);
-const setStickyPos = useCSSVariable("--mtds-app-sticky-pos");
-const setStickyTop = useCSSVariable("--mtds-app-sticky-top");
+const useTransition = (callback: () => void) => {
+	if (!document.startViewTransition) callback();
+	else document.startViewTransition(callback);
+};
 
-const isToggle = (el: unknown): el is HTMLElement =>
-	el instanceof Element && el.matches(CSS_TOGGLE);
-
-const isMobile = (el: Element) =>
-	window.getComputedStyle(el).getPropertyValue("--mtds-mobile") === "true";
-
-function toggleExpanded(toggle = true) {
-	const prev = !window.localStorage.getItem(KEY_TOGGLE)?.includes("false");
-	const next = `var(${KEY_TOGGLE}--${toggle ? !prev : prev})`;
-	window.localStorage.setItem(KEY_TOGGLE, `${next}`);
-	useTransition(() => setToggle?.(next));
-}
+// Disable/enable interaction on other elements
+const useInert = (host: HTMLElement | null, state: boolean) => {
+	for (let el = host; el && el !== document.body; el = el.parentElement)
+		Array.from(el.parentElement?.children || [], (child) => {
+			if (!child.contains(host)) child.toggleAttribute("inert", state);
+		});
+};
 
 function handleToggleClick({ target: el }: Event) {
-	if (el instanceof Element && el.classList.contains(CSS_APP)) {
-		IS_MOBILE_OPEN && document.querySelector<HTMLElement>(CSS_TOGGLE)?.click();
-	}
-	if (!isToggle(el)) return;
-	if (!isMobile(el)) return toggleExpanded();
-	useTransition(() => {
-		const nav = el.closest("nav");
-		IS_MOBILE_OPEN = !IS_MOBILE_OPEN;
+	if (!(el instanceof Element)) return;
+	if (IS_MOBILE_OPEN && el.classList.contains(CSS_APP))
+		return document.querySelector<HTMLElement>(CSS_TOGGLE)?.click();
 
-		attr(el, "aria-expanded", `${IS_MOBILE_OPEN}`);
-		for (let el = nav; el && el !== document.body; el = el.parentElement)
-			Array.from(el.parentElement?.children || [], (child) => {
-				if (!child.contains(nav))
-					child.toggleAttribute("inert", IS_MOBILE_OPEN); // Disable/enable tabbing out of mobile navigation
-			});
-	});
+	if (el.matches(CSS_TOGGLE)) {
+		useTransition(() => {
+			const isMobile =
+				getComputedStyle(el).getPropertyValue("--mobile") === "true";
+
+			// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
+			if (!isMobile) window.mtdsAppToggle?.();
+			else {
+				IS_MOBILE_OPEN = !IS_MOBILE_OPEN;
+				attr(el, "aria-expanded", `${IS_MOBILE_OPEN}`);
+				useInert(el.closest("nav"), IS_MOBILE_OPEN);
+			}
+		});
+	}
 }
 
 // Scroll state
@@ -87,29 +75,26 @@ function handleScroll() {
 
 	if (STICK === -1 && STUCK) return; // Allways sticky when sidebar is smaller than viewport
 	if (STICK !== -1 && (STUCK || (SCROLL_UP && WIN_Y <= STICK_Y))) {
-		setStickyPos?.("sticky");
-		setStickyTop?.("0px");
+		STICK_EL.style.setProperty("--pos", "sticky");
+		STICK_EL.style.setProperty("--top", "0px");
 		STICK = -1; // Not sticking to top and sidebar is smaller than viewport or scrolling up
 	} else if (STICK === -1 && !SCROLL_UP) {
-		setStickyPos?.("relative");
-		setStickyTop?.(`${Math.max(0, WIN_Y - MIN_Y)}px`);
+		STICK_EL.style.setProperty("--pos", "relative");
+		STICK_EL.style.setProperty("--top", `${Math.max(0, WIN_Y - MIN_Y)}px`);
 		STICK = 0; // Sticking to top and scrolling down
 	} else if (STICK !== 1 && !SCROLL_UP && WIN_Y + WIN_H >= STICK_Y + STICK_H) {
-		setStickyPos?.("sticky");
-		setStickyTop?.(`${WIN_H - STICK_H}px`);
+		STICK_EL.style.setProperty("--pos", "sticky");
+		STICK_EL.style.setProperty("--top", `${WIN_H - STICK_H}px`);
 		STICK = 1; // Not sticking to bottom and scrolling down
 	} else if (STICK === 1 && SCROLL_UP) {
-		setStickyPos?.("relative");
-		setStickyTop?.(`${STICK_Y - MIN_Y}px`);
+		STICK_EL.style.setProperty("--pos", "relative");
+		STICK_EL.style.setProperty("--top", `${STICK_Y - MIN_Y}px`);
 		STICK = 0; // Sticking to bottom and scrolling up
 	}
 }
 
-// Run instantly to avoid flash of unstyled content
-// Using adoptedStyleSheets to avoid Next.js hydration conflict
-if (IS_BROWSER) {
-	toggleExpanded(false);
+onLoaded(() => {
 	onMutation(document.documentElement, CSS_STICKY, handleMutation);
-	on(document, "click", handleToggleClick);
+	on(document, "click", handleToggleClick, QUICK_EVENT);
 	on(window, "scroll", handleScroll, QUICK_EVENT);
-}
+});

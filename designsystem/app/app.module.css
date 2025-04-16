@@ -9,8 +9,6 @@
 		--mtds-app-expanded: var(--mtds-app-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
 		--mtds-app-expanded--false: var(--mtds-app-expanded,);
 		--mtds-app-expanded--true: var(--mtds-app-expanded,);
-		--mtds-app-sticky-pos: relative;
-		--mtds-app-sticky-top: 0px;
 	}
 	.app {
 		--mtdsc-app-nav-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
@@ -125,8 +123,8 @@
 	.sticky {
 		margin: var(--negative);
 		padding: var(--mtdsc-app-spacing) var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
-		position: var(--mtds-app-sticky-pos);
-		top: var(--mtds-app-sticky-top);
+		position: var(--pos);
+		top: var(--top);
 	}
 
 	/**
@@ -198,7 +196,6 @@
 	 */
 	@media (max-width: 48em) {
 		.app {
-			--mtds-mobile: true;
 			--mtds-app-expanded--true: initial;
 			--mtds-app-expanded--false: ;
 		}
@@ -227,6 +224,8 @@
 				--dsc-button-background: var(--ds-color-surface-default);
 				--dsc-button-border-color: transparent;
 				--mtds-tooltip-position: none;
+				--mobile: true; /* Used by JS */
+
 				box-shadow: var(--ds-shadow-lg);
 				inset: auto auto 0 0;
 				margin: var(--mtdsc-app-spacing);

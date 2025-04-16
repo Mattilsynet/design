@@ -5,6 +5,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
+import script from "./app-toggle.js?raw";
 
 export type AppHeaderProps = React.ComponentPropsWithoutRef<"header">;
 export type AppNavProps = React.ComponentPropsWithoutRef<"nav">;
@@ -56,4 +57,6 @@ export const App = Object.assign(AppComp, {
 			return <footer ref={ref} {...rest} />;
 		},
 	),
+	// Needed to avoid flash of unstyled content and still be Next.js hydration compatible
+	Script: () => <script id="mtds-app-script">{script}</script>,
 });

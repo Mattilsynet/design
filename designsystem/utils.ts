@@ -254,18 +254,3 @@ export const toCustomElementProps = (
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;
 };
-
-export function useCSSVariable(key: string) {
-	if (IS_BROWSER && window.CSSStyleSheet && document.adoptedStyleSheets) {
-		const sheet = new CSSStyleSheet();
-		const index = sheet.insertRule(`:root { ${key}: }`);
-		const { style } = sheet.cssRules[index] as CSSStyleRule;
-		document.adoptedStyleSheets.push(sheet);
-		return (val: string) => style.setProperty(key, val);
-	}
-}
-
-export function useTransition(callback: () => void) {
-	if (!document.startViewTransition) callback();
-	else document.startViewTransition(callback);
-}

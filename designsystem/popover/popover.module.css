@@ -50,4 +50,7 @@
 	[data-popover="inline"] {
 		border-radius: var(--ds-border-radius-sm);
 	}
+	[data-popover="inline"] + .popover {
+		max-width: 35ch;
+	}
 }

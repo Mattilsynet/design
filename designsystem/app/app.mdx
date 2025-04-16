@@ -9,7 +9,8 @@ import styles from '../styles.module.css';
 - Bruk klassen `app` på typisk `<body>` eller en element inni
 - Legg inn `<header>`, `<nav>`, `<main>`, `<aside>` og `<footer>` som barn
 - Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
-- I React kan du benytte `App`, `App.Header`, `App.Nav`,  `App.Sticky`,  `App.Main`,  `App.Aside` og `App.Footer`
+- **React?** Bruk `App`, `App.Header`, `App.Nav`,  `App.Sticky`,  `App.Main`,  `App.Aside` og `App.Footer`
+- **Next.js?** Bruk `<App.Script>` i `<head>` for å tegne minimert/ekspanert sidemeny uten <button type="button" data-popover="inline" popoverTarget='fouc'>FOUC</button><div className={styles.popover} popover="auto" id="fouc">Flash of unstyled content</div>
 <div className="sbdocs-canvas-thumbnail">
   <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se app i ny fane</a>
   <Canvas of={stories.Default} />
