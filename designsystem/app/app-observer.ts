@@ -13,13 +13,13 @@ let IS_MOBILE_OPEN = false;
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_STICKY = styles.sticky.split(" ")[0];
 const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
-const KEY_TOGGLE = "--mtdsc-app-expanded";
+const KEY_TOGGLE = "--mtds-app-expanded";
 
 // Setting CSS custom properties on constructed style sheet to avoid
 // flash of unstyled content and still be Next.js hydration compatible
 const setToggle = useCSSVariable(KEY_TOGGLE);
-const setStickyPos = useCSSVariable("--mtds-sticky-pos");
-const setStickyTop = useCSSVariable("--mtds-sticky-top");
+const setStickyPos = useCSSVariable("--mtds-app-sticky-pos");
+const setStickyTop = useCSSVariable("--mtds-app-sticky-top");
 
 const isToggle = (el: unknown): el is HTMLElement =>
 	el instanceof Element && el.matches(CSS_TOGGLE);
@@ -29,7 +29,7 @@ const isMobile = (el: Element) =>
 
 function toggleExpanded(toggle = true) {
 	const prev = !window.localStorage.getItem(KEY_TOGGLE)?.includes("false");
-	const next = `var(--mtds-expanded--${toggle ? !prev : prev})`;
+	const next = `var(${KEY_TOGGLE}--${toggle ? !prev : prev})`;
 	window.localStorage.setItem(KEY_TOGGLE, `${next}`);
 	useTransition(() => setToggle?.(next));
 }

@@ -6,11 +6,11 @@
 	 * NOTE3: Global variables used to avoid Next.js hydration conflict
 	 */
 	:root {
-		--mtdsc-app-expanded: var(--mtds-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
-		--mtds-expanded--true: var(--mtdsc-app-expanded,);
-		--mtds-expanded--false: var(--mtdsc-app-expanded,);
-		--mtds-sticky-top: 0px;
-		--mtds-sticky-pos: relative;
+		--mtds-app-expanded: var(--mtds-app-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+		--mtds-app-expanded--false: var(--mtds-app-expanded,);
+		--mtds-app-expanded--true: var(--mtds-app-expanded,);
+		--mtds-app-sticky-pos: relative;
+		--mtds-app-sticky-top: 0px;
 	}
 	.app {
 		--mtdsc-app-nav-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
@@ -35,12 +35,12 @@
 
 	/* Hide relevant child elements with data-expanded attribute */
 	.app [data-app-expanded="true"]:not([hidden]) {
-		content-visibility: var(--mtds-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
-		position: var(--mtds-expanded--false, absolute);
+		content-visibility: var(--mtds-app-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--false, absolute);
 	}
 	.app [data-app-expanded="false"]:not([hidden]) {
-		content-visibility: var(--mtds-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
-		position: var(--mtds-expanded--true, absolute);
+		content-visibility: var(--mtds-app-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--true, absolute);
 	}
 
 	/**
@@ -79,8 +79,8 @@
 	.app nav:has(~ main) {
 		all: unset; /* Undo popover styling */
 
-		--mtds-tooltip-position: var(--mtds-expanded--true, none)
-			var(--mtds-expanded--false, right);
+		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
+			var(--mtds-app-expanded--false, right);
 		background: var(--ds-color-background-default);
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
@@ -89,17 +89,17 @@
 		grid-area: nav;
 		margin: var(--negative) 0 var(--negative) var(--negative);
 		padding: var(--mtdsc-app-spacing);
-		width: var(--mtds-expanded--true, var(--mtdsc-app-nav-width));
+		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav-width));
 		view-transition-name: mtds-app--left;
 
 		&[data-color] {
 			margin-right: var(--mtdsc-app-spacing);
 		}
 		& menu > li > [data-tooltip]::after {
-			content: var(--mtds-expanded--true, attr(data-tooltip));
+			content: var(--mtds-app-expanded--true, attr(data-tooltip));
 		}
 		& menu menu {
-			padding-left: var(--mtds-expanded--true, var(--mtdsc-app-spacing));
+			padding-left: var(--mtds-app-expanded--true, var(--mtdsc-app-spacing));
 		}
 		& > [data-command="toggle-app-expanded"] {
 			--dsc-button-background: var(--ds-color-background-default);
@@ -113,8 +113,11 @@
 			z-index: 3;
 		}
 		& > [data-command="toggle-app-expanded"]::before {
-			mask-image: var(--mtds-expanded--true, var(--mtds-icon-sidebar-collapse))
-				var(--mtds-expanded--false, var(--mtds-icon-sidebar-expand));
+			mask-image: var(
+					--mtds-app-expanded--true,
+					var(--mtds-icon-sidebar-collapse)
+				)
+				var(--mtds-app-expanded--false, var(--mtds-icon-sidebar-expand));
 		}
 	}
 
@@ -122,8 +125,8 @@
 	.sticky {
 		margin: var(--negative);
 		padding: var(--mtdsc-app-spacing) var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
-		position: var(--mtds-sticky-pos);
-		top: var(--mtds-sticky-top);
+		position: var(--mtds-app-sticky-pos);
+		top: var(--mtds-app-sticky-top);
 	}
 
 	/**
@@ -196,8 +199,8 @@
 	@media (max-width: 48em) {
 		.app {
 			--mtds-mobile: true;
-			--mtds-expanded--true: initial;
-			--mtds-expanded--false: ;
+			--mtds-app-expanded--true: initial;
+			--mtds-app-expanded--false: ;
 		}
 
 		.app > nav,
