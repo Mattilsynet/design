@@ -50,7 +50,7 @@
 		align-items: center;
 		grid-area: header;
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
-		margin: var(--negative) var(--negative) var(--mtdsc-app-spacing);
+		margin: var(--negative) var(--negative) 0;
 		padding: var(--mtdsc-app-spacing);
 
 		&:not([hidden]) {
@@ -62,12 +62,12 @@
 			min-width: 0; /* Allow shrinking if using breadcrumbs */
 		}
 
-		&[data-color] {
+		/* &[data-color] {
 			background: var(--ds-color-surface-default);
 			color: var(--ds-color-text-default);
 			border-bottom: var(--ds-border-width-default) solid
 				var(--ds-color-border-subtle);
-		}
+		} */
 	}
 
 	/**
@@ -85,20 +85,35 @@
 		display: flex;
 		flex-direction: column;
 		grid-area: nav;
-		margin: var(--negative) 0 var(--negative) var(--negative);
+		margin: 0 0 var(--negative) var(--negative);
 		padding: var(--mtdsc-app-spacing);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav-width));
 		view-transition-name: mtds-app--left;
 
-		&[data-color] {
+		/* &[data-color] {
 			margin-right: var(--mtdsc-app-spacing);
-		}
+		} */
 		& menu > li > [data-tooltip]::after {
 			content: var(--mtds-app-expanded--true, attr(data-tooltip));
 		}
-		& menu menu {
-			padding-left: var(--mtds-app-expanded--true, var(--mtdsc-app-spacing));
+		/* TODO: Nested sidemenu */
+		/* & menu menu {
+			margin-top: .125rem; /* Add 2px space between buttons - same as in <menu>
 		}
+		& menu > li > * {
+			justify-content: var(--mtds-app-expanded--true, start)
+				var(--mtds-app-expanded--false, center);
+		}
+		& menu li:has(> menu) {
+			outline: 1px solid var(--ds-color-border-subtle);
+			overflow: hidden;
+			border-radius: 5px;
+		}
+		& menu menu > li > * {
+			border-radius: 0;
+			padding-left: var(--mtds-app-expanded--true, var(--ds-size-9))
+				var(--mtds-app-expanded--false, var(--ds-size-4));
+		} */
 		& > [data-command="toggle-app-expanded"] {
 			--dsc-button-background: var(--ds-color-background-default);
 			--dsc-button-border-color: var(--ds-color-border-subtle);
@@ -150,9 +165,9 @@
 		width: 14em;
 		view-transition-name: mtds-app--right;
 
-		&[data-color] {
+		/* &[data-color] {
 			margin-left: var(--mtdsc-app-spacing);
-		}
+		} */
 	}
 
 	/**
@@ -246,7 +261,6 @@
 		.app main {
 			margin-bottom: calc(var(--ds-size-12) + var(--mtdsc-app-spacing)); /* Make space for toggle-app-expanded button */
 			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
-			margin-top: var(--negative);
 			view-transition-name: none; /* No need to animate on mobile */
 		}
 

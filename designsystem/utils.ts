@@ -140,7 +140,7 @@ export function anchorPosition(
 	const hasSpaceOver = anchorY - targetH > 0;
 	const hasSpaceUnder = anchorY + anchorH + targetH < window.innerHeight;
 	const positionRight =
-		(position === POSITION.bottom && hasSpaceRight) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
+		(position === POSITION.right && hasSpaceRight) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
 	const positionUnder =
 		(position === POSITION.bottom && hasSpaceUnder) || !hasSpaceOver; // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
 	const centerX = Math.min(

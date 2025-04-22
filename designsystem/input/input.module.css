@@ -13,6 +13,10 @@
 		--dsc-input-stroke: 0.045em;
 	}
 
+	.input:is(select) {
+		text-overflow: ellipsis; /* TODO: Add to DigiDir */
+	}
+
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 	.input[readonly]:disabled {
 		opacity: 1;
@@ -21,6 +25,8 @@
 	.input[type="checkbox"]:not([role="switch"]) {
 		border-radius: var(--ds-border-radius-md);
 	}
+
+	/* TODO: DigiDir prevent [size] on [type="number"] as it does not work anyway */
 
 	/* If list attribute exits, allow rendering dropdown chevron instead */
 	.input[type="search"]:not([list], :has(+ u-datalist)) {

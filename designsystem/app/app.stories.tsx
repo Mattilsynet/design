@@ -435,7 +435,7 @@ export const WithComplexContent: Story = {
 								<a className={styles.button} href="/" data-tooltip="Søknader">
 									<Signature />
 								</a>
-								<menu>
+								{/* <menu>
 									<li>
 										<a
 											className={styles.button}
@@ -451,7 +451,7 @@ export const WithComplexContent: Story = {
 											<PaperPlane />
 										</a>
 									</li>
-								</menu>
+								</menu> */}
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Behandling">
@@ -606,6 +606,7 @@ export const WithComplexContent: Story = {
 };
 
 export const WithExternalStyle: Story = {
+	tags: ["!dev"],
 	render: () => (
 		<div className={styles.app}>
 			<style>

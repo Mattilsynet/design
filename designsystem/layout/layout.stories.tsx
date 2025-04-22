@@ -433,8 +433,8 @@ const proseDecorator: Story["decorators"] = (Story) => {
 				const nextY = next.getBoundingClientRect().top + y;
 				const prevM = Number.parseInt(prevStyle.marginBottom);
 				const nextM = Number.parseInt(nextStyle.marginTop);
-				const prevEm = `⬆️ ${Math.round((prevM / Number.parseInt(prevStyle.fontSize)) * 10) / 10}em / ${prevM}px`;
-				const nextEm = `⬇️ ${Math.round((nextM / Number.parseInt(nextStyle.fontSize)) * 10) / 10}em / ${nextM}px`;
+				const prevEm = `⬆️ ${Math.round((prevM / Number.parseInt(prevStyle.fontSize)) * 10) / 10}em (${prevM}px)`;
+				const nextEm = `⬇️ ${Math.round((nextM / Number.parseInt(nextStyle.fontSize)) * 10) / 10}em (${nextM}px)`;
 
 				const diffM = Math.max(prevM, nextM);
 				const diffY = Math.floor(nextY - prevY);
@@ -445,7 +445,7 @@ const proseDecorator: Story["decorators"] = (Story) => {
 				context.beginPath();
 				context.roundRect(pl, prevY, pw, diffY, 3);
 				context.fill();
-				context.font = "13px sans-serif";
+				context.font = "13px monospace";
 				context.textBaseline = "middle";
 				context.fillStyle = "#000";
 
