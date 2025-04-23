@@ -249,6 +249,7 @@ export const toCustomElementProps = (
 	{ className, hidden, open, ...rest }: Record<string, unknown>,
 	klass?: string,
 ) => {
+	rest.suppressHydrationWarning = true; // Make Next.js happy
 	rest.class = clsx(klass, className || "") || undefined; // Use class instead of className
 	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
 	if (open) rest.open = true; // Ensure boolean prop behaviour
