@@ -40,6 +40,6 @@ function handleLinkClick({ target }: Event) {
 }
 
 onLoaded(() => {
-	on(document, "beforetoggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 	on(document, "click", handleLinkClick); // Allow `<a>` to use `popovertarget` as well
 });

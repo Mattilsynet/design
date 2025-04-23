@@ -1,31 +1,19 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, attr, on, onLoaded, onMutation } from "../utils";
+import { QUICK_EVENT, debounce, on, onLoaded, onMutation } from "../utils";
 import "./app-toggle";
 
-let IS_MOBILE_OPEN = false;
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_STICKY = styles.sticky.split(" ")[0];
 const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
+const CSS_SIDEBAR = `.${CSS_APP} > dialog,.${CSS_APP} dialog ~ main`;
 
 const useTransition = (callback: () => void) => {
 	if (!document.startViewTransition) callback();
 	else document.startViewTransition(callback);
 };
 
-// Disable/enable interaction on other elements
-const useInert = (host: HTMLElement | null, state: boolean) => {
-	for (let el = host; el && el !== document.body; el = el.parentElement)
-		Array.from(el.parentElement?.children || [], (child) => {
-			if (!child.contains(host)) child.toggleAttribute("inert", state);
-		});
-};
-
 function handleToggleClick({ target: el }: Event) {
-	if (!(el instanceof Element)) return;
-	if (IS_MOBILE_OPEN && el.classList.contains(CSS_APP))
-		return document.querySelector<HTMLElement>(CSS_TOGGLE)?.click();
-
-	if (el.matches(CSS_TOGGLE)) {
+	if (el instanceof HTMLButtonElement && el.matches(CSS_TOGGLE))
 		useTransition(() => {
 			const isMobile =
 				getComputedStyle(el).getPropertyValue("--mobile") === "true";
@@ -33,12 +21,15 @@ function handleToggleClick({ target: el }: Event) {
 			// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
 			if (!isMobile) window.mtdsAppToggle?.();
 			else {
-				IS_MOBILE_OPEN = !IS_MOBILE_OPEN;
-				attr(el, "aria-expanded", `${IS_MOBILE_OPEN}`);
-				useInert(el.closest("nav"), IS_MOBILE_OPEN);
+				const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
+				sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
+				sidebar?.showModal();
 			}
 		});
-	}
+}
+
+function handleResize() {
+	document.querySelector<HTMLDialogElement>(CSS_SIDEBAR)?.close();
 }
 
 // Scroll state
@@ -96,5 +87,6 @@ function handleScroll() {
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_STICKY, handleMutation);
 	on(document, "click", handleToggleClick, QUICK_EVENT);
+	on(window, "resize", debounce(handleResize, 100), QUICK_EVENT);
 	on(window, "scroll", handleScroll, QUICK_EVENT);
 });

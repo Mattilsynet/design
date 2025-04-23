@@ -8,10 +8,9 @@ import styles from "../styles.module.css";
 import script from "./app-toggle.js?raw";
 
 export type AppHeaderProps = React.ComponentPropsWithoutRef<"header">;
-export type AppNavProps = React.ComponentPropsWithoutRef<"nav">;
+export type AppSidebarProps = React.ComponentPropsWithoutRef<"dialog">;
 export type AppStickyProps = React.ComponentPropsWithoutRef<"div">;
 export type AppMainProps = React.ComponentPropsWithoutRef<"main">;
-export type AppAsideProps = React.ComponentPropsWithoutRef<"aside">;
 export type AppFooterProps = React.ComponentPropsWithoutRef<"footer">;
 export type AppProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<As>;
@@ -42,15 +41,14 @@ export const App = Object.assign(AppComp, {
 			return <header ref={ref} {...rest} />;
 		},
 	),
-	Nav: forwardRef<HTMLElement, AppNavProps>(function AppNav(rest, ref) {
-		return <nav ref={ref} {...rest} />;
-	}),
+	Sidebar: forwardRef<HTMLDialogElement, AppSidebarProps>(
+		function AppSidebar(rest, ref) {
+			return <dialog ref={ref} {...rest} />;
+		},
+	),
 	Sticky: AppSticky,
 	Main: forwardRef<HTMLElement, AppMainProps>(function AppMain(rest, ref) {
 		return <main ref={ref} {...rest} />;
-	}),
-	Aside: forwardRef<HTMLElement, AppAsideProps>(function AppAside(rest, ref) {
-		return <aside ref={ref} {...rest} />;
 	}),
 	Footer: forwardRef<HTMLElement, AppFooterProps>(
 		function AppFooter(rest, ref) {

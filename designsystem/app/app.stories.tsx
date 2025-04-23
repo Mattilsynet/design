@@ -1,15 +1,11 @@
 import {
 	Bell,
-	BookOpenText,
 	Gear,
-	List,
 	ListChecks,
 	MagnifyingGlass,
-	PaperPlane,
 	Plant,
 	SignOut,
 	Signature,
-	TrayArrowDown,
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -27,8 +23,7 @@ const Image = (
 );
 
 const meta = {
-	title: "Designsystem/App (Eksperimentell)",
-	id: "designsystem-app",
+	title: "Designsystem/App",
 	parameters: {
 		layout: "fullscreen",
 	},
@@ -61,13 +56,12 @@ export const Default: Story = {
 					<Bell />
 				</button>
 				<button
-					type="button"
-					className={styles.button}
 					aria-label="Meny"
+					className={styles.avatar}
+					data-size="xs"
 					popoverTarget="menu"
-				>
-					<span className={styles.avatar} data-size="xs"></span>
-				</button>
+					type="button"
+				></button>
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
@@ -89,13 +83,13 @@ export const Default: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav>
-				<button
-					type="button"
-					className={styles.button}
-					data-command="toggle-app-expanded"
-					data-tooltip="Navigasjon"
-				></button>
+			<button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+				data-tooltip="Navigasjon"
+			></button>
+			<dialog>
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -118,7 +112,7 @@ export const Default: Story = {
 						</a>
 					</li>
 				</menu>
-			</nav>
+			</dialog>
 			<main>
 				<div className={styles.card}>{Image}</div>
 			</main>
@@ -137,9 +131,12 @@ export const React: Story = {
 				<Button>
 					<Bell />
 				</Button>
-				<Button aria-label="Meny" popoverTarget="menu">
-					<Avatar data-size="xs" />
-				</Button>
+				<Avatar
+					as="button"
+					data-size="xs"
+					aria-label="Meny"
+					popoverTarget="menu"
+				/>
 				<Popover as="menu" popover="auto" id="menu">
 					<li>
 						<Button href="/">
@@ -161,8 +158,8 @@ export const React: Story = {
 					</li>
 				</Popover>
 			</App.Header>
-			<App.Nav>
-				<Button data-command="toggle-app-expanded" data-tooltip="Navigasjon" />
+			<Button data-command="toggle-app-expanded" data-tooltip="Navigasjon" />
+			<App.Sidebar>
 				<App.Sticky as="menu">
 					<li>
 						<Button href="/" aria-current="page" data-tooltip="Søknader">
@@ -180,7 +177,7 @@ export const React: Story = {
 						</Button>
 					</li>
 				</App.Sticky>
-			</App.Nav>
+			</App.Sidebar>
 			<App.Main>
 				<Card>{Image}</Card>
 			</App.Main>
@@ -203,13 +200,12 @@ export const WithFooter: Story = {
 					<Bell />
 				</button>
 				<button
-					type="button"
-					className={styles.button}
 					aria-label="Meny"
+					className={styles.avatar}
+					data-size="xs"
 					popoverTarget="menu"
-				>
-					<span className={styles.avatar} data-size="xs"></span>
-				</button>
+					type="button"
+				></button>
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
@@ -231,13 +227,13 @@ export const WithFooter: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav>
-				<button
-					type="button"
-					className={styles.button}
-					data-command="toggle-app-expanded"
-					data-tooltip="Navigasjon"
-				></button>
+			<button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+				data-tooltip="Navigasjon"
+			></button>
+			<dialog>
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -260,116 +256,13 @@ export const WithFooter: Story = {
 						</a>
 					</li>
 				</menu>
-			</nav>
+			</dialog>
 			<main>
 				<div className={styles.card}>{Image}</div>
 			</main>
 			<footer style={{ height: 300 }}>
 				<a href="/" className={styles.logo}></a>
 			</footer>
-		</div>
-	),
-};
-
-export const WithAside: Story = {
-	render: () => (
-		<div className={styles.app}>
-			<header>
-				<a href="/" className={styles.logo}>
-					<Plant weight="fill" />
-					Digiplant
-				</a>
-				<button type="button" className={styles.button}>
-					<Bell />
-				</button>
-				<button
-					type="button"
-					className={styles.button}
-					aria-label="Meny"
-					popoverTarget="menu"
-				>
-					<span className={styles.avatar} data-size="xs"></span>
-				</button>
-				<menu className={styles.popover} popover="auto" id="menu">
-					<li>
-						<a className={styles.button} href="/">
-							<User />
-							Profil
-						</a>
-					</li>
-					<li>
-						<a className={styles.button} href="/">
-							<Gear />
-							Innstillinger
-						</a>
-					</li>
-					<li>
-						<a className={styles.button} href="/">
-							<SignOut />
-							Logg ut
-						</a>
-					</li>
-				</menu>
-			</header>
-			<nav>
-				<button
-					type="button"
-					className={styles.button}
-					data-command="toggle-app-expanded"
-					data-tooltip="Navigasjon"
-				></button>
-				<menu className={styles.sticky}>
-					<li>
-						<a
-							className={styles.button}
-							href="/"
-							aria-current="page"
-							data-tooltip="Søknader"
-						>
-							<Signature />
-						</a>
-					</li>
-					<li>
-						<a className={styles.button} href="/" data-tooltip="Behandling">
-							<ListChecks />
-						</a>
-					</li>
-					<li>
-						<a className={styles.button} href="/" data-tooltip="Søk">
-							<MagnifyingGlass />
-						</a>
-					</li>
-				</menu>
-			</nav>
-			<main>
-				<div className={styles.card}>{Image}</div>
-			</main>
-			<aside>
-				<form className={styles.grid}>
-					<h2 className={styles.heading} data-size="xs">
-						Right side content
-					</h2>
-					<div className={styles.field}>
-						<label>Search</label>
-						<input type="text" className={styles.input} />
-					</div>
-					<fieldset className={styles.fieldset}>
-						<legend>Velg type iskrem</legend>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Sjokolade</label>
-						</div>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Kokkos</label>
-						</div>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Jordbær</label>
-						</div>
-					</fieldset>
-				</form>
-			</aside>
 		</div>
 	),
 };
@@ -383,7 +276,9 @@ export const WithComplexContent: Story = {
 					Digiplant
 				</a>
 				<button type="button" className={styles.button}>
-					<Bell />
+					<span className={styles.badge} data-badge="" data-color="danger">
+						<Bell />
+					</span>
 				</button>
 				<button
 					type="button"
@@ -391,6 +286,7 @@ export const WithComplexContent: Story = {
 					aria-label="Meny"
 					popoverTarget="menu"
 				>
+					Navn Navnesen
 					<span className={styles.avatar} data-size="xs"></span>
 				</button>
 				<menu className={styles.popover} popover="auto" id="menu">
@@ -414,13 +310,13 @@ export const WithComplexContent: Story = {
 					</li>
 				</menu>
 			</header>
-			<nav>
-				<button
-					type="button"
-					className={styles.button}
-					data-command="toggle-app-expanded"
-					data-tooltip="Navigasjon"
-				></button>
+			<button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+				data-tooltip="Navigasjon"
+			></button>
+			<dialog>
 				<div className={styles.sticky}>
 					<div className={styles.prose}>
 						<h2
@@ -432,8 +328,15 @@ export const WithComplexContent: Story = {
 						</h2>
 						<menu>
 							<li>
-								<a className={styles.button} href="/" data-tooltip="Søknader">
-									<Signature />
+								<a
+									className={styles.button}
+									href="/"
+									data-tooltip="Søknader"
+									aria-current="page"
+								>
+									<span className={styles.badge} data-badge="99">
+										<Signature />
+									</span>
 								</a>
 								{/* <menu>
 									<li>
@@ -573,7 +476,7 @@ export const WithComplexContent: Story = {
 						</form>
 					</div>
 				</div>
-			</nav>
+			</dialog>
 			<main>
 				<div className={styles.grid}>
 					<div className={styles.card}>
@@ -594,170 +497,10 @@ export const WithComplexContent: Story = {
 							<p>{Lipsum}</p>
 							<p>{Lipsum}</p>
 							<p>{Lipsum}</p>
+							<p>{Lipsum}</p>
+							<p>{Lipsum}</p>
+							<p>{Lipsum}</p>
 						</div>
-					</div>
-				</div>
-			</main>
-			<footer style={{ height: 300 }}>
-				<a href="/" className={styles.logo}></a>
-			</footer>
-		</div>
-	),
-};
-
-export const WithExternalStyle: Story = {
-	tags: ["!dev"],
-	render: () => (
-		<div className={styles.app}>
-			<style>
-				{
-					"menu strong { font-variant-numeric: tabular-nums; text-align: center; width: 1.25em }"
-				}
-			</style>
-			<header data-color="main">
-				<div
-					className={styles.flex}
-					data-align="center"
-					data-justify="space-between"
-					data-center="xl"
-				>
-					<a href="/" className={styles.logo}></a>
-					<div className={styles.flex}>
-						<button
-							type="button"
-							className={styles.button}
-							data-hidden="min-md"
-						>
-							Språk/Language
-						</button>
-						<button type="button" className={styles.button}>
-							<span data-hidden="min-md">Søk</span>
-							<MagnifyingGlass />
-						</button>
-						<button
-							type="button"
-							className={styles.button}
-							aria-label="Meny"
-							popoverTarget="menu"
-						>
-							<span data-hidden="min-md">Meny</span>
-							<List />
-						</button>
-						<menu className={styles.popover} popover="auto" id="menu">
-							<li>
-								<a className={styles.button} href="/">
-									<User />
-									Profil
-								</a>
-							</li>
-							<li>
-								<a className={styles.button} href="/">
-									<Gear />
-									Innstillinger
-								</a>
-							</li>
-							<li>
-								<a className={styles.button} href="/">
-									<SignOut />
-									Logg ut
-								</a>
-							</li>
-						</menu>
-					</div>
-				</div>
-			</header>
-			<nav data-color="inverted">
-				<button
-					type="button"
-					className={styles.button}
-					data-command="toggle-app-expanded"
-					data-tooltip="Innholdsfortegnelse"
-				></button>
-				<div className={styles.sticky}>
-					<div className={styles.grid}>
-						<h2
-							className={styles.heading}
-							data-size="2xs"
-							data-app-expanded="true"
-						>
-							Veileder til drikkevannsforskriften
-						</h2>
-						<menu>
-							<li>
-								<a
-									className={styles.button}
-									href="/"
-									aria-current="page"
-									data-tooltip="Innledning"
-								>
-									<BookOpenText />
-								</a>
-							</li>
-							<li>
-								<a className={styles.button} href="/" data-tooltip="Formål">
-									<strong>1</strong>
-								</a>
-							</li>
-							<li>
-								<a
-									className={styles.button}
-									href="/"
-									data-tooltip="Virkeområde"
-								>
-									<strong>2</strong>
-								</a>
-							</li>
-							<li>
-								<a
-									className={styles.button}
-									href="/"
-									data-tooltip="Definisjoner"
-								>
-									<strong>3</strong>
-								</a>
-							</li>
-							<li>
-								<a
-									className={styles.button}
-									href="/"
-									data-tooltip="Forurensning"
-								>
-									<strong>4</strong>
-								</a>
-							</li>
-							<li>
-								<a
-									className={styles.button}
-									href="/"
-									data-tooltip="Grenseverdier"
-								>
-									<strong>5</strong>
-								</a>
-							</li>
-						</menu>
-					</div>
-				</div>
-			</nav>
-			<main>
-				<div
-					className={styles.grid}
-					data-center="md"
-					style={{ paddingBlock: "5%" }}
-				>
-					<div className={styles.prose}>
-						<h1 className={styles.heading} data-size="2xl">
-							Veileder til drikkevannsforskriften
-						</h1>
-						<p data-size="lg">{Lipsum.slice(0, 233)}</p>
-						<h2 className={styles.heading}>Maecenas tempor</h2>
-						<p>{Lipsum.slice(0, 508)}.</p>
-						<h2 className={styles.heading}>Quisque in interdum nisl</h2>
-						<ul>
-							<li>{Lipsum.slice(0, 128)}</li>
-							<li>{Lipsum.slice(0, 128)}</li>
-							<li>{Lipsum.slice(0, 128)}</li>
-						</ul>
-						<p>{Lipsum}</p>
 					</div>
 				</div>
 			</main>

@@ -11,7 +11,7 @@
 		--mtds-app-expanded--true: var(--mtds-app-expanded,);
 	}
 	.app {
-		--mtdsc-app-nav-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
 		--mtdsc-app-spacing: var(--ds-size-4);
 		--negative: calc(var(--mtdsc-app-spacing) * -1);
 
@@ -20,9 +20,9 @@
 		min-height: 100svh; /* Use small viewport height if supported */
 		padding: var(--mtdsc-app-spacing);
 		grid-template:
-			"header header header" auto
-			"nav main aside" 1fr
-			"footer footer footer" auto / auto 1fr auto;
+			"header header" auto
+			"sidebar main" 1fr
+			"footer footer" auto / auto 1fr;
 	}
 	.app:where(:not([hidden])) {
 		display: grid;
@@ -41,17 +41,40 @@
 		position: var(--mtds-app-expanded--true, absolute);
 	}
 
+	/* Double selector to increase specificity */
+	.app.app [data-command="toggle-app-expanded"] {
+		--dsc-button-background: var(--ds-color-background-default);
+		--dsc-button-border-color: var(--ds-color-border-subtle);
+		--mtds-tooltip-position: top;
+		grid-area: sidebar;
+		bottom: var(--mtdsc-app-spacing);
+		margin-top: auto; /* Push to bottom */
+		min-width: min-content;
+		position: sticky;
+		width: 0;
+		z-index: 3;
+		view-transition-name: mtds-app--toggle;
+	}
+	.app.app [data-command="toggle-app-expanded"]::before {
+		font-size: 1.25em; /* Match button svg size */
+		mask-image: var(
+				--mtds-app-expanded--true,
+				var(--mtds-icon-sidebar-collapse)
+			)
+			var(--mtds-app-expanded--false, var(--mtds-icon-sidebar-expand));
+	}
+
 	/**
 	 * Header
 	 */
 	.app > header,
 	.app header:has(~ main) {
 		box-sizing: border-box;
-		align-items: center;
-		grid-area: header;
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
+		grid-area: header;
 		margin: var(--negative) var(--negative) 0;
 		padding: var(--mtdsc-app-spacing);
+		align-items: center;
 
 		&:not([hidden]) {
 			display: flex;
@@ -61,83 +84,46 @@
 			margin-right: auto; /* Push logo to left */
 			min-width: 0; /* Allow shrinking if using breadcrumbs */
 		}
-
-		/* &[data-color] {
-			background: var(--ds-color-surface-default);
-			color: var(--ds-color-text-default);
-			border-bottom: var(--ds-border-width-default) solid
-				var(--ds-color-border-subtle);
-		} */
 	}
 
 	/**
 	 * Left side
 	 */
-	.app > nav,
-	.app nav:has(~ main) {
-		all: unset; /* Undo popover styling */
-
-		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
-			var(--mtds-app-expanded--false, right);
+	.app > dialog,
+	.app dialog:has(~ main) {
+		all: unset; /* Undo dialog styling */
 		background: var(--ds-color-background-default);
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
-		display: flex;
-		flex-direction: column;
-		grid-area: nav;
-		margin: 0 0 var(--negative) var(--negative);
-		padding: var(--mtdsc-app-spacing);
-		width: var(--mtds-app-expanded--true, var(--mtdsc-app-nav-width));
-		view-transition-name: mtds-app--left;
+		grid-area: sidebar;
+		margin-left: var(--negative);
+		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
+		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
+		view-transition-name: mtds-app--sidebar;
+		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
+			var(--mtds-app-expanded--false, right);
 
-		/* &[data-color] {
-			margin-right: var(--mtdsc-app-spacing);
-		} */
-		& menu > li > [data-tooltip]::after {
+		& menu > li {
+			margin-inline: var(--negative); /* Minus margin on li instead of menu to allow menu to be .sticky */
+		}
+		& menu [data-tooltip]::after {
 			content: var(--mtds-app-expanded--true, attr(data-tooltip));
 		}
-		/* TODO: Nested sidemenu */
-		/* & menu menu {
-			margin-top: .125rem; /* Add 2px space between buttons - same as in <menu>
+		& menu [data-badge] {
+			display: var(--mtds-app-expanded--true, contents); /* Allow right aligned badge when maximized */
 		}
-		& menu > li > * {
-			justify-content: var(--mtds-app-expanded--true, start)
-				var(--mtds-app-expanded--false, center);
-		}
-		& menu li:has(> menu) {
-			outline: 1px solid var(--ds-color-border-subtle);
-			overflow: hidden;
-			border-radius: 5px;
-		}
-		& menu menu > li > * {
-			border-radius: 0;
-			padding-left: var(--mtds-app-expanded--true, var(--ds-size-9))
-				var(--mtds-app-expanded--false, var(--ds-size-4));
-		} */
-		& > [data-command="toggle-app-expanded"] {
-			--dsc-button-background: var(--ds-color-background-default);
-			--dsc-button-border-color: var(--ds-color-border-subtle);
-			--mtds-tooltip-position: top;
-			bottom: var(--mtdsc-app-spacing);
-			margin-block: auto 0; /* Push to bottom of <nav> */
-			order: 1; /* Push to bottom of <nav> */
-			position: sticky;
-			width: min-content;
-			z-index: 3;
-		}
-		& > [data-command="toggle-app-expanded"]::before {
-			mask-image: var(
-					--mtds-app-expanded--true,
-					var(--mtds-icon-sidebar-collapse)
-				)
-				var(--mtds-app-expanded--false, var(--mtds-icon-sidebar-expand));
+		& menu [data-badge]::before {
+			--small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
+			content: var(--mtds-app-expanded--true, attr(data-badge)) "";
+			margin-left: auto;
+			order: 1;
 		}
 	}
 
 	/* Sticky position */
 	.sticky {
-		margin: var(--negative);
-		padding: var(--mtdsc-app-spacing) var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
+		margin-block: var(--negative);
+		padding-block: var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
 		position: var(--pos);
 		top: var(--top);
 	}
@@ -149,25 +135,6 @@
 	.app main {
 		grid-area: main;
 		view-transition-name: mtds-app--main;
-	}
-
-	/**
-	 * Right side
-	 */
-	.app > aside,
-	.app main ~ aside {
-		background: var(--ds-color-background-default);
-		box-sizing: border-box;
-		color: var(--ds-color-text-default);
-		grid-area: aside;
-		margin: var(--negative) var(--negative) var(--negative) 0;
-		padding: var(--mtdsc-app-spacing);
-		width: 14em;
-		view-transition-name: mtds-app--right;
-
-		/* &[data-color] {
-			margin-left: var(--mtdsc-app-spacing);
-		} */
 	}
 
 	/**
@@ -214,66 +181,56 @@
 			--mtds-app-expanded--true: initial;
 			--mtds-app-expanded--false: ;
 		}
-
-		.app > nav,
-		.app nav:has(~ main) {
-			border: 0;
-			inset: 0;
+		.app > header,
+		.app header:has(~ main) {
+			padding-right: calc(var(--mtds-15) + var(--mtds-2));
+		}
+		.app > dialog,
+		.app dialog:has(~ main) {
+			inset: 0 auto 0 0;
 			margin: 0;
-			min-height: 100vh;
-			min-height: 100svh;
-			overflow-x: clip;
-			overflow-y: auto;
+			overflow: auto;
 			position: fixed;
 			z-index: 999;
-			box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
 
-			&:not(
-					:has(> [data-command="toggle-app-expanded"][aria-expanded="true"])
-				) {
-				left: -100px;
+			&::backdrop {
+				background: rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+			}
+
+			&:not(:modal) {
+				left: -2em;
 				visibility: hidden;
-			}
-
-			& > [data-command="toggle-app-expanded"] {
-				--dsc-button-background: var(--ds-color-surface-default);
-				--dsc-button-border-color: transparent;
-				--mtds-tooltip-position: none;
-				--mobile: true; /* Used by JS */
-
-				box-shadow: var(--ds-shadow-lg);
-				inset: auto auto 0 0;
-				margin: var(--mtdsc-app-spacing);
-				position: fixed;
-				visibility: visible;
-			}
-			& > [data-command="toggle-app-expanded"]::before {
-				mask-image: var(--mtds-icon-sidebar-expand);
-			}
-			& > [data-command="toggle-app-expanded"][aria-expanded="true"]::before {
-				mask-image: var(--mtds-icon-sidebar-collapse);
-			}
-			& > [data-command="toggle-app-expanded"]::after {
-				content: attr(data-tooltip);
 			}
 		}
 
+		.app.app [data-command="toggle-app-expanded"] {
+			--dsc-button-background: transparent;
+			--dsc-button-border-color: transparent;
+			--mtds-tooltip-position: none;
+			--mobile: true; /* Used by JS */
+
+			inset: 0 0 auto auto;
+			margin: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5);
+			position: absolute;
+			visibility: visible;
+		}
+		.app.app [data-command="toggle-app-expanded"]::before {
+			mask-image: var(--mtds-icon-burger);
+		}
 		.app main {
-			margin-bottom: calc(var(--ds-size-12) + var(--mtdsc-app-spacing)); /* Make space for toggle-app-expanded button */
 			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
 			view-transition-name: none; /* No need to animate on mobile */
 		}
 
-		body:has([data-command="toggle-app-expanded"][aria-expanded="true"]) {
+		body:has(.app > dialog:modal, .app > dialog:modal ~ main) {
 			overflow: hidden; /* Prevent scroll when menu is open */
 		}
 	}
 }
 
-::view-transition-old(mtds-app--left),
-::view-transition-new(mtds-app--left),
-::view-transition-old(mtds-app--right),
-::view-transition-new(mtds-app--right) {
+::view-transition-old(mtds-app--sidebar),
+::view-transition-new(mtds-app--sidebar) {
 	height: 100%;
 	object-fit: none;
 	object-position: top left;

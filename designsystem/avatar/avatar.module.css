@@ -18,4 +18,9 @@
 	button.avatar {
 		cursor: pointer;
 	}
+	button.avatar:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
+	}
 }
