@@ -208,12 +208,10 @@
 			--dsc-button-background: transparent;
 			--dsc-button-border-color: transparent;
 			--mtds-tooltip-position: none;
-			--mobile: true; /* Used by JS */
 
-			inset: 0 0 auto auto;
-			margin: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5);
 			position: absolute;
-			visibility: visible;
+			inset: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5) auto
+				auto;
 		}
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);

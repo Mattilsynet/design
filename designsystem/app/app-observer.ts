@@ -15,11 +15,8 @@ const useTransition = (callback: () => void) => {
 function handleToggleClick({ target: el }: Event) {
 	if (el instanceof HTMLButtonElement && el.matches(CSS_TOGGLE))
 		useTransition(() => {
-			const isMobile =
-				getComputedStyle(el).getPropertyValue("--mobile") === "true";
-
 			// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
-			if (!isMobile) window.mtdsAppToggle?.();
+			if (getComputedStyle(el).position === "sticky") window.mtdsAppToggle?.();
 			else {
 				const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
 				sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
