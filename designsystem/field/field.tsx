@@ -76,9 +76,10 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			),
 		});
 
+	// Using suppressHydrationWarning to avoid Next.js vs field-observer.ts hydration conflict
 	return as ? (
 		<div {...shared}>
-			{!!label && <label>{label}</label>}
+			{!!label && <label suppressHydrationWarning>{label}</label>}
 			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
 			{!!description && <p>{description}</p>}
 			{affixes ? (
@@ -88,7 +89,12 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 					{!!suffix && <span>{suffix}</span>}
 				</FieldAffixes>
 			) : (
-				<Tag className={styles.input} ref={ref} {...rest} />
+				<Tag
+					className={styles.input}
+					suppressHydrationWarning
+					ref={ref}
+					{...rest}
+				/>
 			)}
 			{!!valid && <div className={styles.validation}>{valid}</div>}
 			{!!count && <p data-count={count} />}

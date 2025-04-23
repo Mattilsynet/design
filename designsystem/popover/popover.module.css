@@ -16,28 +16,33 @@
 		box-shadow: var(--mtdsc-popover-box-shadow);
 		box-sizing: border-box;
 		color: var(--mtdsc-popover-color); /* Needed to overwrite browser default */
-		height: auto;
-		inset: auto;
+		height: 0; /* Hide when closed */
+		inset: 0 auto auto 0;
 		list-style: none;
 		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		opacity: 0;
+		overflow: hidden;
 		padding: var(--mtdsc-popover-padding);
 		position: fixed;
+		transform: translateY(-2px);
 		transition-duration: .2s;
 		transition-property: opacity, transform, visibility;
 		visibility: hidden;
+		width: 0; /* Hide when closed */
 		width: max-content;
-		transform: translateY(-2px);
 		z-index: 9999;
 	}
 	:where(.popover:not([hidden])) {
 		display: block;
 	}
 	.popover:popover-open {
+		height: auto;
 		opacity: 1;
+		overflow: visible;
 		transform: none;
 		visibility: visible;
+		width: auto;
 	}
 	.popover:is(menu),
 	.popover:has(> menu:only-child) {
