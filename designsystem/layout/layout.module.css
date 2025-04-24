@@ -90,8 +90,9 @@
 	 * Flex
 	 */
 	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
+	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
-	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0; min-width: max-content }
+	.flex > [data-nowrap]:not(.flex) { min-width: max-content } /* .flex[data-nowrap] is allready controlled by flex-wrap: nowrap */
 	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
 	.flex[data-items="100"] > :not([data-self]), .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
 	.flex[data-items="150"] > :not([data-self]), .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
@@ -134,26 +135,39 @@
 	/**
 	 * Prose
 	 */
-	.prose > * {
-		margin-block: var(--ds-size-6);
-		max-width: 65ch;
+	.prose {
+		--mtdsc-prose-max-width: 65ch;
 	}
-	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
-		margin-block: 1em 0;
+	.prose > * {
+		margin-block: 1em;
+	}
+	.prose > :first-child {
+		margin-top: 0;
+	}
+	.prose > :last-child {
+		margin-bottom: 0;
+	}
+	.prose > :where(p, ul, ol) {
+		max-width: var(--mtdsc-prose-max-width);
 	}
 	.prose > :where(ul, ol):not([class]) {
 		padding-left: 1em;
-
-		& li {
-			margin-top: var(--ds-size-2);
-		}
-		& > li:first-child {
-			margin-top: 0;
-		}
+	}
+	.prose > :where(ul, ol):not([class]) > li:not(:first-child) {
+		margin-top: var(--ds-size-2);
+	}
+	.prose > :where(h1, h2, h3, h4, h5, h6) {
+		margin-block: 1.5em 0;
+		max-width: var(--mtdsc-prose-max-width);
+	}
+	.prose > :where(h1, h2, h3, h4, h5, h6) + * {
+		margin-top: .5em;
+	}
+	.prose > :where(h1) {
+		margin-bottom: .5em;
 	}
 
-	.prose > :where(h1, h2, h3, h4, h5, h6) {
-		&[data-size="lg"] {
+	/* 	&[data-size="lg"] {
 			margin-top: var(--ds-size-10);
 
 			& + p,
@@ -162,8 +176,9 @@
 				margin-top: var(--ds-size-6);
 			}
 		}
+		&:not([data-size]),
 		&[data-size="md"] {
-			margin-top: var(--ds-size-10);
+			margin-top: 1.5em;
 
 			& + p,
 			& + ul,
@@ -182,8 +197,8 @@
 				margin-top: var(--ds-size-2);
 			}
 		}
-	}
-	.prose > :first-child {
-		margin-block: 0;
-	}
+		&[data-size="2xs"] + * {
+			margin-top: var(--ds-size-2);
+		}
+	} */
 }

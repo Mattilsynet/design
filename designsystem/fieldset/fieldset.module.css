@@ -24,20 +24,20 @@
 				)
 		) {
 		& > legend::after {
+			align-items: center;
 			background: var(--ds-color-info-surface-tinted);
 			border-radius: var(--ds-border-radius-md);
 			border: 1px solid var(--ds-color-info-border-subtle);
 			box-sizing: border-box;
 			color: var(--ds-color-info-text-default);
 			content: var(--mtds-text-required);
-			display: inline-block;
+			display: inline-flex;
 			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
 			height: var(--ds-size-8);
-			line-height: var(--ds-body-xs-line-height);
-			margin-left: .25em;
+			margin-left: .4em;
 			padding: 0 var(--ds-size-2);
-			vertical-align: bottom;
+			vertical-align: text-top;
 			white-space: nowrap;
 		}
 		& label::after {

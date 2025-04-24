@@ -77,14 +77,7 @@
 	 * Expandable
 	 */
 	.table > tbody > tr:has(> :is(td, th) > button[aria-expanded]) {
-		/* Fake position: relative on `<tr>` elements: https://mtsknn.fi/blog/relative-tr-in-safari/ */
-		/* transform: translate(0);
-		clip-path: inset(0); */
 		transition: .2s;
-
-		/* &:has(> :is(td, th) > button[aria-expanded]:hover) {
-			background-color: var(--ds-color-accent-surface-hover);
-		} */
 
 		&:has(button[aria-expanded="false"]) + tr > td[colspan]:only-child {
 			display: none;
@@ -117,12 +110,6 @@
 				outline: var(--dsc-focus-outline);
 				outline-offset: var(--ds-border-width-focus);
 			}
-
-			/* &::after {
-				content: "";
-				inset: 0;
-				position: absolute;
-			} */
 
 			&::before {
 				background: currentcolor;
@@ -176,9 +163,9 @@
 	}
 
 	/**
-	 * Mobile versions (up to 960px)
+	 * Mobile versions (up to 768px)
 	 */
-	@media (max-width: 60em) {
+	@media (max-width: 48em) {
 		.table[data-mobile],
 		.table[data-mobile] > tbody,
 		.table[data-mobile] > tbody > tr,

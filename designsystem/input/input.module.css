@@ -13,6 +13,10 @@
 		--dsc-input-stroke: 0.045em;
 	}
 
+	.input:is(select) {
+		text-overflow: ellipsis; /* TODO: Add to DigiDir */
+	}
+
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 	.input[readonly]:disabled {
 		opacity: 1;
@@ -21,6 +25,8 @@
 	.input[type="checkbox"]:not([role="switch"]) {
 		border-radius: var(--ds-border-radius-md);
 	}
+
+	/* TODO: DigiDir prevent [size] on [type="number"] as it does not work anyway */
 
 	/* If list attribute exits, allow rendering dropdown chevron instead */
 	.input[type="search"]:not([list], :has(+ u-datalist)) {
@@ -92,12 +98,20 @@
 			background-position: calc(100% - var(--ds-size-3)) center;
 			background-repeat: no-repeat;
 			background-size: var(--ds-size-6);
+			min-width: 15ch; /* Prevent date icon from overlapping content */
 		}
 		/* Chrome: Keep, but hide native icon */
 		.input[type="date"]::-webkit-calendar-picker-indicator {
 			cursor: pointer;
 			opacity: 0;
 			width: var(--ds-size-6);
+		}
+	}
+
+	/* Fix Safari placeholder https://stackoverflow.com/q/73896040 */
+	@supports (-webkit-hyphens: none) {
+		.input[type="date"] {
+			color: initial;
 		}
 	}
 }

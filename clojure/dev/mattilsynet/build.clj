@@ -130,21 +130,21 @@
 (defn load-committed-pom []
   (:out (shell/sh "git" "cat-file" "-p" "HEAD:clojure/pom.xml")))
 
-(defn load-committed-readme []
-  (:out (shell/sh "git" "cat-file" "-p" "HEAD:clojure/README.md")))
-
 (defn get-version [pom]
   (second (re-find #"<version>([\d\.]+)</version>" pom)))
 
-(defn get-release-number [version]
-  (parse-long (last (str/split version #"\."))))
+(defn get-clojure-version []
+  (str/trim (:out (shell/sh "git" "rev-list" "--count" "HEAD" "--" "."))))
+
+(defn get-git-sha []
+  (str/trim (:out (shell/sh "git" "rev-parse" "--short=10" "HEAD"))))
 
 (defn bump-version [& _]
   (let [pom (load-committed-pom)
-        current (get-version pom)
-        release-num (get-release-number current)
         mtds-version (get package-json "version")
-        next (str mtds-version "." (inc release-num))]
-    (spit "pom.xml" (str/replace pom current next))
-    (spit "README.md" (str/replace (load-committed-readme) current next))
-    (println next)))
+        version (str mtds-version "." (get-clojure-version))]
+    (spit "pom.xml"
+          (-> pom
+              (str/replace #"(<version>).*(</version>)" (str "$1" version "$2"))
+              (str/replace #"(<tag>).*(</tag>)" (str "$1" (get-git-sha) "$2"))))
+    (println version)))

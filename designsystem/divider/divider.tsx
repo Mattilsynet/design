@@ -46,6 +46,7 @@ export type DividerProps = React.ComponentPropsWithoutRef<"hr"> & {
 		| 30
 		// Backwards compatibility:
 		| "none"
+		| "xs"
 		| "sm"
 		| "md"
 		| "lg"

@@ -23,5 +23,11 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": [".storybook/*", "designsystem", "identitet", "profilering"]
+	"include": [
+		".storybook/*",
+		"designsystem",
+		"identitet",
+		"package.json",
+		"profilering"
+	]
 }

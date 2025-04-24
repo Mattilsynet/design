@@ -49,7 +49,7 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<>
-			<Logo as="h1" />
+			<Logo href="/" />
 			<Logo href="/">
 				Helse
 				<wbr />
@@ -70,12 +70,12 @@ export const React: Story = {
 };
 
 export const WithEnvironment: Story = {
-	render: () => <h1 className={styles.logo} data-env="test"></h1>,
+	render: () => <a className={styles.logo} href="/" data-env="test"></a>,
 };
 
 export const WithEnvironmentBlue: Story = {
 	render: () => (
-		<h1 className={styles.logo} data-env="dev" data-color="info"></h1>
+		<a className={styles.logo} href="/" data-env="dev" data-color="info"></a>
 	),
 };
 

@@ -1,7 +1,6 @@
 import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
 import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
-import type { InputProps } from "../input/input";
 import { HelpText } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -10,8 +9,7 @@ import type {
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";
 
-type FieldBaseProps = InputProps & {
-	className?: InputProps["className"];
+type FieldBaseProps = {
 	count?: number;
 	description?: React.ReactNode;
 	error?: React.ReactNode; // Kept for backwards compatibility
@@ -20,7 +18,6 @@ type FieldBaseProps = InputProps & {
 	label?: React.ReactNode;
 	options?: Array<string | { label: string; value: string }>;
 	prefix?: string;
-	style?: InputProps["style"];
 	suffix?: string;
 	validation?: React.ReactNode;
 };
@@ -79,9 +76,10 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			),
 		});
 
+	// Using suppressHydrationWarning to avoid Next.js vs field-observer.ts hydration conflict
 	return as ? (
 		<div {...shared}>
-			{!!label && <label>{label}</label>}
+			{!!label && <label suppressHydrationWarning>{label}</label>}
 			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
 			{!!description && <p>{description}</p>}
 			{affixes ? (
@@ -91,7 +89,12 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 					{!!suffix && <span>{suffix}</span>}
 				</FieldAffixes>
 			) : (
-				<Tag className={styles.input} ref={ref} {...rest} />
+				<Tag
+					className={styles.input}
+					suppressHydrationWarning
+					ref={ref}
+					{...rest}
+				/>
 			)}
 			{!!valid && <div className={styles.validation}>{valid}</div>}
 			{!!count && <p data-count={count} />}

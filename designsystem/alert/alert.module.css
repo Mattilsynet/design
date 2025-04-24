@@ -3,6 +3,8 @@
 		composes: ds-alert from "@digdir/designsystemet-css";
 		--dsc-alert-border-color: var(--ds-color-border-subtle);
 		--dsc-alert-icon-url: var(--mtds-icon-info);
+		--dsc-alert-padding-block: var(--ds-size-5);
+		--dsc-alert-padding-inline-end: var(--ds-size-5);
 		position: relative; /* To position close */
 	}
 

@@ -1,0 +1,235 @@
+@layer mt.design {
+	/**
+	 * App layout
+	 * NOTE1: Selectors supports both direct child or as sibling of <main> for easier island architecture
+	 * NOTE2: Negative margin is used to avoid double spacing when using <main> as a sibling, while keeping ability for background colors
+	 * NOTE3: Global variables used to avoid Next.js hydration conflict
+	 */
+	:root {
+		--mtds-app-expanded: var(--mtds-app-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+		--mtds-app-expanded--false: var(--mtds-app-expanded,);
+		--mtds-app-expanded--true: var(--mtds-app-expanded,);
+	}
+	.app {
+		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
+		--mtdsc-app-spacing: var(--ds-size-4);
+		--negative: calc(var(--mtdsc-app-spacing) * -1);
+
+		box-sizing: border-box;
+		min-height: 100vh;
+		min-height: 100svh; /* Use small viewport height if supported */
+		padding: var(--mtdsc-app-spacing);
+		grid-template:
+			"header header" auto
+			"sidebar main" 1fr
+			"footer footer" auto / auto 1fr;
+	}
+	.app:where(:not([hidden])) {
+		display: grid;
+	}
+	.app > :not([hidden]) {
+		display: content; /* Allow nesting <div> inside app for easier island architecture  */
+	}
+
+	/* Hide relevant child elements with data-expanded attribute */
+	.app [data-app-expanded="true"]:not([hidden]) {
+		content-visibility: var(--mtds-app-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--false, absolute);
+	}
+	.app [data-app-expanded="false"]:not([hidden]) {
+		content-visibility: var(--mtds-app-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--true, absolute);
+	}
+
+	/* Double selector to increase specificity */
+	.app.app [data-command="toggle-app-expanded"] {
+		--dsc-button-background: var(--ds-color-background-default);
+		--dsc-button-border-color: var(--ds-color-border-subtle);
+		--mtds-tooltip-position: top;
+		grid-area: sidebar;
+		bottom: var(--mtdsc-app-spacing);
+		margin-top: auto; /* Push to bottom */
+		min-width: min-content;
+		position: sticky;
+		width: 0;
+		z-index: 3;
+		view-transition-name: mtds-app--toggle;
+	}
+	.app.app [data-command="toggle-app-expanded"]::before {
+		font-size: 1.25em; /* Match button svg size */
+		mask-image: var(
+				--mtds-app-expanded--true,
+				var(--mtds-icon-sidebar-collapse)
+			)
+			var(--mtds-app-expanded--false, var(--mtds-icon-sidebar-expand));
+	}
+
+	/**
+	 * Header
+	 */
+	.app > header,
+	.app header:has(~ main) {
+		box-sizing: border-box;
+		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
+		grid-area: header;
+		margin: var(--negative) var(--negative) 0;
+		padding: var(--mtdsc-app-spacing);
+		align-items: center;
+
+		&:not([hidden]) {
+			display: flex;
+		}
+
+		& > :first-child {
+			margin-right: auto; /* Push logo to left */
+			min-width: 0; /* Allow shrinking if using breadcrumbs */
+		}
+	}
+
+	/**
+	 * Left side
+	 */
+	.app > dialog,
+	.app dialog:has(~ main) {
+		all: unset; /* Undo dialog styling */
+		background: var(--ds-color-background-default);
+		box-sizing: border-box;
+		color: var(--ds-color-text-default);
+		grid-area: sidebar;
+		margin-left: var(--negative);
+		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
+		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
+		view-transition-name: mtds-app--sidebar;
+		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
+			var(--mtds-app-expanded--false, right);
+
+		& menu > li {
+			margin-inline: var(--negative); /* Minus margin on li instead of menu to allow menu to be .sticky */
+		}
+		& menu [data-tooltip]::after {
+			content: var(--mtds-app-expanded--true, attr(data-tooltip));
+		}
+		& menu [data-badge] {
+			display: var(--mtds-app-expanded--true, contents); /* Allow right aligned badge when maximized */
+		}
+		& menu [data-badge]::before {
+			--small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
+			content: var(--mtds-app-expanded--true, attr(data-badge)) "";
+			margin-left: auto;
+			order: 1;
+		}
+	}
+
+	/* Sticky position */
+	.sticky {
+		margin-block: var(--negative);
+		padding-block: var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
+		position: var(--pos);
+		top: var(--top);
+	}
+
+	/**
+	 * Main
+	 * NOTE: <main> can only appear once on a page so no need for direct child selector
+	 */
+	.app main {
+		grid-area: main;
+		view-transition-name: mtds-app--main;
+	}
+
+	/**
+	 * Footer
+	 */
+	.app > footer,
+	.app main ~ footer {
+		background: var(--ds-color-background-default);
+		box-sizing: border-box;
+		color: var(--ds-color-text-subtle);
+		grid-area: footer;
+		margin: var(--mtdsc-app-spacing) var(--negative) var(--negative);
+		padding: var(--mtdsc-app-spacing);
+
+		/* Force info if not set */
+		&:not([data-color]) {
+			--ds-color-background-default: var(--ds-color-inverted-background-default);
+			--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
+			--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
+			--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
+			--ds-color-surface-active: var(--ds-color-inverted-surface-active);
+			--ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
+			--ds-color-border-default: var(--ds-color-inverted-border-default);
+			--ds-color-border-strong: var(--ds-color-inverted-border-strong);
+			--ds-color-base-default: var(--ds-color-inverted-base-default);
+			--ds-color-base-hover: var(--ds-color-inverted-base-hover);
+			--ds-color-base-active: var(--ds-color-inverted-base-active);
+			--ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
+			--ds-color-text-default: var(--ds-color-inverted-text-default);
+			--ds-color-base-contrast-subtle: var(
+				--ds-color-inverted-base-contrast-subtle
+			);
+			--ds-color-base-contrast-default: var(
+				--ds-color-inverted-base-contrast-default
+			);
+		}
+	}
+
+	/**
+	 * Maxium 768px
+	 */
+	@media (max-width: 48em) {
+		.app {
+			--mtds-app-expanded--true: initial;
+			--mtds-app-expanded--false: ;
+		}
+		.app > header,
+		.app header:has(~ main) {
+			padding-right: calc(var(--mtds-15) + var(--mtds-2));
+		}
+		.app > dialog,
+		.app dialog:has(~ main) {
+			inset: 0 auto 0 0;
+			margin: 0;
+			overflow: auto;
+			position: fixed;
+			z-index: 999;
+
+			&::backdrop {
+				background: rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+			}
+
+			&:not(:modal) {
+				left: -2em;
+				visibility: hidden;
+			}
+		}
+
+		.app.app [data-command="toggle-app-expanded"] {
+			--dsc-button-background: transparent;
+			--dsc-button-border-color: transparent;
+			--mtds-tooltip-position: none;
+
+			position: absolute;
+			inset: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5) auto
+				auto;
+		}
+		.app.app [data-command="toggle-app-expanded"]::before {
+			mask-image: var(--mtds-icon-burger);
+		}
+		.app main {
+			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
+			view-transition-name: none; /* No need to animate on mobile */
+		}
+
+		body:has(.app > dialog:modal, .app > dialog:modal ~ main) {
+			overflow: hidden; /* Prevent scroll when menu is open */
+		}
+	}
+}
+
+::view-transition-old(mtds-app--sidebar),
+::view-transition-new(mtds-app--sidebar) {
+	height: 100%;
+	object-fit: none;
+	object-position: top left;
+}
