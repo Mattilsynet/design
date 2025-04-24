@@ -18,15 +18,12 @@
 		--dsc-button-background: transparent;
 		--dsc-button-background--active: var(--ds-color-surface-active);
 		--dsc-button-background--hover: var(--ds-color-surface-hover);
-		--dsc-button-color: var(--ds-color-text-subtle);
+		--dsc-button-color: var(--ds-color-text-default);
 		--dsc-button-color--hover: var(--ds-color-text-default);
 	}
 
 	.button[data-variant="primary"] {
 		border: 0; /* Hide border to ensure equal heights */
-	}
-	.button[data-variant="secondary"] {
-		--dsc-button-border-color: var(--ds-color-text-subtle);
 	}
 
 	menu > li > .button[aria-pressed="true"],
