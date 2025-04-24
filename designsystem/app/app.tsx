@@ -43,7 +43,7 @@ export const App = Object.assign(AppComp, {
 	),
 	Sidebar: forwardRef<HTMLDialogElement, AppSidebarProps>(
 		function AppSidebar(rest, ref) {
-			return <dialog ref={ref} {...rest} />;
+			return <dialog role="navigation" ref={ref} {...rest} />;
 		},
 	),
 	Sticky: AppSticky,

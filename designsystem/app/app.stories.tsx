@@ -89,7 +89,7 @@ export const Default: Story = {
 				data-command="toggle-app-expanded"
 				data-tooltip="Navigasjon"
 			></button>
-			<dialog>
+			<dialog role="navigation">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -233,7 +233,7 @@ export const WithFooter: Story = {
 				data-command="toggle-app-expanded"
 				data-tooltip="Navigasjon"
 			></button>
-			<dialog>
+			<dialog role="navigation">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -316,7 +316,7 @@ export const WithComplexContent: Story = {
 				data-command="toggle-app-expanded"
 				data-tooltip="Navigasjon"
 			></button>
-			<dialog>
+			<dialog role="navigation">
 				<div className={styles.sticky}>
 					<div className={styles.prose}>
 						<h2
