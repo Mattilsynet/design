@@ -223,9 +223,9 @@ export const onMutation = <T extends Element>(
  */
 export const onLoaded = (callback: () => void) => {
 	if (!IS_BROWSER) return;
-	if (document.readyState === "complete")
-		window.requestAnimationFrame(callback); // Ensure we run after all other load events
-	else on(window, "load", callback);
+	const run = () => requestAnimationFrame(callback); // Ensure we run after all other load events
+	if (document.readyState === "complete") run();
+	else on(window, "load", run);
 };
 
 /**

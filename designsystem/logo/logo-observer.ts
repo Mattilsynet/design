@@ -6,7 +6,7 @@ const CSS_LOGO = styles.logo.split(" ")[0];
 function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 	if (logo?.isConnected && logo?.firstElementChild instanceof SVGSVGElement) {
 		for (const icon of document.head.querySelectorAll("link[rel~='icon']"))
-			icon.remove();
+			icon.setAttribute("rel", "disabled"); // Disable previous icon (but not remove is as this makes Next.js sad)
 
 		const svg = logo.firstElementChild;
 		const isDot = logo?.hasAttribute("data-env");
