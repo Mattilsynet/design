@@ -57,11 +57,12 @@ export const Default: Story = {
 				</button>
 				<button
 					aria-label="Meny"
-					className={styles.avatar}
-					data-size="xs"
+					className={styles.button}
 					popoverTarget="menu"
 					type="button"
-				></button>
+				>
+					<span className={styles.avatar} data-size="xs"></span>
+				</button>
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
@@ -131,12 +132,9 @@ export const React: Story = {
 				<Button>
 					<Bell />
 				</Button>
-				<Avatar
-					as="button"
-					data-size="xs"
-					aria-label="Meny"
-					popoverTarget="menu"
-				/>
+				<Button aria-label="Meny" popoverTarget="menu">
+					<Avatar data-size="xs" />
+				</Button>
 				<Popover as="menu" popover="auto" id="menu">
 					<li>
 						<Button href="/">
@@ -199,6 +197,7 @@ export const WithFooter: Story = {
 				<button type="button" className={styles.button}>
 					<Bell />
 				</button>
+
 				<button
 					aria-label="Meny"
 					className={styles.avatar}

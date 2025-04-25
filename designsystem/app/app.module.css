@@ -56,7 +56,6 @@
 		view-transition-name: mtds-app--toggle;
 	}
 	.app.app [data-command="toggle-app-expanded"]::before {
-		font-size: 1.25em; /* Match button svg size */
 		mask-image: var(
 				--mtds-app-expanded--true,
 				var(--mtds-icon-sidebar-collapse)

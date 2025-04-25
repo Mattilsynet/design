@@ -40,6 +40,10 @@
 		text-align: end;
 	}
 
+	.button > :is(svg, img) {
+		font-size: 1em;
+	}
+
 	.button::before,
 	.button > svg {
 		fill: currentColor;

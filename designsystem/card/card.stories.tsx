@@ -5,11 +5,12 @@ import {
 	HourglassHigh,
 	ListChecks,
 	MapPin,
+	PaperPlaneRight,
 	SmileyMeh,
 	UploadSimple,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Card, Grid, Group } from "../react";
+import { Card, Flex, Grid, Group, Heading, Tag } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -113,16 +114,7 @@ export const Responsive: Story = {
 								Groene Tuin
 							</span>
 							<span className={styles.info}>
-								<svg width={20} height={20}>
-									<text
-										dominantBaseline="central"
-										textAnchor="middle"
-										x="50%"
-										y="50%"
-									>
-										🇫🇷
-									</text>
-								</svg>
+								<i>🇫🇷</i>
 								Frankrike
 							</span>
 						</div>
@@ -139,9 +131,39 @@ export const Responsive: Story = {
 					</div>
 				</div>
 			</a>
+			<Card>
+				<Flex data-align="start">
+					<div data-self="250" data-fixed>
+						<small>Opprettet 01.01.1970</small>
+						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
+					</div>
+					<Flex data-self="500">
+						<Flex data-self="500" data-align="start">
+							<div data-self="200">
+								<div className={styles.info}>
+									<PaperPlaneRight />
+									Firmanavn AS
+								</div>
+								<div className={styles.info}>
+									<i>🇳🇱</i> Nederland
+								</div>
+							</div>
+							<div data-self="300" className={styles.info}>
+								<DownloadSimple />
+								Bomsterlandet importerer bomster AS,
+								<br />
+								Rogaland
+							</div>
+						</Flex>
+						<Tag data-fixed data-nowrap data-color="info" data-icon="false">
+							Skal på tilsyn
+						</Tag>
+					</Flex>
+				</Flex>
+			</Card>
 			<div className={styles.card}>
 				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed="md">
+					<h2 data-size="md" data-self="250" data-fixed>
 						Bambus
 					</h2>
 					<div
@@ -185,7 +207,7 @@ export const Responsive: Story = {
 			</div>
 			<div className={styles.card}>
 				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed="md">
+					<h2 data-size="md" data-self="250" data-fixed>
 						Burgern
 					</h2>
 					<div
@@ -237,7 +259,7 @@ export const Responsive: Story = {
 			</div>
 			<div className={styles.card}>
 				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed="md">
+					<h2 data-size="md" data-self="250" data-fixed>
 						Den lekke tomat
 					</h2>
 					<div

@@ -14,10 +14,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<u-details class={styles.details}>
-			<u-summary>Åpne/lukk</u-summary>
-			Innhold
-		</u-details>
+		<>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details}>
+				<u-summary>Åpne/lukk</u-summary>
+				Innhold
+			</u-details>
+		</>
 	),
 };
 

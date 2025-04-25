@@ -18,10 +18,47 @@ declare global {
 	}
 }
 
+function urlTheme() {
+	const top = window.top?.location || window.location;
+	const url = new URL(top.href);
+	const globals = new URLSearchParams(
+		url.searchParams.get("globals")?.replace(/;/g, "&").replace(/:/g, "="),
+	);
+	const theme = globals.get("theme") || "Auto";
+	const store = window.localStorage.getItem("theme") || "Auto";
+	window.localStorage.setItem("theme", theme);
+
+	// If no theme is set in URL, but one is stored, update URL
+	if (!globals.get("theme") && theme !== store) {
+		globals.set("theme", store);
+		url.searchParams.set(
+			"globals",
+			globals.toString().replace(/&/g, ";").replace(/=/g, ":"),
+		);
+		top.replace(url.toString());
+	}
+	return theme;
+}
+
+// Setup color scheme and language
+function useTheme() {
+	useEffect(() => {
+		const theme = urlTheme();
+		document.documentElement.setAttribute("lang", "no");
+		document.documentElement.setAttribute(
+			"data-color-scheme",
+			theme.toLowerCase(),
+		);
+	});
+}
+
+// Upate url if theme is stored but not in URL
+if (typeof window !== "undefined") urlTheme();
+
 export default {
 	decorators: [
 		(Story) => {
-			useEffect(() => document.documentElement.setAttribute("lang", "no"), []); // Set Nowegian language
+			useTheme();
 			return <Story />;
 		},
 		withThemeByDataAttribute({
@@ -44,13 +81,7 @@ export default {
 				layout: "centered",
 			},
 			container: (props: DocsContainerProps) => {
-				let scheme = "auto";
-
-				try {
-					// @ts-expect-error store might not be set
-					scheme = props.context.store.userGlobals.globals.theme.toLowerCase();
-				} catch (err) {}
-
+				useTheme();
 				useEffect(() => {
 					// Setup Matomo tracking
 					const isLocal = window.location.hostname === "localhost";
@@ -74,10 +105,6 @@ export default {
 							}),
 						);
 					}
-
-					// Set color scheme and language
-					document.documentElement.setAttribute("data-color-scheme", scheme);
-					document.documentElement.setAttribute("lang", "no");
 
 					// Paint colors blockqoutes based on emojis
 					for (const el of document.querySelectorAll(
@@ -119,7 +146,7 @@ export default {
 								?.scrollIntoView({ behavior: "smooth" });
 						}
 					});
-				}, [scheme]);
+				}, []);
 
 				return (
 					<Unstyled>

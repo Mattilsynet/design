@@ -7,7 +7,7 @@ import styles from '../styles.module.css';
 
 # App
 - Bruk klassen `app` på typisk `<body>` eller et element inni
-- Legg inn `<header>`, `<dialog role="navigation">` (for sidemeny), `<main>` og evt. `<footer>` som barn
+- Legg inn `<header>`, `<dialog role="navigation">` (for sidemeny), `<main>` og evt. `<footer>`
 - Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
 - **React?** Bruk `App`, `App.Header`, `App.Sidebar`,  `App.Sticky`,  `App.Main` og `App.Footer`
 - **Next.js?** Bruk `<App.Script>` i `<head>` for å tegne minimert/ekspanert sidemeny uten <button type="button" data-popover="inline" popoverTarget='fouc'>FOUC</button><div className={styles.popover} popover="auto" id="fouc">Flash of unstyled content</div>
@@ -18,6 +18,7 @@ import styles from '../styles.module.css';
 
 ## Ekspander og minimer sideområde
 - Legg en `<button>` med klassen `button` og `data-command="app-expand"` før `<dialog role="navigation">` for å få automatisk ekspandering/minimering av sideområde
+- Bruk `data-app-expanded="true | false"` på innholdselementer for å velge om de vises eller skjules når ekspandert/minimert
 - Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
 <div className="sbdocs-canvas-thumbnail">
   <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se ekspandering i ny fane</a>

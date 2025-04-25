@@ -9,7 +9,7 @@
 	.field > p:first-of-type {
 		margin-top: 0;
 	}
-	.field > * {
+	.field > :not(:disabled, [aria-disabled="true"]) {
 		opacity: 1; /* Overwrite DigiDir disabled */
 	}
 	.field textarea {

@@ -18,6 +18,7 @@ type FieldBaseProps = {
 	label?: React.ReactNode;
 	options?: Array<string | { label: string; value: string }>;
 	prefix?: string;
+	readOnly?: boolean; // Allow readoOnly also on <select>
 	suffix?: string;
 	validation?: React.ReactNode;
 };

@@ -16,11 +16,11 @@
 		background: currentcolor;
 		content: "";
 		font-size: var(--mtdsc-spinner-size);
-		height: var(--mtds-icon-size);
+		height: 1em;
 		mask: center / contain no-repeat var(--mtds-icon-spinner);
 		overflow: clip;
 		white-space: nowrap;
-		width: var(--mtds-icon-size);
+		width: 1em;
 	}
 	.spinner:empty:before {
 		content: var(--mtds-text-loading); /* Ensure content for screen readers */

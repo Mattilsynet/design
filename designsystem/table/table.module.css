@@ -72,6 +72,13 @@
 		--dsc-table-border-color: transparent;
 		--dsc-table-padding: var(--mtds-1) 0;
 	}
+	/* Remove padding when no line */
+	.table:not([data-border]) > * > tr > :first-child {
+		padding-left: 0;
+	}
+	.table:not([data-border]) > * > tr > :last-child {
+		padding-right: 0;
+	}
 
 	/**
 	 * Expandable
@@ -115,12 +122,12 @@
 				background: currentcolor;
 				content: "";
 				display: inline-block;
-				height: var(--mtds-icon-size);
+				height: 1em;
 				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mtds-icon-chevron);
 				transition: rotate .2s;
-				vertical-align: -.3em;
-				width: var(--mtds-icon-size);
+				vertical-align: -.2em;
+				width: 1em;
 			}
 
 			&[aria-expanded="true"]::before {

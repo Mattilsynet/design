@@ -16,8 +16,8 @@
 		outline: 2px none currentcolor;
 
 		& > svg {
-			width: var(--mtds-icon-size);
-			height: var(--mtds-icon-size);
+			width: 1em;
+			height: 1em;
 			vertical-align: middle; /* Align img or svg icon with text */
 		}
 

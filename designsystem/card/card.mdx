@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { PkgInfo } from '../../.storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
+import { Alert } from '../react';
 import * as stories from './card.stories';
 
 <Meta of={stories} />
@@ -16,7 +17,14 @@ import * as stories from './card.stories';
 <Canvas of={stories.Interactive} />
 
 ## Responsiv
-- Legg `flex` og `grid` inni `card` for å lage svært responsive design
+- Legg `flex` og `grid` inni `card` for å lage responsive design
+
+<Alert>
+**Å lage gode responsive kort er utfordrende**, fordi gruppering og brekkpunkter burde bestemmes av innholdet.
+I stede for å tilby et fastlåst "one size fits nobody" design, gir vi deg heller stor fleksibilitet, men dermed også mer ansvar.
+Frykt ikke dog! Du kan kontakt oss på [#designsystem](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) så kommer vi i gang sammen 💙
+</Alert>
+
 <Canvas of={stories.Responsive} />
 
 ## Gruppering

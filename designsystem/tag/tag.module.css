@@ -10,9 +10,10 @@
 		border-radius: var(--mtdsc-tag-border-radius);
 		border: var(--mtdsc-tag-border-width) var(--mtdsc-tag-border-solid)
 			var(--ds-color-border-subtle);
+		flex-shrink: 0; /* If placed in display: flex */
+		font-size: var(--ds-font-size-minus-1);
 		font-variant-numeric: tabular-nums;
 		gap: var(--mtdsc-tag-gap);
-		flex-shrink: 0; /* If placed in display: flex */
 	}
 
 	/**
@@ -25,10 +26,10 @@
 		background: currentcolor;
 		content: "";
 		flex-shrink: 0;
-		height: var(--mtds-icon-size);
+		height: 1em;
 		mask: center / contain no-repeat
 			var(--dsc-tag-icon-url, var(--mtds-icon-success)) content-box;
-		width: var(--mtds-icon-size);
+		width: 1em;
 	}
 	.tag[data-color="info"] {
 		--dsc-tag-icon-url: var(--mtds-icon-info);
