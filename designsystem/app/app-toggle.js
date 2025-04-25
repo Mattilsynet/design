@@ -9,11 +9,13 @@ if (
 
 		document.adoptedStyleSheets.push(sheet);
 		window.mtdsAppToggle = (toggle = true) => {
-			const prev = !window.localStorage.getItem(key)?.includes("false");
-			const next = toggle ? !prev : prev;
+			try {
+				const prev = !window.localStorage.getItem(key)?.includes("false");
+				const next = toggle ? !prev : prev;
 
-			sheet.replaceSync(`:root { ${key}: var(${key}--${next})}`);
-			window.localStorage.setItem(key, next);
+				sheet.replaceSync?.(`:root { ${key}: var(${key}--${next})}`);
+				window.localStorage.setItem(key, next);
+			} catch (err) {} // LocalStorage is full or replaceSync is not supported
 		};
 		window.mtdsAppToggle(false); // Set and store initial state
 	})();

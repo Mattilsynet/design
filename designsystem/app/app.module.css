@@ -12,13 +12,13 @@
 	}
 	.app {
 		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--mtdsc-app-spacing: var(--ds-size-4);
-		--negative: calc(var(--mtdsc-app-spacing) * -1);
+		--spacing: var(--ds-size-4);
+		--negative: calc(var(--spacing) * -1);
 
 		box-sizing: border-box;
 		min-height: 100vh;
 		min-height: 100svh; /* Use small viewport height if supported */
-		padding: var(--mtdsc-app-spacing);
+		padding: var(--spacing);
 		grid-template:
 			"header header" auto
 			"sidebar main" 1fr
@@ -47,7 +47,7 @@
 		--dsc-button-border-color: var(--ds-color-border-subtle);
 		--mtds-tooltip-position: top;
 		grid-area: sidebar;
-		bottom: var(--mtdsc-app-spacing);
+		bottom: var(--spacing);
 		margin-top: auto; /* Push to bottom */
 		min-width: min-content;
 		position: sticky;
@@ -73,7 +73,7 @@
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
 		grid-area: header;
 		margin: var(--negative) var(--negative) 0;
-		padding: var(--mtdsc-app-spacing);
+		padding: var(--spacing);
 		align-items: center;
 
 		&:not([hidden]) {
@@ -97,7 +97,7 @@
 		color: var(--ds-color-text-default);
 		grid-area: sidebar;
 		margin-left: var(--negative);
-		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
+		padding: var(--ds-size-5) calc(var(--spacing) * 2);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
 		view-transition-name: mtds-app--sidebar;
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
@@ -123,7 +123,7 @@
 	/* Sticky position */
 	.sticky {
 		margin-block: var(--negative);
-		padding-block: var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
+		padding-block: var(--spacing) var(--mtds-18); /* Make space for <button> */
 		position: var(--pos);
 		top: var(--top);
 	}
@@ -146,8 +146,8 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-subtle);
 		grid-area: footer;
-		margin: var(--mtdsc-app-spacing) var(--negative) var(--negative);
-		padding: var(--mtdsc-app-spacing);
+		margin: var(--spacing) var(--negative) var(--negative);
+		padding: var(--spacing);
 
 		/* Force info if not set */
 		&:not([data-color]) {
@@ -210,14 +210,13 @@
 			--mtds-tooltip-position: none;
 
 			position: absolute;
-			inset: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5) auto
-				auto;
+			inset: var(--spacing) calc(var(--spacing) * 0.5) auto auto;
 		}
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);
 		}
 		.app main {
-			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
+			margin-inline: calc(var(--spacing) * -0.5);
 			view-transition-name: none; /* No need to animate on mobile */
 		}
 
