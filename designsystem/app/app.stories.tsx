@@ -337,23 +337,6 @@ export const WithComplexContent: Story = {
 										<Signature />
 									</span>
 								</a>
-								{/* <menu>
-									<li>
-										<a
-											className={styles.button}
-											href="/"
-											data-tooltip="Inboks"
-											aria-current="page"
-										>
-											<TrayArrowDown />
-										</a>
-									</li>
-									<li>
-										<a className={styles.button} href="/" data-tooltip="Sendt">
-											<PaperPlane />
-										</a>
-									</li>
-								</menu> */}
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Behandling">
