@@ -15,7 +15,7 @@ function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 		const back = style.getPropertyValue("--mtds-logo-color");
 		const icon = svg.outerHTML
 			.replace(/\n+/g, " ") // Prevent line breaks
-			.replace(/(fill|width|height|xmlns)=\S+/gi, "")
+			.replace(/(fill|width|height|xmlns)=[^\s>]+/gi, "")
 			.replace("<svg", `<svg width="40" height="40" fill="${text}"`);
 
 		document.head.appendChild(
