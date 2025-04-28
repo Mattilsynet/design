@@ -15,14 +15,18 @@
 				var(--dsc-details-icon-gap)
 			);
 	}
-
+	.details > :is(summary, u-summary) {
+		transition: font-weight .2s;
+	}
+	.details[open] > :is(summary, u-summary) {
+		font-weight: 700;
+	}
 	.details > :is(summary, u-summary)::before {
 		border: 0;
 		margin: 0;
 		padding: 0;
 		transition: rotate .2s ease-out;
 	}
-
 	.details[open] > :is(summary, u-summary)::before {
 		rotate: -180deg;
 	}
@@ -38,7 +42,6 @@
 		transition-duration: 400ms;
 		transition-property: content-visibility, height, padding;
 	}
-
 	.details:not([open])::details-content,
 	.details:not([open])::part(details-content) {
 		padding-block: 0px;

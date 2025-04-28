@@ -1,10 +1,12 @@
 @layer mt.design {
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
+		text-wrap: balance; /* Make required tag wrap pretty */
 	}
 	/* Reset designsystemet */
 	.fieldset > * {
 		margin-top: var(--ds-size-3);
+		text-wrap: wrap; /* Reset text-wrap */
 	}
 	.fieldset > legend {
 		display: contents;
@@ -24,19 +26,16 @@
 				)
 		) {
 		& > legend::after {
-			align-items: center;
 			background: var(--ds-color-info-surface-tinted);
 			border-radius: var(--ds-border-radius-md);
-			border: 1px solid var(--ds-color-info-border-subtle);
-			box-sizing: border-box;
+			border: var(--ds-border-width-default) solid
+				var(--ds-color-info-border-subtle);
 			color: var(--ds-color-info-text-default);
 			content: var(--mtds-text-required);
-			display: inline-flex;
 			font-size: var(--ds-body-xs-font-size);
 			font-weight: normal;
-			height: var(--ds-size-8);
 			margin-left: .4em;
-			padding: 0 var(--ds-size-2);
+			padding: .18em var(--ds-size-2);
 			vertical-align: text-top;
 			white-space: nowrap;
 		}
