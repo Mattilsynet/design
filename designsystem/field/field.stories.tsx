@@ -264,6 +264,29 @@ export const WithCharacterCount: Story = {
 		<>
 			<div className={styles.field}>
 				<label>Ledetekst</label>
+				<p>Beskrivelse</p>
+				<textarea className={styles.input} defaultValue="Noe innhold" />
+				<p data-count="20" />
+			</div>
+		</>
+	),
+};
+
+export const WithCustomDescriptionTag: Story = {
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Ledetekst</label>
+				<div data-description>
+					Beskrivelse i en <code>&lt;div data-description&gt;</code>
+					<p>
+						Indre <code>&lt;p&gt;</code> tags ignoreres
+					</p>
+				</div>
 				<textarea className={styles.input} defaultValue="Noe innhold" />
 				<p data-count="20" />
 			</div>
