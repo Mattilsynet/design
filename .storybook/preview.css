@@ -16,52 +16,18 @@ u-tabpanel > pre > .docblock-source {
 	max-width: 50rem; /* 800px */
 }
 
-.sbdocs-content > * {
-	margin-block: 0;
+.sb-anchor {
+	margin: 0;
 }
-.sbdocs-content > * + *:not(u-details + u-details, details + details) {
-	margin-block-start: 1rem;
-}
-
-.sbdocs-h1 {
-	font-size: 3em;
-	line-height: 1.2;
-	margin-block: 0;
+.sbdocs-content h1 {
+	margin-top: 0;
 }
 
-.sbdocs-h2,
-.sbdocs-h3 {
-	margin-block-start: 1.75rem;
-
-	& + * {
-		margin-top: .25rem;
-	}
-}
-
-.sbdocs-h3 {
-	font-size: 1em;
-}
-
-.sbdocs-h2,
-.sbdocs-blockquote {
+.sbdocs-content blockquote {
 	margin-inline: 0;
-	font-size: 1.375em;
-	text-wrap: balance;
 }
-
-.sbdocs-blockquote {
-	margin-block: 1rem 1.75rem;
-
-	&[class*="alert"] {
-		font-size: 1.125rem;
-
-		& > * {
-			margin-block: 0;
-		}
-		& > :not(h1, h2, h3, h4, h5, h6) + * {
-			margin-top: 1em;
-		}
-	}
+.sbdocs-content blockquote :is(h2, h3, h4, h5, h6) {
+	font-size: inherit;
 }
 
 .sbdocs-content.sbdocs-content code {

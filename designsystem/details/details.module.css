@@ -15,6 +15,12 @@
 				var(--dsc-details-icon-gap)
 			);
 	}
+	.details + .details {
+		margin-top: 0;
+	}
+	.details:has(+ .details) {
+		margin-bottom: 0;
+	}
 	.details > :is(summary, u-summary) {
 		transition: font-weight .2s;
 	}
