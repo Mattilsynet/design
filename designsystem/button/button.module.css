@@ -153,6 +153,7 @@
 		border-radius: var(--ds-border-radius-md);
 		font-weight: normal;
 		justify-content: start;
+		text-align: start;
 		width: 100%;
 	}
 }
