@@ -56,7 +56,8 @@
 		margin-top: 1em;
 	}
 	.alert :is(h2, h3, h3, h4):not([data-size]):first-child {
-		font-size: 1em;
+		font-size: var(--ds-heading-2xs-font-size);
+		line-height: var(--ds-heading-2xs-line-height);
 	}
 
 	/**
