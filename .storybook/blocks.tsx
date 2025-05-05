@@ -9,7 +9,7 @@ export const JumpTo = () => {
 
 	useEffect(() => {
 		setLinks(
-			Array.from(document.querySelectorAll(".sbdocs-h2[id]"), (h2) => ({
+			Array.from(document.querySelectorAll("h2"), (h2) => ({
 				text: h2.textContent || "",
 				href: `#${h2.id}`,
 			})),

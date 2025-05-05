@@ -4,12 +4,12 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
-import { styles } from "../designsystem";
+import styles from "../designsystem/styles.module.css";
+import "../designsystem"; // Load JS functionaility
 import "./preview.css";
 
-const CSS = styles as unknown as Record<string, string>; // Fix internal typings
-const CSS_ALERT = CSS.alert.split(" ");
-const CSS_TABLE = CSS.table.split(" ");
+const CSS_ALERT = styles.alert.split(" ");
+const CSS_TABLE = styles.table.split(" ");
 const MATOMO = "mattilsynet.matomo.cloud";
 
 declare global {
@@ -106,18 +106,24 @@ export default {
 						);
 					}
 
+					// Make prose
+					document
+						.querySelector(".sbdocs-content")
+						?.classList.add(styles.prose);
+
 					// Paint colors blockqoutes based on emojis
-					for (const el of document.querySelectorAll(
-						".sbdocs-blockquote:not(h1 + .sbdocs-blockquote)",
+					for (const quote of document.querySelectorAll(
+						".sbdocs-content blockquote:not(h1 + blockquote)",
 					)) {
 						const colors = { "❌": "danger", "⚠️": "warning", "✅": "success" };
 						const color = Object.entries(colors).find(([icon]) =>
-							el.textContent?.includes(icon),
+							quote.textContent?.includes(icon),
 						)?.[1];
 
-						el.innerHTML = el.innerHTML?.replace(/(❌|✅|⚠️)/, "");
-						el.classList.add(...CSS_ALERT);
-						el.setAttribute("data-color", color || "info");
+						quote.innerHTML = quote.innerHTML?.replace(/(❌|✅|⚠️)/, "");
+						quote.classList.add(...CSS_ALERT);
+						quote.setAttribute("data-color", color || "info");
+						quote.removeAttribute("data-size");
 					}
 
 					// Hide BR from screen readers
@@ -152,13 +158,19 @@ export default {
 					<Unstyled>
 						<MDXProvider
 							components={{
-								h1: (props) => <h1 {...props} className="sbdocs-h1" />,
-								h2: (props) => <h2 {...props} className="sbdocs-h2" />,
-								h3: (props) => <h3 {...props} className="sbdocs-h3" />,
-								h4: (props) => <h4 {...props} className="sbdocs-h4" />,
-								blockquote: (props) => (
-									<blockquote {...props} className="sbdocs-blockquote" />
+								h1: (props) => (
+									<h1 {...props} className={styles.heading} data-size="2xl" />
 								),
+								h2: (props) => (
+									<h2 {...props} className={styles.heading} data-size="lg" />
+								),
+								h3: (props) => (
+									<h3 {...props} className={styles.heading} data-size="md" />
+								),
+								h4: (props) => (
+									<h4 {...props} className={styles.heading} data-size="sm" />
+								),
+								blockquote: (props) => <blockquote {...props} data-size="xl" />,
 								ol: (props) => <ol {...props} className="sbdocs-ol" />,
 								ul: (props) => <ul {...props} className="sbdocs-ul" />,
 								p: (props) => <p {...props} className="sbdocs-p" />,

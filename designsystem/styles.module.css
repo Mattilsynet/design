@@ -102,9 +102,9 @@
 		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.0575em + 0.3vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
 		--ds-heading-sm-font-size: calc(clamp(1.3125em, 1.245em + 0.3vw, 1.5em) * var(--ds-md-rem)); /* 21px => 24px */
 		--ds-heading-md-font-size: calc(clamp(1.5em, 1.365em + 0.6vw, 1.875em) * var(--ds-md-rem)); /* 24px => 30px */
-		--ds-heading-lg-font-size: calc(clamp(1.625em, 1.4em + 1vw, 2.25em) * var(--ds-md-rem)); /* 26px => 36px */
-		--ds-heading-xl-font-size: calc(clamp(1.875em, 1.47em + 1.8vw, 3em) * var(--ds-md-rem)); /* 30px => 48px */
-		--ds-heading-2xl-font-size: calc(clamp(2.25em, 1.71em + 2.4vw, 3.75em) * var(--ds-md-rem)); /* 36px => 60px */
+		--ds-heading-lg-font-size: calc(clamp(1.875em, 1.74em + 0.6vw, 2.25em) * var(--ds-md-rem)); /* 30px => 36px */
+		--ds-heading-xl-font-size: calc(clamp(2.25em, 2.07em + 0.8vw, 2.75em) * var(--ds-md-rem)); /* 36px => 44px */
+		--ds-heading-2xl-font-size: calc(clamp(2.75em, 2.39em + 1.6vw, 3.75em) * var(--ds-md-rem)); /* 44px => 60px */
 
 		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
 		--ds-font-weight-bold: 700; /* Add missing font-weight */

@@ -205,7 +205,7 @@ export function Epost() {
 						</a>
 						<br />
 						<a
-							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+							href="https://www.mattilsynet.no/kontakt-oss"
 							style={{ color: "inherit" }}
 						>
 							Kontakt Mattilsynet

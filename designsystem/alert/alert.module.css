@@ -52,11 +52,16 @@
 	.alert > * {
 		margin-block: 0;
 	}
-	.alert > :not(h2, h3, h4, h5, h6) + * {
+	.alert > * + * {
 		margin-top: 1em;
 	}
-	.alert :is(h2, h3, h3, h4):not([data-size]):first-child {
-		font-size: 1em;
+	.alert > :is(h2, h3, h3, h4):first-child {
+		font-size: var(--ds-heading-2xs-font-size);
+		letter-spacing: var(--ds-heading-2xs-letter-spacing);
+		line-height: var(--ds-heading-2xs-line-height);
+	}
+	.alert > :is(h2, h3, h3, h4):first-child + * {
+		margin-top: var(--ds-size-1);
 	}
 
 	/**

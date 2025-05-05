@@ -36,23 +36,23 @@
     },
     "6": {
       "$type": "fontSizes",
-      "$value": "30"
+      "$value": "28"
     },
     "7": {
       "$type": "fontSizes",
-      "$value": "36"
+      "$value": "35"
     },
     "8": {
       "$type": "fontSizes",
-      "$value": "48"
+      "$value": "42"
     },
     "9": {
       "$type": "fontSizes",
-      "$value": "60"
+      "$value": "52"
     },
     "10": {
       "$type": "fontSizes",
-      "$value": "72"
+      "$value": "70"
     }
   },
   "letter-spacing": {
