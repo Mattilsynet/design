@@ -48,7 +48,7 @@ function useTheme() {
 
 		document.documentElement.setAttribute("lang", "no");
 		document.documentElement.setAttribute("data-color-scheme", color);
-		document.documentElement.setAttribute("data-size", size);
+		document.body.setAttribute("data-size", size); // Need to be on body to keep "REM"
 	});
 }
 
