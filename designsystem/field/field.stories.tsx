@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 // import { useEffect, useRef, useState } from "react";
 // import {
 // 	type UHTMLTagsElement,
@@ -193,6 +194,51 @@ export const Required: Story = {
 			<input type="text" required className={styles.input} />
 		</div>
 	),
+};
+
+export const Indeterminate: Story = {
+	render: function Render() {
+		const [checked, setChecked] = useState(["1", "2"]);
+		const all = ["1", "2", "3"];
+		const isAll = checked.length === all.length;
+
+		const onChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+			setChecked(
+				checked.includes(target.value)
+					? checked.filter((v) => v !== target.value)
+					: [...checked, target.value],
+			);
+
+		return (
+			<fieldset className={styles.fieldset}>
+				<legend>Velg alternativer</legend>
+				<div className={styles.field}>
+					<label>Velg alle</label>
+					<input
+						type="checkbox"
+						className={styles.input}
+						checked={isAll}
+						onChange={() => setChecked(isAll ? [] : all)}
+						ref={(el) => {
+							if (el) el.indeterminate = !isAll && !!checked.length;
+						}}
+					/>
+				</div>
+				{all.map((value) => (
+					<div className={styles.field} key={value}>
+						<label>Alternativ 1</label>
+						<input
+							checked={checked.includes(value)}
+							className={styles.input}
+							onChange={onChange}
+							type="checkbox"
+							value={value}
+						/>
+					</div>
+				))}
+			</fieldset>
+		);
+	},
 };
 
 export const Toggles: Story = {
