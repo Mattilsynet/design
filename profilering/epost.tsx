@@ -150,7 +150,7 @@ export function Epost() {
 					</label>
 					<p>
 						<a
-							href="https://www.mattilsynet.no/kontakt-oss/finn-ditt-naermeste-kontor"
+							href="https://www.mattilsynet.no/kontakt-oss/finn-kontorsted"
 							target="_blank"
 							rel="noreferrer"
 						>
