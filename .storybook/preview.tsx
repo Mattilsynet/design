@@ -24,8 +24,8 @@ function urlTheme() {
 	const globals = new URLSearchParams(
 		url.searchParams.get("globals")?.replace(/;/g, "&").replace(/:/g, "="),
 	);
-	const theme = globals.get("theme") || "Auto";
-	const store = window.localStorage.getItem("theme") || "Auto";
+	const theme = globals.get("theme") || "Auto medium";
+	const store = window.localStorage.getItem("theme") || "Auto medium";
 	window.localStorage.setItem("theme", theme);
 
 	// If no theme is set in URL, but one is stored, update URL
@@ -43,12 +43,12 @@ function urlTheme() {
 // Setup color scheme and language
 function useTheme() {
 	useEffect(() => {
-		const theme = urlTheme();
+		const [color, scale] = urlTheme().toLowerCase().split(" ");
+		const size = { small: "sm", medium: "md", large: "lg" }[scale] || "md";
+
 		document.documentElement.setAttribute("lang", "no");
-		document.documentElement.setAttribute(
-			"data-color-scheme",
-			theme.toLowerCase(),
-		);
+		document.documentElement.setAttribute("data-color-scheme", color);
+		document.documentElement.setAttribute("data-size", size);
 	});
 }
 
@@ -62,12 +62,17 @@ export default {
 			return <Story />;
 		},
 		withThemeByDataAttribute({
-			defaultTheme: "Auto",
-			attributeName: "data-color-scheme",
+			defaultTheme: "Auto medium",
 			themes: {
-				Auto: "auto",
-				Light: "light",
-				Dark: "dark",
+				"Auto small": "auto",
+				"Auto medium": "auto",
+				"Auto large": "auto",
+				"Light small": "light",
+				"Light medium": "light",
+				"Light large": "light",
+				"Dark small": "dark",
+				"Dark medium": "dark",
+				"Dark large": "dark",
 			},
 		}),
 	],
