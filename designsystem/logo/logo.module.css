@@ -80,8 +80,7 @@
 			content: var(--mtds-text-logo);
 			display: block;
 			font-size: .63em;
-			line-height: 1.25;
-			margin-bottom: .1em;
+			line-height: var(--ds-line-height-sm);
 		}
 	}
 
