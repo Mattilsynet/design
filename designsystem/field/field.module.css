@@ -33,11 +33,11 @@
 			var(--ds-color-info-border-subtle);
 		color: var(--ds-color-info-text-default);
 		content: var(--mtds-text-required);
-		font-size: var(--ds-body-xs-font-size);
+		font-size: .75em;
 		font-weight: normal;
 		margin-left: .4em;
 		padding: .18em var(--ds-size-2);
-		vertical-align: text-top;
+		vertical-align: .1em;
 		white-space: nowrap;
 	}
 
