@@ -58,7 +58,6 @@ export const React: Story = {
 			<>
 				<Button onClick={() => setOpen(true)}>Open</Button>
 				<Dialog
-					className={styles.dialog}
 					onClose={() => setOpen(false)}
 					open={open}
 				>
