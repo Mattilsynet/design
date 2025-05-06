@@ -166,39 +166,8 @@
 	.prose > :where(h1) {
 		margin-bottom: .5em;
 	}
-
-	/* 	&[data-size="lg"] {
-			margin-top: var(--ds-size-10);
-
-			& + p,
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-6);
-			}
-		}
-		&:not([data-size]),
-		&[data-size="md"] {
-			margin-top: 1.5em;
-
-			& + p,
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-2);
-			}
-		}
-		&[data-size="sm"] {
-			margin-top: var(--ds-size-6);
-
-			& + p {
-				margin-top: var(--ds-size-1);
-			}
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-2);
-			}
-		}
-		&[data-size="2xs"] + * {
-			margin-top: var(--ds-size-2);
-		}
-	} */
+	.prose > :where(button) {
+		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */
+		width: fit-content;
+	}
 }
