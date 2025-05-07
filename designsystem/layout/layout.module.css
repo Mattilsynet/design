@@ -161,10 +161,7 @@
 		max-width: var(--mtdsc-prose-max-width);
 	}
 	.prose > :where(h1, h2, h3, h4, h5, h6) + * {
-		margin-top: .5em;
-	}
-	.prose > :where(h1) {
-		margin-bottom: .5em;
+		margin-top: .5rem; /* Needs to be REM an not em to always align with size tokens, as the next might have different sizes */
 	}
 	.prose > :where(button) {
 		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */

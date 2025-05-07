@@ -29,6 +29,7 @@
 @import url("./table/table.module.css");
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
+@import url("./text/text.module.css");
 @import url("./tooltip/tooltip.module.css");
 @import url("./validation/validation.module.css");
 
@@ -94,7 +95,9 @@
 		--ds-body-md-font-size: clamp(1rem, 0.9296875rem + 0.3125vw, 1.125rem); /* 16px => 18px */
 		--ds-body-lg-font-size:  clamp(1.125rem, 1.01953125rem + 0.46875vw, 1.3125rem); /* 18px => 21px */
 		--ds-body-xl-font-size: clamp(1.3125rem, 1.20703125rem + 0.46875vw, 1.5rem); /* 21px => 24px */
+		--ds-body-lg-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 		--ds-body-md-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
+		--ds-body-sm-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 
 		/* TODO: Make all headings fluid and give to DigiDir */
 		--ds-md-rem: calc(16 / 18);

@@ -1,0 +1,11 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './text.stories';
+
+<Meta of={stories} />
+
+# Text
+- All tekst er automatisk stilen `text/default`
+- Bruk klassen `ingress` for større tekst
+- Bruk klassen `muted` eller elementet `<small>` for mindre tekst
+<Canvas of={stories.Default} />
