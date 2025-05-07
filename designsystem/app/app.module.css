@@ -32,13 +32,13 @@
 	}
 
 	/* Hide relevant child elements with data-expanded attribute */
-	.app [data-app-expanded="true"]:not([hidden]) {
-		content-visibility: var(--mtds-app-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
-		position: var(--mtds-app-expanded--false, absolute);
+	.app [data-app-expanded="true"] {
+		visibility: var(--mtds-app-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--false, fixed);
 	}
-	.app [data-app-expanded="false"]:not([hidden]) {
-		content-visibility: var(--mtds-app-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
-		position: var(--mtds-app-expanded--true, absolute);
+	.app [data-app-expanded="false"] {
+		visibility: var(--mtds-app-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
+		position: var(--mtds-app-expanded--true, fixed);
 	}
 
 	/* Double selector to increase specificity */
@@ -48,7 +48,7 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, top);
 		bottom: var(--spacing);
-		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
 		gap: var(--mtds-app-expanded--true, var(--ds-size-2));
 		grid-area: sidebar;
 		margin-top: auto; /* Push to bottom */
@@ -60,8 +60,8 @@
 		z-index: 3;
 		view-transition-name: mtds-app--toggle;
 	}
-	.app.app [data-command="toggle-app-expanded"]:empty::after {
-		content: var(--mtds-app-expanded--true, attr(data-tooltip));
+	.app.app [data-command="toggle-app-expanded"]:empty {
+		--mtds-tooltip-position: top;
 	}
 	.app.app [data-command="toggle-app-expanded"]::before {
 		content: "";
@@ -184,6 +184,12 @@
 	/**
 	 * Maxium 768px
 	 */
+	@media (min-width: 48.0625em) {
+		.app [data-app-expanded="mobile"] {
+			visibility: hidden;
+			position: fixed;
+		}
+	}
 	@media (max-width: 48em) {
 		.app {
 			--mtds-app-expanded--true: initial;

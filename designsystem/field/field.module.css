@@ -3,7 +3,7 @@
 		composes: ds-field from "@digdir/designsystemet-css";
 		position: relative; /* Support <u-datalist> positioning */
 		row-gap: var(--dsc-field-content-spacing);
-		text-wrap: balance; /* Make required tag wrap pretty */
+		text-wrap: pretty; /* Make required tag wrap pretty */
 	}
 	.field > * {
 		text-wrap: wrap; /* Reset text-wrap */
@@ -35,7 +35,7 @@
 		content: var(--mtds-text-required);
 		font-size: .75em;
 		font-weight: normal;
-		margin-left: .4em;
+		margin-left: 1ch;
 		padding: .18em var(--ds-size-2);
 		vertical-align: .1em;
 		white-space: nowrap;

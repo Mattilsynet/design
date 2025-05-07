@@ -1,7 +1,7 @@
 @layer mt.design {
 	.fieldset {
 		composes: ds-fieldset from "@digdir/designsystemet-css";
-		text-wrap: balance; /* Make required tag wrap pretty */
+		text-wrap: pretty; /* Make required tag wrap pretty */
 	}
 	/* Reset designsystemet */
 	.fieldset > * {
@@ -34,7 +34,7 @@
 			content: var(--mtds-text-required);
 			font-size: .75em;
 			font-weight: normal;
-			margin-left: .4em;
+			margin-left: 1.5ch;
 			padding: .18em var(--ds-size-2);
 			vertical-align: .1em;
 			white-space: nowrap;

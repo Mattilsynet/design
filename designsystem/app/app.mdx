@@ -17,7 +17,8 @@ import styles from '../styles.module.css';
 </div>
 
 ## Ekspander og minimer sideområde
-- Legg en `<button>` med klassen `button` og `data-command="app-expand"` før `<dialog role="navigation">` for å få automatisk ekspandering/minimering av sideområde
+- Legg en `<button>` med klassen `button` og `data-command="toggle-app-expand"` før `<dialog role="navigation">` for å få automatisk ekspandering/minimering av sideområde
+- Dersom du ikke ønsker å kun vise sideområde-knappen på mobil, kan du bruke `data-app-expanded="mobile"`
 - Bruk `data-app-expanded="true | false"` på innholdselementer for å velge om de vises eller skjules når ekspandert/minimert
 - Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
 <div className="sbdocs-canvas-thumbnail">
