@@ -19,8 +19,9 @@ export const JumpTo = () => {
 	return (
 		<menu
 			className={styles.grid}
-			data-items="200"
-			style={{ marginBlock: "2em", rowGap: 0 }}
+			data-items="250"
+			data-gap="0"
+			style={{ marginBlock: "2em" }}
 		>
 			{links.map(({ text, href }) => (
 				<li key={href}>

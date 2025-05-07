@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Fragment, useEffect } from "react";
+import henvisninger from "../../identitet/form-2.png?url";
 import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
@@ -932,3 +933,15 @@ export const Prose: Story = {
 		</div>
 	),
 };
+
+// <figure style={{ marginInline: 0 }}>
+// 	<img
+// 		src={henvisninger}
+// 		alt=""
+// 		style={{ display: "block", marginBottom: "var(--mtds-2)" }}
+// 	/>
+// 	<figcaption className={styles.muted}>
+// 		Illustrasjon av hvordan du finner helsesertifikatene i Mattilsynets
+// 		skjematjeneste.
+// 	</figcaption>
+// </figure>

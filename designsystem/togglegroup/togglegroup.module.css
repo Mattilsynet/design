@@ -1,0 +1,32 @@
+@layer mt.design {
+	.togglegroup {
+		--mtdsc-togglegroup-spacing: var(--ds-size-1);
+		--mtdsc-togglegroup-padding: var(--ds-size-1);
+
+		background: var(--ds-color-background-tinted);
+		border-radius: var(--ds-border-radius-md);
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--mtdsc-togglegroup-spacing);
+		padding: var(--mtdsc-togglegroup-spacing);
+		color: var(--ds-color-text-muted);
+	}
+	.togglegroup button {
+		all: unset;
+		border-radius: var(--ds-border-radius-sm);
+		cursor: pointer;
+		font-weight: var(--ds-font-weight-medium);
+		padding: var(--mtdsc-togglegroup-padding);
+		transition: .2s;
+	}
+	.togglegroup button:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
+	}
+	.togglegroup button:hover,
+	.togglegroup button[aria-checked="true"] {
+		background: var(--ds-color-surface-default);
+		color: var(--ds-color-text-default);
+	}
+}

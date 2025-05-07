@@ -127,8 +127,8 @@ export default {
 
 						quote.innerHTML = quote.innerHTML?.replace(/(❌|✅|⚠️)/, "");
 						quote.classList.add(...CSS_ALERT);
+						quote.classList.remove(styles.ingress);
 						quote.setAttribute("data-color", color || "info");
-						quote.removeAttribute("data-size");
 					}
 
 					// Hide BR from screen readers
@@ -175,7 +175,9 @@ export default {
 								h4: (props) => (
 									<h4 {...props} className={styles.heading} data-size="sm" />
 								),
-								blockquote: (props) => <blockquote {...props} data-size="xl" />,
+								blockquote: (props) => (
+									<blockquote {...props} className={styles.ingress} />
+								),
 								ol: (props) => <ol {...props} className="sbdocs-ol" />,
 								ul: (props) => <ul {...props} className="sbdocs-ul" />,
 								p: (props) => <p {...props} className="sbdocs-p" />,

@@ -30,6 +30,7 @@
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
 @import url("./text/text.module.css");
+@import url("./togglegroup/togglegroup.module.css");
 @import url("./tooltip/tooltip.module.css");
 @import url("./validation/validation.module.css");
 
@@ -101,13 +102,13 @@
 
 		/* TODO: Make all headings fluid and give to DigiDir */
 		--ds-md-rem: calc(16 / 18);
-		--ds-heading-2xs-font-size: calc(clamp(1rem, 0.9296875rem + 0.3125vw, 1.125rem) * var(--ds-md-rem)); /* 16px => 18px */
-		--ds-heading-xs-font-size: calc(clamp(1.125rem, 1.01953125rem + 0.46875vw, 1.3125rem) * var(--ds-md-rem)); /* 18px => 21px */
-		--ds-heading-sm-font-size: calc(clamp(1.3125rem, 1.20703125rem + 0.46875vw, 1.5rem) * var(--ds-md-rem)); /* 21px => 24px */
-		--ds-heading-md-font-size: calc(clamp(1.5rem, 1.2890625rem + 0.9375vw, 1.875rem) * var(--ds-md-rem)); /* 24px => 30px */
-		--ds-heading-lg-font-size: calc(clamp(1.875rem, 1.6640625rem + 0.9375vw, 2.25rem) * var(--ds-md-rem)); /* 30px => 36px */
-		--ds-heading-xl-font-size: calc(clamp(2.25rem, 1.96875rem + 1.25vw, 2.75rem) * var(--ds-md-rem)); /* 36px => 44px */
-		--ds-heading-2xl-font-size: calc(clamp(2.75rem, 2.1875rem + 2.5vw, 3.75rem) * var(--ds-md-rem)); /* 44px => 60px */
+		--ds-heading-2xs-font-size: calc(clamp(1em, 0.9296875em + 0.3125vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
+		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.01953125em + 0.46875vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
+		--ds-heading-sm-font-size: calc(clamp(1.3125em, 1.20703125em + 0.46875vw, 1.5em) * var(--ds-md-rem)); /* 21px => 24px */
+		--ds-heading-md-font-size: calc(clamp(1.5em, 1.2890625em + 0.9375vw, 1.875em) * var(--ds-md-rem)); /* 24px => 30px */
+		--ds-heading-lg-font-size: calc(clamp(1.875em, 1.6640625em + 0.9375vw, 2.25em) * var(--ds-md-rem)); /* 30px => 36px */
+		--ds-heading-xl-font-size: calc(clamp(2.25em, 1.96875em + 1.25vw, 2.75em) * var(--ds-md-rem)); /* 36px => 44px */
+		--ds-heading-2xl-font-size: calc(clamp(2.75em, 2.1875em + 2.5vw, 3.75em) * var(--ds-md-rem)); /* 44px => 60px */
 
 		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
 		--ds-font-weight-bold: 700; /* Add missing font-weight */
