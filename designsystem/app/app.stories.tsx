@@ -88,8 +88,10 @@ export const Default: Story = {
 				type="button"
 				className={styles.button}
 				data-command="toggle-app-expanded"
-				data-tooltip="Navigasjon"
-			></button>
+				data-tooltip="Vis meny"
+			>
+				Skjul meny
+			</button>
 			<dialog role="navigation">
 				<menu className={styles.sticky}>
 					<li>
@@ -156,7 +158,9 @@ export const React: Story = {
 					</li>
 				</Popover>
 			</App.Header>
-			<Button data-command="toggle-app-expanded" data-tooltip="Navigasjon" />
+			<Button data-command="toggle-app-expanded" data-tooltip="Vis meny">
+				Skjul meny
+			</Button>
 			<App.Sidebar>
 				<App.Sticky as="menu">
 					<li>
@@ -230,8 +234,10 @@ export const WithFooter: Story = {
 				type="button"
 				className={styles.button}
 				data-command="toggle-app-expanded"
-				data-tooltip="Navigasjon"
-			></button>
+				data-tooltip="Vis meny"
+			>
+				Skjul meny
+			</button>
 			<dialog role="navigation">
 				<menu className={styles.sticky}>
 					<li>
@@ -313,8 +319,10 @@ export const WithComplexContent: Story = {
 				type="button"
 				className={styles.button}
 				data-command="toggle-app-expanded"
-				data-tooltip="Navigasjon"
-			></button>
+				data-tooltip="Vis meny"
+			>
+				Skjul meny
+			</button>
 			<dialog role="navigation">
 				<div className={styles.sticky}>
 					<div className={styles.prose}>

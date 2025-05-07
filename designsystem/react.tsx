@@ -26,4 +26,6 @@ export * from "./spinner/spinner";
 export * from "./table/table";
 export * from "./tabs/tabs";
 export * from "./tag/tag";
+export * from "./text/text";
+export * from "./togglegroup/togglegroup";
 export * from "./validation/validation";

@@ -156,49 +156,15 @@
 	.prose > :where(ul, ol):not([class]) > li:not(:first-child) {
 		margin-top: var(--ds-size-2);
 	}
-	.prose > :where(h1, h2, h3, h4, h5, h6) {
+	.prose > :where([class*="heading"]) {
 		margin-block: 1.5em 0;
 		max-width: var(--mtdsc-prose-max-width);
 	}
-	.prose > :where(h1, h2, h3, h4, h5, h6) + * {
-		margin-top: .5em;
+	.prose > :where([class*="heading"]) + * {
+		margin-top: .5rem; /* Needs to be REM an not em to always align with size tokens, as the next might have different sizes */
 	}
-	.prose > :where(h1) {
-		margin-bottom: .5em;
+	.prose > :where(button) {
+		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */
+		width: fit-content;
 	}
-
-	/* 	&[data-size="lg"] {
-			margin-top: var(--ds-size-10);
-
-			& + p,
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-6);
-			}
-		}
-		&:not([data-size]),
-		&[data-size="md"] {
-			margin-top: 1.5em;
-
-			& + p,
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-2);
-			}
-		}
-		&[data-size="sm"] {
-			margin-top: var(--ds-size-6);
-
-			& + p {
-				margin-top: var(--ds-size-1);
-			}
-			& + ul,
-			& + ol {
-				margin-top: var(--ds-size-2);
-			}
-		}
-		&[data-size="2xs"] + * {
-			margin-top: var(--ds-size-2);
-		}
-	} */
 }

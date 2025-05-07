@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import { JumpTo } from '../.storybook/blocks';
-import ingress from './sprak-ingress.png';
-import henvisninger from './sprak-henvisninger.png';
+import styles from '../designsystem/styles.module.css';
 
 <Meta title="Identitet/Slik skriver vi" />
 
@@ -13,7 +12,7 @@ import henvisninger from './sprak-henvisninger.png';
 
 ## Stil og tone
 
-Husk Mattilsynets strategiske kompass når du skriver: [Mattilsynets strategiske kompass](/?path=/docs/identitet-kompasset-og-roller--docs)
+Husk Mattilsynets strategiske kompass når du skriver: [Mattilsynets strategiske kompass](/?path=/docs/identitet-kompasset-og-roller--docs).
 
 Når vi i Mattilsynet skriver, skal vi være hjelpende, tydelige og målrettede. Det betyr at vi
 
@@ -31,9 +30,7 @@ Hvis teksten har flere ulike mottakere, kan en direkte henvendelse skape tvil om
 
 ### Lag aktivt språk med verb
 
-Gjør setningene aktive ved å bruke verb i stedet for substantiver. Vær bevisst når du bruker passive former av verb. Ofte er det tydeligere hvem som skal gjøre hva når du bruker aktiv form.
-
-#### Eksempel
+Gjør setningene aktive ved å bruke verb i stedet for substantiver. Vær bevisst når du bruker passive former av verb. Ofte er det tydeligere hvem som skal gjøre hva når du bruker aktiv form. For eksempel:
 
 > ✅ Vi ber om at dere sender oss rapporten.
 
@@ -45,9 +42,7 @@ Gjør setningene aktive ved å bruke verb i stedet for substantiver. Vær beviss
 
 ### Bruk den konkrete formen av substantiv
 
-Bruk den mest konkrete formen når du skriver substantiver.
-
-### Eksempel
+Bruk den mest konkrete formen når du skriver substantiver. For eksempel:
 
 > ✅ Send inn skjemaet i MATS.
 
@@ -75,9 +70,7 @@ Titler og mellomtitler kalles ofte overskrifter og underoverskrifter.
 - Sentrale ord og begreper bør komme tidlig i tittelen.
 - Lesere ser etter mellomtitlene for å navigere i teksten.
 
-En mellomtittel kan godt avsløre konklusjonen i avsnittet eller oppsummere innholdet. Bruk gjerne fullstendige setninger. Du kan også ha mellomtitler som består av stikkord, men pass på at de ikke blir for generelle. Hvis det er vanskelig å finne en dekkende mellomtittel, har du kanskje for mange temaer i ett avsnitt.
-
-#### Eksempel
+En mellomtittel kan godt avsløre konklusjonen i avsnittet eller oppsummere innholdet. Bruk gjerne fullstendige setninger. Du kan også ha mellomtitler som består av stikkord, men pass på at de ikke blir for generelle. Hvis det er vanskelig å finne en dekkende mellomtittel, har du kanskje for mange temaer i ett avsnitt. For eksempel:
 
 > ✅ Du må betale gebyr når du søker
 
@@ -85,17 +78,21 @@ En mellomtittel kan godt avsløre konklusjonen i avsnittet eller oppsummere innh
 
 ### Ingress
 
-Ingress er det innledende avsnittet som følger rett etter tittelen. Under ser du tittel, ingress og første avsnitt av brødteksten:
+Ingress er det innledende avsnittet som følger rett etter tittelen. Under ser du tittel, ingress og datolinje:
 
-<img src={ingress} alt="Eksempel på tittel, ingress og brødtekst" />
+<div className={styles.card} style={{ background: 'var(--mtds-color-background-default)', padding: 'var(--mtds-9)' }}>
+  <div className={styles.prose}>
+    <div className={styles.heading} data-size="lg">Slik registrerer du små vannforsyningssystem</div>
+    <p><span className={styles.ingress}>Brønner som gir drikkevann til mer enn en enkelt bolig eller fritidsbolig, skal registreres hos Mattilsynet. Dette gjelder også for eksempel tjern og bekker.</span></p>
+    <p><small>Publisert 30.08.2023</small></p>
+  </div>
+</div>
 
 Ingressen skal
 
 - være kort og konkret
 - inneholde hovedbudskapet i artikkelen, og det skal være tydelig hvem innholdet gjelder for
 - ikke være delt opp i flere avsnitt
-
-#### Eksempel
 
 > ✅Alle restriksjoner på Østlandet oppheves fra og med 21. mars. Det kan komme tiltak og restriksjoner på kort varsel, siden vårtrekket øker faren for fugleinfluensa.
 
@@ -131,9 +128,7 @@ Skriv ut hele ordet. Skriv "for eksempel" i stedet for "f.eks.". Når du skriver
 
 Forklar forbokstavsord (akronymer) første gangen det brukes hvis du skal bruke det flere ganger. Bruk store bokstaver når du skriver forbokstavsord.
 
-#### Eksempel
-
-Vitenskapskomiteen for mat og miljø (VKM).
+> ✅ Vitenskapskomiteen for mat og miljø (VKM).
 
 ### Regelverkshenvisning
 
@@ -141,9 +136,7 @@ Ikke start setningen med en henvisning til regelverket, men plasser henvisningen
 
 Mange lover og forskrifter har en offisiell korttittel i tillegg til den lange. Offisielle korttitler står i parentes etter navnet på regelverket i Lovdata. Hvis vi skal bruke korttittelen når vi skriver for brukerne våre, må det være en offisiell korttittel, og ikke en vi har laget internt.
 
-Navn på lover, forskrifter og forordninger skrives med liten forbokstav. Dette gjelder både den lange tittelen og korttittelen.
-
-#### Eksempel
+Navn på lover, forskrifter og forordninger skrives med liten forbokstav. Dette gjelder både den lange tittelen og korttittelen. For eksempel:
 
 > ✅ Det er forbudt å omsette næringsmidler som ikke er trygge. Etter siste forbruksdato skal et næringsmiddel anses for ikke å være trygt. Dette følger av matloven § 16 og artikkel 24 i forordning (EF) nr. 1169/2011. Forordningen er gjennomført i matinformasjonsforskriften.
 
@@ -159,17 +152,13 @@ Du skal ikke bruke kolon hvis teksten i punktene er en fortsettelse av setningen
 
 Du skal bare bruke kolon etter innledningen når du ville ha brukt kolon i en vanlig oppramsing uten punktliste.
 
-##### Eksempel
+> ✅ Her skal du føre
+> - nettoinntekt ved utleie av bolig
+> - nettoinntekt ved utleie av tomt
 
-> ✅Her skal du føre
-
-- nettoinntekt ved utleie av bolig
-- nettoinntekt ved utleie av tomt
-
-> ✅Du skal føre opp disse inntektene:
-
-- nettoinntekt ved utleie av bolig
-- nettoinntekt ved utleie av tomt
+> ✅ Du skal føre opp disse inntektene:
+> - nettoinntekt ved utleie av bolig
+> - nettoinntekt ved utleie av tomt
 
 #### Stor og liten forbokstav i punktlister
 
@@ -200,23 +189,17 @@ Dette er det viktigste om punktlister. Resten finner du hos Språkrådet:
 
 Vi bruker fet tekst når vi skal utheve ett eller flere ord. Vi bør unngå å utheve hele setninger. Ikke bruk fet tekst i stedet for overskrift.
 
-##### Eksempel
-
-I enkelte tilfeller er produktet annerledes enn de konvensjonelle i utseende, og dette **kan** skyldes at det er satt inn gener fra andre organismer.
+> ✅ I enkelte tilfeller er produktet annerledes enn de konvensjonelle i utseende, og dette **kan** skyldes at det er satt inn gener fra andre organismer.
 
 #### Kursiv (italic)
 
 Vi bruker kursiv (og stor forbokstav i slektsnavnet) når vi gjengir vitenskapelige artsnavn på dyr, planter med mer. Vi bruker også kursiv for å utheve titler på bøker, artikler og lignende.
 
-##### Eksempel
-
-> ✅Echinococcus multilocularis
+> ✅ *Echinococcus multilocularis*
 
 #### Anførselstegn
 
 Vi bruker anførselstegn ved direkte sitat og utdrag fra andre tekster. Vi bruker også anførselstegn når vi vil omtale et ord eller begrep, for eksempel for å forklare det nærmere.
-
-##### Eksempel
 
 > ✅ "De mest alvorlige, smittsomme sykdommene er sjelden hos geit i Norge, og andre helseutfordringer er vesentlig redusert de siste årene."
 
@@ -235,7 +218,7 @@ Bortsett fra dette bruker vi ikke store bokstaver til å utheve tekst. Store bok
 
 Vi bruker ikke understreket tekst.
 
-**Unntak**: Lenketekst er understreket og har annen farge enn brødteksten.
+> **Unntak**: Lenketekst er understreket og har annen farge enn brødteksten.
 
 ## Bruk av spesialtegn
 
@@ -251,13 +234,16 @@ Tankestreken er lengre enn bindestreken og brukes ved
 
 Det er enklere for skjermlesere å lese opp ord enn tankestrek. For eksempel er "fra 15.00 til 18.00" bedre egnet enn "1500–1800".
 
-#### Eksempel på bruk av bindestrek
+> ✅ **Korrekt bruk av bindestrek:**
+> - Oslo-legen
+> - PDF-er
+> - EU-forordning
+> - PC-er
 
-> ✅ Oslo-legen, PDF-er, EU-forordning, PC-er.
-
-#### Eksempel på bruk av tankestrek
-
-> ✅ 5.–7. trinn. Klokken 19.00–20.00. Vi sår frøene i perioden februar–mai.
+> ✅ **Korrekt bruk av bindestrek:**
+> - 5.–7. trinn.
+> - Klokken 19.00–20.00.
+> - Vi sår frøene i perioden februar–mai.
 
 ### Skråstrek
 
@@ -265,25 +251,19 @@ I sammenhengende tekst er det best å unngå skråstrek, særlig hvis det er ukl
 
 Når minst ett av alternativene består av to eller flere ord, skal det være mellomrom før og etter skråstreken.
 
-#### Eksempel med ett ord
+> ✅ **Eksempel med ett ord:** Ja/nei
 
-> ✅ Ja/nei
-
-#### Eksempel med to eller flere ord
-
-> ✅ Kommer / kommer ikke
+> ✅ **Eksempel med to eller flere ord:** Kommer / kommer ikke
 
 ### Utropstegn
 
-**Vi bruker ikke utropstegn. Unntaket er i våre kanaler i sosiale medier og interne kanaler.**
+> **Merk:** Vi bruker ikke utropstegn. Unntaket er i våre kanaler i sosiale medier og interne kanaler.
 
 ### **Spørsmåltegn**
 
 Vurder om du skal stille et spørsmål til brukeren, eller om du skal gi svaret. Det kan være naturlig å bruke spørsmålsformen enkelte ganger, og da bruker vi spørsmålstegn.
 
-#### Eksempel
-
-> ✅Hva er kravene for foodtrucks og matvogn?
+> ✅ Hva er kravene for foodtrucks og matvogn?
 
 Uten spørsmål kan dette løses slik: Dette er kravene for foodtrucks og matvogn.
 
@@ -291,12 +271,11 @@ Uten spørsmål kan dette løses slik: Dette er kravene for foodtrucks og matvog
 
 Adresser skriver vi på flere linjer – ikke i én lang setning. Bruk linjeskift i stedet for nytt avsnitt mellom linjene.
 
-#### Eksempel på adresse
-
-Mattilsynet, hovedkontoret, seksjon brukerdialog  
-Felles postmottak  
-Postboks 383  
-2381 Brumunddal
+> ✅ **Eksempel på adresse:**<br />
+> Mattilsynet, hovedkontoret, seksjon brukerdialog  
+> Felles postmottak  
+> Postboks 383  
+> 2381 Brumunddal
 
 ### Tall og nummer
 
@@ -308,15 +287,15 @@ Unngå å blande ord og tall hvis du har verdier både større og mindre enn 12.
 
 Store tall ordner vi i grupper på tre og tre siffer. Det skal ikke være punktum noe sted. Firesifrede tall kan også skrives sammen.
 
-#### Eksempel
-
 > ✅ Fra 6 til 13 år.  
-> ✅ 4 500 800 kroner  
-> ✅ 2 500 biler **eller** 2500 biler  
 
 > ❌ Fra seks til 13 år.
 
+> ✅ 4 500 800 kroner  
+
 > ❌ 4.500.800 kroner
+
+> ✅ 2 500 biler **eller** 2500 biler  
 
 ### Tegn
 
@@ -420,8 +399,6 @@ Over 50 prosent av trafikken på mattilsynet.no skjer på mobil. Vi tilrettelegg
 
 På nettsidene henter vi automatisk inn regelverk fra Lovdata under veiledningen. Da er det som regel ikke nødvendig å henvise i teksten. Samle henvisningene til slutt i avsnittet de gjelder, så legger team nettløsninger dem inn.
 
-<img src={henvisninger} alt="Eksempel på henvisninger" />
-
 #### Slik henviser du til forordninger
 
 > ✅ **Anbefalt:**
@@ -437,9 +414,8 @@ På nettsidene henter vi automatisk inn regelverk fra Lovdata under veiledningen
 
 I løpende tekst kan du bruke kortnavn på forordning (for eksempel "påstandsforordningen" eller "matinformasjonsforordningen") når det er til hjelp for brukeren. I regelverksboksen i bunnen bruker du fullt navn på forordningen.
 
-##### Eksempel på løpende tekst
-
-_Dere kan ikke bruke helsepåstander om drikkevarer som inneholder mer enn 1,2 volumprosent alkohol. Dette går fram av påstandsforordningen artikkel 4 nr. 3._
+> ✅ **Eksempel på løpende tekst:**<br />
+> Dere kan ikke bruke helsepåstander om drikkevarer som inneholder mer enn 1,2 volumprosent alkohol. Dette går fram av påstandsforordningen artikkel 4 nr. 3.
 
 ### Lenker og lenketekster
 
@@ -460,8 +436,6 @@ En god lenketekst
 - bruker tittelen på nettsiden eller innholdet du kommer til
 - er aldri "her", "les mer", "hit", "klikk her” eller lignende
 
-##### Eksempel
-
 > ✅ [De forskjellige tollagertypene (toll.no)](https://www.toll.no/no/bedrift/transport-og-tollager/tollager/tollager---lover-og-regler#tollager-a-%28alminnelig-lager%29)
 
 > ❌ Les om de forskjellige tollagertypene [her](https://www.toll.no/no/bedrift/transport-og-tollager/tollager/tollager---lover-og-regler#tollager-a-%28alminnelig-lager%29)
@@ -476,28 +450,28 @@ Under ser du de viktigste innholdstypene vi har.
 
 Vi bruker regelveiledning når innholdet forklarer eller tolker en del av et regelverk. Her kan vi hente inn regelverk fra Lovdata.
 
-Eksempel: [Fritidsfiske og dyrevelferd](https://www.mattilsynet.no/fisk-og-akvakultur/fiskevelferd/fritidsfiske-og-dyrevelferd)
+Eksempel på regelveileder: [Fritidsfiske og dyrevelferd](https://www.mattilsynet.no/fisk-og-akvakultur/fiskevelferd/fritidsfiske-og-dyrevelferd)
 
 #### Veileder
 
 Brukes for å koble innhold (som faglig råd og regelveiledninger, advarsler) sammen i en struktur i inntil tre nivåer, med innholdsfortegnelse i venstre marg.
 
-Eksempel: [Kommersiell import av mat og drikke – en innføring](https://www.mattilsynet.no/import/import-av-mat/kommersiell-import-av-mat/kommersiell-import-av-mat-en-innforing)
+Eksempel på veileder: [Kommersiell import av mat og drikke – en innføring](https://www.mattilsynet.no/import/import-av-mat/kommersiell-import-av-mat/kommersiell-import-av-mat-en-innforing)
 
 #### Rapportforside
 
 En rapportforside inneholder et sammendrag som gir leseren en rask oversikt over saken og fungerer som inngangen til selve rapporten. Vi har retningslinjer i kvalitetssystemet: [Innhold - Sammendrag for tilsynsresultater, risikovurderinger og OK-program på mattilsynet.no (DOC)](https://mattilsynet.sharepoint.com/:w:/r/sites/kvalitetssystemet/_layouts/15/Doc.aspx?sourcedoc=%7B52D30B93-BFC7-49A7-96B0-9356D679B0B1%7D&file=Innhold%20-%20Sammendrag%20for%20tilsynsresultater%2C%20risikovurderinger%20og%20OK-program%20p%C3%A5%20mattilsynet.no.docx)
 
-Eksempel: [Overvåking av fugleinfluensa hos ville fugler i 2022](https://www.mattilsynet.no/dyr/dyresykdommer/fugleinfluensa/overvaking-av-fugleinfluensa-hos-ville-fugler-i-2022)
+Eksempel på rapportforside: [Overvåking av fugleinfluensa hos ville fugler i 2022](https://www.mattilsynet.no/dyr/dyresykdommer/fugleinfluensa/overvaking-av-fugleinfluensa-hos-ville-fugler-i-2022)
 
 #### Faglig råd
 
 Vi bruker faglig råd for å gi en anbefaling eller et råd om noe basert på Mattilsynets ekspertkunnskap eller andre kunnskapskilder.
 
-Eksempel: [Tiltak for matplanter ved et radioaktivt nedfall](https://www.mattilsynet.no/mat-og-drikke/radioaktivitet/tiltak-for-naeringsmidler-ved-et-radioaktivt-nedfall/tiltak-for-matplanter-ved-et-radioaktivt-nedfall)
+Eksempel på faglig råd: [Tiltak for matplanter ved et radioaktivt nedfall](https://www.mattilsynet.no/mat-og-drikke/radioaktivitet/tiltak-for-naeringsmidler-ved-et-radioaktivt-nedfall/tiltak-for-matplanter-ved-et-radioaktivt-nedfall)
 
 #### Samleside
 
 Samlesiden bruker vi når vi har flere korte regelveiledninger, artikler eller faglige råd om et tema som det passer å samle på én side. Den har innholdsfortegnelse først.
 
-Eksempel: [Produksjon av egg og eggprodukt](https://www.mattilsynet.no/mat-og-drikke/matproduksjon/egg-og-eggprodukt/produksjon-av-egg-og-eggprodukt)
+Eksempel på samleside: [Produksjon av egg og eggprodukt](https://www.mattilsynet.no/mat-og-drikke/matproduksjon/egg-og-eggprodukt/produksjon-av-egg-og-eggprodukt)

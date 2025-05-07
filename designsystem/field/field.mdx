@@ -32,6 +32,10 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
 - Ved bruk av `<input type="checkbox | radio"` vil `<label>`, `<p>` og `class="styles.validation"` legge seg etter input
 <Canvas of={stories.Toggles} />
 
+## Delvis valgt checkbox
+- Bruk `indeterminate` ([via javascript](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/indeterminate)) på `<input type="checkbox">` for delvis valgt checkbox
+<Canvas of={stories.Indeterminate} />
+
 ## Feilmelding
 - Legg klassen `validation` på et element for å tilknytte feilmelding
 <Canvas of={stories.WithValidation} />

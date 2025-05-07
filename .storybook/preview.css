@@ -23,6 +23,10 @@ u-tabpanel > pre > .docblock-source {
 	margin-top: 0;
 }
 
+.sbdocs-content table th svg {
+	vertical-align: -.15em;
+}
+
 .sbdocs-content blockquote {
 	margin-inline: 0;
 }

@@ -1,0 +1,19 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables } from '../../.storybook/blocks';
+import * as stories from './togglegroup.stories';
+import { CheckCircle, XCircle } from '@phosphor-icons/react';
+
+<Meta of={stories} />
+
+# Togglegroup
+> ToggleGroup lar brukeren ta valg som påvirker innholdet på siden. Komponenten består av en gruppe knapper som henger sammen og bare én knapp kan være valgt om gangen.
+
+- Bruk klassen `togglegroup` på typisk `<div>`
+- Legg `<button type="button">` elementer inni
+<Canvas of={stories.Default} />
+
+
+| <CheckCircle /> Egnet til: | <XCircle /> Uegnet til: |
+| :-- | :-- | 
+| Filtrering av innhold | Erstatning for radio eller checkbox |
+| Veksling av datavisninger og innhold | Navigasjon |

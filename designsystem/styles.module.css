@@ -29,6 +29,8 @@
 @import url("./table/table.module.css");
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
+@import url("./text/text.module.css");
+@import url("./togglegroup/togglegroup.module.css");
 @import url("./tooltip/tooltip.module.css");
 @import url("./validation/validation.module.css");
 
@@ -85,26 +87,28 @@
 		/**
 		 * We need to specify ds-body-*-font-size again since these are
 		 * removed from our Figma tokens, and since we want fluid design
-		 * Fluid scales from min 360px/22.5rem => Max 1360px/85rem
+		 * Fluid scales from min 360px/22.5rem => Max 1000px/62.5rem
 		 * Calculations are mawe with https://royalfig.github.io/fluid-typography-calculator/
 		 */
 		--ds-font-size-minus-1: max(.9em, .75rem); /* Default to 90% of font-size, but minimum 12px */
 		--ds-body-xs-font-size: 0.875rem; /* 14px */
-		--ds-body-sm-font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem); /* 14px => 16px */
-		--ds-body-md-font-size: clamp(1rem, 0.955rem + 0.2vw, 1.125rem); /* 16px => 18px */
-		--ds-body-lg-font-size: clamp(1.125rem, 1.0575rem + 0.3vw, 1.3125rem); /* 18px => 21px */
-		--ds-body-xl-font-size: clamp(1.3125rem, 1.245rem + 0.3vw, 1.5rem); /* 21px => 24px */
+		--ds-body-sm-font-size: clamp(0.875rem, 0.8046875rem + 0.3125vw, 1rem); /* 14px => 16px */
+		--ds-body-md-font-size: clamp(1rem, 0.9296875rem + 0.3125vw, 1.125rem); /* 16px => 18px */
+		--ds-body-lg-font-size:  clamp(1.125rem, 1.01953125rem + 0.46875vw, 1.3125rem); /* 18px => 21px */
+		--ds-body-xl-font-size: clamp(1.3125rem, 1.20703125rem + 0.46875vw, 1.5rem); /* 21px => 24px */
+		--ds-body-lg-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 		--ds-body-md-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
+		--ds-body-sm-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 
 		/* TODO: Make all headings fluid and give to DigiDir */
 		--ds-md-rem: calc(16 / 18);
-		--ds-heading-2xs-font-size: calc(clamp(1em, 0.955em + 0.2vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
-		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.0575em + 0.3vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
-		--ds-heading-sm-font-size: calc(clamp(1.3125em, 1.245em + 0.3vw, 1.5em) * var(--ds-md-rem)); /* 21px => 24px */
-		--ds-heading-md-font-size: calc(clamp(1.5em, 1.365em + 0.6vw, 1.875em) * var(--ds-md-rem)); /* 24px => 30px */
-		--ds-heading-lg-font-size: calc(clamp(1.875em, 1.74em + 0.6vw, 2.25em) * var(--ds-md-rem)); /* 30px => 36px */
-		--ds-heading-xl-font-size: calc(clamp(2.25em, 2.07em + 0.8vw, 2.75em) * var(--ds-md-rem)); /* 36px => 44px */
-		--ds-heading-2xl-font-size: calc(clamp(2.75em, 2.39em + 1.6vw, 3.75em) * var(--ds-md-rem)); /* 44px => 60px */
+		--ds-heading-2xs-font-size: calc(clamp(1em, 0.9296875em + 0.3125vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
+		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.01953125em + 0.46875vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
+		--ds-heading-sm-font-size: calc(clamp(1.3125em, 1.20703125em + 0.46875vw, 1.5em) * var(--ds-md-rem)); /* 21px => 24px */
+		--ds-heading-md-font-size: calc(clamp(1.5em, 1.2890625em + 0.9375vw, 1.875em) * var(--ds-md-rem)); /* 24px => 30px */
+		--ds-heading-lg-font-size: calc(clamp(1.875em, 1.6640625em + 0.9375vw, 2.25em) * var(--ds-md-rem)); /* 30px => 36px */
+		--ds-heading-xl-font-size: calc(clamp(2.25em, 1.96875em + 1.25vw, 2.75em) * var(--ds-md-rem)); /* 36px => 44px */
+		--ds-heading-2xl-font-size: calc(clamp(2.75em, 2.1875em + 2.5vw, 3.75em) * var(--ds-md-rem)); /* 44px => 60px */
 
 		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
 		--ds-font-weight-bold: 700; /* Add missing font-weight */

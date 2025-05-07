@@ -16,8 +16,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const HeadingStory: Story = {
-	name: "Heading",
+export const Default: Story = {
 	render: () => <h2 className={styles.heading}>Heading</h2>,
 };
 export const Sizes: Story = {

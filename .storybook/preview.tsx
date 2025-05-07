@@ -24,8 +24,8 @@ function urlTheme() {
 	const globals = new URLSearchParams(
 		url.searchParams.get("globals")?.replace(/;/g, "&").replace(/:/g, "="),
 	);
-	const theme = globals.get("theme") || "Auto";
-	const store = window.localStorage.getItem("theme") || "Auto";
+	const theme = globals.get("theme") || "Auto medium";
+	const store = window.localStorage.getItem("theme") || "Auto medium";
 	window.localStorage.setItem("theme", theme);
 
 	// If no theme is set in URL, but one is stored, update URL
@@ -43,12 +43,12 @@ function urlTheme() {
 // Setup color scheme and language
 function useTheme() {
 	useEffect(() => {
-		const theme = urlTheme();
+		const [color, scale] = urlTheme().toLowerCase().split(" ");
+		const size = { small: "sm", medium: "md", large: "lg" }[scale] || "md";
+
 		document.documentElement.setAttribute("lang", "no");
-		document.documentElement.setAttribute(
-			"data-color-scheme",
-			theme.toLowerCase(),
-		);
+		document.documentElement.setAttribute("data-color-scheme", color);
+		document.body.setAttribute("data-size", size); // Need to be on body to keep "REM"
 	});
 }
 
@@ -62,12 +62,17 @@ export default {
 			return <Story />;
 		},
 		withThemeByDataAttribute({
-			defaultTheme: "Auto",
-			attributeName: "data-color-scheme",
+			defaultTheme: "Auto medium",
 			themes: {
-				Auto: "auto",
-				Light: "light",
-				Dark: "dark",
+				"Auto small": "auto",
+				"Auto medium": "auto",
+				"Auto large": "auto",
+				"Light small": "light",
+				"Light medium": "light",
+				"Light large": "light",
+				"Dark small": "dark",
+				"Dark medium": "dark",
+				"Dark large": "dark",
 			},
 		}),
 	],
@@ -122,8 +127,8 @@ export default {
 
 						quote.innerHTML = quote.innerHTML?.replace(/(❌|✅|⚠️)/, "");
 						quote.classList.add(...CSS_ALERT);
+						quote.classList.remove(styles.ingress);
 						quote.setAttribute("data-color", color || "info");
-						quote.removeAttribute("data-size");
 					}
 
 					// Hide BR from screen readers
@@ -170,7 +175,9 @@ export default {
 								h4: (props) => (
 									<h4 {...props} className={styles.heading} data-size="sm" />
 								),
-								blockquote: (props) => <blockquote {...props} data-size="xl" />,
+								blockquote: (props) => (
+									<blockquote {...props} className={styles.ingress} />
+								),
 								ol: (props) => <ol {...props} className="sbdocs-ol" />,
 								ul: (props) => <ul {...props} className="sbdocs-ul" />,
 								p: (props) => <p {...props} className="sbdocs-p" />,

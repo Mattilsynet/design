@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Fragment, useEffect } from "react";
+import henvisninger from "../../identitet/form-2.png?url";
 import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
@@ -423,6 +424,11 @@ const proseDecorator: Story["decorators"] = (Story) => {
 			canvas.width = w;
 			canvas.height = h;
 
+			// Calculate the height of 1 unit
+			canvas.style.height = "var(--mtds-10)";
+			const mtds1 = canvas.getBoundingClientRect().height / 10;
+			canvas.style.height = "";
+
 			Array.from(prose.children, (prev, index) => {
 				const next = prose.children[index + 1];
 				if (!next) return;
@@ -433,8 +439,10 @@ const proseDecorator: Story["decorators"] = (Story) => {
 				const nextY = next.getBoundingClientRect().top + y;
 				const prevM = Number.parseInt(prevStyle.marginBottom);
 				const nextM = Number.parseInt(nextStyle.marginTop);
-				const prevEm = `⬆️ ${Math.round((prevM / Number.parseInt(prevStyle.fontSize)) * 10) / 10}em (${prevM}px)`;
-				const nextEm = `⬇️ ${Math.round((nextM / Number.parseInt(nextStyle.fontSize)) * 10) / 10}em (${nextM}px)`;
+				const prevFont = Number.parseInt(prevStyle.fontSize);
+				const nextFont = Number.parseInt(nextStyle.fontSize);
+				const prevEm = `⬇️ ${Math.round((prevM / prevFont) * 10) / 10}em / ${prevM}px / ${prevFont === prevM ? "1 line" : `${Math.round(prevM / mtds1)} size token`}`;
+				const nextEm = `⬆️ ${Math.round((nextM / nextFont) * 10) / 10}em / ${nextM}px / ${nextFont === nextM ? "1 line" : `${Math.round(nextM / mtds1)} size token`}`;
 
 				const diffM = Math.max(prevM, nextM);
 				const diffY = Math.floor(nextY - prevY);
@@ -458,13 +466,13 @@ const proseDecorator: Story["decorators"] = (Story) => {
 			});
 		}
 
-		draw();
+		setTimeout(draw, 0); // Let sizing happen before drawing
 		window.addEventListener("resize", draw);
 		return () => {
 			window.removeEventListener("resize", draw);
 			canvas.remove();
 		};
-	}, []);
+	});
 
 	return (
 		<div className={styles.body} style={{ paddingBlock: "5vw" }}>
@@ -495,11 +503,15 @@ export const Prose: Story = {
 			<h1 className={styles.heading} data-size="xl">
 				Her søker du om helsesertifikat for sjømat til Australia
 			</h1>
-			<p data-size="xl">
-				Se hvilken løsning du skal bruke når du søker, hva sertifikatet koster
-				og når sertifikatkontoret holder åpent.
+			<p>
+				<span className={styles.ingress}>
+					Se hvilken løsning du skal bruke når du søker, hva sertifikatet koster
+					og når sertifikatkontoret holder åpent.
+				</span>
 			</p>
-			<small>Publisert 14.01.2025</small>
+			<p>
+				<small>Publisert 14.01.2025</small>
+			</p>
 			<h2 className={styles.heading} data-size="sm">
 				Innhold på denne siden
 			</h2>
@@ -921,3 +933,15 @@ export const Prose: Story = {
 		</div>
 	),
 };
+
+// <figure style={{ marginInline: 0 }}>
+// 	<img
+// 		src={henvisninger}
+// 		alt=""
+// 		style={{ display: "block", marginBottom: "var(--mtds-2)" }}
+// 	/>
+// 	<figcaption className={styles.muted}>
+// 		Illustrasjon av hvordan du finner helsesertifikatene i Mattilsynets
+// 		skjematjeneste.
+// 	</figcaption>
+// </figure>
