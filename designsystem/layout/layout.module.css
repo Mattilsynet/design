@@ -130,41 +130,4 @@
 	.grid[data-items="700"] { --mtds-grid-size: calc(1rem / 16 * 700) }
 	.grid[data-items="750"] { --mtds-grid-size: calc(1rem / 16 * 750) }
 	.grid[data-items="800"] { --mtds-grid-size: calc(1rem / 16 * 800) }
-
-
-	/**
-	 * Prose
-	 */
-	.prose {
-		--mtdsc-prose-max-width: 65ch;
-	}
-	.prose > * {
-		margin-block: 1em;
-	}
-	.prose > :first-child {
-		margin-top: 0;
-	}
-	.prose > :last-child {
-		margin-bottom: 0;
-	}
-	.prose > :where(p, ul, ol) {
-		max-width: var(--mtdsc-prose-max-width);
-	}
-	.prose > :where(ul, ol):not([class]) {
-		padding-left: 1em;
-	}
-	.prose > :where(ul, ol):not([class]) > li:not(:first-child) {
-		margin-top: var(--ds-size-2);
-	}
-	.prose > :where([class*="heading"]) {
-		margin-block: 1.5em 0;
-		max-width: var(--mtdsc-prose-max-width);
-	}
-	.prose > :where([class*="heading"]) + * {
-		margin-top: .5rem; /* Needs to be REM an not em to always align with size tokens, as the next might have different sizes */
-	}
-	.prose > :where(button) {
-		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */
-		width: fit-content;
-	}
 }

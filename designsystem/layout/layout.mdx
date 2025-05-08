@@ -1,7 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Alert } from '../react.tsx';
-import styles from '../styles.module.css';
+import { Alert, Button } from '../react.tsx';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
@@ -10,12 +9,10 @@ import * as stories from './layout.stories';
 
 <JumpTo />
 
-## Layout typer
-- Velg mellom klassene `flex`, `grid` eller `prose` 
-- Bruk `prose` for god visuell vertikal layout - typisk på artikkel, skjema, eller inni `details`
+## Typer layout
+- Velg mellom klassene `flex` eller `grid` for jevne avstander, eller [`prose`](?path=/story/designsystem-typography--prose) for god typografisk rytme (typisk på artikkel, sideområde, skjema, details content, osv.)
 - Både `flex` og `grid` klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`, `data-nowrap`
 - Både `flex` og `grid` klassene støtter `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
-
 
 > ### Hvorfor ikke bare bruke Tailwind eller vanilla CSS?
 > Vi ønsker å ha en felles standard for layout som er enkel å bruke, og gir konsistent design. Dette gjør det lettere å lage og vedlikeholde komponenter og sider på tvers.
@@ -45,7 +42,7 @@ import * as stories from './layout.stories';
 - Vi bruker hovedsakelig `2xl` som hoved container for innhold
 - Virker på både `flex` og `grid`
 <div className="sbdocs-canvas-thumbnail">
-  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-layout--center">Se center i egen visning</a>
+  <Button data-arrow data-variant="primary" href="?path=/story/designsystem-layout--center">Se center i egen visning</Button>
   <Canvas className="sbdocs-canvas--max-height" of={stories.Center} />
 </div>
 
@@ -63,13 +60,5 @@ import * as stories from './layout.stories';
 - `data-align-content="start | center | end | space-between | space-around | space-evenly"` setter vertikal plassering over flere rader med [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)
 - Virker på både `flex` og `grid`
 <Canvas of={stories.AlignContent} />
-
-## Prose
-- Bruk klassen `prose` på typisk `div` eller annen container som har prosa/skjema/typografisk innhold
-
-<div className="sbdocs-canvas-thumbnail">
-  <a className={styles.button} data-arrow data-variant="primary" href="?path=/story/designsystem-layout--prose">Se prose-layout i egen visning</a>
-  <Canvas className="sbdocs-canvas--max-height" of={stories.Prose} />
-</div>
 
 <CssVariables component="layout" />

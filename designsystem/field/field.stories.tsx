@@ -187,6 +187,7 @@ export const React: Story = {
 };
 
 export const Required: Story = {
+	parameters: { showInOverview: true },
 	render: () => (
 		<div className={styles.field}>
 			<label>Ledetekst</label>
@@ -271,6 +272,7 @@ export const Toggles: Story = {
 };
 
 export const WithValidation: Story = {
+	parameters: { showInOverview: true },
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -319,10 +321,7 @@ export const WithCharacterCount: Story = {
 };
 
 export const WithCustomDescriptionTag: Story = {
-	parameters: {
-		layout: "padded",
-		showInOverview: true,
-	},
+	parameters: { layout: "padded" },
 	render: () => (
 		<>
 			<div className={styles.field}>

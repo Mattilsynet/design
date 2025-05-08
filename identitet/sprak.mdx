@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import { JumpTo } from '../.storybook/blocks';
-import styles from '../designsystem/styles.module.css';
+import { Card, Prose, Heading, Ingress } from '../designsystem/react';
 
 <Meta title="Identitet/Slik skriver vi" />
 
@@ -80,13 +80,13 @@ En mellomtittel kan godt avsløre konklusjonen i avsnittet eller oppsummere innh
 
 Ingress er det innledende avsnittet som følger rett etter tittelen. Under ser du tittel, ingress og datolinje:
 
-<div className={styles.card} style={{ background: 'var(--mtds-color-background-default)', padding: 'var(--mtds-9)' }}>
-  <div className={styles.prose}>
-    <div className={styles.heading} data-size="lg">Slik registrerer du små vannforsyningssystem</div>
-    <p><span className={styles.ingress}>Brønner som gir drikkevann til mer enn en enkelt bolig eller fritidsbolig, skal registreres hos Mattilsynet. Dette gjelder også for eksempel tjern og bekker.</span></p>
+<Card style={{ background: 'var(--mtds-color-background-default)', padding: 'var(--mtds-9)' }}>
+  <Prose>
+    <Heading data-size="lg">Slik registrerer du små vannforsyningssystem</Heading>
+    <p><Ingress>Brønner som gir drikkevann til mer enn en enkelt bolig eller fritidsbolig, skal registreres hos Mattilsynet. Dette gjelder også for eksempel tjern og bekker.</Ingress></p>
     <p><small>Publisert 30.08.2023</small></p>
-  </div>
-</div>
+  </Prose>
+</Card>
 
 Ingressen skal
 

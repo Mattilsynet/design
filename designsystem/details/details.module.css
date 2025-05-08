@@ -26,6 +26,7 @@
 		transition-property: font-weight, background;
 	}
 	.details[open] > :is(summary, u-summary) {
+		--dsc-details-summary-background--hover: transparent;
 		font-weight: 700;
 	}
 	.details > :is(summary, u-summary)::before {

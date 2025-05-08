@@ -10,7 +10,7 @@ import {
 	UploadSimple,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Card, Flex, Grid, Group, Heading, Tag } from "../react";
+import { Card, Flex, Grid, Group, Heading, Info, Tag } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -139,21 +139,19 @@ export const Responsive: Story = {
 					</div>
 					<Flex data-self="500">
 						<Flex data-self="500" data-align="start">
-							<div data-self="200">
-								<div className={styles.info}>
+							<Grid data-self="200">
+								<Info>
 									<PaperPlaneRight />
 									Firmanavn AS
-								</div>
-								<div className={styles.info}>
+								</Info>
+								<Info>
 									<i>🇳🇱</i> Nederland
-								</div>
-							</div>
-							<div data-self="300" className={styles.info}>
+								</Info>
+							</Grid>
+							<Info data-self="300">
 								<DownloadSimple />
-								Bomsterlandet importerer bomster AS,
-								<br />
-								Rogaland
-							</div>
+								Bomsterlandet importerer bomster AS, Rogaland
+							</Info>
 						</Flex>
 						<Tag data-fixed data-nowrap data-color="info" data-icon="false">
 							Skal på tilsyn
@@ -337,6 +335,7 @@ export const Responsive: Story = {
 
 export const GroupStory: Story = {
 	name: "Group",
+	parameters: { showInOverview: true },
 	render: () => (
 		<div className={styles.group}>
 			<div className={styles.grid} data-gap="1">

@@ -33,6 +33,12 @@ u-tabpanel > pre > .docblock-source {
 .sbdocs-content blockquote :is(h2, h3, h4, h5, h6) {
 	font-size: inherit;
 }
+.sbdocs-content blockquote p:first-child {
+	margin-top: 0;
+}
+.sbdocs-content blockquote p:last-child {
+	margin-bottom: 0;
+}
 
 .sbdocs-content.sbdocs-content code {
 	color: var(--mtds-color-text-default);

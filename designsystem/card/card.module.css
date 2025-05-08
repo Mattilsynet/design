@@ -41,30 +41,6 @@
 		padding: var(--mtdsc-card-padding);
 	}
 
-	.info {
-		--mtdsc-info-icon-size: 1em;
-		--mtdsc-info-gap: var(--ds-size-2);
-		--mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
-
-		overflow: clip;
-		text-overflow: ellipsis;
-	}
-
-	/* TODO: Document, add label */
-	.info:has(> svg),
-	.info:has(> i) {
-		padding-left: var(--mtdsc-info-x);
-	}
-
-	.info > svg,
-	.info > i {
-		position: absolute;
-		margin-left: calc(var(--mtdsc-info-x) * -1);
-		height: calc(var(--ds-line-height-md) * 1em); /* Fallback if not supporting lh unit */
-		height: 1lh; /* But use 1lh if available to align with line-height */
-		width: var(--mtdsc-info-icon-size);
-	}
-
 	.group {
 		background-color: var(--ds-color-background-tinted);
 		border-radius: var(--ds-border-radius-xl);

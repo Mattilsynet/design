@@ -25,7 +25,13 @@ const meta = {
 				return () => document.removeEventListener("click", handleClick);
 			});
 
-			return <Story />;
+			// Disable autofocus in storybook
+			return (
+				<>
+					<style>{`.${styles.errorsummary.split(" ")[0]}{animation:none}`}</style>
+					<Story />
+				</>
+			);
 		},
 	],
 } satisfies Meta;

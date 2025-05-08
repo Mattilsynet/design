@@ -15,7 +15,7 @@
 @import url("./field/field.module.css");
 @import url("./fieldset/fieldset.module.css");
 @import url("./font.css");
-@import url("./heading/heading.module.css");
+@import url("./typography/typography.module.css");
 @import url("./helptext/helptext.module.css");
 @import url("./input/input.module.css");
 @import url("./layout/layout.module.css");
@@ -29,7 +29,6 @@
 @import url("./table/table.module.css");
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
-@import url("./text/text.module.css");
 @import url("./togglegroup/togglegroup.module.css");
 @import url("./tooltip/tooltip.module.css");
 @import url("./validation/validation.module.css");
@@ -100,7 +99,7 @@
 		--ds-body-md-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 		--ds-body-sm-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 
-		/* TODO: Make all headings fluid and give to DigiDir */
+		/* TODO: Make DigiDir do this */
 		--ds-md-rem: calc(16 / 18);
 		--ds-heading-2xs-font-size: calc(clamp(1em, 0.9296875em + 0.3125vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
 		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.01953125em + 0.46875vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */
