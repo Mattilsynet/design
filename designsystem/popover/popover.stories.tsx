@@ -210,6 +210,7 @@ export const WithClose: Story = {
 };
 
 export const WithTextInline: Story = {
+	parameters: { showInOverview: true },
 	render: () => (
 		<>
 			Vi bruker{" "}

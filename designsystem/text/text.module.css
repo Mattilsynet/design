@@ -1,9 +1,0 @@
-@layer mt.design {
-	.ingress {
-		font-size: 1.333333em;
-	}
-	.muted,
-	small {
-		font-size: max(.888888em, .75rem);
-	}
-}

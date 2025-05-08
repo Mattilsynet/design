@@ -1,7 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './app.stories';
-import styles from '../styles.module.css';
+import { Button, Popover } from '../react';
 
 <Meta of={stories} />
 
@@ -10,9 +10,9 @@ import styles from '../styles.module.css';
 - Legg inn `<header>`, `<dialog role="navigation">` (for sidemeny), `<main>` og evt. `<footer>`
 - Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
 - **React?** Bruk `App`, `App.Header`, `App.Sidebar`,  `App.Sticky`,  `App.Main` og `App.Footer`
-- **Next.js?** Bruk `<App.Script>` i `<head>` for å tegne minimert/ekspanert sidemeny uten <button type="button" data-popover="inline" popoverTarget='fouc'>FOUC</button><div className={styles.popover} popover="auto" id="fouc">Flash of unstyled content</div>
+- **Next.js?** Bruk `<App.Script>` i `<head>` for å tegne minimert/ekspanert sidemeny uten <button type="button" data-popover="inline" popoverTarget='fouc'>FOUC</button><Popover id="fouc">Flash of unstyled content</Popover>
 <div className="sbdocs-canvas-thumbnail">
-  <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se app i ny fane</a>
+  <Button data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se app i ny fane</Button>
   <Canvas of={stories.Default} />
 </div>
 
@@ -22,7 +22,7 @@ import styles from '../styles.module.css';
 - Bruk `data-app-expanded="true | false"` på innholdselementer for å velge om de vises eller skjules når ekspandert/minimert
 - Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
 <div className="sbdocs-canvas-thumbnail">
-  <a className={styles.button} data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se ekspandering i ny fane</a>
+  <Button data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se ekspandering i ny fane</Button>
   <Canvas of={stories.Default} />
 </div>
 
@@ -30,7 +30,7 @@ import styles from '../styles.module.css';
 - Legg en `<div>` med klassen `sticky` rundt alt innholdet inni `<dialog role="navigation">`
 - Dette gir deg en avansert implementasjon av sticky, som tar hensyn til scroll-retning
 <div className="sbdocs-canvas-thumbnail">
-  <a className={styles.button} data-arrow data-variant="primary"target="_blank" href="/iframe.html?globals=&id=designsystem-app--with-complex-content">Se sticky i ny fane</a>
+  <Button data-arrow data-variant="primary"target="_blank" href="/iframe.html?globals=&id=designsystem-app--with-complex-content">Se sticky i ny fane</Button>
   <Canvas of={stories.Default} />
 </div>
 

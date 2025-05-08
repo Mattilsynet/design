@@ -5,7 +5,7 @@
 		--dsc-details-background: transparent;
 		--dsc-details-icon-size: var(--mtds-icon-size);
 		--dsc-details-icon-url: var(--mtds-icon-chevron);
-		--dsc-details-summary-background--hover: transparent;
+		--dsc-details-summary-background--hover: var(--ds-color-background-tinted);
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
 		--mtdsc-details-content-padding: 0 0 var(--ds-size-4)
@@ -22,9 +22,11 @@
 		margin-bottom: 0;
 	}
 	.details > :is(summary, u-summary) {
-		transition: font-weight .2s;
+		transition-duration: .2s;
+		transition-property: font-weight, background;
 	}
 	.details[open] > :is(summary, u-summary) {
+		--dsc-details-summary-background--hover: transparent;
 		font-weight: 700;
 	}
 	.details > :is(summary, u-summary)::before {

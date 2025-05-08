@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './togglegroup.stories';
+import { Grid } from '../react';
 import { CheckCircle, XCircle } from '@phosphor-icons/react';
 
 <Meta of={stories} />
@@ -8,12 +9,14 @@ import { CheckCircle, XCircle } from '@phosphor-icons/react';
 # Togglegroup
 > ToggleGroup lar brukeren ta valg som påvirker innholdet på siden. Komponenten består av en gruppe knapper som henger sammen og bare én knapp kan være valgt om gangen.
 
-- Bruk klassen `togglegroup` på typisk `<div>`
-- Legg `<button type="button">` elementer inni
+- Bruk klassen `togglegroup` på `<fieldset>` med `aria-label`
+- Legg `<label><input type="radio">` elementer inni med samme `name` og `checked` på valgt verdier
 <Canvas of={stories.Default} />
 
+<Grid data-items={300}>
+  > ✅ **Egnet til:**<br />Filtrering eller endring av visning av samme innhold
 
-| <CheckCircle /> Egnet til: | <XCircle /> Uegnet til: |
-| :-- | :-- | 
-| Filtrering av innhold | Erstatning for radio eller checkbox |
-| Veksling av datavisninger og innhold | Navigasjon |
+  > ❌ **Uegnet til:**<br />Navigasjon eller erstatning for radio/checkbox
+</Grid>
+
+<CssVariables component="togglegroup" />

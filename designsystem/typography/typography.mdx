@@ -1,0 +1,38 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
+import { Button } from '../react.tsx';
+import * as stories from './typography.stories';
+
+<Meta of={stories} />
+
+# Typography
+
+<JumpTo />
+
+## Text
+- All tekst er automatisk satt til Figmas text style `text/default`
+- Bruk klassen `ingress` for introtekster og `muted` eller `<small>` elementet for mindre tekst
+- Tekststørrelser påvirkes av `data-size` (`mode: size` i Figma), og av teknikken [fluid typography](https://utopia.fyi/blog/designing-with-fluid-type-scales) som gradvis skalerer font ned et nivå basert på skjermbredde.
+<Canvas of={stories.Default} />
+
+## Heading
+- Bruk klassen `heading` på typisk `<h1>` til `<h6>`
+- Bruk `data-size="2xs | xs | sm | md | lg | xl | 2xl"`
+- Bruk `data-justify="center"` for å midtstille tekst
+- **Merk:** `data-size` endrer kun størrelse - ikke semantisk overskriftsnivå. Benytt alltid [korrekt HTML h-tag for god universell utforming &rarr;](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253)
+<Canvas of={stories.HeadingStory} />
+
+## Prose
+- Bruk klassen `prose` på typisk `div` eller annen container som har prosa/skjema/typografisk innhold
+<div className="sbdocs-canvas-thumbnail">
+  <Button data-arrow data-variant="primary" href="?path=/story/designsystem-layout--prose">Se prose-layout i egen visning</Button>
+  <Canvas className="sbdocs-canvas--max-height" of={stories.Prose} />
+</div>
+
+## Info
+- Bruk `info` rundt ledetekst+verdi, ikon+verdi eller kun verdi for enkelt, responsivt oppsett
+- Bruk `<svg>` for ikon eller `<i>` rundt ikon dersom svg ikke er mulig
+- Bruk `<strong>` rundt ledetekst
+<Canvas of={stories.InfoStory} />
+
+<CssVariables component="heading" />

@@ -1,6 +1,6 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 import { Svgs } from './svgs';
-import styles from '../designsystem/styles.module.css';
+import { Details, Flex, Button } from '../designsystem/react';
 
 <Meta title="Identitet/Illustrasjoner" />
 
@@ -9,8 +9,8 @@ import styles from '../designsystem/styles.module.css';
 > I Mattilsynet har vi utviklet en egen illustrasjonsstil som gir oss et egenartet og lett gjenkjennelig uttrykk.
 Illustrasjonene er enkle å (gjen)bruke på mange ulike flater. 
 
-<u-details class={styles.details}>
-  <u-summary>Illustrasjonsstil</u-summary>
+<Details>
+  <Details.Summary>Illustrasjonsstil</Details.Summary>
   
   - Tydelig, ren og enkel
   - «Omskalert» - det vil si at plantene og naturen er store i forhold til mennesker og dyr. Dette gir stilen egenart og understreker viktigheten av naturen vi lever i og med. Formmessig er også vekstene svært illustrative.
@@ -18,9 +18,9 @@ Illustrasjonene er enkle å (gjen)bruke på mange ulike flater.
   Vi har jobbet frem et modulsystem hvor en deler av illustrasjonene bygger på formene i logosymbolet vårt. Dette systemet, eller biblioteket, gjør det enkelt å plukke enkeltformer og sette disse sammen til nye komposisjoner som matcher ulike situasjoner og ulike fagområder. Oppbyggingen av illustrasjonsbiblioteket er i gang, men ikke fullført. Det vil gradvis fylles på med nye illustrasjoner.
 
   Merk at illustrasjonene som hovedregel ikke skal brukes sammen med foto.
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Farger</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Farger</Details.Summary>
   
   Fargene i illustrasjonene er hentet fra fargepaletten vår. «Lind» er en farge som i hovedsak kun skal benyttes i illustrasjonene, og ikke på andre elementer. Vi har 4 ulike hudtoner i bruk på illustrasjonene.
 
@@ -32,12 +32,12 @@ Illustrasjonene er enkle å (gjen)bruke på mange ulike flater.
     <ColorItem colors={['#1E1A28']} title="Hår, mørk" />
     <ColorItem colors={['#1D57AA']} title="Klær, mellomblå" subtitle="Brukes som alternativ til Fjord på mørke flater" />
   </ColorPalette>
-</u-details>
+</Details>
 <br />
 
-<div className={styles.flex} data-justify="space-between" data-align="center">
+<Flex data-justify="space-between" data-align="center">
   <h2 className="sbdocs-h2" style={{ margin: 0 }}>Illustrasjoner</h2>
-  <a className={styles.button} href="https://design.mattilsynet.no/?path=/docs/designsystem-introduksjon--docs" data-arrow>Se hvordan installere i kode</a>
-</div>
+  <Button href="https://design.mattilsynet.no/?path=/docs/designsystem-introduksjon--docs" data-arrow>Se hvordan installere i kode</Button>
+</Flex>
 <Svgs path="illustrations" showSearch />
 <div style={{ height: 500 }} /> {/* Allow some space to scroll under */}

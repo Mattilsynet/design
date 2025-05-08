@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks';
-import styles from '../designsystem/styles.module.css';
+import { Button, Details } from '../designsystem/react';
 import { ArrowSquareOut } from "@phosphor-icons/react";
 
 <Meta title="Identitet/Bilder" />
@@ -8,12 +8,12 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
 
 > Mattilsynets samfunnsoppdrag har en sentral fotostil som skal kunne brukes av alle, for å opptre mest mulig helhetlig. Bildestilen skal svare på virksomhetenes kommunikasjonsbehov, og samtidig oppleves som unik for Mattilsynet. Fotostilen skal først og fremst være gjenkjennelig gjennom motivene, og i noen grad ved tekniske kvaliteter, lyssetting og etterbehandling.
 
-<a className={styles.button} data-variant="primary" href="https://mattilsynet.sharepoint.com/sites/BilderMattilsynet" target="_blank">Finn høyoppløselige bilder på SharePoint <ArrowSquareOut /></a>
+<Button data-variant="primary" href="https://mattilsynet.sharepoint.com/sites/BilderMattilsynet" target="_blank">Finn høyoppløselige bilder på SharePoint <ArrowSquareOut /></Button>
 
 <br />
 <br />
-<u-details class={styles.details}>
-  <u-summary>Bildestil</u-summary>
+<Details>
+  <Details.Summary>Bildestil</Details.Summary>
   
   Mattilsynet har et samfunnsoppdrag som kan og skal dokumenteres med foto. For å oppleves troverdige må vi ha egne foto. Vise ekte og gode møter, samspill mellom mennesker, dyr og natur og hjelperen - ett lag, åpen og kompetent. Vise maten der den kommer fra. Få med teknologien, MT og næringen inn i fremtiden, en moderne næring (utviklingsmiljø internt og bruk av teknologi generelt. Dekke alle fagområder.
 
@@ -22,9 +22,9 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
   - Bilder av mennesker, dyr og natur - gjerne i samspill, de gode møtene
   - Tydelig
   - Vise Mattilsynet som hjelperen
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Teknisk</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Teknisk</Details.Summary>
 
   - Nordisk, med nordisk lys (lyset gjør bildene mer levende og varierte)
   - Spill i fokus/dybde, skarpt og uskarpt. Lysspill i bakgrunnen (blurry)
@@ -33,9 +33,9 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
   - Få med fargene i paletten (ref. grisebildet) - Blomster, klær, detaljer (+ huske at vi må få inn både grønt OG blått :)
   - Logoform kan gjentas i måten man holder dyr (f.eks. kyllinger) eller produkter på 
   - Fargebilder, ikke sort/hvitt
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Natur</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Natur</Details.Summary>
   
   Mattilsynets oppdrag er tett knyttet til naturen, og av den grunn spiller naturen er viktig rolle i mange av bildene våre. Der skal det vises
 
@@ -44,16 +44,16 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
   - nære og fjerne landskaper (store landskap vs. close-up på planter, grønnsaker, råvarer)
   - hvor maten kommer fra: jorda, åkeren, beitet
   - både by og land (bymiljø mangler i dag)
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Nært og fjernt</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Nært og fjernt</Details.Summary>
   
   For å favne hele verdikjeden, samt få variasjon og spill i bildebanken vår, har vi motiver som favner både det store/fjerne og det detaljerte/nære.
 
   [GRAFIKK]
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Mennesker</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Mennesker</Details.Summary>
   
   Bildene viser:
   - mennesker «in action». De poserer ikke, de er på jobb, i samspill med dyr/mat/natur og med nærhet til og omsorg for dyr og planter
@@ -61,29 +61,29 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
   - Mattilsynet som hjelperen: ett lag, åpen og kompetent
 
   [GRAFIKK]
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Mattilsynets dyrebilder</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Mattilsynets dyrebilder</Details.Summary>
   
   - skal vise dyr i et miljø, enten inne eller ute
   - kan være tatt både på avstand og tett på
   - skal være tydelige, selv når de går nært innpå motivet
 
   [GRAFIKK]
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Ekte</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Ekte</Details.Summary>
   
   Bildene skal vise mennesker, dyr og situasjoner som er troverdige og kjennes ekte.
   Husk å sjekke med fagpersoner om motiv før et eventuelt foto-opptak, slik at vi sikrer at det er realisme i det som avbildes.
 
   [GRAFIKK]
-</u-details>
-<u-details class={styles.details}>
-  <u-summary>Framtid</u-summary>
+</Details>
+<Details>
+  <Details.Summary>Framtid</Details.Summary>
   
   Det er viktig å få fram at Mattilsynet er en framtidsrettet organisasjon som jobber med å digitalisere og effektivisere arbeidsprosessene sine.
   Av den grunn er det viktig å få med bruk av digitale verktøy i bildene - det viser at vi er en moderne aktør.
 
   [GRAFIKK]
-</u-details>
+</Details>
