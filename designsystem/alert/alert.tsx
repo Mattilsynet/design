@@ -10,7 +10,7 @@ export type AlertProps<As extends React.ElementType = "output"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		{
-			"data-color"?: "info" | "success" | "warning" | "danger";
+			"data-color"?: "info" | "success" | "warning" | "danger" | "neutral";
 		}
 	>;
 
