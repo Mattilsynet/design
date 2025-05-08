@@ -1,32 +1,53 @@
 @layer mt.design {
 	.togglegroup {
 		--mtdsc-togglegroup-spacing: var(--ds-size-1);
-		--mtdsc-togglegroup-padding: var(--ds-size-1);
+		--mtdsc-togglegroup-padding: 0 var(--ds-size-4);
+		--mtdsc-togglegroup-border-color: var(--ds-color-border-subtle);
+		--mtdsc-togglegroup-border-width: var(--ds-border-width-default);
 
+		all: unset;
 		background: var(--ds-color-background-tinted);
 		border-radius: var(--ds-border-radius-md);
+		box-shadow: inset 0 0 0 var(--mtdsc-togglegroup-border-width)
+			var(--mtdsc-togglegroup-border-color);
+		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--mtdsc-togglegroup-spacing);
 		padding: var(--mtdsc-togglegroup-spacing);
-		color: var(--ds-color-text-muted);
+		width: fit-content;
 	}
-	.togglegroup button {
-		all: unset;
+	.togglegroup input {
+		position: absolute;
+		opacity: 0;
+	}
+	.togglegroup label {
+		box-sizing: border-box;
+		border: var(--mtdsc-togglegroup-border-width) solid transparent;
+		border-color: transparent;
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
+		display: flex;
 		font-weight: var(--ds-font-weight-medium);
+		gap: var(--ds-size-2);
+		height: var(--ds-size-10);
 		padding: var(--mtdsc-togglegroup-padding);
-		transition: .2s;
+		place-items: center;
+		transition-duration: .2s;
+		transition-property: background, border, color, scale;
 	}
-	.togglegroup button:focus-visible {
+	.togglegroup label:has(input:focus-visible) {
 		box-shadow: var(--dsc-focus-boxShadow);
 		outline: var(--dsc-focus-outline);
 		outline-offset: var(--ds-border-width-focus);
 	}
-	.togglegroup button:hover,
-	.togglegroup button[aria-checked="true"] {
+	.togglegroup label:hover,
+	.togglegroup label:has(input:checked) {
 		background: var(--ds-color-surface-default);
+		border-color: var(--mtdsc-togglegroup-border-color);
 		color: var(--ds-color-text-default);
+	}
+	.togglegroup label:active {
+		scale: 0.95;
 	}
 }

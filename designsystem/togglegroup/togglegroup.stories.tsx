@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { Togglegroup } from "../react";
 import styles from "../styles.module.css";
 
@@ -11,24 +12,46 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<div className={styles.togglegroup}>
-			<input type="hidden" name="togglegroup" value="inboks" />
-			<button type="button" value="inboks" aria-checked="true">
+		<fieldset className={styles.togglegroup} aria-label="Mappe">
+			<label>
+				<input type="radio" name="my-toggles" value="inboks" />
 				Inboks
-			</button>
-			<button type="button" value="utkast" aria-checked="false">
+			</label>
+			<label>
+				<input type="radio" name="my-toggles" value="utkast" defaultChecked />
 				Utkast
-			</button>
-			<button type="button" value="arkiv" aria-checked="false">
+			</label>
+			<label>
+				<input type="radio" name="my-toggles" value="arkiv" />
 				Arkiv
-			</button>
-			<button type="button" value="sendt" aria-checked="false">
+			</label>
+			<label>
+				<input type="radio" name="my-toggles" value="sendt" />
 				Sendt
-			</button>
-		</div>
+			</label>
+		</fieldset>
 	),
 };
 
 export const React: Story = {
-	render: () => <Togglegroup />,
+	render: () => {
+		const items = ["Inboks", "Utkast", "Arkiv", "Sendt"];
+		const [value, setValue] = useState(items[1]);
+
+		return (
+			<Togglegroup>
+				{items.map((item) => (
+					<Togglegroup.Item
+						checked={value === item}
+						key={item}
+						name="react-toggles"
+						onChange={() => setValue(item)}
+						value={item}
+					>
+						{item}
+					</Togglegroup.Item>
+				))}
+			</Togglegroup>
+		);
+	},
 };

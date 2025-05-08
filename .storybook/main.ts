@@ -17,7 +17,6 @@ const illustrations = JSON.parse(
 const PUBLIC_DIR = path.resolve("./public");
 const DESIGN_DIR = path.resolve("./designsystem");
 const FOLDERS = "@(identitet|designsystem|profilering)";
-const IGNORE = "!(togglegroup)";
 
 // Generate overview.mdx
 const stories = fg
@@ -46,8 +45,8 @@ ${stories.map(({ name, file }) => `import * as ${name} from './${file}';`).join(
 
 export default {
 	stories: [
-		`../${FOLDERS}/**/${IGNORE}.mdx`,
-		`../${FOLDERS}/**/${IGNORE}.stories.@(js|jsx|mjs|ts|tsx)`,
+		`../${FOLDERS}/**/*.mdx`,
+		`../${FOLDERS}/**/*.stories.@(js|jsx|mjs|ts|tsx)`,
 	],
 	addons: [
 		{

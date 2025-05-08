@@ -23,6 +23,7 @@ import "./fieldset/fieldset-observer";
 import "./logo/logo-observer";
 import "./popover/popover-observer";
 import "./table/table-observer";
+import "./togglegroup/togglegroup-observer";
 import "./tooltip/tooltip-observer";
 import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element
