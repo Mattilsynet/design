@@ -5,15 +5,17 @@
 		--mtdsc-togglegroup-border-color: var(--ds-color-border-subtle);
 		--mtdsc-togglegroup-border-width: var(--ds-border-width-default);
 
-		all: unset;
 		background: var(--ds-color-background-tinted);
 		border-radius: var(--ds-border-radius-md);
+		border: 0;
 		box-shadow: inset 0 0 0 var(--mtdsc-togglegroup-border-width)
 			var(--mtdsc-togglegroup-border-color);
 		box-sizing: border-box;
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--mtdsc-togglegroup-spacing);
+		margin: 0;
+		min-width: 0;
 		padding: var(--mtdsc-togglegroup-spacing);
 		width: fit-content;
 	}

@@ -47,16 +47,19 @@
 		--dsc-button-border-color: transparent; /* var(--ds-color-border-subtle) */
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, top);
+
 		bottom: var(--spacing);
 		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
-		gap: var(--mtds-app-expanded--true, var(--ds-size-2));
+		flex-direction: var(--mtds-app-expanded--false, column);
 		grid-area: sidebar;
+		height: var(--dsc-button-size);
+		justify-content: start; /* Clip from start */
+		letter-spacing: var(--mtds-app-expanded--false, -1em); /* Compress text when small */
 		margin-top: auto; /* Push to bottom */
-		min-width: fit-content;
-		position: sticky;
-		text-indent: var(--mtds-app-expanded--false, -100vw); /* Hide text */
 		overflow: clip;
-		width: 0;
+		position: sticky;
+		white-space: nowrap;
+		width: fit-content;
 		z-index: 3;
 		view-transition-name: mtds-app--toggle;
 	}
@@ -65,6 +68,7 @@
 	}
 	.app.app [data-command="toggle-app-expanded"]::before {
 		content: "";
+		height: 100%; /* Make sure to hide text when wrapped */
 		mask-image: var(
 				--mtds-app-expanded--true,
 				var(--mtds-icon-sidebar-collapse)
@@ -191,12 +195,16 @@
 		}
 	}
 	@media (max-width: 48em) {
+		.app [data-app-expanded="desktop"] {
+			visibility: hidden;
+			position: fixed;
+		}
 		.app {
 			--mtds-app-expanded--true: initial;
 			--mtds-app-expanded--false: ;
 		}
-		.app > header,
-		.app header:has(~ main) {
+		.app:has([data-command="toggle-app-expanded"]) > header,
+		.app:has([data-command="toggle-app-expanded"]) header:has(~ main) {
 			padding-right: calc(var(--mtds-15) + var(--mtds-2));
 		}
 		.app > dialog,
@@ -222,12 +230,11 @@
 			--dsc-button-background: transparent;
 			--dsc-button-border-color: transparent;
 			--mtds-tooltip-position: none;
+			--mtds-app-expanded--false: initial; /* Minimize button */
 
 			box-shadow: none;
-			gap: 0;
 			inset: var(--spacing) calc(var(--spacing) * 0.5) auto auto;
 			position: absolute;
-			text-indent: -100vw; /* Hide text */
 		}
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);

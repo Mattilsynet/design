@@ -45,4 +45,11 @@
 	.badge:has([class*="avatar"]) {
 		--mtdsc-badge-offset: var(--ds-size-2);
 	}
+	.badge > svg {
+		fill: currentColor;
+		flex-shrink: 0;
+		font-size: 1em;
+		height: var(--mtds-icon-size);
+		width: var(--mtds-icon-size);
+	}
 }

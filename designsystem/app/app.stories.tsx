@@ -9,6 +9,7 @@ import {
 	User,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { toggleAppExpanded } from "..";
 import { App, Avatar, Button, Card, Logo, Popover } from "../react";
 import styles from "../styles.module.css";
 
@@ -291,7 +292,7 @@ export const WithComplexContent: Story = {
 					aria-label="Meny"
 					popoverTarget="menu"
 				>
-					Navn Navnesen
+					<span data-app-expanded="desktop">Navn Navnesen</span>
 					<span className={styles.avatar} data-size="xs"></span>
 				</button>
 				<menu className={styles.popover} popover="auto" id="menu">
@@ -497,6 +498,98 @@ export const WithComplexContent: Story = {
 			<footer style={{ height: 300 }}>
 				<a href="/" className={styles.logo}></a>
 			</footer>
+		</div>
+	),
+};
+
+export const WithCustomToggle: Story = {
+	render: () => (
+		<div className={styles.app}>
+			<header>
+				<a href="/" className={styles.logo}>
+					<Plant weight="fill" />
+					Digiplant
+				</a>
+			</header>
+			<button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+				data-app-expanded="mobile"
+				data-tooltip="Meny"
+			></button>
+			<dialog role="navigation">
+				<menu className={styles.sticky}>
+					<li>
+						<a
+							className={styles.button}
+							href="/"
+							aria-current="page"
+							data-tooltip="Søknader"
+						>
+							<Signature />
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/" data-tooltip="Behandling">
+							<ListChecks />
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/" data-tooltip="Søk">
+							<MagnifyingGlass />
+						</a>
+					</li>
+				</menu>
+			</dialog>
+			<main>
+				<div className={styles.card}>
+					<menu>
+						<li>
+							<button
+								className={styles.button}
+								onClick={() => toggleAppExpanded()}
+								type="button"
+							>
+								<div className={styles.grid} data-gap="1">
+									Veksle sideområde
+									<small>
+										<code>toggleAppExpanded()</code>
+									</small>
+								</div>
+							</button>
+						</li>
+						<li>
+							<button
+								className={styles.button}
+								onClick={() => toggleAppExpanded(false)}
+								type="button"
+							>
+								<div className={styles.grid} data-gap="1">
+									Lukk sideområde
+									<small>
+										<code>toggleAppExpanded(false)</code>
+									</small>
+								</div>
+							</button>
+						</li>
+						<li>
+							<button
+								className={styles.button}
+								onClick={() => toggleAppExpanded(true)}
+								type="button"
+							>
+								<div className={styles.grid} data-gap="1">
+									Åpne sideområde
+									<small>
+										<code>toggleAppExpanded(true)</code>
+									</small>
+								</div>
+							</button>
+						</li>
+					</menu>
+				</div>
+			</main>
 		</div>
 	),
 };

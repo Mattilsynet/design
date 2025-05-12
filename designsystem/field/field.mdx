@@ -46,6 +46,11 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
 - **Merk:** for god tilgjengelighet, beskriv ønsket innhold i `<p>` eller `<label>`, f.eks.: "Pris i NOK per måned"
 <Canvas of={stories.WithAffixes} />
 
+## Beskrivelse siktekst
+- Ved bruk av CMS kan vi ikke være sikker på at beskrivelse tegnes med én `<p>`
+- Bruk da heller `<div>` med attributt `data-description` og klassen `prose`
+<Canvas of={stories.WithCustomDescriptionTag} />
+
 ## Antall tegn
 - Legg `data-count="number"` på `<p>` etter `input`
 - Teksten oversettes automatisk til engelsk dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property, hvor `%d` er antall tegn. Eksempel:

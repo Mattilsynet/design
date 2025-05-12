@@ -61,7 +61,7 @@
 		& label {
 			font-weight: normal;
 		}
-		& p {
+		& :is(p, [data-description]) {
 			font-size: var(--ds-font-size-minus-1);
 		}
 		&:has([readonly]:disabled) label {

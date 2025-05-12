@@ -225,6 +225,7 @@ export const Indeterminate: Story = {
 						}}
 					/>
 				</div>
+				<hr className={styles.divider} data-gap="2" />
 				{all.map((value) => (
 					<div className={styles.field} key={value}>
 						<label>Alternativ 1</label>
@@ -326,10 +327,10 @@ export const WithCustomDescriptionTag: Story = {
 		<>
 			<div className={styles.field}>
 				<label>Ledetekst</label>
-				<div data-description>
-					Beskrivelse i en <code>&lt;div data-description&gt;</code>
+				<div data-description className={styles.prose}>
 					<p>
-						Indre <code>&lt;p&gt;</code> tags ignoreres
+						Beskrivelse i en <code>data-description</code> som virker med og
+						uten <code>&lt;p&gt;</code>
 					</p>
 				</div>
 				<textarea className={styles.input} defaultValue="Noe innhold" />

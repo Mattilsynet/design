@@ -49,6 +49,7 @@
 	 * Prose
 	 */
 	.prose {
+		--mtdsc-prose-spacing: 1em;
 		--mtdsc-prose-max-width: 65ch;
 	}
 	.prose > * {
@@ -70,11 +71,14 @@
 		margin-top: var(--ds-size-2);
 	}
 	.prose > :where([class*="heading"]) {
-		margin-block: 1.5em .5rem; /* Needs to be REM an not em to always align with size tokens, as headings have different sizes */
+		margin-block: 1.5em 0;
 		max-width: var(--mtdsc-prose-max-width);
 	}
-	.prose > :where([class*="heading"]) + :where(p, ul, ol, [class*="heading"]) {
-		margin-top: 0;
+	.prose > :where([class*="heading"]) + :where(p, ul, ol) {
+		margin-top: .5rem; /* size 2 is written as .5rem to for consistent value regardless of headings size */
+	}
+	.prose > :where([class*="heading"]) + :where([class*="heading"]) {
+		margin-top: 1rem; /* Heading followed by heading shoul have size 4 between */
 	}
 	.prose > :where(button) {
 		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */
