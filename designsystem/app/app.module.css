@@ -126,7 +126,6 @@
 		}
 		& menu [data-badge]::before {
 			--small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
-			content: var(--mtds-app-expanded--true, attr(data-badge)) "";
 			margin-left: auto;
 			order: 1;
 		}

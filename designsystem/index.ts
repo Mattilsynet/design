@@ -1,11 +1,11 @@
 // Expose custom elements not matching HTML elements
-export type {
+export {
 	UHTMLTabsElement,
 	UHTMLTabElement,
 	UHTMLTabListElement,
 	UHTMLTabPanelElement,
 } from "@u-elements/u-tabs";
-export type { UHTMLTagsElement } from "@u-elements/u-tags";
+export { UHTMLTagsElement } from "@u-elements/u-tags";
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug

@@ -1,12 +1,21 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './details.stories';
+import { Details } from '../react';
 
 <Meta of={stories} />
 
 # Details
 
 - Legg klassen `details` på `<u-details>`
+
+<Details>
+<Details.Summary>Hva er `u-details`?</Details.Summary>
+
+[u-details](https://u-elements.github.io/u-elements/elements/u-details) er en del av prosjektet [u-elements](https://u-elements.github.io/u-elements)
+som sikrer universell utforming. Dette lastes automatisk når du bruker `@mattilsynet/design`.
+Du kan benytte native tilhørende [HTMLDetailsElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement) interface ved behov.
+</Details>
 
 <Canvas of={stories.Default} />
 

@@ -699,28 +699,31 @@ export const InfoStory: Story = {
 	render: () => (
 		<>
 			<span className={styles.info}>Informasjon</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<strong>Ledetekst</strong>Informasjon
+				<strong>Ledetekst</strong>Og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
 				<Heart />
-				Informasjon
+				Ikon og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<Heart /> <strong>Ledetekst</strong>
-				Informasjon
+				<Heart /> <strong>Ikon og ledetekst</strong>
+				Og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
 				<i>🇳🇴</i>
 				Norge
 			</span>
-			<hr className={styles.divider} data-gap="10" />
+			<hr className={styles.divider} data-gap="5" />
 			Info i card:
 			<Card>
 				<Flex data-align="start">
-					<div data-self="250" data-fixed>
-						<small>Opprettet 01.01.1970</small>
-						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
+					<div data-self="300" data-fixed>
+						<Heading data-size="xs">KY.KELLI.815.493.00</Heading>
 					</div>
 					<Flex data-self="500">
 						<Flex data-self="500" data-align="start">

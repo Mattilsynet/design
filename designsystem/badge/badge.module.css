@@ -3,9 +3,9 @@
 		--dsc-badge-background: var(--ds-color-base-default);
 		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-size: var(--ds-size-3);
-		--mtdsc-badge-offset: 0px;
 		--small: ;
 
+		flex-shrink: 0; /* If placed in flex */
 		position: relative;
 		place-items: center;
 		vertical-align: middle;
@@ -25,15 +25,16 @@
 		font-variant-numeric: tabular-nums;
 		font-weight: 700;
 		inset: 0 0 auto auto;
-		line-height: 1.2;
+		line-height: var(--dsc-badge-size);
 		margin: var(--mtdsc-badge-offset);
 		min-height: var(--dsc-badge-size);
 		min-width: var(--dsc-badge-size);
-		padding: 0 .3em;
+		padding: var(--ds-size-2);
 		place-items: center;
 		position: var(--small, absolute);
 		scale: var(--small, 0.85);
 		translate: var(--small, 50% -50%);
+		white-space: nowrap;
 	}
 
 	.badge[data-badge="true"]::before {

@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './progress.stories';
+import { Details } from '../react';
 
 <Meta of={stories} />
 
@@ -8,6 +9,14 @@ import * as stories from './progress.stories';
 
 - Legg klassen `progress` på `<u-progress>`
 - Sett numerisk verdi i attributtene `value` og `max`
+
+<Details>
+<Details.Summary>Hva er `u-progress`?</Details.Summary>
+
+[u-progress](https://u-elements.github.io/u-elements/elements/u-progress) er en del av prosjektet [u-elements](https://u-elements.github.io/u-elements)
+som sikrer universell utforming. Dette lastes automatisk når du bruker `@mattilsynet/design`.
+Du kan benytte native tilhørende [HTMLProgressElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLProgressElement) interface ved behov.
+</Details>
 <Canvas of={stories.Default} />
 
 ## Størrelser
