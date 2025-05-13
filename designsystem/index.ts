@@ -1,20 +1,20 @@
 // Expose custom elements not matching HTML elements
-export type {
+export {
 	UHTMLTabsElement,
 	UHTMLTabElement,
 	UHTMLTabListElement,
 	UHTMLTabPanelElement,
 } from "@u-elements/u-tabs";
-export type { UHTMLTagsElement } from "@u-elements/u-tags";
+export { UHTMLTagsElement } from "@u-elements/u-tags";
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export { pagination } from "./pagination/pagination-helper";
+export { toggleAppExpanded } from "./app/app-observer";
 export * as styles from "./styles.module.css";
 
-// Load beahviours
+// Load behaviours
 // import "./toast/toast-observer";
-import "./app/app-observer";
 import "./breadcrumbs/breadcrumbs-observer";
 import "./dialog/dialog-observer";
 import "./errorsummary/errorsummary-observer";

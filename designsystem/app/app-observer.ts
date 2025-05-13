@@ -12,17 +12,18 @@ const useTransition = (callback: () => void) => {
 	else document.startViewTransition(callback);
 };
 
+export const toggleAppExpanded = (force?: boolean) =>
+	// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
+	useTransition(() => window.mtdsToggleAppExpanded?.(force));
+
 function handleToggleClick({ target: el }: Event) {
-	if (el instanceof HTMLButtonElement && el.matches(CSS_TOGGLE))
-		useTransition(() => {
-			// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
-			if (getComputedStyle(el).position === "sticky") window.mtdsAppToggle?.();
-			else {
-				const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
-				sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
-				sidebar?.showModal();
-			}
-		});
+	if (!(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE)) return;
+	if (getComputedStyle(el).position === "sticky") return toggleAppExpanded();
+	useTransition(() => {
+		const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
+		sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
+		sidebar?.showModal();
+	});
 }
 
 function handleResize() {

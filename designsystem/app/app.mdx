@@ -8,7 +8,8 @@ import { Button, Popover } from '../react';
 # App
 - Bruk klassen `app` på typisk `<body>` eller et element inni
 - Legg inn `<header>`, `<dialog role="navigation">` (for sidemeny), `<main>` og evt. `<footer>`
-- Alle elemetene er valgfrie, og kan grupperes i `<div>`-er dersom du trenger definerte områder
+- Alle elemetene er valgfrie, og kan grupperes i `<div>`-er for [island-architecture](https://www.patterns.dev/vanilla/islands-architecture/)
+- Bruk `data-app-expanded="mobile | desktop"` på elementer ønsker å vise noe kun på en skjermstørrelse (f.eks kun vise sideområde-knapp på mobil)
 - **React?** Bruk `App`, `App.Header`, `App.Sidebar`,  `App.Sticky`,  `App.Main` og `App.Footer`
 - **Next.js?** Bruk `<App.Script>` i `<head>` for å tegne minimert/ekspanert sidemeny uten <button type="button" data-popover="inline" popoverTarget='fouc'>FOUC</button><Popover id="fouc">Flash of unstyled content</Popover>
 <div className="sbdocs-canvas-thumbnail">
@@ -18,8 +19,7 @@ import { Button, Popover } from '../react';
 
 ## Ekspander og minimer sideområde
 - Legg en `<button>` med klassen `button` og `data-command="toggle-app-expand"` før `<dialog role="navigation">` for å få automatisk ekspandering/minimering av sideområde
-- Dersom du ikke ønsker å kun vise sideområde-knappen på mobil, kan du bruke `data-app-expanded="mobile"`
-- Bruk `data-app-expanded="true | false"` på innholdselementer for å velge om de vises eller skjules når ekspandert/minimert
+- Bruk `data-app-expanded="true | false"` på elementer for å vises/skjules basert på ekspandert/minimert sideområde
 - Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
 <div className="sbdocs-canvas-thumbnail">
   <Button data-arrow data-variant="primary" target="_blank" href="/iframe.html?globals=&id=designsystem-app--default">Se ekspandering i ny fane</Button>
@@ -32,6 +32,16 @@ import { Button, Popover } from '../react';
 <div className="sbdocs-canvas-thumbnail">
   <Button data-arrow data-variant="primary"target="_blank" href="/iframe.html?globals=&id=designsystem-app--with-complex-content">Se sticky i ny fane</Button>
   <Canvas of={stories.Default} />
+</div>
+
+## Programatisk ekspander/minimer
+- Bruk `import { toggleAppExpand } from '@mattilsynet/design';`
+- `toggleAppExpand()` veksler mellom ekspandert og minimert
+- `toggleAppExpand(true)` tvinger ekspandert
+- `toggleAppExpand(false)` tvinger minimert
+<div className="sbdocs-canvas-thumbnail">
+  <Button data-arrow data-variant="primary"target="_blank" href="/iframe.html?globals=&id=designsystem-app--with-complex-content">Se programatisk ekspander/minimer i ny fane</Button>
+  <Canvas of={stories.WithCustomToggle} />
 </div>
 
 <CssVariables component="app" />

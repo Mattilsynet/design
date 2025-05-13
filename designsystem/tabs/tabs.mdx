@@ -1,14 +1,31 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './tabs.stories';
+import { Details } from '../react';
 
 <Meta of={stories} />
 
 # Tabs
 
-- Legg klassen `tabs` på [`<u-tabs>`](https://u-elements.github.io/u-elements/elements/u-tabs) fra [u-elements](https://u-elements.github.io/u-elements/elements/u-tabs)
+- Legg klassen `tabs` på elementet `<u-tabs>`
 - Legg `aria-selected="true"` på ønsket åpen fane
-- **Merk:** Skriv `class=` istedenfor `className=` dersom du bruker [React 18 eller eldre](https://react.dev/reference/react-dom/components#custom-html-elements)
+
+<Details>
+<Details.Summary>Hva er `u-tabs`?</Details.Summary>
+
+[u-tabs](https://u-elements.github.io/u-elements/elements/u-tabs) er en del av prosjektet [u-elements](https://u-elements.github.io/u-elements)
+som sikrer universell utforming. Dette lastes automatisk når du bruker `@mattilsynet/design`.
+Du kan også hente inn tilhørende HTMLElement interface ved behov:
+```
+import {
+  UHTMLTabsElement,
+  UHTMLTabElement,
+  UHTMLTabListElement,
+  UHTMLTabPanelElement
+} from '@mattilsynet/design'
+```
+</Details>
+
 
 <Canvas of={stories.Default} />
 

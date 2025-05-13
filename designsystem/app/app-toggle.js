@@ -8,14 +8,16 @@ if (
 		const sheet = new CSSStyleSheet();
 
 		document.adoptedStyleSheets.push(sheet);
-		window.mtdsAppToggle = (toggle = true) => {
+		window.mtdsToggleAppExpanded = (force) => {
 			try {
 				const prev = !window.localStorage.getItem(key)?.includes("false");
-				const next = toggle ? !prev : prev;
+				const next = force ?? !prev;
 
 				sheet.replaceSync?.(`:root { ${key}: var(${key}--${next})}`);
 				window.localStorage.setItem(key, next);
 			} catch (err) {} // LocalStorage is full or replaceSync is not supported
 		};
-		window.mtdsAppToggle(false); // Set and store initial state
+
+		// Set and store initial state - double to get initial value
+		window.mtdsToggleAppExpanded(false);
 	})();

@@ -49,9 +49,11 @@ export const Colors: Story = {
 				Warning ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
 				tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
 			</output>
-			<div className={styles.alert} data-color="danger" role="alert">
-				Danger ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-				tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
+			<div role="alert">
+				<div className={styles.alert} data-color="danger">
+					Danger ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
+					tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
+				</div>
 			</div>
 			<output className={styles.alert} data-color="neutral">
 				Warning ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in

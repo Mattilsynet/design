@@ -252,7 +252,7 @@ export const Prose: Story = {
 			<p>
 				<small>Publisert 14.01.2025</small>
 			</p>
-			<h2 className={styles.heading} data-size="sm">
+			<h2 className={styles.heading} data-size="xs">
 				Innhold på denne siden
 			</h2>
 			<ol>
@@ -299,63 +299,69 @@ export const Prose: Story = {
 			<h2 className={styles.heading} data-size="sm">
 				Transportør
 			</h2>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<input type="text" className={styles.input} required />
-			</div>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<input type="text" className={styles.input} required />
+			<div className={styles.grid} data-gap="9">
+				<div className={styles.field}>
+					<label>Ledetekst</label>
+					<p>Beskrivelse</p>
+					<input type="text" className={styles.input} required />
+				</div>
+				<div className={styles.field}>
+					<label>Ledetekst</label>
+					<p>Beskrivelse</p>
+					<input type="text" className={styles.input} required />
+				</div>
 			</div>
 			<h2 className={styles.heading} data-size="md">
 				Mottaker
 			</h2>
-			<div className={styles.field}>
-				<label>Beskriv bekymringen din</label>
-				<p>
-					Skriv gjerne hva som har skjedd, hvor det skjedde, grunnen til
-					problemet og hvorfor du mener at dyrene ikke har det bra.
-				</p>
-				<textarea className={styles.input} required />
-			</div>
-			<div className={styles.field}>
-				<label>Antall dyr</label>
-				<input type="text" className={styles.input} />
+			<div className={styles.grid} data-gap="9">
+				<div className={styles.field}>
+					<label>Beskriv bekymringen din</label>
+					<p>
+						Skriv gjerne hva som har skjedd, hvor det skjedde, grunnen til
+						problemet og hvorfor du mener at dyrene ikke har det bra.
+					</p>
+					<textarea className={styles.input} required />
+				</div>
+				<div className={styles.field}>
+					<label>Antall dyr</label>
+					<input type="text" className={styles.input} />
+				</div>
 			</div>
 			<h2 className={styles.heading} data-size="lg">
 				Helsesertifikat for sjømat
 			</h2>
-			<div className={styles.field}>
-				<label>Velg dyr</label>
-				<input type="text" className={styles.input} required />
+			<div className={styles.grid} data-gap="9">
+				<div className={styles.field}>
+					<label>Velg dyr</label>
+					<input type="text" className={styles.input} required />
+				</div>
+				<fieldset className={styles.fieldset}>
+					<legend>Hovedårsak til bekymring</legend>
+					<p>Fellesbeskrivelse</p>
+					<div className={styles.field}>
+						<input
+							type="radio"
+							className={styles.input}
+							name="my-radio"
+							required
+							defaultChecked
+						/>
+						<label>Alternativ 1</label>
+						<p>Beskrivelse</p>
+					</div>
+					<div className={styles.field}>
+						<input
+							type="radio"
+							className={styles.input}
+							name="my-radio"
+							required
+						/>
+						<label>Alternativ 2</label>
+						<p>Beskrivelse</p>
+					</div>
+				</fieldset>
 			</div>
-			<fieldset className={styles.fieldset}>
-				<legend>Hovedårsak til bekymring</legend>
-				<p>Fellesbeskrivelse</p>
-				<div className={styles.field}>
-					<input
-						type="radio"
-						className={styles.input}
-						name="my-radio"
-						required
-						defaultChecked
-					/>
-					<label>Alternativ 1</label>
-					<p>Beskrivelse</p>
-				</div>
-				<div className={styles.field}>
-					<input
-						type="radio"
-						className={styles.input}
-						name="my-radio"
-						required
-					/>
-					<label>Alternativ 2</label>
-					<p>Beskrivelse</p>
-				</div>
-			</fieldset>
 			<h2 className={styles.heading} data-size="md">
 				Litt informasjon
 			</h2>
@@ -693,28 +699,31 @@ export const InfoStory: Story = {
 	render: () => (
 		<>
 			<span className={styles.info}>Informasjon</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<strong>Ledetekst</strong>Informasjon
+				<strong>Ledetekst</strong>Og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
 				<Heart />
-				Informasjon
+				Ikon og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<Heart /> <strong>Ledetekst</strong>
-				Informasjon
+				<Heart /> <strong>Ikon og ledetekst</strong>
+				Og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
 				<i>🇳🇴</i>
 				Norge
 			</span>
-			<hr className={styles.divider} data-gap="10" />
+			<hr className={styles.divider} data-gap="5" />
 			Info i card:
 			<Card>
 				<Flex data-align="start">
-					<div data-self="250" data-fixed>
-						<small>Opprettet 01.01.1970</small>
-						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
+					<div data-self="300" data-fixed>
+						<Heading data-size="xs">KY.KELLI.815.493.00</Heading>
 					</div>
 					<Flex data-self="500">
 						<Flex data-self="500" data-align="start">

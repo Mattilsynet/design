@@ -20,8 +20,8 @@ export const Default: Story = {
 		<div className={styles.grid}>
 			<fieldset className={styles.togglegroup} aria-label="Mappe">
 				<label>
-					<input type="radio" name="my-toggles" value="inboks" />
-					Inboks
+					<input type="radio" name="my-toggles" value="innboks" />
+					Innboks
 				</label>
 				<label>
 					<input type="radio" name="my-toggles" value="utkast" defaultChecked />
@@ -61,7 +61,7 @@ export const Default: Story = {
 
 export const React: Story = {
 	render: () => {
-		const items = ["Inboks", "Utkast", "Arkiv", "Sendt"];
+		const items = ["Innboks", "Utkast", "Arkiv", "Sendt"];
 		const [value, setValue] = useState(items[1]);
 
 		return (

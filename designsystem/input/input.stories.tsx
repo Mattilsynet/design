@@ -239,10 +239,16 @@ export const TypeSearch: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.field}>
-			<label>Søkefelt</label>
-			<input className={styles.input} type="search" />
-		</div>
+		<>
+			<div className={styles.field}>
+				<label>Søkefelt</label>
+				<input className={styles.input} type="search" />
+			</div>
+			<div className={styles.field}>
+				<label>Søkefelt data-icon="none"</label>
+				<input className={styles.input} type="search" data-icon="none" />
+			</div>
+		</>
 	),
 };
 

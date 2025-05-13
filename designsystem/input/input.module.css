@@ -29,7 +29,7 @@
 	/* TODO: DigiDir prevent [size] on [type="number"] as it does not work anyway */
 
 	/* If list attribute exits, allow rendering dropdown chevron instead */
-	.input[type="search"]:not([list], :has(+ u-datalist)) {
+	.input[type="search"]:not([list], :has(+ u-datalist), [data-icon="none"]) {
 		background-image: var(--mtds-icon-search);
 		background-position: var(--ds-size-3) center;
 		background-repeat: no-repeat;
