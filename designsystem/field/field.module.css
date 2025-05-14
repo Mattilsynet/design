@@ -10,7 +10,8 @@
 	}
 
 	/* Remove space between label and description */
-	.field > p:first-of-type {
+	.field > p:first-of-type,
+	.field > [data-description] {
 		margin-top: 0;
 	}
 	.field > :not(:disabled, [aria-disabled="true"]) {
