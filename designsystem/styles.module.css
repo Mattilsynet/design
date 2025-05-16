@@ -87,7 +87,7 @@
 		 * We need to specify ds-body-*-font-size again since these are
 		 * removed from our Figma tokens, and since we want fluid design
 		 * Fluid scales from min 360px/22.5rem => Max 1000px/62.5rem
-		 * Calculations are mawe with https://royalfig.github.io/fluid-typography-calculator/
+		 * Calculations are made with https://royalfig.github.io/fluid-typography-calculator/
 		 */
 		--ds-font-size-minus-1: max(.9em, .75rem); /* Default to 90% of font-size, but minimum 12px */
 		--ds-body-xs-font-size: 0.875rem; /* 14px */
