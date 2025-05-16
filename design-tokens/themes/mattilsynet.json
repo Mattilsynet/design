@@ -201,24 +201,24 @@
   },
   "font-family": {
     "$type": "fontFamilies",
-    "$value": "{mattilsynet.font-family}"
+    "$value": "Mattilsynet Sans Variable"
   },
   "font-weight": {
     "medium": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.medium}"
+      "$value": "medium"
     },
     "bold": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.bold}"
+      "$value": "bold"
     },
     "regular": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.regular}"
+      "$value": "regular"
     },
     "italic": {
       "$type": "fontWeights",
-      "$value": "{mattilsynet.font-weight.italic}"
+      "$value": "italic"
     }
   },
   "border-radius": {
