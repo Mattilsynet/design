@@ -21,11 +21,11 @@
 		color: var(--dsc-badge-color);
 		content: attr(data-badge) ""; /* Empty string need to ensure bade is shown even when data-badge is empty */
 		display: grid;
-		font-size: var(--ds-body-xs-font-size);
+		font-size: .77778em;
 		font-variant-numeric: tabular-nums;
 		font-weight: 700;
 		inset: 0 0 auto auto;
-		line-height: var(--dsc-badge-size);
+		line-height: 0.57;
 		margin: var(--mtdsc-badge-offset);
 		min-height: var(--dsc-badge-size);
 		min-width: var(--dsc-badge-size);

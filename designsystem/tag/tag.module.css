@@ -11,9 +11,11 @@
 		border: var(--mtdsc-tag-border-width) var(--mtdsc-tag-border-solid)
 			var(--ds-color-border-subtle);
 		flex-shrink: 0; /* If placed in display: flex */
-		font-size: var(--ds-font-size-minus-1);
 		font-variant-numeric: tabular-nums;
 		gap: var(--mtdsc-tag-gap);
+	}
+	.tag:not([data-size]) {
+		font-size: var(--ds-font-size-minus-1);
 	}
 
 	/**
