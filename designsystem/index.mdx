@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import { getPkgVersion } from '../.storybook/blocks';
-import { ArrowSquareOut } from "@phosphor-icons/react";
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { Flex, Button, Divider, Tabs } from './react'
 import { styles } from './';
 
@@ -17,7 +17,7 @@ men utvider med egenart, visuelle identitet og interne behov. Designsystemet fun
 <Button href="https://github.com/Mattilsynet/design/releases" data-variant="secondary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path d="M224 128a8 8 0 0 1-8 8h-88a8 8 0 0 1 0-16h88a8 8 0 0 1 8 8Zm-96-56h88a8 8 0 0 0 0-16h-88a8 8 0 0 0 0 16Zm88 112h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16ZM82.34 42.34 56 68.69 45.66 58.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Zm0 64L56 132.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Zm0 64L56 196.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Z"/></svg> Se versjonslogg (v{getPkgVersion()})</Button>
 </Flex>
 
-<Divider style={{marginBlock: '3rem'}} />
+<Divider data-gap="10" />
 
 ## Kom i gang for utviklere
 
@@ -53,7 +53,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
         ```
       </Tabs.Panel>
       <Tabs.Panel style={{ padding: 20 }}>
-        <Button data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOut /></Button>
+        <Button data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOutIcon /></Button>
       </Tabs.Panel>
     </Tabs>
 

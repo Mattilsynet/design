@@ -58,4 +58,10 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
   `--mtds-text-count-over: "%d characters too many";`
 <Canvas of={stories.WithCharacterCount} />
 
+## Med forslag (Eksperimentell)
+- Bruk `<u-combobox>` rundt input, `<datalist>` og `<option>` for å lage forslag
+- Bruk `data-nofilter` på `<u-datalist>` for å skru av filtrering
+- Legg en `<select hidden name="NAME-HERE">` i `<u-combobox>` for å få med verdien i skjemaet
+<Canvas of={stories.WithCustomDescriptionTag} />
+
 <CssVariables component="field" />

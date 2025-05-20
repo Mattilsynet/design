@@ -46,6 +46,7 @@
 
 	.details::details-content,
 	.details::part(details-content) {
+		overflow: hidden; /* TODO: DigiDir Use hidden instead of clip to contain margins */
 		padding: var(--mtdsc-details-content-padding);
 		transition-duration: 400ms;
 		transition-property: content-visibility, height, padding;

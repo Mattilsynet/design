@@ -1,7 +1,9 @@
+import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
 	QUICK_EVENT,
+	anchorPosition,
 	attr,
 	isInputLike,
 	on,
@@ -21,13 +23,13 @@ function handleMutation(fields: HTMLCollectionOf<Element>) {
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
 			const descs: Element[] = [];
-			let datalist: UHTMLDataListElement | null = null;
+			let combobox: UHTMLComboboxElement | null = null;
 			let input: HTMLInputElement | null = null;
 			let valid = true;
 
 			for (const el of field.getElementsByTagName("*")) {
 				if (el instanceof HTMLLabelElement) labels.push(el);
-				else if (el instanceof UHTMLDataListElement) datalist = el;
+				else if (el instanceof UHTMLComboboxElement) combobox = el;
 				else if (isInputLike(el)) input = el;
 				else if (el.hasAttribute("data-description")) descs.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
@@ -42,7 +44,7 @@ function handleMutation(fields: HTMLCollectionOf<Element>) {
 
 			if (input) {
 				for (const label of labels) label.htmlFor = useId(input);
-				renderDatalist(input, datalist);
+				renderCombobox(combobox);
 				renderCounter(input);
 				renderTextareaSize(input);
 				attr(input, "aria-describedby", descs.map(useId).join(" ") || null); // Remove if empty
@@ -62,31 +64,28 @@ function renderTextareaSize(textarea: Element) {
 	}
 }
 
-function renderDatalist(
-	input: HTMLInputElement,
-	list?: UHTMLDataListElement | null,
-) {
-	attr(input, "list", list ? useId(list) : null);
-
-	if (!list) return;
-	if (!input.hasAttribute("placeholder")) attr(input, "placeholder", ""); // Needed to render dropdown chevron when <datalist> is present
+function renderCombobox(combobox: UHTMLComboboxElement | null) {
+	if (!combobox) return;
 
 	// Setup translations from CSS custom properties
-	const style = window.getComputedStyle(list);
-	const tags = input.closest("u-tags");
+	const list = combobox.querySelector("u-datalist,datalist");
+	const style = window.getComputedStyle(combobox);
 	const i11n = (key: string) => style.getPropertyValue(`--mtds-text-${key}`);
 
-	attr(list, "data-sr-plural", i11n("datalist-plural"));
-	attr(list, "data-sr-singular", i11n("datalist-singular"));
-
-	if (tags) {
-		attr(tags, "data-sr-added", i11n("tags-added"));
-		attr(tags, "data-sr-empty", i11n("tags-empty"));
-		attr(tags, "data-sr-found", i11n("tags-found"));
-		attr(tags, "data-sr-of", i11n("tags-of"));
-		attr(tags, "data-sr-remove", i11n("tags-remove"));
-		attr(tags, "data-sr-removed", i11n("tags-removed"));
+	if (list) {
+		attr(list, "data-sr-plural", i11n("datalist-plural"));
+		attr(list, "data-sr-singular", i11n("datalist-singular"));
+		attr(list, "popover", "manual");
 	}
+
+	attr(combobox, "data-sr-added", i11n("combobox-added"));
+	attr(combobox, "data-sr-empty", i11n("combobox-empty"));
+	attr(combobox, "data-sr-found", i11n("combobox-found"));
+	attr(combobox, "data-sr-invalid", i11n("combobox-invalid"));
+	attr(combobox, "data-sr-of", i11n("combobox-of"));
+	attr(combobox, "data-sr-remove", i11n("combobox-remove"));
+	attr(combobox, "data-sr-removed", i11n("combobox-removed"));
+	attr(combobox, "data-sr-removed", i11n("combobox-removed"));
 }
 
 function renderCounter(input: HTMLInputElement) {
@@ -113,19 +112,24 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
+function handleToggle({ target: el, newState }: Event & { newState?: string }) {
+	if (el instanceof UHTMLDataListElement) {
+		const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(
+			`[popovertarget="${el.id}"]`,
+		);
+
+		if (newState === "closed") anchorPosition(el, false);
+		else if (anchor) {
+			el.style.width = `${anchor.clientWidth}px`;
+			anchorPosition(el, anchor, "bottom"); // TODO: Prevent flip
+		}
+	}
+}
 // Update when typing
 function handleInput({ target }: Event) {
 	if (isInputLike(target)) {
 		renderCounter(target);
 		renderTextareaSize(target);
-
-		// const input = event.target;
-		// const list = input.list;
-		// if (list) {
-		//   console.log('etterpå');
-		//   if (isDatalistClick(event)) return; // User clicked option element
-		//   if (attr(list, 'data-filter') === 'false') syncDatalistState(input); // Allow custom filtering
-		// }
 	}
 }
 
@@ -138,5 +142,6 @@ function handleInvalid(event: Event) {
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleMutation);
 	on(document, "input", handleInput, QUICK_EVENT);
-	on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe buttle
+	on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe bubble
+	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 });

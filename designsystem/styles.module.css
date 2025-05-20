@@ -67,6 +67,13 @@
 		--mtds-icon-sidebar-expand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm7.84-3.48 3.94-3.94a.66.66 0 0 0 0-.93L18.34 9.6a.66.66 0 0 0-.93.93l2.82 2.81h-8.04a.66.66 0 0 0 0 1.32h8.04l-2.82 2.81a.66.66 0 0 0 .93.93Z'/%3E%3C/svg%3E");
 		--mtds-icon-sidebar-collapse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm5.16-3.48-3.93-3.94a.65.65 0 0 1 0-.93l3.93-3.93a.66.66 0 1 1 .93.93l-2.81 2.81h8.03a.66.66 0 0 1 0 1.32h-8.03l2.81 2.81a.66.66 0 1 1-.93.93Z'/%3E%3C/svg%3E");
 
+		--mtds-text-combobox-added: "La til";
+		--mtds-text-combobox-empty: "Ingen valgte";
+		--mtds-text-combobox-found: "Naviger til venstre for å finne %d valgte";
+		--mtds-text-combobox-invalid: "Ugyldig verdi";
+		--mtds-text-combobox-of: "av";
+		--mtds-text-combobox-remove: "Trykk for å fjerne";
+		--mtds-text-combobox-removed: "Fjernet";
 		--mtds-text-count-over: "%d tegn for mye";
 		--mtds-text-count-under: "%d tegn igjen";
 		--mtds-text-datalist-plural: "%d forslag";
@@ -76,12 +83,6 @@
 		--mtds-text-next: "Neste";
 		--mtds-text-previous: "Forrige";
 		--mtds-text-required: "Må fylles ut";
-		--mtds-text-tags-added: "La til";
-		--mtds-text-tags-empty: "Ingen valgte";
-		--mtds-text-tags-found: "Naviger til venstre for å finne %d valgte";
-		--mtds-text-tags-of: "av";
-		--mtds-text-tags-remove: "Trykk for å fjerne";
-		--mtds-text-tags-removed: "Fjernet";
 
 		/**
 		 * We need to specify ds-body-*-font-size again since these are
@@ -119,6 +120,13 @@
 
 	/* Change language of "required" */
 	[lang="en"] {
+		--mtds-text-combobox-added: "Added";
+		--mtds-text-combobox-empty: "No selected";
+		--mtds-text-combobox-found: "Navigate left to find %d selected";
+		--mtds-text-combobox-invalid: "Invalid value";
+		--mtds-text-combobox-of: "of";
+		--mtds-text-combobox-remove: "Press to remove";
+		--mtds-text-combobox-removed: "Removed";
 		--mtds-text-count-over: "%d characters too many";
 		--mtds-text-count-under: "%d characters remaining";
 		--mtds-text-datalist-plural: "%d suggestions";
@@ -128,12 +136,6 @@
 		--mtds-text-next: "Next";
 		--mtds-text-previous: "Previous";
 		--mtds-text-required: "Required";
-		--mtds-text-tags-added: "Added";
-		--mtds-text-tags-empty: "No selected";
-		--mtds-text-tags-found: "Navigate left to find %d selected";
-		--mtds-text-tags-of: "of";
-		--mtds-text-tags-remove: "Press to remove";
-		--mtds-text-tags-removed: "Removed";
 	}
 
 	/* Used as background input, so need to swap */
