@@ -17,3 +17,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 		/>
 	);
 });
+
+export type SelectProps = React.ComponentPropsWithoutRef<"select">;
+
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+	function Select({ className, ...rest }, ref) {
+		return (
+			<select className={clsx(styles.input, className)} ref={ref} {...rest} />
+		);
+	},
+);

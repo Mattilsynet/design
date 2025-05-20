@@ -85,3 +85,28 @@ export const WithPosition: Story = {
 		</>
 	),
 };
+
+export const Sizes: Story = {
+	render: () => (
+		<div className={styles.prose}>
+			<button type="button" className={styles.button} data-size="sm">
+				E-post{" "}
+				<span className={styles.badge} data-badge="2">
+					<Envelope />
+				</span>
+			</button>
+			<button type="button" className={styles.button} data-size="md">
+				E-post{" "}
+				<span className={styles.badge} data-badge="2">
+					<Envelope />
+				</span>
+			</button>
+			<button type="button" className={styles.button} data-size="lg">
+				E-post{" "}
+				<span className={styles.badge} data-badge="2">
+					<Envelope />
+				</span>
+			</button>
+		</div>
+	),
+};

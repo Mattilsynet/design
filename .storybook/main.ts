@@ -79,11 +79,16 @@ export default {
 		`${head}<script>
       window.VERSION = ${JSON.stringify(pkg.version)};
       window.SVGS = ${JSON.stringify(
-				fg.sync(path.join(PUBLIC_DIR, "**", "*.svg")).map((file) => ({
-					file: path.relative(PUBLIC_DIR, file),
-					categories: illustrations[path.basename(file)] ?? [],
-					svg: fs.readFileSync(file, { encoding: "utf-8" }),
-				})),
+				fg.sync(path.join(PUBLIC_DIR, "**", "*.svg")).map((file) => {
+					const data = illustrations[path.basename(file)] || [];
+
+					return {
+						categories: data[0]?.split(",") || [],
+						file: path.relative(PUBLIC_DIR, file),
+						svg: fs.readFileSync(file, { encoding: "utf-8" }),
+						tags: data[1]?.split(",") || [],
+					};
+				}),
 			)};
     </script>`,
 } satisfies StorybookConfig;

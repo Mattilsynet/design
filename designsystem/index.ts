@@ -5,7 +5,7 @@ export {
 	UHTMLTabListElement,
 	UHTMLTabPanelElement,
 } from "@u-elements/u-tabs";
-export { UHTMLTagsElement } from "@u-elements/u-tags";
+export { UHTMLComboboxElement } from "@u-elements/u-combobox";
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
@@ -25,11 +25,11 @@ import "./popover/popover-observer";
 import "./table/table-observer";
 import "./togglegroup/togglegroup-observer";
 import "./tooltip/tooltip-observer";
+import "@u-elements/u-combobox";
 import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element
 import "@u-elements/u-progress";
 import "@u-elements/u-tabs";
-import "@u-elements/u-tags";
 
 // Expose types
 export type Size = "sm" | "md" | "lg";

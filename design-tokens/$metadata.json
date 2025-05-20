@@ -8,8 +8,6 @@
     "primitives/modes/typography/size/small",
     "primitives/modes/typography/size/medium",
     "primitives/modes/typography/size/large",
-    "primitives/modes/typography/primary/mattilsynet",
-    "primitives/modes/typography/secondary/mattilsynet",
     "primitives/modes/color-scheme/dark/global",
     "primitives/modes/color-scheme/dark/mattilsynet",
     "primitives/modes/color-scheme/light/global",

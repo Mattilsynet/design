@@ -1,4 +1,7 @@
-import type { ReactUtags, UHTMLTagsElement } from "@u-elements/u-tags";
+import type {
+	ReactUcombobox,
+	UHTMLComboboxElement,
+} from "@u-elements/u-combobox";
 import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
 import { HelpText } from "../react";
@@ -113,7 +116,9 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 	},
 );
 
-export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist">;
+export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
+	"data-nofilter"?: boolean;
+};
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
 	function FieldDatalist(props, ref) {
@@ -129,17 +134,17 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	},
 );
 
-export type FieldTagsProps = ReactUtags;
+export type FieldComboboxProps = ReactUcombobox;
 
-const FieldTags = forwardRef<UHTMLTagsElement, FieldTagsProps>(
-	function FieldTags(props, ref) {
-		return <u-tags ref={ref} {...toCustomElementProps(props)} />;
+const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
+	function FieldCombobox(props, ref) {
+		return <u-combobox ref={ref} {...toCustomElementProps(props)} />;
 	},
 );
 
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
+	Combobox: FieldCombobox,
 	Datalist: FieldDatalist,
-	Tags: FieldTags,
 	Option: FieldOption,
 });

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
 export type TableProps = React.ComponentPropsWithoutRef<"table"> & {
-	"data-align"?: "start | center";
+	"data-align"?: "start" | "center";
 	"data-border"?: boolean | "true" | "false";
 	"data-fixed"?: boolean;
 	"data-mobile"?: "divided" | "spaced" | "stacked";

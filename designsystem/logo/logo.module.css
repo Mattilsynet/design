@@ -1,7 +1,3 @@
-/**
- * Note: This file includes "autoprefixer: off" to prevent "-webkit-mask-box-image prefixing"
- */
-
 @layer mt.design {
 	:root {
 		--mtds-logo-color: #bcdcd0;
@@ -35,7 +31,6 @@
 	}
 
 	.logo:not(:has(svg)) {
-		/* autoprefixer: off */
 		background: var(--solid) 0 / var(--indent) no-repeat;
 		padding-left: var(--indent);
 		mask:
@@ -46,7 +41,8 @@
 			var(--solid) -1em calc(100% + 1em) / calc(100% + 2em) 1em no-repeat, /* Show focus outline bottom */
 			var(--solid) -1em -1em / 1em calc(100% + 2em) no-repeat; /* Show focus outline left */
 		mask-border: var(--solid) 4 / 3px / 4px; /* Show foucs outline in Safari */
-		mask-clip: no-clip; /* Show foucs outline in not Safari */
+		-webkit-mask-box-image: none; /* Show foucs outline in Safari even when autoprefixed */
+		mask-clip: no-clip; /* Show foucs outline in other browsers */
 	}
 	.logo:focus-visible {
 		box-shadow: var(--dsc-focus-boxShadow);
@@ -62,7 +58,6 @@
 		display: inline-block; /* Needed to make logo text wrap on smaller screens */
 	}
 	.logo:empty::after {
-		/* autoprefixer: off */
 		background: currentColor;
 		content: var(--mtds-text-logo);
 		float: left;
@@ -108,7 +103,6 @@
 			width: var(--icon-size);
 		}
 		&[data-env]::before {
-			/* autoprefixer: off */
 			background: currentcolor;
 			mask: center / contain no-repeat var(--icon-dots);
 		}
