@@ -26,8 +26,6 @@
 		border-radius: var(--ds-border-radius-md);
 	}
 
-	/* TODO: DigiDir prevent [size] on [type="number"] as it does not work anyway */
-
 	/* If list attribute exits, allow rendering dropdown chevron instead */
 	.input[type="search"]:not([list], :has(+ u-datalist), [data-icon="none"]) {
 		background-image: var(--mtds-icon-search);

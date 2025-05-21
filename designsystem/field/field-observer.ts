@@ -114,14 +114,15 @@ function renderCounter(input: HTMLInputElement) {
 
 function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 	if (el instanceof UHTMLDataListElement) {
-		const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(
+		const root = el.getRootNode() as ShadowRoot | null;
+		const anchor = root?.querySelector<HTMLElement>(
 			`[popovertarget="${el.id}"]`,
 		);
 
 		if (newState === "closed") anchorPosition(el, false);
 		else if (anchor) {
 			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, "bottom"); // TODO: Prevent flip
+			anchorPosition(el, anchor, "bottom", true);
 		}
 	}
 }

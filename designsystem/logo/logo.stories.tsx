@@ -14,7 +14,7 @@ const meta = {
 				<div className={`${styles.grid} demo-resize`} data-gap="8">
 					<Story />
 					<style>{`
-						body:not(:has(.sbdocs-preview)) { background: var(--ds-color-background-default) }
+						body:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }
 						html:has(.sbdocs-preview)::before { display: none } /* Hide environment bar in Storybook */
 						.demo-resize {
 							box-sizing: border-box;

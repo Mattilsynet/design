@@ -162,11 +162,6 @@
 		-moz-osx-font-smoothing: grayscale; /* Prevent browser from guessing font rendering strategy; always use antialiased for thinner font */
 	}
 
-	/* Avoid white-space under images */
-	:where(img, svg) {
-		vertical-align: middle;
-	}
-
 	:where(b, h1, h2, h3, h4, h5, h6, label, legend, strong) {
 		font-weight: 700;
 	}

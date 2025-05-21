@@ -125,9 +125,6 @@
 		max-height: 400px;
 		overflow: auto;
 		padding: var(--ds-size-2);
-		position: absolute;
-		width: 100%;
-		z-index: 9999;
 	}
 	.field u-option {
 		position: relative;

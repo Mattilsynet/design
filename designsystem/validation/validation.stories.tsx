@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Field, Input, Validation } from "../react";
+import { Field, Grid, Input, Validation } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -33,11 +33,11 @@ export const React: Story = {
 
 export const Colors: Story = {
 	render: () => (
-		<>
+		<Grid>
 			<Validation data-color="danger">Feilmelding</Validation>
 			<Validation data-color="success">Suksess</Validation>
 			<Validation data-color="info">Informasjon</Validation>
 			<Validation data-color="warning">Advarsel</Validation>
-		</>
+		</Grid>
 	),
 };

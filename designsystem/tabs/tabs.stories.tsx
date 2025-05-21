@@ -1,4 +1,4 @@
-import { PencilSimple } from "@phosphor-icons/react";
+import { PencilSimpleIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Tabs } from "../react";
@@ -12,15 +12,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+	parameters: {
+		layout: "padded",
+	},
 	render: () => (
 		<u-tabs class={styles.tabs}>
 			<u-tablist>
 				<u-tab aria-selected="true">Tab 1</u-tab>
 				<u-tab>Tab 2</u-tab>
 				<u-tab>
-					<PencilSimple />
+					<PencilSimpleIcon />
 					Tab 3
 				</u-tab>
+				<u-tab>Tab with very long content</u-tab>
+				<u-tab>Tab with very long content</u-tab>
+				<u-tab>Tab with very long content</u-tab>
 			</u-tablist>
 			<u-tabpanel>
 				Panel 1 with <a href="#none">link</a>

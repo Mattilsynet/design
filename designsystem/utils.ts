@@ -114,6 +114,7 @@ export function anchorPosition(
 	target: HTMLElement,
 	anchor: Element | false,
 	position?: string | number,
+	force?: boolean,
 ) {
 	if (anchor === false || !anchor.isConnected || !target.isConnected)
 		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
@@ -122,9 +123,9 @@ export function anchorPosition(
 		// Setup new target or update position
 		const place =
 			POSITION[position as keyof typeof POSITION] ?? POSITION.bottom; // Use CSS property to store position for more flexibility
-		return TARGETS.set(target, () => anchorPosition(target, anchor, place)).get(
-			target,
-		)?.(); // Start watching if not already watching
+		return TARGETS.set(target, () =>
+			anchorPosition(target, anchor, place, force),
+		).get(target)?.(); // Start watching if not already watching
 	}
 
 	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
@@ -140,9 +141,9 @@ export function anchorPosition(
 	const hasSpaceOver = anchorY - targetH > 0;
 	const hasSpaceUnder = anchorY + anchorH + targetH < window.innerHeight;
 	const positionRight =
-		(position === POSITION.right && hasSpaceRight) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
+		(position === POSITION.right && (force || hasSpaceRight)) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
 	const positionUnder =
-		(position === POSITION.bottom && hasSpaceUnder) || !hasSpaceOver; // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
+		(position === POSITION.bottom && (force || hasSpaceUnder)) || !hasSpaceOver; // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
 	const centerX = Math.min(
 		Math.max(10, anchorX - (targetW - anchorW) / 2),
 		window.innerWidth - targetW - 10,
@@ -157,7 +158,7 @@ export function anchorPosition(
 	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;
 	SCROLLER?.style.setProperty(
 		"translate",
-		`${Math.round(window.scrollX + anchorX + anchorW + targetW + 30)}px ${Math.round(window.scrollY + anchorY + anchorH + targetH + 30)}px`,
+		`0px ${Math.round(positionUnder ? window.scrollY + anchorY + anchorH + targetH + 30 : 0)}px`,
 	);
 }
 
