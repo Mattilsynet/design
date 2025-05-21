@@ -1,4 +1,4 @@
-import { Shrimp } from "@phosphor-icons/react";
+import { ShrimpIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Tag } from "../react";
 import styles from "../styles.module.css";
@@ -93,7 +93,7 @@ export const WithIconOverwrite: Story = {
 	render: () => (
 		<>
 			<span className={styles.tag} data-color="success">
-				<Shrimp />
+				<ShrimpIcon />
 				Reke
 			</span>
 			<span className={styles.tag} data-color="info" data-icon="none">

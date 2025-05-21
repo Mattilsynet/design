@@ -1,4 +1,4 @@
-import { Heart } from "@phosphor-icons/react";
+import { HeartIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Link } from "../react";
 
@@ -36,7 +36,7 @@ export const WithIcon: Story = {
 	render: () => (
 		<>
 			<a href="https://www.mattilsynet.no/">
-				Mattilsynet <Heart />
+				Mattilsynet <HeartIcon />
 			</a>{" "}
 			trygger framtiden for mennesker, dyr og natur.
 		</>

@@ -1,4 +1,4 @@
-import { User } from "@phosphor-icons/react";
+import { UserIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar } from "../react";
 import styles from "../styles.module.css";
@@ -26,7 +26,7 @@ export const Default: Story = {
 				<img src={avatar} alt="Navn Navnesen" />
 			</div>
 			<div className={styles.avatar}>
-				<User aria-label="Navn Navnesen" />
+				<UserIcon aria-label="Navn Navnesen" />
 			</div>
 		</>
 	),
@@ -40,7 +40,7 @@ export const React: Story = {
 				<img src={avatar} alt="Navn Navnesen" />
 			</Avatar>
 			<Avatar href="#">
-				<User aria-label="Navn Navnesen" />
+				<UserIcon aria-label="Navn Navnesen" />
 			</Avatar>
 		</>
 	),

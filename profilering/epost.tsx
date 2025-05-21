@@ -1,11 +1,11 @@
 import {
-	ArrowSquareOut,
-	DeviceMobile,
-	IdentificationBadge,
-	MapPinArea,
-	MapTrifold,
-	Phone,
-	User,
+	ArrowSquareOutIcon,
+	DeviceMobileIcon,
+	IdentificationBadgeIcon,
+	MapPinAreaIcon,
+	MapTrifoldIcon,
+	PhoneIcon,
+	UserIcon,
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import styles from "../designsystem/styles.module.css";
@@ -55,7 +55,7 @@ export function Epost() {
 			>
 				<div className={styles.field}>
 					<label>
-						<User aria-hidden="true" /> Fullt navn
+						<UserIcon aria-hidden="true" /> Fullt navn
 					</label>
 					<input
 						className={styles.input}
@@ -68,7 +68,7 @@ export function Epost() {
 				</div>
 				<div className={styles.field}>
 					<label>
-						<IdentificationBadge aria-hidden="true" /> Stillingstittel
+						<IdentificationBadgeIcon aria-hidden="true" /> Stillingstittel
 					</label>
 					<input
 						className={styles.input}
@@ -81,7 +81,7 @@ export function Epost() {
 				</div>
 				<fieldset className={styles.fieldset}>
 					<legend>
-						<IdentificationBadge aria-hidden="true" /> Tilknytning
+						<IdentificationBadgeIcon aria-hidden="true" /> Tilknytning
 					</legend>
 					<div className={styles.field}>
 						<label>Mattilsynet, hovedkontoret</label>
@@ -108,7 +108,7 @@ export function Epost() {
 				</fieldset>
 				<div className={styles.field}>
 					<label>
-						<MapPinArea aria-hidden="true" /> Seksjon/avdeling
+						<MapPinAreaIcon aria-hidden="true" /> Seksjon/avdeling
 					</label>
 					<input
 						className={styles.input}
@@ -121,7 +121,7 @@ export function Epost() {
 				</div>
 				<div className={styles.field}>
 					<label>
-						<Phone aria-hidden="true" /> Telefon
+						<PhoneIcon aria-hidden="true" /> Telefon
 					</label>
 					<input
 						className={styles.input}
@@ -133,7 +133,7 @@ export function Epost() {
 				</div>
 				<div className={styles.field}>
 					<label>
-						<DeviceMobile aria-hidden="true" /> Mobil
+						<DeviceMobileIcon aria-hidden="true" /> Mobil
 					</label>
 					<input
 						className={styles.input}
@@ -146,7 +146,7 @@ export function Epost() {
 				</div>
 				<div className={styles.field}>
 					<label>
-						<MapTrifold aria-hidden="true" /> Besøksadresse
+						<MapTrifoldIcon aria-hidden="true" /> Besøksadresse
 					</label>
 					<p>
 						<a
@@ -154,7 +154,7 @@ export function Epost() {
 							target="_blank"
 							rel="noreferrer"
 						>
-							Se kontorsteder <ArrowSquareOut aria-hidden="true" />
+							Se kontorsteder <ArrowSquareOutIcon aria-hidden="true" />
 						</a>
 					</p>
 					<input

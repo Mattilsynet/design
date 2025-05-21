@@ -1,4 +1,4 @@
-import { Plant } from "@phosphor-icons/react";
+import { PlantIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Logo } from "../react";
 import styles from "../styles.module.css";
@@ -62,7 +62,7 @@ export const React: Story = {
 				sertifikat
 			</Logo>
 			<Logo href="/" data-env="test">
-				<Plant weight="fill" />
+				<PlantIcon weight="fill" />
 				Digiplant
 			</Logo>
 		</>
@@ -131,7 +131,7 @@ export const WithAppIcon: Story = {
 	decorators,
 	render: () => (
 		<a className={styles.logo} href="/">
-			<Plant weight="fill" />
+			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
 	),
@@ -140,7 +140,7 @@ export const WithAppIcon: Story = {
 export const WithAppIconEnvironment: Story = {
 	render: () => (
 		<a className={styles.logo} href="/" data-env="test">
-			<Plant weight="fill" />
+			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
 	),
@@ -148,7 +148,7 @@ export const WithAppIconEnvironment: Story = {
 export const WithAppIconEnvironmentBlue: Story = {
 	render: () => (
 		<a className={styles.logo} href="/" data-env="dev" data-color="info">
-			<Plant weight="fill" />
+			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
 	),

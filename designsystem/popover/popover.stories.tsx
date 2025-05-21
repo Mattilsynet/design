@@ -1,4 +1,4 @@
-import { List, X } from "@phosphor-icons/react";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useId } from "react";
 import { Button, Field, Input, Popover } from "../react";
@@ -265,8 +265,8 @@ export const WithIcon: Story = {
 		<>
 			<button className={styles.button} popoverTarget="pop-icon" type="button">
 				Knapp
-				<List data-pressed="false" />
-				<X data-pressed="true" />
+				<ListIcon data-pressed="false" />
+				<XIcon data-pressed="true" />
 			</button>
 			<div popover="auto" id="pop-icon" className={styles.popover}>
 				Innhold

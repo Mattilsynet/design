@@ -1,4 +1,4 @@
-import { Heart } from "@phosphor-icons/react";
+import { HeartIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../react";
 import styles from "../styles.module.css";
@@ -30,5 +30,5 @@ export const React: Story = {
 };
 
 export const Icon: Story = {
-	render: () => <Heart data-tooltip="Innhold her" tabIndex={0} />,
+	render: () => <HeartIcon data-tooltip="Innhold her" tabIndex={0} />,
 };
