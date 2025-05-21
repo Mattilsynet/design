@@ -2,37 +2,67 @@
 	.tabs {
 		composes: ds-tabs from "@digdir/designsystemet-css";
 		--dsc-tabs-tab-color: var(--mtds-color-text-subtle);
-		--dsc-tabs-tab-color--hover: var(--mtds-color-text-subtle);
+		--dsc-tabs-tab-color--hover: var(--mtds-color-text-default);
 		--dsc-tabs-content-padding: var(--ds-size-2) 0;
-		--dsc-tabs-gap: var(--ds-size-2);
+		--dsc-tabs-list-border-color: var(--ds-color-border-default);
+		--mtdsc-tabs-gap: var(--ds-size-2);
 	}
 	.tabs [role="tablist"] {
-		/* TODO: DigiDir allow button inside Tabs.List */
-		flex-wrap: wrap;
-		gap: var(--dsc-tabs-gap);
-		padding-bottom: var(--dsc-tabs-gap);
+		--mask-x: -2em;
+		-webkit-overflow-scrolling: touch;
+		animation: _scrollMask linear;
+		animation-timeline: scroll(self inline);
+		border: 0;
+		box-shadow: inset 0 calc(var(--dsc-tabs-list-border-bottom-width) * -1) 0
+			var(--dsc-tabs-list-border-color);
+		column-gap: var(--dsc-tabs-gap);
+		overflow-x: auto;
+		scrollbar-width: none; /* Firefox */
+		mask: linear-gradient(
+				to right,
+				transparent,
+				black 2em,
+				black calc(100% - 2em),
+				transparent
+			)
+			var(--mask-x) / calc(100% + 4em) no-repeat,
+			linear-gradient(to left, black, black) 100% 100% / 100%
+			var(--dsc-tabs-list-border-bottom-width) no-repeat;
 	}
+	@keyframes _scrollMask {
+		from {
+			--mask-x: -4em;
+		}
+		to {
+			--mask-x: 0;
+		}
+	}
+	.tabs [role="tablist"]::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+	/* TODO: DigiDir allow button inside Tabs.List */
 	.tabs [role="tab"]::after {
-		display: none;
+		display: none; /* Hide Designsystemet underline */
 	}
 	.tabs [role="tab"] {
-		border-radius: var(--ds-border-radius-full);
-		background: transparent;
-		color: inherit;
+		border: var(--dsc-tabs-list-border-bottom-width)
+			var(--dsc-tabs-list-border-bottom-style) transparent;
+		border-bottom-color: var(--dsc-tabs-list-border-color);
+		border-radius: var(--ds-border-radius-md) var(--ds-border-radius-md) 0 0;
+		background: var(--ds-color-background-tinted);
 		transition-duration: .2s;
-		transition-property: background-color, color, scale;
+		transition-property: background-color, color, border-color;
 	}
 	.tabs [role="tab"]:hover {
 		background: var(--ds-color-surface-hover);
-		color: var(--ds-color-text-default);
 	}
 	.tabs [role="tab"]:active {
 		background: var(--ds-color-surface-active);
-		color: var(--ds-color-text-default);
-		scale: 0.95;
 	}
 	.tabs [role="tab"][aria-selected="true"] {
-		background: var(--ds-color-base-default);
-		color: var(--ds-color-base-contrast-default);
+		border-color: var(--dsc-tabs-list-border-color);
+		border-bottom-color: transparent;
+		background: var(--ds-color-surface-default);
+		color: var(--ds-color-text-default);
 	}
 }
