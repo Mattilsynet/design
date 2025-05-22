@@ -69,7 +69,7 @@
 	},
 	"dependencies": {
 		"@u-elements/u-combobox": "^0.0.5",
-		"@u-elements/u-datalist": "^1.0.1",
+		"@u-elements/u-datalist": "^1.0.2",
 		"@u-elements/u-details": "^0.1.1",
 		"@u-elements/u-progress": "^0.0.5",
 		"@u-elements/u-tabs": "^0.0.9",
