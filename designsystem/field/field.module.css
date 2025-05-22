@@ -27,6 +27,9 @@
 	.field label {
 		display: contents;
 	}
+	.field label svg {
+		vertical-align: -.15em;
+	}
 	.field:has(:required, [aria-required="true"]) label::after {
 		background: var(--ds-color-info-surface-tinted);
 		border-radius: var(--ds-border-radius-md);

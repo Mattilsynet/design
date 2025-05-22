@@ -8,6 +8,7 @@ import {
 	UserIcon,
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { Button, Field, Fieldset, Flex, Grid } from "../designsystem/react";
 import styles from "../designsystem/styles.module.css";
 
 type Data = Record<string, string>;
@@ -37,137 +38,111 @@ export function Epost() {
 	}, []);
 
 	return (
-		<div
-			className={styles.grid}
-			data-gap="6"
-			style={{
-				width: "80vw",
-				margin: "4rem calc(50% - 40vw)",
-				gridTemplateColumns: "1fr 2fr",
-			}}
-		>
-			<style>{"svg{vertical-align:-.175em}"}</style>
-			<form
+		<Flex data-items="500" data-gap="6">
+			<Grid
+				as="form"
+				data-self="200"
 				onSubmit={(event) => event.preventDefault()}
 				onInput={onInput}
-				className={styles.grid}
 				data-gap="5"
 			>
-				<div className={styles.field}>
-					<label>
-						<UserIcon aria-hidden="true" /> Fullt navn
-					</label>
-					<input
-						className={styles.input}
-						name="name"
-						type="text"
-						autoComplete="off"
-						value={data.name}
-						required
-					/>
-				</div>
-				<div className={styles.field}>
-					<label>
-						<IdentificationBadgeIcon aria-hidden="true" /> Stillingstittel
-					</label>
-					<input
-						className={styles.input}
-						name="position"
-						type="text"
-						autoComplete="off"
-						value={data.position}
-						required
-					/>
-				</div>
-				<fieldset className={styles.fieldset}>
+				<Field
+					as="input"
+					label={
+						<>
+							<UserIcon /> Fullt navn
+						</>
+					}
+					name="name"
+					value={data.name}
+				/>
+				<Field
+					as="input"
+					label={
+						<>
+							<IdentificationBadgeIcon /> Stillingstittel
+						</>
+					}
+					name="position"
+					value={data.position}
+				/>
+				<Fieldset>
 					<legend>
 						<IdentificationBadgeIcon aria-hidden="true" /> Tilknytning
 					</legend>
-					<div className={styles.field}>
-						<label>Mattilsynet, hovedkontoret</label>
-						<input
-							className={styles.input}
+					<Flex>
+						<Field
+							as="input"
+							label="Hovedkontoret"
 							name="connection"
 							type="radio"
 							value="hovedkontoret"
-							defaultChecked={data.connection === "hovedkontoret"}
-							required
+							onChange={() => setData({ ...data, connection: "hovedkontoret" })}
+							checked={data.connection === "hovedkontoret"}
 						/>
-					</div>
-					<div className={styles.field}>
-						<label>Mattilsynet, tilsynet</label>
-						<input
-							className={styles.input}
+						<Field
+							as="input"
+							label="Tilsynet"
 							name="connection"
 							type="radio"
 							value="tilsynet"
-							defaultChecked={data.connection === "tilsynet"}
-							required
+							onChange={() => setData({ ...data, connection: "tilsynet" })}
+							checked={data.connection === "tilsynet"}
 						/>
-					</div>
-				</fieldset>
-				<div className={styles.field}>
-					<label>
-						<MapPinAreaIcon aria-hidden="true" /> Seksjon/avdeling
-					</label>
-					<input
-						className={styles.input}
-						name="office"
-						type="text"
-						autoComplete="off"
-						placeholder="Seksjon/avdeling"
-						value={data.office}
-					/>
-				</div>
-				<div className={styles.field}>
-					<label>
-						<PhoneIcon aria-hidden="true" /> Telefon
-					</label>
-					<input
-						className={styles.input}
-						name="phone"
-						type="text"
-						autoComplete="off"
-						value={data.phone}
-					/>
-				</div>
-				<div className={styles.field}>
-					<label>
-						<DeviceMobileIcon aria-hidden="true" /> Mobil
-					</label>
-					<input
-						className={styles.input}
-						name="mobile"
-						type="text"
-						autoComplete="off"
-						value={data.mobile}
-						required
-					/>
-				</div>
-				<div className={styles.field}>
-					<label>
-						<MapTrifoldIcon aria-hidden="true" /> Besøksadresse
-					</label>
-					<p>
+					</Flex>
+				</Fieldset>
+				<Field
+					as="input"
+					label={
+						<>
+							<MapPinAreaIcon aria-hidden="true" /> Seksjon/avdeling
+						</>
+					}
+					name="office"
+					placeholder="Seksjon/avdeling"
+					value={data.office}
+				/>
+				<Field
+					as="input"
+					label={
+						<>
+							<PhoneIcon /> Telefon
+						</>
+					}
+					name="phone"
+					value={data.phone}
+				/>
+				<Field
+					as="input"
+					label={
+						<>
+							<DeviceMobileIcon /> Mobil
+						</>
+					}
+					name="mobile"
+					value={data.mobile}
+				/>
+				<Field
+					as="input"
+					label={
+						<>
+							<MapTrifoldIcon /> Besøksadresse
+						</>
+					}
+					description={
 						<a
 							href="https://www.mattilsynet.no/kontakt-oss/finn-kontorsted"
 							target="_blank"
 							rel="noreferrer"
 						>
-							Se kontorsteder <ArrowSquareOutIcon aria-hidden="true" />
+							Se kontorsteder <ArrowSquareOutIcon />
 						</a>
-					</p>
-					<input
-						className={styles.input}
-						name="visit"
-						type="text"
-						autoComplete="off"
-						value={data.visit}
-						required
-					/>
-				</div>
-			</form>
-			<div className={styles.grid} data-gap="md" data-align-content="start">
+					}
+					name="visit"
+					value={data.visit}
+				/>
+			</Grid>
+			<Grid data-gap="md" data-align-content="start">
 				<div
 					id="email-preview"
 					className={styles.card}
@@ -217,9 +192,8 @@ export function Epost() {
 						</a>
 					</div>
 				</div>
-				<button
-					type="button"
-					className={styles.button}
+				<style>{".sbdocs-content a img { margin: 0 }"}</style>
+				<Button
 					data-variant="primary"
 					onClick={({ currentTarget: button }) => {
 						const html = document.getElementById("email-preview")?.innerHTML;
@@ -233,8 +207,8 @@ export function Epost() {
 					}}
 				>
 					Kopier signatur
-				</button>
-			</div>
-		</div>
+				</Button>
+			</Grid>
+		</Flex>
 	);
 }

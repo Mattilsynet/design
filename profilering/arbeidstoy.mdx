@@ -1,5 +1,277 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { TShirtIcon } from "@phosphor-icons/react"
+import { JumpTo, Wide } from '../.storybook/blocks';
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import { Button, Card, Flex, Grid, Popover, Prose } from '../designsystem/react'
+import caps from './arbeidstoy/caps.svg';
+import collegegenserGramelert from './arbeidstoy/collegegenser-gramelert.svg';
+import collegegenserHvit from './arbeidstoy/collegegenser-hvit.svg';
+import collegegenserSvart from './arbeidstoy/collegegenser-svart.svg';
+import collegegenserSvartBak from './arbeidstoy/collegegenser-svart-bak.svg';
+import hjelmBlaa from './arbeidstoy/hjelm-blaa.svg';
+import hjelmHvit from './arbeidstoy/hjelm-hvit.svg';
+import inspektor from './arbeidstoy/inspektor.png';
+import jakke from './arbeidstoy/jakke.svg';
+import jakkeBak from './arbeidstoy/jakke-bak.svg';
+import refleksvest from './arbeidstoy/refleksvest.svg';
+import refleksvestBak from './arbeidstoy/refleksvest-bak.svg';
+import tskjorteGramelert from './arbeidstoy/tskjorte-gramelert.svg';
+import tskjorteHvit from './arbeidstoy/tskjorte-hvit.svg';
+import tskjorteLysblaa from './arbeidstoy/tskjorte-lysblaa.svg';
+import tskjorteSand from './arbeidstoy/tskjorte-sand.svg';
+import tskjorteSjogronn from './arbeidstoy/tskjorte-sjogronn.svg';
+import tskjorteSvart from './arbeidstoy/tskjorte-svart.svg';
+
 
 <Meta title="Profilering/Arbeidstøy" />
 
-# Arbeidstøy
+# <TShirtIcon /> Arbeidstøy
+
+> Mattilsynets visuelle identitet og fargepalett skal komme til uttrykk i organisasjonens arbeidstøy.
+
+<JumpTo />
+
+<figure>
+<img src={inspektor} alt="" />
+<figcaption>Arbeidstøyet er en viktig del av vår visuelle identitet.</figcaption>
+</figure>
+
+## Introduksjon
+
+- Arbeidstøyet vårt er valgt med tanke på pris, kvalitet og miljøhensyn.
+- Klærne og utstyret skal i tillegg gjenspeile Mattilsynets visuelle identitet.
+- Sortimentet kan endre seg i forbindelse med årlig reforhandling av avtalen med Ahlsell.
+- Utvalget som vises på denne siden representerer ikke hele kolleksjonen, men gir et visuelt bilde av arbeidstøyets uttrykk og profil.
+- Mattilsynet er i en overgangsfase til ny visuell identitet. Av den grunn vil vi en tid framover oppleve å bruke gammelt og nytt om hverandre. Det er opp til budsjettansvarlig eller leder å vurdere om det skal kjøpes inn nytt arbeidstøy selv om det gamle ikke er utslitt.
+
+## Hvordan bestille?
+- Kontakt din lokale bestiller (leder kan hjelpe deg med å finne ut hvem det er)
+- Du kan ikke selv bestille arbeidstøy, men du kan <button type="button" data-popover="inline" popoverTarget="steps">se Mattilsynets utvalg av arbeidstøy</button>
+<Popover id="steps">
+<Prose>
+1. Åpne <a href="https://www.ahlsell.no/category/klar-og-personlig-verneutstyr" target="_blank">Ahlsell utvalg av klær</a>
+2. Trykk **Logg inn** oppe til høyre
+3. Logg inn med brukernavn: `Mattilsynet` og passord: `Felles2022`
+4. Du ser nå Mattilsynets utvalg av arbeidstøy
+</Prose>
+</Popover>
+
+## Farger
+
+Fargene på hvert enkelt plagg bør ligge så nært opptil Mattilsynets fargeverdier som mulig. Dette er viktig for at organisasjonen skal være gjenkjennelig og opptre helhetlig uansett hvor brukere, samarbeidspartnere eller interessenter møter oss. Fargene som ønskes gjengitt i arbeidstøyet er listet under.
+
+<Grid data-items="300">
+<Card>
+<Prose>
+<Card style={{background: "#054449", height: 100, borderRadius: 5}} />
+
+**Granskog**
+<br /><small>PMS: 316</small>
+<br />Hovedfarge. Brukes på utvalgte plagg (som T-skjorter) og logo når denne trykkes eller broderes på lyse plagg.
+</Prose>
+</Card>
+<Card>
+<Prose>
+<Card style={{background: "#E2F1DF", height: 100, borderRadius: 5 }} />
+**Lav**
+<br /><small>PMS: 621</small>
+<br />Sekundærfarge. Brukes på utvalgte plagg (som buff) og logo når denne trykkes eller broderes på mørke plagg.
+</Prose>
+</Card>
+<Card>
+<Prose>
+<Card style={{background: "#F4ECE6", height: 100, borderRadius: 5 }} />
+**Sand**
+<br /><small>PMS: Warm Gray 1</small>
+<br />Sekundærfarge. Brukes på utvalgte plagg (som T-skjorter og caps).
+</Prose>
+</Card>
+<Card>
+<Prose>
+<Card style={{background: "#9ECCED", height: 100, borderRadius: 5 }} />
+**Himmel**
+<br /><small>PMS: 2141</small>
+<br />Sekundærfarge. Brukes på utvalgte plagg (som T-skjorter).
+</Prose>
+</Card>
+<Card>
+<Prose>
+<Card style={{background: "#000000", height: 100, borderRadius: 5 }} />
+**Sort**
+<br />Sorte klær er enkle å få tak i, derfor har flere av Mattilsynets plagg denne fargen. Tøyet får likevel egenart fordi logo trykkes i vår sekundærfarge «Lav».
+</Prose>
+</Card>
+<Card>
+<Prose>
+<Card style={{background: "#ffffff", height: 100, borderRadius: 5 }} />
+**Hvit**
+<br />Hvite T-skjorter, gensere og frakker brukes til slakteritilsyn.
+</Prose>
+</Card>
+</Grid>
+
+## T-skjorter
+
+Mattilsynet-ansatte kan velge mellom fire typer T-skjorter:
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteSjogronn} alt="T-skjorte sjøgrønn" />
+YOU&reg; Classic Sjøgrønn
+<br />Logofarge: PMS 621
+<br />Størrelser: XS - 3XL
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteSand} alt="T-skjorte sand" />
+YOU&reg; Classic Sand
+<br />Logofarge: PMS 316
+<br />Størrelser: XS - 3XL
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteLysblaa} alt="T-skjorte lys blå" />
+YOU&reg; Classic Lys Blå
+<br />Logofarge: PMS 316
+<br />Størrelser: XS - 3XL
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteGramelert} alt="T-skjorte gråmelert" />
+YOU&reg; Classic Gråmelert
+<br />Logofarge: PMS 316
+<br />Størrelser: XS - 5XL
+</Prose>
+</Card>
+</Grid>
+
+T-skjortene skal som hovedregel kun ha logo på forsiden. Denne er 85 mm bred og er plassert på venstre side av brystet.
+
+### T-skjorter for inspektører på slakteri
+ 
+Enkelte ansatte, blant annet inspektører på slakteriene, trenger hvite og sorte T-skjorter. Disse plaggene brukes hovedsaklig under frakker og gensere og skal ikke ha logo. Hvis T-skjortene vaskes sammen med andre bedrifters klær, kan de imidlertid trykkes med logo, slik at de blir enkle å finne igjen etter vask.
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteHvit} alt="T-skjorte hvit" />
+YOU&reg; Classic Hvit
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={tskjorteSvart} alt="T-skjorte svart" />
+YOU&reg; Classic Svart
+</Prose>
+</Card>
+</Grid>
+
+## Collegegensere
+
+Mattilsynet-ansatte kan velge mellom 3 typer collegegensere:
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={collegegenserGramelert} alt="Collegegenser Gråmelert" />
+YOU&reg; Classic Gråmelert
+<br />Logofarge: PMS 316
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={collegegenserHvit} alt="Collegegenser Hvit" />
+YOU&reg; Classic Hvit
+<br />Logofarge: PMS 316
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={collegegenserSvart} alt="Collegegenser Svart" />
+YOU&reg; Classic Svart
+<br />Logofarge: PMS 621
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={collegegenserSvartBak} alt="Collegegenser Svart Bak" />
+Eksempel på bakside
+</Prose>
+</Card>
+</Grid>
+
+Genserne skal ha logo på brystet og på ryggen. På forsiden er logoen 85 mm bred, på baksiden 280 mm. Sistnevnte plasseres midt på ryggen, 125 mm ned fra halskanten.
+
+## Jakker
+
+Ytterjakker er sorte med lysegrønn logo. På forsiden skal logoen plasseres øverst på brystet på venstre side, bredde 85 mm. På baksiden skal den være mellom skulderbladene, bredde 280 mm. Logofargen er «Lav» (PMS 621).
+Jakkene skal som hovedregel ha logo, men kan i enkelte unntakstilfeller brukes uten.
+De samme reglene gjelder for kjeledresser.
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={jakke} alt="Jakke forside" />
+Forside
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={jakkeBak} alt="Jakke bakside" />
+Bakside
+</Prose>
+</Card>
+</Grid>
+
+## Refleksvester
+
+Logoen skal ha samme størrelse og plassering på refleksvester som på jakker.
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={refleksvest} alt="Refleksvest forside" width="200" />
+Forside
+</Prose>
+</Card>
+<Card style={{ padding: '10%' }}>
+<Prose>
+<img src={refleksvestBak} alt="Refleksvest bakside" width="200" />
+Bakside
+</Prose>
+</Card>
+</Grid>
+
+## Hjelmer
+
+Mattilsynet-ansatte har behov for både hvite og blå hjelmer. De blå hjelmene brukes av ansatte på slakterier. Hvite hjelmer skal ha mørkegrønn logo (PMS 316). Det er viktig at kontrasten mellom logo og hjelmfarge er så god som mulig. Hvis blåfargen er mørk, er det den lyse logovarianten (PMS 621) som skal benyttes. Logoen trykkes på klistremerker og festes foran på hjelmen.
+
+<Grid data-items="300" style={{ textAlign: 'center' }}>
+<Card style={{ padding: '20%' }}>
+<img src={hjelmHvit} alt="Hjelm hvit" width="200" />
+</Card>
+<Card style={{ padding: '20%' }}>
+<img src={hjelmBlaa} alt="Hjelm blå" width="200" />
+</Card>
+</Grid>
+
+## Caps
+
+Det er ikke så mange steder Mattilsynets fargepalett kommer til uttrykk i arbeidstøyet, men på capser finnes en variant. Her kan man bestille caps i fargen Khaki, som er en representant for Sand-fargen i paletten vår.
+
+<Card style={{ padding: '7%', textAlign: 'center' }}>
+<Prose>
+<img src={caps} alt="Caps" width="200" />
+Clique&trade; Texas
+<br />Farge: Khaki
+</Prose>
+</Card>
+
+## Buff
+
+For å få inn mer egenidentitet i arbeidsklær-assortementet, har buffen et sammensatt mønster fra Mattilsynets illustrasjonsbibliotek. Buffen er produsert og ligger på lager hos Ahlsell. Den er tilgjengelig i bestillingsløsningen, kontakt bestiller i din divisjon.
+

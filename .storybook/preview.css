@@ -14,11 +14,19 @@ u-tabpanel > pre > .docblock-source {
 
 .sbdocs-content.sbdocs-content {
 	max-width: 50rem; /* 800px */
+	padding-bottom: 200px; /* Space for scroll */
 }
 
 .sb-anchor {
 	margin: 0;
 }
+
+.sbdocs-content img {
+	display: block;
+	margin: auto;
+	max-width: 100%;
+}
+
 .sbdocs-content h1 {
 	margin-top: 0;
 }
