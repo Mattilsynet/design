@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import styles from "../designsystem/styles.module.css";
 import "../designsystem"; // Load JS functionaility
 import "./preview.css";
+// import { track } from "../designsystem/matomo";
 
 const CSS_ALERT = styles.alert.split(" ");
 const CSS_TABLE = styles.table.split(" ");
@@ -93,6 +94,8 @@ export default {
 					const isLoaded = document.querySelector('script[src*="matomo.js"]');
 					const title = document.querySelector(".sbdocs-h1")?.textContent;
 					const url = (window.top || window).location.href;
+
+					// track("init");
 
 					window._paq = window._paq || [];
 					window._paq.push(["setDocumentTitle", title || document.title]);
