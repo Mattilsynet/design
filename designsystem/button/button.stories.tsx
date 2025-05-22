@@ -1,4 +1,4 @@
-import { Heart, List, Star, X } from "@phosphor-icons/react";
+import { HeartIcon, ListIcon, StarIcon, XIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../react";
@@ -121,7 +121,7 @@ export const Nowrap: Story = {
 					className={styles.button}
 					data-variant="secondary"
 				>
-					<Star />
+					<StarIcon />
 					<span data-nowrap>Lagre favoritt</span>
 				</button>
 			</div>
@@ -132,7 +132,7 @@ export const Nowrap: Story = {
 					className={styles.button}
 					data-variant="secondary"
 				>
-					<Star />
+					<StarIcon />
 					Lagre favoritt
 				</button>
 			</div>
@@ -149,7 +149,7 @@ export const Justify: Story = {
 				data-variant="secondary"
 				type="button"
 			>
-				<Star />
+				<StarIcon />
 				Center
 			</button>
 			<button
@@ -186,9 +186,9 @@ export const Pressed: Story = {
 					className={styles.button}
 					onClick={() => setPressed(!pressed)}
 				>
-					<Star data-pressed="false" />
+					<StarIcon data-pressed="false" />
 					<span data-pressed="false">Lagre favoritt</span>
-					<Star data-pressed="true" weight="fill" />
+					<StarIcon data-pressed="true" weight="fill" />
 					<span data-pressed="true">Fjern favoritt</span>
 				</button>
 				<button
@@ -197,8 +197,8 @@ export const Pressed: Story = {
 					type="button"
 				>
 					With popover
-					<List data-pressed="false" />
-					<X data-pressed="true" />
+					<ListIcon data-pressed="false" />
+					<XIcon data-pressed="true" />
 				</button>
 				<menu className={styles.popover} id="pop-pressed" popover="auto">
 					<li>
@@ -263,12 +263,12 @@ export const WithIcons: Story = {
 	render: () => (
 		<>
 			<button type="button" className={styles.button} data-variant="secondary">
-				<Heart />
+				<HeartIcon />
 				Ikon før
 			</button>
 			<button type="button" className={styles.button} data-variant="secondary">
 				Ikon etter
-				<Star />
+				<StarIcon />
 			</button>
 		</>
 	),
@@ -351,8 +351,8 @@ export const WithTooltip: Story = {
 				onClick={() => setPressed(!pressed)}
 				type="button"
 			>
-				<Star data-pressed="false" />
-				<Star data-pressed="true" weight="fill" />
+				<StarIcon data-pressed="false" />
+				<StarIcon data-pressed="true" weight="fill" />
 			</button>
 		);
 	},

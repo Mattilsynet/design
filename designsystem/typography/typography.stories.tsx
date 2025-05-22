@@ -1,4 +1,8 @@
-import { DownloadSimple, Heart, PaperPlaneRight } from "@phosphor-icons/react";
+import {
+	DownloadSimpleIcon,
+	HeartIcon,
+	PaperPlaneRightIcon,
+} from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect } from "react";
 import {
@@ -705,12 +709,12 @@ export const InfoStory: Story = {
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<Heart />
+				<HeartIcon />
 				Ikon og informasjon
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<Heart /> <strong>Ikon og ledetekst</strong>
+				<HeartIcon /> <strong>Ikon og ledetekst</strong>
 				Og informasjon
 			</span>
 			<hr className={styles.divider} data-gap="5" />
@@ -729,7 +733,7 @@ export const InfoStory: Story = {
 						<Flex data-self="500" data-align="start">
 							<Grid data-self="200">
 								<Info>
-									<PaperPlaneRight />
+									<PaperPlaneRightIcon />
 									Firmanavn AS
 								</Info>
 								<Info>
@@ -737,7 +741,7 @@ export const InfoStory: Story = {
 								</Info>
 							</Grid>
 							<Info data-self="300">
-								<DownloadSimple />
+								<DownloadSimpleIcon />
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>

@@ -1,12 +1,12 @@
 import {
-	Bell,
-	Gear,
-	ListChecks,
-	MagnifyingGlass,
-	Plant,
-	SignOut,
-	Signature,
-	User,
+	BellIcon,
+	GearIcon,
+	ListChecksIcon,
+	MagnifyingGlassIcon,
+	PlantIcon,
+	SignOutIcon,
+	SignatureIcon,
+	UserIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { toggleAppExpanded } from "..";
@@ -50,11 +50,11 @@ export const Default: Story = {
 		<div className={styles.app}>
 			<header>
 				<a href="/" className={styles.logo}>
-					<Plant weight="fill" />
+					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
 				<button type="button" className={styles.button}>
-					<Bell />
+					<BellIcon />
 				</button>
 				<button
 					aria-label="Meny"
@@ -67,19 +67,19 @@ export const Default: Story = {
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
-							<User />
+							<UserIcon />
 							Profil
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<Gear />
+							<GearIcon />
 							Innstillinger
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<SignOut />
+							<SignOutIcon />
 							Logg ut
 						</a>
 					</li>
@@ -102,17 +102,17 @@ export const Default: Story = {
 							aria-current="page"
 							data-tooltip="Søknader"
 						>
-							<Signature />
+							<SignatureIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Behandling">
-							<ListChecks />
+							<ListChecksIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Søk">
-							<MagnifyingGlass />
+							<MagnifyingGlassIcon />
 						</a>
 					</li>
 				</menu>
@@ -129,11 +129,11 @@ export const React: Story = {
 		<App>
 			<App.Header>
 				<Logo href="/">
-					<Plant weight="fill" />
+					<PlantIcon weight="fill" />
 					Digiplant
 				</Logo>
 				<Button>
-					<Bell />
+					<BellIcon />
 				</Button>
 				<Button aria-label="Meny" popoverTarget="menu">
 					<Avatar data-size="xs" />
@@ -141,19 +141,19 @@ export const React: Story = {
 				<Popover as="menu" popover="auto" id="menu">
 					<li>
 						<Button href="/">
-							<User />
+							<UserIcon />
 							Profil
 						</Button>
 					</li>
 					<li>
 						<Button href="/">
-							<Gear />
+							<GearIcon />
 							Innstillinger
 						</Button>
 					</li>
 					<li>
 						<Button href="/">
-							<SignOut />
+							<SignOutIcon />
 							Logg ut
 						</Button>
 					</li>
@@ -166,17 +166,17 @@ export const React: Story = {
 				<App.Sticky as="menu">
 					<li>
 						<Button href="/" aria-current="page" data-tooltip="Søknader">
-							<Signature />
+							<SignatureIcon />
 						</Button>
 					</li>
 					<li>
 						<Button href="/" data-tooltip="Behandling">
-							<ListChecks />
+							<ListChecksIcon />
 						</Button>
 					</li>
 					<li>
 						<Button href="/" data-tooltip="Søk">
-							<MagnifyingGlass />
+							<MagnifyingGlassIcon />
 						</Button>
 					</li>
 				</App.Sticky>
@@ -196,11 +196,11 @@ export const WithFooter: Story = {
 		<div className={styles.app}>
 			<header>
 				<a href="/" className={styles.logo}>
-					<Plant weight="fill" />
+					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
 				<button type="button" className={styles.button}>
-					<Bell />
+					<BellIcon />
 				</button>
 
 				<button
@@ -213,19 +213,19 @@ export const WithFooter: Story = {
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
-							<User />
+							<UserIcon />
 							Profil
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<Gear />
+							<GearIcon />
 							Innstillinger
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<SignOut />
+							<SignOutIcon />
 							Logg ut
 						</a>
 					</li>
@@ -248,17 +248,17 @@ export const WithFooter: Story = {
 							aria-current="page"
 							data-tooltip="Søknader"
 						>
-							<Signature />
+							<SignatureIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Behandling">
-							<ListChecks />
+							<ListChecksIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Søk">
-							<MagnifyingGlass />
+							<MagnifyingGlassIcon />
 						</a>
 					</li>
 				</menu>
@@ -278,12 +278,12 @@ export const WithComplexContent: Story = {
 		<div className={styles.app}>
 			<header>
 				<a href="/" className={styles.logo}>
-					<Plant weight="fill" />
+					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
 				<button type="button" className={styles.button}>
 					<span className={styles.badge} data-badge="" data-color="danger">
-						<Bell />
+						<BellIcon />
 					</span>
 				</button>
 				<button
@@ -298,19 +298,19 @@ export const WithComplexContent: Story = {
 				<menu className={styles.popover} popover="auto" id="menu">
 					<li>
 						<a className={styles.button} href="/">
-							<User />
+							<UserIcon />
 							Profil
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<Gear />
+							<GearIcon />
 							Innstillinger
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/">
-							<SignOut />
+							<SignOutIcon />
 							Logg ut
 						</a>
 					</li>
@@ -343,18 +343,18 @@ export const WithComplexContent: Story = {
 									aria-current="page"
 								>
 									<span className={styles.badge} data-badge="99">
-										<Signature />
+										<SignatureIcon />
 									</span>
 								</a>
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Behandling">
-									<ListChecks />
+									<ListChecksIcon />
 								</a>
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Søk">
-									<MagnifyingGlass />
+									<MagnifyingGlassIcon />
 								</a>
 							</li>
 						</menu>
@@ -369,17 +369,17 @@ export const WithComplexContent: Story = {
 						<menu>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Søknader">
-									<Signature />
+									<SignatureIcon />
 								</a>
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Behandling">
-									<ListChecks />
+									<ListChecksIcon />
 								</a>
 							</li>
 							<li>
 								<a className={styles.button} href="/" data-tooltip="Søk">
-									<MagnifyingGlass />
+									<MagnifyingGlassIcon />
 								</a>
 							</li>
 						</menu>
@@ -507,7 +507,7 @@ export const WithCustomToggle: Story = {
 		<div className={styles.app}>
 			<header>
 				<a href="/" className={styles.logo}>
-					<Plant weight="fill" />
+					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
 			</header>
@@ -527,17 +527,17 @@ export const WithCustomToggle: Story = {
 							aria-current="page"
 							data-tooltip="Søknader"
 						>
-							<Signature />
+							<SignatureIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Behandling">
-							<ListChecks />
+							<ListChecksIcon />
 						</a>
 					</li>
 					<li>
 						<a className={styles.button} href="/" data-tooltip="Søk">
-							<MagnifyingGlass />
+							<MagnifyingGlassIcon />
 						</a>
 					</li>
 				</menu>

@@ -1,4 +1,4 @@
-import { Envelope } from "@phosphor-icons/react";
+import { EnvelopeIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "../react";
 import styles from "../styles.module.css";
@@ -26,7 +26,7 @@ export const React: Story = {
 		<>
 			<Badge data-badge="2"></Badge>
 			<Badge>
-				<Envelope />
+				<EnvelopeIcon />
 			</Badge>
 		</>
 	),
@@ -48,7 +48,7 @@ export const InElement: Story = {
 				Under behandling <span className={styles.badge} data-badge="9"></span>
 			</h2>
 			<button type="button" className={styles.button} data-variant="secondary">
-				<Envelope />
+				<EnvelopeIcon />
 				E-post <span className={styles.badge} data-badge="99+"></span>
 			</button>
 		</div>
@@ -61,25 +61,25 @@ export const WithPosition: Story = {
 			<button type="button" className={styles.button}>
 				E-post{" "}
 				<span className={styles.badge}>
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 			<button type="button" className={styles.button}>
 				E-post{" "}
 				<span className={styles.badge} data-badge="2">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 			<button type="button" className={styles.button}>
 				E-post{" "}
 				<span className={styles.badge} data-color="danger">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 			<button type="button" className={styles.button}>
 				E-post{" "}
 				<span className={styles.badge} data-badge="2" data-color="danger">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 		</>
@@ -92,19 +92,19 @@ export const Sizes: Story = {
 			<button type="button" className={styles.button} data-size="sm">
 				E-post{" "}
 				<span className={styles.badge} data-badge="2">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 			<button type="button" className={styles.button} data-size="md">
 				E-post{" "}
 				<span className={styles.badge} data-badge="2">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 			<button type="button" className={styles.button} data-size="lg">
 				E-post{" "}
 				<span className={styles.badge} data-badge="2">
-					<Envelope />
+					<EnvelopeIcon />
 				</span>
 			</button>
 		</div>

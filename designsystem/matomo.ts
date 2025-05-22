@@ -5,6 +5,11 @@ const MATOMO = "mattilsynet.matomo.cloud";
 declare global {
 	interface Window {
 		_paq?: string[][];
+		// matomoAsyncInit?: () => void;
+		// Matomo?: {
+		// 	getTracker: (url: string, id: number) => Record<string, () => void>;
+		// 	getAsyncTracker: (url: string, id: number) => Record<string, () => void>;
+		// };
 	}
 }
 
@@ -24,6 +29,14 @@ export function track(action: string, ...args: string[]) {
 				}),
 			)
 		);
+		// window.matomoAsyncInit = () => {
+		// 	try {
+		// 		const url = `https://${MATOMO}/matomo.php`;
+		// 		const tracker = window.Matomo?.getAsyncTracker(url, 9999);
+		// 		console.log({ tracker });
+		// 		// matomoTracker?.trackPageView();
+		// 	} catch (err) {}
+		// };
 	}
 
 	window._paq.push([action, ...args]);

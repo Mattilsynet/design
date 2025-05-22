@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import kompasset from './kompasset.jpg';
-import { FilePdf } from '@phosphor-icons/react'
+import { FilePdfIcon } from '@phosphor-icons/react'
 import { Button, Details, Flex, Grid } from '../designsystem/react';
 
 <Meta title="Identitet/Kompasset og roller" />
@@ -11,18 +11,18 @@ import { Button, Details, Flex, Grid } from '../designsystem/react';
   <img src={kompasset} alt="" style={{ display: 'block', maxWidth: '100%' }} />
 </a>
 
-<Flex data-gap="6">
+<Flex data-gap="8">
 <Grid>
 <strong>Last ned kompasset</strong>
 <Flex>
-<Button href="/docs/mattilsynet-kompasset-nb.pdf" data-variant="secondary" download><FilePdf /> Bokmål</Button>
-<Button href="/docs/mattilsynet-kompasset-nn.pdf" data-variant="secondary" download><FilePdf /> Nynorsk</Button>
-<Button href="/docs/mattilsynet-kompasset-en.pdf" data-variant="secondary" download><FilePdf /> Engelsk</Button>
+<Button href="/docs/mattilsynet-kompasset-nb.pdf" data-variant="secondary" download><FilePdfIcon /> Bokmål</Button>
+<Button href="/docs/mattilsynet-kompasset-nn.pdf" data-variant="secondary" download><FilePdfIcon /> Nynorsk</Button>
+<Button href="/docs/mattilsynet-kompasset-en.pdf" data-variant="secondary" download><FilePdfIcon /> Engelsk</Button>
 </Flex>
 </Grid>
 <Grid>
 <strong>Last ned roller</strong>
-<Button href="/docs/mattilsynet-roller.pdf" data-variant="secondary" download><FilePdf /> Bokmål</Button>
+<Button href="/docs/mattilsynet-roller.pdf" data-variant="secondary" download><FilePdfIcon /> Bokmål</Button>
 </Grid>
 </Flex>
 

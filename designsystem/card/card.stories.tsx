@@ -1,13 +1,13 @@
 import {
-	CalendarDots,
-	Clock,
-	DownloadSimple,
-	HourglassHigh,
-	ListChecks,
-	MapPin,
-	PaperPlaneRight,
-	SmileyMeh,
-	UploadSimple,
+	CalendarDotsIcon,
+	ClockIcon,
+	DownloadSimpleIcon,
+	HourglassHighIcon,
+	ListChecksIcon,
+	MapPinIcon,
+	PaperPlaneRightIcon,
+	SmileyMehIcon,
+	UploadSimpleIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card, Flex, Grid, Group, Heading, Info, Tag } from "../react";
@@ -100,17 +100,17 @@ export const Responsive: Story = {
 					<div className={styles.flex} data-self="500" data-items="100">
 						<div className={styles.grid} data-items="100">
 							<span className={styles.info}>
-								<CalendarDots />
+								<CalendarDotsIcon />
 								06.12.2024
 							</span>
 							<span className={styles.info}>
-								<Clock />
+								<ClockIcon />
 								19:37
 							</span>
 						</div>
 						<div className={styles.grid} data-items="100">
 							<span className={styles.info}>
-								<UploadSimple />
+								<UploadSimpleIcon />
 								Groene Tuin
 							</span>
 							<span className={styles.info}>
@@ -120,11 +120,11 @@ export const Responsive: Story = {
 						</div>
 						<div className={styles.grid} data-self="500" data-items="250">
 							<span className={styles.info}>
-								<DownloadSimple />
+								<DownloadSimpleIcon />
 								Blomquist Blomster AS
 							</span>
 							<span className={styles.info}>
-								<ListChecks />
+								<ListChecksIcon />
 								Daucus carota, Hydrangea paniculata, +4
 							</span>
 						</div>
@@ -141,7 +141,7 @@ export const Responsive: Story = {
 						<Flex data-self="500" data-align="start">
 							<Grid data-self="200">
 								<Info>
-									<PaperPlaneRight />
+									<PaperPlaneRightIcon />
 									Firmanavn AS
 								</Info>
 								<Info>
@@ -149,7 +149,7 @@ export const Responsive: Story = {
 								</Info>
 							</Grid>
 							<Info data-self="300">
-								<DownloadSimple />
+								<DownloadSimpleIcon />
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>
@@ -172,21 +172,21 @@ export const Responsive: Story = {
 					>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<MapPin />
+								<MapPinIcon />
 								Grunerlokka, Oslo
 							</span>
 							<span className={styles.info}>
-								<Clock />
+								<ClockIcon />
 								12.00 - 22.00
 							</span>
 						</div>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<SmileyMeh />
+								<SmileyMehIcon />
 								06.01.2024
 							</span>
 							<span className={styles.info}>
-								<HourglassHigh />
+								<HourglassHighIcon />
 								107.02.2020
 							</span>
 						</div>
@@ -216,11 +216,11 @@ export const Responsive: Story = {
 					>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<MapPin />
+								<MapPinIcon />
 								Sentrum, Oslo
 							</span>
 							<span className={styles.info}>
-								<Clock />
+								<ClockIcon />
 								14.00 - 22.00{" "}
 								<span
 									className={styles.tag}
@@ -234,11 +234,11 @@ export const Responsive: Story = {
 						</div>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<SmileyMeh />
+								<SmileyMehIcon />
 								14.06.2022
 							</span>
 							<span className={styles.info}>
-								<HourglassHigh />
+								<HourglassHighIcon />
 								13.02.2023
 							</span>
 						</div>
@@ -268,21 +268,21 @@ export const Responsive: Story = {
 					>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<MapPin />
+								<MapPinIcon />
 								Sagene, Oslo
 							</span>
 							<span className={styles.info}>
-								<Clock />
+								<ClockIcon />
 								11.00 - 22.00
 							</span>
 						</div>
 						<div className={styles.grid} data-items="150">
 							<span className={styles.info}>
-								<SmileyMeh />
+								<SmileyMehIcon />
 								08.01.2024
 							</span>
 							<span className={styles.info}>
-								<HourglassHigh />
+								<HourglassHighIcon />
 								23.03.2025
 							</span>
 						</div>
@@ -304,19 +304,19 @@ export const Responsive: Story = {
 				<div className={styles.flex} data-items="150">
 					<h2 data-size="md">Ananasen</h2>
 					<span className={styles.info}>
-						<MapPin />
+						<MapPinIcon />
 						Loren, Oslo
 					</span>
 					<span className={styles.info}>
-						<Clock />
+						<ClockIcon />
 						13.00 - 22.00
 					</span>
 					<span className={styles.info}>
-						<SmileyMeh />
+						<SmileyMehIcon />
 						06.01.2023
 					</span>
 					<span className={styles.info}>
-						<HourglassHigh />
+						<HourglassHighIcon />
 						07.04.2025
 					</span>
 					<button
@@ -353,17 +353,17 @@ export const Responsive: Story = {
 // 					<div className={styles.flex} data-self="500" data-items="100">
 // 						<div className={styles.grid} data-items="100">
 // 							<span className={styles.info}>
-// 								<CalendarDots />
+// 								<CalendarDotsIcon />
 // 								06.12.2024
 // 							</span>
 // 							<span className={styles.info}>
-// 								<Clock />
+// 								<ClockIcon />
 // 								19:37
 // 							</span>
 // 						</div>
 // 						<div className={styles.grid} data-items="100">
 // 							<span className={styles.info}>
-// 								<UploadSimple />
+// 								<UploadSimpleIcon />
 // 								Groene Tuin
 // 							</span>
 // 							<span className={styles.info}>
@@ -373,11 +373,11 @@ export const Responsive: Story = {
 // 						</div>
 // 						<div className={styles.grid} data-self="500" data-items="250">
 // 							<span className={styles.info}>
-// 								<DownloadSimple />
+// 								<DownloadSimpleIcon />
 // 								Blomquist Blomster AS
 // 							</span>
 // 							<span className={styles.info}>
-// 								<ListChecks />
+// 								<ListChecksIcon />
 // 								Daucus carota, Hydrangea paniculata, +4
 // 							</span>
 // 						</div>
