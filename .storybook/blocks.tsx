@@ -4,6 +4,12 @@ import { Button, Card, Grid, Table } from "../designsystem/react";
 import styles from "../designsystem/styles.module.css";
 import css from "../designsystem/styles.module.css?inline";
 
+type WideProps = React.ComponentPropsWithoutRef<"div">;
+export const Wide = ({ style, ...rest }: WideProps) => {
+	const css = { ...style, margin: "3rem calc(50% - min(900px, 50vw) + 4em)" };
+	return <div style={css} {...rest} />;
+};
+
 // Jump to navigation
 export const JumpTo = () => {
 	const [links, setLinks] = useState<{ text: string; href: string }[]>([]);
@@ -18,12 +24,7 @@ export const JumpTo = () => {
 	}, []);
 
 	return (
-		<Grid
-			as="menu"
-			data-items="250"
-			data-gap="0"
-			style={{ marginBlock: "2em" }}
-		>
+		<menu style={{ listStyle: "none", columns: "13em", marginBlock: "2em" }}>
 			{links.map(({ text, href }) => (
 				<li key={href}>
 					<Button href={href} data-nowrap>
@@ -34,7 +35,7 @@ export const JumpTo = () => {
 					</Button>
 				</li>
 			))}
-		</Grid>
+		</menu>
 	);
 };
 

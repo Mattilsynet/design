@@ -1,4 +1,5 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { Wide } from '../.storybook/blocks';
 import { ConfettiIcon } from '@phosphor-icons/react';
 import { Svgs } from './svgs';
 import { Details, Flex, Button } from '../designsystem/react';
@@ -49,7 +50,7 @@ Er du selv designer og ønsker å tegne nye illustasjoner selv, skal vi følge r
   </ColorPalette>
 </Details>
 
-<div style={{ marginInline: "calc(50% - min(900px, 50vw) + 4em)" }}>
+<Wide>
 <Svgs path="illustrations" showSearch />
-</div>
+</Wide>
 <div style={{ height: 500 }} /> {/* Allow some space to scroll under */}
