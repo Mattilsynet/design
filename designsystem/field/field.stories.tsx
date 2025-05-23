@@ -407,7 +407,7 @@ export const ReactWithDatalist: Story = {
 };
 
 export const ReactWithComboboxMultiple: Story = {
-	name: "React With Tags (Eksperimentell)",
+	name: "React With Combobox Multiple (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,

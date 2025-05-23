@@ -5,6 +5,7 @@ import {
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useEffect } from "react";
+import inspektor from "../../profilering/arbeidstoy/inspektor.png";
 import {
 	Card,
 	Field,
@@ -577,6 +578,12 @@ export const Prose: Story = {
 				I så fall gjelder standard krav for 1.1.75 om opprinnelsesland,
 				forhåndsmelding og egenerklæring.
 			</p>
+			<figure>
+				<img src={inspektor} alt="" />
+				<figcaption>
+					Arbeidstøyet er en viktig del av vår visuelle identitet.
+				</figcaption>
+			</figure>
 			<h2 className={styles.heading} data-size="md">
 				Olje av laksefisk til humant konsum
 			</h2>
