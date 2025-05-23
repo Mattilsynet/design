@@ -23,7 +23,7 @@
 	"flask-pipette.svg": ["Kosmetikk", "pipetteflaske"],
 	"flask-pump.svg": ["Kosmetikk", "flaske,pumpe,hudkrem,håndkrem"],
 	"flasks.svg": ["Kosmetikk", "flasker,kremer,hudkrem,håndkrem"],
-	"jar.svg": ["Kosmetikk,glasskrukke,hudkrem,håndkrem"],
+	"jar.svg": ["Kosmetikk", "glasskrukke,hudkrem,håndkrem"],
 	"person-flasks.svg": [
 		"Mennesker,Kosmetikk",
 		"person,menneske,flasker,kremer,hudkrem,håndkrem"

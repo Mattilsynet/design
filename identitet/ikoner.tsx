@@ -12,11 +12,10 @@ type IconsProps = {
 	mode?: "light" | "dark" | null;
 } & React.ComponentPropsWithoutRef<"div">;
 
-const toUpper = (str: string) => str[0].toUpperCase() + str.slice(1);
 export const Icons = (rest: IconsProps) => {
 	console.log(icons);
 	const categories = useMemo(
-		() => new Set(icons.flatMap((icon) => icon.categories).map(toUpper)),
+		() => new Set(icons.flatMap((icon) => icon.categories).sort()),
 		[],
 	);
 	const [showCategory, setCategory] = useState("");
@@ -44,7 +43,7 @@ export const Icons = (rest: IconsProps) => {
 					data-tooltip="💡 Søket er på engelsk"
 					type="search"
 				/>
-				<Field data-self="200" data-fixed>
+				<Field data-self="300" data-fixed>
 					<Select
 						name="category"
 						aria-label="Kategori"
@@ -54,7 +53,7 @@ export const Icons = (rest: IconsProps) => {
 						<option value="">All categories</option>
 						{Array.from(categories, (cat) => (
 							<option key={cat} value={cat}>
-								{cat}
+								{cat[0].toUpperCase() + cat.slice(1).toLowerCase()}
 							</option>
 						))}
 					</Select>

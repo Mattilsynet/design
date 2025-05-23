@@ -32,7 +32,7 @@ export const Svgs = ({
 		[path],
 	);
 	const categories = useMemo(
-		() => new Set(svgs.flatMap((svg) => svg.categories)),
+		() => new Set(svgs.flatMap((svg) => svg.categories).sort()),
 		[svgs],
 	);
 	const [showCategory, setCategory] = useState("");
@@ -61,7 +61,7 @@ export const Svgs = ({
 						placeholder="Søk etter illustasjon"
 						type="search"
 					/>
-					<Field data-self="200" data-fixed>
+					<Field data-self="300" data-fixed>
 						<Select
 							name="category"
 							aria-label="Kategori"
@@ -71,7 +71,7 @@ export const Svgs = ({
 							<option value="">Alle kategorier</option>
 							{Array.from(categories, (cat) => (
 								<option key={cat} value={cat}>
-									{cat}
+									{cat[0].toUpperCase() + cat.slice(1).toLowerCase()}
 								</option>
 							))}
 						</Select>
