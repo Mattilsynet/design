@@ -2,6 +2,7 @@
 	.input {
 		composes: ds-input from "@digdir/designsystemet-css";
 		scroll-margin-block: 8em; /* Ensure scrolling to <input> from Errorsummary does not hide <label> */
+		font-weight: inherit;
 
 		--dsc-input-background--readonly: var(--ds-color-background-tinted);
 		--dsc-input-background: var(--ds-color-surface-default);

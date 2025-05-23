@@ -26,10 +26,8 @@
 	.info {
 		--mtdsc-info-gap: var(--ds-size-2);
 		--mtdsc-info-icon-size: 1em;
-		--mtdsc-info-line-height: var(--ds-line-height-sm);
 		--x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 
-		line-height: var(--mtdsc-info-line-height);
 		overflow: clip;
 		text-overflow: ellipsis;
 	}
@@ -90,8 +88,7 @@
 	.prose > figure {
 		display: grid;
 		gap: var(--ds-size-3);
-		margin-inline: 0;
-		margin-bottom: var(--ds-size-8);
+		margin: var(--ds-size-8) 0;
 	}
 	.prose > figure > figcaption {
 		font-size: var(--ds-font-size-minus-1);

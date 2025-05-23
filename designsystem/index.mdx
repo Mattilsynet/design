@@ -1,243 +1,306 @@
 import { Meta } from '@storybook/blocks';
-import { getPkgVersion } from '../.storybook/blocks';
-import { ArrowSquareOutIcon } from "@phosphor-icons/react";
-import { Flex, Button, Divider, Tabs } from './react'
+import { getPkgVersion, JumpTo } from '../.storybook/blocks';
+import { ArrowSquareOutIcon, PuzzlePieceIcon, ChatsCircleIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { Badge, Card, Details, Divider, Flex, Button, Tabs, Prose } from './react'
 import { styles } from './';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
 
 <Meta title="Designsystem/Introduksjon" />
 
-# Designsystem
+# <PuzzlePieceIcon /> Designsystem
 
-> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/),
-men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser som er tilgjengelig for alle.
+> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/), men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser for alle.
 
 <Flex>
-<Button href="https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU" data-variant="secondary"><svg width="24" height="24" viewBox="0 0 512 512"><path d="M126.12 315.1A47.06 47.06 0 1 1 79.06 268h47.06ZM149.84 315.1a47.06 47.06 0 0 1 94.12 0v117.84a47.06 47.06 0 1 1-94.12 0ZM196.9 126.12A47.06 47.06 0 1 1 244 79.06v47.06ZM196.9 149.84a47.06 47.06 0 0 1 0 94.12H79.06a47.06 47.06 0 0 1 0-94.12ZM385.88 196.9a47.06 47.06 0 1 1 47.06 47.1h-47.06ZM362.16 196.9a47.06 47.06 0 0 1-94.12 0V79.06a47.06 47.06 0 1 1 94.12 0ZM315.1 385.88a47.06 47.06 0 1 1-47.1 47.06v-47.06ZM315.1 362.16a47.06 47.06 0 0 1 0-94.12h117.84a47.06 47.06 0 1 1 0 94.12Z"/></svg> Snakk med oss på Slack</Button>
-<Button href="https://github.com/mattilsynet/design" data-variant="secondary"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 3a12 12 0 0 0-2.9 23.63c-.06-.16-.1-.35-.1-.58V24h-1.5c-.83 0-1.56-.36-1.91-1.01-.4-.73-.46-1.85-1.44-2.53-.29-.23-.07-.48.27-.45.61.17 1.12.6 1.6 1.22.48.63.7.77 1.6.77.43 0 1.08-.02 1.69-.12.33-.83.9-1.6 1.59-1.96-4-.41-5.9-2.4-5.9-5.1 0-1.16.49-2.29 1.33-3.23-.28-.94-.62-2.86.1-3.59 1.8 0 2.89 1.17 3.15 1.48a9 9 0 0 1 5.84 0A4.17 4.17 0 0 1 21.56 8c.74.73.39 2.66.1 3.6A4.9 4.9 0 0 1 23 14.81c0 2.7-1.9 4.68-5.9 5.1 1.1.57 1.9 2.18 1.9 3.4v2.73c0 .1-.02.18-.04.26A12 12 0 0 0 15 3z"/></svg> Se på Github</Button>
-<Button href="https://github.com/Mattilsynet/design/releases" data-variant="secondary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path d="M224 128a8 8 0 0 1-8 8h-88a8 8 0 0 1 0-16h88a8 8 0 0 1 8 8Zm-96-56h88a8 8 0 0 0 0-16h-88a8 8 0 0 0 0 16Zm88 112h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16ZM82.34 42.34 56 68.69 45.66 58.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Zm0 64L56 132.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Zm0 64L56 196.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32Z"/></svg> Se versjonslogg (v{getPkgVersion()})</Button>
+<Button href="https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU" data-variant="secondary"><ChatsCircleIcon /> Snakk med oss på Slack</Button>
+<Button href="https://github.com/Mattilsynet/design/releases" data-variant="secondary"><GitBranchIcon /> Kode og versjonslogg (v{getPkgVersion()})</Button>
 </Flex>
+
+<JumpTo />
 
 <Divider data-gap="10" />
 
-## Kom i gang for utviklere
+## For utviklere
 
 Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg bygge responsive, fleksible og tilgjengelige grensesnitt. I tillegg får du tilgang til logoer, ikoner, illustasjoner og en rekke tokens/[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) for enkel bygging av egne komponenter i Mattilsynet-drakt. Slik bruker du pakken:
 
-1. **Installer** `@mattilsynet/design` fra Mattilsynets [NPM organsiasjon](https://www.npmjs.com/package/@mattilsynet/design):
-    <Tabs data-size="sm">
-      <Tabs.List>
-        <Tabs.Tab>NPM</Tabs.Tab>
-        <Tabs.Tab>PNPM</Tabs.Tab>
-        <Tabs.Tab>Yarn</Tabs.Tab>
-        <Tabs.Tab>Bun</Tabs.Tab>
-        <Tabs.Tab>Clojure</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        ```bash
-        npm install @mattilsynet/design --save
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```bash
-        pnpm add @mattilsynet/design
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```bash
-        yarn add @mattilsynet/design
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```bash
-        bun add @mattilsynet/design
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel style={{ padding: 20 }}>
-        <Button data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOutIcon /></Button>
-      </Tabs.Panel>
-    </Tabs>
+<Details>
+<Details.Summary><Badge data-badge="1" />Installer `@mattilsynet/design`</Details.Summary>
+<Tabs data-size="sm">
+  <Tabs.List>
+    <Tabs.Tab>NPM</Tabs.Tab>
+    <Tabs.Tab>PNPM</Tabs.Tab>
+    <Tabs.Tab>Yarn</Tabs.Tab>
+    <Tabs.Tab>Bun</Tabs.Tab>
+    <Tabs.Tab>Clojure</Tabs.Tab>
+  </Tabs.List>
+  <Tabs.Panel>
+    ```bash
+    npm install @mattilsynet/design --save
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```bash
+    pnpm add @mattilsynet/design
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```bash
+    yarn add @mattilsynet/design
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```bash
+    bun add @mattilsynet/design
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel style={{ padding: 20 }}>
+    <Button data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOutIcon /></Button>
+  </Tabs.Panel>
+</Tabs>
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="2" />Importer JavaScript støttefunksjonalitet *eller* React komponenter</Details.Summary>
+<Tabs data-size="sm">
+<Tabs.List>
+  <Tabs.Tab>JS</Tabs.Tab>
+  <Tabs.Tab>HTML</Tabs.Tab>
+  <Tabs.Tab>React</Tabs.Tab>
+</Tabs.List>
+<Tabs.Panel>
+  ```js
+  import "@mattilsynet/design";
+  ```
+</Tabs.Panel>
+<Tabs.Panel>
+  ```html
+  <!-- Only use if you have no build step: -->
+  <script src="node_modules/@mattilsynet/design/mtds/index.iife.js"></script>
+  ```
+</Tabs.Panel>
+<Tabs.Panel>
+  1. Én fil i prosjektet må inneholde javscript-import og `"use client"` for at Next.js og kjøre nødvendig Javascript i nettleser.
+      Dette trenger ikke være samme fil som lager HTML - alt kan server-side-rendres.
+      ```js
+      "use client"
+      import "@mattilsynet/design";
+      ```
+  2. Deretter kan du i andre filer benytte komponenter fra `@mattilsynet/design/react`:
+      ```jsx
+      import { Button } from "@mattilsynet/design/react";
+      ```
+</Tabs.Panel>
+</Tabs>
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="3" />Importer stiler enten via JavaScript, CSS eller med TailwindCSS</Details.Summary>
+<Tabs data-size="sm">
+  <Tabs.List>
+    <Tabs.Tab>JS</Tabs.Tab>
+    <Tabs.Tab>CSS</Tabs.Tab>
+    <Tabs.Tab>TailwindCSS v4</Tabs.Tab>
+    <Tabs.Tab>TailwindCSS v3 and older</Tabs.Tab>
+  </Tabs.List>
+  <Tabs.Panel>
+    ```js
+    import "@mattilsynet/design/styles.css";
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```css
+    @import url("@mattilsynet/design/styles.css");
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```css
+    /* Load @mattilsynet/design before Tailwind: */
+    @import '@mattilsynet/design/styles.css';
+    
+    /* Get Mattilsynet tokens as Tailwind config: */
+    @import '@mattilsynet/design/tailwind.css';
+    @import 'tailwindcss';
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```css
+    /* Load @mattilsynet/design before Tailwind */
+    @import url('@mattilsynet/design/styles.css');
 
-2. **Importer JavaScript** støttefunksjonalitet *eller* **React komponenter**:
-    <Tabs data-size="sm">
-      <Tabs.List>
-        <Tabs.Tab>JS</Tabs.Tab>
-        <Tabs.Tab>HTML</Tabs.Tab>
-        <Tabs.Tab>React</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        ```js
-        import "@mattilsynet/design";
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```html
-        <!-- Only use if you have no build step: -->
-        <script src="node_modules/@mattilsynet/design/mtds/index.iife.js"></script>
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        1. Én fil i prosjektet må inneholde javscript-import og `"use client"` for at Next.js og kjøre nødvendig Javascript i nettleser.
-            Dette trenger ikke være samme fil som lager HTML - alt kan server-side-rendres.
-            ```js
-            "use client"
-            import "@mattilsynet/design";
-            ```
-        2. Deretter kan du i andre filer benytte komponenter fra `@mattilsynet/design/react`:
-            ```jsx
-            import { Button } from "@mattilsynet/design/react";
-            ```
-      </Tabs.Panel>
-    </Tabs>
-3. **Importer stiler** enten via JavaScript, CSS eller med TailwindCSS:
-    <Tabs data-size="sm">
-      <Tabs.List>
-        <Tabs.Tab>JS</Tabs.Tab>
-        <Tabs.Tab>CSS</Tabs.Tab>
-        <Tabs.Tab>TailwindCSS v4</Tabs.Tab>
-        <Tabs.Tab>TailwindCSS v3 and older</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        ```js
-        import "@mattilsynet/design/styles.css";
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```css
-        @import url("@mattilsynet/design/styles.css");
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```css
-        /* Load @mattilsynet/design before Tailwind: */
-        @import '@mattilsynet/design/styles.css';
-        
-        /* Get Mattilsynet tokens as Tailwind config: */
-        @import '@mattilsynet/design/tailwind.css';
-        @import 'tailwindcss';
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```css
-        /* Load @mattilsynet/design before Tailwind */
-        @import url('@mattilsynet/design/styles.css');
+    /**
+    * Fix Tailwind Preflight specificity by using @layer:
+    * See https://css-tricks.com/?p=372576
+    */
+    @layer tailwind-base {
+      @tailwind base;
+    }
+    @tailwind components;
+    @tailwind utilities;
 
-        /**
-        * Fix Tailwind Preflight specificity by using @layer:
-        * See https://css-tricks.com/?p=372576
-        */
-        @layer tailwind-base {
-          @tailwind base;
-        }
-        @tailwind components;
-        @tailwind utilities;
+    ```
+  </Tabs.Panel>
+</Tabs>
 
-        ```
-      </Tabs.Panel>
-    </Tabs>
+<div>
+> ### ⚠️ Merk: `background`, `color` og `font` blir satt på `<body>`
+>
+> `body { background: …; color: …; font: … }` blir automatisk definert,
+> slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers.
+> Dette er lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) 💛
+</div>
 
-    > ### ⚠️ Merk: `background`, `color` og `font` blir satt på `<body>`
-    >
-    > `body { background: …; color: …; font: … }` blir automatisk definert,
-    > slik at vi ivaretar [universell utforming](https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html) og får samme font og farge på tvers.
-    > Dette er lett å overstyre ved behov: din CSS vil alltid ha første prioritert - takket være teknikken [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) 💛
-4. **Ta i bruk stiler**
-    - **Størrelser kan endres** med `data-size="sm | md | lg | xl"` på *alle* HTML elementer - også HTML elementer uten designsystem-klasse
-    - **Foretrekk å endre CSS custom properties** fremfor rene properties; f.eks.: `--mtds-button-border-color` istedenfor `border`
-    - **Klassenavn** hentes fra  `styles` objektet:
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="4" /> Ta i bruk stiler</Details.Summary>
+<Prose>
 
-    <Tabs data-size="sm">
-      <Tabs.List>
-        <Tabs.Tab>JSX</Tabs.Tab>
-        <Tabs.Tab>JS</Tabs.Tab>
-        <Tabs.Tab>JSON</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel>
-        ```jsx
-        import { styles } from "@mattilsynet/design";
+- **Størrelser kan endres** med `data-size="sm | md | lg | xl"` på *alle* HTML elementer
+  - ...også på HTML elementer uten designsystem-klasse
+- **Foretrekk å endre CSS custom properties** fremfor rene properties;
+  - f.eks.: `--mtds-button-border-color` istedenfor `border`
+- **Klassenavn** hentes fra  `styles` objektet:
 
-        <button className={styles.button}></button>
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```jsx
-        import { styles } from "@mattilsynet/design";
+<Tabs data-size="sm">
+  <Tabs.List>
+    <Tabs.Tab>JSX</Tabs.Tab>
+    <Tabs.Tab>JS</Tabs.Tab>
+    <Tabs.Tab>JSON</Tabs.Tab>
+  </Tabs.List>
+  <Tabs.Panel>
+    ```jsx
+    import { styles } from "@mattilsynet/design";
 
-        <button class={styles.button}></button>
-        ```
-      </Tabs.Panel>
-      <Tabs.Panel>
-        ```jsx
-        import styles from "@mattilsynet/design/styles.json";
+    <button className={styles.button}></button>
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```jsx
+    import { styles } from "@mattilsynet/design";
 
-        <button class={styles.button}></button>
-        ```
-      </Tabs.Panel>
-    </Tabs>
+    <button class={styles.button}></button>
+    ```
+  </Tabs.Panel>
+  <Tabs.Panel>
+    ```jsx
+    import styles from "@mattilsynet/design/styles.json";
 
-    > ### Hvorfor ikke bare skrive `class="button"`?
-    >
-    > Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig.
-    > Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn,
-    > som hindrer konflikt og gjør at du slipper å tenke på versjonering 🥳
-5. **Ta i bruk illustrasjoner og ikoner**:
-    - [Logo og favicon har egen dokumentasjon](?path=/docs/designsystem-logo--docs)
+    <button class={styles.button}></button>
+    ```
+  </Tabs.Panel>
+</Tabs>
+
+> ### Hvorfor ikke bare skrive `class="button"`?
+>
+> Det skal være trygt å importere designsystemet i eksisterende prosjekt, eller bruke flere versjoner samtidig.
+> Ved å bruke [CSS-moduler](https://github.com/css-modules/css-modules) får vi hashede klassenavn,
+> som hindrer konflikt og gjør at du slipper å tenke på versjonering 🥳
+
+</Prose>
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="5" />Ta i bruk illustrasjoner og ikoner</Details.Summary>
+
+- [Logo og favicon har egen dokumentasjon](?path=/docs/designsystem-logo--docs)
     - [Ikoner](https://github.com/phosphor-icons/homepage?tab=readme-ov-file#for-developers) kan importeres fra [PhosphorIcons](https://github.com/phosphor-icons/homepage?tab=readme-ov-file#for-developers) (se også [egen oppskrift for React SSR](https://github.com/phosphor-icons/react?tab=readme-ov-file#react-server-components-and-ssr))
     - [Mattilsynet-ikoner](?path=/docs/identitet-ikoner--docs) kan importeres fra `@mattilsynet/design/icons/*.svg`
     - [Illustasjoner](?path=/docs/identitet-illustrasjoner--docs) kan importeres fra `@mattilsynet/design/illustrations/*.svg`
     - **Bruker du Vite?** Hent SVG kilde ved bruk av [parameteret ?raw](https://vite.dev/guide/assets#importing-asset-as-string)
     - **Bruker du Vite+React?** Installer [vite-plugin-svgr](https://www.npmjs.com/package/vite-plugin-svgr) for å importere SVG som komponenter:<br/>`import Fish from "@mattilsynet/design/illustrations/fish.svg?react";`
 
-{/*Hvorfor CSS og ikke React komponenter?*/}
+</Details>
 
-## Kom i gang for designere
+<Divider data-gap="18" />
+
+## For designere
 
 Mattilsynet bruker Figma som designverktøy. I Figma finner du komponenter, variabler og stiler fra Mattilsynet Designsystem som du kan bruke i produktet eller løsningen du jobber med. Komponentene er tilpasset Mattilsynets identitet og behov og er i kontinuerlig utvikling. 
 
-### Ta i bruk komponentene i Figma
-Alle filer i Figma har Mattilsynets designsystembibliotek lagt til som standard når du åpner en fil. 
-Du finner komponentbiblioteket på  ♻️ Mattilsynet/Design under “Assets” i venstremenyen.  Du kan også trykke Shift + I for å søke etter og sette inn komponenter.
+<Details>
+<Details.Summary><Badge data-badge="1" /> Ta i bruk komponentene i Figma</Details.Summary>
+<Prose>
 
-Mattilsynet bruker Phosphor icons. Dette biblioteket er også tilgjengelig i alle Figmafiler
+- Du får automatisk Mattilsynets designsystembibliotek når du åpner en fil i Figma. 
+- Du finner biblioteket på  `♻️ Mattilsynet/Design` under `Assets` i venstremenyen. 
+- Du kan også trykke `Shift` + `I` for å søke etter og sette inn komponenter.
+- Du får også tilgang til Phosphor icons - ikonbiblioteket vi bruker i Mattilsynet.
+- De fleste komponentene kommer med ulike varianter og egenskaper som du kan justere i høyremenyen. I Button kan du for eksempel aktivere ulike vekter, states og ikoner.
 
-### Varianter
-De fleste komponentene kommer med ulike varianter og egenskaper. I Button-komponenten kan du for eksempel aktivere ulike vekter, states, størrelser og slå på og av ikoner.
+<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<img src={library} alt="Bibliotek i Figma" />
+</Card>
+</Prose>
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="3" /> Bruk mode for å justere størrelser og fargepalett</Details.Summary>
+<Prose>
 
-## Variable modes
-Alle komponenter og flater i designsystemet kan styres gjennom definerte modes. Modes finner du under ‘Apply variable mode’ i Appearance-seksjonen i Figma sin høyremeny. I Mattilsynets designsystem har vi følgende modes:
+Alle komponenter og flater i designsystemet kan styres gjennom definerte modes. 
+Modes kan styres på framens rotnivåog overstyres på helt ned på komponentnivå.
+Modes finner du under `Apply variable mode` i Appearance-seksjonen i Figma sin høyremeny:
 
-### Size
-Definerer størrelse på komponenter på et globalt nivå. Nettløsninger bruker typisk Large size for desktop og Medium size for mobil. Small kan brukes i informasjonstette grensesnitt.  
+<Card style={{ padding: 0, overflow: 'hidden' }}>
+<video controls style={{ display: 'block', width: '100%', height: 'auto' }}>
+  <source src={modes} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+</Card>
 
-### Colors
-**Main mode** brukes som standard-mode og inneholder et semantisk fargesett definert etter bruksområde. Alle fargemodes er basert på den samme token-strukturen fra Main-fargene 
+#### Size-mode
+- Påvirker komponenter, size variabler og typografi.
+- `Medium` er standard, mens `Large` brukes f.eks. på større redaksjonelle flater.
+- `Small` kan brukes i informasjonstette grensesnitt. 
+- Vær oppmerksom på at komponentene er designet for å harmonere innenfor en gitt size: Hvis du overstyrer størrelse på enkeltkomponenter, kan du risikere at de ikke passer sammen med helheten.
 
-**Inverted** - Invertert fargemode (brukes på cookie-varsel på nettløsninger) 
-**Success** - Grønn status
-**Danger**  - Rød status
-**Info** - Blå status
-**Warning**  - Gul status
-**Neutral** - Gråtoneskala
+#### Color-mode
+- Definerer fargepaletten som skal brukes.
+- `Main` gir standard fargepalett, men du kan også benytte `Inverted` (for mørk flate), `Success` (grønn), `Danger` (rød), `Info` (blå), `Warning` (gul) og `Neutral` (gråtoneskala).
+- [Lær mer om farge-tokens og modes →](?path=/docs/designsystem-tokens--docs)
 
-### Color scheme
-Dark mode / Light mode 
+#### Color scheme-mode
+- Definerer lys eller mørk modus.
+<br />
+</Prose>
+</Details>
+<Details>
+<Details.Summary><Badge data-badge="3" /> Bruk variabler og typografistiler i egne design</Details.Summary>
+<Prose>
 
-Modes kan styres på framens rotnivåog overstyres på helt ned på komponentnivå. Vær oppmerksom på at komponentene er designet for å harmonere innenfor en gitt size. Hvis du overstyrer enkelte komponenter til en større eller mindre size kan du risikere at de ikke passer sammen med helheten.
+Variabler og tekststiler er tilgjengelige i høyremenyen når du for eksempel trenger å velge en farge, størrelse, avstand eller skygge.
 
-## Stiler og variabler
-Stiler og variabler er tilgjengelige i høyremenyen når du for eksempel trenger å velge en farge, størrelse, avstand eller skygge.
 
-### Size-variabler
-Size-variabler brukes til å sette både avstander og størrelser i og mellom komponenter. Size-variablene skalerer i forhold til size-modes. Hvis du for eksempel bruker Size-4 i medium mode vil verdien være 16. I large mode vil verdien bli 18 mens small vil bli 14. Ved å bruke sizing-variabler istedenfor faste verdier blir det lettere å tegne løsninger for ulike skjermstørrelser
-Størrelser kan definere bredde (W) og høyde (H) på et element, mens avstander definerer luften mellom ulike elementer. Avstander setter du under "Auto Layout" i Figma. Der kan du definere avstand over, under, ved siden av, eller mellom.
+#### Size-variabler
+- Brukes til å sette både avstander og størrelser i og mellom komponenter.
+- Size-mode påvirker size variabler. Hvis du for eksempel bruker `size-4` i `medium mode` vil verdien være `16px`, mens den i `large mode` er `18px`.
+- Ved å bruke sizing-variabler istedenfor faste verdier blir det lettere å tegne løsninger for ulike skjermstørrelser.
 
-### Fargevariabler
-Fargevariabler er navngitt semantisk etter hva de er tiltenkt å brukes til: Background, surface, border og text.
-    - Er du ute etter en border-farge kan det være effektiv å søke på "border" for å se alle tilgjengelige farger.
-    - Er du ute etter en fill-farge på et element kan det være effektiv å søke på "surface" for å se alle tilgjengelige farger.
-    - Er du ute etter en farge for tekst eller ikon kan det være effektiv å søke på "text" for å se alle tilgjengelige farger.
+<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<img src={sizes} alt="Størrelser i Figma" />
+</Card>
 
-Les mer om farge-tokens og hva de brukes til.
+#### Fargevariabler
 
-### Typografi-stiler
-For all tekst bør du bruke typografi-stiler eller typografi-komponenter. Da sikrer vi et konsistent uttrykk, riktig bruk avstander, størrelser og vekting. 
-Les mer om typografi.
+- Benytt fargene etter semantisk tiltenkt bruk: `background`, `surface`, `border`, `base`, `text`.
+- Er du ute etter border-farger? Søk på `border`
+- Er du ute etter en fill-farge på et element? Søk på `surface` eller `base`
+- Er du ute etter en farge for tekst eller ikon? Søk på `text` eller `base-contrast`
+- [Lær mer om farge-tokens og bruk →](?path=/docs/designsystem-tokens--docs)
+
+<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<img src={colors} alt="Farger i Figma" />
+</Card>
+
+#### Typografistiler
+- Overskrifter i Mattilsynet har overskrifter basert på t-skjortestørrelser
+- Løpende tekst benytter semantisk navngitte stiler
+- Størrelsen på alle typografisiler påvirkes av `size mode`
+- For all tekst bør du bruke typografi-stiler eller typografi-komponenter, slik at du får et konsistent uttrykk, riktig bruk avstander, størrelser og vekting.
+
+<Card style={{ padding: 0, overflow: 'hidden' }}>
+<img src={typography} alt="Typografi i Figma" />
+</Card>
+
+</Prose>
+</Details>

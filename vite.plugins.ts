@@ -52,7 +52,7 @@ export const cssToTailwind: Plugin = {
 				tailwind.push(
 					`--radius-${token.replace("--mtds-border-radius-", "")}: var(${token})`,
 				);
-			} else if (token.match(/--mtds-body-(sm|mg|lg)-body-font-size/)) {
+			} else if (token.match(/--mtds-body-(sm|mg|lg)-font-size/)) {
 				tailwind.push(
 					`--text-${token.replace("--mtds-body-", "").replace("-font-size", "")}: var(${token})`,
 				);
