@@ -191,4 +191,53 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 
 ## Kom i gang for designere
 
-Kommer
+Mattilsynet bruker Figma som designverktøy. I Figma finner du komponenter, variabler og stiler fra Mattilsynet Designsystem som du kan bruke i produktet eller løsningen du jobber med. Komponentene er tilpasset Mattilsynets identitet og behov og er i kontinuerlig utvikling. 
+
+### Ta i bruk komponentene i Figma
+Alle filer i Figma har Mattilsynets designsystembibliotek lagt til som standard når du åpner en fil. 
+Du finner komponentbiblioteket på  ♻️ Mattilsynet/Design under “Assets” i venstremenyen.  Du kan også trykke Shift + I for å søke etter og sette inn komponenter.
+
+Mattilsynet bruker Phosphor icons. Dette biblioteket er også tilgjengelig i alle Figmafiler
+
+### Varianter
+De fleste komponentene kommer med ulike varianter og egenskaper. I Button-komponenten kan du for eksempel aktivere ulike vekter, states, størrelser og slå på og av ikoner.
+
+## Variable modes
+Alle komponenter og flater i designsystemet kan styres gjennom definerte modes. Modes finner du under ‘Apply variable mode’ i Appearance-seksjonen i Figma sin høyremeny. I Mattilsynets designsystem har vi følgende modes:
+
+### Size
+Definerer størrelse på komponenter på et globalt nivå. Nettløsninger bruker typisk Large size for desktop og Medium size for mobil. Small kan brukes i informasjonstette grensesnitt.  
+
+### Colors
+**Main mode** brukes som standard-mode og inneholder et semantisk fargesett definert etter bruksområde. Alle fargemodes er basert på den samme token-strukturen fra Main-fargene 
+
+**Inverted** - Invertert fargemode (brukes på cookie-varsel på nettløsninger) 
+**Success** - Grønn status
+**Danger**  - Rød status
+**Info** - Blå status
+**Warning**  - Gul status
+**Neutral** - Gråtoneskala
+
+### Color scheme
+Dark mode / Light mode 
+
+Modes kan styres på framens rotnivåog overstyres på helt ned på komponentnivå. Vær oppmerksom på at komponentene er designet for å harmonere innenfor en gitt size. Hvis du overstyrer enkelte komponenter til en større eller mindre size kan du risikere at de ikke passer sammen med helheten.
+
+## Stiler og variabler
+Stiler og variabler er tilgjengelige i høyremenyen når du for eksempel trenger å velge en farge, størrelse, avstand eller skygge.
+
+### Size-variabler
+Size-variabler brukes til å sette både avstander og størrelser i og mellom komponenter. Size-variablene skalerer i forhold til size-modes. Hvis du for eksempel bruker Size-4 i medium mode vil verdien være 16. I large mode vil verdien bli 18 mens small vil bli 14. Ved å bruke sizing-variabler istedenfor faste verdier blir det lettere å tegne løsninger for ulike skjermstørrelser
+Størrelser kan definere bredde (W) og høyde (H) på et element, mens avstander definerer luften mellom ulike elementer. Avstander setter du under "Auto Layout" i Figma. Der kan du definere avstand over, under, ved siden av, eller mellom.
+
+### Fargevariabler
+Fargevariabler er navngitt semantisk etter hva de er tiltenkt å brukes til: Background, surface, border og text.
+    - Er du ute etter en border-farge kan det være effektiv å søke på "border" for å se alle tilgjengelige farger.
+    - Er du ute etter en fill-farge på et element kan det være effektiv å søke på "surface" for å se alle tilgjengelige farger.
+    - Er du ute etter en farge for tekst eller ikon kan det være effektiv å søke på "text" for å se alle tilgjengelige farger.
+
+Les mer om farge-tokens og hva de brukes til.
+
+### Typografi-stiler
+For all tekst bør du bruke typografi-stiler eller typografi-komponenter. Da sikrer vi et konsistent uttrykk, riktig bruk avstander, størrelser og vekting. 
+Les mer om typografi.
