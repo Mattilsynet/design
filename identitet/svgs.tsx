@@ -27,7 +27,7 @@ type SvgsProps = {
 	path: string;
 	named?: boolean;
 	reverse?: boolean;
-	searchable?: boolean;
+	searchable?: boolean | string;
 } & GridProps;
 
 export const Svgs = ({
@@ -53,7 +53,7 @@ export const Svgs = ({
 
 	return (
 		<Grid data-gap="8">
-			{searchable && (
+			{!!searchable && (
 				<Flex
 					data-gap="4"
 					style={{
@@ -68,8 +68,11 @@ export const Svgs = ({
 					<Field
 						aria-label="Søk"
 						as="input"
+						data-tooltip={
+							typeof searchable === "string" ? searchable : undefined
+						}
 						onChange={({ target }) => setQuery(target.value.trim())}
-						placeholder="Søk etter illustasjon"
+						placeholder="Søk"
 						type="search"
 					/>
 					<Field data-self="300" data-fixed>
