@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { icons } from "@phosphor-icons/core";
 import type { StorybookConfig } from "@storybook/react-vite";
 import fg from "fast-glob";
 
@@ -13,8 +14,13 @@ const illustrations = JSON.parse(
 		"utf-8",
 	),
 );
+const toUTF8 = (str: string) =>
+	encodeURIComponent(str).replace(/%([a-f0-9]{2})/gi, (_, $1) =>
+		String.fromCharCode(Number.parseInt($1, 16)),
+	);
 
 const PUBLIC_DIR = path.resolve("./public");
+const NODE_MODULES = path.resolve("./node_modules");
 const DESIGN_DIR = path.resolve("./designsystem");
 const FOLDERS = "@(identitet|designsystem|profilering)";
 
@@ -80,14 +86,25 @@ export default {
 		`${head}<script>
       window.VERSION = ${JSON.stringify(pkg.version)};
       window.SVGS = ${JSON.stringify(
-				fg.sync(path.join(PUBLIC_DIR, "**", "*.svg")).map((file) => {
-					const data = illustrations[path.basename(file)] || [];
+				[
+					...fg.sync(`${PUBLIC_DIR}/**/*.svg`),
+					...fg.sync(`${NODE_MODULES}/@phosphor-icons/core/**/regular/*.svg`),
+				].map((file) => {
+					const name = path.basename(file, ".svg");
+					const { tags = [], categories = [] } =
+						icons.find((icon) => icon.name === name) ||
+						illustrations[path.basename(file)] ||
+						{};
 
 					return {
-						categories: data[0]?.split(",") || [],
-						file: path.relative(PUBLIC_DIR, file),
-						svg: fs.readFileSync(file, { encoding: "utf-8" }),
-						tags: data[1]?.split(",") || [],
+						categories,
+						file: path.relative(
+							file.startsWith(PUBLIC_DIR) ? PUBLIC_DIR : NODE_MODULES,
+							file,
+						),
+						name,
+						svg: toUTF8(fs.readFileSync(file, { encoding: "utf-8" })),
+						tags,
 					};
 				}),
 			)};

@@ -228,25 +228,25 @@ Mattilsynet bruker Figma som designverktøy. I Figma finner du komponenter, vari
 - Du får også tilgang til Phosphor icons - ikonbiblioteket vi bruker i Mattilsynet.
 - De fleste komponentene kommer med ulike varianter og egenskaper som du kan justere i høyremenyen. I Button kan du for eksempel aktivere ulike vekter, states og ikoner.
 
-<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<div style={{ background: 'var(--mtds-color-background-tinted)' }}>
 <img src={library} alt="Bibliotek i Figma" />
-</Card>
+</div>
 </Prose>
 </Details>
 <Details>
-<Details.Summary><Badge data-badge="3" /> Bruk mode for å justere størrelser og fargepalett</Details.Summary>
+<Details.Summary><Badge data-badge="2" /> Bruk mode for å justere størrelser og fargepalett</Details.Summary>
 <Prose>
 
 Alle komponenter og flater i designsystemet kan styres gjennom definerte modes. 
 Modes kan styres på framens rotnivåog overstyres på helt ned på komponentnivå.
 Modes finner du under `Apply variable mode` i Appearance-seksjonen i Figma sin høyremeny:
 
-<Card style={{ padding: 0, overflow: 'hidden' }}>
+<div style={{ background: 'var(--mtds-color-background-tinted)' }}>
 <video controls style={{ display: 'block', width: '100%', height: 'auto' }}>
   <source src={modes} type="video/mp4" />
   Your browser does not support the video tag.
 </video>
-</Card>
+</div>
 
 #### Size-mode
 - Påvirker komponenter, size variabler og typografi.
@@ -276,9 +276,9 @@ Variabler og tekststiler er tilgjengelige i høyremenyen når du for eksempel tr
 - Size-mode påvirker size variabler. Hvis du for eksempel bruker `size-4` i `medium mode` vil verdien være `16px`, mens den i `large mode` er `18px`.
 - Ved å bruke sizing-variabler istedenfor faste verdier blir det lettere å tegne løsninger for ulike skjermstørrelser.
 
-<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<div style={{ background: 'var(--mtds-color-background-tinted)' }}>
 <img src={sizes} alt="Størrelser i Figma" />
-</Card>
+</div>
 
 #### Fargevariabler
 
@@ -288,9 +288,9 @@ Variabler og tekststiler er tilgjengelige i høyremenyen når du for eksempel tr
 - Er du ute etter en farge for tekst eller ikon? Søk på `text` eller `base-contrast`
 - [Lær mer om farge-tokens og bruk →](?path=/docs/designsystem-tokens--docs)
 
-<Card style={{ padding: 0, overflow: 'hidden', background: 'var(--mtds-color-background-tinted)' }}>
+<div style={{ background: 'var(--mtds-color-background-tinted)' }}>
 <img src={colors} alt="Farger i Figma" />
-</Card>
+</div>
 
 #### Typografistiler
 - Overskrifter i Mattilsynet har overskrifter basert på t-skjortestørrelser
@@ -298,9 +298,7 @@ Variabler og tekststiler er tilgjengelige i høyremenyen når du for eksempel tr
 - Størrelsen på alle typografisiler påvirkes av `size mode`
 - For all tekst bør du bruke typografi-stiler eller typografi-komponenter, slik at du får et konsistent uttrykk, riktig bruk avstander, størrelser og vekting.
 
-<Card style={{ padding: 0, overflow: 'hidden' }}>
 <img src={typography} alt="Typografi i Figma" />
-</Card>
 
 </Prose>
 </Details>

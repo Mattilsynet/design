@@ -1,105 +1,267 @@
 {
-	"bird.svg": ["Landdyr", "fugler,pip-pipp,due,måke"],
-	"pig.svg": ["Landdyr", "gris,svin"],
-	"fish.svg": ["Akvakultur", "fisk,torsk,laks,ørret,sild,røye"],
-	"flounder.svg": ["Akvakultur", "fisk,flyndre,skrubbe"],
-	"mussel-1.svg": ["Akvakultur", "musling,blåskjell"],
-	"mussel-2.svg": ["Akvakultur", "musling,blåskjell"],
-	"mussel-3.svg": ["Akvakultur", "musling,blåskjell"],
-	"mussels.svg": ["Akvakultur", "musling,blåskjell"],
-	"person-fish-seaweed.svg": ["Mennesker,Akvakultur"],
-	"person-fish.svg": [
-		"Mennesker,Akvakultur",
-		"person,menneske,fisk,torsk,laks,ørret,sild,røye,slakter,fiskehandler"
-	],
-	"person-mussels.svg": [
-		"Mennesker,Akvakultur",
-		"musling,blåskjell,person,menneske"
-	],
-	"seaweed.svg": ["Planter,Akvakultur", "sjøgress,alger,tang,tare"],
-	"shrimp.svg": ["Akvakultur", "reke,scampi"],
-	"water-plant.svg": ["Akvakultur", "sjøgress,alger,tang,tare"],
-	"flask-perfume.svg": ["Kosmetikk", "parfyme,flaske,duft"],
-	"flask-pipette.svg": ["Kosmetikk", "pipetteflaske"],
-	"flask-pump.svg": ["Kosmetikk", "flaske,pumpe,hudkrem,håndkrem"],
-	"flasks.svg": ["Kosmetikk", "flasker,kremer,hudkrem,håndkrem"],
-	"jar.svg": ["Kosmetikk", "glasskrukke,hudkrem,håndkrem"],
-	"person-flasks.svg": [
-		"Mennesker,Kosmetikk",
-		"person,menneske,flasker,kremer,hudkrem,håndkrem"
-	],
-	"person-tubes.svg": [
-		"Mennesker,Kosmetikk",
-		"person,menneske,flasker,kremer,hudkrem,håndkrem"
-	],
-	"tube-1.svg": ["Kosmetikk", "tube,håndkrem,hudkrem"],
-	"tube-2.svg": ["Kosmetikk", "tube,håndkrem,hudkrem"],
-	"apple-cup.svg": ["Mat", "eple,kopp,frukt"],
-	"apple.svg": ["Mat", "eple,frukt"],
-	"banana-apple-cup.svg": ["Mat", "banana,eple,frukt,kopp"],
-	"banana.svg": ["Mat", "banana"],
-	"farmer-turnip-plant.svg": ["Mat", "nepe,rotgrønnsak"],
-	"pear.svg": ["Mat", "pære,frukt"],
-	"person-fork-bush.svg": ["Mennesker,Mat", "person,menneske,mat,busk,gaffel"],
-	"person-ham.svg": ["Mennesker,Mat", "kjøtt,skinke,slakter,person,menneske"],
-	"person-meat.svg": ["Mennesker,Mat", "kjøtt,skinke,slakter,person,menneske"],
-	"person-pear.svg": ["Mennesker,Mat", "person,menneske,pære,frukt"],
-	"turnip.svg": ["Mat", "nepe,rotgrønnsak"],
-	"farmer-inviting.svg": ["Mennesker", "person,menneske,bonde,peke,arm"],
-	"farmer-pig-plant.svg": [
-		"Mennesker",
-		"person,menneske,bonde,gris,svin,plante,veskt"
-	],
-	"farmer-pitchfork.svg": ["Mennesker", "person,menneske,bonde,høygaffel"],
-	"inspector.svg": [
-		"Mennesker",
-		"person,menneske,inspektør,ipad,tavle,plansje"
-	],
-	"inspector-nature.svg": [
-		"Mennesker",
-		"person,menneske,inspektør,katt,plansje,blomst,vekst"
-	],
-	"meeting-plant.svg": [
-		"Mennesker",
-		"mennesker,personer,gruppe,møte,kaffe,team"
-	],
-	"person-apron-bush.svg": [
-		"Mennesker",
-		"person,menneske,forkle,slakter,busk,arm"
-	],
-	"person-apron.svg": ["Mennesker", "person,menneske,forkle,slakter,arm"],
-	"person-arm.svg": ["Mennesker", "person,menneske,arm"],
-	"person-flower.svg": ["Mennesker", "person,menneske,blomst"],
-	"person-mobile.svg": ["Mennesker", "person,menneske,mobiltelefon,arm"],
-	"team.svg": [
-		"Mennesker",
-		"mennesker,personer,gruppe,møte,postit,post-it,team"
-	],
-	"flower-seeds.svg": ["Planter", "blomst,plante,frø,rosa,rød"],
-	"flower.svg": ["Planter", "blomst,plante,gul"],
-	"grass-bush.svg": ["Planter", "gress,plante,busk,grønn,blader"],
-	"oak-leaf.svg": ["Planter", "gress,plante,busk,grønn,blader,eik,tre"],
-	"plant-round-leaves.svg": ["Planter", "gress,plante,busk,grønn,blader,tre"],
-	"plant.svg": [
-		"Planter",
-		"gress,plante,busk,grønn,blader,tang,tare,alger,sjøgress"
-	],
-	"person-animal-nature-1.svg": [
-		"Mennesker,Visjon",
-		"person,menneske,slakter,fisk,gris,svin,fugl,landskap,samling"
-	],
-	"person-animal-nature-2.svg": [
-		"Mennesker,Visjon",
-		"person,menneske,slakter,fisk,gris,svin,fugl,landskap,samling"
-	],
-	"drop.svg": ["Drikkevann", "drikkevann,vanndråpe"],
-	"faucet.svg": ["Drikkevann", "vannkran,drikkevann"],
-	"person-drop.svg": [
-		"Mennesker,Drikkevann",
-		"drikkevann,vanndråpe,person,menneske"
-	],
-	"person-faucet-drop.svg": [
-		"Mennesker,Drikkevann",
-		"vannkran,drikkevann,vanndråpe,person,menneske"
-	]
+	"bird.svg": {
+		"categories": ["Landdyr"],
+		"tags": ["fugler", "pip-pipp", "due", "måke"]
+	},
+	"pig.svg": { "categories": ["Landdyr"], "tags": ["gris", "svin"] },
+	"fish.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["fisk", "torsk", "laks", "ørret", "sild", "røye"]
+	},
+	"flounder.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["fisk", "flyndre", "skrubbe"]
+	},
+	"mussel-1.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["musling", "blåskjell"]
+	},
+	"mussel-2.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["musling", "blåskjell"]
+	},
+	"mussel-3.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["musling", "blåskjell"]
+	},
+	"mussels.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["musling", "blåskjell"]
+	},
+	"person-fish-seaweed.svg": { "categories": ["Mennesker", "Akvakultur"] },
+	"person-fish.svg": {
+		"categories": ["Mennesker", "Akvakultur"],
+		"tags": [
+			"person",
+			"menneske",
+			"fisk",
+			"torsk",
+			"laks",
+			"ørret",
+			"sild",
+			"røye",
+			"slakter",
+			"fiskehandler"
+		]
+	},
+	"person-mussels.svg": {
+		"categories": ["Mennesker", "Akvakultur"],
+		"tags": ["musling", "blåskjell", "person", "menneske"]
+	},
+	"seaweed.svg": {
+		"categories": ["Planter", "Akvakultur"],
+		"tags": ["sjøgress", "alger", "tang", "tare"]
+	},
+	"shrimp.svg": { "categories": ["Akvakultur"], "tags": ["reke", "scampi"] },
+	"water-plant.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["sjøgress", "alger", "tang", "tare"]
+	},
+	"flask-perfume.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["parfyme", "flaske", "duft"]
+	},
+	"flask-pipette.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["pipetteflaske"]
+	},
+	"flask-pump.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["flaske", "pumpe", "hudkrem", "håndkrem"]
+	},
+	"flasks.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["flasker", "kremer", "hudkrem", "håndkrem"]
+	},
+	"jar.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["glasskrukke", "hudkrem", "håndkrem"]
+	},
+	"person-flasks.svg": {
+		"categories": ["Mennesker", "Kosmetikk"],
+		"tags": ["person", "menneske", "flasker", "kremer", "hudkrem", "håndkrem"]
+	},
+	"person-tubes.svg": {
+		"categories": ["Mennesker", "Kosmetikk"],
+		"tags": ["person", "menneske", "flasker", "kremer", "hudkrem", "håndkrem"]
+	},
+	"tube-1.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["tube", "håndkrem", "hudkrem"]
+	},
+	"tube-2.svg": {
+		"categories": ["Kosmetikk"],
+		"tags": ["tube", "håndkrem", "hudkrem"]
+	},
+	"apple-cup.svg": { "categories": ["Mat"], "tags": ["eple", "kopp", "frukt"] },
+	"apple.svg": { "categories": ["Mat"], "tags": ["eple", "frukt"] },
+	"banana-apple-cup.svg": {
+		"categories": ["Mat"],
+		"tags": ["banana", "eple", "frukt", "kopp"]
+	},
+	"banana.svg": { "categories": ["Mat"], "tags": ["banana"] },
+	"farmer-turnip-plant.svg": {
+		"categories": ["Mat"],
+		"tags": ["nepe", "rotgrønnsak"]
+	},
+	"pear.svg": { "categories": ["Mat"], "tags": ["pære", "frukt"] },
+	"person-fork-bush.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": ["person", "menneske", "mat", "busk", "gaffel"]
+	},
+	"person-ham.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": ["kjøtt", "skinke", "slakter", "person", "menneske"]
+	},
+	"person-meat.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": ["kjøtt", "skinke", "slakter", "person", "menneske"]
+	},
+	"person-pear.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": ["person", "menneske", "pære", "frukt"]
+	},
+	"turnip.svg": { "categories": ["Mat"], "tags": ["nepe", "rotgrønnsak"] },
+	"farmer-inviting.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "bonde", "peke", "arm"]
+	},
+	"farmer-pig-plant.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "bonde", "gris", "svin", "plante", "veskt"]
+	},
+	"farmer-pitchfork.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "bonde", "høygaffel"]
+	},
+	"inspector.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "inspektør", "ipad", "tavle", "plansje"]
+	},
+	"inspector-nature.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"katt",
+			"plansje",
+			"blomst",
+			"vekst"
+		]
+	},
+	"meeting-plant.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["mennesker", "personer", "gruppe", "møte", "kaffe", "team"]
+	},
+	"person-apron-bush.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "forkle", "slakter", "busk", "arm"]
+	},
+	"person-apron.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "forkle", "slakter", "arm"]
+	},
+	"person-arm.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "arm"]
+	},
+	"person-flower.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "blomst"]
+	},
+	"person-mobile.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "mobiltelefon", "arm"]
+	},
+	"team.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"mennesker",
+			"personer",
+			"gruppe",
+			"møte",
+			"postit",
+			"post-it",
+			"team"
+		]
+	},
+	"flower-seeds.svg": {
+		"categories": ["Planter"],
+		"tags": ["blomst", "plante", "frø", "rosa", "rød"]
+	},
+	"flower.svg": {
+		"categories": ["Planter"],
+		"tags": ["blomst", "plante", "gul"]
+	},
+	"grass-bush.svg": {
+		"categories": ["Planter"],
+		"tags": ["gress", "plante", "busk", "grønn", "blader"]
+	},
+	"oak-leaf.svg": {
+		"categories": ["Planter"],
+		"tags": ["gress", "plante", "busk", "grønn", "blader", "eik", "tre"]
+	},
+	"plant-round-leaves.svg": {
+		"categories": ["Planter"],
+		"tags": ["gress", "plante", "busk", "grønn", "blader", "tre"]
+	},
+	"plant.svg": {
+		"categories": ["Planter"],
+		"tags": [
+			"gress",
+			"plante",
+			"busk",
+			"grønn",
+			"blader",
+			"tang",
+			"tare",
+			"alger",
+			"sjøgress"
+		]
+	},
+	"person-animal-nature-1.svg": {
+		"categories": ["Mennesker", "Visjon"],
+		"tags": [
+			"person",
+			"menneske",
+			"slakter",
+			"fisk",
+			"gris",
+			"svin",
+			"fugl",
+			"landskap",
+			"samling"
+		]
+	},
+	"person-animal-nature-2.svg": {
+		"categories": ["Mennesker", "Visjon"],
+		"tags": [
+			"person",
+			"menneske",
+			"slakter",
+			"fisk",
+			"gris",
+			"svin",
+			"fugl",
+			"landskap",
+			"samling"
+		]
+	},
+	"drop.svg": {
+		"categories": ["Drikkevann"],
+		"tags": ["drikkevann", "vanndråpe"]
+	},
+	"faucet.svg": {
+		"categories": ["Drikkevann"],
+		"tags": ["vannkran", "drikkevann"]
+	},
+	"person-drop.svg": {
+		"categories": ["Mennesker", "Drikkevann"],
+		"tags": ["drikkevann", "vanndråpe", "person", "menneske"]
+	},
+	"person-faucet-drop.svg": {
+		"categories": ["Mennesker", "Drikkevann"],
+		"tags": ["vannkran", "drikkevann", "vanndråpe", "person", "menneske"]
+	}
 }

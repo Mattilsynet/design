@@ -1,32 +1,43 @@
-import {
-	CheckCircleIcon,
-	CopyIcon,
-	DownloadSimpleIcon,
-} from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 import { Svg2Png } from "svg2png-converter";
-import { Button, Card, Field, Flex, Grid, Select } from "../designsystem/react";
+import {
+	Card,
+	Field,
+	Flex,
+	Grid,
+	type GridProps,
+	Select,
+} from "../designsystem/react";
+import { anchorPosition } from "../designsystem/utils";
 
 declare global {
 	interface Window {
-		SVGS: { file: string; categories: string[]; tags: string[]; svg: string }[];
+		SVGS: {
+			categories: string[];
+			file: string;
+			name: string;
+			svg: string;
+			tags: string[];
+		}[];
 	}
 }
 
 type SvgsProps = {
-	path: string;
-	showSearch?: boolean;
-	reverse?: boolean;
 	mode?: "light" | "dark" | null;
-} & React.ComponentPropsWithoutRef<"div">;
+	path: string;
+	named?: boolean;
+	reverse?: boolean;
+	searchable?: boolean | string;
+} & GridProps;
 
 export const Svgs = ({
 	path,
 	reverse,
 	mode = null,
-	showSearch = false,
+	searchable = false,
 	...rest
 }: SvgsProps) => {
+	const isPhosphor = path.startsWith("@phosphor-icons");
 	const svgs = useMemo(
 		() => window.SVGS.filter((svg) => svg.file.startsWith(path)),
 		[path],
@@ -35,14 +46,14 @@ export const Svgs = ({
 		() => new Set(svgs.flatMap((svg) => svg.categories).sort()),
 		[svgs],
 	);
-	const [showCategory, setCategory] = useState("");
+	const [category, setCategory] = useState("");
 	const [query, setQuery] = useState("");
 
 	if (reverse) svgs.reverse();
 
 	return (
 		<Grid data-gap="8">
-			{showSearch && (
+			{!!searchable && (
 				<Flex
 					data-gap="4"
 					style={{
@@ -57,8 +68,11 @@ export const Svgs = ({
 					<Field
 						aria-label="Søk"
 						as="input"
+						data-tooltip={
+							typeof searchable === "string" ? searchable : undefined
+						}
 						onChange={({ target }) => setQuery(target.value.trim())}
-						placeholder="Søk etter illustasjon"
+						placeholder="Søk"
 						type="search"
 					/>
 					<Field data-self="300" data-fixed>
@@ -66,7 +80,7 @@ export const Svgs = ({
 							name="category"
 							aria-label="Kategori"
 							onChange={({ target }) => setCategory(target.value)}
-							value={showCategory}
+							value={category}
 						>
 							<option value="">Alle kategorier</option>
 							{Array.from(categories, (cat) => (
@@ -78,92 +92,70 @@ export const Svgs = ({
 					</Field>
 				</Flex>
 			)}
-			<Grid data-items="250" data-fixed {...rest}>
-				{svgs.map(({ file, svg, categories, tags }) => {
+			<style>
+				{
+					".svgs svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }"
+				}
+			</style>
+			<Grid className="svgs" data-items="250" data-fixed {...rest}>
+				{svgs.map(({ categories, tags, name, svg }) => {
 					const show =
-						(!showCategory || categories.some((cat) => showCategory === cat)) &&
-						(!query || tags.some((tag) => tag.includes(query)));
+						(!category || categories.some((cat) => category === cat)) &&
+						(!query ||
+							name.toLowerCase().includes(query) ||
+							tags.some((tag) => tag.includes(query)));
 
 					if (!show) return null;
 
 					const light = mode === "light" && "#054449";
 					const dark = mode === "dark" && "#E2F1DF";
-					const html = toUTF8(
-						svg.replace(/currentColor/g, light || dark || "currentColor"),
+					const html = svg.replace(
+						/currentColor/g,
+						light || dark || "currentColor",
 					);
-					const name = file
-						.split("/")
-						.pop()
-						?.replace(/\.[^.]+$/, `${dark ? "-dark" : ""}$&`);
 
 					return (
 						<Card
-							key={file}
-							className="svg-card"
-							data-color-scheme={mode === "dark" ? "dark" : undefined}
-						>
-							<div
-								data-color="main"
-								dangerouslySetInnerHTML={{ __html: html }}
-							/>
-							<Flex data-justify="center" data-size="sm">
-								<Button
-									aria-pressed="false"
-									data-variant="secondary"
-									data-tooltip="...til PowerPoint / Word etc."
-									onClick={async ({ currentTarget: self }) => {
-										const card = self?.closest(".svg-card");
-										const svgEl = card?.querySelector("svg") as SVGSVGElement;
-										const png = await Svg2Png.toDataURL(svgEl, {
-											scaleX: 3,
-											scaleY: 3,
-										});
-
-										navigator.clipboard.write([
-											new ClipboardItem({
-												"text/plain": new Blob([svg], {
-													type: "text/plain",
-												}),
-												"image/png": await fetch(png).then((r) => r.blob()),
-											}),
-										]);
-
-										// Show confirmation
-										self.setAttribute("aria-pressed", "true");
-										setTimeout(
-											() => self.setAttribute("aria-pressed", "false"),
-											2000,
-										);
-									}}
-								>
-									<CopyIcon data-pressed="false" />
-									<CheckCircleIcon data-pressed="true" />
-									<span data-pressed="false">Kopiér</span>
-									<span data-pressed="true">Kopiert!</span>
-								</Button>
-								<Button
-									data-tooltip={`Last ned ${name}`}
-									download={name}
-									href={encodeSVG(html)}
-								>
-									<DownloadSimpleIcon />
-								</Button>
-							</Flex>
-						</Card>
+							dangerouslySetInnerHTML={{ __html: html }}
+							data-color-scheme={mode}
+							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` "${name}"` : ""}`}
+							download={`${name}${dark ? "-dark" : ""}.svg`}
+							href={encodeSVG(html)}
+							key={name}
+							onClick={copyToImage}
+						/>
 					);
 				})}
-				<style>{`
-				.svg-card div > svg { aspect-ratio: 1; box-sizing: border-box; width: 100%; height: auto; padding: var(--mtds-12); transition: scale .2s }
-      `}</style>
 			</Grid>
 		</Grid>
 	);
 };
 
-const toUTF8 = (str: string) =>
-	encodeURIComponent(str).replace(/%([a-f0-9]{2})/gi, (_, $1) =>
-		String.fromCharCode(Number.parseInt($1, 16)),
-	);
+const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+	event.preventDefault();
+	const card = event.currentTarget;
+	const tooltip = document.getElementById("mtds-tooltip");
+	const svg = card?.querySelector("svg") as SVGSVGElement;
+	svg.style.color = window.getComputedStyle(svg).color; // Make color explicit
+
+	const png = await Svg2Png.toDataURL(svg, {
+		scaleX: 10,
+		scaleY: 10,
+	});
+
+	navigator.clipboard.write([
+		new ClipboardItem({
+			"text/plain": new Blob([svg.outerHTML], {
+				type: "text/plain",
+			}),
+			"image/png": await fetch(png).then((r) => r.blob()),
+		}),
+	]);
+
+	tooltip?.replaceChildren("Kopiert!");
+	svg.removeAttribute("style"); // Restore
+	if (tooltip) anchorPosition(tooltip, card, 0);
+};
 
 const encodeSVG = (data: string) =>
 	`data:image/svg+xml,${data
