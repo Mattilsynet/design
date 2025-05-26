@@ -2,7 +2,6 @@ import { Meta } from '@storybook/blocks';
 import { ShapesIcon } from "@phosphor-icons/react"
 import { JumpTo, Wide } from '../.storybook/blocks';
 import { Svgs } from './svgs';
-import { Icons } from './ikoner';
 
 <Meta title="Identitet/Ikoner" />
 
@@ -16,7 +15,7 @@ for å gi et lett og vennlig uttrykk som står i stil med vår visuelle identite
 - Dekorative ikoner (f.eks pil) eller ikon inntil tekst, kan høyrestilles
 - Ikoner følger tekstfarge - ofte Granskog / #054449 på lyse flater
 
-<Wide><Icons /></Wide>
+<Wide><Svgs path="@phosphor-icons" searchable style={{ gridTemplateColumns: 'repeat(auto-fill, 5em)' }} /></Wide>
 
 ## Symboler
 - Symboler og Phosphor-ikoner og skal ikke blandes.
