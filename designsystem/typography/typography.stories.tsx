@@ -188,42 +188,44 @@ const proseDecorator: Story["decorators"] = (Story) => {
 				<style>{`
 				  body:has(input[role="switch"]:checked) { --checked: "" }
 					body:has(input[role="switch"]:checked) .${CSS_PROSE} > :hover { --background: #88bbff4d }
-					.${CSS_PROSE} { overflow: clip }
-					.${CSS_PROSE} > * {
-						position: relative;
-						background: var(--background, transparent);
-						box-shadow: 100px 0 var(--background, transparent), -100px 0 var(--background, transparent);
-					}
-					.${CSS_PROSE} > [data-before]::before,
-					.${CSS_PROSE} > [data-after]::after {
-						align-items: center;
-						background: linear-gradient(to top, var(--background, rgba(255, 165, 0, .3)), var(--background, rgba(255, 165, 0, .3)));
-						border-radius: 0 0 var(--ds-border-radius-lg) var(--ds-border-radius-lg);
-						box-sizing: border-box;
-						color: var(--mtds-color-text-default);
-						content: attr(data-after);
-						display: flex;
-						font: bold .75rem monospace;
-						height: var(--after);
-						inset: 100% 0 auto;
-						opacity: var(--checked,  0);
-						padding-inline: var(--ds-size-4);
-						position: absolute;
-						width: var(--width);
-					}
-					.${CSS_PROSE} > [data-before]::before {
-						background: linear-gradient(to bottom, var(--background, rgba(255, 165, 0, .3)), var(--background, rgba(255, 165, 0, .3)));
-						content: attr(data-before);
-						height: var(--before);
-						inset: auto 0 100%;
-						border-radius: var(--ds-border-radius-lg) var(--ds-border-radius-lg) 0 0;
-					}
-					.${CSS_PROSE} > [class*="heading"][data-before]::before {
-						content: attr(data-before) " due to heading size \\"" attr(data-size) "\\"";
-					}
-					.${CSS_PROSE} > :hover::before,
-					.${CSS_PROSE} > :hover::after {
-						background: #8bf
+					body:not(:has(.sbdocs-content)) {
+						.${CSS_PROSE} { overflow: clip }
+						.${CSS_PROSE} > * {
+							position: relative;
+							background: var(--background, transparent);
+							box-shadow: 100px 0 var(--background, transparent), -100px 0 var(--background, transparent);
+						}
+						.${CSS_PROSE} > [data-before]::before,
+						.${CSS_PROSE} > [data-after]::after {
+							align-items: center;
+							background: linear-gradient(to top, var(--background, rgba(255, 165, 0, .3)), var(--background, rgba(255, 165, 0, .3)));
+							border-radius: 0 0 var(--ds-border-radius-lg) var(--ds-border-radius-lg);
+							box-sizing: border-box;
+							color: var(--mtds-color-text-default);
+							content: attr(data-after);
+							display: flex;
+							font: bold .75rem monospace;
+							height: var(--after);
+							inset: 100% 0 auto;
+							opacity: var(--checked,  0);
+							padding-inline: var(--ds-size-4);
+							position: absolute;
+							width: var(--width);
+						}
+						.${CSS_PROSE} > [data-before]::before {
+							background: linear-gradient(to bottom, var(--background, rgba(255, 165, 0, .3)), var(--background, rgba(255, 165, 0, .3)));
+							content: attr(data-before);
+							height: var(--before);
+							inset: auto 0 100%;
+							border-radius: var(--ds-border-radius-lg) var(--ds-border-radius-lg) 0 0;
+						}
+						.${CSS_PROSE} > [class*="heading"][data-before]::before {
+							content: attr(data-before) " due to heading size \\"" attr(data-size) "\\"";
+						}
+						.${CSS_PROSE} > :hover::before,
+						.${CSS_PROSE} > :hover::after {
+							background: #8bf
+						}
 					}
 				`}</style>
 				<Field>

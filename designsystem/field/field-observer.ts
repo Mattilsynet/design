@@ -18,6 +18,9 @@ const CSS_PROPERTY_UNDER = "--mtds-text-count-under";
 const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 
+const getText = (style: CSSStyleDeclaration, key: string) =>
+	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
+
 function handleMutation(fields: HTMLCollectionOf<Element>) {
 	for (const field of fields)
 		if (field.isConnected) {
@@ -64,28 +67,20 @@ function renderTextareaSize(textarea: Element) {
 	}
 }
 
-function renderCombobox(combobox: UHTMLComboboxElement | null) {
-	if (!combobox) return;
-
-	// Setup translations from CSS custom properties
-	const list = combobox.querySelector("u-datalist,datalist");
-	const style = window.getComputedStyle(combobox);
-	const i11n = (key: string) => style.getPropertyValue(`--mtds-text-${key}`);
-
-	if (list) {
-		attr(list, "data-sr-plural", i11n("datalist-plural"));
-		attr(list, "data-sr-singular", i11n("datalist-singular"));
-		attr(list, "popover", "manual");
-	}
-
-	attr(combobox, "data-sr-added", i11n("combobox-added"));
-	attr(combobox, "data-sr-empty", i11n("combobox-empty"));
-	attr(combobox, "data-sr-found", i11n("combobox-found"));
-	attr(combobox, "data-sr-invalid", i11n("combobox-invalid"));
-	attr(combobox, "data-sr-of", i11n("combobox-of"));
-	attr(combobox, "data-sr-remove", i11n("combobox-remove"));
-	attr(combobox, "data-sr-removed", i11n("combobox-removed"));
-	attr(combobox, "data-sr-removed", i11n("combobox-removed"));
+// Setup translations from CSS custom properties
+function renderCombobox(el: UHTMLComboboxElement | null) {
+	if (!el?.list || el.list?.hasAttribute("popover")) return;
+	const style = window.getComputedStyle(el);
+	attr(el, "data-sr-added", getText(style, "combobox-added"));
+	attr(el, "data-sr-empty", getText(style, "combobox-empty"));
+	attr(el, "data-sr-found", getText(style, "combobox-found"));
+	attr(el, "data-sr-invalid", getText(style, "combobox-invalid"));
+	attr(el, "data-sr-of", getText(style, "combobox-of"));
+	attr(el, "data-sr-remove", getText(style, "combobox-remove"));
+	attr(el, "data-sr-removed", getText(style, "combobox-removed"));
+	attr(el.list, "data-sr-plural", getText(style, "datalist-plural"));
+	attr(el.list, "data-sr-singular", getText(style, "datalist-singular"));
+	attr(el.list, "popover", "manual");
 }
 
 function renderCounter(input: HTMLInputElement) {
@@ -97,9 +92,8 @@ function renderCounter(input: HTMLInputElement) {
 		const nextInvalid = remainder < 0;
 		const prevInvalid = attr(el, "aria-live") === "polite";
 		const style = window.getComputedStyle(el || input);
-		const over = style.getPropertyValue(CSS_PROPERTY_OVER)?.slice(1, -1) || ""; // slice to trim quotes
-		const under =
-			style.getPropertyValue(CSS_PROPERTY_UNDER)?.slice(1, -1) || ""; // slice to trim quotes
+		const over = getText(style, CSS_PROPERTY_OVER);
+		const under = getText(style, CSS_PROPERTY_UNDER);
 
 		if (prevInvalid !== nextInvalid) {
 			attr(el, "aria-live", nextInvalid ? "polite" : "off");
@@ -140,8 +134,16 @@ function handleInvalid(event: Event) {
 		event.preventDefault();
 }
 
+// Position combobox when changing content
+function handleBeforeChange({ target: el }: Event) {
+	const list = el instanceof UHTMLComboboxElement && el.list;
+	if (list && !list?.hidden)
+		setTimeout(() => anchorPosition(list, el, 2, true), 10); // Reposition list if not hidden
+}
+
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleMutation);
+	on(document, "beforechange", handleBeforeChange, QUICK_EVENT);
 	on(document, "input", handleInput, QUICK_EVENT);
 	on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe bubble
 	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble

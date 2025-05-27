@@ -134,7 +134,10 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	},
 );
 
-export type FieldComboboxProps = ReactUcombobox;
+export type FieldComboboxProps = ReactUcombobox & {
+	"data-multiple"?: boolean;
+	"data-creatable"?: boolean;
+};
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(props, ref) {

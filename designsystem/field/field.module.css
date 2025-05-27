@@ -79,12 +79,34 @@
 	.field u-combobox {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: center;
 		gap: var(--ds-size-2);
 		position: relative;
 	}
 	.field u-combobox > input {
 		flex: 1 0 100%;
 	}
+
+	/* Clear button */
+	.field u-combobox > del {
+		border-radius: var(--ds-border-radius-sm);
+		cursor: pointer;
+		height: var(--mtds-icon-size);
+		margin-left: calc(var(--mtds-icon-size) * -2);
+		outline: 0;
+		position: relative;
+		width: var(--mtds-icon-size);
+	}
+	.field u-combobox > del::after {
+		background: currentColor;
+		content: ""; /* Fallback for old Firefox */
+		content: "" / var(--mtds-text-combobox-clear);
+		display: block;
+		height: 100%;
+		mask: center / contain no-repeat var(--mtds-icon-close);
+		width: 100%;
+	}
+
 	.field u-combobox[data-multiple]:not([data-multiple="false"]) > data {
 		align-items: center;
 		background: var(--ds-color-surface-tinted);
@@ -113,9 +135,6 @@
 		mask-image: var(--mtds-icon-close--filled);
 		mask-size: 100%;
 	}
-	.field u-combobox > u-datalist {
-		top: 100%;
-	}
 	.field u-datalist {
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
@@ -131,7 +150,7 @@
 	}
 	.field u-option {
 		position: relative;
-		border-radius: 3px; /* 5px border-radius */
+		border-radius: var(--ds-border-radius-sm);
 		outline: 0;
 		padding: var(--ds-size-2);
 		transition: .1s background-color;
@@ -144,7 +163,7 @@
 		content: "";
 		mask: center / contain no-repeat var(--mtds-icon-check);
 		position: absolute;
-		inset: 0 auto 0 var(--ds-size-3);
+		inset: 0 auto 0 var(--ds-size-2);
 		width: var(--mtds-icon-size);
 	}
 	.field u-option:hover {
@@ -152,12 +171,11 @@
 	}
 
 	.field u-option:focus,
+	.field u-combobox > del:focus,
 	.field u-combobox > data:focus {
 		box-shadow: var(--dsc-focus-boxShadow);
 		outline-offset: var(--ds-border-width-focus);
 		outline: var(--dsc-focus-outline);
-		position: relative;
-		z-index: 1; /* Place focus line on top */
 	}
 
 	/**

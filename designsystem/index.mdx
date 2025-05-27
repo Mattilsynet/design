@@ -116,6 +116,8 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
   </Tabs.Panel>
   <Tabs.Panel>
+    Dersom du ønsker å bruke [TailwindCSS](https://tailwindcss.com/) sammen med Mattilsynet Designsystem, kan du både installere `@mattilsynet/design` og [installere Tailwind](https://tailwindcss.com/docs/installation/), og importere stiler som følger:
+
     ```css
     /* Load @mattilsynet/design before Tailwind: */
     @import '@mattilsynet/design/styles.css';
@@ -124,8 +126,12 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     @import '@mattilsynet/design/tailwind.css';
     @import 'tailwindcss';
     ```
+
+    Da får du automatiske Tailwind-verdier for `--color`, `--spacing`, `--border-radius` og `--font-weight` i Tailwind v4 oppsett.
   </Tabs.Panel>
   <Tabs.Panel>
+    Dersom du ønsker å bruke [TailwindCSS](https://tailwindcss.com/) sammen med Mattilsynet Designsystem, kan du både installere `@mattilsynet/design` og [installere Tailwind](https://tailwindcss.com/docs/installation/), og importere stiler som følger:
+
     ```css
     /* Load @mattilsynet/design before Tailwind */
     @import url('@mattilsynet/design/styles.css');
@@ -141,6 +147,8 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     @tailwind utilities;
 
     ```
+
+    Merk at du også kan få tilgang til `@mattilsynet/design` sine tokens dersom du oppgraderer til Tailwind v4.
   </Tabs.Panel>
 </Tabs>
 

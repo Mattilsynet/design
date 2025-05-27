@@ -50,13 +50,8 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 
 	return (
 		<>
-			<h2
-				id="komponenttokens"
-				className="sbdocs-h2"
-				style={{ marginTop: "2em" }}
-			>
-				Komponenttokens
-			</h2>
+			<h2 id="komponenttokens">Komponenttokens</h2>
+			<p>Dersom du trenger å endre på utseende på en komponenter </p>
 			{Object.keys(cssVars).length ? (
 				<Table data-fixed>
 					<thead>

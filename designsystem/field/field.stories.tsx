@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { UHTMLComboboxElement } from "../";
-import { Field, Input } from "../react";
+import { Button, Field, Flex, Input } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -335,7 +335,6 @@ export const WithCustomDescriptionTag: Story = {
 };
 
 export const WithCombobox: Story = {
-	name: "With Combobox (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -344,7 +343,8 @@ export const WithCombobox: Story = {
 		<div className={styles.field}>
 			<label>Med forslag</label>
 			<u-combobox>
-				<input type="search" className={styles.input} />
+				<input className={styles.input} />
+				<del></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -360,7 +360,6 @@ export const WithCombobox: Story = {
 };
 
 export const WithComboboxMultiple: Story = {
-	name: "With Combobox Multiple (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -370,7 +369,8 @@ export const WithComboboxMultiple: Story = {
 			<label>Med forslag flervalg</label>
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
-				<input type="search" className={styles.input} />
+				<input className={styles.input} />
+				<del></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -385,51 +385,7 @@ export const WithComboboxMultiple: Story = {
 	),
 };
 
-export const ReactWithDatalist: Story = {
-	name: "React With Datalist (Eksperimentell)",
-	parameters: {
-		layout: "padded",
-		showInOverview: true,
-	},
-	render: () => (
-		<Field>
-			<label>React med forslag</label>
-			<p>Beskrivelse</p>
-			<Field.Combobox>
-				<Input className={styles.input} />
-				<Field.Datalist>
-					<Field.Option>Saft</Field.Option>
-					<Field.Option>Suse</Field.Option>
-				</Field.Datalist>
-			</Field.Combobox>
-		</Field>
-	),
-};
-
-export const ReactWithComboboxMultiple: Story = {
-	name: "React With Combobox Multiple (Eksperimentell)",
-	parameters: {
-		layout: "padded",
-		showInOverview: true,
-	},
-	render: () => (
-		<Field>
-			<label>React med forslag flervalg</label>
-			<p>Beskrivelse</p>
-			<Field.Combobox data-multiple>
-				<data>Saft</data>
-				<Input className={styles.input} />
-				<Field.Datalist data-nofilter>
-					<Field.Option>Saft</Field.Option>
-					<Field.Option>Suse</Field.Option>
-				</Field.Datalist>
-			</Field.Combobox>
-		</Field>
-	),
-};
-
 export const WithComboboxAPI: Story = {
-	name: "With Combobox API (Eksperimentell)",
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
@@ -464,11 +420,11 @@ export const WithComboboxAPI: Story = {
 				<label>Med henting av resultater fra API</label>
 				<u-combobox>
 					<input
-						type="search"
 						className={styles.input}
 						onInput={handleInput}
 						ref={inputRef}
 					/>
+					<del></del>
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -484,39 +440,153 @@ export const WithComboboxAPI: Story = {
 	},
 };
 
-export const WitComboboxCustomFilter: Story = {
-	name: "With Datalist Custom Filter (Eksperimentell)",
+export const WithComboboxCustomFilter: Story = {
 	parameters: {
 		layout: "padded",
 		showInOverview: true,
 	},
 	render: () => {
 		const ref = useRef<UHTMLComboboxElement>(null);
-		const handleInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
-			const input = event.currentTarget;
-			const needle = input.value.trim().toLowerCase() || "";
-
-			for (const option of input.list?.options || []) {
-				option.disabled = !option.text.toLowerCase().startsWith(needle); // Your custom filtering here
-			}
-		};
+		const [value, setValue] = useState("");
+		const options = [
+			"Sogndal",
+			"Oslo",
+			"Brønnøysund",
+			"Stavanger",
+			"Trondheim",
+			"Bergen",
+			"Lillestrøm",
+		];
 
 		return (
 			<div className={styles.field}>
 				<label>Eget filter - gir kun treff fra starten av ordet</label>
 				<u-combobox ref={ref}>
-					<input type="search" className={styles.input} onInput={handleInput} />
+					<input
+						className={styles.input}
+						onInput={({ currentTarget }) => setValue(currentTarget.value)}
+						value={value}
+					/>
+					<del></del>
 					<u-datalist data-nofilter>
-						<u-option value="Sogndal">Sogndal</u-option>
-						<u-option value="Oslo">Oslo</u-option>
-						<u-option value="Brønnøysund">Brønnøysund</u-option>
-						<u-option value="Stavanger">Stavanger</u-option>
-						<u-option value="Trondheim">Trondheim</u-option>
-						<u-option value="Bergen">Bergen</u-option>
-						<u-option value="Lillestrøm">Lillestrøm</u-option>
+						{options
+							.filter((option) =>
+								option.toLowerCase().startsWith(value.toLowerCase()),
+							)
+							.map((option) => (
+								<u-option key={option} value={option}>
+									{option}
+								</u-option>
+							))}
 					</u-datalist>
 				</u-combobox>
 			</div>
+		);
+	},
+};
+
+export const ReactWithCombobx: Story = {
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<Field>
+			<label>React med forslag</label>
+			<p>Beskrivelse</p>
+			<Field.Combobox>
+				<Input className={styles.input} />
+				<del></del>
+				<Field.Datalist>
+					<Field.Option>Saft</Field.Option>
+					<Field.Option>Suse</Field.Option>
+				</Field.Datalist>
+			</Field.Combobox>
+		</Field>
+	),
+};
+
+export const ReactWithComboboxMultiple: Story = {
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => (
+		<Field>
+			<label>React med forslag flervalg</label>
+			<p>Beskrivelse</p>
+			<Field.Combobox data-multiple>
+				<data>Saft</data>
+				<Input className={styles.input} />
+				<del></del>
+				<Field.Datalist data-nofilter>
+					<Field.Option>Saft</Field.Option>
+					<Field.Option>Suse</Field.Option>
+				</Field.Datalist>
+			</Field.Combobox>
+		</Field>
+	),
+};
+
+export const ReactWithCombobxControlled: Story = {
+	parameters: {
+		layout: "padded",
+		showInOverview: true,
+	},
+	render: () => {
+		const comboboxRef = useRef<UHTMLComboboxElement>(null);
+		const options = ["Saft", "Suse"];
+		const [values, setValues] = useState<string[]>([]);
+
+		useEffect(() => {
+			const combobox = comboboxRef.current;
+			const handleBeforeChange = (event: CustomEvent) => {
+				event.preventDefault();
+				setValues((prev) => {
+					const item = event.detail;
+
+					// Add if item is not connected, else  remove it
+					if (!item.isConnected) return [...prev, item.value];
+					return prev.filter((value) => item.value !== value);
+				});
+			};
+
+			combobox?.addEventListener("beforechange", handleBeforeChange);
+			return () =>
+				combobox?.removeEventListener("beforechange", handleBeforeChange);
+		}, []);
+
+		return (
+			<>
+				<Flex>
+					<Button data-variant="secondary" onClick={() => setValues([])}>
+						Fjern alle verdier
+					</Button>
+					<Button data-variant="secondary" onClick={() => setValues(["Suse"])}>
+						Set verdi "Suse"
+					</Button>
+				</Flex>
+				<Field>
+					<label>React kontrollert</label>
+					<p>Beskrivelse</p>
+					<Field.Combobox ref={comboboxRef} data-multiple>
+						{values.map((value) => (
+							<data key={value} value={value}>
+								{value}
+							</data>
+						))}
+						<Input className={styles.input} />
+						<del></del>
+						<Field.Datalist>
+							{options.map((option) => (
+								<Field.Option key={option} value={option}>
+									{option}
+								</Field.Option>
+							))}
+						</Field.Datalist>
+					</Field.Combobox>
+				</Field>
+			</>
 		);
 	},
 };
