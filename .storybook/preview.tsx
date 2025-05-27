@@ -5,9 +5,9 @@ import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
 import styles from "../designsystem/styles.module.css";
-import { transformSource } from "./transformSource";
 import "../designsystem"; // Load JS functionaility
 import "./preview.css";
+// import { transformSource } from "./transformSource";
 // import { track } from "../designsystem/matomo";
 
 const CSS_ALERT = styles.alert.split(" ");
@@ -58,22 +58,22 @@ function useTheme() {
 if (typeof window !== "undefined") urlTheme();
 
 export default {
-	globalTypes: {
-		codePreview: {
-			description: '"Show code" will output the selected format',
-			toolbar: {
-				icon: "markup",
-				items: [
-					{ title: "HTML", value: "html" },
-					{ title: "React", value: "react" },
-				],
-				dynamicTitle: true,
-			},
-		},
-	},
-	initialGlobals: {
-		codePreview: "react",
-	},
+	// globalTypes: {
+	// 	codePreview: {
+	// 		description: '"Show code" will output the selected format',
+	// 		toolbar: {
+	// 			icon: "markup",
+	// 			items: [
+	// 				{ title: "HTML", value: "html" },
+	// 				{ title: "React", value: "react" },
+	// 			],
+	// 			dynamicTitle: true,
+	// 		},
+	// 	},
+	// },
+	// initialGlobals: {
+	// 	codePreview: "react",
+	// },
 	decorators: [
 		(Story) => {
 			useTheme();
@@ -100,10 +100,10 @@ export default {
 			expanded: false,
 		},
 		docs: {
-			source: {
-				transform: () => "",
-				type: "auto",
-			},
+			// source: {
+			// 	transform: () => "",
+			// 	type: "auto",
+			// },
 			canvas: {
 				layout: "centered",
 			},
