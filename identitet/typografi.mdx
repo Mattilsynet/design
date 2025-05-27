@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import { FileArrowDownIcon, BookOpenTextIcon } from "@phosphor-icons/react";
-import { Alert, Button, Flex, Details } from '../designsystem/react';
+import { Alert, Button, Flex, Grid, Details } from '../designsystem/react';
 
 <Meta title="Identitet/Typografi" />
 
@@ -9,10 +9,20 @@ import { Alert, Button, Flex, Details } from '../designsystem/react';
 > Skrifttypen er en viktig del av det visuelle uttrykket vårt. På mange flater er den nærmest den eneste identifiserende faktoren - gjerne i kombinasjon med farge og logo. God bruk av typografi er viktig for å gjøre innholdet vårt tilgjengelig - lett å finne, lett å forstå og lett å bruke.
 
 <Flex>
-<Button href="/docs/font/variable/MattilsynetSansVariableVF.ttf" data-variant="primary" download><FileArrowDownIcon />Last ned Mattilsynet Sans Variable</Button>
-<Button href="/docs/font/ttf.zip" data-variant="secondary" download><FileArrowDownIcon />Last ned Mattilsynet Sans individuelle vekter</Button>
+<Grid data-gap="1">
+**Last ned:**
+<Flex>
+<Button href="/docs/font/ttf.zip" data-variant="secondary" download><FileArrowDownIcon />Mattilsynet Sans</Button>
+<Button href="/docs/font/variable/MattilsynetSansVariableVF.ttf" data-variant="secondary" download><FileArrowDownIcon />Mattilsynet Sans Variable</Button>
 </Flex>
-<Alert><h2>Er du utvikler? Da trenger du ikke laste ned font filer 🙌</h2>`Mattilsynet Sans` er automatisk satt opp når laster `@mattilsynet/design/styles.css`</Alert>
+</Grid>
+<Grid data-gap="1">
+**Utvikler?**
+<Flex>
+<Button href="?path=/docs/designsystem-typography--docs" data-variant="secondary" data-arrow>Se typografikomponenter</Button>
+</Flex>
+</Grid>
+</Flex>
 
 <br />
 <Details>
