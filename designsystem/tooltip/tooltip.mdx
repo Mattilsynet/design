@@ -9,6 +9,7 @@ import * as stories from './tooltip.stories';
 - Bruk `data-tooltip-position="top | right | bottom | left"` for å endre plassering
 - Dersom elementet ikke er interaktivt; legg på `tabindex="0"`
 - Teksten blir også automatisk tilgjengelig for skjermlesere
+- **Merk:** Tooltip senterer seg til sitt anker, så bruk en `<span data-tooltip="">` dersom du ønsker tooltip rundt kun tekst
 <Canvas of={stories.Default} />
 
 <CssVariables component="tooltip" />

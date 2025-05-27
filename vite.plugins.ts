@@ -56,7 +56,7 @@ export const cssToTailwind: Plugin = {
 				tailwind.push(
 					`--text-${token.replace("--mtds-body-", "").replace("-font-size", "")}: var(${token})`,
 				);
-			} else if (token.match(/^--mtds-\d$/)) {
+			} else if (token.match(/^--mtds-\d+$/)) {
 				tailwind.push(
 					`--spacing-${token.replace("--mtds-", "")}: var(${token})`,
 				);

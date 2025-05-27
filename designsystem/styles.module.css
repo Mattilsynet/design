@@ -68,6 +68,7 @@
 		--mtds-icon-sidebar-collapse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M4.38 4.38h19.25a1.75 1.75 0 0 1 1.75 1.75v15.75a1.75 1.75 0 0 1-1.75 1.75H4.38a1.75 1.75 0 0 1-1.75-1.75V6.13a1.75 1.75 0 0 1 1.75-1.75Zm4.37 1.75H4.37v15.75h4.38V6.13Zm1.75 15.75h13.13V6.13H10.5v15.75Zm5.16-3.48-3.93-3.94a.65.65 0 0 1 0-.93l3.93-3.93a.66.66 0 1 1 .93.93l-2.81 2.81h8.03a.66.66 0 0 1 0 1.32h-8.03l2.81 2.81a.66.66 0 1 1-.93.93Z'/%3E%3C/svg%3E");
 
 		--mtds-text-combobox-added: "La til";
+		--mtds-text-combobox-clear: "Fjern text";
 		--mtds-text-combobox-empty: "Ingen valgte";
 		--mtds-text-combobox-found: "Naviger til venstre for å finne %d valgte";
 		--mtds-text-combobox-invalid: "Ugyldig verdi";
@@ -121,6 +122,7 @@
 	/* Change language of "required" */
 	[lang="en"] {
 		--mtds-text-combobox-added: "Added";
+		--mtds-text-combobox-clear: "Remove text";
 		--mtds-text-combobox-empty: "No selected";
 		--mtds-text-combobox-found: "Navigate left to find %d selected";
 		--mtds-text-combobox-invalid: "Invalid value";

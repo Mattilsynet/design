@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
@@ -69,8 +69,8 @@
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
-		"@u-elements/u-combobox": "^0.0.7",
-		"@u-elements/u-datalist": "^1.0.4",
+		"@u-elements/u-combobox": "^0.0.9",
+		"@u-elements/u-datalist": "^1.0.5",
 		"@u-elements/u-details": "^0.1.1",
 		"@u-elements/u-progress": "^0.0.5",
 		"@u-elements/u-tabs": "^0.0.9",

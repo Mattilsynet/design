@@ -23,7 +23,7 @@ declare global {
 }
 
 type SvgsProps = {
-	mode?: "light" | "dark" | null;
+	mode?: "light" | "dark" | boolean;
 	path: string;
 	named?: boolean;
 	reverse?: boolean;
@@ -33,11 +33,12 @@ type SvgsProps = {
 export const Svgs = ({
 	path,
 	reverse,
-	mode = null,
+	mode: _mode = false,
 	searchable = false,
 	...rest
 }: SvgsProps) => {
 	const isPhosphor = path.startsWith("@phosphor-icons");
+	const [mode, setMode] = useState(_mode === true ? "light" : _mode);
 	const svgs = useMemo(
 		() => window.SVGS.filter((svg) => svg.file.startsWith(path)),
 		[path],
@@ -52,7 +53,13 @@ export const Svgs = ({
 	if (reverse) svgs.reverse();
 
 	return (
-		<Grid data-gap="8">
+		<Grid
+			data-gap="8"
+			onChange={({ target }) => {
+				if (target instanceof HTMLSelectElement)
+					setMode(target.value as typeof mode);
+			}}
+		>
 			{!!searchable && (
 				<Flex
 					data-gap="4"
@@ -75,6 +82,14 @@ export const Svgs = ({
 						placeholder="Søk"
 						type="search"
 					/>
+					{_mode === true && (
+						<Field data-self="200" data-fixed>
+							<Select aria-label="Dark modus" name="mode">
+								<option value="light">Mørke ikoner</option>
+								<option value="dark">Lyse ikoner</option>
+							</Select>
+						</Field>
+					)}
 					<Field data-self="300" data-fixed>
 						<Select
 							name="category"
@@ -117,7 +132,7 @@ export const Svgs = ({
 					return (
 						<Card
 							dangerouslySetInnerHTML={{ __html: html }}
-							data-color-scheme={mode}
+							data-color-scheme={mode || undefined}
 							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` "${name}"` : ""}`}
 							download={`${name}${dark ? "-dark" : ""}.svg`}
 							href={encodeSVG(html)}

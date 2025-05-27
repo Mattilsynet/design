@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Button } from '../react.tsx';
+import { Button, Popover } from '../react.tsx';
 import * as stories from './typography.stories';
 
 <Meta of={stories} />
@@ -11,21 +11,25 @@ import * as stories from './typography.stories';
 
 ## Text
 - All tekst er automatisk satt til Figmas text style `text/default`
-- Bruk klassen `ingress` for introtekster og `muted` eller `<small>` elementet for mindre tekst
+- Bruk klassen `ingress` for introtekster og <button type="button" data-popover="inline" popoverTarget="styles">`styles.muted`</button> eller `<small>` elementet for mindre tekst
 - Tekststørrelser påvirkes av `data-size` (`mode: size` i Figma), og av teknikken [fluid typography](https://utopia.fyi/blog/designing-with-fluid-type-scales) som gradvis skalerer font ned et nivå basert på skjermbredde.
 <Canvas of={stories.Default} />
+<Popover id="styles">`import { styles } from '@mattilsynet/design'`</Popover>
 
 ## Heading
-- Bruk klassen `heading` på typisk `<h1>` til `<h6>`
+- Bruk klassen `styles.heading` på `<h[1-6]>` eller `<Heading as="h[1-6]">` komponenten
 - Bruk `data-size="2xs | xs | sm | md | lg | xl | 2xl"`
 - Bruk `data-justify="center"` for å midtstille tekst
-- **Merk:** `data-size` endrer kun størrelse - ikke semantisk overskriftsnivå. Benytt alltid [korrekt HTML h-tag for god universell utforming &rarr;](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253)
+- I React kan du bruke `as="h1 | h2 | h3 | h4 | h5 | h6"` for å endre semantisk overskriftsnivå, hvor `h2` er default. 
+
+> **Merk:** `data-size` endrer kun størrelse - ikke semantisk overskriftsnivå. Benytt alltid korrekt HTML `<h[1-6]>` eller `as="h[1-6]"` for [god universell utforming &rarr;](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253)
+
 <Canvas of={stories.HeadingStory} />
 
 ## Prose
 - Bruk klassen `prose` på typisk `div` eller annen container som har prosa/skjema/typografisk innhold
 <div className="sbdocs-canvas-thumbnail">
-  <Button data-arrow data-variant="primary" href="?path=/story/designsystem-layout--prose">Se prose-layout i egen visning</Button>
+  <Button data-arrow data-variant="primary" href="?path=/story/designsystem-typography--prose">Se prose-layout i egen visning</Button>
   <Canvas className="sbdocs-canvas--max-height" of={stories.Prose} />
 </div>
 

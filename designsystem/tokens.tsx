@@ -129,12 +129,12 @@ export const Colors = () => (
 );
 
 export const Sizes = () => (
-	<table className={styles.table} data-fixed>
+	<table className={styles.table} data-fixed data-align="center">
 		<thead>
 			<tr>
 				<th>Tall</th>
-				<th>Navn</th>
 				<th>CSS</th>
+				<th>Tailwind</th>
 				<th>PX når md</th>
 			</tr>
 		</thead>
@@ -153,10 +153,10 @@ export const Sizes = () => (
 						</div>
 					</td>
 					<td>
-						<code data-size="sm">{GAPS[size]}</code>
+						<code data-size="sm">{`var(--mtds-${size})`}</code>
 					</td>
 					<td>
-						<code data-size="sm">{`var(--mtds-${size})`}</code>
+						<code data-size="sm">{`[p|m]-${size}`}</code>
 					</td>
 					<td>{size * 4}px</td>
 				</tr>
@@ -166,11 +166,12 @@ export const Sizes = () => (
 );
 
 export const Radius = () => (
-	<table className={styles.table} data-fixed>
+	<table className={styles.table} data-fixed data-align="center">
 		<thead>
 			<tr>
-				<th>Navn</th>
+				<th style={{ width: "5em" }}>Navn</th>
 				<th>CSS</th>
+				<th>Tailwind</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -182,6 +183,7 @@ export const Radius = () => (
 								background: "var(--mtds-color-surface-tinted)",
 								borderRadius: `var(--mtds-border-radius-${name})`,
 								padding: 20,
+								textAlign: "center",
 							}}
 						>
 							{name}
@@ -189,6 +191,9 @@ export const Radius = () => (
 					</td>
 					<td>
 						<code data-size="sm">{`var(--mtds-border-radius-${name})`}</code>
+					</td>
+					<td>
+						<code data-size="sm">{`rounded-${name}`}</code>
 					</td>
 				</tr>
 			))}

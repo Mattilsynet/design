@@ -1,4 +1,5 @@
 import { Meta, Canvas } from '@storybook/blocks';
+import { Details } from '../react';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './logo.stories';
 
@@ -9,6 +10,15 @@ import * as stories from './logo.stories';
 - Teksten "Mattilsynet" blir automatisk lagt inn for skjermlesere
 - Logo følger tekststørrelse og tekstfarge
 - Ved lite plass blir tekst visuelt
+
+<Details>
+<Details.Summary>Opplever at logoen bare blir en firkant?</Details.Summary>
+
+Noen versjoner av [Autoprefixer](https://github.com/postcss/autoprefixer) er vell ivrig på å prefixe `mask`. Det er dessverre lite å gjøre med i `@mattilsynet/design`, men
+det kan hjelpe å sette `style="-webkit-mask-box-image: none"` i din kode.
+
+</Details>
+
 <Canvas of={stories.Default} />
 
 ## App logo

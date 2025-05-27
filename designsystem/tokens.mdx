@@ -34,9 +34,10 @@ Fargemodus kan settes med `data-color-scheme="auto | light | dark"` på `<html>`
 
 <Divider data-gap={15} />
 
-## Størrelser
-Størrelser tar utgangspunktet i til en hver tid gjeldene `font-size`, der utgangspunktet er `md` (medium).
+## Størrelser og spacing
+Size tar utgangspunktet i til en hver tid gjeldene `font-size`, som igjen påvirkes av skjermstørrelse.
 Det betyr at du ikke alltid kjenner den eksakte pikselverdien, men i stedet kan fokusere på forholdet mellom elementene.
+Du kan bruke skalane i [alle Tailwind klasser](https://tailwindcss.com/docs/) selv om kun `padding` og `margin` er vist i tabellen under.
 <Sizes />
 
 <Divider data-gap={15} />
@@ -47,5 +48,15 @@ Det betyr at du ikke alltid kjenner den eksakte pikselverdien, men i stedet kan 
 <Divider data-gap={15} />
 
 ## Tailwind
-Ved å laste `@import '@mattilsynet/design/tailwind.css';` får du automatis designsystemets `--color`, `--spacing`, `--border-radius` og `--font-weight` i Tailwind v4 oppsett.
+Dersom du ønsker å bruke [TailwindCSS](https://tailwindcss.com/) sammen med Mattilsynet Designsystem, kan du både installere `@mattilsynet/design` og [installere Tailwind](https://tailwindcss.com/docs/installation/), og importere stiler som følger:
+
+```css
+/* Load @mattilsynet/design before Tailwind: */
+@import '@mattilsynet/design/styles.css';
+
+/* Get Mattilsynet tokens as Tailwind config: */
+@import '@mattilsynet/design/tailwind.css';
+@import 'tailwindcss';
+```
+Da får du automatiske Tailwind-verdier for `--color`, `--spacing`, `--border-radius` og `--font-weight` i Tailwind v4 oppsett.
 
