@@ -52,9 +52,9 @@ export const cssToTailwind: Plugin = {
 				tailwind.push(
 					`--radius-${token.replace("--mtds-border-radius-", "")}: var(${token})`,
 				);
-			} else if (token.match(/--mtds-body-(sm|mg|lg)-font-size/)) {
+			} else if (token.match(/--mtds-(heading|body)-(.+)-font-size/)) {
 				tailwind.push(
-					`--text-${token.replace("--mtds-body-", "").replace("-font-size", "")}: var(${token})`,
+					`--text-${token.replace("--mtds-body-", "").replace("--mtds-heading-", "heading-").replace("-font-size", "")}: var(${token})`,
 				);
 			} else if (token.match(/^--mtds-\d+$/)) {
 				tailwind.push(

@@ -14,14 +14,12 @@ import { Divider } from './react';
 ## Farger
 Vi benytter semantiske farge-tokens, for å knytte farger til meningsfulle roller i brukergrensesnittet, i stedet for spesifikke fargetoner.
 Dette gir skalerbarhet, enklere vedlikehold, bedre tilgjengelighet og fleksibilitet.
-Farge-tokens er navngitt `--mtds-color-NAVN-BRUKSOMRÅDE-VARIANT`.
 
-> ✅ **Tips:**
-> - Bruk tokens *uten* spesifisert farge-palett - f.eks. `--mtds-color-BRUKSOMRÅDE-VARIANT`
-> - Sett heller fargepalett med attributten `data-color="NAVN"` - da arves paletten
-> - Bruk kun `text-*` og `base-contrast-*` på tekst/ikoner - da er kontrastkrav ivaretatt
-> - Unngå å blande farger fra ulike paletter for å ivarta kontrastkrav og dark mode
-> - Trenger du et mørkt område i light mode? Bruk `data-color="inverted"`
+- Bruk tokens *uten* spesifisert farge-palett - f.eks. `--mtds-color-BRUKSOMRÅDE-VARIANT`
+- Sett heller fargepalett med attributten `data-color="NAVN"` - da arves paletten
+- Bruk kun `text-*` og `base-contrast-*` på tekst/ikoner - da er kontrastkrav ivaretatt
+- Unngå å blande farger fra ulike paletter for å ivarta kontrastkrav og dark mode
+- Trenger du et mørkt område i light mode? Bruk `data-color="inverted"`
 
 <br />
 <Wide><Colors /></Wide>
@@ -59,4 +57,3 @@ Dersom du ønsker å bruke [TailwindCSS](https://tailwindcss.com/) sammen med Ma
 @import 'tailwindcss';
 ```
 Da får du automatiske Tailwind-verdier for `--color`, `--spacing`, `--border-radius` og `--font-weight` i Tailwind v4 oppsett.
-

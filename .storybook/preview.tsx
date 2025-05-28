@@ -4,21 +4,13 @@ import { DocsContainer, Unstyled } from "@storybook/blocks";
 import type { DocsContainerProps } from "@storybook/blocks";
 import type { Preview } from "@storybook/react";
 import { useEffect } from "react";
+import { analytics } from "../designsystem"; // Load JS functionaility
 import styles from "../designsystem/styles.module.css";
-import "../designsystem"; // Load JS functionaility
 import "./preview.css";
 // import { transformSource } from "./transformSource";
-// import { track } from "../designsystem/matomo";
 
 const CSS_ALERT = styles.alert.split(" ");
 const CSS_TABLE = styles.table.split(" ");
-const MATOMO = "mattilsynet.matomo.cloud";
-
-declare global {
-	interface Window {
-		_paq?: string[][];
-	}
-}
 
 function urlTheme() {
 	const top = window.top?.location || window.location;
@@ -110,30 +102,14 @@ export default {
 			container: (props: DocsContainerProps) => {
 				useTheme();
 				useEffect(() => {
-					// Setup Matomo tracking
-					const isLocal = window.location.hostname === "localhost";
-					const isLoaded = document.querySelector('script[src*="matomo.js"]');
-					const title = document.querySelector(".sbdocs-h1")?.textContent;
-					const url = (window.top || window).location.href;
-
-					// track("init");
-
-					window._paq = window._paq || [];
-					window._paq.push(["setDocumentTitle", title || document.title]);
-					window._paq.push(["setCustomUrl", url]); // Use location.href to fix storybook iframe url issues
-					window._paq.push(["trackPageView"]);
-
-					if (!isLoaded && !isLocal) {
-						window._paq.push(["enableLinkTracking"]);
-						window._paq.push(["setTrackerUrl", `https://${MATOMO}/matomo.php`]);
-						window._paq.push(["setSiteId", "17"]);
-						document.body.append(
-							Object.assign(document.createElement("script"), {
-								async: true,
-								src: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`,
-							}),
-						);
-					}
+					// Setup analytics
+					analytics("init", { matomoId: 17 });
+					analytics("pageview", {
+						url: (window.top || window).location.href,
+						title:
+							document.querySelector(".sbdocs-h1")?.textContent ||
+							document.title,
+					});
 
 					// Make prose
 					document
@@ -232,7 +208,7 @@ export default {
 						"*",
 					],
 					"Designsystem",
-					["Introduksjon", "Tokens", "Komponenter", "*", "Debug"],
+					["Introduksjon", "Komponenter", "Tokens", "Analyse", "Debug", "*"],
 					"Profilering",
 					["Introduksjon", "*"],
 				],

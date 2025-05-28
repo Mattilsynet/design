@@ -84,7 +84,7 @@ u-tabpanel > pre > .docblock-source {
 }
 .docblock-source .prismjs * {
 	color: inherit !important;
-	font-size: 1rem;
+	font-size: .875rem;
 	line-height: 1.5;
 }
 
