@@ -60,20 +60,15 @@ export const Svgs = ({
 					setMode(target.value as typeof mode);
 			}}
 		>
-			{!!searchable && (
-				<Flex
-					data-gap="4"
-					style={{
-						background:
-							"linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%)",
-						paddingTop: "var(--mtds-4)",
-						position: "sticky",
-						top: 0,
-						zIndex: 2,
-					}}
-				>
+			<style>
+				{`.svgs svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }
+					.svgs-bar { background: linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
+					.svgs-bar:empty { display: none }`}
+			</style>
+			<Flex data-gap="4" className="svgs-bar">
+				{!!searchable && (
 					<Field
-						aria-label="Søk"
+						aria-label="Søk!!"
 						as="input"
 						data-tooltip={
 							typeof searchable === "string" ? searchable : undefined
@@ -82,14 +77,16 @@ export const Svgs = ({
 						placeholder="Søk"
 						type="search"
 					/>
-					{_mode === true && (
-						<Field data-self="200" data-fixed>
-							<Select aria-label="Dark modus" name="mode">
-								<option value="light">Mørke ikoner</option>
-								<option value="dark">Lyse ikoner</option>
-							</Select>
-						</Field>
-					)}
+				)}
+				{_mode === true && (
+					<Field data-self="200" data-fixed={!!searchable || undefined}>
+						<Select aria-label="Dark modus" name="mode">
+							<option value="light">Mørk strek</option>
+							<option value="dark">Lys strek</option>
+						</Select>
+					</Field>
+				)}
+				{!!searchable && (
 					<Field data-self="300" data-fixed>
 						<Select
 							name="category"
@@ -105,13 +102,8 @@ export const Svgs = ({
 							))}
 						</Select>
 					</Field>
-				</Flex>
-			)}
-			<style>
-				{
-					".svgs svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }"
-				}
-			</style>
+				)}
+			</Flex>
 			<Grid className="svgs" data-items="250" data-fixed {...rest}>
 				{svgs.map(({ categories, tags, name, svg }) => {
 					const show =
