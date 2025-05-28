@@ -9,6 +9,7 @@ export { UHTMLComboboxElement } from "@u-elements/u-combobox";
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
+export { analytics } from "./analytics/analytics";
 export { pagination } from "./pagination/pagination-helper";
 export { toggleAppExpanded } from "./app/app-observer";
 export * as styles from "./styles.module.css";

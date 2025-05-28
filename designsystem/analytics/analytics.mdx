@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/blocks';
+import { ChartBarIcon } from '@phosphor-icons/react';
+import { JumpTo } from '../../.storybook/blocks';
+
+<Meta title="Designsystem/Analyse" />
+# <ChartBarIcon /> Analyse
+
+> Å forstå bruksmønster er viktig for å kunne forbedre og videreutvikle Mattilsynet tjenester.
+> For å ivareta personvern og sikre at bruksdata kan forstås likt på tvers av tjenester, har vi en felles analysestandard.
+
+<JumpTo />
+
+## Oppsett
+- Bruk funksjonen `analytics` for å logge til [Mattilsynets analyseverktøy](https://mattilsynet.matomo.cloud/)
+- Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
+- Husk å sette `enabled: false` for test-miljøer (`localhost` er *alltid* av)
+- [Logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking) er automatisk på
+- [Heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) er automatisk av fordi dette krever samtykke
+  - Har du innhentet samtykke? [Se hvordan skru på](#matomo-funksjoner)
+
+```
+import { analytics } from '@mattilsynet/design';
+
+analytics('init', {
+  matomoId: string | number,   // Required: Your Matomo siteId
+  enabled?: boolean | 'debug', // Optional: Set false or 'debug' for test environments
+});
+```
+
+## Sidevisninger
+- Send en `pageview` hver gang en side laster eller URL endres i Single Page Application
+
+```
+analytics('pageview', {
+  title?: string, // Optional: document.title is default
+  url?: string,   // Optional: location.href is default
+});
+```
+
+## Hendelser
+- Send en `event` når du ønsker å lære om brukerens adferd
+- Dette kan være f.eks. ved scroll, filtering, trykk, etc
+- Husk å aldri sende inn personopplysninger
+
+```
+analytics('event', {
+  category: string, // Required: The category of the event, e.g., 'video', 'link', 'form'
+  action: string,   // Required: The action performed, e.g., 'play', 'click', 'submit'
+  label?: string,   // Optional: The name of the item interacted with, e.g., video title, form name
+  value?: number,   // Optional: A numeric value associated with the event, e.g., product price, video completion percentage
+});
+```
+
+## Søk
+- Send en `search` for å forstå hva brukerne leter etter
+
+```
+analytics('search', {
+  query: string,      // Required: The text user searched for
+  category?: string,  // Optional: The category the search was performed in
+  results?: number,   // Optional: The number of results returned
+});
+```
+
+## Matomo-funksjoner
+- Mattilsynets analysetjeneste [Matomo har flere funksjoner](https://developer.matomo.org/guides/tracking-javascript-guide), men
+disse krever ofte konfigurasjon (som [A/B testing](https://developer.matomo.org/guides/ab-tests/browser)), samtykke (som [heatmap og session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup)) eller kan negativt påvirke ytelse (som [content impressions](https://developer.matomo.org/guides/tracking-javascript-guide#track-all-content-impressions-within-a-page)).
+- Disse funksjonene er derfor kun tilgjengelig bruk av `analytics('matomo', [...args])`, som er identisk med [Matomos javascript API](https://developer.matomo.org/guides/tracking-javascript-guide) `_paq.push([...args])`.
+
+**Eksempel for å aktivere heatmap og session recording:**
+
+```
+analytics('matomo', ['HeatmapSessionRecording::enable']);
+```

@@ -5,13 +5,6 @@ import { anchorPosition } from "./utils";
 const toUpper = (str: string) => str.replace(/\b./g, (m) => m.toUpperCase());
 const toUnique = <T,>(arr: T[]): T[] => [...new Set(arr)];
 
-const GAPS: Record<number, string> = {
-	1: "xs",
-	2: "sm",
-	4: "md",
-	6: "lg",
-	8: "xl",
-};
 const RADIUS = ["sm", "md", "lg", "full"] as const;
 const SIZES = toUnique(
 	Array.from(css.matchAll(/--mtds-(\d+)/g), ([, d]) => Number(d)),
