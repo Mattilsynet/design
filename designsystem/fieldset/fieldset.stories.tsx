@@ -172,6 +172,7 @@ export const WithValidation: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
+				<p>Beskrivelse</p>
 			</div>
 			<div className={styles.field}>
 				<input type="checkbox" className={styles.input} name="my-check" />
