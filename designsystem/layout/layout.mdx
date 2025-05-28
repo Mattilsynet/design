@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Alert, Button } from '../react.tsx';
+import { Alert, Button, Popover } from '../react.tsx';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
@@ -10,26 +10,32 @@ import * as stories from './layout.stories';
 <JumpTo />
 
 ## Typer layout
-- Velg mellom klassene `flex` eller `grid` for jevne avstander, eller [`prose`](?path=/story/designsystem-typography--prose) for god typografisk rytme (typisk på artikkel, sideområde, skjema, details content, osv.)
-- Både `flex` og `grid` klassene støtter `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-items`, `data-fixed`, `data-nowrap`
-- Både `flex` og `grid` klassene støtter `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
+- Bruk `flex` når du trenger forskjellige bredder på barna
+- Bruk `grid` når du trenger samme bredde på alle barna
+- Bruk [`prose`](?path=/story/designsystem-typography--prose)  når du har tekslig innhold som skal ha god typografisk rytme
 - I skjema brukes typisk `grid` med `data-gap="9"`, men dette kan justeres etter kontekst
 
 > ### Hvorfor ikke bare bruke Tailwind eller vanilla CSS?
-> Vi ønsker å ha en felles standard for layout som er enkel å bruke, og gir konsistent design. Dette gjør det lettere å lage og vedlikeholde komponenter og sider på tvers.
+> Det er fullt mulig å bruke Tailwind eller CSS. Det vi får med `flex` og `grid` er konsistent kode og luftbruk, samt noen superpowers for responsivitet.
+
 
 ## Flex
-- **💡 Bruk `flex` når du trenger forskjellige bredder på elementene**
-- `flex-wrap: wrap` er på default, men kan skrues av med `data-nowrap`
-- **Merk:** Skal du kun elementer under hverandre, er `grid` et bedre alternativ, siden `flex-direction: column` kan ha uønskede bieffekter på f.eks. `align-items`, `justify-content`.
+- **Bruk `flex` når du trenger forskjellige bredder på barna**
+- **Bruk heller `prose` eller `grid` når du skal ha <button type="button" data-popover="inline" popoverTarget="grid-stack">under hverandre</button>**
+- Bruk `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-row-gap` og `data-column-gap` for å sette [tilsvarende CSS egenskaper](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox#alignment_justification_and_distribution_of_free_space_between_items)
+- Bruk `data-nowrap` på `Flex` eller barn for å hindre brytning til ny linje
+- Bruk `data-fixed` på `Flex` eller barn for å hindre at barn vokser
+- Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
+- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` på `Flex` eller `data-self="*"` på barn for minimumsbredder
 
+<Popover id="grid-stack">...siden `flex-direction: column` kan ha uønskede<br />bieffekter på f.eks. `align-items`, `justify-content`</Popover>
 <Canvas of={stories.FlexStory} />
 
 ## Grid
-- **💡 Bruk `grid` når du trenger samme bredder på alle elementer**
-- **💡 Bruk `grid` *uten* `data-items` for å sette elementer under hverandre**
+- **Bruk `grid` når du trenger samme bredder på alle elementer**
+- **Bruk `grid` *uten* `data-items` for å sette elementer under hverandre**
 - Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
-- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder som får lov å vokse
+- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder på barn
 - Bruk `data-fixed` for å låste bredder
 <Canvas of={stories.GridStory} />
 
