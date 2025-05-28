@@ -1,5 +1,5 @@
 import css from "../design-tokens-build/mattilsynet.css?raw";
-import styles from "./styles.module.css";
+import { Card, Table } from "./react";
 import { anchorPosition } from "./utils";
 
 const toUpper = (str: string) => str.replace(/\b./g, (m) => m.toUpperCase());
@@ -62,7 +62,7 @@ export const Colors = () => (
       .tokens button::before { display: none }
     `}</style>
 		<figure className="tokens">
-			<table className={styles.table} data-fixed>
+			<Table data-fixed>
 				<thead>
 					<tr>
 						<th aria-label="Farger" />
@@ -94,9 +94,9 @@ export const Colors = () => (
 
 									return (
 										<td key={`${name}-${variant}`} data-i={i}>
-											<button
+											<Card
+												as="button"
 												type="button"
-												className={styles.card}
 												data-tooltip={token}
 												onClick={({ currentTarget: el }) => {
 													const tooltip =
@@ -116,13 +116,13 @@ export const Colors = () => (
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		</figure>
 	</>
 );
 
 export const Sizes = () => (
-	<table className={styles.table} data-fixed data-align="center">
+	<Table data-fixed data-align="center">
 		<thead>
 			<tr>
 				<th>Tall</th>
@@ -155,11 +155,11 @@ export const Sizes = () => (
 				</tr>
 			))}
 		</tbody>
-	</table>
+	</Table>
 );
 
 export const Radius = () => (
-	<table className={styles.table} data-fixed data-align="center">
+	<Table data-fixed data-align="center">
 		<thead>
 			<tr>
 				<th style={{ width: "5em" }}>Navn</th>
@@ -191,5 +191,5 @@ export const Radius = () => (
 				</tr>
 			))}
 		</tbody>
-	</table>
+	</Table>
 );
