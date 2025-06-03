@@ -1,8 +1,8 @@
 import { MDXProvider } from "@mdx-js/react";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
-import { DocsContainer, Unstyled } from "@storybook/blocks";
-import type { DocsContainerProps } from "@storybook/blocks";
-import type { Preview } from "@storybook/react";
+import { DocsContainer, Unstyled } from "@storybook/addon-docs/blocks";
+import type { DocsContainerProps } from "@storybook/addon-docs/blocks";
+import type { Preview } from "@storybook/react-vite";
 import { useEffect } from "react";
 import { analytics } from "../designsystem"; // Load JS functionaility
 import styles from "../designsystem/styles.module.css";
@@ -92,14 +92,15 @@ export default {
 			expanded: false,
 		},
 		docs: {
-			// source: {
-			// 	transform: () => "",
-			// 	type: "auto",
-			// },
-			canvas: {
+            // source: {
+            // 	transform: () => "",
+            // 	type: "auto",
+            // },
+            canvas: {
 				layout: "centered",
 			},
-			container: (props: DocsContainerProps) => {
+
+            container: (props: DocsContainerProps) => {
 				useTheme();
 				useEffect(() => {
 					// Setup analytics
@@ -189,7 +190,9 @@ export default {
 					</Unstyled>
 				);
 			},
-		},
+
+            codePanel: true
+        },
 		options: {
 			storySort: {
 				order: [

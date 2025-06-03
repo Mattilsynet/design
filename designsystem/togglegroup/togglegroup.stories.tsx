@@ -3,7 +3,7 @@ import {
 	TextAlignLeft,
 	TextAlignRight,
 } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Togglegroup } from "../react";
 import styles from "../styles.module.css";

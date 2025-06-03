@@ -1,0 +1,159 @@
+{
+	"akva-anlegg-dialog.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-kontrollrom.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-lusetelling-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-lusetelling-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-lusetelling-3.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-lusetelling-4.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-lusetelling-5.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-merder.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-merdinspeksjon-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-merdinspeksjon-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-merdinspeksjon-3.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-provetaking-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-provetaking-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-to-inspektorer.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-transport-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-transport-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-utsyn-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg-utsyn-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-anlegg.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-kontor-inspektor.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-kontor-pc.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-kontor-systemrevisjon.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-kontor-to-inspektorer-1.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"akva-kontor-to-inspektorer-2.jpg": {
+		"categories": ["Oppdrettsanlegg"],
+		"tags": ["akvakultur"]
+	},
+	"gaard-fjoes-inspeksjon-med-bonde.jpg": {
+		"categories": ["Gård"],
+		"tags": []
+	},
+	"gaard-gris-mrsa-test.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-gris.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-grisehus-inspeksjon-med-bonde.jpg": {
+		"categories": [],
+		"tags": []
+	},
+	"gaard-griser-og-inspektor.jpg": {
+		"categories": ["Gård", "Dyr", "Inspektører"],
+		"tags": [
+			"dame",
+			"fjøs",
+			"gris",
+			"innendørs",
+			"kvinne",
+			"menneske",
+			"person",
+			"purke",
+			"svin"
+		]
+	},
+	"gaard-griser.jpg": {
+		"categories": ["Gård", "Dyr"],
+		"tags": ["svin", "purke", "gris"]
+	},
+	"gaard-grisunge-og-to-inspektoerer.jpg": {
+		"categories": ["Gård"],
+		"tags": []
+	},
+	"gaard-hest-helseattest-1.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-hest-helseattest-2.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-hest-inspeksjon-med-bonde.jpg": {
+		"categories": ["Gård"],
+		"tags": []
+	},
+	"gaard-hest-og-inspektor-ute.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-ku-inspeksjon-inne.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-ku-inspeksjon-ute.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-ku-og-inspektor-inne.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-kuer-ute-1.jpg": { "categories": ["Dyr"], "tags": [] },
+	"gaard-kuer-ute-2.jpg": { "categories": ["Dyr"], "tags": [] },
+	"gaard-sau-inspeksjon-ute-1.jpg": { "categories": [], "tags": [] },
+	"gaard-sau-inspeksjon-ute-2.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-utsyn.jpg": { "categories": [], "tags": [] },
+	"kontor-laptop.jpg": { "categories": [], "tags": [] },
+	"kontor-leder-med-kaffekopp.jpg": { "categories": [], "tags": [] },
+	"kontor-leder-og-ansatt.jpg": { "categories": [], "tags": [] },
+	"kontor-postit.jpg": { "categories": [], "tags": [] },
+	"kontor-skrive-paa-lapp.jpg": { "categories": [], "tags": [] },
+	"kontor-sosialt.jpg": { "categories": [], "tags": [] },
+	"kontor-to-ansatte-og-laptop.jpg": { "categories": [], "tags": [] },
+	"kontor-to-ledere.jpg": { "categories": [], "tags": [] },
+	"kontor-to-utviklere-smiler.jpg": { "categories": [], "tags": [] },
+	"kontor-to-utviklere-snakker.jpg": { "categories": [], "tags": [] },
+	"slakteri-kylling-inspektor.jpg": { "categories": [], "tags": [] },
+	"slakteri-kylling-linje.jpg": { "categories": [], "tags": [] },
+	"slakteri-kylling-to-inspektorer.jpg": { "categories": [], "tags": [] },
+	"slakteri-kylling.jpg": { "categories": [], "tags": [] }
+}

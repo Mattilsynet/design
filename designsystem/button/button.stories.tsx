@@ -1,5 +1,5 @@
 import { HeartIcon, ListIcon, StarIcon, XIcon } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Button } from "../react";
 import styles from "../styles.module.css";

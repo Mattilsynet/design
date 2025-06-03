@@ -1,4 +1,4 @@
-// import type { StoryFn } from "@storybook/react";
+// import type { StoryFn } from "@storybook/react-vite";
 // import { memo, useEffect, useRef } from "react";
 
 // const RenderHtmlToNode = memo(({ html }: { html: string }) => {

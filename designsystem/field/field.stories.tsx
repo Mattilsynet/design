@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import type { UHTMLComboboxElement } from "../";
 import { Button, Field, Flex, Input } from "../react";
