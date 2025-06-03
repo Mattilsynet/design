@@ -177,6 +177,9 @@
 		outline-offset: var(--ds-border-width-focus);
 		outline: var(--dsc-focus-outline);
 	}
+	.field u-datalist:not(:has(u-option[aria-hidden="false"]))::before {
+		content: var(--mtds-text-datalist-empty); /* Hide empty datalist */
+	}
 
 	/**
 	 * Affixes
