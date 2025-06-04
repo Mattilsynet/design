@@ -6,6 +6,7 @@ import fg from "fast-glob";
 
 const DESIGN_DIR = path.resolve("./designsystem");
 const FOLDERS = "@(identitet|designsystem|profilering)";
+const ICONS = "@phosphor-icons";
 
 const pkg = JSON.parse(
 	fs.readFileSync(path.resolve(process.cwd(), "package.json"), "utf-8"),
@@ -19,7 +20,7 @@ const toUTF8 = (str: string) =>
 // Generate graphics overview
 const graphics = Object.fromEntries([
 	...icons.map(({ name, categories, tags }) => [
-		`@phosphor-icons/${name}.svg`,
+		`${ICONS}/${name}.svg`,
 		{ categories, tags },
 	]),
 	...fg.sync("public/**/index.json").flatMap((file) => {
@@ -31,10 +32,11 @@ const graphics = Object.fromEntries([
 
 for (const file of fg.sync([
 	"public/**/*.{svg,jpg,jpeg}",
-	"node_modules/@phosphor-icons/core/**/regular/*.svg",
+	`node_modules/${ICONS}/core/**/regular/*.svg`,
 ])) {
 	const name = path.basename(file);
-	const key = `${file.split("/")[1]}/${name}`;
+	const base = file.includes(ICONS) ? [ICONS] : file.split("/").slice(1, -1);
+	const key = base.concat(name).join("/");
 	const svg = file.endsWith(".svg") && toUTF8(fs.readFileSync(file, "utf-8"));
 	graphics[key] = { categories: [], tags: [], name, svg, ...graphics[key] };
 }
