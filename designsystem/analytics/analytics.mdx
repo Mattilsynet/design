@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { ChartBarIcon } from '@phosphor-icons/react';
 import { JumpTo } from '../../.storybook/blocks';
+import { Details } from '../react';
 
 <Meta title="Designsystem/Analyse" />
 # <ChartBarIcon /> Analyse
@@ -10,13 +11,27 @@ import { JumpTo } from '../../.storybook/blocks';
 
 <JumpTo />
 
+{/* https://matomo.org/faq/tag-manager/how-to-use-the-clicked-data-attribute-variable/ */}
+
 ## Oppsett
 - Bruk funksjonen `analytics` for å logge til [Mattilsynets analyseverktøy](https://mattilsynet.matomo.cloud/)
 - Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
 - Husk å sette `enabled: false` for test-miljøer (`localhost` er *alltid* av)
-- [Logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking) er automatisk på
-- [Heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) er automatisk av fordi dette krever samtykke
-  - Har du innhentet samtykke? [Se hvordan skru på](#matomo-funksjoner)
+- **React?** Husk `"use client"` i filer som bruker `analytics` for sikte client-side javascript
+
+<Details>
+<Details.Summary>Hva gjør `analtics` som jeg ikke får ved å bruke Matomo direkte?</Details.Summary>
+
+Mattilsynet bruker for tiden [Matomo](https://matomo.org/) som analyseverktøy, og `analytics` er en wrapper rundt Matomos [JavaScript API](https://developer.matomo.org/guides/tracking-javascript-guide). Dette gir oss: 
+- en felles standard for hvordan vi logger data
+- enkel bruk med mulighet for å bytte eller legge til andre analysetjenester på sikt
+- mulighet for felles cookie banner på sikt
+- mulighet for automatisk analyse på designsystem-komponenter
+- felles Matomo oppsett - blant annet:
+  - [Logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking) er automatisk på
+  - [Heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) er automatisk av fordi dette krever samtykke
+
+</Details>
 
 ```
 import { analytics } from '@mattilsynet/design';

@@ -26,6 +26,7 @@
 @import url("./progress/progress.module.css");
 @import url("./skeleton/skeleton.module.css");
 @import url("./spinner/spinner.module.css");
+@import url("./steps/steps.module.css");
 @import url("./table/table.module.css");
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");

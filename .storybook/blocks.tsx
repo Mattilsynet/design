@@ -61,7 +61,10 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 	return (
 		<>
 			<h2 id="komponenttokens">Komponenttokens</h2>
-			<p>Dersom du trenger å endre på utseende på en komponenter </p>
+			<p>
+				Endre på utseende via CSS-variabler:{" "}
+				<strong>--mtdsc-token-navn: ny-verdi;</strong>
+			</p>
 			{Object.keys(cssVars).length ? (
 				<Table data-fixed>
 					<thead>
@@ -371,8 +374,12 @@ const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
 			Object.assign(document.createElement("canvas"), { hidden: true }),
 		);
 
-	CANVAS.width = svg ? img.width.baseVal.value * 10 : img.naturalWidth;
-	CANVAS.height = svg ? img.height.baseVal.value * 10 : img.naturalHeight;
+	const w = svg ? img.viewBox.baseVal.width : img.naturalWidth;
+	const h = svg ? img.viewBox.baseVal.height : img.naturalHeight;
+	const ratio = (svg ? 900 : 1440) / Math.max(w, h); // Scale to 400px for SVGs, 1920px for images
+
+	CANVAS.width = Math.round(w * ratio);
+	CANVAS.height = Math.round(h * ratio);
 
 	const ctx = CANVAS.getContext("2d");
 	const loaded = await new Promise<HTMLImageElement>((resolve) => {

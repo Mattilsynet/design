@@ -106,7 +106,7 @@
 		"tags": []
 	},
 	"gaard-griser-og-inspektor.jpg": {
-		"categories": ["Gård", "Dyr", "Inspektører"],
+		"categories": ["Gård"],
 		"tags": [
 			"dame",
 			"fjøs",
@@ -120,7 +120,7 @@
 		]
 	},
 	"gaard-griser.jpg": {
-		"categories": ["Gård", "Dyr"],
+		"categories": ["Gård"],
 		"tags": ["svin", "purke", "gris"]
 	},
 	"gaard-grisunge-og-to-inspektoerer.jpg": {
@@ -137,23 +137,80 @@
 	"gaard-ku-inspeksjon-inne.jpg": { "categories": ["Gård"], "tags": [] },
 	"gaard-ku-inspeksjon-ute.jpg": { "categories": ["Gård"], "tags": [] },
 	"gaard-ku-og-inspektor-inne.jpg": { "categories": ["Gård"], "tags": [] },
-	"gaard-kuer-ute-1.jpg": { "categories": ["Dyr"], "tags": [] },
-	"gaard-kuer-ute-2.jpg": { "categories": ["Dyr"], "tags": [] },
-	"gaard-sau-inspeksjon-ute-1.jpg": { "categories": [], "tags": [] },
+	"gaard-kuer-ute-1.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-kuer-ute-2.jpg": { "categories": ["Gård"], "tags": [] },
+	"gaard-sau-inspeksjon-ute-1.jpg": { "categories": ["Gård"], "tags": [] },
 	"gaard-sau-inspeksjon-ute-2.jpg": { "categories": ["Gård"], "tags": [] },
-	"gaard-utsyn.jpg": { "categories": [], "tags": [] },
-	"kontor-laptop.jpg": { "categories": [], "tags": [] },
-	"kontor-leder-med-kaffekopp.jpg": { "categories": [], "tags": [] },
-	"kontor-leder-og-ansatt.jpg": { "categories": [], "tags": [] },
-	"kontor-postit.jpg": { "categories": [], "tags": [] },
-	"kontor-skrive-paa-lapp.jpg": { "categories": [], "tags": [] },
-	"kontor-sosialt.jpg": { "categories": [], "tags": [] },
-	"kontor-to-ansatte-og-laptop.jpg": { "categories": [], "tags": [] },
-	"kontor-to-ledere.jpg": { "categories": [], "tags": [] },
-	"kontor-to-utviklere-smiler.jpg": { "categories": [], "tags": [] },
-	"kontor-to-utviklere-snakker.jpg": { "categories": [], "tags": [] },
-	"slakteri-kylling-inspektor.jpg": { "categories": [], "tags": [] },
-	"slakteri-kylling-linje.jpg": { "categories": [], "tags": [] },
-	"slakteri-kylling-to-inspektorer.jpg": { "categories": [], "tags": [] },
-	"slakteri-kylling.jpg": { "categories": [], "tags": [] }
+	"gaard-utsyn.jpg": { "categories": ["Gård"], "tags": [] },
+	"kontor-laptop.jpg": { "categories": ["Kontor"], "tags": [] },
+	"kontor-leder-med-kaffekopp.jpg": { "categories": ["Kontor"], "tags": [] },
+	"kontor-leder-og-ansatt.jpg": { "categories": ["Kontor"], "tags": [] },
+	"kontor-postit.jpg": { "categories": ["Kontor"], "tags": [] },
+	"kontor-skrive-paa-lapp.jpg": {
+		"categories": ["Kontor"],
+		"tags": ["møte", "post-it", "postit", "gullapp", "tusj", "nært"]
+	},
+	"kontor-sosialt.jpg": {
+		"categories": ["Kontor"],
+		"tags": ["møte", "samarbeide", "mann", "dame"]
+	},
+	"kontor-to-ansatte-og-laptop.jpg": {
+		"categories": ["Kontor"],
+		"tags": [
+			"pc",
+			"møte",
+			"laptop",
+			"datamaskin",
+			"samarbeide",
+			"skjerm",
+			"mann",
+			"dame"
+		]
+	},
+	"kontor-to-ledere.jpg": {
+		"categories": ["Kontor"],
+		"tags": ["kaffe", "møte", "samarbeide", "mann", "dame"]
+	},
+	"kontor-to-utviklere-smiler.jpg": {
+		"categories": ["Kontor"],
+		"tags": [
+			"pc",
+			"møte",
+			"laptop",
+			"datamaskin",
+			"samarbeide",
+			"kode",
+			"skjerm",
+			"mann"
+		]
+	},
+	"kontor-to-utviklere-snakker.jpg": {
+		"categories": ["Kontor"],
+		"tags": [
+			"pc",
+			"møte",
+			"laptop",
+			"datamaskin",
+			"samarbeide",
+			"kode",
+			"skjerm",
+			"mann"
+		]
+	},
+	"slakteri-kylling-inspektor.jpg": {
+		"categories": ["Slakteri"],
+		"tags": ["kylling", "fjørfe", "høns", "høne"]
+	},
+	"slakteri-kylling-linje.jpg": {
+		"categories": ["Slakteri"],
+		"tags": ["kylling", "fjørfe", "høns", "høne"]
+	},
+	"slakteri-kylling-to-inspektorer.jpg": {
+		"categories": ["Slakteri"],
+		"tags": ["kylling", "fjørfe", "høns", "høne"]
+	},
+	"slakteri-kylling.jpg": {
+		"categories": ["Slakteri"],
+		"tags": ["kylling", "fjørfe", "høns", "høne"]
+	}
 }
