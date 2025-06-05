@@ -3,23 +3,30 @@ import { attr, isInputLike, onLoaded, onMutation, useId } from "../utils";
 
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
+const ARIA_DESC = "aria-describedby";
+const ARIA_INVALID = "aria-invalid";
 
+// Using requestAnimationFrame to ensure it runs after field-observer
 function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
-	for (const fieldset of fieldsets)
-		if (fieldset.isConnected) {
-			const inputs: HTMLInputElement[] = [];
-			let validationId: string | null = null;
+	requestAnimationFrame(() => {
+		for (const fieldset of fieldsets)
+			if (fieldset.isConnected) {
+				const inputs: HTMLInputElement[] = [];
+				let validationId: string | null = null;
 
-			for (const el of fieldset.getElementsByTagName("*")) {
-				if (el.classList.contains(CSS_VALIDATION)) validationId = useId(el);
-				else if (isInputLike(el)) inputs.push(el);
-			}
+				for (const el of fieldset.getElementsByTagName("*")) {
+					if (el.classList.contains(CSS_VALIDATION)) validationId = useId(el);
+					else if (isInputLike(el)) inputs.push(el);
+				}
 
-			for (const input of inputs) {
-				attr(input, "aria-describedby", validationId);
-				attr(input, "aria-invalid", `${!!validationId}`);
+				for (const input of inputs) {
+					const desc = attr(input, ARIA_DESC)?.replace(validationId || "#", "");
+
+					attr(input, ARIA_DESC, `${validationId || ""} ${desc || ""}`.trim());
+					attr(input, ARIA_INVALID, `${!!validationId}`);
+				}
 			}
-		}
+	});
 }
 
 onLoaded(() =>

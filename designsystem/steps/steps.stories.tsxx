@@ -1,0 +1,48 @@
+import { HeartIcon } from "@phosphor-icons/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Steps } from "../react";
+import styles from "../styles.module.css";
+
+const meta = {
+	title: "Designsystem/Steps",
+	parameters: {
+		layout: "padded",
+	},
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+	render: () => (
+		<ol className={styles.steps}>
+			<li>
+				<HeartIcon />
+				Steg 1
+			</li>
+			<li>Steg 2</li>
+			<li aria-current="true">Steg 3</li>
+			<li>Steg 4</li>
+			<li>Steg 5</li>
+		</ol>
+	),
+};
+
+export const React: Story = {
+	render: () => <Steps />,
+};
+
+export const Sizes: Story = {
+	render: () => (
+		<>
+			xs: <ul className={styles.steps} data-size="xs"></ul>
+			sm: <ul className={styles.steps} data-size="sm"></ul>
+			md: <ul className={styles.steps} data-size="md"></ul>
+			lg: <ul className={styles.steps} data-size="lg"></ul>
+		</>
+	),
+};
+
+export const Timeline: Story = {
+	render: () => <ul className={styles.steps}>Henter innhold...</ul>,
+};

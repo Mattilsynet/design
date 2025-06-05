@@ -13,8 +13,6 @@ import {
 } from "../utils";
 
 const CSS_FIELD = styles.field.split(" ")[0];
-const CSS_PROPERTY_OVER = "--mtds-text-count-over";
-const CSS_PROPERTY_UNDER = "--mtds-text-count-under";
 const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 
@@ -92,8 +90,8 @@ function renderCounter(input: HTMLInputElement) {
 		const nextInvalid = remainder < 0;
 		const prevInvalid = attr(el, "aria-live") === "polite";
 		const style = window.getComputedStyle(el || input);
-		const over = getText(style, CSS_PROPERTY_OVER);
-		const under = getText(style, CSS_PROPERTY_UNDER);
+		const over = getText(style, "count-over");
+		const under = getText(style, "count-under");
 
 		if (prevInvalid !== nextInvalid) {
 			attr(el, "aria-live", nextInvalid ? "polite" : "off");

@@ -1,0 +1,55 @@
+@layer mt.design {
+	.steps {
+		--mtdsc-steps-border-color: var(--ds-color-base-default);
+		--mtdsc-steps-text-color: var(--ds-color-base-contrast-default);
+		--mtdsc-steps-dot-size: var(--ds-size-7);
+
+		display: flex;
+		list-style: none;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+	.steps > li {
+		display: grid;
+		flex: 1 1 0;
+		grid-template-rows: auto 1fr;
+		place-items: center;
+	}
+	.steps > li + li::before {
+		background: var(--mtdsc-steps-border-color);
+		content: "";
+		grid-column-start: 1;
+		grid-row-start: 1;
+		height: 2px;
+		margin-inline-start: -100%;
+		width: 100%;
+	}
+	.steps > li::after {
+		content: "1";
+		color: var(--mtdsc-steps-text-color);
+		background: var(--mtdsc-steps-border-color);
+		border-radius: var(--ds-border-radius-full);
+		grid-row-start: 1;
+		grid-column-start: 1;
+		place-self: center;
+		place-items: center;
+		width: var(--mtdsc-steps-dot-size);
+		height: var(--mtdsc-steps-dot-size);
+		display: grid;
+		position: relative;
+	}
+	.steps > li[aria-current="true"]::after {
+		box-shadow: 2px 2px 0 var(--ds-color-base-contrast-default);
+	}
+	.steps > li:has(> svg:first-child)::after {
+		content: "";
+	}
+	.steps > li > svg:first-child {
+		grid-row-start: 1;
+		grid-column-start: 1;
+		position: relative;
+		z-index: 2;
+		color: white;
+	}
+}

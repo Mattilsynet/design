@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import type { UHTMLComboboxElement } from "../";
 import { Button, Field, Flex, Input } from "../react";
@@ -337,14 +337,13 @@ export const WithCustomDescriptionTag: Story = {
 export const WithCombobox: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => (
 		<div className={styles.field}>
 			<label>Med forslag</label>
 			<u-combobox>
 				<input className={styles.input} />
-				<del></del>
+				<del hidden aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -362,7 +361,6 @@ export const WithCombobox: Story = {
 export const WithComboboxMultiple: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => (
 		<div className={styles.field}>
@@ -370,7 +368,7 @@ export const WithComboboxMultiple: Story = {
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input className={styles.input} />
-				<del></del>
+				<del hidden aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -388,7 +386,6 @@ export const WithComboboxMultiple: Story = {
 export const WithComboboxAPI: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => {
 		const inputRef = useRef<HTMLInputElement>(null);
@@ -421,10 +418,10 @@ export const WithComboboxAPI: Story = {
 				<u-combobox>
 					<input
 						className={styles.input}
-						onInput={handleInput}
+						onInput={handleInput} // Note: using onInput, not onChange
 						ref={inputRef}
 					/>
-					<del></del>
+					<del hidden aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -443,7 +440,6 @@ export const WithComboboxAPI: Story = {
 export const WithComboboxCustomFilter: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => {
 		const ref = useRef<UHTMLComboboxElement>(null);
@@ -465,9 +461,8 @@ export const WithComboboxCustomFilter: Story = {
 					<input
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
-						value={value}
 					/>
-					<del></del>
+					<del hidden aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{options
 							.filter((option) =>
@@ -488,7 +483,6 @@ export const WithComboboxCustomFilter: Story = {
 export const ReactWithCombobx: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => (
 		<Field>
@@ -496,7 +490,7 @@ export const ReactWithCombobx: Story = {
 			<p>Beskrivelse</p>
 			<Field.Combobox>
 				<Input className={styles.input} />
-				<del></del>
+				<del hidden aria-label="Fjern tekst"></del>
 				<Field.Datalist>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -509,7 +503,6 @@ export const ReactWithCombobx: Story = {
 export const ReactWithComboboxMultiple: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => (
 		<Field>
@@ -518,7 +511,7 @@ export const ReactWithComboboxMultiple: Story = {
 			<Field.Combobox data-multiple>
 				<data>Saft</data>
 				<Input className={styles.input} />
-				<del></del>
+				<del hidden aria-label="Fjern tekst"></del>
 				<Field.Datalist data-nofilter>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -531,13 +524,15 @@ export const ReactWithComboboxMultiple: Story = {
 export const ReactWithCombobxControlled: Story = {
 	parameters: {
 		layout: "padded",
-		showInOverview: true,
 	},
 	render: () => {
 		const comboboxRef = useRef<UHTMLComboboxElement>(null);
 		const options = ["Saft", "Suse"];
 		const [values, setValues] = useState<string[]>([]);
 
+		// NOTE: If you are using React 19,
+		// you can use onbeforechange={handleBeforeChange}
+		// directly on the combobox element
 		useEffect(() => {
 			const combobox = comboboxRef.current;
 			const handleBeforeChange = (event: CustomEvent) => {
@@ -576,13 +571,58 @@ export const ReactWithCombobxControlled: Story = {
 							</data>
 						))}
 						<Input className={styles.input} />
-						<del></del>
+						<del hidden aria-label="Fjern tekst"></del>
 						<Field.Datalist>
 							{options.map((option) => (
 								<Field.Option key={option} value={option}>
 									{option}
 								</Field.Option>
 							))}
+						</Field.Datalist>
+					</Field.Combobox>
+				</Field>
+			</>
+		);
+	},
+};
+
+export const ReactWithCombobxCustomFilter: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => {
+		const comboboxRef = useRef<UHTMLComboboxElement>(null);
+		const [value, setValue] = useState("");
+		const options = [
+			"Sogndal",
+			"Oslo",
+			"Brønnøysund",
+			"Stavanger",
+			"Trondheim",
+			"Bergen",
+			"Lillestrøm",
+		];
+
+		return (
+			<>
+				<Field>
+					<label>React eget filter - gir kun treff fra starten av ordet</label>
+					<Field.Combobox ref={comboboxRef}>
+						<Input
+							className={styles.input}
+							onInput={({ currentTarget }) => setValue(currentTarget.value)}
+						/>
+						<del hidden aria-label="Fjern tekst"></del>
+						<Field.Datalist>
+							{options
+								.filter((option) =>
+									option.toLowerCase().startsWith(value.toLowerCase()),
+								)
+								.map((option) => (
+									<Field.Option key={option} value={option}>
+										{option}
+									</Field.Option>
+								))}
 						</Field.Datalist>
 					</Field.Combobox>
 				</Field>

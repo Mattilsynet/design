@@ -1,11 +1,13 @@
-import { ArgTypes, Meta, Canvas } from '@storybook/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
 import * as stories from './field.stories';
 import { Details } from '../react';
 
 <Meta of={stories} />
 
 # Field
+
+<JumpTo />
 
 ## Generelt
 - Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
@@ -58,10 +60,23 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
   `--mtds-text-count-over: "%d characters too many";`
 <Canvas of={stories.WithCharacterCount} />
 
-## Med forslag (Eksperimentell)
-- Bruk `<u-combobox>` rundt input, `<datalist>` og `<option>` for å lage forslag
-- Bruk `data-nofilter` på `<u-datalist>` for å skru av filtrering
+## Med combobox
+- Bruk `<u-combobox>` rundt `<input>` og `<datalist>` med `<option>`s for å lage forslag
 - Legg en `<select hidden name="NAME-HERE">` i `<u-combobox>` for å få med verdien i skjemaet
-<Canvas of={stories.WithCustomDescriptionTag} />
+- Legg en `<del hidden aria-label=""></del>` etter input for å få en tøm-knapp
+- Bruk `data-nofilter` på `<u-datalist>` for å skru av filtrering
+- **React?** Bruk `<Field.Combobox>`, `<Field.Datalist>` og `<Field.Option>`
+<Details>
+<Details.Summary>Hva er `u-combobox`?</Details.Summary>
+
+[u-combobox](https://u-elements.github.io/u-elements/elements/u-combobox) er en del av prosjektet [u-elements](https://u-elements.github.io/u-elements)
+som sikrer universell utforming. Dette lastes automatisk når du bruker `@mattilsynet/design`.
+Du kan også hente inn tilhørende HTMLElement interface ved behov:
+```
+import { UComboboxElement } from '@mattilsynet/design'
+```
+</Details>
+
+<Canvas of={stories.WithCombobox} />
 
 <CssVariables component="field" />

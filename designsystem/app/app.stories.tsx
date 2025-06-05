@@ -8,7 +8,7 @@ import {
 	SignatureIcon,
 	UserIcon,
 } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { toggleAppExpanded } from "..";
 import { App, Avatar, Button, Card, Logo, Popover } from "../react";
 import styles from "../styles.module.css";

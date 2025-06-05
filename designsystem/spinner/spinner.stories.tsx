@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Spinner } from "../react";
 import styles from "../styles.module.css";
 
@@ -41,9 +41,5 @@ export const Sizes: Story = {
 };
 
 export const Text: Story = {
-	render: () => (
-		<>
-			<span className={styles.spinner}>Henter innhold...</span>
-		</>
-	),
+	render: () => <span className={styles.spinner}>Henter innhold...</span>,
 };

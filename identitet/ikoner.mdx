@@ -1,21 +1,20 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 import { ShapesIcon } from "@phosphor-icons/react"
-import { JumpTo, Wide } from '../.storybook/blocks';
-import { Svgs } from './svgs';
+import { JumpTo, Wide, Graphics } from '../.storybook/blocks';
 
 <Meta title="Identitet/Ikoner" />
 
 # <ShapesIcon /> Ikoner
 
-> Mattilsynet benytter ikoner fra [Phosphoricons](https://phosphoricons.com/)
+> Mattilsynet benytter linje-ikoner fra [Phosphoricons](https://phosphoricons.com/)
 for å gi et lett og vennlig uttrykk som står i stil med vår visuelle identitet.
 
-- Benytt ikke-fylte ikoner, med mindre du lager en [applikasjonslogo](?path=/docs/designsystem-logo--docs)
-- Meningsbærende/essensielle ikoner burde venstrestilles/stå før tekst
-- Dekorative ikoner (f.eks pil) eller ikon inntil tekst, kan høyrestilles
 - Ikoner følger tekstfarge
+- Meningsbærende ikoner burde venstrestilles/stå før tekst
+- Dekorative ikoner (f.eks. pil) kan høyrestilles
+- Benytt kun fylte ikoner i [applikasjonslogoer](?path=/docs/designsystem-logo--docs)
 
-<Wide><Svgs path="@phosphor-icons" data-items="100" mode searchable="💡 Søk på engelsk" /></Wide>
+<Wide><Graphics path="@phosphor-icons" data-items="100" mode searchable="💡 Søk på engelsk" /></Wide>
 
 ## Symboler
 - Symboler og Phosphor-ikoner og skal ikke blandes.
@@ -24,4 +23,4 @@ Mattilsynet har seks egentegnede symboler basert på frøformen i logosymbolet.
 Dette visuelle grepet skaper egenart og et helhetlig visuelt uttrykk.
 Symboler er blant annet brukt for å fremheve toppoppgavene på [mattilsynet.no](https://www.mattilsynet.no).
 
-<Svgs path="icons" />
+<Graphics path="icons" mode />

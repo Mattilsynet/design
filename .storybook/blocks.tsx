@@ -1,8 +1,18 @@
-import { Story } from "@storybook/blocks";
+import { Story } from "@storybook/addon-docs/blocks";
 import { useEffect, useMemo, useState } from "react";
-import { Button, Card, Grid, Table } from "../designsystem/react";
+import {
+	Button,
+	Card,
+	Field,
+	Flex,
+	Grid,
+	type GridProps,
+	Select,
+	Table,
+} from "../designsystem/react";
 import styles from "../designsystem/styles.module.css";
 import css from "../designsystem/styles.module.css?inline";
+import { anchorPosition } from "../designsystem/utils";
 
 type WideProps = React.ComponentPropsWithoutRef<"div">;
 export const Wide = ({ style, ...rest }: WideProps) => {
@@ -51,7 +61,10 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 	return (
 		<>
 			<h2 id="komponenttokens">Komponenttokens</h2>
-			<p>Dersom du trenger å endre på utseende på en komponenter </p>
+			<p>
+				Endre på utseende via CSS-variabler:{" "}
+				<strong>--mtdsc-token-navn: ny-verdi;</strong>
+			</p>
 			{Object.keys(cssVars).length ? (
 				<Table data-fixed>
 					<thead>
@@ -207,3 +220,195 @@ export const Overview = ({
 		</>
 	);
 };
+
+declare global {
+	interface Window {
+		GRAPHICS: Record<
+			string,
+			{
+				categories: string[];
+				name: string;
+				svg: string | false;
+				tags: string[];
+			}
+		>;
+	}
+}
+
+type GraphicsProps = {
+	mode?: "light" | "dark" | boolean;
+	path: string;
+	named?: boolean;
+	reverse?: boolean;
+	searchable?: boolean | string;
+} & GridProps;
+
+export const Graphics = ({
+	path,
+	reverse,
+	mode: _mode = false,
+	searchable = false,
+	...rest
+}: GraphicsProps) => {
+	const [mode, setMode] = useState(_mode === true ? "light" : _mode);
+	const isPhosphor = path.startsWith("@phosphor-icons");
+	const graphics = useMemo(() => {
+		return Object.entries(window.GRAPHICS)
+			.filter(([file]) => file.startsWith(path))
+			.map(([file, data]) => ({
+				file,
+				href: data.svg ? encodeSVG(data.svg) : `/${file}`,
+				...data,
+			}))
+			.sort((a, b) => a.name.localeCompare(b.name));
+	}, [path]);
+	const categories = useMemo(() => {
+		return new Set(
+			graphics
+				.flatMap(({ categories }) => categories)
+				.filter(Boolean)
+				.sort(),
+		);
+	}, [graphics]);
+	const [category, setCategory] = useState("");
+	const [query, setQuery] = useState("");
+
+	if (reverse) graphics.reverse();
+
+	return (
+		<Grid
+			data-gap="8"
+			onChange={({ target }) => {
+				if (target instanceof HTMLSelectElement)
+					setMode(target.value as typeof mode);
+			}}
+		>
+			<style>
+				{`
+					.graphics svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }
+					.graphics img { aspect-ratio: 12 / 8; display: block; min-width: calc(100% + 1em); object-fit: cover; margin: -.5em }
+					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
+					.graphics-bar:empty { display: none }`}
+			</style>
+			<Flex data-gap="4" className="graphics-bar">
+				{!!searchable && (
+					<Field
+						aria-label="Søk"
+						as="input"
+						data-tooltip={
+							typeof searchable === "string" ? searchable : undefined
+						}
+						onInput={({ currentTarget: el }) => setQuery(el.value.trim())}
+						placeholder="Søk"
+						type="search"
+					/>
+				)}
+				{_mode === true && (
+					<Field data-self="200" data-fixed={!!searchable || undefined}>
+						<Select aria-label="Dark modus" name="mode">
+							<option value="light">Mørk strek</option>
+							<option value="dark">Lys strek</option>
+						</Select>
+					</Field>
+				)}
+				{!!searchable && (
+					<Field data-self="300" data-fixed>
+						<Select
+							name="category"
+							aria-label="Kategori"
+							onChange={({ target }) => setCategory(target.value)}
+							value={category}
+						>
+							<option value="">Alle kategorier</option>
+							{Array.from(categories, (cat) => (
+								<option key={cat} value={cat}>
+									{cat[0].toUpperCase() + cat.slice(1).toLowerCase()}
+								</option>
+							))}
+						</Select>
+					</Field>
+				)}
+			</Flex>
+			<Grid className="graphics" data-items="250" data-fixed {...rest}>
+				{graphics.map(({ file, categories, tags, name, svg, href }) => {
+					const show =
+						(!category || categories.some((cat) => category === cat)) &&
+						(!query ||
+							name.toLowerCase().includes(query) ||
+							tags.some((tag) => tag.includes(query)));
+
+					if (!show) return null;
+
+					return (
+						<Card
+							data-color-scheme={mode || undefined}
+							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` "${name}"` : ""}`}
+							download={name.replace(".", mode === "dark" ? "-dark." : ".")}
+							href={href}
+							key={name}
+							onClick={copyToImage}
+						>
+							{svg ? (
+								<span dangerouslySetInnerHTML={{ __html: svg }} />
+							) : (
+								<img src={`/${file}`} alt={name} />
+							)}
+						</Card>
+					);
+				})}
+			</Grid>
+		</Grid>
+	);
+};
+
+let CANVAS: HTMLCanvasElement;
+const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+	event.preventDefault();
+	const tooltip = document.getElementById("mtds-tooltip");
+	const card = event.currentTarget;
+	const img = card.querySelector("svg,img") as SVGSVGElement | HTMLImageElement;
+	const svg = img instanceof SVGSVGElement;
+
+	if (!CANVAS)
+		CANVAS = document.body.appendChild(
+			Object.assign(document.createElement("canvas"), { hidden: true }),
+		);
+
+	const w = svg ? img.viewBox.baseVal.width : img.naturalWidth;
+	const h = svg ? img.viewBox.baseVal.height : img.naturalHeight;
+	const ratio = (svg ? 900 : 1440) / Math.max(w, h); // Scale to 400px for SVGs, 1920px for images
+
+	CANVAS.width = Math.round(w * ratio);
+	CANVAS.height = Math.round(h * ratio);
+
+	const ctx = CANVAS.getContext("2d");
+	const loaded = await new Promise<HTMLImageElement>((resolve) => {
+		const hex = encodeURIComponent(window.getComputedStyle(img).color);
+		const tmp = new Image();
+		tmp.onload = () => resolve(tmp);
+		tmp.src = card.href.replace(/currentColor/g, hex); // Make color explicit
+	});
+
+	ctx?.drawImage(loaded, 0, 0, CANVAS.width, CANVAS.height);
+
+	navigator.clipboard.write([
+		new ClipboardItem({
+			"image/png": await fetch(CANVAS.toDataURL("image/png")).then((r) =>
+				r.blob(),
+			),
+			"text/plain": svg
+				? new Blob([img.outerHTML], { type: "text/plain" })
+				: card.href,
+		}),
+	]);
+
+	tooltip?.replaceChildren("Kopiert!");
+	if (tooltip) anchorPosition(tooltip, card, 0);
+};
+
+const encodeSVG = (data: string) =>
+	`data:image/svg+xml,${data
+		.replace(/"/g, `'`)
+		.replace(/>\s{1,}</g, "><")
+		.replace(/\s{2,}/g, " ")
+		.replace(/[\r\n%#()<>?[\\\]^`{|}]/g, encodeURIComponent)}`;

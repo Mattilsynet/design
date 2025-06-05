@@ -9,7 +9,7 @@ import {
 	SmileyMehIcon,
 	UploadSimpleIcon,
 } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card, Flex, Grid, Group, Heading, Info, Tag } from "../react";
 import styles from "../styles.module.css";
 

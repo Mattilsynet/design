@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Flex, Grid, Heading, Skeleton } from "../react";
 import styles from "../styles.module.css";
 

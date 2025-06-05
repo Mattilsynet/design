@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Field, Fieldset } from "../react";
 import styles from "../styles.module.css";
 
@@ -172,6 +172,7 @@ export const WithValidation: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
+				<p>Beskrivelse</p>
 			</div>
 			<div className={styles.field}>
 				<input type="checkbox" className={styles.input} name="my-check" />

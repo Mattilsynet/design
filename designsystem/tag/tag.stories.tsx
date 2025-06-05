@@ -1,5 +1,5 @@
 import { ShrimpIcon } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tag } from "../react";
 import styles from "../styles.module.css";
 

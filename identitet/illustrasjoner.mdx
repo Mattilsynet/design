@@ -1,7 +1,6 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import { Wide } from '../.storybook/blocks';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { Wide, Graphics } from '../.storybook/blocks';
 import { ConfettiIcon, PlantIcon } from '@phosphor-icons/react';
-import { Svgs } from './svgs';
 import { Details, Flex, Button } from '../designsystem/react';
 
 <Meta title="Identitet/Illustrasjoner" />
@@ -49,7 +48,4 @@ Er du selv designer og ønsker å tegne nye illustasjoner selv, skal vi følge r
   </ColorPalette>
 </Details>
 
-<Wide>
-<Svgs path="illustrations" searchable />
-</Wide>
-<div style={{ height: 500 }} /> {/* Allow some space to scroll under */}
+<Wide><Graphics path="illustrations" searchable /></Wide>

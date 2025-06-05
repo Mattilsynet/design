@@ -3,7 +3,7 @@ import {
 	HeartIcon,
 	PaperPlaneRightIcon,
 } from "@phosphor-icons/react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect } from "react";
 import inspektor from "../../profilering/arbeidstoy/inspektor.png";
 import {

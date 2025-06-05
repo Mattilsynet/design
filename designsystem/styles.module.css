@@ -26,6 +26,7 @@
 @import url("./progress/progress.module.css");
 @import url("./skeleton/skeleton.module.css");
 @import url("./spinner/spinner.module.css");
+@import url("./steps/steps.module.css");
 @import url("./table/table.module.css");
 @import url("./tabs/tabs.module.css");
 @import url("./tag/tag.module.css");
@@ -77,8 +78,9 @@
 		--mtds-text-combobox-removed: "Fjernet";
 		--mtds-text-count-over: "%d tegn for mye";
 		--mtds-text-count-under: "%d tegn igjen";
-		--mtds-text-datalist-plural: "%d forslag";
-		--mtds-text-datalist-singular: "%d forslag";
+		--mtds-text-datalist-empty: "Ingen treff";
+		--mtds-text-datalist-plural: "%d treff";
+		--mtds-text-datalist-singular: "%d treff";
 		--mtds-text-loading: "Laster...";
 		--mtds-text-logo: "Mattilsynet";
 		--mtds-text-next: "Neste";
@@ -131,8 +133,9 @@
 		--mtds-text-combobox-removed: "Removed";
 		--mtds-text-count-over: "%d characters too many";
 		--mtds-text-count-under: "%d characters remaining";
-		--mtds-text-datalist-plural: "%d suggestions";
-		--mtds-text-datalist-singular: "%d suggestions";
+		--mtds-text-datalist-empty: "No hits";
+		--mtds-text-datalist-plural: "%d hits";
+		--mtds-text-datalist-singular: "%d hits";
 		--mtds-text-loading: "Loading...";
 		--mtds-text-logo: "Norwegian Food Safety Authority";
 		--mtds-text-next: "Next";
