@@ -1,7 +1,7 @@
 import { MDXProvider } from "@mdx-js/react";
-import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { DocsContainer, Unstyled } from "@storybook/addon-docs/blocks";
 import type { DocsContainerProps } from "@storybook/addon-docs/blocks";
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
 import { useEffect } from "react";
 import { analytics } from "../designsystem"; // Load JS functionaility
@@ -92,15 +92,15 @@ export default {
 			expanded: false,
 		},
 		docs: {
-            // source: {
-            // 	transform: () => "",
-            // 	type: "auto",
-            // },
-            canvas: {
+			// source: {
+			// 	transform: () => "",
+			// 	type: "auto",
+			// },
+			canvas: {
 				layout: "centered",
 			},
 
-            container: (props: DocsContainerProps) => {
+			container: (props: DocsContainerProps) => {
 				useTheme();
 				useEffect(() => {
 					// Setup analytics
@@ -145,6 +145,8 @@ export default {
 						const link = e.target instanceof Element && e.target.closest("a");
 						const sameDomain = link && link.hostname === location.hostname;
 						const samePage = sameDomain && link.pathname === location.pathname;
+
+						if (!sameDomain && link) link.target = "_blank"; // Open external links in new tab
 
 						// Prefix all internal links with window.top url to fix storybook iframe url issues
 						if (sameDomain && link.search.startsWith("?path="))
@@ -191,8 +193,8 @@ export default {
 				);
 			},
 
-            codePanel: true
-        },
+			codePanel: true,
+		},
 		options: {
 			storySort: {
 				order: [

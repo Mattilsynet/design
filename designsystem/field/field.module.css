@@ -107,7 +107,9 @@
 		width: 100%;
 	}
 
-	.field u-combobox[data-multiple]:not([data-multiple="false"]) > data {
+	.field
+		u-combobox[data-multiple]:not([data-multiple="false"])
+		> data:not([hidden]) {
 		align-items: center;
 		background: var(--ds-color-surface-tinted);
 		border-radius: var(--ds-border-radius-full);

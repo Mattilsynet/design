@@ -47,4 +47,14 @@
 		box-sizing: border-box;
 		padding: var(--ds-size-5);
 	}
+
+	[role="tablist"]:has(+ .card:is([role="tabpanel"])) {
+		--dsc-tabs-list-border-color: var(--ds-color-border-subtle);
+		--dsc-tabs-tab-background--selected: var(--ds-color-surface-default);
+	}
+	.card:is([role="tabpanel"]) {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border-top: 0;
+	}
 }

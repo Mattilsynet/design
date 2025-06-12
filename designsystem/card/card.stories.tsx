@@ -331,57 +331,46 @@ export const Responsive: Story = {
 
 // export const Expandable: Story = {
 // 	render: () => (
-// 		<>
-// 			<div className={styles.card}>
-// 				<div className={styles.flex} data-align="center">
-// 					<button
-// 						type="button"
-// 						className={styles.button}
-// 						data-arrow
-// 						data-fixed
-// 						data-nowrap
-// 						aria-expanded="false"
-// 						aria-label="Åpne"
-// 					></button>
-// 					<h2 data-size="md" data-self="250" data-fixed>
-// 						123456789
-// 					</h2>
-// 					<div className={styles.flex} data-self="500" data-items="100">
-// 						<div className={styles.grid} data-items="100">
-// 							<span className={styles.info}>
-// 								<CalendarDotsIcon />
-// 								06.12.2024
-// 							</span>
-// 							<span className={styles.info}>
-// 								<ClockIcon />
-// 								19:37
-// 							</span>
-// 						</div>
-// 						<div className={styles.grid} data-items="100">
-// 							<span className={styles.info}>
-// 								<UploadSimpleIcon />
-// 								Groene Tuin
-// 							</span>
-// 							<span className={styles.info}>
-// 								<i>🇫🇷</i>
-// 								Frankrike
-// 							</span>
-// 						</div>
-// 						<div className={styles.grid} data-self="500" data-items="250">
-// 							<span className={styles.info}>
-// 								<DownloadSimpleIcon />
-// 								Blomquist Blomster AS
-// 							</span>
-// 							<span className={styles.info}>
-// 								<ListChecksIcon />
-// 								Daucus carota, Hydrangea paniculata, +4
-// 							</span>
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 			<div className={styles.card}>Hei</div>
-// 		</>
+// 		<u-details className={styles.card}>
+// 			<u-summary className={styles.flex} data-align="center">
+// 				<h2 data-size="md" data-self="250" data-fixed>
+// 					123456789
+// 				</h2>
+// 				<span className={styles.flex} data-self="500" data-items="100">
+// 					<span className={styles.grid} data-items="100">
+// 						<span className={styles.info}>
+// 							<CalendarDotsIcon />
+// 							06.12.2024
+// 						</span>
+// 						<span className={styles.info}>
+// 							<ClockIcon />
+// 							19:37
+// 						</span>
+// 					</span>
+// 					<span className={styles.grid} data-items="100">
+// 						<span className={styles.info}>
+// 							<UploadSimpleIcon />
+// 							Groene Tuin
+// 						</span>
+// 						<span className={styles.info}>
+// 							<i>🇫🇷</i>
+// 							Frankrike
+// 						</span>
+// 					</span>
+// 					<span className={styles.grid} data-self="500" data-items="250">
+// 						<span className={styles.info}>
+// 							<DownloadSimpleIcon />
+// 							Blomquist Blomster AS
+// 						</span>
+// 						<span className={styles.info}>
+// 							<ListChecksIcon />
+// 							Daucus carota, Hydrangea paniculata, +4
+// 						</span>
+// 					</span>
+// 				</span>
+// 			</u-summary>
+// 			<div>Hei</div>
+// 		</u-details>
 // 	),
 // };
 

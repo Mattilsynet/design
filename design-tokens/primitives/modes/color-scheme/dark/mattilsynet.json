@@ -8,8 +8,8 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#00000029",
-        "$description": "background-tinted\n16%"
+        "$value": "#FFFFFF0A",
+        "$description": "background-tinted\n4%"
       },
       "3": {
         "$type": "color",
@@ -89,8 +89,8 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#00000029",
-        "$description": "background-tinted\n(16%)"
+        "$value": "#FFFFFF0A",
+        "$description": "background-tinted\n(4%)"
       },
       "3": {
         "$type": "color",
@@ -171,8 +171,8 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#00000029",
-        "$description": "background-tinted\n16%"
+        "$value": "#FFFFFF0A",
+        "$description": "background-tinted\n4%"
       },
       "3": {
         "$type": "color",

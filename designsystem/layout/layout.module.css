@@ -152,6 +152,7 @@
 	}
 	.grid[data-fixed] { --mtds-grid-grow: auto-fill } /* "Fixes" sizes by causing max repetitions of columns - even empty if needed */
 	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-grid-size) }
+	.grid[data-items="auto"] { --mtds-grid-size: 0px } 
 	.grid[data-items="50"] { --mtds-grid-size: calc(1rem / 16 * 50) }
 	.grid[data-items="100"] { --mtds-grid-size: calc(1rem / 16 * 100) }
 	.grid[data-items="150"] { --mtds-grid-size: calc(1rem / 16 * 150) }
@@ -162,10 +163,4 @@
 	.grid[data-items="400"] { --mtds-grid-size: calc(1rem / 16 * 400) }
 	.grid[data-items="450"] { --mtds-grid-size: calc(1rem / 16 * 450) }
 	.grid[data-items="500"] { --mtds-grid-size: calc(1rem / 16 * 500) }
-	.grid[data-items="550"] { --mtds-grid-size: calc(1rem / 16 * 550) }
-	.grid[data-items="600"] { --mtds-grid-size: calc(1rem / 16 * 600) }
-	.grid[data-items="650"] { --mtds-grid-size: calc(1rem / 16 * 650) }
-	.grid[data-items="700"] { --mtds-grid-size: calc(1rem / 16 * 700) }
-	.grid[data-items="750"] { --mtds-grid-size: calc(1rem / 16 * 750) }
-	.grid[data-items="800"] { --mtds-grid-size: calc(1rem / 16 * 800) }
 }

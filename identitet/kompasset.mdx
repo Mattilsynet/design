@@ -1,17 +1,19 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import kompasset from './kompasset.jpg';
 import { FilePdfIcon, CompassRoseIcon } from '@phosphor-icons/react'
-import { Button, Details, Flex, Grid } from '../designsystem/react';
+import { Card, Button, Details, Flex, Grid } from '../designsystem/react';
 
 <Meta title="Identitet/Kompasset og roller" />
 
 # <CompassRoseIcon /> Kompasset og roller
 
-<figure>
+> For å bli opptre tydelige og enhetlig, må vi alle jobbe for de samme overordnede målene. Kompasset skal bidra til å samle oss, sette ord på hvem vi er og hva som er vår felles strategiske retning.
+
+<Card as="figure" style={{ padding: 'var(--mtds-1)' }}>
 <a href="/docs/mattilsynet-kompasset-nb.pdf" aria-label="Last ned stategisk kompass som PDF">
   <img src={kompasset} alt="" />
 </a>
-</figure>
+</Card>
 
 <Flex data-gap="8">
 <Grid>
@@ -30,12 +32,6 @@ import { Button, Details, Flex, Grid } from '../designsystem/react';
 
 <br />
 
-<Details>
-<Details.Summary>Bakgrunn</Details.Summary>
-
-Mattilsynet er i endring og brukerne våre trenger å forstå hvor vi er på vei. For å bli oppfattet som tydelige og enhetlige, må det synes at vi alle jobber for de samme overordnede målene. Dette kompasset skal bidra til å samle oss, sette ord på hvem vi er og hva som er vår strategiske retning. Slik kan det bli et verktøy i arbeidshverdagen, enten vi utvikler nye nettsider eller rekrutterer nye kolleger.
-
-</Details>
 <Details>
 <Details.Summary>Mål</Details.Summary>
 

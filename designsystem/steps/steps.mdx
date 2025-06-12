@@ -1,16 +1,13 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
+import { Tag } from '../react';
 import * as stories from './steps.stories';
 
 <Meta of={stories} />
 
-# Steps
+# Steps (Eksperimentell)
 - Bruk klassen `steps` på `<ol>`
 <Canvas of={stories.Default} />
-
-## Størrelser
-- Bruk `data-size="xs | sm | md | lg"`
-<Canvas of={stories.Sizes} />
 
 ## Tidslinkje
 - Steg kan også brukes som en tidslinje

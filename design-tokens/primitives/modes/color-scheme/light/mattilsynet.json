@@ -8,8 +8,8 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#E6EAE680",
-        "$description": "background-tinted\n50% opacity (HEX-80)"
+        "$value": "#3D5C3D0F",
+        "$description": "background-tinted\n6% opacity (HEX-0F)"
       },
       "3": {
         "$type": "color",

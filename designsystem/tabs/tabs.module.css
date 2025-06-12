@@ -4,6 +4,7 @@
 		--dsc-tabs-tab-color: var(--ds-color-text-subtle);
 		--dsc-tabs-tab-color--hover: var(--ds-color-text-default);
 		--dsc-tabs-tab-color--selected: var(--ds-color-text-default);
+		--dsc-tabs-tab-background--selected: transparent;
 		--dsc-tabs-list-border-color: var(--ds-color-border-default);
 		--dsc-tabs-content-padding: var(--ds-size-8) 0 0;
 		--dsc-tabs-gap: var(--ds-size-2);
@@ -15,7 +16,6 @@
 		animation-timeline: scroll(self inline);
 		border: 0;
 		display: flex;
-		gap: var(--dsc-tabs-gap);
 		overflow-x: auto;
 		scrollbar-width: none; /* Firefox */
 		mask: linear-gradient(
@@ -34,9 +34,10 @@
 		content: "";
 		flex-grow: 1;
 		border-bottom: var(--dsc-tabs-list-border-bottom-width)
-			var(--dsc-tabs-list-border-bottom-style);
+			var(--dsc-tabs-list-border-bottom-style) var(--dsc-tabs-list-border-color);
 	}
 	.tabs [role="tab"] {
+		border-color: var(--dsc-tabs-list-border-color);
 		border-radius: var(--ds-border-radius-md) var(--ds-border-radius-md) 0 0;
 		background: var(--ds-color-background-tinted);
 		transition-duration: .2s;
@@ -45,12 +46,16 @@
 	}
 	.tabs [role="tab"]::after {
 		all: unset; /* Reset DigiDir */
+		border-color: inherit;
 		border-radius: inherit;
 		border-style: var(--dsc-tabs-list-border-bottom-style);
 		border-width: 0 0 var(--dsc-tabs-list-border-bottom-width);
 		content: "";
 		inset: 0 calc(var(--dsc-tabs-gap) * -1);
 		position: absolute;
+	}
+	.tabs [role="tab"] + [role="tab"] {
+		margin-left: var(--dsc-tabs-gap);
 	}
 	.tabs [role="tab"]:last-child::after {
 		right: 0;
@@ -62,7 +67,7 @@
 		background: var(--ds-color-surface-active);
 	}
 	.tabs [role="tab"][aria-selected="true"] {
-		background: transparent;
+		background: var(--dsc-tabs-tab-background--selected);
 	}
 	.tabs [role="tab"][aria-selected="true"]::after {
 		border-width: var(--dsc-tabs-list-border-bottom-width)

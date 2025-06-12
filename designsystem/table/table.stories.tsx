@@ -10,7 +10,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { pagination } from "../";
 import { Table } from "../react";
 import styles from "../styles.module.css";
@@ -48,6 +48,19 @@ const mockExpand = mockData.slice(0, 10).map((row: RowType) => ({
 		</div>
 	),
 }));
+
+const mobileDecorators: StoryObj["decorators"] = [
+	(Story) => {
+		useEffect(() => {
+			const el = window.frameElement as HTMLElement;
+			const iframe = el?.nodeName === "IFRAME" ? el : undefined;
+			if (iframe) iframe.style.maxWidth = "400px";
+			return () => iframe?.removeAttribute("style");
+		}, []);
+
+		return <Story />;
+	},
+];
 
 export const Default: Story = {
 	render: () => (
@@ -1461,6 +1474,7 @@ export const Checkbox: Story = {
 };
 
 export const MobileScroll: Story = {
+	decorators: mobileDecorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1518,6 +1532,7 @@ export const MobileScroll: Story = {
 };
 
 export const MobileDivided: Story = {
+	decorators: mobileDecorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1571,6 +1586,7 @@ export const MobileDivided: Story = {
 };
 
 export const MobileSpaced: Story = {
+	decorators: mobileDecorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
@@ -1624,6 +1640,7 @@ export const MobileSpaced: Story = {
 };
 
 export const MobileStacked: Story = {
+	decorators: mobileDecorators,
 	parameters: {
 		viewport: {
 			defaultViewport: "mobile2", // Large mobile default viewport
