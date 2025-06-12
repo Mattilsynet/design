@@ -9,7 +9,7 @@
 @layer ds.theme.color-scheme.light {
 :root, [data-color-scheme="light"] {
   --ds-color-primary-background-default: #FAF7F4;
-  --ds-color-primary-background-tinted: #E6EAE680;
+  --ds-color-primary-background-tinted: #3D5C3D0F;
   --ds-color-primary-surface-default: #ffffff;
   --ds-color-primary-surface-tinted: #E2F1DF;
   --ds-color-primary-surface-hover: #D8EED8;
@@ -130,7 +130,7 @@
 @media (prefers-color-scheme: light) {
   [data-color-scheme="auto"] {
   --ds-color-primary-background-default: #FAF7F4;
-  --ds-color-primary-background-tinted: #E6EAE680;
+  --ds-color-primary-background-tinted: #3D5C3D0F;
   --ds-color-primary-surface-default: #ffffff;
   --ds-color-primary-surface-tinted: #E2F1DF;
   --ds-color-primary-surface-hover: #D8EED8;
