@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Alert, Button, Popover } from '../react.tsx';
+import { Alert, Button, Details, Popover, Table } from '../react.tsx';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
@@ -13,30 +13,94 @@ import * as stories from './layout.stories';
 - Bruk `flex` når du trenger forskjellige bredder på barna
 - Bruk `grid` når du trenger samme bredde på alle barna
 - Bruk [`prose`](?path=/story/designsystem-typography--prose)  når du har tekslig innhold som skal ha god typografisk rytme
-- I skjema brukes typisk `grid` med `data-gap="9"`, men dette kan justeres etter kontekst
+- Husk at du kan nøste `flex` og `grid` sammen for å få det beste fra begge verdener
 
-> ### Hvorfor ikke bare bruke Tailwind eller vanilla CSS?
-> Det er fullt mulig å bruke Tailwind eller CSS. Det vi får med `flex` og `grid` er konsistent kode og luftbruk, samt noen superpowers for responsivitet.
+<Details>
+<Details.Summary>Hvorfor ikke bare bruke Tailwind eller vanilla CSS?</Details.Summary>
+
+Det er fullt mulig å bruke Tailwind eller CSS. Det vi får med `flex` og `grid` er konsistent kode og luftbruk,
+samt noen superpowers for responsivitet via vår egen `data-items` attributt.
+</Details>
+
+## Attributter
+<Table data-fixed data-size="sm">
+  <thead style={{ position: 'sticky', top: 0, backgroundColor: 'var(--mtds-color-surface-default)' }}>
+    <tr>
+      <th>Attributt</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Standardverdi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`data-items`</td>
+      <td>Minimumsbredde på barna. Sikrer at barn brekker til nye linjer for å ungå at de blir for smale.</td>
+      <td>`50`, `100`, `150`, `200`, `250`, `300`, `350`, `400`, `450`, `500`, `auto`</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>`data-self`</td>
+      <td>Kan *kun* brukes på barn av `Flex` for å sette minimumsbredde på enkeltbarn.</td>
+      <td>`50`, `100`, `150`, `200`, `250`, `300`, `350`, `400`, `450`, `500`</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>`data-nowrap`</td>
+      <td>Hindrer barna i å flyte over flere linjer. Kan settes direkte på barn i `Flex`.</td>
+      <td>[Boolsk attributt](https://developer.mozilla.org/en-US/docs/Glossary/Boolean/HTML)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>`data-fixed`</td>
+      <td>Hindrer barna i å vokse i bredden. Kan settes direkte på barn i `Flex`.</td>
+      <td>[Boolsk attributt](https://developer.mozilla.org/en-US/docs/Glossary/Boolean/HTML)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>`data-gap`, `data-row-gap`, `data-colum-gap`</td>
+      <td>Avstand mellom barna. Bruker size tokens `--mtds-*`. Alias for [gap](https://developer.mozilla.org/en-US/docs/Web/CSS/gap)</td>
+      <td>`0`,  `1`,  `2`,  `4`,  `5`,  `6`,  `7`,  `8`,  `9`,  `10`,  `11`,  `12`,  `13`,  `14`,  `15`,  `18`,  `22`,  `26`,  `30`</td>
+      <td>`3`</td>
+    </tr>
+    <tr>
+      <td>`data-center`</td>
+      <td>Maksbredde og midtstilling komponenten.</td>
+      <td>`none`,<br />`sm` (max `640px`),<br />`md` (max `768px`),<br />`lg` (max `1024px`),<br />`xl` (max `1280px`),<br />`2xl` (max `1536px`)</td>
+      <td>`none`</td>
+    </tr>
+    <tr>
+      <td>`data-align`</td>
+      <td>Vertikal justering av barna. Alias for [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items).</td>
+      <td>`normal`, `start`, `center`, `end`, `baseline`, `stretch`</td>
+      <td>`normal`</td>
+    </tr>
+    <tr>
+      <td>`data-align-content`</td>
+      <td>Vertikal justering av *alle* barna. Alias for [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content).</td>
+      <td>`normal`, `start`, `center`, `end`, `baseline`, `stretch`, `space-around`, `space-between`, `space-evenly`</td>
+      <td>`normal`</td>
+    </tr>
+    <tr>
+      <td>`data-justify`</td>
+      <td>Horisontal justering av *alle* barna. Alias for [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).</td>
+      <td>`normal`, `start`, `center`, `end`, `baseline`, `stretch`, `space-around`, `space-between`, `space-evenly`</td>
+      <td>`normal`</td>
+    </tr>
+  </tbody>
+</Table>
 
 
 ## Flex
-- **Bruk `flex` når du trenger forskjellige bredder på barna**
-- **Bruk heller `prose` eller `grid` når du skal ha <button type="button" data-popover="inline" popoverTarget="grid-stack">under hverandre</button>**
-- Bruk `data-align`, `data-justify`, `data-align-content`, `data-center`, `data-gap`, `data-row-gap` og `data-column-gap` for å sette [tilsvarende CSS egenskaper](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox#alignment_justification_and_distribution_of_free_space_between_items)
-- Bruk `data-nowrap` på `Flex` eller barn for å hindre brytning til ny linje
-- Bruk `data-fixed` på `Flex` eller barn for å hindre at barn vokser
-- Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
-- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` på `Flex` eller `data-self="*"` på barn for minimumsbredder
+- Bruk `flex` når du trenger forskjellige bredder på barna
+- Bruk heller `prose` eller `grid` når du skal ha <button type="button" data-popover="inline" popoverTarget="grid-stack">under hverandre</button>
 
 <Popover id="grid-stack">...siden `flex-direction: column` kan ha uønskede<br />bieffekter på f.eks. `align-items`, `justify-content`</Popover>
 <Canvas of={stories.FlexStory} />
 
 ## Grid
-- **Bruk `grid` når du trenger samme bredder på alle elementer**
-- **Bruk `grid` *uten* `data-items` for å sette elementer under hverandre**
-- Bruk `data-items="auto"` for automatisk antall kolonner basert på antall elementer inni
-- Bruk `data-items="50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500"` for minimumsbredder på barn
-- Bruk `data-fixed` for å låste bredder
+- Bruk `grid` når du trenger samme bredder på alle elementer
+- Bruk `grid` *uten* `data-items` for å sette elementer under hverandre
 <Canvas of={stories.GridStory} />
 
 ## Gap
@@ -48,7 +112,6 @@ import * as stories from './layout.stories';
 - Bruk `data-center="sm | md | lg | xl | 2xl"` for å sentrere innholdet
 - Elementet vil allid ha minimum `5vw` luft på venste og høyre side
 - Vi bruker hovedsakelig `2xl` som hoved container for innhold
-- Virker på både `flex` og `grid`
 <div className="sbdocs-canvas-thumbnail">
   <Button data-arrow data-variant="primary" href="?path=/story/designsystem-layout--center">Se center i egen visning</Button>
   <Canvas className="sbdocs-canvas--max-height" of={stories.Center} />
@@ -56,17 +119,14 @@ import * as stories from './layout.stories';
 
 ## Align
 - `data-align="normal | start | center | end | stretch"` (`normal` er default) setter vertikal plassering med [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) 
-- Virker på både `flex` og `grid`
 <Canvas of={stories.Align} />
 
 ## Justify
 - `data-justify="start | center | end | space-between | space-around | space-evenly"` setter horisontal plassering med [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) 
-- Virker på både `flex` og `grid`
 <Canvas of={stories.Justify} />
 
 ## AlignContent
 - `data-align-content="start | center | end | space-between | space-around | space-evenly"` setter vertikal plassering over flere rader med [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)
-- Virker på både `flex` og `grid`
 <Canvas of={stories.AlignContent} />
 
 <CssVariables component="layout" />

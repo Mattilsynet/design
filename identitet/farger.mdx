@@ -1,16 +1,44 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
 import { SwatchesIcon } from "@phosphor-icons/react";
+import { Button, Details, Prose } from '../designsystem/react';
 
 <Meta title="Identitet/Farger" />
 
 # <SwatchesIcon /> Farger
 
-## Bakgrunn
+> Mattilsynets fargepalett er inspirert av visjonen vår: «Vi trygger framtiden for mennesker, dyr og natur». Derfor rommer den grønn granskog, vannet i bekken, årstidene, planter, himmel og hav.
 
-Mattilsynets fargepalett er inspirert av visjonen vår: «Vi trygger framtiden for mennesker, dyr og natur». Derfor rommer den grønn granskog, vannet i bekken, årstidene, planter, himmel og hav. Hovedfargen er «Granskog» - en blågrønn farge som favner samfunnsoppdraget vårt både til lands og til vanns, og som, i sin tyngde, oppleves å ha integritet og seriøsitet. Fargene brukes aktivt til å seksjonere innhold, fremheve budskap og til å skape variasjon og dynamikk på ulike flater. De opptrer i illustrasjonene våre, og er ment å oppleves som naturlige. De kan settes sammen i ulike kombinasjoner, avhengig av kontekst. I noen sammenhenger skal den vennlige hjelperen fremheves, i andre den seriøse myndighetsutøveren.
-Vi må være bevisst kontraster når fargene brukes sammen. Tekstinnhold skal alltid ha god kontrast til bakgrunnen. Det er et lovkrav på digitale flater, men er likeså viktig på trykte. Mattilsynet skal alltid kommunisere klart og tydelig. 
+<Details>
+<Details.Summary>Bruk av farger</Details.Summary>
+<Prose>
+Hovedfargen er «Granskog» - en blågrønn farge som favner samfunnsoppdraget vårt både til lands og til vanns, og som, i sin tyngde, oppleves å ha integritet og seriøsitet.
 
-Paletten består av 16 hovedfarger, i tillegg til sort og hvitt:
+Fargene brukes aktivt til å seksjonere innhold, fremheve budskap og til å skape variasjon og dynamikk på ulike flater. 
+De opptrer i illustrasjonene våre, og er ment å oppleves som naturlige. De kan settes sammen i ulike kombinasjoner, avhengig av kontekst. 
+I noen sammenhenger skal den vennlige hjelperen fremheves, i andre den seriøse myndighetsutøveren.
+
+Vi må være bevisst kontraster når fargene brukes sammen. Tekstinnhold skal alltid ha god kontrast til bakgrunnen.
+Det er et lovkrav på digitale flater, men er likeså viktig på trykte. Mattilsynet skal alltid kommunisere klart og tydelig. 
+
+Sammen med den lysegrønne fargen, «Lav», skaper «Granskog» en tydelig og gjenkjennbar fargekombinasjon. «Granskog» og «Nype» er også en kombinasjon som gir mye egenart.
+«Gåsunge» brukes først og fremst som en nøytral bakgrunnsfarge, slik det blant annet gjøres på mattilsynet.no.
+«Lys furu» er, som navnet tilsier, en lysere utgave av «Furu». Lyshetsgraden sikrer bedre kontrast (enn «Furu») når den brukes som bakgrunnsfarge.
+«Mørk granskog» er en dypere versjon av «Granskog» og skal kun brukes på tekst. Denne fargen er svært mørk for å sikre god kontrast til bakgrunnen, og dermed god lesbarhet på de flatene hvor den opptrer.
+Den mørkeblå «Fjord» skal ikke brukes som bakgrunnsfarge eller i store mengder da den lett blir for lik «Granskog» og vil konkurrere med denne.
+</Prose>
+</Details>
+<Details>
+
+<Details.Summary>Fargekoder</Details.Summary>
+<Prose>
+Det finnes ulike fargekoder til ulike produksjonsmetoder: Skjerm: HEX(#) eller RGBTrykk og digitaltrykk: CMYKSilketrykk eller trykk på fysiske produkter: PMS (Pantone)Maling og lakk av eksempelvis skilt og biler: RAL. RAL-koder med fire tall er hentet fra «RAL Classic system», koder med flere enn fire tall er fra «RAL Design System Plus».
+Fargepaletten er inkludert i Mattilsynets PPT-mal.
+</Prose>
+</Details>
+
+<Button href="?path=/docs/designsystem-tokens--docs" data-arrow data-variant="secondary">Se også farger til digitale produkter</Button>
+
+## Hovedpalett
  
 <ColorPalette>
   <ColorItem colors={["#054449"]} title="Granskog" />
@@ -33,25 +61,12 @@ Paletten består av 16 hovedfarger, i tillegg til sort og hvitt:
   <ColorItem colors={["#ffffff"]} title="Hvit" />
 </ColorPalette>
 
-## Fargekoder
-Det finnes ulike fargekoder til ulike produksjonsmetoder:Skjerm: HEX(#) eller RGBTrykk og digitaltrykk: CMYKSilketrykk eller trykk på fysiske produkter: PMS (Pantone)Maling og lakk av eksempelvis skilt og biler: RAL. RAL-koder med fire tall er hentet fra «RAL Classic system», koder med flere enn fire tall er fra «RAL Design System Plus».
-Fargepaletten er inkludert i Mattilsynets PPT-mal.
-
-For digitale produkter finnes det flere bakgrunnsfarger å velge i - se lengre ned på siden, eller på «Lightskinning av mattilsynet.no»
-
-## Bruk av farge
-Hovedfargen vår, «Granskog», brukes på de fleste av Mattilsynets flater. Sammen med den lysegrønne fargen, «Lav», skaper denne en tydelig og gjenkjennbar fargekombinasjon. «Granskog» og «Nype» er også en kombinasjon som gir mye egenart. «Gåsunge» brukes først og fremst som en nøytral bakgrunnsfarge, slik det blant annet gjøres på mattilsynet.no. «Lys furu» er, som navnet tilsier, en lysere utgave av «Furu». Lyshetsgraden sikrer bedre kontrast (enn «Furu») når den brukes som bakgrunnsfarge.
-
-«Mørk granskog» er en dypere versjon av «Granskog» og skal kun brukes på tekst. Denne fargen er svært mørk for å sikre god kontrast til bakgrunnen, og dermed god lesbarhet på de flatene hvor den opptrer.
-
-Den mørkeblå «Fjord» skal ikke brukes som bakgrunnsfarge eller i store mengder da den lett blir for lik «Granskog» og vil konkurrere med denne.
-
-[GRAFIKK]
+{/* [GRAFIKK]
 
 ## Eksempler
 Under er noen eksempler på fargekombinasjoner som fungerer fint sammen.
 
-[GRAFIKK]
+[GRAFIKK] */}
 
 ## Illustrasjonsfarger
 
@@ -76,7 +91,7 @@ Fargene under brukes som hovedregel i Mattilsynets illustrasjoner.
 
 ## Bakgrunner
 
-Blå, gul og rosa finnes i lysere varianter enn de som inngår i brand-paletten. Disse brukes i hovedsak som bakgrunnsfarger.
+Blå, gul og rosa finnes i lysere varianter enn de som inngår i hovedpaletten. Disse brukes i hovedsak som bakgrunnsfarger.
 <ColorPalette>
   <ColorItem colors={['#DFEEF6']} title="Bakgrunnsblå" />
   <ColorItem colors={['#FCF0D2']} title="Bakgrunnsgul" />
@@ -85,7 +100,7 @@ Blå, gul og rosa finnes i lysere varianter enn de som inngår i brand-paletten.
 
 {/* ## Digitale produkter
 
-Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
+Fargene under brukes i tillegg til hoved, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
 
 <ColorPalette>
   <ColorItem colors={['#3C725E']} title="Mørk furu" />
@@ -97,7 +112,7 @@ Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på 
 
 ## Skalaer
 
-Fargene under brukes i tillegg til brand-, bakgrunn- og illustrasjonspalett på digitale produkter og tjenester.
+Fargene under brukes i tillegg til hoved-, bakgrunn- og illustrasjonspalett.
 
 <ColorPalette>
   <ColorItem colors={['#F3F8F1']} title="Grønn 100" />

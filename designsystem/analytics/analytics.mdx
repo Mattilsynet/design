@@ -20,12 +20,12 @@ import { Details } from '../react';
 - **React?** Husk `"use client"` i filer som bruker `analytics` for sikte client-side javascript
 
 <Details>
-<Details.Summary>Hva gjør `analtics` som jeg ikke får ved å bruke Matomo direkte?</Details.Summary>
+<Details.Summary>Hva gjør `analytics` som jeg ikke får ved å bruke Matomo direkte?</Details.Summary>
 
 Mattilsynet bruker for tiden [Matomo](https://matomo.org/) som analyseverktøy, og `analytics` er en wrapper rundt Matomos [JavaScript API](https://developer.matomo.org/guides/tracking-javascript-guide). Dette gir oss: 
 - en felles standard for hvordan vi logger data
 - enkel bruk med mulighet for å bytte eller legge til andre analysetjenester på sikt
-- mulighet for felles cookie banner på sikt
+- mulighet for felles samtykke-boks på sikt
 - mulighet for automatisk analyse på designsystem-komponenter
 - felles Matomo oppsett - blant annet:
   - [Logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking) er automatisk på
@@ -38,7 +38,7 @@ import { analytics } from '@mattilsynet/design';
 
 analytics('init', {
   matomoId: string | number,   // Required: Your Matomo siteId
-  enabled?: boolean | 'debug', // Optional: Set false or 'debug' for test environments
+  enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
 });
 ```
 
@@ -61,7 +61,7 @@ analytics('pageview', {
 analytics('event', {
   category: string, // Required: The category of the event, e.g., 'video', 'link', 'form'
   action: string,   // Required: The action performed, e.g., 'play', 'click', 'submit'
-  label?: string,   // Optional: The name of the item interacted with, e.g., video title, form name
+  name?: string,    // Optional: The name of the item interacted with, e.g., video title, form name
   value?: number,   // Optional: A numeric value associated with the event, e.g., product price, video completion percentage
 });
 ```

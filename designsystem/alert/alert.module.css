@@ -92,11 +92,10 @@
 
 		&::before {
 			background: currentcolor;
-			box-sizing: border-box;
 			content: "";
 			display: block;
 			height: var(--mtds-icon-size);
-			mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+			mask: center / contain no-repeat var(--mtds-icon-close);
 			position: relative;
 			width: var(--mtds-icon-size);
 		}

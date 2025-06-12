@@ -343,7 +343,7 @@ export const WithCombobox: Story = {
 			<label>Med forslag</label>
 			<u-combobox>
 				<input className={styles.input} />
-				<del hidden aria-label="Fjern tekst"></del>
+				<del aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -368,7 +368,7 @@ export const WithComboboxMultiple: Story = {
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input className={styles.input} />
-				<del hidden aria-label="Fjern tekst"></del>
+				<del aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -421,7 +421,7 @@ export const WithComboboxAPI: Story = {
 						onInput={handleInput} // Note: using onInput, not onChange
 						ref={inputRef}
 					/>
-					<del hidden aria-label="Fjern tekst"></del>
+					<del aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -462,7 +462,7 @@ export const WithComboboxCustomFilter: Story = {
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
-					<del hidden aria-label="Fjern tekst"></del>
+					<del aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{options
 							.filter((option) =>
@@ -490,7 +490,7 @@ export const ReactWithCombobx: Story = {
 			<p>Beskrivelse</p>
 			<Field.Combobox>
 				<Input className={styles.input} />
-				<del hidden aria-label="Fjern tekst"></del>
+				<del aria-label="Fjern tekst"></del>
 				<Field.Datalist>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -511,7 +511,7 @@ export const ReactWithComboboxMultiple: Story = {
 			<Field.Combobox data-multiple>
 				<data>Saft</data>
 				<Input className={styles.input} />
-				<del hidden aria-label="Fjern tekst"></del>
+				<del aria-label="Fjern tekst"></del>
 				<Field.Datalist data-nofilter>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -571,7 +571,7 @@ export const ReactWithCombobxControlled: Story = {
 							</data>
 						))}
 						<Input className={styles.input} />
-						<del hidden aria-label="Fjern tekst"></del>
+						<del aria-label="Fjern tekst"></del>
 						<Field.Datalist>
 							{options.map((option) => (
 								<Field.Option key={option} value={option}>
@@ -612,7 +612,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 							className={styles.input}
 							onInput={({ currentTarget }) => setValue(currentTarget.value)}
 						/>
-						<del hidden aria-label="Fjern tekst"></del>
+						<del aria-label="Fjern tekst"></del>
 						<Field.Datalist>
 							{options
 								.filter((option) =>

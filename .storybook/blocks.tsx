@@ -9,6 +9,7 @@ import {
 	type GridProps,
 	Select,
 	Table,
+	Tag,
 } from "../designsystem/react";
 import styles from "../designsystem/styles.module.css";
 import css from "../designsystem/styles.module.css?inline";
@@ -175,7 +176,7 @@ export const Overview = ({
 					<br />
 				</>
 			)}
-			<Grid data-align="stretch" data-items="200">
+			<Grid data-align="stretch" data-items="200" data-gap="10">
 				{items
 					.filter((s) => !filter || s.default?.parameters?.tag === filter)
 					.map((stories, key) => {
@@ -199,19 +200,23 @@ export const Overview = ({
 							const href = `${baseUrl}-${file}--${variant === "Default" ? "docs" : variantPath}`;
 
 							return (
-								<Grid className="component" key={key + variant + ts}>
+								<Grid
+									className="component"
+									data-gap="2"
+									key={key + variant + ts}
+								>
 									<Card>
 										<div>
 											<Story of={of} />
 										</div>
 									</Card>
-									<a href={href}>
+									<Grid as="a" href={href}>
 										<h2 data-size="md">
 											{items.length > 1 && name}
 											{items.length > 1 && variants.length > 1 && ": "}
 											{variants.length > 1 && variant.replace(/Story$/, "")}
 										</h2>
-									</a>
+									</Grid>
 								</Grid>
 							);
 						});
@@ -230,6 +235,7 @@ declare global {
 				name: string;
 				svg: string | false;
 				tags: string[];
+				label?: string;
 			}
 		>;
 	}
@@ -285,6 +291,7 @@ export const Graphics = ({
 		>
 			<style>
 				{`
+					.graphics mark { position: absolute }
 					.graphics svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }
 					.graphics img { aspect-ratio: 12 / 8; display: block; min-width: calc(100% + 1em); object-fit: cover; margin: -.5em }
 					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
@@ -330,7 +337,7 @@ export const Graphics = ({
 				)}
 			</Flex>
 			<Grid className="graphics" data-items="250" data-fixed {...rest}>
-				{graphics.map(({ file, categories, tags, name, svg, href }) => {
+				{graphics.map(({ file, categories, tags, name, svg, label, href }) => {
 					const show =
 						(!category || categories.some((cat) => category === cat)) &&
 						(!query ||
@@ -348,6 +355,11 @@ export const Graphics = ({
 							key={name}
 							onClick={copyToImage}
 						>
+							{label && (
+								<Tag as="mark" data-color="info" data-size="sm">
+									{label}
+								</Tag>
+							)}
 							{svg ? (
 								<span dangerouslySetInnerHTML={{ __html: svg }} />
 							) : (

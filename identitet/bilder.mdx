@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Wide, Graphics } from '../.storybook/blocks';
-import { Button, Details, Prose } from '../designsystem/react';
-import { ArrowSquareOutIcon, MountainsIcon } from "@phosphor-icons/react";
+import { Button, Divider, Details, Grid, Prose } from '../designsystem/react';
+import { MountainsIcon } from "@phosphor-icons/react";
 import naertogfjert from './bilder/1-naert-og-fjernt.png';
 import mennesker from './bilder/2-mennesker.png';
 import dyr from './bilder/3-dyr.png';
@@ -83,4 +83,6 @@ import framtid from './bilder/5-framtid.png';
 
 <Wide><Graphics path="docs/bilder" searchable /></Wide>
 
-<Button data-variant="primary" href="https://mattilsynet.sharepoint.com/sites/BilderMattilsynet" target="_blank">Finn høyoppløselige bilder på SharePoint <ArrowSquareOutIcon /></Button>
+<Divider data-gap="15" />
+
+<Grid data-justify="center"><Button data-variant="secondary" href="https://mattilsynet.sharepoint.com/sites/BilderMattilsynet" data-arrow>Finn høyoppløselige bilder på SharePoint</Button></Grid>

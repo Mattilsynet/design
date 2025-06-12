@@ -199,18 +199,22 @@
 	},
 	"slakteri-kylling-inspektor.jpg": {
 		"categories": ["Slakteri"],
-		"tags": ["kylling", "fjørfe", "høns", "høne"]
+		"tags": ["kylling", "fjørfe", "høns", "høne"],
+		"label": "Kun til dokumentasjon"
 	},
 	"slakteri-kylling-linje.jpg": {
 		"categories": ["Slakteri"],
-		"tags": ["kylling", "fjørfe", "høns", "høne"]
+		"tags": ["kylling", "fjørfe", "høns", "høne"],
+		"label": "Kun til dokumentasjon"
 	},
 	"slakteri-kylling-to-inspektorer.jpg": {
 		"categories": ["Slakteri"],
-		"tags": ["kylling", "fjørfe", "høns", "høne"]
+		"tags": ["kylling", "fjørfe", "høns", "høne"],
+		"label": "Kun til dokumentasjon"
 	},
 	"slakteri-kylling.jpg": {
 		"categories": ["Slakteri"],
-		"tags": ["kylling", "fjørfe", "høns", "høne"]
+		"tags": ["kylling", "fjørfe", "høns", "høne"],
+		"label": "Kun til dokumentasjon"
 	}
 }
