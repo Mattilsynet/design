@@ -324,7 +324,7 @@ export const WithFadeAndDirection: Story = {
 				<ol className={styles.steps} data-fade data-direction="up">
 					<li>
 						<mark />
-						<strong>Steg 1</strong>
+						<strong>Steg 3</strong>
 					</li>
 					<li aria-current="step">
 						<mark />
@@ -332,7 +332,7 @@ export const WithFadeAndDirection: Story = {
 					</li>
 					<li>
 						<mark />
-						<strong>Steg 3</strong>
+						<strong>Steg 1</strong>
 					</li>
 				</ol>
 				<strong>
@@ -342,7 +342,7 @@ export const WithFadeAndDirection: Story = {
 				<ol className={styles.steps} data-fade="start" data-direction="up">
 					<li>
 						<mark />
-						<strong>Steg 1</strong>
+						<strong>Steg 3</strong>
 					</li>
 					<li aria-current="step">
 						<mark />
@@ -350,7 +350,7 @@ export const WithFadeAndDirection: Story = {
 					</li>
 					<li>
 						<mark />
-						<strong>Steg 3</strong>
+						<strong>Steg 1</strong>
 					</li>
 				</ol>
 				<strong>
@@ -360,7 +360,7 @@ export const WithFadeAndDirection: Story = {
 				<ol className={styles.steps} data-fade="end" data-direction="up">
 					<li>
 						<mark />
-						<strong>Steg 1</strong>
+						<strong>Steg 3</strong>
 					</li>
 					<li aria-current="step">
 						<mark />
@@ -368,7 +368,7 @@ export const WithFadeAndDirection: Story = {
 					</li>
 					<li>
 						<mark />
-						<strong>Steg 3</strong>
+						<strong>Steg 1</strong>
 					</li>
 				</ol>
 			</Grid>
