@@ -4,8 +4,7 @@ import { Flex, Grid, Steps } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
-	id: "designsystem-steps--docs",
-	title: "Designsystem/Steps (Eksperimentell)",
+	title: "Designsystem/Steps",
 	parameters: {
 		layout: "padded",
 	},
