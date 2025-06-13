@@ -159,9 +159,7 @@ export const React: Story = {
 					</li>
 				</Popover>
 			</App.Header>
-			<Button data-command="toggle-app-expanded" data-tooltip="Vis meny">
-				Skjul meny
-			</Button>
+			<App.Toggle />
 			<App.Sidebar>
 				<App.Sticky as="menu">
 					<li>

@@ -16,8 +16,9 @@ export const toggleAppExpanded = (force?: boolean) =>
 	// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
 	useTransition(() => window.mtdsToggleAppExpanded?.(force));
 
-function handleToggleClick({ target: el }: Event) {
-	if (!(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE)) return;
+function handleToggleClick({ target: el, defaultPrevented: stop }: Event) {
+	if (stop || !(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE))
+		return;
 	if (getComputedStyle(el).position === "sticky") return toggleAppExpanded();
 	useTransition(() => {
 		const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
