@@ -6,11 +6,25 @@ import * as stories from './steps.stories';
 <Meta of={stories} />
 
 # Steps (Eksperimentell)
-- Bruk klassen `steps` på `<ol>`
+- Bruk klassen `steps` på `<ul>`
+- Legg `<li>` elementer inni, med `<mark>` som barn av hver `<li>`
+- Legg valgfritt til mer tekst etter `<mark>`
+- Legg valgfritt ikon inni `<mark>` - dette erstatter standard ikon som følger fargene
+- Bruk `aria-current="step"` på valgt `<li>`
+- Bruk `data-color` for å endre farge på stegene
 <Canvas of={stories.Default} />
+
+## Retning
+- Bruk `data-direction="right | down | up"` for å endre retningen på stegene
+<Canvas of={stories.WithDirection} />
 
 ## Tidslinje
 - Steg kan også brukes som en tidslinje
+- Dersom du ikke setter `aria-current="step"`, men heller bruker `data-color="main | success | warning | danger"`, du ikke få fylt strek mellom punktene
 <Canvas of={stories.Timeline} />
+
+## Interasjon
+- Legg `<a>` eller `<button>` som direkte barn av `<li>` for å gjøre stegene interaktive
+<Canvas of={stories.WithInteraction} />
 
 <CssVariables component="steps" />
