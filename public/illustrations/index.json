@@ -172,7 +172,7 @@
 	},
 	"person-mobile.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "mobiltelefon", "arm"]
+		"tags": ["person", "menneske", "inspektør", "mobiltelefon", "arm"]
 	},
 	"team.svg": {
 		"categories": ["Mennesker"],
@@ -263,5 +263,143 @@
 	"person-faucet-drop.svg": {
 		"categories": ["Mennesker", "Drikkevann"],
 		"tags": ["vannkran", "drikkevann", "vanndråpe", "person", "menneske"]
+	},
+	"turnip-meat.svg": {
+		"categories": ["Mat"],
+		"tags": ["nepe", "kjøtt"]
+	},
+	"bread.svg": {
+		"categories": ["Mat"],
+		"tags": ["brødskive", "loff"]
+	},
+	"drop-apple-bread.svg": {
+		"categories": ["Drikkevann", "Mat"],
+		"tags": ["drikkevann", "vanndråpe", "eple", "frukt", "brød"]
+	},
+	"drop-apple.svg": {
+		"categories": ["Drikkevann", "Mat"],
+		"tags": ["drikkevann", "vanndråpe", "eple", "frukt"]
+	},
+	"plane.svg": {
+		"categories": ["Eksport"],
+		"tags": ["fly", "skyer", "eksport", "transport"]
+	},
+	"fork-knife-spoon.svg": {
+		"categories": ["Mat"],
+		"tags": ["mat", "gaffel", "spise", "kniv", "skje"]
+	},
+	"fork-knife.svg": {
+		"categories": ["Mat"],
+		"tags": ["mat", "gaffel", "spise", "kniv"]
+	},
+	"fork.svg": {
+		"categories": ["Mat"],
+		"tags": ["mat", "gaffel", "spise"]
+	},
+	"heart-cat.svg": {
+		"categories": ["Dyr"],
+		"tags": ["hjerte", "katt", "dyr"]
+	},
+	"heart.svg": {
+		"categories": ["Visjon"],
+		"tags": ["hjerte", "rød"]
+	},
+	"hearts-blue.svg": {
+		"categories": ["Visjon"],
+		"tags": ["hjerter", "blå"]
+	},
+	"hearts-green.svg": {
+		"categories": ["Visjon"],
+		"tags": ["hjerter", "grønn"]
+	},
+	"hearts-red.svg": {
+		"categories": ["Visjon"],
+		"tags": ["hjerter", "rød"]
+	},
+	"inspector-ai.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"menneske",
+			"person",
+			"inspektør",
+			"ai",
+			"kunstig intelligens",
+			"teknologi"
+		]
+	},
+	"inspector-cow.svg": {
+		"categories": ["Mennesker", "Dyr"],
+		"tags": ["inspektør", "person", "menneske", "ku", "kyr"]
+	},
+	"knife.svg": {
+		"categories": ["Mat"],
+		"tags": ["kniv", "spise"]
+	},
+	"person-flask-water-fish-pig.svg": {
+		"categories": ["Dyr", "Drikkevann", "Mennesker", "Kosmetikk"],
+		"tags": [
+			"menneske",
+			"flaske",
+			"kosmetikk",
+			"drikkevann",
+			"vanndråpe",
+			"fisk",
+			"gris",
+			"svin",
+			"person"
+		]
+	},
+	"plant-dog-fish.svg": {
+		"categories": ["Dyr", "Planter"],
+		"tags": ["plante", "hund", "fisk"]
+	},
+	"postits.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"mennesker",
+			"personer",
+			"møte",
+			"team",
+			"postit",
+			"post-it",
+			"lapper",
+			"notater"
+		]
+	},
+	"pregnant-fork-plant.svg": {
+		"categories": ["Mat", "Mennesker"],
+		"tags": [
+			"mennesker",
+			"personer",
+			"gravid",
+			"gaffel",
+			"spise",
+			"mat",
+			"plante"
+		]
+	},
+	"pregnant-fork.svg": {
+		"categories": ["Mat", "Mennesker"],
+		"tags": ["mennesker", "personer", "gravid", "gaffel", "spise", "mat"]
+	},
+	"ship.svg": {
+		"categories": ["Eksport"],
+		"tags": ["skip", "båt", "eksport", "transport"]
+	},
+	"spoon.svg": {
+		"categories": ["Mat"],
+		"tags": ["drikkevann", "vanndråpe", "spise", "mat", "skje"]
+	},
+	"star-1.svg": {
+		"categories": ["Visjon"],
+		"tags": ["drikkevann", "vanndråpe", "stjerner"]
+	},
+	"star-2.svg": {
+		"categories": ["Visjon"],
+		"tags": ["drikkevann", "vanndråpe", "stjerner"]
+	},
+	"stars.svg": {
+		"categories": ["Visjon"],
+		"tags": ["drikkevann", "vanndråpe", "stjerner"]
 	}
 }

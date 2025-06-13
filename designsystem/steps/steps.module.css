@@ -11,7 +11,7 @@
 		padding: 0;
 		text-align: center;
 	}
-	.steps > * {
+	.steps > li {
 		--dot-after: var(--mtdsc-steps-stroke-color);
 		--dot-before: var(--mtdsc-steps-stroke-color);
 		--dot-text: initial;
@@ -21,7 +21,6 @@
 		border-radius: var(--ds-border-radius-md);
 		box-sizing: border-box;
 		flex: 1;
-		padding-top: calc(var(--mtdsc-steps-dot-size) + var(--mtdsc-steps-gap));
 		position: relative;
 		text-decoration: none;
 	}
@@ -29,8 +28,8 @@
 	/*
 	 * Line
 	 */
-	.steps > ::before,
-	.steps > ::after {
+	.steps > li::before,
+	.steps > li::after {
 		background: linear-gradient(to right, transparent, var(--dot-before));
 		content: "";
 		height: var(--mtdsc-steps-stroke-size);
@@ -39,21 +38,21 @@
 		position: absolute;
 		translate: 0 -50%;
 	}
-	.steps > ::after {
+	.steps > li::after {
 		background: linear-gradient(to right, var(--dot-after), transparent);
 		inset-inline: 50% -50%;
 	}
-	.steps > :first-child::before {
+	.steps > li:first-child::before {
 		left: 0;
 	}
-	.steps > :last-child::after {
+	.steps > li:last-child::after {
 		right: 0;
 	}
 
 	/*
 	 * Dot
 	 */
-	.steps > * > mark {
+	.steps > li mark {
 		background: var(--dot-fill);
 		border-radius: var(--ds-border-radius-full);
 		border: var(--mtdsc-steps-stroke-size) solid
@@ -63,57 +62,79 @@
 		height: var(--mtdsc-steps-dot-size);
 		display: grid;
 		place-items: center;
-		inset: 0 0 auto;
-		margin-inline: auto;
-		position: absolute;
+		margin: 0 auto var(--mtdsc-steps-gap);
+		position: relative;
 		transition: .2s scale;
 		width: var(--mtdsc-steps-dot-size);
 		z-index: 2; /* Place above line */
 	}
-	.steps > * > mark > svg,
-	.steps > * > mark:empty::before {
+	.steps > li mark > svg,
+	.steps > li mark:empty::before {
 		width: 75%;
 		height: 75%;
 	}
-	.steps > * > mark:empty::before {
+	.steps > li mark:empty::before {
 		background: currentColor;
 		content: "";
 		mask: var(--dot-icon) center / contain no-repeat;
 	}
-	.steps > :is(a, button, [role="button"]):hover:not(:active) > mark {
+
+	/*
+	 * Interaction
+	 */
+	.steps > li > :is(a, button):only-child {
+		background: none;
+		border: 0;
+		box-sizing: border-box;
+		color: inherit;
+		cursor: pointer;
+		display: block;
+		font: inherit;
+		margin: 0;
+		padding: 0;
+		text-align: inherit;
+		text-decoration: none;
+		width: 100%;
+	}
+	.steps > li > :is(a, button):only-child:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
+	}
+	.steps > li > :is(a, button):only-child:hover:not(:active) mark {
 		scale: 1.175;
 	}
 
 	/*
 	 * States
 	 */
-	.steps:not([data-direction="up"]) > [aria-current="step"],
-	.steps:not([data-direction="up"]) > :has(~ [aria-current="step"]),
-	.steps[data-direction="up"] > [aria-current="step"] ~ * {
+	.steps:not([data-direction="up"]) > li[aria-current="step"],
+	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
+	.steps[data-direction="up"] > [aria-current="step"] ~ li {
 		--dot-before: var(--dot-fill);
 	}
-	.steps:not([data-direction="up"]) > :has(~ [aria-current="step"]),
-	.steps[data-direction="up"] > [aria-current="step"] ~ *,
-	.steps[data-direction="up"] > [aria-current="step"] {
+	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
+	.steps[data-direction="up"] > li[aria-current="step"] ~ li,
+	.steps[data-direction="up"] > li[aria-current="step"] {
 		--dot-after: var(--dot-fill);
 	}
-	.steps > [aria-current="step"] > mark {
+	.steps > li[aria-current="step"] mark {
 		box-shadow: 0 0 0 var(--mtdsc-steps-stroke-size) var(--dot-text), 0 0 0
 			calc(var(--mtdsc-steps-stroke-size) * 2) var(--dot-fill);
 	}
-	.steps:not([data-direction="up"]) > :where(:has(~ [aria-current="step"])),
-	.steps[data-direction="up"] > :where([aria-current="step"] ~ *) {
+	.steps:not([data-direction="up"]) > li:where(:has(~ li[aria-current="step"])),
+	.steps[data-direction="up"] > li:where([aria-current="step"] ~ li) {
 		--dot-icon: var(--mtds-icon-check);
 	}
-	.steps > [aria-current="step"],
-	.steps[data-direction="up"] > [aria-current="step"] ~ *,
-	.steps:not([data-direction="up"]) > :has(~ [aria-current="step"]),
-	.steps > [data-color] {
+	.steps[data-direction="up"] > li[aria-current="step"] ~ li,
+	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
+	.steps > li[aria-current="step"],
+	.steps > li[data-color] {
 		--dot-text: var(--ds-color-base-contrast-default);
 		--dot-fill: var(--ds-color-base-default);
 	}
-	.steps > [data-color="danger"],
-	.steps > [data-color="warning"] {
+	.steps > li[data-color="danger"],
+	.steps > li[data-color="warning"] {
 		--dot-icon: var(--mtds-icon-close);
 	}
 
@@ -126,7 +147,7 @@
 			[data-fade="end"]:not([data-direction="up"]),
 			[data-fade="start"][data-direction="up"]
 		)
-		> :first-child::before {
+		> li:first-child::before {
 		display: none;
 	}
 	.steps:is(
@@ -135,7 +156,7 @@
 			[data-fade="start"]:not([data-direction="up"]),
 			[data-fade="end"][data-direction="up"]
 		)
-		> :last-child::after {
+		> li:last-child::after {
 		display: none;
 	}
 
@@ -146,17 +167,19 @@
 		flex-wrap: wrap;
 		text-align: left;
 	}
-	.steps[data-direction]:not([data-direction="right"]) > * {
+	.steps[data-direction]:not([data-direction="right"]) > li {
 		flex: 1 0 100%;
 		min-height: calc(var(--mtdsc-steps-dot-size) * 2);
 		padding-block: 0 var(--mtdsc-steps-dot-size);
 		padding-left: calc(var(--mtdsc-steps-dot-size) + var(--mtdsc-steps-gap));
 	}
-	.steps[data-direction]:not([data-direction="right"]) > * > mark {
+	.steps[data-direction]:not([data-direction="right"]) > li mark {
+		inset: 0;
 		margin: 0;
+		position: absolute;
 	}
-	.steps[data-direction]:not([data-direction="right"]) > ::before,
-	.steps[data-direction]:not([data-direction="right"]) > ::after {
+	.steps[data-direction]:not([data-direction="right"]) > li::before,
+	.steps[data-direction]:not([data-direction="right"]) > li::after {
 		background: linear-gradient(transparent, var(--dot-before));
 		height: auto;
 		margin-block: 0;
@@ -164,14 +187,14 @@
 		inset: calc(var(--mtdsc-steps-dot-size) * -1) 0 100%;
 		translate: -50%;
 	}
-	.steps[data-direction]:not([data-direction="right"]) > ::after {
+	.steps[data-direction]:not([data-direction="right"]) > li::after {
+		inset-block: var(--mtdsc-steps-dot-size) 0;
 		background: linear-gradient(
 			var(--dot-after),
 			var(--dot-after-end, var(--dot-after))
 		);
-		inset-block: var(--mtdsc-steps-dot-size) 0;
 	}
-	.steps[data-direction]:not([data-direction="right"]) > :last-child::after {
+	.steps[data-direction]:not([data-direction="right"]) > li:last-child::after {
 		--dot-after-end: transparent;
 	}
 }

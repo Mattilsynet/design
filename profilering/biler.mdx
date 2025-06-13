@@ -1,0 +1,40 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { CarIcon } from "@phosphor-icons/react"
+import { JumpTo, Wide } from '../.storybook/blocks';
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import { Button, Card, Flex, Grid, Popover, Prose } from '../designsystem/react'
+import bilBak from './biler/bil-bak.svg';
+import bilFront from './biler/bil-front.svg';
+import bilSideStor from './biler/bil-side-stor.svg';
+import bilSideLiten from './biler/bil-side-liten.svg';
+
+<Meta title="Profilering/Biler" />
+
+# <CarIcon /> Biler
+
+> Mattilsynet skal være en tydelig aktør overalt hvor vi opptrer, derfor skal bilene våre alltid ha logo.
+
+Mattilsynets biler skal ha mørke gråtoner som hovedfarge. Dette er vanlige bilfarger som gjør det enkelt å anskaffe nye kjøretøy. I tillegg bidrar den mørke overflaten til at sprut og smuss blir mindre synlig. Følgende fargeverdier skal benyttes:
+
+- RAL 8022
+- RAL 7021
+- RAL 8019
+
+Logo og nettadresse skal være i lysegrønn farge (PMS 621) og plasseres på siden og baksiden av bilen. De bør helst plasseres nær hverandre og på samme bunnlinje, så langt bilens utforming tillater det.
+
+<Grid style={{ marginBlock: 40 }}>
+  <Grid data-items="300">
+    <Card style={{ padding: '7%' }}>
+      <img src={bilFront} alt="Bil front" />
+    </Card>
+    <Card style={{ padding: '7%', textAlign: 'center' }}>
+      <img src={bilBak} alt="Bil bakside" />
+    </Card>
+  </Grid>
+  <Card style={{ padding: '7%' }}>
+    <img src={bilSideStor} alt="Bil side stor" />
+  </Card>
+  <Card style={{ padding: '7%' }}>
+    <img src={bilSideLiten} alt="Bil side liten" />
+  </Card>
+</Grid>
