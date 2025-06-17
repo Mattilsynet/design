@@ -2,6 +2,7 @@
 	.spinner {
 		--mtdsc-spinner-color: inherit;
 		--mtdsc-spinner-size: var(--mtds-11);
+		--complete: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='5'%3E%3Cstyle%3Ecircle,path%7Banimation:_mtdsc-spinner-done 1.2s forwards%7Dpath%7Banimation-duration:.5s;animation-delay:.6s%7D@keyframes _mtdsc-spinner-done%7Bto%7Bstroke-dashoffset:0;stroke-width:2%7D%7D%3C/style%3E%3Ccircle cx='25' cy='25' r='20' opacity='.1'%3E%3C/circle%3E%3Ccircle stroke-dasharray='166' stroke-dashoffset='166' cx='25' cy='25' r='20' /%3E%3Cpath stroke-width='2' stroke-dasharray='48' stroke-dashoffset='48' d='M14.6 25.7l7.1 7.2 13.7-13.8' /%3E%3C/svg%3E";
 
 		color: var(--mtdsc-spinner-color);
 		gap: var(--ds-size-2);
@@ -35,6 +36,15 @@
 		--mtdsc-spinner-size: var(--mtds-15);
 	}
 	.spinner[data-state="complete"]::before {
-		mask-image: var(--mtds-icon-spinner--complete);
+		mask-image: image-set(var(--complete));
+		/* animation: _checked 1s linear infinite; */
+	}
+	@keyframes _checked {
+		from {
+			mask-image: var(--mtds-icon-spinner--complete);
+		}
+		to {
+			mask-image: var(--mtds-icon-spinner);
+		}
 	}
 }
