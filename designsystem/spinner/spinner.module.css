@@ -34,4 +34,7 @@
 	.spinner[data-size="lg"]::before {
 		--mtdsc-spinner-size: var(--mtds-15);
 	}
+	.spinner[data-state="complete"]::before {
+		mask-image: var(--mtds-icon-spinner--complete);
+	}
 }

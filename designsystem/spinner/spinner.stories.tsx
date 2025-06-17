@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Spinner } from "../react";
+import { useEffect, useState } from "react";
+import { Button, Grid, Spinner } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -40,6 +41,32 @@ export const Sizes: Story = {
 	),
 };
 
-export const Text: Story = {
+export const WithText: Story = {
 	render: () => <span className={styles.spinner}>Henter innhold...</span>,
+};
+
+export const WithStateComplete: Story = {
+	tags: ["!dev"], // TODO
+	render: function Render() {
+		const [done, setDone] = useState(false);
+
+		useEffect(() => {
+			const spinner = document.querySelector(`.${styles.spinner}`);
+			const state = spinner?.getAttribute("data-state") || "loading";
+			spinner?.removeAttribute("data-state");
+			setTimeout(() => spinner?.setAttribute("data-state", state), 500);
+		});
+
+		return (
+			<Grid>
+				<span
+					className={styles.spinner}
+					data-state={done ? "complete" : undefined}
+				></span>
+				<Button onClick={() => setDone(!done)}>
+					{done ? "Start lasting" : "Avslutt lasting"}
+				</Button>
+			</Grid>
+		);
+	},
 };

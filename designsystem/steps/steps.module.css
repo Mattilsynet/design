@@ -110,22 +110,26 @@
 	 */
 	.steps:not([data-direction="up"]) > li[aria-current="step"],
 	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
-	.steps[data-direction="up"] > [aria-current="step"] ~ li {
+	.steps[data-direction="up"] > [aria-current="step"] ~ li,
+	.steps[data-state="complete"] > li {
 		--dot-before: var(--dot-fill);
 	}
 	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
 	.steps[data-direction="up"] > li[aria-current="step"] ~ li,
-	.steps[data-direction="up"] > li[aria-current="step"] {
+	.steps[data-direction="up"] > li[aria-current="step"],
+	.steps[data-state="complete"] > li {
 		--dot-after: var(--dot-fill);
 	}
 	.steps > li[aria-current="step"] mark {
 		box-shadow: 0 0 0 var(--mtdsc-steps-stroke-size) var(--dot-text), 0 0 0
 			calc(var(--mtdsc-steps-stroke-size) * 2) var(--dot-fill);
 	}
+	.steps[data-state="complete"] > li,
 	.steps:not([data-direction="up"]) > li:where(:has(~ li[aria-current="step"])),
 	.steps[data-direction="up"] > li:where([aria-current="step"] ~ li) {
 		--dot-icon: var(--mtds-icon-check);
 	}
+	.steps[data-state="complete"] > li,
 	.steps[data-direction="up"] > li[aria-current="step"] ~ li,
 	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
 	.steps > li[aria-current="step"],

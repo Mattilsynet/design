@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { type JSX, forwardRef } from "react";
+import { Button, type ButtonProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -47,6 +48,20 @@ export const App = Object.assign(AppComp, {
 		},
 	),
 	Sticky: AppSticky,
+	Toggle: forwardRef<HTMLButtonElement, ButtonProps<"button">>(
+		function AppToggle({ children, ...rest }: ButtonProps<"button">, ref) {
+			return (
+				<Button
+					data-command="toggle-app-expanded"
+					data-tooltip="Vis meny"
+					ref={ref as React.Ref<HTMLAnchorElement>}
+					{...rest}
+				>
+					{children ?? "Skjul meny"}
+				</Button>
+			);
+		},
+	),
 	Main: forwardRef<HTMLElement, AppMainProps>(function AppMain(rest, ref) {
 		return <main ref={ref} {...rest} />;
 	}),

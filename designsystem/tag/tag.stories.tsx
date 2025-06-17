@@ -54,9 +54,6 @@ export const React: Story = {
 export const Sizes: Story = {
 	render: () => (
 		<>
-			<span className={styles.tag} data-size="xs">
-				Extra small
-			</span>
 			<span className={styles.tag} data-size="sm">
 				Small
 			</span>

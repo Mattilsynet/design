@@ -76,6 +76,37 @@ export const React: Story = {
 	),
 };
 
+export const WithStateComplete: Story = {
+	render: () => (
+		<ol className={styles.steps} data-state="complete">
+			<li>
+				<mark />
+				<strong>Steg 1</strong>
+				<br />
+				<small>Beskrivelse</small>
+			</li>
+			<li>
+				<mark />
+				<strong>Steg 2</strong>
+				<br />
+				<small>Donec et odio</small>
+			</li>
+			<li>
+				<mark />
+				<strong>Steg 3</strong>
+			</li>
+			<li>
+				<mark />
+				<strong>Steg 4</strong>
+			</li>
+			<li>
+				<mark />
+				<strong>Steg 5</strong>
+			</li>
+		</ol>
+	),
+};
+
 export const WithDirection: Story = {
 	render: () => (
 		<Flex data-items="500" data-gap="14">

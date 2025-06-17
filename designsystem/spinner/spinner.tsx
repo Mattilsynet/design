@@ -4,6 +4,7 @@ import styles from "../styles.module.css";
 
 export type SpinnerProps = React.ComponentPropsWithoutRef<"span"> & {
 	"data-size"?: "xs" | "sm" | "md" | "lg";
+	"data-state"?: "complete";
 };
 
 export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(
