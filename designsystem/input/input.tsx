@@ -10,6 +10,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 ) {
 	return (
 		<input
+			suppressHydrationWarning // Prevent hydration mismatch for SSR due to field-observer.ts
 			className={clsx(styles.input, className)}
 			type={type}
 			ref={ref}

@@ -28,6 +28,7 @@
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
 		display: flex;
+		flex-shrink: 0;
 		font-weight: var(--ds-font-weight-medium);
 		gap: var(--ds-size-2);
 		height: var(--ds-size-10);

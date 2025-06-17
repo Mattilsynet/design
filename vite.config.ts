@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import svgr from "vite-plugin-svgr";
 import { cssPropsRename, cssToTailwind } from "./vite.plugins";
 
 const root = path.resolve(__dirname, "designsystem");
@@ -40,6 +41,7 @@ export default defineConfig(({ mode }) =>
 					},
 				},
 				plugins: [
+					svgr(),
 					react(),
 					dts({
 						beforeWriteFile: (filePath, content) => ({
