@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { Card, Flex, Togglegroup } from "../../designsystem/react";
+import { useEffect, useRef, useState } from "react";
+import type { UHTMLComboboxElement } from "../../designsystem";
+import { Card, Field, Flex, Input, Prose } from "../../designsystem/react";
+import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
-type Part = Svg & { [key: string]: Part };
-type Svg = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-const Parts = {} as Part;
+type Option = { value: string; label: string };
+type Select = { value?: string; label: string; options: Option[] };
+const VOID = () => {};
 const Skins = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
 const Under = [
 	"#153F7B",
@@ -27,243 +29,127 @@ const Over = [
 	"#CDE5F2",
 ];
 
-for (const [file, el] of Object.entries(
-	import.meta.glob<React.ReactElement<{ id: string }>>("./*.svg", {
-		eager: true,
-		query: "react",
-		import: "default",
-	}),
-))
-	file
-		.replace(/.*\/([^/.]+)\..*/, "$1")
-		.split("-")
-		.reduce((acc, key, i, path) => {
-			const Key = key[0].toUpperCase() + key.slice(1); // Make PascalCase
-			acc[Key] = acc[Key] || (path[i + 1] ? {} : el);
-			return acc[Key] as unknown as Part;
-		}, Parts);
+export function IllustrationsGenerator() {
+	const ref = useRef<HTMLDivElement>(null);
+	const [selects, setSelects] = useState(new Map<string, Select>());
+	const [hovers, setHovers] = useState<Record<string, string>>({});
+	const [apron] = useState(Apron[0]);
+	const [skin] = useState(Skins[2]);
+	const [over] = useState(Over[0]);
+	const [under] = useState(Under[0]);
 
-export function IllustrationGenerator() {
-	const overdeler = Object.keys(Parts.Overdel);
-	const handerVenstre = Object.keys(Parts.Hand.Venstre);
-	const handerHoyre = Object.keys(Parts.Hand.Hoyre);
+	useEffect(() => {
+		const self = ref.current;
+		const onChange = ({ detail, target }: CustomEvent<HTMLDataElement>) => {
+			const key = (target as UHTMLComboboxElement).control?.name || "";
+			const { value } = detail;
 
-	const [apron, setApron] = useState(Apron[0]);
-	const [skin, setSkin] = useState(Skins[0]);
-	const [over, setOver] = useState(Over[0]);
-	const [under, setUnder] = useState(Under[0]);
-	const [overdel, setOverdel] = useState(overdeler[0]);
-	const [handVenstre, setHandVenstre] = useState(handerVenstre[0]);
-	const [handHoyre, setHandHoyre] = useState(handerHoyre[0]);
+			setSelects((prev) =>
+				new Map(prev).set(key, { ...(prev.get(key) as Select), value }),
+			);
+		};
 
-	const [hoverApron, setHoverApron] = useState("");
-	const [hoverSkin, setHoverSkin] = useState("");
-	const [hoverOver, setHoverOver] = useState("");
-	const [hoverUnder, setHoverUnder] = useState("");
-	const [hoverOverdel, setHoverOverdel] = useState("");
-	const [hoverHandVenstre, setHoverHandVenstre] = useState("");
-	const [hoverHandHoyre, setHoverHandHoyre] = useState("");
-
-	const Overdel = Parts.Overdel[hoverOverdel || overdel];
-	const HandVenstre = Parts.Hand.Venstre[hoverHandVenstre || handVenstre];
-	const HandHoyre = Parts.Hand.Hoyre[hoverHandHoyre || handHoyre];
+		setSelects(svgToSelects(svg));
+		self?.addEventListener("afterchange", onChange);
+		return () => self?.removeEventListener("afterchange", onChange);
+	}, []);
 
 	return (
-		<Flex data-gap="8">
-			<div data-self="300" data-fixed>
-				<legend>Hudtone</legend>
-				<Togglegroup>
-					{Skins.map((name) => (
-						<Togglegroup.Item
-							checked={skin === name}
-							key={name}
-							name="skin"
-							onChange={() => setSkin(name)}
-							onMouseEnter={() => setHoverSkin(name)}
-							onMouseLeave={() => setHoverSkin("")}
-							value={name}
-						>
-							<span
-								style={{
-									background: name,
-									width: 20,
-									height: 20,
-									borderRadius: 99,
-								}}
+		<>
+			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
+			<style>{`:root {
+				--color-apron: ${apron};
+				--color-hair: #1E1A28;
+				--color-skin: ${skin};
+				--color-over: ${over};
+				--color-under: ${under};
+				--color-shoes: #1E1A28;
+				--color-caps: #DA573B;
+				--color-hat: #9ECCED;
+			}`}</style>
+			<Card>
+				<Flex>
+					<Prose data-self="300" data-fixed ref={ref}>
+						{Array.from(selects)
+							.filter(([, { options }]) => options.length)
+							.map(([key, { options, label }]) => (
+								<Field key={key}>
+									<label>{label}</label>
+									<Field.Combobox>
+										<data value={options[0]?.value}>{options[0]?.label}</data>
+										<Input name={key} />
+										<Field.Datalist data-nofilter>
+											{options.map(({ value, label }) => (
+												<Field.Option
+													key={value}
+													value={value}
+													onMouseEnter={() => setHovers({ key, value })}
+													onMouseLeave={() => setHovers({})}
+												>
+													<svg>
+														<use key={value} href={`#${value}`} />
+													</svg>
+													{label}
+												</Field.Option>
+											))}
+										</Field.Datalist>
+									</Field.Combobox>
+								</Field>
+							))}
+					</Prose>
+					<svg
+						width="100%"
+						height="500"
+						viewBox="-200 -200 400 1200"
+						onKeyDown={VOID}
+						onClick={({ currentTarget: svg }) => {
+							const css = window.getComputedStyle(svg);
+							navigator.clipboard.write([
+								new ClipboardItem({
+									"text/plain": new Blob(
+										[
+											svg.outerHTML
+												.replace(
+													/<use[^>]+href="#([^"]+)"[^>]*>(<\/use>?)/g,
+													(_, id) =>
+														document.getElementById(id)?.outerHTML || "",
+												)
+												.replace(/(<\/?)symbol/g, "$1svg")
+												.replace(/var\(([^\)]+)\)/g, (_, prop) =>
+													css.getPropertyValue(prop),
+												),
+										],
+										{ type: "text/plain" },
+									),
+								}),
+							]);
+						}}
+					>
+						{Array.from(selects, ([key, { value }]) => (
+							<use
+								key={key}
+								href={`#${hovers.key === key ? hovers.value : value}`}
 							/>
-						</Togglegroup.Item>
-					))}
-				</Togglegroup>
-				<legend>Farge overdel</legend>
-				<Togglegroup>
-					{Over.map((name) => (
-						<Togglegroup.Item
-							checked={over === name}
-							key={name}
-							name="over"
-							onChange={() => setOver(name)}
-							onMouseEnter={() => setHoverOver(name)}
-							onMouseLeave={() => setHoverOver("")}
-							value={name}
-						>
-							<span
-								style={{
-									background: name,
-									width: 20,
-									height: 20,
-									borderRadius: 99,
-								}}
-							/>
-						</Togglegroup.Item>
-					))}
-				</Togglegroup>
-				<legend>Farge forkle</legend>
-				<Togglegroup>
-					{Apron.map((name) => (
-						<Togglegroup.Item
-							checked={apron === name}
-							key={name}
-							name="apron"
-							onChange={() => setApron(name)}
-							onMouseEnter={() => setHoverApron(name)}
-							onMouseLeave={() => setHoverApron("")}
-							value={name}
-						>
-							<span
-								style={{
-									background: name,
-									width: 20,
-									height: 20,
-									borderRadius: 99,
-								}}
-							/>
-						</Togglegroup.Item>
-					))}
-				</Togglegroup>
-				<legend>Farge underdel</legend>
-				<Togglegroup>
-					{Under.map((name) => (
-						<Togglegroup.Item
-							checked={under === name}
-							key={name}
-							name="under"
-							onChange={() => setUnder(name)}
-							onMouseEnter={() => setHoverUnder(name)}
-							onMouseLeave={() => setHoverUnder("")}
-							value={name}
-						>
-							<span
-								style={{
-									background: name,
-									width: 20,
-									height: 20,
-									borderRadius: 99,
-								}}
-							/>
-						</Togglegroup.Item>
-					))}
-				</Togglegroup>
-				<legend>Overdel</legend>
-				<Togglegroup style={{ fontSize: "1.5em" }}>
-					{overdeler.map((name) => {
-						const Part = Parts.Overdel[name];
-						return (
-							<Togglegroup.Item
-								checked={overdel === name}
-								data-tooltip={name}
-								key={name}
-								name="overdel"
-								onChange={() => setOverdel(name)}
-								onMouseEnter={() => setHoverOverdel(name)}
-								onMouseLeave={() => setHoverOverdel("")}
-								value={name}
-							>
-								<Part x="0" y="0" width="100%" height="80%" />
-							</Togglegroup.Item>
-						);
-					})}
-				</Togglegroup>
-				<legend>Hånd venstre</legend>
-				<Togglegroup style={{ fontSize: "2em" }}>
-					{handerVenstre.map((name) => {
-						const Part = Parts.Hand.Venstre[name];
-						return (
-							<Togglegroup.Item
-								checked={handVenstre === name}
-								data-tooltip={name}
-								key={name}
-								name="hand-venstre"
-								onChange={() => setHandVenstre(name)}
-								onMouseEnter={() => setHoverHandVenstre(name)}
-								onMouseLeave={() => setHoverHandVenstre("")}
-								value={name}
-							>
-								<Part x="0" y="0" width="100%" height="80%" />
-							</Togglegroup.Item>
-						);
-					})}
-				</Togglegroup>
-				<legend>Hånd høyre</legend>
-				<Togglegroup style={{ fontSize: "2em" }}>
-					{handerHoyre.map((name) => {
-						const Part = Parts.Hand.Hoyre[name];
-						return (
-							<Togglegroup.Item
-								checked={handHoyre === name}
-								data-tooltip={name}
-								key={name}
-								name="hand-hoyre"
-								onChange={() => setHandHoyre(name)}
-								onMouseEnter={() => setHoverHandHoyre(name)}
-								onMouseLeave={() => setHoverHandHoyre("")}
-								value={name}
-							>
-								<Part x="0" y="0" width="100%" height="80%" />
-							</Togglegroup.Item>
-						);
-					})}
-				</Togglegroup>
-			</div>
-			<Card
-				onClick={({ currentTarget: self }) => {
-					navigator.clipboard.write([
-						new ClipboardItem({
-							"text/plain": self.innerHTML,
-						}),
-					]);
-				}}
-			>
-				<style>{`
-					:root {
-						--color-apron: ${hoverApron || apron};
-						--color-skin: ${hoverSkin || skin};
-						--color-over: ${hoverOver || over};
-						--color-under: ${hoverUnder || under};
-						--color-shoes: #1E1A28;
-					}
-				`}</style>
-				<svg viewBox="-1000 -500 2000 2000" width="100%" height="100%">
-					<Parts.Bukse id="bukse" />
-					<Overdel id="overdel" />
-					<HandHoyre id="hand-hoyre" />
-					<HandVenstre id="hand-venstre" />
-					<Parts.Hode id="hode" />
-				</svg>
+						))}
+					</svg>
+				</Flex>
 			</Card>
-		</Flex>
+		</>
 	);
 }
 
-// dangerouslySetInnerHTML={{
-// 	__html: `
-// 	<g id="underdel">
-// 		${bukse}
-// 	</g>
-// 	<g id="overdel">
-// 		${genser.replace("<svg", "<svg hidden")}
-// 		${seletop.replace("<svg", "<svg hidden")}
-// 	</g>
-// 	${hode}
-// 	`,
-// }}
-// />
+function svgToSelects(innerHTML: string) {
+	const div = Object.assign(document.createElement("div"), { innerHTML });
+	const map = new Map();
+
+	for (const el of div.querySelectorAll("svg > [id]")) {
+		const label = el.querySelector("title")?.textContent || el.id;
+		const options = Array.from(el.querySelectorAll("symbol"), (symbol) => ({
+			value: symbol.id,
+			label: symbol.querySelector("title")?.textContent || symbol.id,
+		}));
+		map.set(el.id, { label, options, value: options[0]?.value || el.id });
+	}
+	div.innerHTML = "";
+	return map;
+}

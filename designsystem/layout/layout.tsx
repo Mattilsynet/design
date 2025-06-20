@@ -72,6 +72,7 @@ type SharedProps = {
 	"data-fixed"?: boolean;
 	"data-items"?:
 		| "auto"
+		| "full"
 		| "50"
 		| "100"
 		| "150"

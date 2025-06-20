@@ -113,20 +113,19 @@ const POSITION = { top: 0, right: 1, bottom: 2, left: 3 }; // Speed up by using 
 export function anchorPosition(
 	target: HTMLElement,
 	anchor: Element | false,
-	position?: string | number,
+	place?: string | number,
 	force?: boolean,
 ) {
+	const position =
+		POSITION[place as keyof typeof POSITION] ??
+		Number(place) ??
+		POSITION.bottom;
+
 	if (anchor === false || !anchor.isConnected || !target.isConnected)
 		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have the scroller
-	if (!TARGETS.has(target)) {
-		// Setup new target or update position
-		const place =
-			POSITION[position as keyof typeof POSITION] ?? POSITION.bottom; // Use CSS property to store position for more flexibility
-		return TARGETS.set(target, () =>
-			anchorPosition(target, anchor, place, force),
-		).get(target)?.(); // Start watching if not already watching
-	}
+	if (!TARGETS.has(target))
+		TARGETS.set(target, () => anchorPosition(target, anchor, position, force));
 
 	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
 	const { offsetWidth: targetW, offsetHeight: targetH } = target;
@@ -153,6 +152,7 @@ export function anchorPosition(
 		window.innerHeight - targetH - 10,
 	);
 	const isVertical = position === POSITION.top || position === POSITION.bottom;
+	console.log({ force, position });
 
 	target.style.left = `${Math.round(isVertical ? centerX : positionRight ? anchorX + anchorW : anchorX - targetW)}px`;
 	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;

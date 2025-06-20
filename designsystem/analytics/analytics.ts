@@ -7,8 +7,37 @@ type Matomo = (string | number | boolean)[];
 declare global {
 	interface Window {
 		_paq?: Matomo[];
+		_mtm?: Record<string, string | number>[];
 	}
 }
+
+// window._paq = window._paq || [];
+// window._mtm = window._mtm || [];
+
+// window._paq.push(["setCustomUrl", `${document.location.href}&eirik`]);
+// window._paq.push(["setDocumentTitle", "Eirik 3"]);
+// window._mtm.push({
+// 	event: "mtm.Start",
+// 	"mtm.startTime": new Date().getTime(),
+// 	customTitle: "Eirik 1",
+// 	customUrl: `${document.location.href}&eirik`,
+// });
+
+// window._mtm.push({
+// 	event: "mtm.PageView",
+// 	customTitle: "Eirik 2",
+// 	customUrl: `${document.location.href}&eirik`,
+// });
+
+// const containerId = "A9utKk3O";
+
+// document.head.append(
+// 	Object.assign(document.createElement("script"), {
+// 		src: `https://cdn.matomo.cloud/mattilsynet.matomo.cloud/container_${containerId}.js`,
+// 		async: true,
+// 		onload: () => console.log(window._paq),
+// 	}),
+// );
 
 export type AnalyticsActions = {
 	init: {
@@ -44,7 +73,7 @@ export function analytics<Action extends keyof AnalyticsActions>(
 		window._paq.push(["enableLinkTracking"]);
 		window._paq.push(["setTrackerUrl", `https://${MATOMO}/matomo.php`]);
 		document.querySelector('script[src*="matomo.js"]') ||
-			document.documentElement.append(
+			document.head.append(
 				Object.assign(document.createElement("script"), {
 					async: true,
 					src: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`,
