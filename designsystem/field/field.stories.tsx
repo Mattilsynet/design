@@ -280,6 +280,34 @@ export const WithValidation: Story = {
 	),
 };
 
+export const WithValidationForm: Story = {
+	parameters: { layout: "padded" },
+	name: "With Validation Form (eksperimentell)",
+	render: () => (
+		<form action="#" className={styles.prose}>
+			<div className={styles.field} data-validation="form">
+				<label>Ledetekst</label>
+				<p>Beskrivelse</p>
+				<input type="email" className={styles.input} required />
+				<div className={styles.validation} hidden>
+					Må inneholde en gyldig e-postadresse
+				</div>
+			</div>
+			<div className={styles.field} data-validation="form">
+				<label>Ledetekst</label>
+				<p>Beskrivelse</p>
+				<input type="text" className={styles.input} required />
+				<div className={styles.validation} hidden>
+					Må fylles ut
+				</div>
+			</div>
+			<button type="submit" className={styles.button} data-variant="primary">
+				Send inn
+			</button>
+		</form>
+	),
+};
+
 export const WithAffixes: Story = {
 	parameters: {
 		showInOverview: true,

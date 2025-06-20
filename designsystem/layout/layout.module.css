@@ -141,6 +141,7 @@
 	.flex[data-items="400"] > :not([data-self]), .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
 	.flex[data-items="450"] > :not([data-self]), .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
 	.flex[data-items="500"] > :not([data-self]), .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
+	.flex[data-items="full"] > :not([data-self]), .flex > [data-self="full"] { flex-basis: 100% } 
 
 	/**
 	 * Grid
@@ -152,7 +153,7 @@
 	}
 	.grid[data-fixed] { --mtds-grid-grow: auto-fill } /* "Fixes" sizes by causing max repetitions of columns - even empty if needed */
 	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-grid-size) }
-	.grid[data-items="auto"] { --mtds-grid-size: 0px } 
+	.grid[data-items="auto"] { --mtds-grid-size: 0px }
 	.grid[data-items="50"] { --mtds-grid-size: calc(1rem / 16 * 50) }
 	.grid[data-items="100"] { --mtds-grid-size: calc(1rem / 16 * 100) }
 	.grid[data-items="150"] { --mtds-grid-size: calc(1rem / 16 * 150) }

@@ -91,11 +91,11 @@
 	.field u-combobox > del {
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
-		height: var(--mtds-icon-size);
-		margin-left: calc(var(--mtds-icon-size) * -2);
+		height: 1em;
+		margin-left: -3.75em;
 		outline: 0;
 		position: relative;
-		width: var(--mtds-icon-size);
+		width: 1em;
 	}
 	.field u-combobox > del::after {
 		background: currentColor;

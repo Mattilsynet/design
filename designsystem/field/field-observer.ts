@@ -19,11 +19,12 @@ const CSS_VALIDATION = CSS_VALIDATIONS[0];
 const getText = (style: CSSStyleDeclaration, key: string) =>
 	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
-function handleMutation(fields: HTMLCollectionOf<Element>) {
+function handleMutation(fields: HTMLCollectionOf<Element>, validate?: boolean) {
 	for (const field of fields)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
 			const descs: Element[] = [];
+			const valids: Element[] = [];
 			let combobox: UHTMLComboboxElement | null = null;
 			let input: HTMLInputElement | null = null;
 			let valid = true;
@@ -34,10 +35,8 @@ function handleMutation(fields: HTMLCollectionOf<Element>) {
 				else if (isInputLike(el)) input = el;
 				else if (el.hasAttribute("data-description")) descs.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
-					valid =
-						attr(el, "data-color") === "success" ||
-						!el.clientWidth ||
-						!el.clientHeight; // Only set invalid if Validation is visible
+					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
+					valids.push(el);
 					descs.unshift(el);
 				} else if (el instanceof HTMLParagraphElement)
 					descs.some((desc) => desc.contains(el)) || descs.push(el); // Only add if not already inside description
@@ -45,6 +44,10 @@ function handleMutation(fields: HTMLCollectionOf<Element>) {
 
 			if (input) {
 				for (const label of labels) label.htmlFor = useId(input);
+				if (validate && attr(field, "data-validation") === "form") {
+					valid = input.matches(":valid");
+					for (const el of valids) attr(el, "hidden", valid ? "" : null);
+				}
 				renderCombobox(combobox);
 				renderCounter(input);
 				renderTextareaSize(input);
@@ -126,10 +129,11 @@ function handleInput({ target }: Event) {
 	}
 }
 
-// Prevent browsers from showing default validation bubbles
-function handleInvalid(event: Event) {
-	if ((event.target as Element)?.closest?.(`.${CSS_FIELD}`))
-		event.preventDefault();
+function handleValdiation(event: Event) {
+	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
+
+	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
+	handleMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
 }
 
 // Position combobox when changing content
@@ -143,6 +147,6 @@ onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleMutation);
 	on(document, "beforechange", handleBeforeChange, QUICK_EVENT);
 	on(document, "input", handleInput, QUICK_EVENT);
-	on(document, "invalid", handleInvalid, true); // Use capture as invalid does noe bubble
+	on(document, "invalid,submit", handleValdiation, true); // Use capture as invalid and submit does not bubble
 	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 });

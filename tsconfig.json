@@ -16,7 +16,7 @@
 		"moduleDetection": "force",
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["vite/client", "vite-plugin-svgr/client"],
+		"types": ["vite/client"],
 
 		"strict": true,
 		"noUnusedLocals": true,
