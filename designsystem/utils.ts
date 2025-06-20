@@ -152,7 +152,6 @@ export function anchorPosition(
 		window.innerHeight - targetH - 10,
 	);
 	const isVertical = position === POSITION.top || position === POSITION.bottom;
-	console.log({ force, position });
 
 	target.style.left = `${Math.round(isVertical ? centerX : positionRight ? anchorX + anchorW : anchorX - targetW)}px`;
 	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;
