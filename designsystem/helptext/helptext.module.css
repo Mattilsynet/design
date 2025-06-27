@@ -1,49 +1,49 @@
 @layer mt.design {
-	.helptext {
-		composes: ds-focus from "@digdir/designsystemet-css";
+  .helptext {
+    composes: ds-focus from "@digdir/designsystemet-css";
 
-		background: none;
-		border-radius: var(--ds-border-radius-full);
-		border: 0;
-		box-sizing: border-box;
-		color: inherit;
-		cursor: pointer;
-		display: inline-block;
-		flex-shrink: 0;
-		font: inherit;
-		height: var(--ds-size-7);
-		margin: 0;
-		padding: 0;
-		transition-duration: .2s;
-		transition-property: background-color, scale;
-		vertical-align: middle;
-		width: var(--ds-size-7);
-	}
-	.helptext::before {
-		background: currentcolor;
-		content: "";
-		display: block;
-		height: 100%;
-		mask: center / contain no-repeat var(--mtds-icon-question);
-	}
-	.helptext:hover {
-		background-color: var(--ds-color-surface-hover);
-	}
-	.helptext:active {
-		scale: 0.9;
-	}
-	.helptext:has(+ :popover-open) {
-		background-color: var(--ds-color-surface-hover);
-	}
-	.helptext + [popover] {
-		max-width: 40ch;
-	}
-	label + .helptext,
-	legend + .helptext {
-		margin-left: .2em;
-		margin-top: -.2em;
-	}
-	legend:has(+ .helptext) {
-		float: left; /* Since <legend> does not support display: inline */
-	}
+    background: none;
+    border-radius: var(--ds-border-radius-full);
+    border: 0;
+    box-sizing: border-box;
+    color: inherit;
+    cursor: pointer;
+    display: inline-block;
+    flex-shrink: 0;
+    font: inherit;
+    height: var(--ds-size-7);
+    margin: 0;
+    padding: 0;
+    transition-duration: 0.2s;
+    transition-property: background-color, scale;
+    vertical-align: middle;
+    width: var(--ds-size-7);
+  }
+  .helptext::before {
+    background: currentcolor;
+    content: "";
+    display: block;
+    height: 100%;
+    mask: center / contain no-repeat var(--mtds-icon-question);
+  }
+  .helptext:hover {
+    background-color: var(--ds-color-surface-hover);
+  }
+  .helptext:active {
+    scale: 0.9;
+  }
+  .helptext:has(+ :popover-open) {
+    background-color: var(--ds-color-surface-hover);
+  }
+  .helptext + [popover] {
+    max-width: min(40ch, calc(100vw - 20px));
+  }
+  label + .helptext,
+  legend + .helptext {
+    margin-left: 0.2em;
+    margin-top: -0.2em;
+  }
+  legend:has(+ .helptext) {
+    float: left; /* Since <legend> does not support display: inline */
+  }
 }
