@@ -114,10 +114,22 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 			`[popovertarget="${el.id}"]`,
 		);
 
-		if (newState === "closed") anchorPosition(el, false);
-		else if (anchor) {
+		if (newState === "closed") {
+			// Make sure we don't show the dropdown before its placed
+			el.style.opacity = "0";
+			anchorPosition(el, false);
+		} else if (anchor) {
 			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, "bottom", true);
+
+			// Find parent combobox element
+			const comboboxEl = anchor.closest("u-combobox");
+			const position = comboboxEl
+				? attr(comboboxEl, "data-position")
+				: "bottom";
+
+			anchorPosition(el, anchor, position ?? "bottom", true);
+			// Show the datalist after its placed
+			el.style.opacity = "1";
 		}
 	}
 }

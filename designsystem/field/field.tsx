@@ -10,7 +10,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
-import { toCustomElementProps } from "../utils";
+import { type AnchorPosition, toCustomElementProps } from "../utils";
 
 type FieldBaseProps = {
 	count?: number;
@@ -137,6 +137,7 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 export type FieldComboboxProps = ReactUcombobox & {
 	"data-multiple"?: boolean;
 	"data-creatable"?: boolean;
+	"data-position"?: AnchorPosition;
 };
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(

@@ -508,7 +508,7 @@ export const WithComboboxCustomFilter: Story = {
 	},
 };
 
-export const ReactWithCombobx: Story = {
+export const ReactWithCombobox: Story = {
 	parameters: {
 		layout: "padded",
 	},
@@ -546,6 +546,70 @@ export const ReactWithComboboxMultiple: Story = {
 				</Field.Datalist>
 			</Field.Combobox>
 		</Field>
+	),
+};
+
+export const ReactWithComboboxLong: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<>
+			<div style={{ marginBottom: "400px" }} />
+			<Field>
+				<label>React med lange og mange</label>
+				<p>Beskrivelse</p>
+				<Field.Combobox data-position="top">
+					<Input className={styles.input} />
+					<del aria-label="Fjern tekst"></del>
+					<Field.Datalist>
+						<Field.Option>
+							Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
+							Thunder Thunder Thunder Thunder Thunder
+						</Field.Option>
+						<Field.Option>Whisper</Field.Option>
+						<Field.Option>Galaxy</Field.Option>
+						<Field.Option>Melody</Field.Option>
+						<Field.Option>Crystal</Field.Option>
+						<Field.Option>Sunset</Field.Option>
+						<Field.Option>Journey</Field.Option>
+						<Field.Option>Phoenix</Field.Option>
+						<Field.Option>Harmony</Field.Option>
+						<Field.Option>Neptune</Field.Option>
+						<Field.Option>Cascade</Field.Option>
+						<Field.Option>Velvet</Field.Option>
+						<Field.Option>Rhythm</Field.Option>
+						<Field.Option>Compass</Field.Option>
+						<Field.Option>Prism</Field.Option>
+						<Field.Option>Breeze</Field.Option>
+						<Field.Option>Eclipse</Field.Option>
+						<Field.Option>Sterling</Field.Option>
+						<Field.Option>Canvas</Field.Option>
+						<Field.Option>Zenith</Field.Option>
+						<Field.Option>Whisper</Field.Option>
+						<Field.Option>Galaxy</Field.Option>
+						<Field.Option>Melody</Field.Option>
+						<Field.Option>Crystal</Field.Option>
+						<Field.Option>Sunset</Field.Option>
+						<Field.Option>Journey</Field.Option>
+						<Field.Option>Phoenix</Field.Option>
+						<Field.Option>Harmony</Field.Option>
+						<Field.Option>Neptune</Field.Option>
+						<Field.Option>Cascade</Field.Option>
+						<Field.Option>Velvet</Field.Option>
+						<Field.Option>Rhythm</Field.Option>
+						<Field.Option>Compass</Field.Option>
+						<Field.Option>Prism</Field.Option>
+						<Field.Option>Breeze</Field.Option>
+						<Field.Option>Eclipse</Field.Option>
+						<Field.Option>Sterling</Field.Option>
+						<Field.Option>Canvas</Field.Option>
+						<Field.Option>Zenith</Field.Option>
+					</Field.Datalist>
+				</Field.Combobox>
+			</Field>
+			<div style={{ marginBottom: "800px" }} />
+		</>
 	),
 };
 

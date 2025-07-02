@@ -17,6 +17,7 @@ clojure/mattilsynet-design.jar
 # Editor directories and files
 .npmrc
 .idea
+.zed
 .DS_Store
 *.suo
 *.ntvs*

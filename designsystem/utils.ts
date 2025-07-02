@@ -110,6 +110,8 @@ if (SCROLLER) {
  */
 const POSITION = { top: 0, right: 1, bottom: 2, left: 3 }; // Speed up by using a const map
 
+export type AnchorPosition = keyof typeof POSITION;
+
 export function anchorPosition(
 	target: HTMLElement,
 	anchor: Element | false,
@@ -120,7 +122,6 @@ export function anchorPosition(
 		POSITION[place as keyof typeof POSITION] ??
 		Number(place) ??
 		POSITION.bottom;
-
 	if (anchor === false || !anchor.isConnected || !target.isConnected)
 		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
 	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have the scroller
@@ -132,32 +133,72 @@ export function anchorPosition(
 	const anchorW = isHTMLAnchor ? anchor.offsetWidth : anchor.clientWidth;
 	const anchorH = isHTMLAnchor ? anchor.offsetHeight : anchor.clientHeight;
 	const { width, height, left, top } = anchor.getBoundingClientRect();
+
+	// Get visual viewport info
+	const visualViewport = window.visualViewport;
+	const viewportWidth = visualViewport
+		? visualViewport.width
+		: window.innerWidth;
+	const viewportHeight = visualViewport
+		? visualViewport.height
+		: window.innerHeight;
+
 	const anchorX = Math.round(left - (anchorW - width) / 2); // Correct for CSS transform scale
 	const anchorY = Math.round(top - (anchorH - height) / 2); // Correct for CSS transform scale
 
+	// Use visual viewport dimensions for space calculations
 	const hasSpaceLeft = anchorX - targetW > 0;
-	const hasSpaceRight = anchorW + anchorW + targetW < window.innerWidth;
+	const hasSpaceRight = anchorX + anchorW + targetW < viewportWidth;
 	const hasSpaceOver = anchorY - targetH > 0;
-	const hasSpaceUnder = anchorY + anchorH + targetH < window.innerHeight;
+	const hasSpaceUnder = anchorY + anchorH + targetH < viewportHeight;
+
 	const positionRight =
 		(position === POSITION.right && (force || hasSpaceRight)) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further up than 0
 	const positionUnder =
 		(position === POSITION.bottom && (force || hasSpaceUnder)) || !hasSpaceOver; // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
+
 	const centerX = Math.min(
 		Math.max(10, anchorX - (targetW - anchorW) / 2),
-		window.innerWidth - targetW - 10,
+		viewportWidth - targetW - 10,
 	);
 	const centerY = Math.min(
 		Math.max(10, anchorY - (targetH - anchorH) / 2),
-		window.innerHeight - targetH - 10,
+		viewportHeight - targetH - 10,
 	);
+
 	const isVertical = position === POSITION.top || position === POSITION.bottom;
 
-	target.style.left = `${Math.round(isVertical ? centerX : positionRight ? anchorX + anchorW : anchorX - targetW)}px`;
-	target.style.top = `${Math.round(isVertical ? (positionUnder ? anchorY + anchorH : anchorY - targetH) : centerY)}px`;
+	// Calculate positions in viewport coordinates
+	const viewportLeft = Math.round(
+		isVertical
+			? centerX
+			: positionRight
+				? anchorX + anchorW
+				: anchorX - targetW,
+	);
+	const viewportTop = Math.round(
+		isVertical
+			? positionUnder
+				? anchorY + anchorH
+				: anchorY - targetH
+			: centerY,
+	);
+
+	// Convert to document coordinates (absolute positioning)
+	const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+	const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	const finalLeft = viewportLeft + scrollLeft;
+	const finalTop = viewportTop + scrollTop;
+
+	// Use absolute positioning
+	target.style.position = "absolute";
+	target.style.left = `${finalLeft}px`;
+	target.style.top = `${finalTop}px`;
+
 	SCROLLER?.style.setProperty(
 		"translate",
-		`0px ${Math.round(positionUnder ? window.scrollY + anchorY + anchorH + targetH + 30 : 0)}px`,
+		`0px ${Math.round(positionUnder ? scrollTop + anchorY + anchorH + targetH + 30 : 0)}px`,
 	);
 }
 
