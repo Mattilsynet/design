@@ -117,7 +117,7 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 		if (newState === "closed") anchorPosition(el, false);
 		else if (anchor) {
 			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, "bottom", true);
+			anchorPosition(el, anchor, attr(el, "data-position") ?? "bottom", true);
 		}
 	}
 }

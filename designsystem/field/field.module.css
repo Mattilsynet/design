@@ -86,25 +86,34 @@
 	.field u-combobox > input {
 		flex: 1 0 100%;
 	}
+	.field u-combobox > input[list]:has(~ del) {
+		padding-right: 3.75em;
+	}
 
 	/* Clear button */
 	.field u-combobox > del {
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
-		height: 1em;
-		margin-left: -3.75em;
+		height: 2em;
+		margin-left: -4.25em;
 		outline: 0;
 		position: relative;
-		width: 1em;
+		width: 2em;
 	}
 	.field u-combobox > del::after {
 		background: currentColor;
-		content: ""; /* Fallback for old Firefox */
-		content: "" / var(--mtds-text-combobox-clear);
+		content: ""; /* Fallback for old Firefox & iOS Safari */
 		display: block;
 		height: 100%;
-		mask: center / contain no-repeat var(--mtds-icon-close);
+		mask: center / 50% no-repeat var(--mtds-icon-close);
 		width: 100%;
+	}
+
+	/* This can go back into the main element when Apple supports content in iOS Safari */
+	@supports (content: "" / "") {
+		.field u-combobox > del::after {
+			content: "" / var(--mtds-text-combobox-clear);
+		}
 	}
 
 	.field
@@ -138,6 +147,8 @@
 		mask-size: 100%;
 	}
 	.field u-datalist {
+		--from: -2px;
+		animation: _datalist .2s forwards;
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
@@ -147,8 +158,20 @@
 		left: 0;
 		margin: var(--ds-size-1) 0;
 		max-height: 400px;
+		max-width: calc(100vw - 20px);
 		overflow: auto;
 		padding: var(--ds-size-2);
+		position: absolute;
+		top: 0;
+	}
+	.field u-datalist[data-position="top"] {
+		--from: 2px;
+	}
+	@keyframes _datalist {
+		from {
+			translate: 0 var(--from);
+			opacity: 0;
+		}
 	}
 	.field u-option {
 		position: relative;

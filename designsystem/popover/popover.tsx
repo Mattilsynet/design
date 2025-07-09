@@ -6,12 +6,13 @@ import type {
 	PopoverValues,
 } from "../react-types";
 import styles from "../styles.module.css";
+import type { AnchorPosition } from "../utils";
 
 export type PopoverProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		{
-			"data-position"?: "top" | "bottom" | "left" | "right";
+			"data-position"?: AnchorPosition;
 			popover?: PopoverValues;
 		}
 	>;

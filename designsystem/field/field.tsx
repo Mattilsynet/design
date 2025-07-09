@@ -10,7 +10,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
-import { toCustomElementProps } from "../utils";
+import { type AnchorPosition, toCustomElementProps } from "../utils";
 
 type FieldBaseProps = {
 	count?: number;
@@ -118,6 +118,7 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 
 export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
 	"data-nofilter"?: boolean;
+	"data-position"?: AnchorPosition;
 };
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
