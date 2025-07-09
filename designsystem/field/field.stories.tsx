@@ -382,6 +382,7 @@ export const WithCombobox: Story = {
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
 			</u-combobox>
+			<select name="form-data" hidden></select>
 		</div>
 	),
 };
