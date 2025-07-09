@@ -104,9 +104,8 @@
 		background: currentColor;
 		content: ""; /* Fallback for old Firefox & iOS Safari */
 		display: block;
-		height: 50%;
-		transform: translateY(50%);
-		mask: center / contain no-repeat var(--mtds-icon-close);
+		height: 100%;
+		mask: center / 50% no-repeat var(--mtds-icon-close);
 		width: 100%;
 	}
 
@@ -148,8 +147,8 @@
 		mask-size: 100%;
 	}
 	.field u-datalist {
-		opacity: 0;
-		transition: 125ms opacity ease-in-out;
+		--from: -2px;
+		animation: _datalist .2s forwards;
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
@@ -157,12 +156,22 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
 		left: 0;
-		top: 0;
-		position: absolute;
 		margin: var(--ds-size-1) 0;
 		max-height: 400px;
+		max-width: calc(100vw - 20px);
 		overflow: auto;
 		padding: var(--ds-size-2);
+		position: absolute;
+		top: 0;
+	}
+	.field u-datalist[data-position="top"] {
+		--from: 2px;
+	}
+	@keyframes _datalist {
+		from {
+			translate: 0 var(--from);
+			opacity: 0;
+		}
 	}
 	.field u-option {
 		position: relative;

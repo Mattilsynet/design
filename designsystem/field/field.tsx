@@ -118,6 +118,7 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
 
 export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
 	"data-nofilter"?: boolean;
+	"data-position"?: AnchorPosition;
 };
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
@@ -137,7 +138,6 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 export type FieldComboboxProps = ReactUcombobox & {
 	"data-multiple"?: boolean;
 	"data-creatable"?: boolean;
-	"data-position"?: AnchorPosition;
 };
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(

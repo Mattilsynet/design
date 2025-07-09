@@ -556,14 +556,14 @@ export const ReactWithComboboxLong: Story = {
 	},
 	render: () => (
 		<>
-			<div style={{ marginBottom: "400px" }} />
+			<div style={{ height: 400 }} />
 			<Field>
 				<label>React med lange og mange</label>
 				<p>Beskrivelse</p>
-				<Field.Combobox data-position="top">
+				<Field.Combobox>
 					<Input className={styles.input} />
 					<del aria-label="Fjern tekst"></del>
-					<Field.Datalist>
+					<Field.Datalist data-position="top">
 						<Field.Option>
 							Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
 							Thunder Thunder Thunder Thunder Thunder
@@ -609,7 +609,7 @@ export const ReactWithComboboxLong: Story = {
 					</Field.Datalist>
 				</Field.Combobox>
 			</Field>
-			<div style={{ marginBottom: "800px" }} />
+			<div style={{ height: 800 }} />
 		</>
 	),
 };
