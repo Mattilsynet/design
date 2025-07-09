@@ -32,7 +32,7 @@ function handleMutation(fields: HTMLCollectionOf<Element>, validate?: boolean) {
 			for (const el of field.getElementsByTagName("*")) {
 				if (el instanceof HTMLLabelElement) labels.push(el);
 				else if (el instanceof UHTMLComboboxElement) combobox = el;
-				else if (isInputLike(el)) input = el;
+				else if (isInputLike(el) && !el.hidden) input = el;
 				else if (el.hasAttribute("data-description")) descs.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
 					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
