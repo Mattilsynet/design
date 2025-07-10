@@ -1,15 +1,14 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-	"organizeImports": {
-		"enabled": true
-	},
+	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"formatter": {
 		"enabled": true,
-		"ignore": [
-			"styles.module.css",
-			"divider.module.css",
-			"layout.module.css",
-			"link.module.css"
+		"includes": [
+			"**",
+			"!**/styles.module.css",
+			"!**/divider.module.css",
+			"!**/layout.module.css",
+			"!**/link.module.css"
 		]
 	},
 	"javascript": {
@@ -18,18 +17,22 @@
 		}
 	},
 	"files": {
-		"ignore": [
-			"storybook-static",
-			"mtds",
-			"dist",
-			"design-tokens",
-			"design-tokens-build"
+		"includes": [
+			"**",
+			"!**/storybook-static",
+			"!**/mtds",
+			"!**/dist",
+			"!**/design-tokens",
+			"!**/design-tokens-build"
 		]
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"correctness": {
+				"useHookAtTopLevel": "off"
+			},
 			"a11y": {
 				"noInteractiveElementToNoninteractiveRole": "off",
 				"noLabelWithoutControl": "off",
@@ -43,7 +46,8 @@
 				"useValidAriaRole": "off"
 			},
 			"style": {
-				"useSelfClosingElements": "off"
+				"useSelfClosingElements": "off",
+				"noDescendingSpecificity": "off"
 			},
 			"security": {
 				"noDangerouslySetInnerHtml": "off"

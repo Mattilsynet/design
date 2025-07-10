@@ -1,11 +1,11 @@
 import styles from "../styles.module.css";
 import {
-	IS_BROWSER,
-	QUICK_EVENT,
 	attr,
 	createOptimizedMutationObserver,
+	IS_BROWSER,
 	on,
 	onLoaded,
+	QUICK_EVENT,
 } from "../utils";
 
 const CSS_DIALOG = styles.dialog.split(" ")[0];

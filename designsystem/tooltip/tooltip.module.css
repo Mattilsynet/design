@@ -24,7 +24,7 @@
 		border: var(--margin) solid transparent;
 		color: var(--ds-color-base-contrast-default);
 		display: block;
-		font-size: .875rem;
+		font-size: 0.875rem;
 		inset: auto;
 		line-height: var(--ds-line-height-sm);
 		max-width: 25em;
@@ -32,7 +32,7 @@
 		padding: var(--ds-size-1) var(--ds-size-2);
 		position: fixed;
 		scale: 0.9;
-		transition-duration: .15s;
+		transition-duration: 0.15s;
 		transition-property: opacity, visibility, scale;
 		visibility: hidden;
 		z-index: 99999;

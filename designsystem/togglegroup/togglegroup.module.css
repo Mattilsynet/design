@@ -34,7 +34,7 @@
 		height: var(--ds-size-10);
 		padding: var(--mtdsc-togglegroup-padding);
 		place-items: center;
-		transition-duration: .2s;
+		transition-duration: 0.2s;
 		transition-property: background, border, color, scale;
 	}
 	.togglegroup label:has(input:focus-visible) {

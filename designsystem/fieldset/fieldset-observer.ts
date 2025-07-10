@@ -12,18 +12,21 @@ function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
 		for (const fieldset of fieldsets)
 			if (fieldset.isConnected) {
 				const inputs: HTMLInputElement[] = [];
-				let validationId: string | null = null;
+				let validId: string | null = null;
+				let valid = true;
 
 				for (const el of fieldset.getElementsByTagName("*")) {
-					if (el.classList.contains(CSS_VALIDATION)) validationId = useId(el);
-					else if (isInputLike(el)) inputs.push(el);
+					if (el.classList.contains(CSS_VALIDATION)) {
+						valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
+						validId = useId(el);
+					} else if (isInputLike(el)) inputs.push(el);
 				}
 
 				for (const input of inputs) {
-					const desc = attr(input, ARIA_DESC)?.replace(validationId || "#", "");
+					const desc = attr(input, ARIA_DESC)?.replace(validId || "#", "");
 
-					attr(input, ARIA_DESC, `${validationId || ""} ${desc || ""}`.trim());
-					attr(input, ARIA_INVALID, `${!!validationId}`);
+					attr(input, ARIA_DESC, `${validId || ""} ${desc || ""}`.trim());
+					attr(input, ARIA_INVALID, `${!valid}`);
 				}
 			}
 	});

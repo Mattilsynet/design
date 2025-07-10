@@ -134,6 +134,23 @@
 		"categories": ["Mennesker"],
 		"tags": ["person", "menneske", "bonde", "høygaffel"]
 	},
+	"person-alert.svg": {
+		"categories": ["Mennesker", "Beredskap"],
+		"tags": [
+			"advarsel",
+			"alarm",
+			"beredskap",
+			"beredt",
+			"inspektør",
+			"menneske",
+			"obs",
+			"person",
+			"skilt",
+			"varseltrekant",
+			"varsle",
+			"varsling"
+		]
+	},
 	"inspector.svg": {
 		"categories": ["Mennesker"],
 		"tags": ["person", "menneske", "inspektør", "ipad", "tavle", "plansje"]

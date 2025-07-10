@@ -64,7 +64,7 @@
 		place-items: center;
 		margin: 0 auto var(--mtdsc-steps-gap);
 		position: relative;
-		transition: .2s scale;
+		transition: 0.2s scale;
 		width: var(--mtdsc-steps-dot-size);
 		z-index: 2; /* Place above line */
 	}
@@ -121,8 +121,9 @@
 		--dot-after: var(--dot-fill);
 	}
 	.steps > li[aria-current="step"] mark {
-		box-shadow: 0 0 0 var(--mtdsc-steps-stroke-size) var(--dot-text), 0 0 0
-			calc(var(--mtdsc-steps-stroke-size) * 2) var(--dot-fill);
+		box-shadow:
+			0 0 0 var(--mtdsc-steps-stroke-size) var(--dot-text),
+			0 0 0 calc(var(--mtdsc-steps-stroke-size) * 2) var(--dot-fill);
 	}
 	.steps[data-state="complete"] > li,
 	.steps:not([data-direction="up"]) > li:where(:has(~ li[aria-current="step"])),
@@ -146,12 +147,12 @@
 	 * Fade
 	 */
 	.steps:is(
-			:not([data-fade]),
-			[data-fade="false"],
-			[data-fade="end"]:not([data-direction="up"]),
-			[data-fade="start"][data-direction="up"]
-		)
-		> li:first-child::before {
+		:not([data-fade]),
+		[data-fade="false"],
+		[data-fade="end"]:not([data-direction="up"]),
+		[data-fade="start"][data-direction="up"]
+	)
+	> li:first-child::before {
 		display: none;
 	}
 	.steps:is(

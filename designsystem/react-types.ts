@@ -24,6 +24,7 @@ export type PopoverValues = "" | "auto" | "manual" | undefined;
 
 declare global {
 	namespace React {
+		/* biome-ignore lint/correctness/noUnusedVariables: The <T> is required to replicate React implementation */
 		interface HTMLAttributes<T> {
 			popover?: PopoverValues;
 			popovertarget?: string;

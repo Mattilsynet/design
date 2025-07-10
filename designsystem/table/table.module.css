@@ -84,20 +84,21 @@
 	 * Expandable
 	 */
 	.table > tbody > tr:has(> :is(td, th) > button[aria-expanded]) {
-		transition: .2s;
+		transition: 0.2s;
 
 		&:has(button[aria-expanded="false"]) + tr > td[colspan]:only-child {
 			display: none;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
-			/* biome-ignore lint/correctness/noUnknownProperty: biome does not know about this property yet */
 			interpolate-size: allow-keywords;
 
 			&::part(details-content) {
 				block-size: 0;
 				overflow-y: clip;
-				transition: content-visibility 400ms allow-discrete, height 400ms;
+				transition:
+					content-visibility 400ms allow-discrete,
+					height 400ms;
 			}
 
 			&[open]::part(details-content) {
@@ -125,8 +126,8 @@
 				height: 1em;
 				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mtds-icon-chevron);
-				transition: rotate .2s;
-				vertical-align: -.2em;
+				transition: rotate 0.2s;
+				vertical-align: -0.2em;
 				width: 1em;
 			}
 
@@ -162,10 +163,10 @@
 	}
 	@keyframes _scrollShadow {
 		from {
-			box-shadow: inset -.5rem 0 .5rem -.5rem rgb(0 0 0 / 0.4);
+			box-shadow: inset -0.5rem 0 0.5rem -0.5rem rgb(0 0 0 / 0.4);
 		}
 		to {
-			box-shadow: inset .5rem 0 .5rem -.5rem rgb(0 0 0 / 0.4);
+			box-shadow: inset 0.5rem 0 0.5rem -0.5rem rgb(0 0 0 / 0.4);
 		}
 	}
 

@@ -3,7 +3,7 @@
 	"properties": [
 		{
 			"name": "composes",
-			"description": "Allows `@composes classname from './file.css'` directive"
+			"description": "Allows `composes classname from './file.css'` directive"
 		}
 	]
 }

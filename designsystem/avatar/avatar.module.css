@@ -9,7 +9,7 @@
 	}
 
 	.avatar[data-size="xs"] {
-		font-size: .6em; /* Custom size to make it fit in <button (makes width+height same as ds-size-7)> */
+		font-size: 0.6em; /* Custom size to make it fit in <button (makes width+height same as ds-size-7)> */
 	}
 
 	/**

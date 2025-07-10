@@ -2,13 +2,13 @@ import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
-	QUICK_EVENT,
 	anchorPosition,
 	attr,
 	isInputLike,
 	on,
 	onLoaded,
 	onMutation,
+	QUICK_EVENT,
 	useId,
 } from "../utils";
 
@@ -32,7 +32,7 @@ function handleMutation(fields: HTMLCollectionOf<Element>, validate?: boolean) {
 			for (const el of field.getElementsByTagName("*")) {
 				if (el instanceof HTMLLabelElement) labels.push(el);
 				else if (el instanceof UHTMLComboboxElement) combobox = el;
-				else if (isInputLike(el)) input = el;
+				else if (isInputLike(el) && !el.hidden) input = el;
 				else if (el.hasAttribute("data-description")) descs.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
 					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
@@ -117,7 +117,7 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 		if (newState === "closed") anchorPosition(el, false);
 		else if (anchor) {
 			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, "bottom", true);
+			anchorPosition(el, anchor, attr(el, "data-position") ?? "bottom", true);
 		}
 	}
 }

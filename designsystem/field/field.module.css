@@ -28,7 +28,7 @@
 		display: contents;
 	}
 	.field label svg {
-		vertical-align: -.15em;
+		vertical-align: -0.15em;
 	}
 	.field:has(:required, [aria-required="true"]) label::after {
 		background: var(--ds-color-info-surface-tinted);
@@ -37,11 +37,11 @@
 			var(--ds-color-info-border-subtle);
 		color: var(--ds-color-info-text-default);
 		content: var(--mtds-text-required);
-		font-size: .75em;
+		font-size: 0.75em;
 		font-weight: normal;
 		margin-left: 1ch;
-		padding: .18em var(--ds-size-2);
-		vertical-align: .1em;
+		padding: 0.18em var(--ds-size-2);
+		vertical-align: 0.1em;
 		white-space: nowrap;
 	}
 
@@ -86,25 +86,34 @@
 	.field u-combobox > input {
 		flex: 1 0 100%;
 	}
+	.field u-combobox > input[list]:has(~ del) {
+		padding-right: 3.75em;
+	}
 
 	/* Clear button */
 	.field u-combobox > del {
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
-		height: 1em;
-		margin-left: -3.75em;
+		height: 2em;
+		margin-left: -4.25em;
 		outline: 0;
 		position: relative;
-		width: 1em;
+		width: 2em;
 	}
 	.field u-combobox > del::after {
 		background: currentColor;
-		content: ""; /* Fallback for old Firefox */
-		content: "" / var(--mtds-text-combobox-clear);
+		content: ""; /* Fallback for old Firefox & iOS Safari */
 		display: block;
 		height: 100%;
-		mask: center / contain no-repeat var(--mtds-icon-close);
+		mask: center / 50% no-repeat var(--mtds-icon-close);
 		width: 100%;
+	}
+
+	/* This can go back into the main element when Apple supports content in iOS Safari */
+	@supports (content: "" / "") {
+		.field u-combobox > del::after {
+			content: "" / var(--mtds-text-combobox-clear);
+		}
 	}
 
 	.field
@@ -123,7 +132,7 @@
 		min-height: var(--ds-size-8);
 		padding-left: var(--ds-size-3);
 		text-decoration: none;
-		transition: .2s;
+		transition: 0.2s;
 	}
 	.field u-combobox > data::after {
 		background: currentcolor;
@@ -138,6 +147,8 @@
 		mask-size: 100%;
 	}
 	.field u-datalist {
+		--from: -2px;
+		animation: _datalist 0.2s forwards;
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
@@ -147,15 +158,27 @@
 		left: 0;
 		margin: var(--ds-size-1) 0;
 		max-height: 400px;
+		max-width: calc(100vw - 20px);
 		overflow: auto;
 		padding: var(--ds-size-2);
+		position: absolute;
+		top: 0;
+	}
+	.field u-datalist[data-position="top"] {
+		--from: 2px;
+	}
+	@keyframes _datalist {
+		from {
+			translate: 0 var(--from);
+			opacity: 0;
+		}
 	}
 	.field u-option {
 		position: relative;
 		border-radius: var(--ds-border-radius-sm);
 		outline: 0;
 		padding: var(--ds-size-2);
-		transition: .1s background-color;
+		transition: 0.1s background-color;
 	}
 	.field u-option[selected] {
 		padding-left: var(--ds-size-10);

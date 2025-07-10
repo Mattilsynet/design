@@ -371,7 +371,7 @@ export const WithCombobox: Story = {
 			<label>Med forslag</label>
 			<u-combobox>
 				<input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -382,6 +382,7 @@ export const WithCombobox: Story = {
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
 			</u-combobox>
+			<select name="form-data" hidden></select>
 		</div>
 	),
 };
@@ -396,7 +397,7 @@ export const WithComboboxMultiple: Story = {
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -449,7 +450,7 @@ export const WithComboboxAPI: Story = {
 						onInput={handleInput} // Note: using onInput, not onChange
 						ref={inputRef}
 					/>
-					<del aria-label="Fjern tekst"></del>
+					<del role="img" aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -490,7 +491,7 @@ export const WithComboboxCustomFilter: Story = {
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
-					<del aria-label="Fjern tekst"></del>
+					<del role="img" aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{options
 							.filter((option) =>
@@ -508,7 +509,7 @@ export const WithComboboxCustomFilter: Story = {
 	},
 };
 
-export const ReactWithCombobx: Story = {
+export const ReactWithCombobox: Story = {
 	parameters: {
 		layout: "padded",
 	},
@@ -518,7 +519,7 @@ export const ReactWithCombobx: Story = {
 			<p>Beskrivelse</p>
 			<Field.Combobox>
 				<Input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<Field.Datalist>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -539,13 +540,77 @@ export const ReactWithComboboxMultiple: Story = {
 			<Field.Combobox data-multiple>
 				<data>Saft</data>
 				<Input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<Field.Datalist data-nofilter>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
 				</Field.Datalist>
 			</Field.Combobox>
 		</Field>
+	),
+};
+
+export const ReactWithComboboxLong: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<>
+			<div style={{ height: 400 }} />
+			<Field>
+				<label>React med lange og mange</label>
+				<p>Beskrivelse</p>
+				<Field.Combobox>
+					<Input className={styles.input} />
+					<del role="img" aria-label="Fjern tekst"></del>
+					<Field.Datalist data-position="top">
+						<Field.Option>
+							Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
+							Thunder Thunder Thunder Thunder Thunder
+						</Field.Option>
+						<Field.Option>Whisper</Field.Option>
+						<Field.Option>Galaxy</Field.Option>
+						<Field.Option>Melody</Field.Option>
+						<Field.Option>Crystal</Field.Option>
+						<Field.Option>Sunset</Field.Option>
+						<Field.Option>Journey</Field.Option>
+						<Field.Option>Phoenix</Field.Option>
+						<Field.Option>Harmony</Field.Option>
+						<Field.Option>Neptune</Field.Option>
+						<Field.Option>Cascade</Field.Option>
+						<Field.Option>Velvet</Field.Option>
+						<Field.Option>Rhythm</Field.Option>
+						<Field.Option>Compass</Field.Option>
+						<Field.Option>Prism</Field.Option>
+						<Field.Option>Breeze</Field.Option>
+						<Field.Option>Eclipse</Field.Option>
+						<Field.Option>Sterling</Field.Option>
+						<Field.Option>Canvas</Field.Option>
+						<Field.Option>Zenith</Field.Option>
+						<Field.Option>Whisper</Field.Option>
+						<Field.Option>Galaxy</Field.Option>
+						<Field.Option>Melody</Field.Option>
+						<Field.Option>Crystal</Field.Option>
+						<Field.Option>Sunset</Field.Option>
+						<Field.Option>Journey</Field.Option>
+						<Field.Option>Phoenix</Field.Option>
+						<Field.Option>Harmony</Field.Option>
+						<Field.Option>Neptune</Field.Option>
+						<Field.Option>Cascade</Field.Option>
+						<Field.Option>Velvet</Field.Option>
+						<Field.Option>Rhythm</Field.Option>
+						<Field.Option>Compass</Field.Option>
+						<Field.Option>Prism</Field.Option>
+						<Field.Option>Breeze</Field.Option>
+						<Field.Option>Eclipse</Field.Option>
+						<Field.Option>Sterling</Field.Option>
+						<Field.Option>Canvas</Field.Option>
+						<Field.Option>Zenith</Field.Option>
+					</Field.Datalist>
+				</Field.Combobox>
+			</Field>
+			<div style={{ height: 800 }} />
+		</>
 	),
 };
 
@@ -599,7 +664,7 @@ export const ReactWithCombobxControlled: Story = {
 							</data>
 						))}
 						<Input className={styles.input} />
-						<del aria-label="Fjern tekst"></del>
+						<del role="img" aria-label="Fjern tekst"></del>
 						<Field.Datalist>
 							{options.map((option) => (
 								<Field.Option key={option} value={option}>
@@ -632,29 +697,27 @@ export const ReactWithCombobxCustomFilter: Story = {
 		];
 
 		return (
-			<>
-				<Field>
-					<label>React eget filter - gir kun treff fra starten av ordet</label>
-					<Field.Combobox ref={comboboxRef}>
-						<Input
-							className={styles.input}
-							onInput={({ currentTarget }) => setValue(currentTarget.value)}
-						/>
-						<del aria-label="Fjern tekst"></del>
-						<Field.Datalist>
-							{options
-								.filter((option) =>
-									option.toLowerCase().startsWith(value.toLowerCase()),
-								)
-								.map((option) => (
-									<Field.Option key={option} value={option}>
-										{option}
-									</Field.Option>
-								))}
-						</Field.Datalist>
-					</Field.Combobox>
-				</Field>
-			</>
+			<Field>
+				<label>React eget filter - gir kun treff fra starten av ordet</label>
+				<Field.Combobox ref={comboboxRef}>
+					<Input
+						className={styles.input}
+						onInput={({ currentTarget }) => setValue(currentTarget.value)}
+					/>
+					<del role="img" aria-label="Fjern tekst"></del>
+					<Field.Datalist>
+						{options
+							.filter((option) =>
+								option.toLowerCase().startsWith(value.toLowerCase()),
+							)
+							.map((option) => (
+								<Field.Option key={option} value={option}>
+									{option}
+								</Field.Option>
+							))}
+					</Field.Datalist>
+				</Field.Combobox>
+			</Field>
 		);
 	},
 };

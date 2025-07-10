@@ -32,11 +32,11 @@
 				var(--ds-color-info-border-subtle);
 			color: var(--ds-color-info-text-default);
 			content: var(--mtds-text-required);
-			font-size: .75em;
+			font-size: 0.75em;
 			font-weight: normal;
 			margin-left: 1.5ch;
-			padding: .18em var(--ds-size-2);
-			vertical-align: .1em;
+			padding: 0.18em var(--ds-size-2);
+			vertical-align: 0.1em;
 			white-space: nowrap;
 		}
 		& label::after {
