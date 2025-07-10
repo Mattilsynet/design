@@ -3,7 +3,7 @@ import type {
 	UHTMLComboboxElement,
 } from "@u-elements/u-combobox";
 import clsx from "clsx";
-import { type JSX, forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import { HelpText } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -138,11 +138,26 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 export type FieldComboboxProps = ReactUcombobox & {
 	"data-multiple"?: boolean;
 	"data-creatable"?: boolean;
+	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
+	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
+	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
 };
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
-	function FieldCombobox(props, ref) {
-		return <u-combobox ref={ref} {...toCustomElementProps(props)} />;
+	function FieldCombobox(
+		{ onAfterChange, onBeforeChange, onBeforeMatch, ...props },
+		ref,
+	) {
+		return (
+			<u-combobox
+				ref={ref}
+				/* @ts-expect-error React 19 supports custom events out of the box */
+				onafterchange={onAfterChange}
+				onbeforechange={onBeforeChange}
+				onbeforematch={onBeforeMatch}
+				{...toCustomElementProps(props)}
+			/>
+		);
 	},
 );
 

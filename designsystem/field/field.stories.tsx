@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { UHTMLComboboxElement } from "../";
 import { Button, Field, Flex, Input } from "../react";
 import styles from "../styles.module.css";
@@ -618,30 +618,22 @@ export const ReactWithCombobxControlled: Story = {
 		layout: "padded",
 	},
 	render: () => {
-		const comboboxRef = useRef<UHTMLComboboxElement>(null);
 		const options = ["Saft", "Suse"];
 		const [values, setValues] = useState<string[]>([]);
 
-		// NOTE: If you are using React 19,
-		// you can use onbeforechange={handleBeforeChange}
-		// directly on the combobox element
-		useEffect(() => {
-			const combobox = comboboxRef.current;
-			const handleBeforeChange = (event: CustomEvent) => {
-				event.preventDefault();
-				setValues((prev) => {
-					const item = event.detail;
+		// IMPORTANT:
+		// If you are using React 18 or lower,
+		// you need to bind the event handler using useEffect + addEventListener
+		const handleBeforeChange = (event: CustomEvent) => {
+			event.preventDefault();
+			setValues((prev) => {
+				const item = event.detail;
 
-					// Add if item is not connected, else  remove it
-					if (!item.isConnected) return [...prev, item.value];
-					return prev.filter((value) => item.value !== value);
-				});
-			};
-
-			combobox?.addEventListener("beforechange", handleBeforeChange);
-			return () =>
-				combobox?.removeEventListener("beforechange", handleBeforeChange);
-		}, []);
+				// Add if item is not connected, else  remove it
+				if (!item.isConnected) return [...prev, item.value];
+				return prev.filter((value) => item.value !== value);
+			});
+		};
 
 		return (
 			<>
@@ -656,7 +648,7 @@ export const ReactWithCombobxControlled: Story = {
 				<Field>
 					<label>React kontrollert</label>
 					<p>Beskrivelse</p>
-					<Field.Combobox ref={comboboxRef} data-multiple>
+					<Field.Combobox data-multiple onBeforeChange={handleBeforeChange}>
 						{values.map((value) => (
 							<data key={value} value={value}>
 								{value}
@@ -683,7 +675,6 @@ export const ReactWithCombobxCustomFilter: Story = {
 		layout: "padded",
 	},
 	render: () => {
-		const comboboxRef = useRef<UHTMLComboboxElement>(null);
 		const [value, setValue] = useState("");
 		const options = [
 			"Sogndal",
@@ -698,7 +689,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 		return (
 			<Field>
 				<label>React eget filter - gir kun treff fra starten av ordet</label>
-				<Field.Combobox ref={comboboxRef}>
+				<Field.Combobox>
 					<Input
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
