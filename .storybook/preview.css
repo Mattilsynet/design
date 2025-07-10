@@ -32,7 +32,7 @@ u-tabpanel > pre > .docblock-source {
 }
 
 .sbdocs-content table th svg {
-	vertical-align: -.15em;
+	vertical-align: -0.15em;
 }
 
 .sbdocs-content blockquote {
@@ -53,6 +53,7 @@ u-tabpanel > pre > .docblock-source {
 	border-color: var(--mtds-color-border-subtle);
 	background: var(--mtds-color-background-tinted);
 	display: inline;
+	white-space: normal;
 }
 
 .sbdocs-ol,
@@ -84,7 +85,7 @@ u-tabpanel > pre > .docblock-source {
 }
 .docblock-source .prismjs * {
 	color: inherit !important;
-	font-size: .875rem;
+	font-size: 0.875rem;
 	line-height: 1.5;
 }
 

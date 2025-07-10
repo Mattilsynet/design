@@ -5,7 +5,7 @@
 		flex-shrink: 0; /* If placed in flex */
 		max-width: 100%;
 		text-align: center;
-		transition-duration: .2s;
+		transition-duration: 0.2s;
 		transition-property: background-color, scale, translate;
 	}
 	.button:where(:not([hidden])) {
@@ -100,7 +100,7 @@
 	.button[data-arrow][aria-expanded]::before,
 	.button[data-arrow][popovertarget]::before {
 		mask-image: var(--mtds-icon-chevron);
-		transition: rotate .2s ease-out;
+		transition: rotate 0.2s ease-out;
 	}
 	.button[data-arrow][aria-expanded="true"]::before,
 	.button[data-arrow][popovertarget]:has(+ :popover-open)::before {

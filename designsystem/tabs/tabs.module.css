@@ -18,7 +18,8 @@
 		display: flex;
 		overflow-x: auto;
 		scrollbar-width: none; /* Firefox */
-		mask: linear-gradient(
+		mask:
+			linear-gradient(
 				to right,
 				transparent,
 				black 2em,
@@ -40,7 +41,7 @@
 		border-color: var(--dsc-tabs-list-border-color);
 		border-radius: var(--ds-border-radius-md) var(--ds-border-radius-md) 0 0;
 		background: var(--ds-color-background-tinted);
-		transition-duration: .2s;
+		transition-duration: 0.2s;
 		transition-property: background-color, color, border-color;
 		position: relative;
 	}

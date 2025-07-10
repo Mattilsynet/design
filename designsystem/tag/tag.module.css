@@ -43,7 +43,8 @@
 		content: "";
 		flex-shrink: 0;
 		height: 1em;
-		mask: center / contain no-repeat
+		mask:
+			center / contain no-repeat
 			var(--dsc-tag-icon-url, var(--mtds-icon-success)) content-box;
 		width: 1em;
 	}

@@ -371,7 +371,7 @@ export const WithCombobox: Story = {
 			<label>Med forslag</label>
 			<u-combobox>
 				<input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -397,7 +397,7 @@ export const WithComboboxMultiple: Story = {
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -450,7 +450,7 @@ export const WithComboboxAPI: Story = {
 						onInput={handleInput} // Note: using onInput, not onChange
 						ref={inputRef}
 					/>
-					<del aria-label="Fjern tekst"></del>
+					<del role="img" aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -491,7 +491,7 @@ export const WithComboboxCustomFilter: Story = {
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
-					<del aria-label="Fjern tekst"></del>
+					<del role="img" aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
 						{options
 							.filter((option) =>
@@ -519,7 +519,7 @@ export const ReactWithCombobox: Story = {
 			<p>Beskrivelse</p>
 			<Field.Combobox>
 				<Input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<Field.Datalist>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -540,7 +540,7 @@ export const ReactWithComboboxMultiple: Story = {
 			<Field.Combobox data-multiple>
 				<data>Saft</data>
 				<Input className={styles.input} />
-				<del aria-label="Fjern tekst"></del>
+				<del role="img" aria-label="Fjern tekst"></del>
 				<Field.Datalist data-nofilter>
 					<Field.Option>Saft</Field.Option>
 					<Field.Option>Suse</Field.Option>
@@ -562,7 +562,7 @@ export const ReactWithComboboxLong: Story = {
 				<p>Beskrivelse</p>
 				<Field.Combobox>
 					<Input className={styles.input} />
-					<del aria-label="Fjern tekst"></del>
+					<del role="img" aria-label="Fjern tekst"></del>
 					<Field.Datalist data-position="top">
 						<Field.Option>
 							Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
@@ -664,7 +664,7 @@ export const ReactWithCombobxControlled: Story = {
 							</data>
 						))}
 						<Input className={styles.input} />
-						<del aria-label="Fjern tekst"></del>
+						<del role="img" aria-label="Fjern tekst"></del>
 						<Field.Datalist>
 							{options.map((option) => (
 								<Field.Option key={option} value={option}>
@@ -697,29 +697,27 @@ export const ReactWithCombobxCustomFilter: Story = {
 		];
 
 		return (
-			<>
-				<Field>
-					<label>React eget filter - gir kun treff fra starten av ordet</label>
-					<Field.Combobox ref={comboboxRef}>
-						<Input
-							className={styles.input}
-							onInput={({ currentTarget }) => setValue(currentTarget.value)}
-						/>
-						<del aria-label="Fjern tekst"></del>
-						<Field.Datalist>
-							{options
-								.filter((option) =>
-									option.toLowerCase().startsWith(value.toLowerCase()),
-								)
-								.map((option) => (
-									<Field.Option key={option} value={option}>
-										{option}
-									</Field.Option>
-								))}
-						</Field.Datalist>
-					</Field.Combobox>
-				</Field>
-			</>
+			<Field>
+				<label>React eget filter - gir kun treff fra starten av ordet</label>
+				<Field.Combobox ref={comboboxRef}>
+					<Input
+						className={styles.input}
+						onInput={({ currentTarget }) => setValue(currentTarget.value)}
+					/>
+					<del role="img" aria-label="Fjern tekst"></del>
+					<Field.Datalist>
+						{options
+							.filter((option) =>
+								option.toLowerCase().startsWith(value.toLowerCase()),
+							)
+							.map((option) => (
+								<Field.Option key={option} value={option}>
+									{option}
+								</Field.Option>
+							))}
+					</Field.Datalist>
+				</Field.Combobox>
+			</Field>
 		);
 	},
 };

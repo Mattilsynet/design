@@ -14,7 +14,7 @@ if (
 				const next = force ?? !prev();
 				sheet.replaceSync?.(`:root { ${key}: var(${key}--${next})}`);
 				window.localStorage.setItem(key, next);
-			} catch (err) {} // localStorage is full or replaceSync is not supported
+			} catch (_err) {} // localStorage is full or replaceSync is not supported
 		};
 
 		// Set and store initial state

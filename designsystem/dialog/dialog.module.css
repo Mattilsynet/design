@@ -22,7 +22,7 @@
 		float: right;
 		margin: calc(var(--dsc-dialog-icon-spacing) * -1);
 		padding: var(--dsc-dialog-icon-spacing);
-		transition: scale .2s;
+		transition: scale 0.2s;
 
 		&:focus-visible {
 			box-shadow: var(--dsc-focus-boxShadow);

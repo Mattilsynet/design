@@ -57,10 +57,7 @@ export const React: Story = {
 		return (
 			<>
 				<Button onClick={() => setOpen(true)}>Open</Button>
-				<Dialog
-					onClose={() => setOpen(false)}
-					open={open}
-				>
+				<Dialog onClose={() => setOpen(false)} open={open}>
 					<Button aria-label="Lukk" onClick={() => setOpen(false)} />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
 					malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique.

@@ -9,7 +9,7 @@
 		text-align: center;
 	}
 	.heading svg {
-		vertical-align: -.15em;
+		vertical-align: -0.15em;
 	}
 
 	.ingress {
@@ -17,7 +17,7 @@
 	}
 	.muted,
 	small {
-		font-size: max(.888888em, .75rem);
+		font-size: max(0.888888em, 0.75rem);
 	}
 
 	/**
@@ -26,10 +26,16 @@
 	.info {
 		--mtdsc-info-gap: var(--ds-size-2);
 		--mtdsc-info-icon-size: 1em;
+		--lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
 		--x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 
 		overflow: clip;
 		text-overflow: ellipsis;
+	}
+	@supports (height: 1lh) {
+		.info {
+			--lh: 1lh;
+		}
 	}
 	.info strong {
 		display: block;
@@ -38,8 +44,7 @@
 		padding-left: var(--x);
 	}
 	.info > :is(svg, i) {
-		height: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
-		height: 1lh; /* But use 1lh if available to align with line-height */
+		height: var(--lh);
 		margin-left: calc(var(--x) * -1);
 		position: absolute;
 		text-align: center;
@@ -76,7 +81,7 @@
 		max-width: var(--mtdsc-prose-max-width);
 	}
 	.prose > :where([class*="heading"]) + :where(p, ul, ol) {
-		margin-top: .5rem; /* size 2 is written as .5rem to for consistent value regardless of headings size */
+		margin-top: 0.5rem; /* size 2 is written as .5rem to for consistent value regardless of headings size */
 	}
 	.prose > :where([class*="heading"]) + :where([class*="heading"]) {
 		margin-top: 1rem; /* Heading followed by heading shoul have size 4 between */

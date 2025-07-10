@@ -17,13 +17,18 @@
 
 		box-sizing: border-box;
 		min-height: 100vh;
-		min-height: 100svh; /* Use small viewport height if supported */
 		padding: var(--spacing);
 		grid-template:
 			"header header" auto
 			"sidebar main" 1fr
 			"footer footer" auto / auto 1fr;
 	}
+	@supports (min-height: 100svh) {
+		.app {
+			min-height: 100svh;
+		}
+	}
+
 	.app:where(:not([hidden])) {
 		display: grid;
 	}
@@ -49,7 +54,9 @@
 			var(--mtds-app-expanded--false, top);
 
 		bottom: var(--spacing);
-		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
+		box-shadow:
+			0 3px 5px rgba(0, 0, 0, 0.1),
+			0 0 2px rgba(0, 0, 0, 0.2);
 		flex-direction: var(--mtds-app-expanded--false, column);
 		grid-area: sidebar;
 		height: var(--dsc-button-size);

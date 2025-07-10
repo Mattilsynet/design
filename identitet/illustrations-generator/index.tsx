@@ -115,7 +115,7 @@ export function IllustrationsGenerator() {
 														document.getElementById(id)?.outerHTML || "",
 												)
 												.replace(/(<\/?)symbol/g, "$1svg")
-												.replace(/var\(([^\)]+)\)/g, (_, prop) =>
+												.replace(/var\(([^)]+)\)/g, (_, prop) =>
 													css.getPropertyValue(prop),
 												),
 										],

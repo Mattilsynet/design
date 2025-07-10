@@ -150,23 +150,21 @@ export const Sizes: Story = {
 
 export const WithoutLinks: Story = {
 	render: () => (
-		<>
-			<div className={styles.breadcrumbs} aria-label="Sidens plassering:">
-				<ol>
-					<li>
-						<span>Nivå 1</span>
-					</li>
-					<li>
-						<span>Nivå 2</span>
-					</li>
-					<li>
-						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-					</li>
-					<li>
-						<span>Nivå 4</span>
-					</li>
-				</ol>
-			</div>
-		</>
+		<section className={styles.breadcrumbs} aria-label="Sidens plassering:">
+			<ol>
+				<li>
+					<span>Nivå 1</span>
+				</li>
+				<li>
+					<span>Nivå 2</span>
+				</li>
+				<li>
+					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+				</li>
+				<li>
+					<span>Nivå 4</span>
+				</li>
+			</ol>
+		</section>
 	),
 };

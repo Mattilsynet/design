@@ -8,7 +8,7 @@
 		font-weight: normal; /* Reset <label> */
 		max-width: 100%;
 		text-align: left;
-		transition-duration: .2s;
+		transition-duration: 0.2s;
 		transition-property: background-color, color;
 	}
 	.chip::after {

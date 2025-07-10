@@ -2,7 +2,7 @@
 	.toast {
 		--mtdsc-toast-padding: var(--ds-size-3);
 
-		animation: _toast .3s ease-out forwards;
+		animation: _toast 0.3s ease-out forwards;
 		background: var(--ds-color-main-base-default);
 		border-radius: var(--ds-border-radius-md);
 		border: 0;

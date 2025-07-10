@@ -78,7 +78,7 @@
 		position: absolute;
 		right: 0;
 		top: 0;
-		transition: scale .2s;
+		transition: scale 0.2s;
 
 		&:focus-visible {
 			box-shadow: var(--dsc-focus-boxShadow);
@@ -102,7 +102,7 @@
 		&::after {
 			content: "";
 			position: absolute; /* Increase click surface */
-			inset: -.5em;
+			inset: -0.5em;
 		}
 	}
 }
