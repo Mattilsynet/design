@@ -108,6 +108,12 @@
 		mask: center / 50% no-repeat var(--mtds-icon-close);
 		width: 100%;
 	}
+	.field u-combobox > input[type="search"]:has(~ del) {
+		padding-right: 2.75em;
+	}
+	.field u-combobox > input[type="search"] + del {
+		margin-left: -2.75em;
+	}
 
 	/* This can go back into the main element when Apple supports content in iOS Safari */
 	@supports (content: "" / "") {
