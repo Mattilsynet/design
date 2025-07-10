@@ -417,7 +417,6 @@ export const WithComboboxAPI: Story = {
 		layout: "padded",
 	},
 	render: () => {
-		const inputRef = useRef<HTMLInputElement>(null);
 		const [options, setOptions] = useState<string[] | string>("Name a country"); // Store results
 		const timer = useRef<ReturnType<typeof setTimeout> | number>(0);
 
@@ -446,9 +445,9 @@ export const WithComboboxAPI: Story = {
 				<label>Med henting av resultater fra API</label>
 				<u-combobox>
 					<input
+						type="search"
 						className={styles.input}
 						onInput={handleInput} // Note: using onInput, not onChange
-						ref={inputRef}
 					/>
 					<del role="img" aria-label="Fjern tekst"></del>
 					<u-datalist data-nofilter>
