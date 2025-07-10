@@ -1,11 +1,11 @@
 import styles from "../styles.module.css";
 import {
-	IS_BROWSER,
-	QUICK_EVENT,
 	anchorPosition,
 	attr,
+	IS_BROWSER,
 	on,
 	onLoaded,
+	QUICK_EVENT,
 } from "../utils";
 
 const DESCRIBEDBY = "aria-describedby";

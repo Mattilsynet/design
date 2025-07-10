@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, debounce, on, onLoaded, onMutation } from "../utils";
+import { debounce, on, onLoaded, onMutation, QUICK_EVENT } from "../utils";
 import "./app-toggle";
 
 const CSS_APP = styles.app.split(" ")[0];

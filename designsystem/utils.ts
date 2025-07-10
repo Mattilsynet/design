@@ -229,7 +229,7 @@ export const onMutation = <T extends Element>(
 				MUTATORS.delete(el);
 			}
 		}).observe(el, {
-			attributeFilter: ["class"],
+			attributeFilter: ["class", "hidden"],
 			attributes: true,
 			childList: true,
 			subtree: true,

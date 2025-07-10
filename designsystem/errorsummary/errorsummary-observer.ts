@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, attr, on, onLoaded } from "../utils";
+import { attr, on, onLoaded, QUICK_EVENT } from "../utils";
 
 function handleInject(event: Event & { animationName?: string }) {
 	if (event.animationName !== styles._errorsummary) return;

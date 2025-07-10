@@ -2,13 +2,13 @@ import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
 import {
-	QUICK_EVENT,
 	anchorPosition,
 	attr,
 	isInputLike,
 	on,
 	onLoaded,
 	onMutation,
+	QUICK_EVENT,
 	useId,
 } from "../utils";
 
