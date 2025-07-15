@@ -55,6 +55,7 @@ type SharedProps = {
 	"data-gap"?: Gap | GapOld;
 	"data-row-gap"?: Gap;
 	"data-column-gap"?: Gap;
+	"data-nowrap"?: boolean;
 	"data-justify"?:
 		| "start"
 		| "center"

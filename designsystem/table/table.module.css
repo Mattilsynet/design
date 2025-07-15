@@ -46,7 +46,7 @@
 	 * Nowrap
 	 */
 	.table[data-nowrap],
-	.table [data-nowrap] {
+	.table [data-nowrap]:is(th, td, tr) {
 		white-space: nowrap;
 	}
 
@@ -72,12 +72,20 @@
 		--dsc-table-border-color: transparent;
 		--dsc-table-padding: var(--mtds-1) 0;
 	}
+
 	/* Remove padding when no line */
 	.table:not([data-border]) > * > tr > :first-child {
 		padding-left: 0;
 	}
 	.table:not([data-border]) > * > tr > :last-child {
 		padding-right: 0;
+	}
+
+	/**
+	 * Sortable
+	 */
+	.table > thead > tr > th > button[aria-sort]::after {
+		flex-shrink: 0; /* TODO: Report to DigiDir */
 	}
 
 	/**
@@ -153,6 +161,10 @@
 	/**
 	 * Scrollable
 	 */
+	figure > .table {
+		width: auto;
+		min-width: 100%;
+	}
 	figure:has(> .table) {
 		animation: _scrollShadow linear;
 		animation-timeline: scroll(self inline);

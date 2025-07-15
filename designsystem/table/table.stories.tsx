@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
 	type ColumnDef,
 	type ExpandedState,
-	type SortingState,
 	flexRender,
 	getCoreRowModel,
 	getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
+	type SortingState,
 	useReactTable,
 } from "@tanstack/react-table";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { pagination } from "../";
-import { Table } from "../react";
+import { Button, Field, Pagination, Table } from "../react";
 import styles from "../styles.module.css";
 import mockData from "./table.mockData";
 
@@ -49,9 +49,17 @@ const mockExpand = mockData.slice(0, 10).map((row: RowType) => ({
 	),
 }));
 
+const mockColumns: ColumnDef<RowType>[] = [
+	{ accessorKey: "firstName", header: "First name" },
+	{ accessorKey: "lastName", header: "Last name" },
+	{ header: "Age", accessorKey: "age" },
+	{ header: "Visits", accessorKey: "visits" },
+];
+
 const mobileDecorators: StoryObj["decorators"] = [
 	(Story) => {
 		useEffect(() => {
+			if (document.querySelector(".sbdocs-wrapper")) return; // Do not shrink in docs mode
 			const el = window.frameElement as HTMLElement;
 			const iframe = el?.nodeName === "IFRAME" ? el : undefined;
 			if (iframe) iframe.style.maxWidth = "400px";
@@ -150,16 +158,11 @@ export const DefaultTanstack: Story = {
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			data: mockDataSmall,
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age" },
-				{ header: "Visits", accessorKey: "visits" },
-			],
+			columns: mockColumns,
 		});
 
 		return (
-			<table className={styles.table} aria-label="Tanstack table" {...args}>
+			<Table aria-label="Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
@@ -186,16 +189,17 @@ export const DefaultTanstack: Story = {
 									key={cell.id}
 									data-numeric={isNumeric.includes(cell.column.id)}
 								>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									{cell.getValue() as React.ReactNode}
 								</td>
 							))}
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		);
 	},
 };
+
 export const HeadingsSimple: Story = {
 	render: (args) => {
 		const columns: ColumnsType = [
@@ -242,40 +246,43 @@ export const HeadingsSimple: Story = {
 export const HeadingsTanstack: Story = {
 	render: function Render(args) {
 		const isNumeric = ["age", "visits", "date"];
-		const columns: ColumnDef<RowType>[] = [
-			{
-				header: "Name",
-				columns: [
-					{
-						accessorKey: "firstName",
-						header: "First name",
-					},
-					{
-						accessorKey: "lastName",
-						header: "Last name",
-					},
-				],
-			},
-			{
-				header: "Stats",
-				columns: [
-					{
-						header: "Age",
-						accessorKey: "age",
-					},
-					{
-						header: "Visits",
-						accessorKey: "visits",
-					},
-					{
-						header: "Date",
-						accessorKey: "date",
-						cell: (info) =>
-							new Date(Number(info.getValue())).toLocaleDateString(),
-					},
-				],
-			},
-		];
+		const columns: ColumnDef<RowType>[] = useMemo(
+			() => [
+				{
+					header: "Name",
+					columns: [
+						{
+							accessorKey: "firstName",
+							header: "First name",
+						},
+						{
+							accessorKey: "lastName",
+							header: "Last name",
+						},
+					],
+				},
+				{
+					header: "Stats",
+					columns: [
+						{
+							header: "Age",
+							accessorKey: "age",
+						},
+						{
+							header: "Visits",
+							accessorKey: "visits",
+						},
+						{
+							header: "Date",
+							accessorKey: "date",
+							cell: (info) =>
+								new Date(Number(info.getValue())).toLocaleDateString(),
+						},
+					],
+				},
+			],
+			[],
+		);
 
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
@@ -284,11 +291,7 @@ export const HeadingsTanstack: Story = {
 		});
 
 		return (
-			<table
-				className={styles.table}
-				aria-label="Headings Tanstack table"
-				{...args}
-			>
+			<Table aria-label="Headings Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
@@ -316,13 +319,13 @@ export const HeadingsTanstack: Story = {
 									key={cell.id}
 									data-numeric={isNumeric.includes(cell.column.id)}
 								>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									{cell.getValue() as React.ReactNode}
 								</td>
 							))}
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		);
 	},
 };
@@ -410,12 +413,7 @@ export const SortableTanstack: Story = {
 			onSortingChange: setSorting,
 			state: { sorting },
 			data: mockData,
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age" },
-				{ header: "Visits", accessorKey: "visits" },
-			],
+			columns: mockColumns,
 		});
 
 		const sort = {
@@ -425,11 +423,7 @@ export const SortableTanstack: Story = {
 		} as const;
 
 		return (
-			<table
-				className={styles.table}
-				aria-label="Sortable Tanstack table"
-				{...args}
-			>
+			<Table aria-label="Sortable Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
@@ -440,15 +434,12 @@ export const SortableTanstack: Story = {
 									data-numeric={isNumeric.includes(header.id)}
 									aria-sort={sort[`${header.column.getIsSorted()}`]}
 								>
-									<button
-										type="button"
-										onClick={header.column.getToggleSortingHandler()}
-									>
+									<Button onClick={header.column.getToggleSortingHandler()}>
 										{flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-									</button>
+									</Button>
 								</th>
 							))}
 						</tr>
@@ -462,13 +453,13 @@ export const SortableTanstack: Story = {
 									key={cell.id}
 									data-numeric={isNumeric.includes(cell.column.id)}
 								>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									{cell.getValue() as React.ReactNode}
 								</td>
 							))}
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		);
 	},
 };
@@ -569,21 +560,18 @@ export const PaginatableTanstack: Story = {
 			getCoreRowModel: getCoreRowModel(),
 			getPaginationRowModel: getPaginationRowModel(),
 			data: mockData,
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age" },
-				{ header: "Visits", accessorKey: "visits" },
-			],
+			columns: mockColumns,
+		});
+
+		const { pages, next, prev } = pagination({
+			current: table.getState().pagination.pageIndex + 1,
+			total: table.getPageCount(),
+			show: 7,
 		});
 
 		return (
 			<>
-				<table
-					className={styles.table}
-					aria-label="Paginatable Tanstack table"
-					{...args}
-				>
+				<Table aria-label="Paginatable Tanstack table" {...args}>
 					<thead>
 						{table.getHeaderGroups().map(({ id, headers }) => (
 							<tr key={id}>
@@ -610,47 +598,45 @@ export const PaginatableTanstack: Story = {
 										key={cell.id}
 										data-numeric={isNumeric.includes(cell.column.id)}
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										{cell.getValue() as React.ReactNode}
 									</td>
 								))}
 							</tr>
 						))}
 					</tbody>
-				</table>
-				<nav
-					data-size="sm"
-					aria-label="Sidenavigering"
-					className={styles.pagination}
-				>
+				</Table>
+				<Pagination data-size="sm" aria-label="Sidenavigering">
 					<ul>
 						<li>
-							<button
-								type="button"
-								className={styles.button}
-								aria-disabled="true"
-							></button>
-						</li>
-						<li>
-							<button
-								type="button"
-								className={styles.button}
-								aria-current="page"
+							<Button
+								disabled={!prev}
+								onClick={() => table.setPageIndex(prev - 1)}
 							>
-								1
-							</button>
+								Forrige
+							</Button>
 						</li>
+						{pages.map(({ current, key, page }) => (
+							<li key={key}>
+								{!!page && (
+									<Button
+										aria-current={current}
+										onClick={() => table.setPageIndex(page - 1)}
+									>
+										{page}
+									</Button>
+								)}
+							</li>
+						))}
 						<li>
-							<button type="button" className={styles.button}>
-								2
-							</button>
-						</li>
-						<li>
-							<button type="button" className={styles.button}>
-								3
-							</button>
+							<Button
+								disabled={!next}
+								onClick={() => table.setPageIndex(next - 1)}
+							>
+								Neste
+							</Button>
 						</li>
 					</ul>
-				</nav>
+				</Pagination>
 			</>
 		);
 	},
@@ -723,31 +709,19 @@ export const SearchableTanstack: Story = {
 			onGlobalFilterChange: setSearch,
 			data: mockData,
 			state: { globalFilter: search },
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age" },
-				{ header: "Visits", accessorKey: "visits" },
-			],
+			columns: mockColumns,
 		});
 
 		return (
 			<>
-				<div className={styles.field}>
-					<label>Search</label>
-					<input
-						className={styles.input}
-						type="search"
-						onChange={({ target }) => setSearch(target.value)}
-						value={search}
-					/>
-				</div>
-				<table
-					className={styles.table}
-					aria-label="Searchable Tanstack table"
-					data-fixed
-					{...args}
-				>
+				<Field
+					as="input"
+					type="search"
+					label="Search"
+					onChange={({ target }) => setSearch(target.value)}
+					value={search}
+				/>
+				<Table aria-label="Searchable Tanstack table" data-fixed {...args}>
 					<thead>
 						{table.getHeaderGroups().map(({ id, headers }) => (
 							<tr key={id}>
@@ -774,13 +748,13 @@ export const SearchableTanstack: Story = {
 										key={cell.id}
 										data-numeric={isNumeric.includes(cell.column.id)}
 									>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+										{cell.getValue() as React.ReactNode}
 									</td>
 								))}
 							</tr>
 						))}
 					</tbody>
-				</table>
+				</Table>
 			</>
 		);
 	},
@@ -850,20 +824,11 @@ export const ExpandableTanstack: Story = {
 			onExpandedChange: setExpanded,
 			state: { expanded },
 			data: mockExpand,
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age" },
-				{ header: "Visits", accessorKey: "visits" },
-			],
+			columns: mockColumns,
 		});
 
 		return (
-			<table
-				className={styles.table}
-				aria-label="Expandable Tanstack table"
-				{...args}
-			>
+			<Table aria-label="Expandable Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
@@ -892,18 +857,14 @@ export const ExpandableTanstack: Story = {
 										data-numeric={isNumeric.includes(cell.column.id)}
 									>
 										{cellIndex === 0 ? (
-											<button
+											<Button
 												aria-expanded={row.getIsExpanded()}
 												onClick={() => row.toggleExpanded()}
-												type="button"
 											>
-												{flexRender(
-													cell.column.columnDef.cell,
-													cell.getContext(),
-												)}
-											</button>
+												{cell.getValue() as React.ReactNode}
+											</Button>
 										) : (
-											flexRender(cell.column.columnDef.cell, cell.getContext())
+											(cell.getValue() as React.ReactNode)
 										)}
 									</td>
 								))}
@@ -916,7 +877,7 @@ export const ExpandableTanstack: Story = {
 						</Fragment>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		);
 	},
 };
@@ -970,20 +931,11 @@ export const CheckableTanstack: Story = {
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			data: mockData,
-			columns: [
-				{ accessorKey: "firstName", header: "First name" },
-				{ accessorKey: "lastName", header: "Last name" },
-				{ header: "Age", accessorKey: "age", meta: { numeric: true } },
-				{ header: "Visits", accessorKey: "visits", meta: { numeric: true } },
-			],
+			columns: mockColumns,
 		});
 
 		return (
-			<table
-				className={styles.table}
-				aria-label="Checkable Tanstack table"
-				{...args}
-			>
+			<Table aria-label="Checkable Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
@@ -1012,29 +964,22 @@ export const CheckableTanstack: Story = {
 									data-numeric={isNumeric.includes(cell.column.id)}
 								>
 									{index ? (
-										flexRender(cell.column.columnDef.cell, cell.getContext())
+										(cell.getValue() as React.ReactNode)
 									) : (
-										<div className={styles.field}>
-											<input
-												className={styles.input}
-												type="checkbox"
-												checked={row.getIsSelected()}
-												onChange={row.getToggleSelectedHandler()}
-											/>
-											<label>
-												{flexRender(
-													cell.column.columnDef.cell,
-													cell.getContext(),
-												)}
-											</label>
-										</div>
+										<Field
+											as="input"
+											type="checkbox"
+											checked={row.getIsSelected()}
+											onChange={row.getToggleSelectedHandler()}
+											label={cell.getValue() as React.ReactNode}
+										/>
 									)}
 								</td>
 							))}
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</Table>
 		);
 	},
 };

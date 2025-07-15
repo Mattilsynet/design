@@ -141,6 +141,7 @@
 		inset: 0 0 auto;
 		pointer-events: none;
 		position: fixed;
+		view-transition-name: _mtds-logo-env; /* Used to be compatible with app sidebar */
 		z-index: 99999;
 	}
 	html:has(.logo[data-env]) {
