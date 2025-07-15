@@ -49,7 +49,7 @@ const mockExpand = mockData.slice(0, 10).map((row: RowType) => ({
 	),
 }));
 
-const mockColumns: ColumnDef<RowType>[] = [
+const mockColumns = [
 	{ accessorKey: "firstName", header: "First name" },
 	{ accessorKey: "lastName", header: "Last name" },
 	{ header: "Age", accessorKey: "age" },
