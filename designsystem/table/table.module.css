@@ -46,7 +46,7 @@
 	 * Nowrap
 	 */
 	.table[data-nowrap],
-	.table [data-nowrap]:is(th, td, tr) {
+	.table [data-nowrap]:is(th, td, tr, thead, tfoot, tbody) {
 		white-space: nowrap;
 	}
 

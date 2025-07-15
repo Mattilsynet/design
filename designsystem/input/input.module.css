@@ -14,10 +14,6 @@
 		--dsc-input-stroke: 0.045em;
 	}
 
-	.input:is(select) {
-		text-overflow: ellipsis; /* TODO: Add to DigiDir */
-	}
-
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 	.input[readonly]:disabled {
 		opacity: 1;
