@@ -7,6 +7,7 @@ import {
 	Flex,
 	Grid,
 	type GridProps,
+	Heading,
 	Select,
 	Table,
 	Tag,
@@ -57,16 +58,40 @@ type CssVariablesProps = { component: string; exclude?: string };
 export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 	const [cssVars, setCssVars] = useState<ReturnType<typeof getCssVars>>({});
 	const excludes = exclude?.split(",").map((ex) => ex.trim()) || [];
+	const hasTokens = !!Object.keys(cssVars).length;
 	useEffect(() => setCssVars(getCssVars(component)), [component]);
 
 	return (
 		<>
-			<h2 id="komponenttokens">Komponenttokens</h2>
+			<Heading data-size="lg" id="styling">
+				Styling
+			</Heading>
 			<p>
-				Endre på utseende via CSS-variabler:{" "}
-				<strong>--mtdsc-token-navn: ny-verdi;</strong>
+				Alle{" "}
+				<small>
+					<code>@mattilsynet/design</code>
+				</small>
+				-komponenter kan kombineres med egen-laget styling, f.eks:{" "}
+				<small>
+					<code>{`.my-${component} { color: red }`}</code>
+				</small>
+				.{" "}
+				{hasTokens && (
+					<>
+						Noen støtter også egne{" "}
+						<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties">
+							CSS custom properties
+						</a>
+						, som gjør justeringer enda enklere;{" "}
+						<small>
+							<code>{`.my-${component} { --mtdsc-${component}-TOKEN: VERDI; }`}</code>
+						</small>
+						.<br />
+						Komponenten <strong>{component}</strong> støtter følende:
+					</>
+				)}
 			</p>
-			{Object.keys(cssVars).length ? (
+			{hasTokens && (
 				<Table data-fixed>
 					<thead>
 						<tr>
@@ -86,8 +111,6 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 						)}
 					</tbody>
 				</Table>
-			) : (
-				"Ingen"
 			)}
 		</>
 	);

@@ -8,7 +8,7 @@
 		--dsc-details-summary-background--hover: var(--ds-color-background-tinted);
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
-		--mtdsc-details-content-padding: 0 0 var(--ds-size-4)
+		--mtdsc-details-content-padding: 0 var(--ds-size-4) var(--ds-size-4)
 			calc(
 				var(--ds-size-4) +
 				var(--dsc-details-icon-size) +
@@ -39,14 +39,13 @@
 		rotate: -180deg;
 	}
 
-	.details > :not(summary, u-summary) {
-		border-radius: 0; /* Reset DigiDir */
+	:where(.details > :not(summary, u-summary)) {
+		border-radius: 0; /* Reset DigiDir, using :where to allow any child element to override styling */
 		padding: 0;
 	}
 
 	.details::details-content,
 	.details::part(details-content) {
-		overflow: hidden; /* TODO: DigiDir Use hidden instead of clip to contain margins */
 		padding: var(--mtdsc-details-content-padding);
 		transition-duration: 400ms;
 		transition-property: content-visibility, height, padding;

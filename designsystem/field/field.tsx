@@ -3,8 +3,14 @@ import type {
 	UHTMLComboboxElement,
 } from "@u-elements/u-combobox";
 import clsx from "clsx";
-import { forwardRef, type JSX } from "react";
-import { HelpText } from "../react";
+import {
+	forwardRef,
+	type JSX,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+} from "react";
+import { HelpText, Input } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -19,11 +25,13 @@ type FieldBaseProps = {
 	helpText?: React.ReactNode;
 	helpTextLabel?: string;
 	label?: React.ReactNode;
-	options?: Array<string | { label: string; value: string }>;
+	options?: string[] | FieldComboboxSelected;
 	prefix?: string;
 	readOnly?: boolean; // Allow readoOnly also on <select>
 	suffix?: string;
 	validation?: React.ReactNode;
+	value?: string | string[];
+	onInput?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type FieldProps<As extends React.ElementType = "div"> =
@@ -32,6 +40,11 @@ export type FieldProps<As extends React.ElementType = "div"> =
 type FieldComponent = <As extends React.ElementType = "div">(
 	props: FieldProps<As>,
 ) => JSX.Element;
+
+const toOption = (
+	o: FieldComboboxSelected[number] | string,
+): FieldComboboxSelected[number] =>
+	typeof o === "string" ? { label: o, value: o } : o;
 
 export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	As extends React.ElementType = "div",
@@ -46,7 +59,6 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		helpText,
 		helpTextLabel,
 		label,
-		options,
 		prefix,
 		style,
 		suffix,
@@ -69,8 +81,8 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		Object.assign(rest, {
 			children: (
 				<>
-					{options
-						?.map((o) => (typeof o === "string" ? { label: o, value: o } : o))
+					{(rest.options as FieldBaseProps["options"])
+						?.map(toOption)
 						.map(({ label, value }) => (
 							<option key={value} value={value}>
 								{label}
@@ -94,7 +106,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 				</FieldAffixes>
 			) : (
 				<Tag
-					className={styles.input}
+					className={typeof as === "string" ? styles.input : undefined}
 					suppressHydrationWarning
 					ref={ref}
 					{...rest}
@@ -135,28 +147,104 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	},
 );
 
+export type FieldComboboxSelected = {
+	label: string;
+	value: string;
+	children?: React.ReactNode;
+}[];
 export type FieldComboboxProps = ReactUcombobox & {
-	"data-multiple"?: boolean;
 	"data-creatable"?: boolean;
+	"data-multiple"?: boolean;
 	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
-};
+} & (
+		| {
+				"data-nofilter"?: boolean;
+				selected: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
+				options: FieldComboboxSelected;
+				onSelectedChange: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
+		  }
+		| {
+				"data-nofilter"?: never;
+				selected?: never;
+				options?: never;
+				onSelectedChange?: never;
+		  }
+	);
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(
-		{ onAfterChange, onBeforeChange, onBeforeMatch, ...props },
+		{
+			"data-multiple": multiple,
+			"data-nofilter": nofilter,
+			children,
+			onAfterChange,
+			onBeforeChange,
+			onBeforeMatch,
+			onSelectedChange,
+			options,
+			selected,
+			...props
+		},
 		ref,
 	) {
+		const innerRef = useRef<UHTMLComboboxElement>(null);
+		const isControlled = selected !== undefined;
+		const handleSelected = useRef(onSelectedChange);
+		handleSelected.current = onSelectedChange; // Keep the latest onSelectedChange function
+
+		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
+		useEffect(() => {
+			const self = innerRef.current;
+			const handleBeforeChange = (event: CustomEvent<HTMLDataElement>) => {
+				event.preventDefault();
+				const { isConnected: remove, textContent, value } = event.detail;
+				const onSelected = handleSelected.current;
+				const label = textContent?.trim() || "";
+				const prev = selected || [];
+
+				if (remove) onSelected?.(prev.filter((i) => i.value !== value));
+				else if (multiple) onSelected?.([...prev, { value, label }]);
+				else onSelected?.([{ value, label }]);
+			};
+
+			self?.addEventListener("beforechange", handleBeforeChange);
+			return () =>
+				self?.removeEventListener("beforechange", handleBeforeChange);
+		}, [multiple, selected]);
+
 		return (
 			<u-combobox
-				ref={ref}
 				/* @ts-expect-error React 19 supports custom events out of the box */
-				onafterchange={onAfterChange}
 				onbeforechange={onBeforeChange}
 				onbeforematch={onBeforeMatch}
+				onafterchange={onAfterChange}
+				data-multiple={multiple}
+				ref={innerRef}
 				{...toCustomElementProps(props)}
-			/>
+			>
+				{isControlled ? (
+					<>
+						{selected?.map(({ children, label, value }) => (
+							<data key={value} value={value} suppressHydrationWarning>
+								{children ?? label}
+							</data>
+						))}
+						<Input />
+						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
+						<FieldDatalist data-nofilter={nofilter || undefined}>
+							{options?.map(toOption).map(({ children, label, value }) => (
+								<FieldOption key={value} value={value} label={label}>
+									{children ?? label}
+								</FieldOption>
+							))}
+						</FieldDatalist>
+					</>
+				) : (
+					children
+				)}
+			</u-combobox>
 		);
 	},
 );

@@ -3,10 +3,18 @@ import type { UHTMLComboboxElement } from "../../designsystem";
 import { Card, Field, Flex, Input, Prose } from "../../designsystem/react";
 import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
-type Option = { value: string; label: string };
 type Select = { value?: string; label: string; options: Option[] };
-const VOID = () => {};
+type Option = {
+	value: string;
+	label: string;
+	h: number;
+	w: number;
+	x: number;
+	y: number;
+};
+
 const Skins = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
+const Apron = ["#CDE5F2", "#054449", "#f9cc76"];
 const Under = [
 	"#153F7B",
 	"#0C4FA1",
@@ -17,7 +25,6 @@ const Under = [
 	"#f9cc76",
 	"#da573b",
 ];
-const Apron = ["#CDE5F2", "#054449", "#f9cc76"];
 const Over = [
 	"#054449",
 	"#68B096",
@@ -29,6 +36,8 @@ const Over = [
 	"#CDE5F2",
 ];
 
+// TODO: Hudtone, fargepalett, høyre og venstre objekt
+
 export function IllustrationsGenerator() {
 	const ref = useRef<HTMLDivElement>(null);
 	const [selects, setSelects] = useState(new Map<string, Select>());
@@ -38,35 +47,20 @@ export function IllustrationsGenerator() {
 	const [over] = useState(Over[0]);
 	const [under] = useState(Under[0]);
 
-	useEffect(() => {
-		const self = ref.current;
-		const onChange = ({ detail, target }: CustomEvent<HTMLDataElement>) => {
-			const key = (target as UHTMLComboboxElement).control?.name || "";
-			const { value } = detail;
+	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
 
-			setSelects((prev) =>
-				new Map(prev).set(key, { ...(prev.get(key) as Select), value }),
-			);
-		};
+	const handleChange = (event: CustomEvent<HTMLDataElement>) => {
+		const key = (event.target as UHTMLComboboxElement).control?.name || "";
+		const { value } = event.detail;
 
-		setSelects(svgToSelects(svg));
-		self?.addEventListener("afterchange", onChange);
-		return () => self?.removeEventListener("afterchange", onChange);
-	}, []);
+		setSelects((prev) =>
+			new Map(prev).set(key, { ...prev.get(key), value } as Select),
+		);
+	};
 
 	return (
 		<>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
-			<style>{`:root {
-				--color-apron: ${apron};
-				--color-hair: #1E1A28;
-				--color-skin: ${skin};
-				--color-over: ${over};
-				--color-under: ${under};
-				--color-shoes: #1E1A28;
-				--color-caps: #DA573B;
-				--color-hat: #9ECCED;
-			}`}</style>
 			<Card>
 				<Flex>
 					<Prose data-self="300" data-fixed ref={ref}>
@@ -75,24 +69,29 @@ export function IllustrationsGenerator() {
 							.map(([key, { options, label }]) => (
 								<Field key={key}>
 									<label>{label}</label>
-									<Field.Combobox>
+									<Field.Combobox onAfterChange={handleChange}>
 										<data value={options[0]?.value}>{options[0]?.label}</data>
 										<Input name={key} />
-										<Field.Datalist data-nofilter>
-											{options.map(({ value, label }) => (
+										<Flex as={Field.Datalist} data-nofilter>
+											{options.map(({ value, label, x, y, w, h }) => (
 												<Field.Option
 													key={value}
 													value={value}
+													label={label}
+													data-tooltip={label}
 													onMouseEnter={() => setHovers({ key, value })}
 													onMouseLeave={() => setHovers({})}
+													style={{ outline: "1px solid" }}
 												>
-													<svg>
+													<svg
+														style={{ width: 50, height: 50 }}
+														viewBox={`${x} ${y} ${w} ${h}`}
+													>
 														<use key={value} href={`#${value}`} />
 													</svg>
-													{label}
 												</Field.Option>
 											))}
-										</Field.Datalist>
+										</Flex>
 									</Field.Combobox>
 								</Field>
 							))}
@@ -101,30 +100,20 @@ export function IllustrationsGenerator() {
 						width="100%"
 						height="500"
 						viewBox="-200 -200 400 1200"
-						onKeyDown={VOID}
-						onClick={({ currentTarget: svg }) => {
-							const css = window.getComputedStyle(svg);
-							navigator.clipboard.write([
-								new ClipboardItem({
-									"text/plain": new Blob(
-										[
-											svg.outerHTML
-												.replace(
-													/<use[^>]+href="#([^"]+)"[^>]*>(<\/use>?)/g,
-													(_, id) =>
-														document.getElementById(id)?.outerHTML || "",
-												)
-												.replace(/(<\/?)symbol/g, "$1svg")
-												.replace(/var\(([^)]+)\)/g, (_, prop) =>
-													css.getPropertyValue(prop),
-												),
-										],
-										{ type: "text/plain" },
-									),
-								}),
-							]);
-						}}
+						onKeyDown={() => {}}
+						onClick={handleCopySvg}
 					>
+						<style>{`:root {
+							--color-apron: ${apron};
+							--color-hair: #1E1A28;
+							--color-skin: ${skin};
+							--color-over: ${over};
+							--color-under: ${under};
+							--color-shoes: #1E1A28;
+							--color-caps: #DA573B;
+							--color-hat: #9ECCED;
+						}
+						`}</style>
 						{Array.from(selects, ([key, { value }]) => (
 							<use
 								key={key}
@@ -144,12 +133,41 @@ function svgToSelects(innerHTML: string) {
 
 	for (const el of div.querySelectorAll("svg > [id]")) {
 		const label = el.querySelector("title")?.textContent || el.id;
-		const options = Array.from(el.querySelectorAll("symbol"), (symbol) => ({
-			value: symbol.id,
-			label: symbol.querySelector("title")?.textContent || symbol.id,
-		}));
+		const options = Array.from(
+			el.querySelectorAll<SVGSymbolElement>("symbol"),
+			(symbol) => ({
+				value: symbol.id,
+				label: symbol.querySelector("title")?.textContent || symbol.id,
+				h: Number.parseFloat(symbol.getAttribute("height") || "1"),
+				w: Number.parseFloat(symbol.getAttribute("width") || "1"),
+				x: Number.parseFloat(symbol.getAttribute("x") || "0"),
+				y: Number.parseFloat(symbol.getAttribute("y") || "0"),
+			}),
+		);
 		map.set(el.id, { label, options, value: options[0]?.value || el.id });
 	}
 	div.innerHTML = "";
 	return map;
+}
+
+function handleCopySvg(event: React.MouseEvent<SVGSVGElement>) {
+	const { currentTarget: svg } = event;
+	const css = window.getComputedStyle(svg);
+
+	window.navigator.clipboard.write([
+		new ClipboardItem({
+			"text/plain": new Blob(
+				[
+					svg.outerHTML
+						.replace(
+							/<use[^>]+href="#([^"]+)"[^>]*>(<\/use>?)/g,
+							(_, id) => document.getElementById(id)?.outerHTML || "", // Replace <use> with the actual <svg> content
+						)
+						.replace(/(<\/?)symbol/g, "$1svg") // Replace <symbol> with <svg>
+						.replace(/var\(([^)]+)\)/g, (_, key) => css.getPropertyValue(key)), // Replace CSS variables with their computed values
+				],
+				{ type: "text/plain" },
+			),
+		}),
+	]);
 }

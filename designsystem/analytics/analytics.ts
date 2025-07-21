@@ -81,13 +81,13 @@ export function analytics<Action extends keyof AnalyticsActions>(
 			);
 	}
 	if (action === "init") {
-		const { matomoId, enabled = true } = args as AnalyticsActions["init"];
-		ENABLED = enabled;
+		const { matomoId, enabled } = args as AnalyticsActions["init"];
+		ENABLED = enabled ?? window.location.hostname === "localhost";
 		window._paq.push(["setSiteId", matomoId]);
 	}
 
 	if (ENABLED === "debug") return console.info(`Analytics: "${action}"`, args);
-	if (ENABLED === false || window.location.hostname === "localhost") return;
+	if (ENABLED === false) return;
 
 	if (action === "pageview") {
 		const { url, title } = args as AnalyticsActions["pageview"];
