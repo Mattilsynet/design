@@ -9,7 +9,6 @@
 		--dsc-tabs-content-padding: var(--ds-size-8) 0 0;
 		--dsc-tabs-gap: var(--ds-size-2);
 	}
-	/* TODO: DigiDir allow button inside Tabs.List */
 	.tabs [role="tablist"] {
 		-webkit-overflow-scrolling: touch;
 		animation: _scrollMask linear;

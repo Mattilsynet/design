@@ -22,10 +22,6 @@
 	}
 	.table > :is(thead, tbody, tfoot) {
 		vertical-align: inherit;
-		--dsc-table-border-radius: calc(
-			var(--ds-border-radius-md) -
-			var(--dsc-table-border-width)
-		); /* TODO: Report to DigiDir: Fix to align background inside border */
 	}
 	.table[data-align="center"] {
 		vertical-align: middle;
@@ -84,8 +80,12 @@
 	/**
 	 * Sortable
 	 */
-	.table > thead > tr > th > button[aria-sort]::after {
-		flex-shrink: 0; /* TODO: Report to DigiDir */
+	.table > thead > tr > th[aria-sort] > button {
+		text-align: inherit;
+		justify-content: start;
+	}
+	.table > thead > tr > th[aria-sort]:first-child > button {
+		padding-left: 0;
 	}
 
 	/**
@@ -162,6 +162,7 @@
 	 * Scrollable
 	 */
 	figure > .table {
+		box-sizing: border-box;
 		width: auto;
 		min-width: 100%;
 	}
@@ -172,6 +173,7 @@
 		overflow: auto;
 		overscroll-behavior-x: contain; /* Prevent browser back/forward history on end of scroll */
 		position: relative; /* Ensure also inner position: absolute elements are scrolled */
+		/* TODO: see if shadow can pseudo element so it can be positioned over content/backgrounds */
 	}
 	@keyframes _scrollShadow {
 		from {

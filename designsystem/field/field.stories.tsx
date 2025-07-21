@@ -1,7 +1,9 @@
+import { PintGlassIcon, WindIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useRef, useState } from "react";
 import type { UHTMLComboboxElement } from "../";
-import { Button, Field, Flex, Input } from "../react";
+import type { FieldComboboxSelected } from "../react";
+import { Field, Flex, Input } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -65,21 +67,21 @@ const meta = {
 		},
 		options: {
 			description:
-				'If `as="select"`: `string[] | { label: string; value: string }[]`',
+				'If `as="select"` or `as={Field.Combobox}`: `string[] | { label: string; value: string; children?: React.ReactNode }[]`',
 			table: {
 				defaultValue: { summary: undefined },
 				type: { summary: undefined },
 			},
 		},
 		prefix: {
-			description: "Prefix affix `string`",
+			description: "Prefix `string`",
 			table: {
 				defaultValue: { summary: undefined },
 				type: { summary: undefined },
 			},
 		},
-		sufix: {
-			description: "Prefix affix `string`",
+		suffix: {
+			description: "Suffix `string`",
 			table: {
 				defaultValue: { summary: undefined },
 				type: { summary: undefined },
@@ -94,6 +96,28 @@ const meta = {
 		},
 		helpTextLabel: {
 			description: "Label of HelpText button `string`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		"data-nofilter": {
+			description: "If `as={Field.Combobox}`: `boolean`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		selected: {
+			description:
+				"If `as={Field.Combobox}`: `{ label: string; value: string; children?: React.ReactNode }[]`",
+			table: {
+				defaultValue: { summary: undefined },
+				type: { summary: undefined },
+			},
+		},
+		onSelectedChange: {
+			description: "If `as={Field.Combobox}`:<br> `(selected) => void`",
 			table: {
 				defaultValue: { summary: undefined },
 				type: { summary: undefined },
@@ -171,11 +195,7 @@ export const React: Story = {
 			<h2>
 				Field med <code>as="select"</code>:
 			</h2>
-			<Field
-				as="select"
-				label="Ledetekst"
-				options={["Option 1", { label: "Option 2", value: "option 2" }]}
-			/>
+			<Field as="select" label="Ledetekst" options={["Option 1", "Option 2"]} />
 		</>
 	),
 };
@@ -512,41 +532,111 @@ export const ReactWithCombobox: Story = {
 	parameters: {
 		layout: "padded",
 	},
-	render: () => (
-		<Field>
-			<label>React med forslag</label>
-			<p>Beskrivelse</p>
-			<Field.Combobox>
-				<Input className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
-				<Field.Datalist>
-					<Field.Option>Saft</Field.Option>
-					<Field.Option>Suse</Field.Option>
-				</Field.Datalist>
-			</Field.Combobox>
-		</Field>
-	),
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field as={Field.Combobox} requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldComboboxSelected>([
+			{ value: "saft", label: "Saft" },
+		]);
+
+		return (
+			<Field
+				as={Field.Combobox}
+				label="React med forslag"
+				description="Beskrivelse"
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={[
+					{ value: "saft", label: "Saft" },
+					{
+						value: "suse",
+						label: "Suse",
+						children: (
+							<Flex data-align="center">
+								<WindIcon /> Suse
+							</Flex>
+						),
+					},
+				]}
+			/>
+		);
+	},
+};
+
+export const ReactWithComboboxWithChildren: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: function Render() {
+		const multiple = true;
+		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+		const handleBeforeChange = (event: CustomEvent<HTMLDataElement>) => {
+			const { isConnected: remove, textContent, value } = event.detail;
+			const label = textContent?.trim() || "";
+
+			if (remove) setSelected(selected.filter((i) => i.value !== value));
+			else if (multiple) setSelected([...selected, { value, label }]);
+			else setSelected([{ value, label }]);
+		};
+		return (
+			<Field>
+				<label>React med Field.Combobox med barn</label>
+				<Field.Combobox
+					data-multiple={multiple}
+					onBeforeChange={handleBeforeChange}
+				>
+					{selected.map(({ value, label }) => (
+						<data key={value} value={value}>
+							{label}
+						</data>
+					))}
+					<Input className={styles.input} />
+					<del role="img" aria-label="Fjern tekst"></del>
+					<Field.Datalist>
+						<Field.Option value="saft" label="Saft">
+							<Flex data-align="center">
+								<PintGlassIcon /> Saft
+							</Flex>
+						</Field.Option>
+						<Field.Option value="suse" label="Suse">
+							<Flex data-align="center">
+								<WindIcon /> Suse
+							</Flex>
+						</Field.Option>
+					</Field.Datalist>
+				</Field.Combobox>
+			</Field>
+		);
+	},
 };
 
 export const ReactWithComboboxMultiple: Story = {
 	parameters: {
 		layout: "padded",
 	},
-	render: () => (
-		<Field>
-			<label>React med forslag flervalg</label>
-			<p>Beskrivelse</p>
-			<Field.Combobox data-multiple>
-				<data>Saft</data>
-				<Input className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
-				<Field.Datalist data-nofilter>
-					<Field.Option>Saft</Field.Option>
-					<Field.Option>Suse</Field.Option>
-				</Field.Datalist>
-			</Field.Combobox>
-		</Field>
-	),
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field as={Field.Combobox} requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldComboboxSelected>([
+			{ value: "saft", label: "Saft" },
+		]);
+
+		return (
+			<Field
+				as={Field.Combobox}
+				data-multiple
+				label="React med forslag flervalg"
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={[
+					{ value: "saft", label: "Saft" },
+					{ value: "suse", label: "Suse" },
+				]}
+			/>
+		);
+	},
 };
 
 export const ReactWithComboboxLong: Story = {
@@ -613,69 +703,16 @@ export const ReactWithComboboxLong: Story = {
 	),
 };
 
-export const ReactWithCombobxControlled: Story = {
-	parameters: {
-		layout: "padded",
-	},
-	render: () => {
-		const options = ["Saft", "Suse"];
-		const [values, setValues] = useState<string[]>([]);
-
-		// IMPORTANT:
-		// If you are using React 18 or lower,
-		// you need to bind the event handler using useEffect + addEventListener
-		const handleBeforeChange = (event: CustomEvent) => {
-			event.preventDefault();
-			setValues((prev) => {
-				const item = event.detail;
-
-				// Add if item is not connected, else  remove it
-				if (!item.isConnected) return [...prev, item.value];
-				return prev.filter((value) => item.value !== value);
-			});
-		};
-
-		return (
-			<>
-				<Flex>
-					<Button data-variant="secondary" onClick={() => setValues([])}>
-						Fjern alle verdier
-					</Button>
-					<Button data-variant="secondary" onClick={() => setValues(["Suse"])}>
-						Set verdi "Suse"
-					</Button>
-				</Flex>
-				<Field>
-					<label>React kontrollert</label>
-					<p>Beskrivelse</p>
-					<Field.Combobox data-multiple onBeforeChange={handleBeforeChange}>
-						{values.map((value) => (
-							<data key={value} value={value}>
-								{value}
-							</data>
-						))}
-						<Input className={styles.input} />
-						<del role="img" aria-label="Fjern tekst"></del>
-						<Field.Datalist>
-							{options.map((option) => (
-								<Field.Option key={option} value={option}>
-									{option}
-								</Field.Option>
-							))}
-						</Field.Datalist>
-					</Field.Combobox>
-				</Field>
-			</>
-		);
-	},
-};
-
 export const ReactWithCombobxCustomFilter: Story = {
 	parameters: {
 		layout: "padded",
 	},
-	render: () => {
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field as={Field.Combobox} requires
+		// "use client" if doing server-side rendering
 		const [value, setValue] = useState("");
+		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
 		const options = [
 			"Sogndal",
 			"Oslo",
@@ -687,27 +724,18 @@ export const ReactWithCombobxCustomFilter: Story = {
 		];
 
 		return (
-			<Field>
-				<label>React eget filter - gir kun treff fra starten av ordet</label>
-				<Field.Combobox>
-					<Input
-						className={styles.input}
-						onInput={({ currentTarget }) => setValue(currentTarget.value)}
-					/>
-					<del role="img" aria-label="Fjern tekst"></del>
-					<Field.Datalist>
-						{options
-							.filter((option) =>
-								option.toLowerCase().startsWith(value.toLowerCase()),
-							)
-							.map((option) => (
-								<Field.Option key={option} value={option}>
-									{option}
-								</Field.Option>
-							))}
-					</Field.Datalist>
-				</Field.Combobox>
-			</Field>
+			<Field
+				as={Field.Combobox}
+				data-multiple
+				label="Filterer på starten av ordet"
+				value={value}
+				onInput={({ target }) => setValue(target.value)}
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={options
+					.filter((opt) => opt.toLowerCase().startsWith(value.toLowerCase()))
+					.map((option) => ({ value: option, label: option }))}
+			/>
 		);
 	},
 };

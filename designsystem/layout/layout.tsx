@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { type JSX, forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -51,19 +51,19 @@ type Gap =
 
 type SharedProps = {
 	"data-align"?: "normal" | "stretch" | "start" | "center" | "end";
-	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
-	"data-gap"?: Gap | GapOld;
-	"data-row-gap"?: Gap;
-	"data-column-gap"?: Gap;
-	"data-nowrap"?: boolean;
-	"data-justify"?:
+	"data-align-content"?:
 		| "start"
 		| "center"
 		| "end"
 		| "space-between"
 		| "space-around"
 		| "space-evenly";
-	"data-justify-content"?:
+	"data-center"?: "sm" | "md" | "lg" | "xl" | "2xl";
+	"data-gap"?: Gap | GapOld;
+	"data-row-gap"?: Gap;
+	"data-column-gap"?: Gap;
+	"data-nowrap"?: boolean;
+	"data-justify"?:
 		| "start"
 		| "center"
 		| "end"

@@ -103,7 +103,7 @@
 		--ds-body-md-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 		--ds-body-sm-line-height: var(--ds-line-height-md); /* Needed to keep line-heights */
 
-		/* TODO: Make DigiDir do this */
+		/* TODO: Should DigiDir do this? */
 		--ds-md-rem: calc(16 / 18);
 		--ds-heading-2xs-font-size: calc(clamp(1em, 0.9296875em + 0.3125vw, 1.125em) * var(--ds-md-rem)); /* 16px => 18px */
 		--ds-heading-xs-font-size: calc(clamp(1.125em, 1.01953125em + 0.46875vw, 1.3125em) * var(--ds-md-rem)); /* 18px => 21px */

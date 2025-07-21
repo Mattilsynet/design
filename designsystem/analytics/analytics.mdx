@@ -16,7 +16,7 @@ import { Details } from '../react';
 ## Oppsett
 - Bruk funksjonen `analytics` for å logge til [Mattilsynets analyseverktøy](https://mattilsynet.matomo.cloud/)
 - Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
-- Husk å sette `enabled: false` for test-miljøer (`localhost` er *alltid* av)
+- Husk å sette `enabled: false` for test-miljøer (`localhost` er *default* av)
 - **React?** Husk `"use client"` i filer som bruker `analytics` for sikte client-side javascript
 
 <Details>
@@ -39,6 +39,7 @@ import { analytics } from '@mattilsynet/design';
 analytics('init', {
   matomoId: string | number,   // Required: Your Matomo siteId
   enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
+  // NOTE: in localhost, enabled is false by default
 });
 ```
 
