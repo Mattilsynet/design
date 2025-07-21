@@ -30,7 +30,7 @@ type FieldBaseProps = {
 	readOnly?: boolean; // Allow readoOnly also on <select>
 	suffix?: string;
 	validation?: React.ReactNode;
-	value?: string | string[];
+	value?: React.ComponentPropsWithRef<"input">["value"];
 	onInput?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
