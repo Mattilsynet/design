@@ -31,7 +31,7 @@ type FieldBaseProps = {
 	suffix?: string;
 	validation?: React.ReactNode;
 	value?: React.ComponentPropsWithRef<"input">["value"];
-	onInput?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+	onInput?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
 };
 
 export type FieldProps<As extends React.ElementType = "div"> =
