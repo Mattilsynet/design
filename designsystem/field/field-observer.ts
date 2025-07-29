@@ -4,7 +4,9 @@ import styles from "../styles.module.css";
 import {
 	anchorPosition,
 	attr,
+	isCombobox,
 	isInputLike,
+	isPositionTop,
 	on,
 	onLoaded,
 	onMutation,
@@ -121,11 +123,31 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 		}
 	}
 }
+
 // Update when typing
 function handleInput({ target }: Event) {
 	if (isInputLike(target)) {
 		renderCounter(target);
 		renderTextareaSize(target);
+	}
+
+	// The datalist might need to be repositioned if it's positioned top
+	if (isCombobox(target)) {
+	  const root = target.parentElement;
+    const anchor = target;
+    const datalist = root?.querySelector<HTMLElement>(`[role="listbox"]`);
+
+    // If the datalist is positioned top, an input might change the size of the
+    // datalist, so we need to reposition it after the input has been updated
+    if (isPositionTop(datalist)) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (anchor && datalist) {
+            anchorPosition(datalist, anchor, attr(datalist, "data-position") ?? "bottom", true);
+          }
+        })
+      })
+    }
 	}
 }
 

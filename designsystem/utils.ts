@@ -262,6 +262,27 @@ export const isInputLike = (el: unknown): el is HTMLInputElement =>
 	!(el instanceof HTMLButtonElement);
 
 /**
+ * isCombobox
+ * @description Check if element is an combobox element
+ * @param el The element to check
+ * @returns True if the element is an combobox element
+ */
+export const isCombobox = (el: unknown): el is HTMLInputElement =>
+	el instanceof HTMLElement &&
+	el.getAttribute('role') === 'combobox'
+
+/**
+ * isPositionTop
+ * @description Check if element is an element has position top
+ * @param el The element to check
+ * @returns True if the element has position top
+ */
+export const isPositionTop = (el: unknown): el is HTMLElement =>
+ el instanceof HTMLElement &&
+	el.getAttribute('data-position') === 'top'
+
+
+/**
  * toCustomElementProps
  * @description Utility to quickly convert props to custom element attributes
  * @param props The props to convert
