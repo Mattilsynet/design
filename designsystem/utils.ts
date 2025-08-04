@@ -267,11 +267,14 @@ export const isInputLike = (el: unknown): el is HTMLInputElement =>
  * @param props The props to convert
  * @returns The converted props
  */
+const SELECTED = "aria-selected";
 export const toCustomElementProps = (
 	{ className, hidden, open, ...rest }: Record<string, unknown>,
 	klass?: string,
 ) => {
 	rest.suppressHydrationWarning = true; // Make Next.js happy
+	if (rest[SELECTED] !== undefined)
+		rest[SELECTED] = `${(rest[SELECTED] || "false") !== "false"}`; // Ensure aria-selected boolean is string
 	if (className || klass) rest.class = clsx(klass, className || ""); // Use class instead of className
 	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
 	if (open) rest.open = true; // Ensure boolean prop behaviour

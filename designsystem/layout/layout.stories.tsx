@@ -196,17 +196,17 @@ export const ItemSizes: Story = {
 			<h2 className={styles.heading}>
 				Minimumsstørrelser Grid og Flex data-items:
 			</h2>
-			{Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+			{[25, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500].map((i) => (
 				<div key={i}>
 					<div className={styles.flex} key={i} data-gap="3" data-fixed>
 						<div
-							data-self={i * 50}
+							data-self={i}
 							style={{
 								background: "var(--mtds-color-surface-tinted)",
 								whiteSpace: "nowrap",
 							}}
 						>
-							{i * 50}
+							{i}
 						</div>
 					</div>
 				</div>

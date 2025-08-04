@@ -28,6 +28,14 @@ export const React: Story = {
 				Bokmål
 			</Chip>
 			<Chip data-removable>Bokmål</Chip>
+			<Chip>
+				<Input type="checkbox" value="filter-1" name="my-check" />
+				Filter 1
+			</Chip>
+			<Chip>
+				<Input type="checkbox" value="filter-1" name="my-check" />
+				Filter 2
+			</Chip>
 		</>
 	),
 };

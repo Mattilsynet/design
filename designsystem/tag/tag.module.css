@@ -38,7 +38,8 @@
 	.tag > svg {
 		flex-shrink: 0; /* Never shrkink icon */
 	}
-	.tag:not([data-icon], :has(svg))::before {
+	.tag:not([data-icon], :has(svg))::before,
+	.tag[data-icon="true"]::before {
 		background: currentcolor;
 		content: "";
 		flex-shrink: 0;

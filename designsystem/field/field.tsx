@@ -31,7 +31,11 @@ type FieldBaseProps = {
 	suffix?: string;
 	validation?: React.ReactNode;
 	value?: React.ComponentPropsWithRef<"input">["value"];
-	onInput?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onInput?: (
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>,
+	) => void;
 };
 
 export type FieldProps<As extends React.ElementType = "div"> =
@@ -120,7 +124,8 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	);
 }) as FieldComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
-const FieldAffixes = forwardRef<HTMLDivElement, FieldProps>(
+export type FieldAffixProps = React.ComponentPropsWithoutRef<"div">;
+const FieldAffixes = forwardRef<HTMLDivElement, FieldAffixProps>(
 	function FieldAffixes({ className, ...rest }, ref) {
 		return (
 			<div className={clsx(styles.affixes, className)} ref={ref} {...rest} />
@@ -140,7 +145,6 @@ const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
 );
 
 export type FieldOptionProps = React.ComponentPropsWithoutRef<"option">;
-
 const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	function FieldOption(props, ref) {
 		return <u-option ref={ref} {...toCustomElementProps(props)} />;
@@ -155,23 +159,14 @@ export type FieldComboboxSelected = {
 export type FieldComboboxProps = ReactUcombobox & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
+	"data-nofilter"?: boolean;
 	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
-} & (
-		| {
-				"data-nofilter"?: boolean;
-				selected: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
-				options: FieldComboboxSelected;
-				onSelectedChange: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
-		  }
-		| {
-				"data-nofilter"?: never;
-				selected?: never;
-				options?: never;
-				onSelectedChange?: never;
-		  }
-	);
+	onSelectedChange?: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
+	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
+	options?: FieldComboboxSelected;
+};
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(
@@ -190,59 +185,59 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 		ref,
 	) {
 		const innerRef = useRef<UHTMLComboboxElement>(null);
-		const isControlled = selected !== undefined;
-		const handleSelected = useRef(onSelectedChange);
-		handleSelected.current = onSelectedChange; // Keep the latest onSelectedChange function
+		const onSelected = useRef(onSelectedChange);
+		onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
 
 		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
 		useEffect(() => {
 			const self = innerRef.current;
-			const handleBeforeChange = (event: CustomEvent<HTMLDataElement>) => {
+			const handleChange = (event: CustomEvent<HTMLDataElement>) => {
+				const handleSelected = onSelected.current;
+				if (!onSelected) return; // No onSelectedChange function provided, let u-combobox handle it
 				event.preventDefault();
 				const { isConnected: remove, textContent, value } = event.detail;
-				const onSelected = handleSelected.current;
 				const label = textContent?.trim() || "";
 				const prev = selected || [];
 
-				if (remove) onSelected?.(prev.filter((i) => i.value !== value));
-				else if (multiple) onSelected?.([...prev, { value, label }]);
-				else onSelected?.([{ value, label }]);
+				if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
+				else if (multiple) handleSelected?.([...prev, { value, label }]);
+				else handleSelected?.([{ value, label }]);
 			};
 
-			self?.addEventListener("beforechange", handleBeforeChange);
-			return () =>
-				self?.removeEventListener("beforechange", handleBeforeChange);
+			self?.addEventListener("beforechange", handleChange);
+			return () => self?.removeEventListener("beforechange", handleChange);
 		}, [multiple, selected]);
 
 		return (
 			<u-combobox
-				/* @ts-expect-error React 19 supports custom events out of the box */
-				onbeforechange={onBeforeChange}
-				onbeforematch={onBeforeMatch}
-				onafterchange={onAfterChange}
-				data-multiple={multiple}
-				ref={innerRef}
-				{...toCustomElementProps(props)}
+				{...toCustomElementProps({
+					"data-multiple": multiple,
+					onbeforechange: onBeforeChange,
+					onbeforematch: onBeforeMatch,
+					onafterchange: onAfterChange,
+					ref: innerRef,
+					...props,
+				})}
 			>
-				{isControlled ? (
+				{selected?.map(({ children, label, value }) => (
+					<data key={value} value={value} suppressHydrationWarning>
+						{children ?? label}
+					</data>
+				))}
+				{children || (
 					<>
-						{selected?.map(({ children, label, value }) => (
-							<data key={value} value={value} suppressHydrationWarning>
-								{children ?? label}
-							</data>
-						))}
 						<Input />
 						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
-						<FieldDatalist data-nofilter={nofilter || undefined}>
-							{options?.map(toOption).map(({ children, label, value }) => (
-								<FieldOption key={value} value={value} label={label}>
-									{children ?? label}
-								</FieldOption>
-							))}
-						</FieldDatalist>
 					</>
-				) : (
-					children
+				)}
+				{!!options && (
+					<FieldDatalist data-nofilter={nofilter || undefined}>
+						{options.map(toOption).map(({ children, label, value }) => (
+							<FieldOption key={value} value={value} label={label}>
+								{children ?? label}
+							</FieldOption>
+						))}
+					</FieldDatalist>
 				)}
 			</u-combobox>
 		);

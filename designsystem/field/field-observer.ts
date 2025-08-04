@@ -122,10 +122,17 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 	}
 }
 // Update when typing
-function handleInput({ target }: Event) {
-	if (isInputLike(target)) {
-		renderCounter(target);
-		renderTextareaSize(target);
+function handleInput({ target: el }: Event) {
+	if (isInputLike(el)) {
+		renderCounter(el);
+		renderTextareaSize(el);
+
+		// Reposition list datalist // TODO Enhance by using style.bottom?
+		const list = el.hasAttribute("list") && el.list;
+		if (list)
+			setTimeout(() => {
+				anchorPosition(list, el, attr(list, "data-position") ?? "bottom", true);
+			}, 10);
 	}
 }
 

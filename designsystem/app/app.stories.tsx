@@ -4,8 +4,8 @@ import {
 	ListChecksIcon,
 	MagnifyingGlassIcon,
 	PlantIcon,
-	SignOutIcon,
 	SignatureIcon,
+	SignOutIcon,
 	UserIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
