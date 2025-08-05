@@ -72,6 +72,11 @@ export function analytics<Action extends keyof AnalyticsActions>(
 		window._paq.push(["HeatmapSessionRecording::disable"]); // Disable heatmaps by default as this require cookies
 		window._paq.push(["enableLinkTracking"]);
 		window._paq.push(["setTrackerUrl", `https://${MATOMO}/matomo.php`]);
+	}
+	if (action === "init") {
+		const { matomoId, enabled } = args as AnalyticsActions["init"];
+		ENABLED = enabled ?? window.location.hostname === "localhost";
+		window._paq.push(["setSiteId", matomoId]);
 		document.querySelector('script[src*="matomo.js"]') ||
 			document.head.append(
 				Object.assign(document.createElement("script"), {
@@ -79,11 +84,6 @@ export function analytics<Action extends keyof AnalyticsActions>(
 					src: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`,
 				}),
 			);
-	}
-	if (action === "init") {
-		const { matomoId, enabled } = args as AnalyticsActions["init"];
-		ENABLED = enabled ?? window.location.hostname === "localhost";
-		window._paq.push(["setSiteId", matomoId]);
 	}
 
 	if (ENABLED === "debug") return console.info(`Analytics: "${action}"`, args);

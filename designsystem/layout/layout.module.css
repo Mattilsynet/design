@@ -127,11 +127,13 @@
 	/**
 	 * Flex
 	 */
-	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 0px }
+	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 auto }
 	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
 	.flex > [data-nowrap]:not(.flex) { min-width: max-content } /* .flex[data-nowrap] is allready controlled by flex-wrap: nowrap */
+	.flex[data-items="25"] > :not([data-self]), .flex > [data-self="25"] { flex-basis: calc(1rem / 16 * 25) } /* Convert to rem based pixels */
 	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
+	.flex[data-items="75"] > :not([data-self]), .flex > [data-self="75"] { flex-basis: calc(1rem / 16 * 75) } /* Convert to rem based pixels */
 	.flex[data-items="100"] > :not([data-self]), .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
 	.flex[data-items="150"] > :not([data-self]), .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
 	.flex[data-items="200"] > :not([data-self]), .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
@@ -142,6 +144,7 @@
 	.flex[data-items="450"] > :not([data-self]), .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
 	.flex[data-items="500"] > :not([data-self]), .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
 	.flex[data-items="full"] > :not([data-self]), .flex > [data-self="full"] { flex-basis: 100% } 
+	.flex > [data-self="auto"] { flex-basis: auto } /* Default */
 
 	/**
 	 * Grid
@@ -154,7 +157,9 @@
 	.grid[data-fixed] { --mtds-grid-grow: auto-fill } /* "Fixes" sizes by causing max repetitions of columns - even empty if needed */
 	.grid[data-nowrap] { grid-auto-flow: column; grid-auto-columns: var(--mtds-grid-size) }
 	.grid[data-items="auto"] { --mtds-grid-size: 0px }
+	.grid[data-items="25"] { --mtds-grid-size: calc(1rem / 16 * 25) }
 	.grid[data-items="50"] { --mtds-grid-size: calc(1rem / 16 * 50) }
+	.grid[data-items="75"] { --mtds-grid-size: calc(1rem / 16 * 75) }
 	.grid[data-items="100"] { --mtds-grid-size: calc(1rem / 16 * 100) }
 	.grid[data-items="150"] { --mtds-grid-size: calc(1rem / 16 * 150) }
 	.grid[data-items="200"] { --mtds-grid-size: calc(1rem / 16 * 200) }

@@ -10,14 +10,19 @@
 		cursor: pointer;
 		display: inline-block;
 		flex-shrink: 0;
-		font: inherit;
+		font-style: initial;
+		font-weight: normal;
 		height: var(--ds-size-7);
 		margin: 0;
 		padding: 0;
+		text-align: left;
 		transition-duration: 0.2s;
 		transition-property: background-color, scale;
 		vertical-align: middle;
 		width: var(--ds-size-7);
+	}
+	.helptext:not([data-size]) {
+		font-size: var(--ds-body-md-font-size);
 	}
 	.helptext::before {
 		background: currentcolor;

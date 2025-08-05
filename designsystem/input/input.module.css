@@ -33,7 +33,7 @@
 	}
 
 	/* Re-create DigiDir chevron */
-	.input[list]:not([type="search"]) {
+	.input:where([list]:not([type="search"])) {
 		--dsc-input-stroke-width: 0.04em;
 		background-image:
 			linear-gradient(

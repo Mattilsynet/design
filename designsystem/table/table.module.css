@@ -84,7 +84,7 @@
 		text-align: inherit;
 		justify-content: start;
 	}
-	.table > thead > tr > th[aria-sort]:first-child > button {
+	.table:not([data-border]) > thead > tr > th[aria-sort]:first-child > button {
 		padding-left: 0;
 	}
 

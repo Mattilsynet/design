@@ -95,34 +95,34 @@ export const Responsive: Story = {
 					</h2>
 					<div className={styles.flex} data-self="500" data-items="100">
 						<div className={styles.grid} data-items="100">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<CalendarDotsIcon />
-								06.12.2024
-							</span>
-							<span className={styles.info}>
+								<span>06.12.2024</span>
+							</div>
+							<div className={styles.info}>
 								<ClockIcon />
 								19:37
-							</span>
+							</div>
 						</div>
 						<div className={styles.grid} data-items="100">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<UploadSimpleIcon />
 								Groene Tuin
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<i>🇫🇷</i>
 								Frankrike
-							</span>
+							</div>
 						</div>
 						<div className={styles.grid} data-self="500" data-items="250">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<DownloadSimpleIcon />
 								Blomquist Blomster AS
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<ListChecksIcon />
 								Daucus carota, Hydrangea paniculata, +4
-							</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -149,7 +149,7 @@ export const Responsive: Story = {
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>
-						<Tag data-fixed data-nowrap data-color="info" data-icon="false">
+						<Tag data-fixed data-color="info" data-icon="false">
 							Skal på tilsyn
 						</Tag>
 					</Flex>
@@ -167,24 +167,24 @@ export const Responsive: Story = {
 						data-align="center"
 					>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<MapPinIcon />
 								Grunerlokka, Oslo
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<ClockIcon />
 								12.00 - 22.00
-							</span>
+							</div>
 						</div>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<SmileyMehIcon />
 								06.01.2024
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<HourglassHighIcon />
 								107.02.2020
-							</span>
+							</div>
 						</div>
 						<button
 							type="button"
@@ -211,11 +211,11 @@ export const Responsive: Story = {
 						data-align="center"
 					>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<MapPinIcon />
 								Sentrum, Oslo
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<ClockIcon />
 								14.00 - 22.00{" "}
 								<span
@@ -226,17 +226,17 @@ export const Responsive: Story = {
 								>
 									Kveld
 								</span>
-							</span>
+							</div>
 						</div>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<SmileyMehIcon />
 								14.06.2022
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<HourglassHighIcon />
 								13.02.2023
-							</span>
+							</div>
 						</div>
 						<button
 							type="button"
@@ -263,24 +263,24 @@ export const Responsive: Story = {
 						data-align="center"
 					>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<MapPinIcon />
 								Sagene, Oslo
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<ClockIcon />
 								11.00 - 22.00
-							</span>
+							</div>
 						</div>
 						<div className={styles.grid} data-items="150">
-							<span className={styles.info}>
+							<div className={styles.info}>
 								<SmileyMehIcon />
 								08.01.2024
-							</span>
-							<span className={styles.info}>
+							</div>
+							<div className={styles.info}>
 								<HourglassHighIcon />
 								23.03.2025
-							</span>
+							</div>
 						</div>
 						<button
 							type="button"
@@ -299,22 +299,22 @@ export const Responsive: Story = {
 			<div className={styles.card}>
 				<div className={styles.flex} data-items="150">
 					<h2 data-size="md">Ananasen</h2>
-					<span className={styles.info}>
+					<div className={styles.info}>
 						<MapPinIcon />
 						Loren, Oslo
-					</span>
-					<span className={styles.info}>
+					</div>
+					<div className={styles.info}>
 						<ClockIcon />
 						13.00 - 22.00
-					</span>
-					<span className={styles.info}>
+					</div>
+					<div className={styles.info}>
 						<SmileyMehIcon />
 						06.01.2023
-					</span>
-					<span className={styles.info}>
+					</div>
+					<div className={styles.info}>
 						<HourglassHighIcon />
 						07.04.2025
-					</span>
+					</div>
 					<button
 						type="button"
 						className={styles.button}
@@ -338,31 +338,31 @@ export const Responsive: Story = {
 // 				</h2>
 // 				<span className={styles.flex} data-self="500" data-items="100">
 // 					<span className={styles.grid} data-items="100">
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<CalendarDotsIcon />
 // 							06.12.2024
 // 						</span>
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<ClockIcon />
 // 							19:37
 // 						</span>
 // 					</span>
 // 					<span className={styles.grid} data-items="100">
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<UploadSimpleIcon />
 // 							Groene Tuin
 // 						</span>
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<i>🇫🇷</i>
 // 							Frankrike
 // 						</span>
 // 					</span>
 // 					<span className={styles.grid} data-self="500" data-items="250">
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<DownloadSimpleIcon />
 // 							Blomquist Blomster AS
 // 						</span>
-// 						<span className={styles.info}>
+// 						<div className={styles.info}>
 // 							<ListChecksIcon />
 // 							Daucus carota, Hydrangea paniculata, +4
 // 						</span>

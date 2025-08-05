@@ -17,6 +17,7 @@ import { Details } from '../react';
 - Bruk funksjonen `analytics` for å logge til [Mattilsynets analyseverktøy](https://mattilsynet.matomo.cloud/)
 - Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
 - Husk å sette `enabled: false` for test-miljøer (`localhost` er *default* av)
+- **Køsystem:** Hvis `init` ikke er kjørt, vil alle `analytics`-kall legges i kø og vente på `init`
 - **React?** Husk `"use client"` i filer som bruker `analytics` for sikte client-side javascript
 
 <Details>
