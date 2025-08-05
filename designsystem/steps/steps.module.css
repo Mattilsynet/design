@@ -78,9 +78,8 @@
 		content: "";
 		mask: var(--dot-icon) center / contain no-repeat;
 	}
-
 	/*
-	 * Interaction
+	 * Interaction 
 	 */
 	.steps > li > :is(a, button):only-child {
 		background: none;

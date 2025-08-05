@@ -1,6 +1,9 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import { HeartIcon } from '@phosphor-icons/react';
+import { Flex } from '../react';
 import * as stories from './button.stories';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -10,6 +13,179 @@ import * as stories from './button.stories';
 - Bruk `data-variant="primary | secondary | tertiary"`
 - **Merk:** `data-variant="tertiary"` er default siden dette benyttes mest, men for å sikre god universell utforming må knappen da inneholde enten ikon og tekst, eller plasseres ved andre knapper.
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+
+<Flex data-items="350">
+  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
+    <ol className={styles.steps}>
+      <li>
+        <mark><HeartIcon /></mark>
+        <strong>Steg 1</strong>
+        <br />
+        <small>Beskrivelse</small>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 2</strong>
+        <br />
+        <small>Donec et odio</small>
+      </li>
+      <li aria-current="step" data-color="danger">
+        <mark />
+        <strong>Steg 3</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 4</strong>
+      </li>
+      <li>
+        <mark />
+        <strong>Steg 5</strong>
+      </li>
+    </ol>
+  </Example>
+</Flex>
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`

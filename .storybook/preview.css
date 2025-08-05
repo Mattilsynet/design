@@ -3,7 +3,10 @@ html {
 }
 @supports (background: light-dark(white, black)) {
 	html {
-		background: light-dark(var(--mtds-color-surface-default), var(--mtds-color-background-default));
+		background: light-dark(
+			var(--mtds-color-surface-default),
+			var(--mtds-color-background-default)
+		);
 	}
 }
 
@@ -126,4 +129,48 @@ u-tabpanel > pre > .docblock-source {
 	top: 50%;
 	translate: -50% -50%;
 	z-index: 100;
+}
+
+.sbdocs-example {
+	display: grid;
+	position: relative;
+	padding-top: var(--mtds-12);
+	border: 1px solid var(--mtds-color-success-base-default);
+	border-radius: var(--mtds-border-radius-md);
+}
+.sbdocs-example::before {
+	border-bottom: 0;
+	content: "";
+	grid-area: 1 / 1;
+	pointer-events: none;
+}
+.sbdocs-example:has(> p[data-color="danger"]) {
+	border-color: var(--mtds-color-danger-base-default);
+}
+.sbdocs-example > div:first-child {
+	aspect-ratio: 16 / 9;
+	display: grid;
+	grid-area: 1 / 1;
+	place-items: center;
+	place-self: center;
+}
+.sbdocs-example > p > svg {
+	position: absolute;
+	margin: var(--mtds-4);
+	left: 0;
+	top: 0;
+	color: var(--mtds-color-base-default);
+	width: var(--mtds-8);
+	height: var(--mtds-8);
+}
+.sbdocs-example > p {
+	padding: var(--mtds-4);
+	border-radius: 0 0 var(--mtds-border-radius-md) var(--mtds-border-radius-md);
+	color: var(--mtds-color-text-subtle);
+	margin: 0;
+	border-top: 0;
+	font-size: var(--mtds-body-sm-font-size);
+}
+[class*="flex"]:has(> .sbdocs-example) {
+	gap: var(--mtds-6);
 }
