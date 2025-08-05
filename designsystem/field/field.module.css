@@ -152,6 +152,10 @@
 		mask-image: var(--mtds-icon-close--filled);
 		mask-size: 100%;
 	}
+	.field u-combobox:has(input:disabled, input:read-only) > data::after {
+		pointer-events: none;
+		opacity: 0.2;
+	}
 	.field u-datalist {
 		--from: -2px;
 		animation: _datalist 0.2s forwards;

@@ -164,8 +164,10 @@ export type FieldComboboxProps = ReactUcombobox & {
 	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
 	onSelectedChange?: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
-	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
+	disabled?: boolean; // Allow disabled prop to be passed down
 	options?: FieldComboboxSelected;
+	readOnly?: boolean; // Allow disabled prop to be passed down
+	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
 };
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
@@ -173,12 +175,14 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 		{
 			"data-multiple": multiple,
 			"data-nofilter": nofilter,
-			children,
 			onAfterChange,
 			onBeforeChange,
 			onBeforeMatch,
 			onSelectedChange,
+			children,
+			disabled,
 			options,
+			readOnly,
 			selected,
 			...props
 		},
@@ -226,7 +230,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 				))}
 				{children || (
 					<>
-						<Input />
+						<Input disabled={disabled} readOnly={readOnly} />
 						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
 					</>
 				)}
