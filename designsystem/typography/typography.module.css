@@ -28,9 +28,11 @@
 		--mtdsc-info-icon-size: 1em;
 		--lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
 		--x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
-
+	}
+	.info > span[data-nowrap] {
 		overflow: clip;
 		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	@supports (height: 1lh) {
 		.info {
@@ -54,9 +56,20 @@
 	/**
 	 * Prose
 	 */
+	[data-size="sm"] {
+		--mtdsc-prose-size: var(--ds-body-sm-font-size); /* TMP fix to get data-size down cascading */
+	}
+	body,
+	[data-size="md"] {
+		--mtdsc-prose-size: var(--ds-body-md-font-size);
+	}
+	[data-size="lg"] {
+		--mtdsc-prose-size: var(--ds-body-lg-font-size);
+	}
+
 	.prose {
 		--mtdsc-prose-spacing: 1em;
-		--mtdsc-prose-max-width: 65ch;
+		--mtdsc-prose-max-width: calc(var(--mtdsc-prose-size) * 40);
 	}
 	.prose > * {
 		margin-block: 1em;
@@ -67,7 +80,7 @@
 	.prose > :last-child {
 		margin-bottom: 0;
 	}
-	.prose > :where(p, ul, ol) {
+	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
 		max-width: var(--mtdsc-prose-max-width);
 	}
 	.prose > :where(ul, ol):not([class]) {

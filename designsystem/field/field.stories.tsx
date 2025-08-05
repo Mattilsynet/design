@@ -10,117 +10,106 @@ const meta = {
 	title: "Designsystem/Field",
 	argTypes: {
 		as: {
-			description: "Element type `input | textarea | select`",
+			description: "Element type",
 			table: {
 				defaultValue: { summary: "input" },
-				type: { summary: undefined },
+				type: { summary: "input | textarea | select" },
 			},
 		},
 		type: {
-			description: "Input type `text | checkbox | radio | ...`",
+			description: "Input type",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "text | checkbox | radio | ..." },
 			},
 		},
 		label: {
-			description: "Label text `React.ReactNode`",
+			description: "Label text",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "React.ReactNode" },
 			},
 		},
 		description: {
-			description: "Description text `React.ReactNode`",
+			description: "Description text",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "React.ReactNode" },
 			},
 		},
 		value: {
-			description: "Value `string`",
+			description: "Value",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "string" },
 			},
 		},
 		checked: {
-			description: 'If `type="checkbox"` or `type="radio"`: `boolean`',
+			description: 'If `type="checkbox"` or `type="radio"`',
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "boolean" },
 			},
 		},
 		validation: {
-			description: "Validation message `React.ReactNode`",
+			description: "Validation message",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "React.ReactNode" },
 			},
 		},
 		count: {
-			description: "Character count `number`",
+			description: "Character count",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "number" },
 			},
 		},
 		options: {
-			description:
-				'If `as="select"` or `as={Field.Combobox}`: `string[] | { label: string; value: string; children?: React.ReactNode }[]`',
+			description: 'If `as="select"` or `as={Field.Combobox}`',
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: {
+					summary:
+						"string[] | { label: string; value: string; children?: React.ReactNode }[]",
+				},
 			},
 		},
 		prefix: {
-			description: "Prefix `string`",
+			description: "Prefix",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "string" },
 			},
 		},
 		suffix: {
-			description: "Suffix `string`",
+			description: "Suffix",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "string" },
 			},
 		},
 		helpText: {
-			description: "What to display in HelpText `React.ReactNode`",
+			description: "What to display in HelpText",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "React.ReactNode" },
 			},
 		},
 		helpTextLabel: {
-			description: "Label of HelpText button `string`",
+			description: "Label of HelpText button",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "string" },
 			},
 		},
 		"data-nofilter": {
-			description: "If `as={Field.Combobox}`: `boolean`",
+			description: "If `as={Field.Combobox}`",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "boolean" },
 			},
 		},
 		selected: {
-			description:
-				"If `as={Field.Combobox}`: `{ label: string; value: string; children?: React.ReactNode }[]`",
+			description: "If `as={Field.Combobox}`",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: {
+					summary:
+						"{ label: string; value: string; children?: React.ReactNode }[]",
+				},
 			},
 		},
 		onSelectedChange: {
-			description: "If `as={Field.Combobox}`:<br> `(selected) => void`",
+			description: "If `as={Field.Combobox}`",
 			table: {
-				defaultValue: { summary: undefined },
-				type: { summary: undefined },
+				type: { summary: "(selected) => void" },
 			},
 		},
 	},
@@ -534,7 +523,7 @@ export const ReactWithCombobox: Story = {
 	},
 	render: function Render() {
 		// IMPORTANT:
-		// Using Field as={Field.Combobox} requires
+		// Using Field.Combobox requires
 		// "use client" if doing server-side rendering
 		const [selected, setSelected] = useState<FieldComboboxSelected>([
 			{ value: "saft", label: "Saft" },
@@ -571,26 +560,16 @@ export const ReactWithComboboxWithChildren: Story = {
 	render: function Render() {
 		const multiple = true;
 		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
-		const handleBeforeChange = (event: CustomEvent<HTMLDataElement>) => {
-			const { isConnected: remove, textContent, value } = event.detail;
-			const label = textContent?.trim() || "";
 
-			if (remove) setSelected(selected.filter((i) => i.value !== value));
-			else if (multiple) setSelected([...selected, { value, label }]);
-			else setSelected([{ value, label }]);
-		};
 		return (
 			<Field>
 				<label>React med Field.Combobox med barn</label>
+				<p>Hvis Field.Combobox har barn, tegner den ikke input selv.</p>
 				<Field.Combobox
 					data-multiple={multiple}
-					onBeforeChange={handleBeforeChange}
+					selected={selected}
+					onSelectedChange={setSelected}
 				>
-					{selected.map(({ value, label }) => (
-						<data key={value} value={value}>
-							{label}
-						</data>
-					))}
 					<Input className={styles.input} />
 					<del role="img" aria-label="Fjern tekst"></del>
 					<Field.Datalist>
@@ -617,7 +596,7 @@ export const ReactWithComboboxMultiple: Story = {
 	},
 	render: function Render() {
 		// IMPORTANT:
-		// Using Field as={Field.Combobox} requires
+		// Using Field.Combobox requires
 		// "use client" if doing server-side rendering
 		const [selected, setSelected] = useState<FieldComboboxSelected>([
 			{ value: "saft", label: "Saft" },
@@ -708,9 +687,6 @@ export const ReactWithCombobxCustomFilter: Story = {
 		layout: "padded",
 	},
 	render: function Render() {
-		// IMPORTANT:
-		// Using Field as={Field.Combobox} requires
-		// "use client" if doing server-side rendering
 		const [value, setValue] = useState("");
 		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
 		const options = [
@@ -724,18 +700,24 @@ export const ReactWithCombobxCustomFilter: Story = {
 		];
 
 		return (
-			<Field
-				as={Field.Combobox}
-				data-multiple
-				label="Filterer på starten av ordet"
-				value={value}
-				onInput={({ target }) => setValue(target.value)}
-				selected={selected}
-				onSelectedChange={setSelected}
-				options={options
-					.filter((opt) => opt.toLowerCase().startsWith(value.toLowerCase()))
-					.map((option) => ({ value: option, label: option }))}
-			/>
+			<Field>
+				<label>Filterer på starten av ordet</label>
+				<Field.Combobox
+					data-nofilter
+					data-multiple
+					selected={selected}
+					onSelectedChange={setSelected}
+					options={options
+						.filter((opt) => opt.toLowerCase().startsWith(value.toLowerCase()))
+						.map((value) => ({ label: value, value }))}
+				>
+					<Input
+						value={value}
+						onInput={({ currentTarget }) => setValue(currentTarget.value)}
+					/>
+					<del role="img" aria-label="Fjern tekst"></del>
+				</Field.Combobox>
+			</Field>
 		);
 	},
 };

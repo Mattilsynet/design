@@ -84,6 +84,7 @@
 	 */
 	.steps > li > :is(a, button):only-child {
 		background: none;
+		border-radius: inherit;
 		border: 0;
 		box-sizing: border-box;
 		color: inherit;

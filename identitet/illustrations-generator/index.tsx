@@ -1,6 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import type { UHTMLComboboxElement } from "../../designsystem";
-import { Card, Field, Flex, Input, Prose } from "../../designsystem/react";
+import {
+	ArrowBendLeftDownIcon,
+	ArrowBendRightDownIcon,
+	HandSwipeLeftIcon,
+	HandSwipeRightIcon,
+	LegoSmileyIcon,
+	TShirtIcon,
+} from "@phosphor-icons/react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { Button, Card, Flex, Grid, Popover } from "../../designsystem/react";
 import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
 type Select = { value?: string; label: string; options: Option[] };
@@ -11,6 +18,23 @@ type Option = {
 	w: number;
 	x: number;
 	y: number;
+};
+const DOTS = {
+	head: [0, -50],
+	overdel: [0, 150],
+	"hand-venstre": [-150, 150],
+	"hand-hoyre": [150, 150],
+	venstre: [-500, 600],
+	hoyre: [500, 600],
+};
+
+const ICONS = {
+	head: <LegoSmileyIcon />,
+	overdel: <TShirtIcon />,
+	"hand-venstre": <HandSwipeRightIcon />,
+	"hand-hoyre": <HandSwipeLeftIcon />,
+	venstre: <ArrowBendLeftDownIcon />,
+	hoyre: <ArrowBendRightDownIcon />,
 };
 
 const Skins = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
@@ -49,81 +73,97 @@ export function IllustrationsGenerator() {
 
 	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
 
-	const handleChange = (event: CustomEvent<HTMLDataElement>) => {
-		const key = (event.target as UHTMLComboboxElement).control?.name || "";
-		const { value } = event.detail;
-
-		setSelects((prev) =>
-			new Map(prev).set(key, { ...prev.get(key), value } as Select),
-		);
-	};
-
 	return (
-		<>
+		<Card>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
-			<Card>
-				<Flex>
-					<Prose data-self="300" data-fixed ref={ref}>
-						{Array.from(selects)
-							.filter(([, { options }]) => options.length)
-							.map(([key, { options, label }]) => (
-								<Field key={key}>
-									<label>{label}</label>
-									<Field.Combobox onAfterChange={handleChange}>
-										<data value={options[0]?.value}>{options[0]?.label}</data>
-										<Input name={key} />
-										<Flex as={Field.Datalist} data-nofilter>
-											{options.map(({ value, label, x, y, w, h }) => (
-												<Field.Option
-													key={value}
-													value={value}
-													label={label}
-													data-tooltip={label}
-													onMouseEnter={() => setHovers({ key, value })}
-													onMouseLeave={() => setHovers({})}
-													style={{ outline: "1px solid" }}
-												>
-													<svg
-														style={{ width: 50, height: 50 }}
-														viewBox={`${x} ${y} ${w} ${h}`}
-													>
-														<use key={value} href={`#${value}`} />
-													</svg>
-												</Field.Option>
-											))}
-										</Flex>
-									</Field.Combobox>
-								</Field>
-							))}
-					</Prose>
-					<svg
-						width="100%"
-						height="500"
-						viewBox="-200 -200 400 1200"
-						onKeyDown={() => {}}
-						onClick={handleCopySvg}
-					>
-						<style>{`:root {
-							--color-apron: ${apron};
-							--color-hair: #1E1A28;
-							--color-skin: ${skin};
-							--color-over: ${over};
-							--color-under: ${under};
-							--color-shoes: #1E1A28;
-							--color-caps: #DA573B;
-							--color-hat: #9ECCED;
-						}
-						`}</style>
-						{Array.from(selects, ([key, { value }]) => (
-							<use
-								key={key}
-								href={`#${hovers.key === key ? hovers.value : value}`}
-							/>
-						))}
-					</svg>
-				</Flex>
-			</Card>
-		</>
+			<Flex ref={ref} data-gap="1">
+				{Array.from(selects)
+					.filter(([, { options }]) => options.length)
+					.map(([key, select]) => (
+						<Fragment key={key}>
+							<Button
+								data-variant="secondary"
+								data-tooltip={select.label}
+								popoverTarget={`popover-${key}`}
+								onPointerEnter={({ currentTarget: el }) =>
+									el.matches(":has(+ :popover-open)") || el.click()
+								}
+							>
+								{ICONS[key as keyof typeof ICONS] || <LegoSmileyIcon />}
+							</Button>
+							<Popover as="menu" id={`popover-${key}`} style={{ width: 300 }}>
+								{select.options.map(({ value, label, x, y, w, h }) => (
+									<li key={value}>
+										<Button
+											// data-tooltip={label}
+											data-variant={
+												select.value === value ? "secondary" : "tertiary"
+											}
+											aria-current={select.value === value}
+											onMouseEnter={() => setHovers({ key, value })}
+											onMouseLeave={() => setHovers({})}
+											onClick={() =>
+												setSelects(selects.set(key, { ...select, value }))
+											}
+											value={value}
+										>
+											{label}
+											{/* <svg
+												style={{ width: "100%", height: 40 }}
+												viewBox={`${x} ${y} ${w} ${h}`}
+											>
+												<use key={value} href={`#${value}`} />
+											</svg> */}
+										</Button>
+									</li>
+								))}
+								{/* <Grid data-items="100" data-gap="1" data-fixed>
+								</Grid> */}
+							</Popover>
+						</Fragment>
+					))}
+			</Flex>
+			<svg
+				width="100%"
+				height="500"
+				viewBox="-200 -200 400 1200"
+				onKeyDown={() => {}}
+				onClick={handleCopySvg}
+			>
+				<style>{`:root {
+					--color-apron: ${apron};
+					--color-hair: #1E1A28;
+					--color-skin: ${skin};
+					--color-over: ${over};
+					--color-under: ${under};
+					--color-shoes: #1E1A28;
+					--color-caps: #DA573B;
+					--color-hat: #9ECCED;
+				}`}</style>
+				{Array.from(selects, ([key, { value }]) => (
+					<use
+						key={key}
+						href={`#${hovers.key === key ? hovers.value : value}`}
+					/>
+				))}
+				{Array.from(selects)
+					.filter(([, { options }]) => options.length)
+					.map(([key, select]) => (
+						<circle
+							opacity={0}
+							cx={DOTS[key as keyof typeof DOTS]?.[0] || 0}
+							cy={DOTS[key as keyof typeof DOTS]?.[1] || 0}
+							data-tooltip={select.label}
+							fill="rgba(0,0,0,.1)"
+							key={key}
+							r="70"
+							stroke="rgba(0,0,0,.5)"
+							strokeOpacity={1}
+							strokeWidth={10}
+						/>
+					))}
+			</svg>
+		</Card>
 	);
 }
 

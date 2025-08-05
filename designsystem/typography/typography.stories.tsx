@@ -718,6 +718,10 @@ export const InfoStory: Story = {
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
+				Regular ledetekst<strong>Og bold informasjon</strong>
+			</span>
+			<hr className={styles.divider} data-gap="5" />
+			<span className={styles.info}>
 				<HeartIcon />
 				Ikon og informasjon
 			</span>
@@ -754,12 +758,29 @@ export const InfoStory: Story = {
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>
-						<Tag data-fixed data-nowrap data-color="info" data-icon="false">
+						<Tag data-fixed data-color="info" data-icon="false">
 							Skal på tilsyn
 						</Tag>
 					</Flex>
 				</Flex>
 			</Card>
+			<hr className={styles.divider} data-gap="5" />
+			Info i flex:
+			<Flex>
+				<Info>
+					<strong>Avsender:</strong>
+					Firmanavn AS
+				</Info>
+				<Info>
+					<strong>Land:</strong>
+					Nederland
+				</Info>
+				<Info data-self="300">
+					<DownloadSimpleIcon />
+					<strong>Mottaker:</strong>
+					Bomsterlandet importerer bomster AS, Rogaland
+				</Info>
+			</Flex>
 		</>
 	),
 };

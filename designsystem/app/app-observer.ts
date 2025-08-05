@@ -17,17 +17,24 @@ export const toggleAppExpanded = (force?: boolean) =>
 	useTransition(() => window.mtdsToggleAppExpanded?.(force));
 
 function handleToggleClick({ target: el, defaultPrevented: stop }: Event) {
+	const link = (el as Element)?.closest?.("a");
+	if (link?.closest("dialog:open") && link?.closest(CSS_SIDEBAR))
+		return closeSidebar(); // Close sidebar if link is clicked inside sidebar
+
 	if (stop || !(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE))
 		return;
-	if (getComputedStyle(el).position === "sticky") return toggleAppExpanded();
-	useTransition(() => {
-		const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
-		sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
-		sidebar?.showModal();
-	});
+	const isDesktop = getComputedStyle(el).position === "sticky";
+
+	if (isDesktop) toggleAppExpanded();
+	else
+		useTransition(() => {
+			const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
+			sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
+			sidebar?.showModal();
+		});
 }
 
-function handleResize() {
+function closeSidebar() {
 	document.querySelector<HTMLDialogElement>(CSS_SIDEBAR)?.close();
 }
 
@@ -86,6 +93,6 @@ function handleScroll() {
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_STICKY, handleMutation);
 	on(document, "click", handleToggleClick, QUICK_EVENT);
-	on(window, "resize", debounce(handleResize, 100), QUICK_EVENT);
+	on(window, "resize", debounce(closeSidebar, 100), QUICK_EVENT);
 	on(window, "scroll", handleScroll, QUICK_EVENT);
 });

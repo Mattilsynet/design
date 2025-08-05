@@ -1,6 +1,7 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './pagination.stories';
+import { Details } from '../react';
 
 <Meta of={stories} />
 
@@ -10,7 +11,15 @@ import * as stories from './pagination.stories';
 - Legg inn tom `<li>` der du ønsker ellipsis (&hellip;)
 - Legg `aria-current="page"` på valgt side
 - Legg `<a aria-disabled="true"` eller `<button disabled` for ugyldig forrige/neste
+<Details>
+  <Details.Summary>Se egne parameter for React</Details.Summary>
+<div>
+I React kan du velge å bruke `<Pagination>` med props for automatisk oppsett av elementer:
+<ArgTypes of={stories} />
+</div>
+</Details>
 <Canvas of={stories.WithLinks} />
+
 
 ## Knapper
 - Bruk `<button type="button">` istedenfor `<a>` dersom du bygger en SPA
