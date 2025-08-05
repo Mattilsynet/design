@@ -47,6 +47,12 @@
 	.alert[data-color="neutral"] {
 		--dsc-alert-icon-url: var(--mtds-icon-question);
 	}
+    .alert[data-icon="none"] {
+        padding-inline-start: var(--dsc-alert-padding-inline-end);
+        &:before{
+            display: none;
+        }
+    }
 
 	/* https://every-layout.dev/layouts/stack/ */
 	.alert > * {
