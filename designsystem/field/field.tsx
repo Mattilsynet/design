@@ -170,6 +170,7 @@ export type FieldComboboxProps = ReactUcombobox & {
 	options?: FieldComboboxSelected;
 	readOnly?: boolean; // Allow disabled prop to be passed down
 	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
+	placeholder?: string; // Allow placeholder to be passed down
 };
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
@@ -188,6 +189,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 			options,
 			readOnly,
 			selected,
+			placeholder,
 			...props
 		},
 		ref,
@@ -249,7 +251,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 				))}
 				{children || (
 					<>
-						<Input disabled={disabled} readOnly={readOnly} />
+						<Input disabled={disabled} readOnly={readOnly} placeholder={placeholder} />
 						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
 					</>
 				)}
