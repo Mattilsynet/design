@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { type JSX, forwardRef } from "react";
+import { forwardRef, type JSX } from "react";
 import { Button, type ButtonProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
