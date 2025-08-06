@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { QUICK_EVENT, anchorPosition, attr, on, onLoaded } from "../utils";
+import { anchorPosition, attr, on, onLoaded, QUICK_EVENT } from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
 let OPEN_POPOVERS = 0; // Speed up by only checking clicks if we have open popovers
