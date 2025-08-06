@@ -160,8 +160,10 @@ export type FieldComboboxProps = ReactUcombobox & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
 	"data-nofilter"?: boolean;
-	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
-	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
+	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
+	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
+	onAfterSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
+	onBeforeSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
 	onSelectedChange?: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
 	disabled?: boolean; // Allow disabled prop to be passed down
@@ -177,6 +179,8 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 			"data-nofilter": nofilter,
 			onAfterChange,
 			onBeforeChange,
+			onAfterSelect,
+			onBeforeSelect,
 			onBeforeMatch,
 			onSelectedChange,
 			children,
@@ -191,6 +195,20 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 		const innerRef = useRef<UHTMLComboboxElement>(null);
 		const onSelected = useRef(onSelectedChange);
 		onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
+
+		// Deprecated props
+		if (onAfterChange) {
+			onAfterSelect = onAfterChange;
+			console.warn(
+				`Combobox onAfterChange is deprecated, use onAfterSelect instead.`,
+			);
+		}
+		if (onBeforeChange) {
+			onBeforeSelect = onBeforeChange;
+			console.warn(
+				`Combobox onBeforeChange is deprecated, use onBeforeSelect instead.`,
+			);
+		}
 
 		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
 		useEffect(() => {
@@ -208,17 +226,18 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 				else handleSelected?.([{ value, label }]);
 			};
 
-			self?.addEventListener("beforechange", handleChange);
-			return () => self?.removeEventListener("beforechange", handleChange);
+			self?.addEventListener("comboboxbeforeselect", handleChange);
+			return () =>
+				self?.removeEventListener("comboboxbeforeselect", handleChange);
 		}, [multiple, selected]);
 
 		return (
 			<u-combobox
 				{...toCustomElementProps({
 					"data-multiple": multiple,
-					onbeforechange: onBeforeChange,
-					onbeforematch: onBeforeMatch,
-					onafterchange: onAfterChange,
+					oncomboboxbeforeselect: onBeforeSelect,
+					oncomboboxbeforematch: onBeforeMatch,
+					oncomboboxafterselect: onAfterSelect,
 					ref: innerRef,
 					...props,
 				})}

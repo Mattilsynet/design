@@ -70,18 +70,22 @@ function renderTextareaSize(textarea: Element) {
 
 // Setup translations from CSS custom properties
 function renderCombobox(el: UHTMLComboboxElement | null) {
-	if (!el?.list || el.list?.hasAttribute("popover")) return;
-	const style = window.getComputedStyle(el);
-	attr(el, "data-sr-added", getText(style, "combobox-added"));
-	attr(el, "data-sr-empty", getText(style, "combobox-empty"));
-	attr(el, "data-sr-found", getText(style, "combobox-found"));
-	attr(el, "data-sr-invalid", getText(style, "combobox-invalid"));
-	attr(el, "data-sr-of", getText(style, "combobox-of"));
-	attr(el, "data-sr-remove", getText(style, "combobox-remove"));
-	attr(el, "data-sr-removed", getText(style, "combobox-removed"));
-	attr(el.list, "data-sr-plural", getText(style, "datalist-plural"));
-	attr(el.list, "data-sr-singular", getText(style, "datalist-singular"));
-	attr(el.list, "popover", "manual");
+	const { control, list } = el || {};
+
+	if (el && list && control && !el.hasAttribute("data-sr-added")) {
+		const style = window.getComputedStyle(el);
+		attr(el, "data-sr-added", getText(style, "combobox-added"));
+		attr(el, "data-sr-empty", getText(style, "combobox-empty"));
+		attr(el, "data-sr-found", getText(style, "combobox-found"));
+		attr(el, "data-sr-invalid", getText(style, "combobox-invalid"));
+		attr(el, "data-sr-of", getText(style, "combobox-of"));
+		attr(el, "data-sr-remove", getText(style, "combobox-remove"));
+		attr(el, "data-sr-removed", getText(style, "combobox-removed"));
+		attr(list, "data-sr-plural", getText(style, "datalist-plural"));
+		attr(list, "data-sr-singular", getText(style, "datalist-singular"));
+		attr(list, "popover", "manual");
+		attr(control, "popovertarget", useId(list));
+	}
 }
 
 function renderCounter(input: HTMLInputElement) {
@@ -144,7 +148,7 @@ function handleValdiation(event: Event) {
 }
 
 // Position combobox when changing content
-function handleBeforeChange({ target: el }: Event) {
+function handleSelect({ target: el }: Event) {
 	const list = el instanceof UHTMLComboboxElement && el.list;
 	if (list && !list?.hidden)
 		setTimeout(() => anchorPosition(list, el, 2, true), 10); // Reposition list if not hidden
@@ -152,7 +156,7 @@ function handleBeforeChange({ target: el }: Event) {
 
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleMutation);
-	on(document, "beforechange", handleBeforeChange, QUICK_EVENT);
+	on(document, "comboboxbeforeselect", handleSelect, QUICK_EVENT);
 	on(document, "input", handleInput, QUICK_EVENT);
 	on(document, "invalid,submit", handleValdiation, true); // Use capture as invalid and submit does not bubble
 	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble

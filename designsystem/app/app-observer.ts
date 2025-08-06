@@ -18,7 +18,7 @@ export const toggleAppExpanded = (force?: boolean) =>
 
 function handleToggleClick({ target: el, defaultPrevented: stop }: Event) {
 	const link = (el as Element)?.closest?.("a");
-	if (link?.closest("dialog:open") && link?.closest(CSS_SIDEBAR))
+	if (link?.closest("dialog") && link?.closest(CSS_SIDEBAR))
 		return closeSidebar(); // Close sidebar if link is clicked inside sidebar
 
 	if (stop || !(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE))

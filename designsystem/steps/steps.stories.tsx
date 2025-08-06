@@ -114,7 +114,7 @@ export const WithDirection: Story = {
 				<strong>
 					With <code>data-direction="right"</code>:
 				</strong>
-				<ol className={styles.steps} data-size="sm" data-direction="right">
+				<ol className={styles.steps} data-direction="right">
 					<li>
 						<mark>
 							<HeartIcon />
@@ -143,7 +143,7 @@ export const WithDirection: Story = {
 				<strong>
 					With <code>data-direction="down"</code>:
 				</strong>
-				<ol className={styles.steps} data-size="sm" data-direction="down">
+				<ol className={styles.steps} data-direction="down">
 					<li>
 						<mark>
 							<HeartIcon />
@@ -179,7 +179,7 @@ export const WithDirection: Story = {
 				<strong>
 					With <code>data-direction="up"</code>:
 				</strong>
-				<ol className={styles.steps} data-size="sm" data-direction="up">
+				<ol className={styles.steps} data-direction="up">
 					<li>
 						<mark>
 							<HeartIcon />

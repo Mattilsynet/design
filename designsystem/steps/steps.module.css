@@ -23,6 +23,7 @@
 		flex: 1;
 		position: relative;
 		text-decoration: none;
+		padding-inline: var(--mtds-4);
 	}
 
 	/*
@@ -177,7 +178,7 @@
 		flex: 1 0 100%;
 		min-height: calc(var(--mtdsc-steps-dot-size) * 2);
 		padding-block: 0 var(--mtdsc-steps-dot-size);
-		padding-left: calc(var(--mtdsc-steps-dot-size) + var(--mtdsc-steps-gap));
+		padding-inline: calc(var(--mtdsc-steps-dot-size) + var(--mtdsc-steps-gap)) 0;
 	}
 	.steps[data-direction]:not([data-direction="right"]) > li mark {
 		inset: 0;
