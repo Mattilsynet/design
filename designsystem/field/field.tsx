@@ -259,7 +259,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 					oncomboboxbeforeselect: onBeforeSelect,
 					oncomboboxbeforematch: onBeforeMatch,
 					oncomboboxafterselect: onAfterSelect,
-					ref,
+					ref: innerRef,
 					...props,
 				})}
 			>
