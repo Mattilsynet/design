@@ -10,7 +10,7 @@ import {
 	useImperativeHandle,
 	useRef,
 } from "react";
-import { HelpText, Input } from "../react";
+import { HelpText, Input, type InputProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -101,11 +101,16 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		<div {...shared}>
 			{!!label && <label suppressHydrationWarning>{label}</label>}
 			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
-			{!!description && <p>{description}</p>}
+			{!!description && <p suppressHydrationWarning>{description}</p>}
 			{affixes ? (
 				<FieldAffixes>
 					{!!prefix && <span>{prefix}</span>}
-					<Tag className={styles.input} ref={ref} {...rest} />
+					<Tag
+						className={styles.input}
+						suppressHydrationWarning
+						ref={ref}
+						{...rest}
+					/>
 					{!!suffix && <span>{suffix}</span>}
 				</FieldAffixes>
 			) : (
@@ -116,8 +121,12 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 					{...rest}
 				/>
 			)}
-			{!!valid && <div className={styles.validation}>{valid}</div>}
-			{!!count && <p data-count={count} />}
+			{!!valid && (
+				<div suppressHydrationWarning className={styles.validation}>
+					{valid}
+				</div>
+			)}
+			{!!count && <p suppressHydrationWarning data-count={count} />}
 		</div>
 	) : (
 		<div ref={ref} {...shared} {...rest} />
@@ -139,8 +148,14 @@ export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
 };
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
-	function FieldDatalist(props, ref) {
-		return <u-datalist ref={ref} {...toCustomElementProps(props)} />;
+	function FieldDatalist({ "data-nofilter": filter, ...rest }, ref) {
+		return (
+			<u-datalist
+				data-nofilter={!!filter || undefined} // Ensure data-nofilter is set correctly
+				ref={ref}
+				{...toCustomElementProps(rest)}
+			/>
+		);
 	},
 );
 
@@ -159,35 +174,40 @@ export type FieldComboboxSelected = {
 export type FieldComboboxProps = ReactUcombobox & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
-	"data-nofilter"?: boolean;
 	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
-	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
 	onAfterSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
-	onBeforeSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
+	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
+	onBeforeSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onSelectedChange?: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
-	disabled?: boolean; // Allow disabled prop to be passed down
 	options?: FieldComboboxSelected;
-	readOnly?: boolean; // Allow disabled prop to be passed down
 	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
-};
+} & Pick<
+		InputProps,
+		"disabled" | "readOnly" | "placeholder" | "type" | "name"
+	> & // Allow input props to be passed down
+	Pick<FieldDatalistProps, "data-position" | "data-nofilter">; // Allow datalist props to be passed down
 
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(
 		{
 			"data-multiple": multiple,
 			"data-nofilter": nofilter,
+			"data-position": position,
 			onAfterChange,
-			onBeforeChange,
 			onAfterSelect,
-			onBeforeSelect,
+			onBeforeChange,
 			onBeforeMatch,
+			onBeforeSelect,
 			onSelectedChange,
 			children,
 			disabled,
+			name,
 			options,
+			placeholder,
 			readOnly,
 			selected,
+			type,
 			...props
 		},
 		ref,
@@ -210,6 +230,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 			);
 		}
 
+		// Using useEffect for React 18 and lower compatibility
 		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
 		useEffect(() => {
 			const self = innerRef.current;
@@ -233,8 +254,8 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 
 		return (
 			<u-combobox
+				data-multiple={multiple || undefined}
 				{...toCustomElementProps({
-					"data-multiple": multiple,
 					oncomboboxbeforeselect: onBeforeSelect,
 					oncomboboxbeforematch: onBeforeMatch,
 					oncomboboxafterselect: onAfterSelect,
@@ -249,12 +270,18 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 				))}
 				{children || (
 					<>
-						<Input disabled={disabled} readOnly={readOnly} />
+						<Input
+							name={name}
+							type={type}
+							disabled={disabled}
+							readOnly={readOnly}
+							placeholder={placeholder}
+						/>
 						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
 					</>
 				)}
 				{!!options && (
-					<FieldDatalist data-nofilter={nofilter || undefined}>
+					<FieldDatalist data-nofilter={nofilter} data-position={position}>
 						{options.map(toOption).map(({ children, label, value }) => (
 							<FieldOption key={value} value={value} label={label}>
 								{children ?? label}

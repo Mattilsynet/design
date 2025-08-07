@@ -72,7 +72,7 @@ function renderTextareaSize(textarea: Element) {
 function renderCombobox(el: UHTMLComboboxElement | null) {
 	const { control, list } = el || {};
 
-	if (el && list && control && !el.hasAttribute("data-sr-added")) {
+	if (el && list && !el.hasAttribute("data-sr-added")) {
 		const style = window.getComputedStyle(el);
 		attr(el, "data-sr-added", getText(style, "combobox-added"));
 		attr(el, "data-sr-empty", getText(style, "combobox-empty"));
@@ -83,6 +83,8 @@ function renderCombobox(el: UHTMLComboboxElement | null) {
 		attr(el, "data-sr-removed", getText(style, "combobox-removed"));
 		attr(list, "data-sr-plural", getText(style, "datalist-plural"));
 		attr(list, "data-sr-singular", getText(style, "datalist-singular"));
+	}
+	if (list && control && !list.hasAttribute("popover")) {
 		attr(list, "popover", "manual");
 		attr(control, "popovertarget", useId(list));
 	}
@@ -126,17 +128,11 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 	}
 }
 // Update when typing
-function handleInput({ target: el }: Event) {
-	if (isInputLike(el)) {
-		renderCounter(el);
-		renderTextareaSize(el);
-
-		// Reposition list datalist // TODO Enhance by using style.bottom?
-		const list = el.hasAttribute("list") && el.list;
-		if (list)
-			setTimeout(() => {
-				anchorPosition(list, el, attr(list, "data-position") ?? "bottom", true);
-			}, 10);
+function handleInput(event: Event) {
+	if (isInputLike(event.target)) {
+		renderCounter(event.target);
+		renderTextareaSize(event.target);
+		handleDatalistPosition(event); // Reposition list datalist // TODO Enhance by using style.bottom?
 	}
 }
 
@@ -148,15 +144,19 @@ function handleValdiation(event: Event) {
 }
 
 // Position combobox when changing content
-function handleSelect({ target: el }: Event) {
-	const list = el instanceof UHTMLComboboxElement && el.list;
-	if (list && !list?.hidden)
-		setTimeout(() => anchorPosition(list, el, 2, true), 10); // Reposition list if not hidden
+function handleDatalistPosition({ target: el }: Event) {
+	const list =
+		(el instanceof UHTMLComboboxElement || el instanceof HTMLInputElement) &&
+		el.list;
+	if (list && !list?.hidden) {
+		const position = attr(list, "data-position") ?? "bottom";
+		setTimeout(() => anchorPosition(list, el, position, true), 10); // Reposition list if not hidden
+	}
 }
 
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleMutation);
-	on(document, "comboboxbeforeselect", handleSelect, QUICK_EVENT);
+	on(document, "comboboxbeforeselect", handleDatalistPosition, QUICK_EVENT);
 	on(document, "input", handleInput, QUICK_EVENT);
 	on(document, "invalid,submit", handleValdiation, true); // Use capture as invalid and submit does not bubble
 	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
