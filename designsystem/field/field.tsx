@@ -3,7 +3,13 @@ import type {
 	UHTMLComboboxElement,
 } from "@u-elements/u-combobox";
 import clsx from "clsx";
-import { forwardRef, type JSX } from "react";
+import {
+	forwardRef,
+	type JSX,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+} from "react";
 import { HelpText, Input, type InputProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
@@ -185,6 +191,7 @@ export type FieldComboboxProps = ReactUcombobox & {
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(
 		{
+			"data-multiple": multiple,
 			"data-nofilter": nofilter,
 			"data-position": position,
 			onAfterChange,
@@ -205,6 +212,10 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 		},
 		ref,
 	) {
+		const innerRef = useRef<UHTMLComboboxElement>(null);
+		const onSelected = useRef(onSelectedChange);
+		onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
+
 		// Deprecated props
 		if (onAfterChange) {
 			onAfterSelect = onAfterChange;
@@ -219,28 +230,33 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 			);
 		}
 
-		const handleBeforeSelect = (event: CustomEvent<HTMLDataElement>) => {
-			onBeforeSelect?.(event); // Call onBeforeSelect if provided
-
-			if (onSelectedChange) {
+		// Using useEffect for React 18 and lower compatibility
+		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
+		useEffect(() => {
+			const self = innerRef.current;
+			const handleChange = (event: CustomEvent<HTMLDataElement>) => {
+				const handleSelected = onSelected.current;
+				if (!onSelected) return; // No onSelectedChange function provided, let u-combobox handle it
 				event.preventDefault();
 				const { isConnected: remove, textContent, value } = event.detail;
 				const label = textContent?.trim() || "";
 				const prev = selected || [];
 
-				if (remove) onSelectedChange?.(prev.filter((i) => i.value !== value));
-				else if (props["data-multiple"])
-					onSelectedChange?.([...prev, { value, label }]);
-				else onSelectedChange?.([{ value, label }]);
-			}
+				if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
+				else if (multiple) handleSelected?.([...prev, { value, label }]);
+				else handleSelected?.([{ value, label }]);
+			};
 
-			onAfterSelect?.(event); // Call onAfterSelect if provided
-		};
+			self?.addEventListener("comboboxbeforeselect", handleChange);
+			return () =>
+				self?.removeEventListener("comboboxbeforeselect", handleChange);
+		}, [multiple, selected]);
 
 		return (
 			<u-combobox
+				data-multiple={multiple || undefined}
 				{...toCustomElementProps({
-					oncomboboxbeforeselect: handleBeforeSelect,
+					oncomboboxbeforeselect: onBeforeSelect,
 					oncomboboxbeforematch: onBeforeMatch,
 					oncomboboxafterselect: onAfterSelect,
 					ref,
