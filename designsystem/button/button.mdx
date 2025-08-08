@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
 import * as stories from './button.stories';
+import { Alert } from '../react';
 
 <Meta of={stories} />
 
@@ -9,6 +10,9 @@ import * as stories from './button.stories';
 - Husk `type="button"` hvis en `<button>` gjør noe annet enn å sende skjema
 - Bruk `data-variant="primary | secondary | tertiary"`
 - **Merk:** `data-variant="tertiary"` er default siden dette benyttes mest, men for å sikre god universell utforming må knappen da inneholde enten ikon og tekst, eller plasseres ved andre knapper.
+<Alert data-color="warning">
+**Viktig:** Dersom en knapp innholder personopplysninger, for eksempel navn, må du sette `data-analytics-name=""` for å unngå personopplysninger i analyse-logger
+</Alert>
 <Canvas of={stories.Default} />
 
 ## Størrelser

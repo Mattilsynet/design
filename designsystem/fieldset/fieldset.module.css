@@ -3,8 +3,8 @@
 		composes: ds-fieldset from "@digdir/designsystemet-css";
 		text-wrap: pretty; /* Make required tag wrap pretty */
 	}
-	/* Reset designsystemet */
-	.fieldset > * {
+	/* Reset DigiDir Designsystemet */
+	.fieldset > * + * {
 		margin-top: var(--ds-size-3);
 		text-wrap: wrap; /* Reset text-wrap */
 	}

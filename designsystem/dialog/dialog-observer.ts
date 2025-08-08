@@ -29,15 +29,14 @@ const handleModal = () => {
 };
 
 const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
-	const dialog = (el as Element)?.closest?.("dialog");
-
-	if (!dialog) return;
-	if ((el as Element).closest('[data-command="close"]')) return dialog.close();
-	if (attr(dialog, "data-closedby") === "any") {
-		const { top, right, bottom, left } = dialog.getBoundingClientRect();
+	if (el instanceof HTMLDialogElement && attr(el, "data-closedby") === "any") {
+		const { top, right, bottom, left } = el.getBoundingClientRect();
 		const isInside = top <= y && y <= bottom && left <= x && x <= right;
-		if (!isInside) dialog.close();
+		if (!isInside) return el.close();
 	}
+	const dialog = (el as Element)?.closest?.("dialog");
+	const close = dialog && (el as Element)?.closest?.('[data-command="close"]');
+	if (close) dialog.close();
 };
 
 onLoaded(() => {

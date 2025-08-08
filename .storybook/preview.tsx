@@ -104,7 +104,10 @@ export default {
 				useTheme();
 				useEffect(() => {
 					// Setup analytics
-					analytics("init", { matomoId: 17 });
+					analytics("init", {
+						matomoId: 17,
+						enabled: location.hostname !== "localhost" || "debug",
+					});
 					analytics("pageview", {
 						url: (window.top || window).location.href,
 						title:
