@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { ChartBarIcon } from '@phosphor-icons/react';
 import { JumpTo } from '../../.storybook/blocks';
-import { Details } from '../react';
+import { Alert, Button, Popover, Prose, Details, Table } from '../react';
+import { HeartIcon } from '@phosphor-icons/react';
 
 <Meta title="Designsystem/Analyse" />
 # <ChartBarIcon /> Analyse
@@ -18,19 +19,19 @@ import { Details } from '../react';
 - Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
 - Husk å sette `enabled: false` for test-miljøer (`localhost` er *default* av)
 - **Køsystem:** Hvis `init` ikke er kjørt, vil alle `analytics`-kall legges i kø og vente på `init`
-- **React?** Husk `"use client"` i filer som bruker `analytics` for sikte client-side javascript
+- **React?** Husk `"use client"` i filer som bruker `analytics`
+- **Sette opp analyse for første gang?**<br />[Snakk med oss i designsystem](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU), så hjelper vi deg <HeartIcon style={{ verticalAlign: -3 }} />
 
 <Details>
 <Details.Summary>Hva gjør `analytics` som jeg ikke får ved å bruke Matomo direkte?</Details.Summary>
 
 Mattilsynet bruker for tiden [Matomo](https://matomo.org/) som analyseverktøy, og `analytics` er en wrapper rundt Matomos [JavaScript API](https://developer.matomo.org/guides/tracking-javascript-guide). Dette gir oss: 
 - en felles standard for hvordan vi logger data
-- enkel bruk med mulighet for å bytte eller legge til andre analysetjenester på sikt
+- automatisk [logging av en rekke hendelser](#automatisk-analyse)
+- automatisk [logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking)
+- deaktivert [heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) fordi dette krever samtykke ([kan overstyres](#matomo-funksjoner))
+- mulighet for å enkelt bytte ut Matomo eller legge til flere analysetjenester på sikt
 - mulighet for felles samtykke-boks på sikt
-- mulighet for automatisk analyse på designsystem-komponenter
-- felles Matomo oppsett - blant annet:
-  - [Logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking) er automatisk på
-  - [Heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) er automatisk av fordi dette krever samtykke
 
 </Details>
 
@@ -38,14 +39,15 @@ Mattilsynet bruker for tiden [Matomo](https://matomo.org/) som analyseverktøy, 
 import { analytics } from '@mattilsynet/design';
 
 analytics('init', {
-  matomoId: string | number,   // Required: Your Matomo siteId
+  matomoId: string | number,   // Required (if no matomoTagManagerId): Your site ID
+  matomoTagManagerId: string,  // Required (if no matomoId): Your container ID
   enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
-  // NOTE: in localhost, enabled is false by default
 });
 ```
 
 ## Sidevisninger
-- Send en `pageview` hver gang en side laster eller URL endres i Single Page Application
+- Send en `pageview` hver gang en side laster
+- **Single Page Application?** Send også `pageview` ved navigering - <Button data-popover="inline" popoverTarget="example-react-router">se eksempel</Button>
 
 ```
 analytics('pageview', {
@@ -53,6 +55,28 @@ analytics('pageview', {
   url?: string,   // Optional: location.href is default
 });
 ```
+
+<Popover id="example-react-router">
+<Prose>
+**Eksempel med React Router:**
+```TSX
+function MyApp (){
+  return (
+    <BrowserRouter>
+      <TrackPageview />
+      {/* YOUR ROUTES HERE */}
+    </BrowserRouter>
+  );
+}
+
+function TrackPageview() {
+  const location = useLocation();
+  useEffect(() => analytics('pageview'), [location]);
+  return null;
+}
+```
+</Prose>
+</Popover>
 
 ## Hendelser
 - Send en `event` når du ønsker å lære om brukerens adferd
@@ -67,6 +91,57 @@ analytics('event', {
   value?: number,   // Optional: A numeric value associated with the event, e.g., product price, video completion percentage
 });
 ```
+
+## Automatisk analyse
+- Ved å benytte `analytics`, loggføres `submit`, `click` og `change` hendelser automatisk
+- Bruk `data-analytics="ignore"` på elementer for å deaktivere logging på et element
+- Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier - <Button data-popover="inline" popoverTarget="example-data-attributes">se eksempler</Button>
+- **Merk:** `submit` vil kun fungere dersom du benytter standard `<form>` element
+
+<Popover id="example-data-attributes">
+```HTML
+<!-- Overstyr navn så vi unngår å logge personopplysninger: -->
+<a href="/profil" data-analytics-name="Brukernavn">Navn navnesen</a>
+
+<!-- Overstyr kategori for å enklere skille hendelser i loggen: -->
+<input data-analytics-category="Filter" type="range" name="vekt" />
+
+<!-- Overstyr kategori og handling: -->
+<button data-analytics-category="Filter" data-analytics-action="reset">Nullstill filter</button>
+
+<!-- Ignorer element helt: -->
+<u-details>
+  <u-summary data-analytics="ignore">Ignorer dette åpne/lukk-området</u-summary>
+</u-details>
+```
+</Popover>
+
+<Alert data-color="warning">
+**Viktig:** Dersom elementer innholder personopplysninger, for eksempel navn i en knapp, må du sette `data-analytics-name=""` for å unngå personopplysninger i loggene
+</Alert>
+
+<Table data-size="sm">
+  <thead>
+    <tr><th>Category</th><th>Action</th><th>Name</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>`Link`</td><td>`navigate` | `anchor` | `email` | `download`</td><td>Link text</td></tr>
+    <tr><td>`Breadcrumbs`</td><td>`navigate`</td><td>Breadcrumb text</td></tr>
+    <tr><td>`Pagination`</td><td>`navigate`</td><td>Pagination item text</td></tr>
+    <tr><td>`Tab`</td><td>`navigate`</td><td>Tab text</td></tr>
+    <tr><td>`Chip`</td><td>`click` | `remove`</td><td>Chip text</td></tr>
+    <tr><td>`Button`</td><td>`click`</td><td>Button text</td></tr>
+    <tr><td>`Details`</td><td>`open`</td><td>Summary text</td></tr>
+    <tr><td>`Dialog`</td><td>`open`</td><td>Heading text</td></tr>
+    <tr><td>`Popover`</td><td>`open`</td><td>Opener button text</td></tr>
+    <tr><td>`HelpText`</td><td>`open`</td><td>Aria label text</td></tr>
+    <tr><td>`Expand`</td><td>`open`</td><td>Button text</td></tr>
+    <tr><td>`Form`</td><td>`change` | `submit`</td><td>Relevant label, legend or heading</td></tr>
+    <tr><td>`Table`</td><td>`sort`</td><td>Column heading text</td></tr>
+    <tr><td>`Sidebar`</td><td>`minimize` | `expand`</td><td>Toggle text</td></tr>
+  </tbody>
+</Table>
+
 
 ## Søk
 - Send en `search` for å forstå hva brukerne leter etter

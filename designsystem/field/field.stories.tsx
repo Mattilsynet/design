@@ -249,20 +249,22 @@ export const Indeterminate: Story = {
 export const Toggles: Story = {
 	render: () => (
 		<>
-			<div className={styles.field}>
-				<label>Radio 1</label>
-				<input
-					type="radio"
-					className={styles.input}
-					name="my-radio"
-					defaultChecked
-				/>
-			</div>
-			<div className={styles.field}>
-				<label>Radio 2</label>
-				<p>Beskrivelse</p>
-				<input type="radio" className={styles.input} name="my-radio" />
-			</div>
+			<fieldset className={styles.fieldset} aria-label="Velg alternativ">
+				<div className={styles.field}>
+					<label>Radio 1</label>
+					<input
+						type="radio"
+						className={styles.input}
+						name="my-radio"
+						defaultChecked
+					/>
+				</div>
+				<div className={styles.field}>
+					<label>Radio 2</label>
+					<p>Beskrivelse</p>
+					<input type="radio" className={styles.input} name="my-radio" />
+				</div>
+			</fieldset>
 			<div className={styles.field}>
 				<label>Check</label>
 				<input type="checkbox" className={styles.input} />

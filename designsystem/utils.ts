@@ -59,7 +59,7 @@ export function useId(el: Element) {
 const events = (
 	action: "add" | "remove",
 	element: Node | Window,
-	rest: Parameters<typeof Element.prototype.addEventListener>,
+	[...rest]: Parameters<typeof Element.prototype.addEventListener>, // Spreat to make a copy of the array
 ): void => {
 	for (const type of rest[0].split(",")) {
 		rest[0] = type;
@@ -76,7 +76,11 @@ const events = (
 export const on = (
 	element: Node | Window,
 	...rest: Parameters<typeof Element.prototype.addEventListener>
-): void => events("add", element, rest);
+): void => {
+	if (UNBIND && (element === window || element === document))
+		UNBIND.push(() => off(element, ...rest));
+	events("add", element, rest);
+};
 
 /**
  * off
@@ -88,6 +92,36 @@ export const off = (
 	element: Node | Window,
 	...rest: Parameters<typeof Element.prototype.removeEventListener>
 ): void => events("remove", element, rest);
+
+declare global {
+	interface Window {
+		_mtdsUnbindEvents?: Map<string, Array<() => void>>;
+	}
+}
+
+/**
+ * onLoaded
+ * @description Runs a callback when window is loaded in browser, and ensures events are unbound if hot reloading
+ * @param callback The callback to run when the page is ready
+ */
+let UNBIND: Array<() => void> | null = null;
+export const onLoaded = (callback: () => void) => {
+	if (!IS_BROWSER) return;
+	if (!window._mtdsUnbindEvents) window._mtdsUnbindEvents = new Map();
+
+	const run = () =>
+		requestAnimationFrame(() => {
+			const key = String(callback).replace(/(\n|\s)/g, "");
+			window._mtdsUnbindEvents?.get(key)?.forEach((unbind) => unbind()); // Unbind previous events
+			UNBIND = []; // Prepare to listen for newly bound events
+			callback(); // Run binding
+			window._mtdsUnbindEvents?.set(key, UNBIND?.slice(0)); // Store for later unbinding
+			UNBIND = null; // Stop listening for newly bound events
+		});
+
+	if (document.readyState === "complete") run();
+	else on(window, "load", run);
+};
 
 /**
  * Scroller targes helping anchorPosition
@@ -129,11 +163,11 @@ export function anchorPosition(
 	if (!TARGETS.has(target))
 		TARGETS.set(target, () => anchorPosition(target, anchor, position, force));
 
-	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
 	const { offsetWidth: targetW, offsetHeight: targetH } = target;
+	const { width, height, left, top } = anchor.getBoundingClientRect();
+	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
 	const anchorW = isHTMLAnchor ? anchor.offsetWidth : anchor.clientWidth;
 	const anchorH = isHTMLAnchor ? anchor.offsetHeight : anchor.clientHeight;
-	const { width, height, left, top } = anchor.getBoundingClientRect();
 
 	// Get visual viewport info
 	const viewW = window.visualViewport?.width || window.innerWidth;
@@ -236,18 +270,6 @@ export const onMutation = <T extends Element>(
 		});
 	}
 	mutator.push(() => callback(elems as HTMLCollectionOf<T>));
-};
-
-/**
- * onLoaded
- * @description Runs a callback when window is loaded in browser
- * @param callback The callback to run when the page is ready
- */
-export const onLoaded = (callback: () => void) => {
-	if (!IS_BROWSER) return;
-	const run = () => requestAnimationFrame(callback); // Ensure we run after all other load events
-	if (document.readyState === "complete") run();
-	else on(window, "load", run);
 };
 
 /**

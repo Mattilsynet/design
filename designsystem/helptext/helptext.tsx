@@ -10,6 +10,7 @@ export const HelpText = forwardRef<HTMLButtonElement, HelpTextProps>(
 		return (
 			<>
 				<button
+					aria-label="Hjelptekst"
 					className={clsx(styles.helptext, className)}
 					popoverTarget={popoverId}
 					ref={ref}

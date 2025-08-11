@@ -84,7 +84,9 @@ export const InFieldset: Story = {
 export const React: Story = {
 	render: () => (
 		<Grid data-gap="10">
-			<HelpText>Hva menes med mottaker</HelpText>
+			<HelpText aria-label="Hva menes med mottaker">
+				Tekst som forklarer hva som menes med mottaker
+			</HelpText>
 			<Field>
 				<label>Ledetekst</label>
 				<HelpText aria-label="Hva menes med mottaker">
