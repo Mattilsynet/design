@@ -45,6 +45,8 @@ export const cssToTailwind: Plugin = {
 					`--color-${token.replace("--mtds-color-", "")}: var(${token})`,
 				);
 			} else if (token.startsWith("--mtds-font-weight-")) {
+				if (token === "--mtds-font-weight-regular")
+					tailwind.push(`--font-weight-normal: var(${token})`); // Alias "regular" as "normal" since this is the default in Tailwind
 				tailwind.push(
 					`--font-weight-${token.replace("--mtds-font-weight-", "")}: var(${token})`,
 				);
