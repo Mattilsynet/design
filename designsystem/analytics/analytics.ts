@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, off, on, QUICK_EVENT } from "../utils";
+import { attr, IS_BROWSER, on, onLoaded, QUICK_EVENT } from "../utils";
 
 const CSS_BREADCRUMBS = `.${styles.breadcrumbs.split(" ")[0]}`;
 const CSS_CHIP = `.${styles.chip.split(" ")[0]}`;
@@ -222,8 +222,6 @@ const heading = (el: Element) => {
 	return (body.startsWith(head) && head) || body.slice(0, 100).trim(); // Limit to 100 characters
 };
 
-if (IS_BROWSER) {
-	window._mtdsUntrack?.(); // Remove previous tracker if any to prevent duplicate tracking
-	window._mtdsUntrack = () => off(document, EVENTS, handleTrack, QUICK_EVENT);
+onLoaded(() => {
 	on(document, EVENTS, handleTrack, QUICK_EVENT);
-}
+});
