@@ -47,7 +47,7 @@ analytics('init', {
 
 ## Sidevisninger
 - Send en `pageview` hver gang en side laster
-- **Single Page Application?** Send også `pageview` ved navigering - <Button data-popover="inline" popoverTarget="react-router-example">se eksempel</Button>
+- **Single Page Application?** Send også `pageview` ved navigering - <Button data-popover="inline" popoverTarget="example-react-router">se eksempel</Button>
 
 ```
 analytics('pageview', {
@@ -56,7 +56,7 @@ analytics('pageview', {
 });
 ```
 
-<Popover id="react-router-example">
+<Popover id="example-react-router">
 <Prose>
 **Eksempel med React Router:**
 ```TSX
@@ -95,8 +95,26 @@ analytics('event', {
 ## Automatisk analyse
 - Ved å benytte `analytics`, loggføres `submit`, `click` og `change` hendelser automatisk
 - Bruk `data-analytics="ignore"` på elementer for å deaktivere logging på et element
-- Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier
+- Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier - <Button data-popover="inline" popoverTarget="example-data-attributes">se eksempler</Button>
 - **Merk:** `submit` vil kun fungere dersom du benytter standard `<form>` element
+
+<Popover id="example-data-attributes">
+```HTML
+<!-- Overstyr navn så vi unngår å logge personopplysninger: -->
+<a href="/profil" data-analytics-name="Brukernavn">Navn navnesen</a>
+
+<!-- Overstyr kategori for å enklere skille hendelser i loggen: -->
+<input data-analytics-category="Filter" type="range" name="vekt" />
+
+<!-- Overstyr kategori og handling: -->
+<button data-analytics-category="Filter" data-analytics-action="reset">Nullstill filter</button>
+
+<!-- Ignorer element helt: -->
+<u-details>
+  <u-summary data-analytics="ignore">Ignorer dette åpne/lukk-området</u-summary>
+</u-details>
+```
+</Popover>
 
 <Alert data-color="warning">
 **Viktig:** Dersom elementer innholder personopplysninger, for eksempel navn i en knapp, må du sette `data-analytics-name=""` for å unngå personopplysninger i loggene
