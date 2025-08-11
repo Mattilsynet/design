@@ -63,7 +63,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						))}
 						<li>
 							<Button
-								aria-disabled={!prev}
+								aria-disabled={!next}
 								{...props?.({ page: next, type: "next" })}
 							/>
 						</li>

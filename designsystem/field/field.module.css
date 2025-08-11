@@ -24,8 +24,11 @@
 	/**
 	 * Mark <label> as required
 	 */
-	.field label {
+	.field label:not([hidden]) {
 		display: contents;
+	}
+	.field label[hidden]:first-child + * {
+		margin-top: 0; /* Remove space if label is hidden */
 	}
 	.field label svg {
 		vertical-align: -0.15em;

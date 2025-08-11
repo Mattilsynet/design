@@ -222,6 +222,4 @@ const heading = (el: Element) => {
 	return (body.startsWith(head) && head) || body.slice(0, 100).trim(); // Limit to 100 characters
 };
 
-onLoaded(() => {
-	on(document, EVENTS, handleTrack, QUICK_EVENT);
-});
+onLoaded(() => on(document, EVENTS, handleTrack, QUICK_EVENT));
