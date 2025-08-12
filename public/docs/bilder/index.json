@@ -115,7 +115,7 @@
 		"categories": ["Oppdrettsanlegg", "Akvakultur"],
 		"tags": ["akvakultur", "arbeid", "kollega", "kontor", "pc", "samarbeid"]
 	},
-	"gaard-hest-inspektor-1.jpg": {
+	"gaard-hest-inspektor-ute-2.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": [
 			"dame",
@@ -134,7 +134,7 @@
 			"tilsyn"
 		]
 	},
-	"gaard-hest-inspektor-2.jpg": {
+	"gaard-hest-inspektor-ute-3.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": [
 			"dame",
@@ -153,7 +153,7 @@
 			"tilsyn"
 		]
 	},
-	"gaard-fjoes-inspeksjon-med-bonde.jpg": {
+	"gaard-fjoes-inspeksjon-bonde.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": []
 	},
@@ -165,11 +165,11 @@
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["fjøs", "gris", "husdyr", "svin"]
 	},
-	"gaard-grisehus-inspeksjon-med-bonde.jpg": {
+	"gaard-grisehus-inspeksjon-bonde.jpg": {
 		"categories": ["Gård og husdyr"],
 		"tags": []
 	},
-	"gaard-griser-og-inspektor.jpg": {
+	"gaard-griser-inspektor.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": [
 			"dame",
@@ -192,7 +192,7 @@
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["svin", "purke", "gris", "dyrehold", "husdyr"]
 	},
-	"gaard-grisunge-og-to-inspektoerer.jpg": {
+	"gaard-grisunge-to-inspektoerer.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["inspektører", "kontroll", "tilsyn"]
 	},
@@ -204,11 +204,11 @@
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["dyr", "helseattest", "hest", "staller"]
 	},
-	"gaard-hest-inspeksjon-med-bonde.jpg": {
+	"gaard-hest-inspeksjon-bonde.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["dyr", "helseattest", "hest", "staller"]
 	},
-	"gaard-hest-og-inspektor-ute.jpg": {
+	"gaard-hest-inspektor-ute-1.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": [
 			"dyr",
@@ -228,7 +228,7 @@
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": ["fjøs", "ku", "melkeku", "storfe"]
 	},
-	"gaard-ku-og-inspektor-inne.jpg": {
+	"gaard-ku-inspektor-inne.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
 		"tags": [
 			"fjøs",
@@ -279,7 +279,7 @@
 			"team"
 		]
 	},
-	"kontor-leder-og-ansatt.jpg": {
+	"kontor-leder-ansatt.jpg": {
 		"categories": ["Kontor"],
 		"tags": [
 			"arbeid",
@@ -337,7 +337,7 @@
 			"samarbeid"
 		]
 	},
-	"kontor-to-ansatte-og-laptop.jpg": {
+	"kontor-to-ansatte-laptop.jpg": {
 		"categories": ["Kontor"],
 		"tags": [
 			"pc",
