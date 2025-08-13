@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
+import { Button } from '../react';
 import * as stories from './link.stories';
 
 <Meta of={stories} />
@@ -9,6 +10,7 @@ import * as stories from './link.stories';
 - `<a>` får automatisk lenkestil
 - Lenker burde alltid være `<a>` for å oppnå god universell utforming
 - Bruk klassen `link` om du mot formodning trenger lenkestil på andre element
+- **Mønster:** [Se mønster for merking av eksterne lenker](https://www.designsystemet.no/no/patterns/external-links)
 
 <Canvas of={stories.Default} />
 

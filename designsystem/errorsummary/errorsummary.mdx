@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
+import { Button } from '../react';
 import * as stories from './errorsummary.stories';
 
 <Meta of={stories} />
@@ -11,6 +12,8 @@ import * as stories from './errorsummary.stories';
 - Legg `tabindex="-1"` på overskriften slik at den kan gå fokus
 - Hvis `errorsummary` er synlig ved pageload: legg `autofocus` på overskriften
 - Hvis `errorsummary` blir ved submit av skjema: flytt fokus til overskriften med `.focus()`
+- **Merk:** Alle skjemafelt med feil skal ha en tilhørende [Validation](?path=/docs/designsystem-validation--docs). Errorsummary sin jobb er å gi en enkel oversikt og lenking alle feil.
+- **Mønster:** [Se mønster for skjemafeilemeldinger](https://www.designsystemet.no/no/patterns/errors)
 
 <Canvas of={stories.Default} />
 
