@@ -48,4 +48,17 @@
 			width: var(--mtds-icon-size);
 		}
 	}
+	.dialog[data-variant="drawer"] {
+		--dsc-dialog-max-height: none;
+		animation: _drawer 0.2s forwards;
+		border-radius: 0;
+		height: auto;
+		inset: 0 0 0 auto;
+		transform: none;
+	}
+	@keyframes _drawer {
+		from {
+			translate: 3rem;
+		}
+	}
 }

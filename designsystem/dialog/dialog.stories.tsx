@@ -197,3 +197,33 @@ export const WithoutBackdrop: Story = {
 		);
 	},
 };
+
+export const AsDrawer: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState(false);
+
+		return (
+			<>
+				<button
+					className={styles.button}
+					type="button"
+					onClick={() => setOpen(true)}
+				>
+					Open
+				</button>
+				<dialog
+					className={styles.dialog}
+					data-variant="drawer"
+					onClose={() => setOpen(false)}
+					open={open}
+				>
+					<button type="button" aria-label="Lukk" data-command="close" />
+					<div className={styles.prose}>
+						<h2 className={styles.heading}>Eksempelskuff</h2>
+						<p>Kan brukes med og uten backdrop</p>
+					</div>
+				</dialog>
+			</>
+		);
+	},
+};
