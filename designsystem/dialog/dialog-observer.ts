@@ -28,7 +28,11 @@ const handleModal = () => {
 		}
 };
 
-const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
+const handleDialogClick = ({
+	clientX: x,
+	clientY: y,
+	target: el,
+}: MouseEvent) => {
 	if (el instanceof HTMLDialogElement && attr(el, "data-closedby") === "any") {
 		const { top, right, bottom, left } = el.getBoundingClientRect();
 		const isInside = top <= y && y <= bottom && left <= x && x <= right;
@@ -40,7 +44,7 @@ const handleClick = ({ clientX: x, clientY: y, target: el }: MouseEvent) => {
 };
 
 onLoaded(() => {
-	on(document, "click", handleClick as EventListener, QUICK_EVENT);
+	on(document, "click", handleDialogClick as EventListener, QUICK_EVENT);
 	createOptimizedMutationObserver(handleModal).observe(
 		document.documentElement,
 		{

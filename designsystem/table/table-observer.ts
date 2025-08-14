@@ -3,7 +3,7 @@ import { attr, onLoaded, onMutation } from "../utils";
 
 const CSS_TABLE = styles.table.split(" ")[0];
 
-function handleMutation(tables: HTMLCollectionOf<HTMLTableElement>) {
+function handleTableMutation(tables: HTMLCollectionOf<HTMLTableElement>) {
 	for (const table of tables) {
 		const ths: string[] = []; // Add data-th="" to each cell to support data-mobile designs
 
@@ -30,4 +30,6 @@ function handleMutation(tables: HTMLCollectionOf<HTMLTableElement>) {
 	}
 }
 
-onLoaded(() => onMutation(document.documentElement, CSS_TABLE, handleMutation));
+onLoaded(() =>
+	onMutation(document.documentElement, CSS_TABLE, handleTableMutation),
+);

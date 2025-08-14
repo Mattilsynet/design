@@ -25,19 +25,19 @@ let ANCHOR: Element | null = null;
 let LAST_CALL = Number.NEGATIVE_INFINITY;
 let THROTTLE: number | ReturnType<typeof setTimeout> = 0;
 
-function handleMove({ target, type, key }: Event & { key?: string }) {
+function handleTooltipMove({ target, type, key }: Event & { key?: string }) {
 	if (type === "keydown" && key !== ESC) return; // Allow ESC dismiss to follow https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 	const wait = LAST_CALL + THROTTLE_DELAY - Date.now();
 	clearTimeout(THROTTLE);
 	THROTTLE = setTimeout(
-		handleMoveThrottled,
+		handleTooltipMoveThrottled,
 		Math.max(wait, 0),
 		key === ESC ? null : target,
 	);
 }
 
 // Using a throttled function to avoid performance issues
-function handleMoveThrottled(target: Element | null) {
+function handleTooltipMoveThrottled(target: Element | null) {
 	LAST_CALL = Date.now();
 
 	// Build and append tooltip if not existing
@@ -86,7 +86,7 @@ function handleMoveThrottled(target: Element | null) {
 }
 
 onLoaded(() => {
-	on(document, "blur,focus,mouseout,mouseover", handleMove, QUICK_EVENT);
-	on(window, "keydown", handleMove, QUICK_EVENT);
-	on(window, "blur", handleMove, QUICK_EVENT);
+	on(document, "blur,focus,mouseout,mouseover", handleTooltipMove, QUICK_EVENT);
+	on(window, "keydown", handleTooltipMove, QUICK_EVENT);
+	on(window, "blur", handleTooltipMove, QUICK_EVENT);
 });

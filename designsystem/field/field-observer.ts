@@ -19,7 +19,10 @@ const CSS_VALIDATION = CSS_VALIDATIONS[0];
 const getText = (style: CSSStyleDeclaration, key: string) =>
 	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
-function handleMutation(fields: HTMLCollectionOf<Element>, validate?: boolean) {
+function handleFieldMutation(
+	fields: HTMLCollectionOf<Element>,
+	validate?: boolean,
+) {
 	for (const field of fields)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
@@ -113,7 +116,10 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
-function handleToggle({ target: el, newState }: Event & { newState?: string }) {
+function handleFieldToggle({
+	target: el,
+	newState,
+}: Event & { newState?: string }) {
 	if (el instanceof UHTMLDataListElement) {
 		const root = el.getRootNode() as ShadowRoot | null;
 		const anchor = root?.querySelector<HTMLElement>(
@@ -128,23 +134,23 @@ function handleToggle({ target: el, newState }: Event & { newState?: string }) {
 	}
 }
 // Update when typing
-function handleInput(event: Event) {
+function handleFieldInput(event: Event) {
 	if (isInputLike(event.target)) {
 		renderCounter(event.target);
 		renderTextareaSize(event.target);
-		handleDatalistPosition(event); // Reposition list datalist // TODO Enhance by using style.bottom?
+		handleFieldDatalistPosition(event); // Reposition list datalist // TODO Enhance by using style.bottom?
 	}
 }
 
-function handleValdiation(event: Event) {
+function handleFieldValdiation(event: Event) {
 	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
 
 	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
-	handleMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
+	handleFieldMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
 }
 
 // Position combobox when changing content
-function handleDatalistPosition({ target: el }: Event) {
+function handleFieldDatalistPosition({ target: el }: Event) {
 	const list =
 		(el instanceof UHTMLComboboxElement || el instanceof HTMLInputElement) &&
 		el.list;
@@ -155,9 +161,14 @@ function handleDatalistPosition({ target: el }: Event) {
 }
 
 onLoaded(() => {
-	onMutation(document.documentElement, CSS_FIELD, handleMutation);
-	on(document, "comboboxbeforeselect", handleDatalistPosition, QUICK_EVENT);
-	on(document, "input", handleInput, QUICK_EVENT);
-	on(document, "invalid,submit", handleValdiation, true); // Use capture as invalid and submit does not bubble
-	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+	onMutation(document.documentElement, CSS_FIELD, handleFieldMutation);
+	on(
+		document,
+		"comboboxbeforeselect",
+		handleFieldDatalistPosition,
+		QUICK_EVENT,
+	);
+	on(document, "input", handleFieldInput, QUICK_EVENT);
+	on(document, "invalid,submit", handleFieldValdiation, true); // Use capture as invalid and submit does not bubble
+	on(document, "toggle", handleFieldToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 });

@@ -4,7 +4,7 @@ import { on, onLoaded } from "../utils";
 const CSS_TOGGLEGROUP = `.${styles.togglegroup.split(" ")[0]}`;
 
 // Prevent browsers from showing default validation bubbles
-function handleKeyDown(event: Event & Partial<KeyboardEvent>) {
+function handleTogglegroupKeydown(event: Event & Partial<KeyboardEvent>) {
 	const { key, target: el } = event;
 	const group = el instanceof HTMLInputElement && el.closest(CSS_TOGGLEGROUP);
 
@@ -19,4 +19,4 @@ function handleKeyDown(event: Event & Partial<KeyboardEvent>) {
 	}
 }
 
-onLoaded(() => on(document, "keydown", handleKeyDown));
+onLoaded(() => on(document, "keydown", handleTogglegroupKeydown));
