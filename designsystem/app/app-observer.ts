@@ -16,7 +16,7 @@ export const toggleAppExpanded = (force?: boolean) =>
 	// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
 	useTransition(() => window.mtdsToggleAppExpanded?.(force));
 
-function handleToggleClick({ target: el, defaultPrevented: stop }: Event) {
+function handleAppToggleClick({ target: el, defaultPrevented: stop }: Event) {
 	const link = (el as Element)?.closest?.("a");
 	if (link?.closest("dialog") && link?.closest(CSS_SIDEBAR))
 		return closeSidebar(); // Close sidebar if link is clicked inside sidebar
@@ -51,10 +51,10 @@ let WIN_Y = 0;
 
 function handleMutation([sticky]: HTMLCollectionOf<HTMLElement>) {
 	STICK_EL = sticky;
-	handleScroll(); // Run on connect
+	handleAppScroll(); // Run on connect
 }
 
-function handleScroll() {
+function handleAppScroll() {
 	if (!STICK_EL?.isConnected) return;
 	const NEXT_Y = window.scrollY;
 	const NEXT_UP = NEXT_Y < WIN_Y;
@@ -92,7 +92,7 @@ function handleScroll() {
 
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_STICKY, handleMutation);
-	on(document, "click", handleToggleClick, QUICK_EVENT);
+	on(document, "click", handleAppToggleClick, QUICK_EVENT);
 	on(window, "resize", debounce(closeSidebar, 100), QUICK_EVENT);
-	on(window, "scroll", handleScroll, QUICK_EVENT);
+	on(window, "scroll", handleAppScroll, QUICK_EVENT);
 });

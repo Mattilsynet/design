@@ -136,19 +136,16 @@ const proseDecorator: Story["decorators"] = (Story) => {
 			prose.removeAttribute("style");
 
 			const getInt = (el: Element | null | undefined, prop: string) =>
-				el ? Number.parseInt(getComputedStyle(el).getPropertyValue(prop)) : 0;
+				el
+					? Number.parseInt(getComputedStyle(el).getPropertyValue(prop), 10)
+					: 0;
 
-			Array.from(prose.children, (self, index) => {
-				// const prev = prose.children[index - 1];
-
+			Array.from(prose.children).forEach((self, index) => {
 				const selfStyle = getComputedStyle(self);
-				// const selfY = self.getBoundingClientRect().bottom + window.scrollY;
-				// const nextY = next.getBoundingClientRect().top + window.scrollY;
-
 				const prev = getInt(prose.children[index - 1], "margin-bottom");
-				const before = Number.parseInt(selfStyle.marginTop);
 				const next = getInt(prose.children[index + 1], "margin-top");
-				const after = Number.parseInt(selfStyle.marginBottom);
+				const before = Number.parseInt(selfStyle.marginTop, 10);
+				const after = Number.parseInt(selfStyle.marginBottom, 10);
 				const style = (self as HTMLElement).style;
 				const font = getInt(self, "font-size");
 
@@ -166,14 +163,6 @@ const proseDecorator: Story["decorators"] = (Story) => {
 						"data-after",
 						`${font === after ? "1 line" : `${Math.round(after / mtds1)} size token`} (${after}px)`,
 					);
-				// if (selfB <= nextT) selfB = 0;
-
-				// const selfM = Number.parseInt(selfStyle.marginBottom);
-				// const nextM = Number.parseInt(getComputedStyle(next).marginTop);
-				// const selfFont = Number.parseInt(selfStyle.fontSize);
-				// const selfEm = `⬇️ ${Math.round((selfM / selfFont) * 10) / 10}em / ${selfM}px / ${selfFont === selfM ? "1 line" : `${Math.round(selfM / mtds1)} size token`}`;
-				// const nextEm = `⬆️ ${Math.round((nextM / nextFont) * 10) / 10}em / ${nextM}px / ${nextFont === nextM ? "1 line" : `${Math.round(nextM / mtds1)} size token`}`;
-				// const diffY = Math.floor(nextY - selfY);
 			});
 		}
 

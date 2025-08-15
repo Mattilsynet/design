@@ -21,7 +21,7 @@
 		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 		padding: var(--mtdsc-popover-padding);
-		position: fixed;
+		position: absolute;
 		transition-behavior: allow-discrete;
 		transition-duration: 0.2s;
 		transition-property: display, opacity, transform, visibility;

@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"formatter": {
 		"enabled": true,
@@ -23,7 +23,9 @@
 			"!**/mtds",
 			"!**/dist",
 			"!**/design-tokens",
-			"!**/design-tokens-build"
+			"!**/design-tokens-build",
+			"!**/debug.css",
+			"!**/preview.css"
 		]
 	},
 	"linter": {
@@ -31,7 +33,8 @@
 		"rules": {
 			"recommended": true,
 			"correctness": {
-				"useHookAtTopLevel": "off"
+				"useHookAtTopLevel": "off",
+				"useUniqueElementIds": "off"
 			},
 			"a11y": {
 				"noInteractiveElementToNoninteractiveRole": "off",

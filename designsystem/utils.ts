@@ -1,4 +1,4 @@
-import { clsx } from "clsx";
+import { autoUpdate, computePosition } from "@floating-ui/dom";
 
 export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
@@ -112,7 +112,9 @@ export const onLoaded = (callback: () => void) => {
 	const run = () =>
 		requestAnimationFrame(() => {
 			const key = String(callback).replace(/(\n|\s)/g, "");
-			window._mtdsUnbindEvents?.get(key)?.forEach((unbind) => unbind()); // Unbind previous events
+			window._mtdsUnbindEvents?.get(key)?.forEach((unbind) => {
+				unbind(); // Unbind previous events
+			});
 			UNBIND = []; // Prepare to listen for newly bound events
 			callback(); // Run binding
 			window._mtdsUnbindEvents?.set(key, UNBIND?.slice(0)); // Store for later unbinding
@@ -123,98 +125,27 @@ export const onLoaded = (callback: () => void) => {
 	else on(window, "load", run);
 };
 
-/**
- * Scroller targes helping anchorPosition
- */
-const SCROLLER = IS_BROWSER ? document.createElement("div") : null; // Used to ensure we have scrollability under
-const TARGETS = new Map<Element, () => void>(); // Store current open poppers and their update functions
-const TARGETS_UPDATE = () => {
-	for (const [_, update] of TARGETS) update();
-};
-
-if (SCROLLER) {
-	SCROLLER.style.cssText = "position:absolute;padding:1px;top:0;left:0px";
-	on(window, "load,resize,scroll", TARGETS_UPDATE, QUICK_EVENT);
-}
-
-/**
- * anchorPosition
- * @param target The Element to position
- * @param anchor The Element to use as anchor
- */
-const POSITION = { top: 0, right: 1, bottom: 2, left: 3 }; // Speed up by using a const map
-
-export type AnchorPosition = keyof typeof POSITION;
-
+const ANCHORED = new WeakMap<Element, ReturnType<typeof autoUpdate>>();
 export function anchorPosition(
 	target: HTMLElement,
-	anchor: Element | false,
-	place?: string | number,
-	force?: boolean,
+	anchor: false | Element,
+	options?: Parameters<typeof computePosition>[2],
 ) {
-	const position =
-		POSITION[place as keyof typeof POSITION] ??
-		Number(place) ??
-		POSITION.bottom;
+	ANCHORED.get(target)?.(); // Unbind previous anchor position
+	ANCHORED.delete(target);
 
-	if (anchor === false || !anchor.isConnected || !target.isConnected)
-		return TARGETS.delete(target); // Stop watching if anchor is removed from DOM
-	if (!SCROLLER?.isConnected) document.body.append(SCROLLER || ""); // Ensure we have the scroller
-	if (!TARGETS.has(target))
-		TARGETS.set(target, () => anchorPosition(target, anchor, position, force));
-
-	const { offsetWidth: targetW, offsetHeight: targetH } = target;
-	const { width, height, left, top } = anchor.getBoundingClientRect();
-	const isHTMLAnchor = anchor instanceof HTMLElement; // SVG or XML elements does not have offsetWidth or offsetHeight
-	const anchorW = isHTMLAnchor ? anchor.offsetWidth : anchor.clientWidth;
-	const anchorH = isHTMLAnchor ? anchor.offsetHeight : anchor.clientHeight;
-
-	// Get visual viewport info
-	const viewW = window.visualViewport?.width || window.innerWidth;
-	const viewH = window.visualViewport?.height || window.innerHeight;
-	const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-	const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-	const anchorX = Math.round(left - (anchorW - width) / 2); // Correct for CSS transform scale
-	const anchorY = Math.round(top - (anchorH - height) / 2); // Correct for CSS transform scale
-	const centerX = Math.min(
-		Math.max(10, anchorX - (targetW - anchorW) / 2),
-		viewW - targetW - 10,
-	);
-	const centerY = Math.min(
-		Math.max(10, anchorY - (targetH - anchorH) / 2),
-		viewH - targetH - 10,
-	);
-
-	// Use visual viewport dimensions for space calculations
-	const hasSpaceLeft = anchorX - targetW > 0;
-	const hasSpaceRight = anchorX + anchorW + targetW < viewW;
-	const hasSpaceOver = anchorY - targetH > 0;
-	const hasSpaceUnder = anchorY + anchorH + targetH < viewH;
-
-	const isVertical = position === POSITION.top || position === POSITION.bottom;
-	const isRight =
-		(position === POSITION.right && (force || hasSpaceRight)) || !hasSpaceLeft; // Always position right when no hasSpaceLeft, as no OS scrolls further left than 0
-	const isUnder =
-		(position === POSITION.bottom && (force || hasSpaceUnder)) || !hasSpaceOver; // Always position under when no hasSpaceOver, as no OS scrolls further up than 0
-
-	// Calculate positions in viewport coordinates
-	const viewX = Math.round(
-		isVertical ? centerX : isRight ? anchorX + anchorW : anchorX - targetW,
-	);
-	const viewY = Math.round(
-		isVertical ? (isUnder ? anchorY + anchorH : anchorY - targetH) : centerY,
-	);
-
-	// Use absolute positioning
-	target.style.position = "absolute";
-	target.style.left = `${viewX + scrollX}px`;
-	target.style.top = `${viewY + scrollY}px`;
-
-	SCROLLER?.style.setProperty(
-		"translate",
-		`0px ${Math.round(isUnder ? scrollX + anchorY + anchorH + targetH + 30 : 0)}px`,
-	);
+	if (anchor)
+		ANCHORED.set(
+			target,
+			autoUpdate(anchor, target, () => {
+				if (!target.isConnected || !anchor.isConnected || target.hidden)
+					return anchorPosition(target, false);
+				computePosition(anchor, target, options).then(({ x, y }) => {
+					target.style.left = `${x}px`;
+					target.style.top = `${y}px`;
+				});
+			}),
+		);
 }
 
 /**
@@ -297,7 +228,7 @@ export const toCustomElementProps = (
 	rest.suppressHydrationWarning = true; // Make Next.js happy
 	if (rest[SELECTED] !== undefined)
 		rest[SELECTED] = `${(rest[SELECTED] || "false") !== "false"}`; // Ensure aria-selected boolean is string
-	if (className || klass) rest.class = clsx(klass, className || ""); // Use class instead of className
+	if (className || klass) rest.class = `${klass} ${className}`.trim(); // Use class instead of className
 	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;

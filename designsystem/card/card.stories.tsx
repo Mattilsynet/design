@@ -129,10 +129,10 @@ export const Responsive: Story = {
 			</a>
 			<Card>
 				<Flex data-align="start">
-					<div data-self="250" data-fixed>
+					<Info data-self="250" data-fixed>
 						<small>Opprettet 01.01.1970</small>
 						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
-					</div>
+					</Info>
 					<Flex data-self="500">
 						<Flex data-self="500" data-align="start">
 							<Grid data-self="200">

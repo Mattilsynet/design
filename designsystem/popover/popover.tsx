@@ -1,3 +1,4 @@
+import type { Placement } from "@floating-ui/dom";
 import clsx from "clsx";
 import { forwardRef, type JSX } from "react";
 import type {
@@ -6,13 +7,12 @@ import type {
 	PopoverValues,
 } from "../react-types";
 import styles from "../styles.module.css";
-import type { AnchorPosition } from "../utils";
 
 export type PopoverProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		{
-			"data-position"?: AnchorPosition;
+			"data-position"?: Placement;
 			popover?: PopoverValues;
 		}
 	>;

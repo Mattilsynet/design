@@ -16,7 +16,6 @@ export { pagination } from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 
 // Load behaviours
-// import "./toast/toast-observer";
 import "./breadcrumbs/breadcrumbs-observer";
 import "./dialog/dialog-observer";
 import "./errorsummary/errorsummary-observer";
