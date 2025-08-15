@@ -42,7 +42,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.0",
-		"@digdir/designsystemet": "^1.1.9",
+		"@digdir/designsystemet": "^1.1.10",
 		"@digdir/designsystemet-css": "^1.1.10",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
@@ -74,6 +74,6 @@
 		"clsx": "^2.1.1"
 	},
 	"overrides": {
-		"storybook": "$storybook"
+		"tmp": "0.2.5"
 	}
 }

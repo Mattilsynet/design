@@ -39,6 +39,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const paddings = [
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30,
+];
+
 export const Default: Story = {
 	render: () => <div className={styles.card}>Card</div>,
 };
@@ -62,14 +66,17 @@ export const React: Story = {
 	),
 };
 
-// export const AsDetails: Story = {
-// 	render: () => (
-// 		<u-details className={styles.card}>
-// 			<u-summary>As details</u-summary>
-// 			Content
-// 		</u-details>
-// 	),
-// };
+export const Padding: Story = {
+	render: () => (
+		<>
+			{paddings.map((pad) => (
+				<div key={pad} className={styles.card} data-pad={pad}>
+					data-pad="{pad}"
+				</div>
+			))}
+		</>
+	),
+};
 
 export const Interactive: Story = {
 	render: () => (

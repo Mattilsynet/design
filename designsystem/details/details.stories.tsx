@@ -1,3 +1,4 @@
+import { ShrimpIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Details } from "../react";
 import styles from "../styles.module.css";
@@ -58,5 +59,33 @@ export const DefaultOpen: Story = {
 			<u-summary>Default open</u-summary>
 			Innhold
 		</u-details>
+	),
+};
+
+export const WithVariantCard: Story = {
+	render: () => (
+		<div className={styles.grid}>
+			<u-details class={styles.details} data-variant="card">
+				<u-summary>Details with data-variant="card"</u-summary>
+				Innhold
+			</u-details>
+			<u-details class={styles.details} data-variant="card">
+				<u-summary>
+					<ShrimpIcon /> Details with data-variant="card" and icon
+				</u-summary>
+				Innhold
+			</u-details>
+			<u-details
+				class={styles.details}
+				data-variant="card"
+				data-color="neutral"
+			>
+				<u-summary>
+					<ShrimpIcon /> Details with data-variant="card" and icon and
+					data-color="neutral"
+				</u-summary>
+				Innhold
+			</u-details>
+		</div>
 	),
 };

@@ -13,6 +13,8 @@ type Matomo = (
 	| string
 	| number
 	| boolean
+	| Document
+	| Element
 	| ((this: Record<string, <T>() => T>) => void)
 )[];
 declare global {

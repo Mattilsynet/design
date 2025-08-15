@@ -8,6 +8,8 @@ import { Details } from '../react';
 # Details
 
 - Legg klassen `details` på `<u-details>`
+- Legg `<u-summary>` til som første barn med tittelen inni
+- **React?** Bruk `<Details>` og `<Details.Summary>`
 
 <Details>
 <Details.Summary>Hva er `u-details`?</Details.Summary>
@@ -18,5 +20,11 @@ Du kan benytte native tilhørende [HTMLDetailsElement](https://developer.mozilla
 </Details>
 
 <Canvas of={stories.Default} />
+
+## Card variant
+- Bruk `data-variant="card"` for å få avrunnede kanter og bakgrunn
+- Bruk `data-color="main | neutral"` for å endre farge
+- Legg eventuelt til ikon som første barn av `<u-summary>`
+<Canvas of={stories.WithVariantCard} />
 
 <CssVariables component="details" />
