@@ -1,3 +1,4 @@
+import { flip, type Placement, shift } from "@floating-ui/dom";
 import styles from "../styles.module.css";
 import {
 	anchorPosition,
@@ -82,7 +83,10 @@ function handleTooltipMoveThrottled(target: Element | null) {
 	if (ANCHOR) attr(ANCHOR, hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP?.id); // Use tooltip as description if allready has label
 	if (ANCHOR) TOOLTIP.hidePopover(); // Hide tooltip so it can be placed on top-layer on next show
 	TOOLTIP.togglePopover(!!anchor);
-	anchorPosition(TOOLTIP, anchor || false, position);
+	anchorPosition(TOOLTIP, anchor || false, {
+		placement: position as Placement,
+		middleware: [flip(), shift({ padding: 10 })],
+	});
 }
 
 onLoaded(() => {

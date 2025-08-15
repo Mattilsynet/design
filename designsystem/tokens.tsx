@@ -1,6 +1,5 @@
 import css from "../design-tokens-build/mattilsynet.css?raw";
 import { Card, Table } from "./react";
-import { anchorPosition } from "./utils";
 
 const toUpper = (str: string) => str.replace(/\b./g, (m) => m.toUpperCase());
 const toUnique = <T,>(arr: T[]): T[] => [...new Set(arr)];
@@ -98,12 +97,11 @@ export const Colors = () => (
 												as="button"
 												type="button"
 												data-tooltip={token}
-												onClick={({ currentTarget: el }) => {
-													const tooltip =
-														document.getElementById("mtds-tooltip");
+												onClick={() => {
 													navigator.clipboard.writeText(token);
-													tooltip?.replaceChildren("Kopiert!");
-													if (tooltip) anchorPosition(tooltip, el, 0);
+													document
+														.getElementById("mtds-tooltip")
+														?.replaceChildren("Kopiert!");
 												}}
 												style={{
 													background: `var(--mtds-color-${color}-${name}-${variant})`,

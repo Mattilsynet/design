@@ -38,6 +38,7 @@
 	}
 
 	.badge[data-badge="true"]::before {
+		/* biome-ignore lint: Important is okay since this is in a @layer */
 		content: "" !important; /* Ensure "true" is not rendered, even in AppLayout */
 	}
 	.badge:not(:empty) {

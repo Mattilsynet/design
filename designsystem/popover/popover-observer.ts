@@ -1,3 +1,4 @@
+import { flip, type Placement, shift } from "@floating-ui/dom";
 import styles from "../styles.module.css";
 import { anchorPosition, attr, on, onLoaded, QUICK_EVENT } from "../utils";
 
@@ -9,17 +10,18 @@ function handlePopoverToggle({
 	newState,
 }: Event & { newState?: string }) {
 	if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
+		const isClosing = newState === "closed";
 		const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(
 			`[popovertarget="${el.id}"]`,
 		);
 
-		if (newState === "closed") {
-			OPEN_POPOVERS -= 1;
-			anchorPosition(el, false);
-		} else if (anchor) {
-			OPEN_POPOVERS += 1;
-			anchorPosition(el, anchor, attr(el, "data-position") || "bottom");
-		}
+		OPEN_POPOVERS += isClosing ? -1 : 1;
+		if (isClosing) anchorPosition(el, false);
+		else if (anchor)
+			anchorPosition(el, anchor, {
+				placement: (attr(el, "data-position") || "bottom") as Placement,
+				middleware: [flip(), shift({ padding: 10 })],
+			});
 	}
 }
 

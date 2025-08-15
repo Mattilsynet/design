@@ -1,22 +1,18 @@
+import type { Placement } from "@floating-ui/dom";
 import type {
 	ReactUcombobox,
 	UHTMLComboboxElement,
 } from "@u-elements/u-combobox";
 import clsx from "clsx";
-import {
-	forwardRef,
-	type JSX,
-	useEffect,
-	useImperativeHandle,
-	useRef,
-} from "react";
+import type { JSX } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { HelpText, Input, type InputProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
-import { type AnchorPosition, toCustomElementProps } from "../utils";
+import { toCustomElementProps } from "../utils";
 
 type FieldBaseProps = {
 	count?: number;
@@ -144,7 +140,7 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldAffixProps>(
 
 export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
 	"data-nofilter"?: boolean;
-	"data-position"?: AnchorPosition;
+	"data-position"?: Placement;
 };
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(

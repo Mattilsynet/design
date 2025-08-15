@@ -1,3 +1,4 @@
+import { flip, type Placement, shift, size } from "@floating-ui/dom";
 import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
@@ -116,21 +117,30 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
-function handleFieldToggle({
-	target: el,
-	newState,
-}: Event & { newState?: string }) {
-	if (el instanceof UHTMLDataListElement) {
-		const root = el.getRootNode() as ShadowRoot | null;
+function handleFieldToggle(event: Event & { newState?: string }) {
+	if (event.target instanceof UHTMLDataListElement) {
+		const list = event.target;
+		const root = list.getRootNode() as ShadowRoot | null;
 		const anchor = root?.querySelector<HTMLElement>(
-			`[popovertarget="${el.id}"]`,
+			`[popovertarget="${list.id}"]`,
 		);
 
-		if (newState === "closed") anchorPosition(el, false);
-		else if (anchor) {
-			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, attr(el, "data-position") ?? "bottom", true);
-		}
+		if (event.newState === "closed") anchorPosition(list, false);
+		else if (anchor)
+			anchorPosition(list, anchor, {
+				placement: (attr(list, "data-position") ?? "bottom") as Placement,
+				middleware: [
+					flip(),
+					shift(),
+					size({
+						padding: 10,
+						apply({ availableHeight }) {
+							list.style.width = `${anchor.offsetWidth}px`;
+							list.style.maxHeight = `${Math.max(50, availableHeight)}px`;
+						},
+					}),
+				],
+			});
 	}
 }
 // Update when typing
@@ -138,36 +148,17 @@ function handleFieldInput(event: Event) {
 	if (isInputLike(event.target)) {
 		renderCounter(event.target);
 		renderTextareaSize(event.target);
-		handleFieldDatalistPosition(event); // Reposition list datalist // TODO Enhance by using style.bottom?
 	}
 }
 
 function handleFieldValdiation(event: Event) {
 	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
-
 	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
 	handleFieldMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
 }
 
-// Position combobox when changing content
-function handleFieldDatalistPosition({ target: el }: Event) {
-	const list =
-		(el instanceof UHTMLComboboxElement || el instanceof HTMLInputElement) &&
-		el.list;
-	if (list && !list?.hidden) {
-		const position = attr(list, "data-position") ?? "bottom";
-		setTimeout(() => anchorPosition(list, el, position, true), 10); // Reposition list if not hidden
-	}
-}
-
 onLoaded(() => {
 	onMutation(document.documentElement, CSS_FIELD, handleFieldMutation);
-	on(
-		document,
-		"comboboxbeforeselect",
-		handleFieldDatalistPosition,
-		QUICK_EVENT,
-	);
 	on(document, "input", handleFieldInput, QUICK_EVENT);
 	on(document, "invalid,submit", handleFieldValdiation, true); // Use capture as invalid and submit does not bubble
 	on(document, "toggle", handleFieldToggle, QUICK_EVENT); // Use capture since toggle does not bubble
