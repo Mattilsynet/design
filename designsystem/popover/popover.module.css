@@ -51,6 +51,10 @@
 		margin-block: var(--ds-size-2);
 	}
 
+	.popover[data-overscroll="contain"] {
+		overscroll-behavior: contain;
+	}
+
 	[data-popover="inline"] {
 		border-radius: var(--ds-border-radius-sm);
 	}

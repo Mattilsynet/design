@@ -1,4 +1,8 @@
-import { ArrowDownIcon } from "@phosphor-icons/react";
+import {
+	ArrowDownIcon,
+	ThumbsDownIcon,
+	ThumbsUpIcon,
+} from "@phosphor-icons/react";
 import { Story } from "@storybook/addon-docs/blocks";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -6,6 +10,7 @@ import {
 	Card,
 	Field,
 	Flex,
+	type FlexProps,
 	Grid,
 	type GridProps,
 	Heading,
@@ -46,6 +51,34 @@ export const JumpTo = () => {
 				</li>
 			))}
 		</menu>
+	);
+};
+
+export const DoAndDont = (props: FlexProps) => <Flex data-gap="4" {...props} />;
+
+export const Example = ({
+	"data-color": color = "success",
+	aspect: aspectRatio = "19/6",
+	children,
+	zoom = "100%",
+	text = "",
+}: {
+	"data-color"?: "success" | "danger";
+	aspect?: string;
+	children: React.ReactNode;
+	text: string;
+	zoom?: string;
+}) => {
+	const scale = parseInt(zoom, 10) / 100;
+	const width = `${100 / scale}%`;
+
+	return (
+		<div className="sbdocs-example">
+			<div style={{ aspectRatio, scale, width }}>{children}</div>
+			<p data-color={color}>
+				{color === "danger" ? <ThumbsDownIcon /> : <ThumbsUpIcon />} {text}
+			</p>
+		</div>
 	);
 };
 

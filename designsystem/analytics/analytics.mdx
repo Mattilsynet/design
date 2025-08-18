@@ -18,6 +18,7 @@ import { HeartIcon } from '@phosphor-icons/react';
 - Bruk funksjonen `analytics` for å logge til [Mattilsynets analyseverktøy](https://mattilsynet.matomo.cloud/)
 - Hver applikasjon trenger en `matomoId` - dette har teamet, eller dere kan [be om å få en](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU)
 - Husk å sette `enabled: false` for test-miljøer (`localhost` er *default* av)
+- Husk å sette `consent: 'custom'` dersom du har implementert eget [samtykkebanner](https://www.datatilsynet.no/personvern-pa-ulike-omrader/internett-og-apper/bruk-av-informasjonskapsler-og-andre-sporingsteknologier/)
 - **Køsystem:** Hvis `init` ikke er kjørt, vil alle `analytics`-kall legges i kø og vente på `init`
 - **React?** Husk `"use client"` i filer som bruker `analytics`
 - **Sette opp analyse for første gang?** [Snakk med oss i designsystem](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU), så hjelper vi til <HeartIcon style={{ verticalAlign: -3 }} />
@@ -27,11 +28,11 @@ import { HeartIcon } from '@phosphor-icons/react';
 
 Mattilsynet bruker for tiden [Matomo](https://matomo.org/) som analyseverktøy, og `analytics` er en wrapper rundt Matomos [JavaScript API](https://developer.matomo.org/guides/tracking-javascript-guide). Dette gir oss: 
 - en felles standard for hvordan vi logger data
+- en felles [melding om informasjonskapsler i henhold til Ekomloven](https://www.datatilsynet.no/personvern-pa-ulike-omrader/internett-og-apper/bruk-av-informasjonskapsler-og-andre-sporingsteknologier/8.-bruk-klare-og-enkle-formuleringer-i-knapper-eller-tilsvarende-losninger/)
 - automatisk [logging av en rekke hendelser](#automatisk-analyse)
 - automatisk [logging av utgående lenker og nedlastingsknapper](https://developer.matomo.org/guides/tracking-javascript-guide#download-and-outlink-tracking)
 - deaktivert [heatmap and session recording](https://developer.matomo.org/guides/heatmap-session-recording/setup) fordi dette krever samtykke ([kan overstyres](#matomo-funksjoner))
 - mulighet for å enkelt bytte ut Matomo eller legge til flere analysetjenester på sikt
-- mulighet for felles samtykke-boks på sikt
 
 </Details>
 
@@ -41,7 +42,8 @@ import { analytics } from '@mattilsynet/design';
 analytics('init', {
   matomoId: string | number,   // Required (if no matomoTagManagerId): Your site ID
   matomoTagManagerId: string,  // Required (if no matomoId): Your container ID
-  enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
+  enabled?: boolean | 'debug', // 'debug' console.logs only, default is true unless localhost
+  consent?: 'custom' | true, // Use 'custom' if you have implemented your own cookie consent
 });
 ```
 
@@ -94,7 +96,7 @@ analytics('event', {
 
 ## Automatisk analyse
 - Ved å benytte `analytics`, loggføres `submit`, `click` og `change` hendelser automatisk
-- Bruk `data-analytics="ignore"` på elementer for å deaktivere logging på et element
+- Bruk `data-analytics="ignore"` på elementer (eller foreldre til elementer) for å deaktivere logging på et element
 - Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier - <Button data-popover="inline" popoverTarget="example-data-attributes">se eksempler</Button>
 - **Merk:** `submit` vil kun fungere dersom du benytter standard `<form>` element
 
@@ -113,6 +115,13 @@ analytics('event', {
 <u-details>
   <u-summary data-analytics="ignore">Ignorer dette åpne/lukk-området</u-summary>
 </u-details>
+
+<!-- Ignorer område helt: -->
+<div data-analytics="ignore">
+  <button type="button">Ignorer alle disse knappene</button>
+  <button type="button">Ignorer alle disse knappene</button>
+  <button type="button">Ignorer alle disse knappene</button>
+</div>
 ```
 </Popover>
 

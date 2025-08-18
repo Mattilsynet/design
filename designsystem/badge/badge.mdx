@@ -1,13 +1,58 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './badge.stories';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
+import { EnvelopeIcon } from '@phosphor-icons/react';
+
 
 <Meta of={stories} />
 
 # Badge
+
+> Badge er en ikke-interaktiv komponent som viser status med eller uten tall. 
+
+## Kode
 - Legg klassen `badge` på typisk `span` eller bruk `<Badge>` komponenten i React
 - Legg innhold inni attributten `data-badge`
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+
+<Flex data-items="350">
+  {/* Innhold i Badge: */}
+  <Example data-color="success" text="Bruk bare tall i badge." zoom="100%">
+    <button type="button" className={styles.button} data-variant="secondary"><EnvelopeIcon />E-post <span className={styles.badge} data-badge="2"></span></button>
+  </Example>
+  <Example data-color="danger" text="Unngå å bruke tekst i badge, bruk heller tag-komponenten hvis det er behov for tekst." zoom="100%">
+    <button type="button" className={styles.button} data-variant="secondary"> <EnvelopeIcon />E-post <span className={styles.badge} data-badge="Trehundreogtjuefire"></span></button>
+  </Example>
+
+   {/* Flere Badger: */}
+  <Example data-color="success" text="Bruk én badge i sammenheng med et element." zoom="100%">
+    <button type="button" className={styles.button} data-variant="secondary"><EnvelopeIcon />E-post <span className={styles.badge} data-badge="2"></span></button>
+  </Example>
+  <Example data-color="danger" text="Unngå bruk av flere badges samtidig. Det kan skape forvirring." zoom="100%">
+      <button type="button" className={styles.button} data-variant="secondary"> <EnvelopeIcon />E-post <span className={styles.badge} data-badge="42"></span><span className={styles.badge} data-badge="98"></span></button>
+  </Example>
+
+  {/* Badge brukes i en kontekst: */}
+  <Example data-color="success" text="Bruk badge i en kontekst." zoom="100%">
+    <u-tabs class={styles.tabs} data-size="sm">
+      <u-tablist>
+        <u-tab role="tab" aria-selected="true"><div className={styles.flex} data-gap="2">Kjøtt <span className={styles.badge} data-badge="2"></span></div></u-tab>
+        <u-tab>Fisk</u-tab>
+        <u-tab>Grønnsaker</u-tab>
+      </u-tablist>
+    </u-tabs>
+  </Example>
+  <Example data-color="danger" text="Badge skal aldri stå alene." zoom="100%">
+    <span className={styles.badge} data-badge="Firehundreogfemtito"></span>
+  </Example>
+
+
+
+</Flex>
 
 ## Farger
 - Bruk `data-color` for å endre farge

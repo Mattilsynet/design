@@ -3,10 +3,12 @@ import { forwardRef, type JSX } from "react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
+	Sizes,
 } from "../react-types";
 import styles from "../styles.module.css";
 
 type CardBaseProps<Href> = {
+	"data-pad"?: Sizes;
 	href?: Href;
 };
 
@@ -32,7 +34,7 @@ export const Card: CardComponent = forwardRef<null>(function Card<
 }) as CardComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
 export type GroupProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<As, { "data-pad"?: Sizes }>;
 
 type GroupComponent = <As extends React.ElementType = "div">(
 	props: GroupProps<As>,

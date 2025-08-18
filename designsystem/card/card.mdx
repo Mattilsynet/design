@@ -1,14 +1,25 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables } from '../../.storybook/blocks';
-import { Alert } from '../react';
+import { Alert, Button } from '../react';
 import * as stories from './card.stories';
 
 <Meta of={stories} />
 
 # Card og Group
+
+> Med Card kan vi gruppere og fremheve informasjon eller oppgaver som hører sammen. Group brukes til å gruppere flere Cards.
+
+## Kode
 - Bruk klassen `card` på typisk `<div>`, `<a>` eller `<button>`
 - Bruk [`info`](?path=/story/designsystem-typography--info-story) rundt ledetekst+verdi, ikon+verdi eller verdi for enkelt, responsivt oppsett
 <Canvas of={stories.Default} />
+
+## Padding
+- Både `card` og `group` støtter `data-pad="0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 18 | 22 | 26 | 30"` for endring av padding (`5` er default)
+<div className="sbdocs-canvas-thumbnail">
+  <Button data-arrow data-variant="primary" href="?path=/story/designsystem-card--padding">Se paddings i egen visning</Button>
+  <Canvas of={stories.Padding} />
+</div>
 
 ## Interaktiv
 - Når `card` er klikkbart, får hele kortet `hover` og `active`-effekter

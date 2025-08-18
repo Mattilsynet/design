@@ -5,10 +5,11 @@
 		"enabled": true,
 		"includes": [
 			"**",
-			"!**/styles.module.css",
+			"!**/card.module.css",
 			"!**/divider.module.css",
 			"!**/layout.module.css",
-			"!**/link.module.css"
+			"!**/link.module.css",
+			"!**/styles.module.css"
 		]
 	},
 	"javascript": {
