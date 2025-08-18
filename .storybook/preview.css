@@ -133,9 +133,11 @@ u-tabpanel > pre > .docblock-source {
 
 .sbdocs-example {
 	display: grid;
+	align-content: space-between;
 	position: relative;
 	padding-top: var(--mtds-12);
-	border: 1px solid var(--mtds-color-success-base-default);
+	background: var(--mtds-color-success-surface-tinted);
+	border: 1px solid var(--mtds-color-success-border-subtle);
 	border-radius: var(--mtds-border-radius-md);
 }
 .sbdocs-example::before {
@@ -145,7 +147,8 @@ u-tabpanel > pre > .docblock-source {
 	pointer-events: none;
 }
 .sbdocs-example:has(> p[data-color="danger"]) {
-	border-color: var(--mtds-color-danger-base-default);
+	background: var(--mtds-color-danger-surface-tinted);
+	border-color: var(--mtds-color-danger-border-subtle);
 }
 .sbdocs-example > div:first-child {
 	padding-inline: var(--mtds-4);

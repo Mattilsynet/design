@@ -1,6 +1,5 @@
 import {
 	ArrowDownIcon,
-	ArrowSquareOutIcon,
 	ThumbsDownIcon,
 	ThumbsUpIcon,
 } from "@phosphor-icons/react";
