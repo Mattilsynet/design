@@ -8,7 +8,9 @@ const CSS_PAGINATION = `.${styles.pagination.split(" ")[0]}`;
 const CLICKS = `summary,u-summary,a,button,[role="tab"],[role="button"]`;
 const EVENTS = "click,toggle,submit,change";
 const MATOMO = "mattilsynet.matomo.cloud";
-const DIALOG = "mtds-matomo-dialog"; // Dialog to show Matomo script loading
+const BANNER = "mtds-analytics-banner"; // Dialog to show Matomo script loading
+const BANNER_URL =
+	"https://www.mattilsynet.no/om-mattilsynet/personvernerklaering/informasjonskapsler";
 
 type Matomo = (
 	| string
@@ -30,6 +32,7 @@ declare global {
 export type AnalyticsActions = {
 	init: {
 		enabled?: boolean | "debug";
+		consent?: "custom" | true;
 	} & (
 		| {
 				matomoId: number | string;
@@ -80,12 +83,12 @@ export function analytics<Action extends keyof AnalyticsActions>(
 			...window._mtdsTracking,
 			...args,
 		} as AnalyticsActions["init"];
-		const { enabled, matomoId, matomoTagManagerId } = window._mtdsTracking;
+		const { consent, enabled, matomoId, matomoTagManagerId } =
+			window._mtdsTracking;
 
 		if (matomoId) window._paq.push(["setSiteId", matomoId]);
 		if (enabled) {
-			const dialog = (document.getElementById(DIALOG) ||
-				document.createElement("dialog")) as HTMLDialogElement;
+			if (consent !== "custom") renderBanner();
 			const src = matomoTagManagerId
 				? `https://cdn.matomo.cloud/${MATOMO}/container_${matomoTagManagerId}.js`
 				: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`;
@@ -97,22 +100,6 @@ export function analytics<Action extends keyof AnalyticsActions>(
 						src,
 					}),
 				);
-
-			dialog.id = DIALOG;
-			dialog.innerHTML = `
-				<style>
-					#${DIALOG}[open] { box-sizing: border-box; display: flex; align-items: center; background: #116e6b; border-radius: .5em; border: 0; box-shadow: 0 .25em .5em rgba(0,0,0,.3); color: #fff; font-size: .875em; inset: auto auto 1em 1em; max-width: calc(100vw - 2em); outline: 0; padding: .5em; position: fixed; z-index: 99999 }
-					#${DIALOG} p { margin: 0; padding-left: .25em }
-					#${DIALOG} button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; width: 1.5em; height: 1.5em; font: 300 1.5em/1.35 sans-serif; border-radius: .25em; place-content: center; transition: .2s; transition-property: background, scale }
-					#${DIALOG} button:focus-visible { outline: 2px solid }
-					#${DIALOG} button:hover { background: #0a4e4f }
-					#${DIALOG} button:active { background: #054449; scale: .9 }
-				</style>
-				<p>Vi <a href="https://www.mattilsynet.no/om-mattilsynet/personvernerklaering/informasjonskapsler" target="_blank">bruker informasjonskapsler</a> for å forbedre brukeropplevelsen.</p>
-				<form method="dialog" data-analytics="ignore"><button type="submit" aria-label="OK">&times;</button></form>
-			`;
-			document.body.prepend(dialog);
-			dialog.show();
 		}
 	}
 
@@ -152,10 +139,37 @@ export function analytics<Action extends keyof AnalyticsActions>(
 	}
 }
 
-const handleTrack = (event: Event) =>
-	window._mtdsTracking?.enabled && setTimeout(processTrack, 0, event); // Let other events process first
+function renderBanner() {
+	const hasSeenBanner =
+		document.getElementById(BANNER) || window.localStorage.getItem(BANNER);
 
-const processTrack = ({ type, target }: Event) => {
+	if (hasSeenBanner) return;
+
+	document.body.insertAdjacentHTML(
+		"afterbegin",
+		`<dialog id="${BANNER}" data-analytics="ignore"><style>
+				#${BANNER}[open] { box-sizing: border-box; display: flex; align-items: center; background: #116e6b; border-radius: .5em; border: 0; box-shadow: 0 .25em .5em rgba(0,0,0,.3); color: #fff; font-size: .875em; inset: auto auto 1em 1em; max-width: calc(100vw - 2em); outline: 0; padding: .5em; position: fixed; z-index: 99999 }
+				#${BANNER} button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; width: 1.5em; height: 1.5em; font: 300 1.5em/1.35 sans-serif; border-radius: .25em; place-content: center; transition: .2s; transition-property: background, scale }
+				#${BANNER} button:focus-visible { outline: 2px solid }
+				#${BANNER} button:hover { background: #0a4e4f }
+				#${BANNER} button:active { background: #054449; scale: .9 }
+				#${BANNER} p { margin: 0 .25em }
+			</style>
+			<p>Vi <a href="${BANNER_URL}" target="_blank">bruker informasjonskapsler</a> for å forbedre brukeropplevelsen.</p>
+			<form method="dialog" data-analytics="ignore"><button type="submit" aria-label="OK">&times;</button></form>
+		</dialog>`,
+	);
+	const banner = document.getElementById(BANNER) as HTMLDialogElement;
+	const onClose = () => window.localStorage.setItem(BANNER, "seen");
+	banner.addEventListener("close", onClose, { once: true });
+	banner.show();
+}
+
+function handleTrack(event: Event) {
+	if (window._mtdsTracking?.enabled) setTimeout(processTrack, 0, event); // Let other events process first
+}
+
+function processTrack({ type, target }: Event) {
 	const el = type === "click" ? (target as Element)?.closest?.(CLICKS) : target;
 	if (!(el instanceof Element) || el.closest('[data-analytics="ignore"]'))
 		return;
@@ -229,7 +243,7 @@ const processTrack = ({ type, target }: Event) => {
 		action: attr(el, "data-analytics-action") ?? action,
 		name: attr(el, "data-analytics-name") ?? name,
 	});
-};
+}
 
 // Utilities
 const text = (el?: Element | null) => el?.textContent?.trim() || "";

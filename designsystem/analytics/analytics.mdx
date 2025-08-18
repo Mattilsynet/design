@@ -41,7 +41,8 @@ import { analytics } from '@mattilsynet/design';
 analytics('init', {
   matomoId: string | number,   // Required (if no matomoTagManagerId): Your site ID
   matomoTagManagerId: string,  // Required (if no matomoId): Your container ID
-  enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
+  enabled?: boolean | 'debug', // 'debug' console.logs only, default is true unless localhost
+  consent?: 'custom' | true, // Use 'custom' if you have implemented your own cookie consent
 });
 ```
 
