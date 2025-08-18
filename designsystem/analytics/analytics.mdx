@@ -41,7 +41,8 @@ import { analytics } from '@mattilsynet/design';
 analytics('init', {
   matomoId: string | number,   // Required (if no matomoTagManagerId): Your site ID
   matomoTagManagerId: string,  // Required (if no matomoId): Your container ID
-  enabled?: boolean | 'debug', // Optional: 'debug' sends to console.log only
+  enabled?: boolean | 'debug', // 'debug' console.logs only, default is true unless localhost
+  consent?: 'custom' | true, // Use 'custom' if you have implemented your own cookie consent
 });
 ```
 
@@ -94,7 +95,7 @@ analytics('event', {
 
 ## Automatisk analyse
 - Ved å benytte `analytics`, loggføres `submit`, `click` og `change` hendelser automatisk
-- Bruk `data-analytics="ignore"` på elementer for å deaktivere logging på et element
+- Bruk `data-analytics="ignore"` på elementer (eller foreldre til elementer) for å deaktivere logging på et element
 - Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier - <Button data-popover="inline" popoverTarget="example-data-attributes">se eksempler</Button>
 - **Merk:** `submit` vil kun fungere dersom du benytter standard `<form>` element
 
@@ -113,6 +114,13 @@ analytics('event', {
 <u-details>
   <u-summary data-analytics="ignore">Ignorer dette åpne/lukk-området</u-summary>
 </u-details>
+
+<!-- Ignorer område helt: -->
+<div data-analytics="ignore">
+  <button type="button">Ignorer alle disse knappene</button>
+  <button type="button">Ignorer alle disse knappene</button>
+  <button type="button">Ignorer alle disse knappene</button>
+</div>
 ```
 </Popover>
 
