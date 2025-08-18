@@ -22,6 +22,48 @@ export type PolymorphicRef<As extends React.ElementType> =
 // https://github.com/facebook/react/issues/27479
 export type PopoverValues = "" | "auto" | "manual" | undefined;
 
+export type Sizes =
+	| "0"
+	| "1"
+	| "2"
+	| "3"
+	| "4"
+	| "5"
+	| "6"
+	| "7"
+	| "8"
+	| "9"
+	| "10"
+	| "11"
+	| "12"
+	| "13"
+	| "14"
+	| "15"
+	| "18"
+	| "22"
+	| "26"
+	| "30"
+	| 0
+	| 1
+	| 2
+	| 3
+	| 4
+	| 5
+	| 6
+	| 7
+	| 8
+	| 9
+	| 10
+	| 11
+	| 12
+	| 13
+	| 14
+	| 15
+	| 18
+	| 22
+	| 26
+	| 30;
+
 declare global {
 	namespace React {
 		/* biome-ignore lint/correctness/noUnusedVariables: The <T> is required to replicate React implementation */
