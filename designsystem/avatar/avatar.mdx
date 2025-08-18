@@ -1,12 +1,43 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './avatar.stories';
+import styles from '../styles.module.css';
+import { EnvelopeIcon, UserIcon, FilePdfIcon } from '@phosphor-icons/react';
+import { Flex } from '../react';
+import avatar from "./avatar.jpg";
 
 <Meta of={stories} />
 
 # Avatar
+> Avatar er en komponent som viser et bilde, initialer eller ikon for en person, enhet eller profil.
+
+## Kode
 - Bruk klassen `avatar` på typisk `<span>` eller `<Avatar>` komponenten i React
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+
+<Flex data-items="350">
+  {/* Ikoner i Badge: */}
+  <Example data-color="success" text="Avatar kan inneholde tekst, bilde eller ikon som representerer en person eller enhet" zoom="100%">
+    <div className={styles.flex}>
+        <div className={styles.avatar}>MT</div>
+        <div className={styles.avatar}>
+            <img src={avatar} alt="Navn Navnesen" />
+        </div>
+        <div className={styles.avatar}>
+            <UserIcon aria-label="Navn Navnesen" />
+        </div>
+    </div>
+  </Example>
+  <Example data-color="danger" text="Ikke bruk avatar til å representere noe annet enn en person eller enhet, for eksempel et dokument." zoom="100%">
+    <div className={styles.avatar}>
+        <FilePdfIcon aria-label="PDF fil" />
+    </div>
+    
+  </Example>
+
+</Flex>
 
 ## Sizes
 <Canvas of={stories.Sizes} />
