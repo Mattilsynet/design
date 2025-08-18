@@ -319,3 +319,37 @@ export const WithDivider: Story = {
 		);
 	},
 };
+
+export const WithOverscroll: Story = {
+	render: function Render() {
+		const popId = useId();
+
+		return (
+			<>
+				<button
+					popoverTarget={popId}
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+					data-arrow
+				>
+					Overscroll
+				</button>
+				<menu
+					popover="auto"
+					id={popId}
+					className={styles.popover}
+					data-overscroll="contain"
+				>
+					{Array.from({ length: 20 }, (_, i) => i).map((num) => (
+						<li key={num}>
+							<button type="button" className={styles.button}>
+								Knapp {num + 1}
+							</button>
+						</li>
+					))}
+				</menu>
+			</>
+		);
+	},
+};
