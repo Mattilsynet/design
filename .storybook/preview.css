@@ -148,6 +148,8 @@ u-tabpanel > pre > .docblock-source {
 	border-color: var(--mtds-color-danger-base-default);
 }
 .sbdocs-example > div:first-child {
+	padding-inline: var(--mtds-4);
+	box-sizing: border-box;
 	aspect-ratio: 16 / 9;
 	display: grid;
 	grid-area: 1 / 1;

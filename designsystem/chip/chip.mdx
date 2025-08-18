@@ -1,13 +1,56 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './chip.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
 # Chip
+> Chip er små, interaktive komponenter som lar brukerne styre hvordan de vil se innhold. For eksempel kan de brukes til å filtrere kategorier i et søkeresultat og vise hvilke filtere som er aktive.
+
+## Kode
 - Bruk klassen `chip` på `<label>`
 - Legg en `<input type="radio">` med klassen `input`
 <Canvas of={stories.Radio} />
+
+## Skikk og bruk
+<Flex data-items="350">
+  {/* Tekstmengde i chip: */}
+  <Example data-color="success" text="Bruk korte konsiste ord i Chips" zoom="100%">
+    <button type="button" className={styles.chip} data-removable> Rødspette </button>
+  </Example>
+  <Example data-color="danger" text="Unngå lange tekster i chips. Prøv å begrense til maks et par ord" zoom="100%">
+    <button type="button" className={styles.chip} data-removable> Gebyr for tilsyn av fiskehelse og fiskevelferd </button>
+  </Example>
+
+   {/* Chip alignment: */}
+  <Example data-color="success" text="Chips skal ligge etter hverandre og organisk brekke ned på neste linje." zoom="100%">
+        <Flex data-gap="2">
+        <label className={styles.chip}><input className={styles.input} type="radio" value="Laks" defaultChecked name="my-radio" />Laks</label>
+        <label className={styles.chip}><input className={styles.input} type="radio" value="Rødspette" name="my-radio" />Rødspette</label>
+        <label className={styles.chip}><input className={styles.input} type="radio" value="Sei" name="my-radio" />Sei</label>
+        <label className={styles.chip}><input className={styles.input} type="radio" value="Torsk" name="my-radio" />Torsk</label>
+        <label className={styles.chip}><input className={styles.input} type="radio" value="Ørret" name="my-radio" />Ørret</label>
+
+        </Flex>
+  </Example>
+
+  <Example data-color="danger" text="Chips skal ikke stables over hverandre, bruk heller radiobuttons." zoom="100%">
+   <div>
+      <label className={styles.chip}><input className={styles.input} type="radio" value="Laks" defaultChecked name="my-radio" />Laks</label>
+      <br />
+      <label className={styles.chip}><input className={styles.input} type="radio" value="Rødspette" name="my-radio" />Rødspette</label>
+      <br />
+      <label className={styles.chip}><input className={styles.input} type="radio" value="Sei" name="my-radio" />Sei</label>
+      <br />
+      <label className={styles.chip}><input className={styles.input} type="radio" value="Torsk" name="my-radio" />Torsk</label>
+      <br />
+      <label className={styles.chip}><input className={styles.input} type="radio" value="Ørret" name="my-radio" />Ørret</label>
+    </div>
+  </Example>
+
+</Flex>
 
 ## Sizes
 - Bruk `data-size="sm | md | lg"`

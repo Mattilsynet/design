@@ -6,6 +6,9 @@ import * as stories from './table.stories';
 <Meta of={stories} />
 
 # Table
+>Table brukes for å vise strukturert informasjon på en ryddig og oversiktlig måte. Tabeller kan gjøre det enklere for brukerne å skanne og sammenligne informasjon.
+
+## Kode
 - Legg klassen `table` på `<table>`
 - Bruk `<thead>` med `<tr><th>` som barn for topplinje
 - Bruk `<tbody>` med `<tr><td>` som barn for rader
@@ -13,7 +16,7 @@ import * as stories from './table.stories';
 - Bruk `data-nowrap` hvor du vil på tabellen, rader eller celler for å hindre linjeskift
 <Canvas of={stories.Default} />
 
-## Horisontale tittler
+## Horisontale titler
 - Bruk `<th scope="row">` som første barn i en rad for å få horisontal overskrift
 <Canvas of={stories.WithHorizontalTitles} />
 

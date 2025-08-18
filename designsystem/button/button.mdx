@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { Example, CssVariables } from '../../.storybook/blocks';
-import { HeartIcon } from '@phosphor-icons/react';
+import { HeartIcon, StarIcon } from '@phosphor-icons/react';
 import { Flex } from '../react';
 import * as stories from './button.stories';
 import styles from '../styles.module.css';
@@ -8,6 +8,10 @@ import styles from '../styles.module.css';
 <Meta of={stories} />
 
 # Button
+
+> Knapper lar brukeren utføre en handling.
+
+## Kode
 - Legg klassen `button` på typisk `<button>` eller `<a>`
 - Husk `type="button"` hvis en `<button>` gjør noe annet enn å sende skjema
 - Bruk `data-variant="primary | secondary | tertiary"`
@@ -17,174 +21,95 @@ import styles from '../styles.module.css';
 ## Skikk og bruk
 
 <Flex data-items="350">
-  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+  {/* Viser knapp med lange navn: */}
+  <Example data-color="success" text="Bruk korte beskrivende navn på knapper" zoom="100%">
+    <button type="button" className={styles.button} data-variant="primary">Lagre</button>
   </Example>
-  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+  <Example data-color="danger" text="Lange tekster og flere handlinger på samme knapp bør unngås." zoom="100%">
+    <button type="button" className={styles.button} data-variant="primary">Lagre og send inn skjemaet</button>
   </Example>
-  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+
+  {/* Viser tertiærknapp som står alene: */}
+  <Example data-color="success" text="Tertiærknapp bør alltid stå sammen med en primærknapp eller sekundærknapp, eller inneholde ikon" zoom="100%">
+    <div className={styles.flex}>
+      <button type="button" className={styles.button} data-variant="secondary">Lagre</button>
+      <button type="button" className={styles.button} data-variant="tertiary">Avbryt</button>
+    </div>
   </Example>
-  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+  <Example data-color="danger" text="Unngå å bruke tertiærknapp alene. Vurdér å bruke en sekundærknapp istedenfor eller legg til et ikon" zoom="100%">
+    <button type="button" className={styles.button} data-variant="tertiary">Avbryt</button>
   </Example>
-  <Example data-color="success" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+
+  {/* Viser tertiærknapp med ikon: */}
+  <Example data-color="success" text="Tertiærknapp alene kan brukes med et ikon" zoom="100%">
+    <button type="button" className={styles.button} data-variant="tertiary"><StarIcon />Favoritt</button>
   </Example>
-  <Example data-color="danger" text="Gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn gjør sånn" zoom="50%">
-    <ol className={styles.steps}>
-      <li>
-        <mark><HeartIcon /></mark>
-        <strong>Steg 1</strong>
-        <br />
-        <small>Beskrivelse</small>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 2</strong>
-        <br />
-        <small>Donec et odio</small>
-      </li>
-      <li aria-current="step" data-color="danger">
-        <mark />
-        <strong>Steg 3</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 4</strong>
-      </li>
-      <li>
-        <mark />
-        <strong>Steg 5</strong>
-      </li>
-    </ol>
+  <Example data-color="danger" text="Tertiærknapp alene bør brukes med et ikon" zoom="100%">
+    <button type="button" className={styles.button} data-variant="tertiary">Favoritt</button>
   </Example>
+
+  {/* Viser knapp med konsistent størrelse: */}
+  <Example data-color="success" text="Bruk konsistente størrelser på knapper" zoom="100%">
+    <div className={styles.flex}>
+      <button type="button" className={styles.button} data-variant="primary">Lagre</button>
+      <button type="button" className={styles.button} data-variant="tertiary">Avbryt</button>
+    </div>
+  </Example>
+  <Example data-color="danger" text="Unngå ulike størrelser på knapper" zoom="100%">
+    <div className={styles.flex}>
+      <button type="button" className={styles.button} data-variant="primary" data-size='sm'>Lagre</button>
+      <button type="button" className={styles.button} data-variant="secondary" data-size='lg'>Avbryt</button>
+    </div>
+  </Example>
+
+  {/* Viser knapp med bare ikon: */}
+  <Example data-color="success" text="Button kan brukes med bare ikon. Da må den ha en beskrivende tooltip" zoom="100%">
+    <button type="button" className={styles.button} data-variant="tertiary" data-tooltip="Hjelpetekst"><StarIcon /></button>
+  </Example>
+  <Example data-color="danger" text="Når button bare inneholder et ikon skal den ha en beskrivende tooltip " zoom="100%">
+    <button type="button" className={styles.button} data-variant="tertiary"><StarIcon /></button>
+  </Example>
+
+  {/* Samme fargevariant i en gruppe: */}
+  <Example data-color="success" text="Buttons skal ha samme fargestil innenfor en gruppe" zoom="100%">
+    <div className={styles.flex}>
+      <button type="button" className={styles.button} data-variant="primary">Lagre</button>
+      <button type="button" className={styles.button} data-variant="tertiary">Avbryt</button>
+    </div>
+  </Example>
+  <Example data-color="danger" text="Unngå å blande fargestil på knapper i samme gruppe" zoom="100%">
+    <div className={styles.flex}>
+      <button type="button" className={styles.button} data-variant="primary" data-color='danger'>Lagre</button>
+      <button type="button" className={styles.button} data-variant="tertiary" data-color='info'>Avbryt</button>
+    </div>
+  </Example>
+
+  {/* Stor forbokstav: */}
+  <Example data-color="success" text="Bruk stor forbokstav og resten små (sentence case) for best mulig lesbarhet" zoom="100%">
+    <button type="button" className={styles.button} data-variant="primary">Send søknad</button>
+  </Example>
+  <Example data-color="danger" text="Ikke bruk store bokstaver eller en blanding av små og store bokstaver i en knapp" zoom="100%">
+    <div className={styles.prose}>
+      <button type="button" className={styles.button} data-variant="primary">SEND SØKNAD</button>
+      <button type="button" className={styles.button} data-variant="primary">Send Søknad</button>
+      <button type="button" className={styles.button} data-variant="primary">send søknad</button>
+    </div>
+  </Example>
+
+  {/* Kun én call to action: */}
+  <Example data-color="success" text="En side skal bare ha én call to action-button" zoom="100%">
+    <div className={styles.button}>
+    <button type="button" className={styles.button} data-variant="primary">Ferdig</button>
+    <button type="button" className={styles.button} data-variant="secondary">Avbryt</button>
+    </div>
+  </Example>
+  <Example data-color="danger" text="Aldri bruk flere call to action-knapper sammen" zoom="100%">
+    <div className={styles.button}>
+      <button type="button" className={styles.button} data-variant="primary">Ferdig</button>
+      <button type="button" className={styles.button} data-variant="primary">Avbryt</button>
+    </div>
+  </Example>
+
 </Flex>
 
 ## Størrelser
