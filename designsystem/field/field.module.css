@@ -24,8 +24,11 @@
 	/**
 	 * Mark <label> as required
 	 */
-	.field label {
+	.field label:not([hidden]) {
 		display: contents;
+	}
+	.field label[hidden]:first-child + * {
+		margin-top: 0; /* Remove space if label is hidden */
 	}
 	.field label svg {
 		vertical-align: -0.15em;
@@ -167,9 +170,8 @@
 		color: var(--ds-color-text-default);
 		left: 0;
 		margin: var(--ds-size-1) 0;
-		max-height: 400px;
-		max-width: calc(100vw - 20px);
 		overflow: auto;
+		overscroll-behavior: contain; /* Prevent scrolling window if reaching end */
 		padding: var(--ds-size-2);
 		position: absolute;
 		top: 0;

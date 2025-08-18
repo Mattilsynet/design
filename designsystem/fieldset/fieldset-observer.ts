@@ -7,7 +7,7 @@ const ARIA_DESC = "aria-describedby";
 const ARIA_INVALID = "aria-invalid";
 
 // Using requestAnimationFrame to ensure it runs after field-observer
-function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
+function handleFieldsetMutation(fieldsets: HTMLCollectionOf<Element>) {
 	requestAnimationFrame(() => {
 		for (const fieldset of fieldsets)
 			if (fieldset.isConnected) {
@@ -33,5 +33,5 @@ function handleMutation(fieldsets: HTMLCollectionOf<Element>) {
 }
 
 onLoaded(() =>
-	onMutation(document.documentElement, CSS_FIELDSET, handleMutation),
+	onMutation(document.documentElement, CSS_FIELDSET, handleFieldsetMutation),
 );

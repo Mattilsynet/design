@@ -1,21 +1,21 @@
 // Expose custom elements not matching HTML elements
+
+export { UHTMLComboboxElement } from "@u-elements/u-combobox";
 export {
-	UHTMLTabsElement,
 	UHTMLTabElement,
 	UHTMLTabListElement,
 	UHTMLTabPanelElement,
+	UHTMLTabsElement,
 } from "@u-elements/u-tabs";
-export { UHTMLComboboxElement } from "@u-elements/u-combobox";
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export { analytics } from "./analytics/analytics";
-export { pagination } from "./pagination/pagination-helper";
 export { toggleAppExpanded } from "./app/app-observer";
+export { pagination } from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 
 // Load behaviours
-// import "./toast/toast-observer";
 import "./breadcrumbs/breadcrumbs-observer";
 import "./dialog/dialog-observer";
 import "./errorsummary/errorsummary-observer";

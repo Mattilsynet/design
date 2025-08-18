@@ -39,6 +39,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const paddings = [
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30,
+];
+
 export const Default: Story = {
 	render: () => <div className={styles.card}>Card</div>,
 };
@@ -62,14 +66,17 @@ export const React: Story = {
 	),
 };
 
-// export const AsDetails: Story = {
-// 	render: () => (
-// 		<u-details className={styles.card}>
-// 			<u-summary>As details</u-summary>
-// 			Content
-// 		</u-details>
-// 	),
-// };
+export const Padding: Story = {
+	render: () => (
+		<>
+			{paddings.map((pad) => (
+				<div key={pad} className={styles.card} data-pad={pad}>
+					data-pad="{pad}"
+				</div>
+			))}
+		</>
+	),
+};
 
 export const Interactive: Story = {
 	render: () => (
@@ -129,10 +136,10 @@ export const Responsive: Story = {
 			</a>
 			<Card>
 				<Flex data-align="start">
-					<div data-self="250" data-fixed>
+					<Info data-self="250" data-fixed>
 						<small>Opprettet 01.01.1970</small>
 						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
-					</div>
+					</Info>
 					<Flex data-self="500">
 						<Flex data-self="500" data-align="start">
 							<Grid data-self="200">

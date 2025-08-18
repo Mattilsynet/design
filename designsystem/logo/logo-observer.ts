@@ -3,7 +3,7 @@ import { onLoaded, onMutation } from "../utils";
 
 const CSS_LOGO = styles.logo.split(" ")[0];
 
-function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
+function handleLogoMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 	if (logo?.isConnected && logo?.firstElementChild instanceof SVGSVGElement) {
 		for (const icon of document.head.querySelectorAll("link[rel~='icon']"))
 			icon.setAttribute("rel", "disabled"); // Disable previous icon (but not remove is as this makes Next.js sad)
@@ -27,4 +27,6 @@ function handleMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 	}
 }
 
-onLoaded(() => onMutation(document.documentElement, CSS_LOGO, handleMutation));
+onLoaded(() =>
+	onMutation(document.documentElement, CSS_LOGO, handleLogoMutation),
+);

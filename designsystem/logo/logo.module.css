@@ -119,7 +119,7 @@
 		width: var(--icon-size);
 	}
 	.logo:not([data-env]) svg {
-		color: #054449; /* Hard code granskog */
+		color: #054449; /* Hard code granskog as this is consistent across dark/light mode */
 	}
 
 	/**
@@ -133,7 +133,6 @@
 		content: "\2005[" attr(data-env) "]"; /*\A added to allow line-break*/
 		font-size: min(1em, var(--ds-body-lg-font-size));
 		font-weight: 400;
-		text-transform: lowercase;
 	}
 	html:has(.logo[data-env])::before {
 		border-top: 5px solid var(--mtds-logo-color);

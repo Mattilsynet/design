@@ -21,7 +21,6 @@ import {
 } from "../designsystem/react";
 import styles from "../designsystem/styles.module.css";
 import css from "../designsystem/styles.module.css?inline";
-import { anchorPosition } from "../designsystem/utils";
 
 type WideProps = React.ComponentPropsWithoutRef<"div">;
 export const Wide = ({ style, ...rest }: WideProps) => {
@@ -155,7 +154,7 @@ function getCssVars(component: string) {
 	// and thus ruin the matching for property declarations
 	const res: Record<string, { val: string; mtds: boolean }> = {};
 	const clean = css.replace(/"[^"]*"/g, encodeURIComponent);
-	const regex = new RegExp(`(?<!var\\\()--(mt)?dsc-${component}-[^;}]+`, "g");
+	const regex = new RegExp(`(?<!var\\()--(mt)?dsc-${component}-[^;}]+`, "g");
 	const mtdsIndex = clean.indexOf("@layer mt.");
 
 	// Choose the earliest declaration of the property.
@@ -298,6 +297,7 @@ declare global {
 }
 
 type GraphicsProps = {
+	children?: React.ReactNode;
 	mode?: "light" | "dark" | boolean;
 	path: string;
 	named?: boolean;
@@ -308,6 +308,7 @@ type GraphicsProps = {
 export const Graphics = ({
 	path,
 	reverse,
+	children,
 	mode: _mode = false,
 	searchable = false,
 	...rest
@@ -391,17 +392,7 @@ export const Graphics = ({
 						</Select>
 					</Field>
 				)}
-				<Button
-					style={{ background: "var(--mtds-color-surface-default)" }}
-					data-fixed
-					data-self="auto"
-					data-tooltip="Åpner sharppoint for høyoppløselige versjoner"
-					data-variant="secondary"
-					href="https://mattilsynet.sharepoint.com/sites/BilderMattilsynet"
-				>
-					Høyoppløselige versjoner
-					<ArrowSquareOutIcon />
-				</Button>
+				{children}
 			</Flex>
 			<Grid className="graphics" data-items="250" data-fixed {...rest}>
 				{graphics.map(({ file, categories, tags, name, svg, label, href }) => {
@@ -455,7 +446,7 @@ const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
 
 	const w = svg ? img.viewBox.baseVal.width : img.naturalWidth;
 	const h = svg ? img.viewBox.baseVal.height : img.naturalHeight;
-	const ratio = (svg ? 900 : 1440) / Math.max(w, h); // Scale to 400px for SVGs, 1920px for images
+	const ratio = svg ? 900 / Math.max(w, h) : 1;
 
 	CANVAS.width = Math.round(w * ratio);
 	CANVAS.height = Math.round(h * ratio);
@@ -482,7 +473,6 @@ const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
 	]);
 
 	tooltip?.replaceChildren("Kopiert!");
-	if (tooltip) anchorPosition(tooltip, card, 0);
 };
 
 const encodeSVG = (data: string) =>

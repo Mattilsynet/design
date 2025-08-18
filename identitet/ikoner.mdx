@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { ShapesIcon } from "@phosphor-icons/react"
 import { JumpTo, Wide, Graphics } from '../.storybook/blocks';
+import { Button } from '../designsystem/react';
 
 <Meta title="Identitet/Ikoner" />
 
@@ -14,7 +15,17 @@ for å gi et lett og vennlig uttrykk som står i stil med vår visuelle identite
 - Kun dekorative ikoner (f.eks. pil) kan høyrestilles
 - Benytt linjeversjon (fylte ikoner er forbeholdt [applikasjonslogoer](?path=/docs/designsystem-logo--docs))
 
-<Wide><Graphics path="@phosphor-icons" data-items="100" mode searchable="💡 Søk på engelsk" /></Wide>
+<Wide><Graphics path="@phosphor-icons" data-items="100" mode searchable="💡 Søk på engelsk">
+<Button
+  style={{ background: "var(--mtds-color-surface-default)" }}
+  data-arrow
+  data-fixed
+  data-self="auto"
+  data-tooltip="Gå til installasjon"
+  data-variant="secondary"
+  href="https://github.com/phosphor-icons/homepage?tab=readme-ov-file#for-developers"
+>Se installasjon for utviklere</Button>
+</Graphics></Wide>
 
 ## Symboler
 - Symboler og Phosphor-ikoner og skal ikke blandes.

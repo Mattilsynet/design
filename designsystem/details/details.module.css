@@ -8,6 +8,7 @@
 		--dsc-details-summary-background--hover: var(--ds-color-background-tinted);
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
+		--mtdsc-details-card-radius: var(--ds-border-radius-lg);
 		--mtdsc-details-content-padding: 0 var(--ds-size-4) var(--ds-size-4)
 			calc(
 				var(--ds-size-4) +
@@ -15,11 +16,11 @@
 				var(--dsc-details-icon-gap)
 			);
 	}
-	.details + .details {
-		margin-top: 0;
+	.details:not([data-variant="card"]) + .details {
+		margin-top: 0; /* Reset if placed in Prose */
 	}
-	.details:has(+ .details) {
-		margin-bottom: 0;
+	.details:not([data-variant="card"]):has(+ .details) {
+		margin-bottom: 0; /* Reset if placed in Prose */
 	}
 	.details > :is(summary, u-summary) {
 		transition-duration: 0.2s;
@@ -53,5 +54,28 @@
 	.details:not([open])::details-content,
 	.details:not([open])::part(details-content) {
 		padding-block: 0px;
+	}
+
+	.details[data-variant="card"] {
+		--dsc-details-background: var(--ds-color-surface-default);
+		border: var(--dsc-details-border-block-width)
+			var(--dsc-details-border-block-style) var(--dsc-details-border-color);
+		border-radius: var(--mtdsc-details-card-radius);
+	}
+	.details[data-variant="card"][data-color]:not([data-color="main"]) {
+		--dsc-details-background: var(--ds-color-surface-tinted);
+	}
+	.details[data-variant="card"] > :is(summary, u-summary) {
+		border-radius: var(--mtdsc-details-card-radius);
+	}
+	.details[data-variant="card"]
+		> :is(summary, u-summary)
+		> :is(img, svg):first-child {
+		width: var(--mtds-icon-size);
+		height: var(--mtds-icon-size);
+	}
+	.details[data-variant="card"] > :is(summary, u-summary)::before {
+		margin-inline-start: auto;
+		order: 1;
 	}
 }

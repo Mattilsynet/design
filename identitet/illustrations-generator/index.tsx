@@ -7,7 +7,7 @@ import {
 	TShirtIcon,
 } from "@phosphor-icons/react";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Button, Card, Flex, Grid, Popover } from "../../designsystem/react";
+import { Button, Card, Flex, Popover } from "../../designsystem/react";
 import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
 type Select = { value?: string; label: string; options: Option[] };
@@ -92,7 +92,7 @@ export function IllustrationsGenerator() {
 								{ICONS[key as keyof typeof ICONS] || <LegoSmileyIcon />}
 							</Button>
 							<Popover as="menu" id={`popover-${key}`} style={{ width: 300 }}>
-								{select.options.map(({ value, label, x, y, w, h }) => (
+								{select.options.map(({ value, label }) => (
 									<li key={value}>
 										<Button
 											// data-tooltip={label}

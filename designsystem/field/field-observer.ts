@@ -1,3 +1,4 @@
+import { flip, type Placement, shift, size } from "@floating-ui/dom";
 import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
@@ -19,7 +20,10 @@ const CSS_VALIDATION = CSS_VALIDATIONS[0];
 const getText = (style: CSSStyleDeclaration, key: string) =>
 	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
-function handleMutation(fields: HTMLCollectionOf<Element>, validate?: boolean) {
+function handleFieldMutation(
+	fields: HTMLCollectionOf<Element>,
+	validate?: boolean,
+) {
 	for (const field of fields)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
@@ -70,18 +74,24 @@ function renderTextareaSize(textarea: Element) {
 
 // Setup translations from CSS custom properties
 function renderCombobox(el: UHTMLComboboxElement | null) {
-	if (!el?.list || el.list?.hasAttribute("popover")) return;
-	const style = window.getComputedStyle(el);
-	attr(el, "data-sr-added", getText(style, "combobox-added"));
-	attr(el, "data-sr-empty", getText(style, "combobox-empty"));
-	attr(el, "data-sr-found", getText(style, "combobox-found"));
-	attr(el, "data-sr-invalid", getText(style, "combobox-invalid"));
-	attr(el, "data-sr-of", getText(style, "combobox-of"));
-	attr(el, "data-sr-remove", getText(style, "combobox-remove"));
-	attr(el, "data-sr-removed", getText(style, "combobox-removed"));
-	attr(el.list, "data-sr-plural", getText(style, "datalist-plural"));
-	attr(el.list, "data-sr-singular", getText(style, "datalist-singular"));
-	attr(el.list, "popover", "manual");
+	const { control, list } = el || {};
+
+	if (el && list && !el.hasAttribute("data-sr-added")) {
+		const style = window.getComputedStyle(el);
+		attr(el, "data-sr-added", getText(style, "combobox-added"));
+		attr(el, "data-sr-empty", getText(style, "combobox-empty"));
+		attr(el, "data-sr-found", getText(style, "combobox-found"));
+		attr(el, "data-sr-invalid", getText(style, "combobox-invalid"));
+		attr(el, "data-sr-of", getText(style, "combobox-of"));
+		attr(el, "data-sr-remove", getText(style, "combobox-remove"));
+		attr(el, "data-sr-removed", getText(style, "combobox-removed"));
+		attr(list, "data-sr-plural", getText(style, "datalist-plural"));
+		attr(list, "data-sr-singular", getText(style, "datalist-singular"));
+	}
+	if (list && control && !list.hasAttribute("popover")) {
+		attr(list, "popover", "manual");
+		attr(control, "popovertarget", useId(list));
+	}
 }
 
 function renderCounter(input: HTMLInputElement) {
@@ -107,53 +117,49 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
-function handleToggle({ target: el, newState }: Event & { newState?: string }) {
-	if (el instanceof UHTMLDataListElement) {
-		const root = el.getRootNode() as ShadowRoot | null;
+function handleFieldToggle(event: Event & { newState?: string }) {
+	if (event.target instanceof UHTMLDataListElement) {
+		const list = event.target;
+		const root = list.getRootNode() as ShadowRoot | null;
 		const anchor = root?.querySelector<HTMLElement>(
-			`[popovertarget="${el.id}"]`,
+			`[popovertarget="${list.id}"]`,
 		);
 
-		if (newState === "closed") anchorPosition(el, false);
-		else if (anchor) {
-			el.style.width = `${anchor.clientWidth}px`;
-			anchorPosition(el, anchor, attr(el, "data-position") ?? "bottom", true);
-		}
+		if (event.newState === "closed") anchorPosition(list, false);
+		else if (anchor)
+			anchorPosition(list, anchor, {
+				placement: (attr(list, "data-position") ?? "bottom") as Placement,
+				middleware: [
+					flip(),
+					shift(),
+					size({
+						padding: 10,
+						apply({ availableHeight }) {
+							list.style.width = `${anchor.offsetWidth}px`;
+							list.style.maxHeight = `${Math.max(50, availableHeight)}px`;
+						},
+					}),
+				],
+			});
 	}
 }
 // Update when typing
-function handleInput({ target: el }: Event) {
-	if (isInputLike(el)) {
-		renderCounter(el);
-		renderTextareaSize(el);
-
-		// Reposition list datalist // TODO Enhance by using style.bottom?
-		const list = el.hasAttribute("list") && el.list;
-		if (list)
-			setTimeout(() => {
-				anchorPosition(list, el, attr(list, "data-position") ?? "bottom", true);
-			}, 10);
+function handleFieldInput(event: Event) {
+	if (isInputLike(event.target)) {
+		renderCounter(event.target);
+		renderTextareaSize(event.target);
 	}
 }
 
-function handleValdiation(event: Event) {
+function handleFieldValdiation(event: Event) {
 	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
-
 	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
-	handleMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
-}
-
-// Position combobox when changing content
-function handleBeforeChange({ target: el }: Event) {
-	const list = el instanceof UHTMLComboboxElement && el.list;
-	if (list && !list?.hidden)
-		setTimeout(() => anchorPosition(list, el, 2, true), 10); // Reposition list if not hidden
+	handleFieldMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
 }
 
 onLoaded(() => {
-	onMutation(document.documentElement, CSS_FIELD, handleMutation);
-	on(document, "beforechange", handleBeforeChange, QUICK_EVENT);
-	on(document, "input", handleInput, QUICK_EVENT);
-	on(document, "invalid,submit", handleValdiation, true); // Use capture as invalid and submit does not bubble
-	on(document, "toggle", handleToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+	onMutation(document.documentElement, CSS_FIELD, handleFieldMutation);
+	on(document, "input", handleFieldInput, QUICK_EVENT);
+	on(document, "invalid,submit", handleFieldValdiation, true); // Use capture as invalid and submit does not bubble
+	on(document, "toggle", handleFieldToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 });

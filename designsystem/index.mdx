@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { getPkgVersion, JumpTo } from '../.storybook/blocks';
-import { ArrowSquareOutIcon, PuzzlePieceIcon, ChatsCircleIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { PuzzlePieceIcon, ChatsCircleIcon, GitBranchIcon } from "@phosphor-icons/react";
 import { Badge, Card, Details, Divider, Flex, Button, Tabs, Prose } from './react'
 import { styles } from './';
 import colors from './assets/colors.png';
@@ -59,7 +59,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
     ```
   </Tabs.Panel>
   <Tabs.Panel style={{ padding: 20 }}>
-    <Button data-variant="primary" target="_blank" href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure <ArrowSquareOutIcon /></Button>
+    <Button data-variant="primary" target="_blank" data-arrow href="https://github.com/Mattilsynet/design/blob/next/clojure/README.md">Se egen README for Clojure</Button>
   </Tabs.Panel>
 </Tabs>
 </Details>
@@ -98,6 +98,7 @@ Designsystemet tilbyr først og fremst en rekke CSS klassenavn som hjelper deg b
 </Details>
 <Details>
 <Details.Summary><Badge data-badge="3" />Importer stiler enten via JavaScript, CSS eller med TailwindCSS</Details.Summary>
+- Legg `data-color-scheme="light | dark | auto"` på `<html>` for å støtte dark/light/auto mode
 <Tabs data-size="sm">
   <Tabs.List>
     <Tabs.Tab>JS</Tabs.Tab>
