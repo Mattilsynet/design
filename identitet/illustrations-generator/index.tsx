@@ -91,7 +91,12 @@ export function IllustrationsGenerator() {
 							>
 								{ICONS[key as keyof typeof ICONS] || <LegoSmileyIcon />}
 							</Button>
-							<Popover as="menu" id={`popover-${key}`} style={{ width: 300 }}>
+							<Popover
+								as="menu"
+								id={`popover-${key}`}
+								style={{ width: 300 }}
+								data-overscroll="contain"
+							>
 								{select.options.map(({ value, label }) => (
 									<li key={value}>
 										<Button
@@ -125,8 +130,8 @@ export function IllustrationsGenerator() {
 			</Flex>
 			<svg
 				width="100%"
-				height="500"
-				viewBox="-200 -200 400 1200"
+				height="auto"
+				viewBox="-1700 -200 3400 1200"
 				onKeyDown={() => {}}
 				onClick={handleCopySvg}
 			>

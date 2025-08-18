@@ -1,10 +1,12 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
 import * as stories from './popover.stories';
 
 <Meta of={stories} />
 
 # Popover
+<JumpTo />
+
 > Popover vises over andre elementer i grensesnittet og er koblet til et spesifikt element. Den brukes til å vise tilleggsinformasjon, interaktive elementer eller korte forklaringer uten å navigere bort fra siden. Popover kan brukes som en utvidet løsning når tooltip ikke strekker til.
 
 ## Kode
@@ -46,5 +48,9 @@ import * as stories from './popover.stories';
 ## Skillelinje
 - Bruk `<li><hr />` i `<menu>` for å få skillelinje:
 <Canvas of={stories.WithDivider} />
+
+## Scroll
+- Bruk `data-overscroll="contain"` for å holde popover høyde innen skjermbildet:
+<Canvas of={stories.WithOverscroll} />
 
 <CssVariables component="popover" />

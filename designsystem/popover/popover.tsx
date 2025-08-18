@@ -13,6 +13,7 @@ export type PopoverProps<As extends React.ElementType = "div"> =
 		As,
 		{
 			"data-position"?: Placement;
+			"data-overscroll"?: "contain";
 			popover?: PopoverValues;
 		}
 	>;
