@@ -8,6 +8,7 @@ const CSS_PAGINATION = `.${styles.pagination.split(" ")[0]}`;
 const CLICKS = `summary,u-summary,a,button,[role="tab"],[role="button"]`;
 const EVENTS = "click,toggle,submit,change";
 const MATOMO = "mattilsynet.matomo.cloud";
+const DIALOG = "mtds-matomo-dialog"; // Dialog to show Matomo script loading
 
 type Matomo = (
 	| string
@@ -83,9 +84,12 @@ export function analytics<Action extends keyof AnalyticsActions>(
 
 		if (matomoId) window._paq.push(["setSiteId", matomoId]);
 		if (enabled) {
+			const dialog = (document.getElementById(DIALOG) ||
+				document.createElement("dialog")) as HTMLDialogElement;
 			const src = matomoTagManagerId
 				? `https://cdn.matomo.cloud/${MATOMO}/container_${matomoTagManagerId}.js`
 				: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`;
+
 			document.querySelector(`script[src="${src}"]`) ||
 				document.head.append(
 					Object.assign(document.createElement("script"), {
@@ -93,6 +97,22 @@ export function analytics<Action extends keyof AnalyticsActions>(
 						src,
 					}),
 				);
+
+			dialog.id = DIALOG;
+			dialog.innerHTML = `
+				<style>
+					#${DIALOG}[open] { box-sizing: border-box; display: flex; align-items: center; background: #116e6b; border-radius: .5em; border: 0; box-shadow: 0 .25em .5em rgba(0,0,0,.3); color: #fff; font-size: .875em; inset: auto auto 1em 1em; max-width: calc(100vw - 2em); outline: 0; padding: .5em; position: fixed; z-index: 99999 }
+					#${DIALOG} p { margin: 0; padding-left: .25em }
+					#${DIALOG} button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; width: 1.5em; height: 1.5em; font: 300 1.5em/1.35 sans-serif; border-radius: .25em; place-content: center; transition: .2s; transition-property: background, scale }
+					#${DIALOG} button:focus-visible { outline: 2px solid }
+					#${DIALOG} button:hover { background: #0a4e4f }
+					#${DIALOG} button:active { background: #054449; scale: .9 }
+				</style>
+				<p>Vi <a href="https://www.mattilsynet.no/om-mattilsynet/personvernerklaering/informasjonskapsler" target="_blank">bruker informasjonskapsler</a> for å forbedre brukeropplevelsen.</p>
+				<form method="dialog" data-analytics="ignore"><button type="submit" aria-label="OK">&times;</button></form>
+			`;
+			document.body.prepend(dialog);
+			dialog.show();
 		}
 	}
 
@@ -137,7 +157,7 @@ const handleTrack = (event: Event) =>
 
 const processTrack = ({ type, target }: Event) => {
 	const el = type === "click" ? (target as Element)?.closest?.(CLICKS) : target;
-	if (!(el instanceof Element) || attr(el, "data-analytics") === "ignore")
+	if (!(el instanceof Element) || el.closest('[data-analytics="ignore"]'))
 		return;
 
 	let action = "click";
