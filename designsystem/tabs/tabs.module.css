@@ -9,7 +9,7 @@
 		--dsc-tabs-content-padding: var(--ds-size-8) 0 0;
 		--dsc-tabs-gap: var(--ds-size-2);
 	}
-	.tabs [role="tablist"] {
+	.tabs [role="tablist"]:not([hidden]) {
 		-webkit-overflow-scrolling: touch;
 		animation: _scrollMask linear;
 		animation-timeline: scroll(self inline);

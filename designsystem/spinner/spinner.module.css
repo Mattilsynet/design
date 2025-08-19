@@ -8,10 +8,9 @@
 		gap: var(--ds-size-2);
 		place-items: center;
 		vertical-align: middle;
-
-		&:where(:not([hidden])) {
-			display: inline-grid;
-		}
+	}
+	.spinner:where(:not([hidden])) {
+		display: inline-grid;
 	}
 	.spinner::before {
 		background: currentcolor;

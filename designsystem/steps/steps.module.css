@@ -5,11 +5,13 @@
 		--mtdsc-steps-stroke-color: var(--ds-color-border-subtle);
 		--mtdsc-steps-stroke-size: 2px;
 
-		display: flex;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		text-align: center;
+	}
+	.steps:not([hidden]) {
+		display: flex;
 	}
 	.steps > li {
 		--dot-after: var(--mtdsc-steps-stroke-color);
@@ -61,13 +63,15 @@
 		box-sizing: border-box;
 		color: var(--dot-text); /* Let it be affected by data-color */
 		height: var(--mtdsc-steps-dot-size);
-		display: grid;
 		place-items: center;
 		margin: 0 auto var(--mtdsc-steps-gap);
 		position: relative;
 		transition: 0.2s scale;
 		width: var(--mtdsc-steps-dot-size);
 		z-index: 2; /* Place above line */
+	}
+	.steps > li mark:not([hidden]) {
+		display: grid;
 	}
 	.steps > li mark > svg,
 	.steps > li mark:empty::before {
@@ -82,7 +86,7 @@
 	/*
 	 * Interaction 
 	 */
-	.steps > li > :is(a, button):only-child {
+	.steps > li > :is(a, button):not([hidden]):only-child {
 		background: none;
 		border-radius: inherit;
 		border: 0;
