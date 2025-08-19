@@ -23,7 +23,6 @@
 		border-radius: calc(var(--ds-border-radius-md) + var(--margin)); /* Add margin to allow transparent background-clip  */
 		border: var(--margin) solid transparent;
 		color: var(--ds-color-base-contrast-default);
-		display: block;
 		font-size: 0.875rem;
 		inset: auto;
 		line-height: var(--ds-line-height-sm);

@@ -7,7 +7,6 @@
 		--mtdsc-link-text-decoration-offset: 0.27em;
 
 		/* In case used on <button> */
-		display: inline;
 		background: none;
 		border: 0;
 		color: inherit;
@@ -22,6 +21,10 @@
 		text-decoration: underline;
 		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness); /* 1px ish */
 		text-underline-offset: var(--mtdsc-link-text-decoration-offset); /* 5px ish */
+
+		&:where(:not([hidden])) {
+			display: inline;
+		}
 
 		&:not([data-size]) {
 			font-size: inherit;

@@ -155,7 +155,7 @@ function renderBanner() {
 				#${BANNER} button:active { background: #054449; scale: .9 }
 				#${BANNER} p { margin: 0 .25em }
 			</style>
-			<p>Vi <a href="${BANNER_URL}" target="_blank">bruker informasjonskapsler</a> for å forbedre brukeropplevelsen.</p>
+			<p>Vi bruker <a href="${BANNER_URL}" target="_blank">informasjonskapsler</a> for å forbedre brukeropplevelsen.</p>
 			<form method="dialog" data-analytics="ignore"><button type="submit" aria-label="OK">&times;</button></form>
 		</dialog>`,
 	);

@@ -8,7 +8,6 @@
 		box-sizing: border-box;
 		color: inherit;
 		cursor: pointer;
-		display: inline-block;
 		flex-shrink: 0;
 		font-style: initial;
 		font-weight: normal;
@@ -20,6 +19,9 @@
 		transition-property: background-color, scale;
 		vertical-align: middle;
 		width: var(--ds-size-7);
+	}
+	.helptext:not([hidden]) {
+		display: inline-block;
 	}
 	.helptext:not([data-size]) {
 		font-size: var(--ds-body-md-font-size);

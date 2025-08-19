@@ -79,7 +79,7 @@
 	/**
 	 * Combobox
 	 */
-	.field u-combobox {
+	.field u-combobox:not([hidden]) {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;

@@ -11,13 +11,15 @@
 		box-shadow: inset 0 0 0 var(--mtdsc-togglegroup-border-width)
 			var(--mtdsc-togglegroup-border-color);
 		box-sizing: border-box;
-		display: flex;
 		flex-wrap: wrap;
 		gap: var(--mtdsc-togglegroup-spacing);
 		margin: 0;
 		min-width: 0;
 		padding: var(--mtdsc-togglegroup-spacing);
 		width: fit-content;
+	}
+	.togglegroup:not([hidden]) {
+		display: flex;
 	}
 	.togglegroup input {
 		position: absolute;
@@ -27,7 +29,6 @@
 		box-sizing: border-box;
 		border-radius: var(--ds-border-radius-sm);
 		cursor: pointer;
-		display: flex;
 		flex-shrink: 0;
 		font-weight: var(--ds-font-weight-medium);
 		gap: var(--ds-size-2);
@@ -36,6 +37,9 @@
 		place-items: center;
 		transition-duration: 0.2s;
 		transition-property: background, border, color, scale;
+	}
+	.togglegroup label:not([hidden]) {
+		display: flex;
 	}
 	.togglegroup label:has(input:focus-visible) {
 		box-shadow: var(--dsc-focus-boxShadow);
