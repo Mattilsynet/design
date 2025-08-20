@@ -12,12 +12,12 @@
 	}
 	.app {
 		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--spacing: var(--ds-size-4);
-		--negative: calc(var(--spacing) * -1);
+		--_mtdsc-app-spacing: var(--ds-size-4);
+		--_mtdsc-app-negative: calc(var(--_mtdsc-app-spacing) * -1);
 
 		box-sizing: border-box;
 		min-height: 100vh;
-		padding: var(--spacing);
+		padding: var(--_mtdsc-app-spacing);
 		grid-template:
 			"header header" auto
 			"sidebar main" 1fr
@@ -53,7 +53,7 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, top);
 
-		bottom: var(--spacing);
+		bottom: var(--_mtdsc-app-spacing);
 		box-shadow:
 			0 3px 5px rgba(0, 0, 0, 0.1),
 			0 0 2px rgba(0, 0, 0, 0.2);
@@ -91,8 +91,8 @@
 		box-sizing: border-box;
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
 		grid-area: header;
-		margin: var(--negative) var(--negative) 0;
-		padding: var(--spacing);
+		margin: var(--_mtdsc-app-negative) var(--_mtdsc-app-negative) 0;
+		padding: var(--_mtdsc-app-spacing);
 		align-items: center;
 
 		&:not([hidden]) {
@@ -115,15 +115,15 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);
 		grid-area: sidebar;
-		margin-left: var(--negative);
-		padding: var(--ds-size-5) calc(var(--spacing) * 2);
+		margin-left: var(--_mtdsc-app-negative);
+		padding: var(--ds-size-5) calc(var(--_mtdsc-app-spacing) * 2);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
 		view-transition-name: mtds-app--sidebar;
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, right);
 
 		& menu > li {
-			margin-inline: var(--negative); /* Minus margin on li instead of menu to allow menu to be .sticky */
+			margin-inline: var(--_mtdsc-app-negative); /* Minus margin on li instead of menu to allow menu to be .sticky */
 		}
 		& menu [data-tooltip]::after {
 			content: var(--mtds-app-expanded--true, attr(data-tooltip));
@@ -132,7 +132,7 @@
 			display: var(--mtds-app-expanded--true, contents); /* Allow right aligned badge when maximized */
 		}
 		& menu [data-badge]::before {
-			--small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
+			--_mtdsc-badge-small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
 			margin-left: auto;
 			order: 1;
 		}
@@ -140,8 +140,8 @@
 
 	/* Sticky position */
 	.sticky {
-		margin-block: var(--negative);
-		padding-block: var(--spacing) var(--mtds-18); /* Make space for <button> */
+		margin-block: var(--_mtdsc-app-negative);
+		padding-block: var(--_mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
 		position: var(--pos);
 		top: var(--top);
 	}
@@ -164,8 +164,9 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-subtle);
 		grid-area: footer;
-		margin: var(--spacing) var(--negative) var(--negative);
-		padding: var(--spacing);
+		margin: var(--_mtdsc-app-spacing) var(--_mtdsc-app-negative)
+			var(--_mtdsc-app-negative);
+		padding: var(--_mtdsc-app-spacing);
 
 		/* Force info if not set */
 		&:not([data-color]) {
@@ -239,14 +240,15 @@
 			--mtds-app-expanded--false: initial; /* Minimize button */
 
 			box-shadow: none;
-			inset: var(--spacing) calc(var(--spacing) * 0.5) auto auto;
+			inset: var(--_mtdsc-app-spacing) calc(var(--_mtdsc-app-spacing) * 0.5)
+				auto auto;
 			position: absolute;
 		}
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);
 		}
 		.app main {
-			margin-inline: calc(var(--spacing) * -0.5);
+			margin-inline: calc(var(--_mtdsc-app-spacing) * -0.5);
 			view-transition-name: none; /* No need to animate on mobile */
 		}
 

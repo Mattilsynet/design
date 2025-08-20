@@ -160,7 +160,7 @@
 		opacity: 0.2;
 	}
 	.field u-datalist {
-		--from: -2px;
+		--_mtdsc-field-from: -2px;
 		animation: _datalist 0.2s forwards;
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
@@ -177,11 +177,11 @@
 		top: 0;
 	}
 	.field u-datalist[data-position="top"] {
-		--from: 2px;
+		--_mtdsc-field-from: 2px;
 	}
 	@keyframes _datalist {
 		from {
-			translate: 0 var(--from);
+			translate: 0 var(--_mtdsc-field-from);
 			opacity: 0;
 		}
 	}

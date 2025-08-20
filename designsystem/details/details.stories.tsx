@@ -62,7 +62,7 @@ export const DefaultOpen: Story = {
 	),
 };
 
-export const WithVariantCard: Story = {
+export const VariantCard: Story = {
 	render: () => (
 		<div className={styles.grid}>
 			<u-details class={styles.details} data-variant="card">
