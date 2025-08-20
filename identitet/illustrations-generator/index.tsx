@@ -6,7 +6,7 @@ import {
 	LegoSmileyIcon,
 	TShirtIcon,
 } from "@phosphor-icons/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { Button, Card, Flex, Popover } from "../../designsystem/react";
 import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
@@ -19,14 +19,14 @@ type Option = {
 	x: number;
 	y: number;
 };
-const DOTS = {
-	head: [0, -50],
-	overdel: [0, 150],
-	"hand-venstre": [-150, 150],
-	"hand-hoyre": [150, 150],
-	venstre: [-500, 600],
-	hoyre: [500, 600],
-};
+// const DOTS = {
+// 	head: [0, -50],
+// 	overdel: [0, 150],
+// 	"hand-venstre": [-150, 150],
+// 	"hand-hoyre": [150, 150],
+// 	venstre: [-500, 600],
+// 	hoyre: [500, 600],
+// };
 
 const ICONS = {
 	head: <LegoSmileyIcon />,
@@ -70,6 +70,7 @@ export function IllustrationsGenerator() {
 	const [skin] = useState(Skins[2]);
 	const [over] = useState(Over[0]);
 	const [under] = useState(Under[0]);
+	const dragging = useSvgDraggable();
 
 	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
 
@@ -130,7 +131,6 @@ export function IllustrationsGenerator() {
 			</Flex>
 			<svg
 				width="100%"
-				height="auto"
 				viewBox="-1700 -200 3400 1200"
 				onKeyDown={() => {}}
 				onClick={handleCopySvg}
@@ -149,9 +149,12 @@ export function IllustrationsGenerator() {
 					<use
 						key={key}
 						href={`#${hovers.key === key ? hovers.value : value}`}
+						style={{ userSelect: "none" }}
+						role="button"
+						{...(key === "hoyre" ? dragging : null)}
 					/>
 				))}
-				{Array.from(selects)
+				{/* {Array.from(selects)
 					.filter(([, { options }]) => options.length)
 					.map(([key, select]) => (
 						<circle
@@ -166,10 +169,45 @@ export function IllustrationsGenerator() {
 							strokeOpacity={1}
 							strokeWidth={10}
 						/>
-					))}
+					))} */}
 			</svg>
 		</Card>
 	);
+}
+
+const svgX = (x: number, matrix: DOMMatrix) =>
+	new DOMPoint(x, 0).matrixTransform(matrix).x;
+
+function useSvgDraggable() {
+	const dragging = useRef({ x: 0, max: 0, min: 0, matrix: new DOMMatrix() });
+	const [x, setX] = useState(0);
+
+	const onDrag = useCallback(({ clientX }: MouseEvent) => {
+		const { min, max, x, matrix } = dragging.current;
+		setX(Math.max(min, Math.min(max, svgX(clientX, matrix) - x)));
+	}, []);
+
+	const onDrop = useCallback(() => {
+		document.removeEventListener("pointermove", onDrag);
+	}, [onDrag]);
+
+	const onPointerDown = useCallback(
+		({ currentTarget: el, clientX }: React.MouseEvent<SVGUseElement>) => {
+			const drag = dragging.current;
+			const view = el.ownerSVGElement?.viewBox.baseVal as DOMRect;
+			const rect = el.getBBox();
+			const x = el.x.baseVal.value;
+			drag.matrix = el.closest("svg")?.getScreenCTM()?.inverse() as DOMMatrix; // Convert to SVG coordinates
+			drag.min = view.x - rect.x + x;
+			drag.max = view.x + view.width - rect.width - rect.x + x;
+			drag.x = svgX(clientX, drag.matrix) - x;
+			document.addEventListener("pointermove", onDrag);
+			document.addEventListener("pointerup", onDrop, { once: true });
+		},
+		[onDrag, onDrop],
+	);
+
+	return { x, onPointerDown };
 }
 
 function svgToSelects(innerHTML: string) {

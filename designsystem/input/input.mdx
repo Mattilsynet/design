@@ -13,10 +13,10 @@ import * as stories from './input.stories';
 - Bruk [field](?path=/docs/designsystem-field--docs) for automatisk kobling mot `<label>` eller `aria-label` på `input` for skjult label
 <Canvas of={stories.Default} />
 
-## Varianter
+## Typer
 - Bruk `<select>`, `<textarea>` eller `<input type="text | checkbox | radio | email | number | password | radio | search | tel | url">`
 - Kombiner `type="checkbox" role="switch"` for å få bryter-design
-<Canvas of={stories.Variants} />
+<Canvas of={stories.Types} />
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
@@ -49,5 +49,9 @@ import * as stories from './input.stories';
 - Skal tallet ikke øke (f.eks. referansenummer, fødselsnummer, etc.)? Bruk `type="text" inputmode="numeric"`
 - Nysgjerrig? [Les mer om input og tall på GOV.uk](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)
 <Canvas of={stories.TypeNumber} />
+
+## Variant Inline (Eksperimentell)
+- Bruk `data-variant="inline"` på `input`, `select` eller `textarea` for subtil fremtoning
+<Canvas of={stories.VariantInline} />
 
 <CssVariables component="input" />

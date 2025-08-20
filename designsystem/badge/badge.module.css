@@ -3,7 +3,7 @@
 		--dsc-badge-background: var(--ds-color-base-default);
 		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-size: var(--ds-size-3);
-		--small: ;
+		--_mtdsc-badge-small: ;
 
 		flex-shrink: 0; /* If placed in flex */
 		position: relative;
@@ -31,9 +31,9 @@
 		min-width: var(--dsc-badge-size);
 		padding: var(--ds-size-2);
 		place-items: center;
-		position: var(--small, absolute);
-		scale: var(--small, 0.85);
-		translate: var(--small, 50% -50%);
+		position: var(--_mtdsc-badge-small, absolute);
+		scale: var(--_mtdsc-badge-small, 0.85);
+		translate: var(--_mtdsc-badge-small, 50% -50%);
 		white-space: nowrap;
 	}
 
@@ -42,7 +42,7 @@
 		content: "" !important; /* Ensure "true" is not rendered, even in AppLayout */
 	}
 	.badge:not(:empty) {
-		--small: initial;
+		--_mtdsc-badge-small: initial;
 	}
 	.badge:has([class*="avatar"]) {
 		--mtdsc-badge-offset: var(--ds-size-2);

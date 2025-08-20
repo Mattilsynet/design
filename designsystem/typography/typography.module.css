@@ -26,8 +26,8 @@
 	.info {
 		--mtdsc-info-gap: var(--ds-size-2);
 		--mtdsc-info-icon-size: 1em;
-		--lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
-		--x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
+		--_mtdsc-info-lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
+		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 	}
 	.info > span[data-nowrap] {
 		overflow: clip;
@@ -36,18 +36,18 @@
 	}
 	@supports (height: 1lh) {
 		.info {
-			--lh: 1lh;
+			--_mtdsc-info-lh: 1lh;
 		}
 	}
 	.info strong:not([hidden]) {
 		display: block;
 	}
 	.info:has(> :is(svg, i)) {
-		padding-left: var(--x);
+		padding-left: var(--_mtdsc-info-x);
 	}
 	.info > :is(svg, i) {
-		height: var(--lh);
-		margin-left: calc(var(--x) * -1);
+		height: var(--_mtdsc-info-lh);
+		margin-left: calc(var(--_mtdsc-info-x) * -1);
 		position: absolute;
 		text-align: center;
 		width: var(--mtdsc-info-icon-size);

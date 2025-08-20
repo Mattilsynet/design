@@ -57,6 +57,10 @@
 		padding-right: 2.4em;
 	}
 
+	.input:is(textarea) {
+		resize: none; /* Hide resize handle since we auto resize with JS */
+	}
+
 	/* Adjust background-size for input switch */
 	.input[type="checkbox"][role="switch"] {
 		background-size: calc(var(--dsc-input-size--toggle) - var(--ds-size-1) / 2)
@@ -113,6 +117,24 @@
 	@supports (-webkit-hyphens: none) {
 		.input[type="date"] {
 			color: initial;
+		}
+	}
+
+	.input[data-variant="inline"]:not([type="radio"], [type="checkbox"]) {
+		--mtdsc-input-background: transparent;
+		--mtdsc-input-border-width: 0px;
+		--mtdsc-input-padding: 0 var(--mtds-1);
+		--mtdsc-input-size: auto;
+		margin: 0 calc(var(--mtds-1) * -1);
+		border-radius: var(--ds-border-radius-sm);
+		transition-duration: 0.2s;
+		transition-property: background-color, outline;
+
+		&:hover {
+			--mtdsc-input-background: var(--mtds-color-background-tinted);
+		}
+		&:focus-visible {
+			--mtdsc-input-background: var(--mtds-color-surface-default);
 		}
 	}
 }

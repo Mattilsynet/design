@@ -34,7 +34,7 @@ export const React: Story = {
 	),
 };
 
-export const Variants: Story = {
+export const Types: Story = {
 	render: () => (
 		<>
 			<div className={styles.field}>
@@ -276,5 +276,46 @@ export const TypeNumber: Story = {
 				<input className={styles.input} type="text" inputMode="numeric" />
 			</div>
 		</div>
+	),
+};
+
+export const VariantInline: Story = {
+	name: "Variant Inline (Eksperimentell)",
+	render: () => (
+		<>
+			<div className={styles.field}>
+				<label>Text</label>
+				<input
+					type="text"
+					defaultValue="Content"
+					className={styles.input}
+					data-variant="inline"
+				/>
+			</div>
+
+			<div className={styles.field}>
+				<label>Select</label>
+				<select
+					className={styles.input}
+					data-variant="inline"
+					defaultValue="Option 1"
+				>
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+					<option>Option 4</option>
+					<option>Option 5</option>
+				</select>
+			</div>
+
+			<div className={styles.field}>
+				<label>Textarea</label>
+				<textarea
+					className={styles.input}
+					data-variant="inline"
+					defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod dui lacus, eget lacinia metus ullamcorper a. Nam id erat eu odio dignissim ornare ac eu erat. Maecenas bibendum cursus risus, sed tincidunt ipsum auctor id. Aliquam erat volutpat. Pellentesque mi sapien, ornare a iaculis ac, blandit in lectus. "
+				/>
+			</div>
+		</>
 	),
 };
