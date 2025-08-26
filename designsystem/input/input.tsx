@@ -3,7 +3,6 @@ import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
 export type InputProps = React.ComponentPropsWithoutRef<"input">;
-
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 	{ className, type = "text", ...rest },
 	ref,
@@ -20,11 +19,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 });
 
 export type SelectProps = React.ComponentPropsWithoutRef<"select">;
-
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 	function Select({ className, ...rest }, ref) {
 		return (
 			<select className={clsx(styles.input, className)} ref={ref} {...rest} />
+		);
+	},
+);
+
+export type TextareaProps = React.ComponentPropsWithoutRef<"textarea">;
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+	function Textarea({ className, ...rest }, ref) {
+		return (
+			<textarea className={clsx(styles.input, className)} ref={ref} {...rest} />
 		);
 	},
 );
