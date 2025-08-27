@@ -125,6 +125,11 @@
 		&[data-justify="space-around"] { justify-content: space-around }
 		&[data-justify="space-between"] { justify-content: space-between }
 		&[data-justify="space-evenly"] { justify-content: space-evenly }
+
+		&[data-justify-items="center"] { justify-items: center }
+		&[data-justify-items="end"] { justify-items: end}
+		&[data-justify-items="start"] { justify-items: start }
+		&[data-justify-items="stretch"] { justify-items: stretch }
 	}
 
 	/**
