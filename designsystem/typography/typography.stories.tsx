@@ -724,6 +724,7 @@ export const InfoStory: Story = {
 				<HeartIcon /> <strong>Sirkel og fet ledetekst</strong>
 				Og informasjon
 			</span>
+			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info} data-variant="circle">
 				<HeartIcon /> Sirkel og ledetekst
 				<strong>Og fet informasjon</strong>
