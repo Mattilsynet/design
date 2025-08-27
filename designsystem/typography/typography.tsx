@@ -61,7 +61,10 @@ export const Ingress: IngressComponent = forwardRef<null>(function Ingress<
 }) as IngressComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
 export type InfoProps<As extends React.ElementType = "span"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{ "data-variant"?: "regular" | "circle" }
+	>;
 
 type InfoComponent = <As extends React.ElementType = "span">(
 	props: MutedProps<As>,

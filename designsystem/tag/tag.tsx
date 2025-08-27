@@ -9,7 +9,7 @@ import styles from "../styles.module.css";
 export type TagProps<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
-> = PolymorphicComponentPropWithRef<As>;
+> = PolymorphicComponentPropWithRef<As, { 'data-icon'?: 'none' }>;
 
 type TagComponent = <
 	Href,

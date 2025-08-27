@@ -703,11 +703,11 @@ export const InfoStory: Story = {
 			<span className={styles.info}>Informasjon</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				<strong>Ledetekst</strong>Og informasjon
+				<strong>Fet ledetekst</strong>Og informasjon
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
-				Regular ledetekst<strong>Og bold informasjon</strong>
+				Ledetekst<strong>Og fet informasjon</strong>
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
@@ -718,6 +718,16 @@ export const InfoStory: Story = {
 			<span className={styles.info}>
 				<HeartIcon /> <strong>Ikon og ledetekst</strong>
 				Og informasjon
+			</span>
+			<hr className={styles.divider} data-gap="5" />
+			<span className={styles.info} data-variant="circle">
+				<HeartIcon /> <strong>Sirkel og fet ledetekst</strong>
+				Og informasjon
+			</span>
+			<hr className={styles.divider} data-gap="5" />
+			<span className={styles.info} data-variant="circle">
+				<HeartIcon /> Sirkel og ledetekst
+				<strong>Og fet informasjon</strong>
 			</span>
 			<hr className={styles.divider} data-gap="5" />
 			<span className={styles.info}>
@@ -747,7 +757,7 @@ export const InfoStory: Story = {
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>
-						<Tag data-fixed data-color="info" data-icon="false">
+						<Tag data-fixed data-color="info" data-icon="none">
 							Skal på tilsyn
 						</Tag>
 					</Flex>

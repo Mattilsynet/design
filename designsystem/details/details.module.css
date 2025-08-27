@@ -63,7 +63,7 @@
 		border-radius: var(--mtdsc-details-card-radius);
 	}
 	.details[data-variant="card"][data-color]:not([data-color="main"]) {
-		--dsc-details-background: var(--ds-color-surface-tinted);
+		--dsc-details-background: var(--ds-color-background-tinted);
 	}
 	.details[data-variant="card"] > :is(summary, u-summary) {
 		border-radius: var(--mtdsc-details-card-radius);

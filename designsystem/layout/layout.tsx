@@ -30,6 +30,7 @@ type SharedProps = {
 		| "space-between"
 		| "space-around"
 		| "space-evenly";
+	"data-justify-items"?: "normal" | "stretch" | "start" | "center" | "end";
 	"data-fixed"?: boolean;
 	"data-items"?:
 		| "auto"

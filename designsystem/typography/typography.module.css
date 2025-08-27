@@ -26,8 +26,11 @@
 	.info {
 		--mtdsc-info-gap: var(--ds-size-2);
 		--mtdsc-info-icon-size: 1em;
+		--mtdsc-info-circle-gap: var(--ds-size-3);
+		--mtdsc-info-circle-size: var(--ds-size-10);
 		--_mtdsc-info-lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
+		line-height: var(--ds-heading-md-line-height);
 	}
 	.info > span[data-nowrap] {
 		overflow: clip;
@@ -46,11 +49,32 @@
 		padding-left: var(--_mtdsc-info-x);
 	}
 	.info > :is(svg, i) {
+		box-sizing: border-box;
 		height: var(--_mtdsc-info-lh);
 		margin-left: calc(var(--_mtdsc-info-x) * -1);
 		position: absolute;
 		text-align: center;
 		width: var(--mtdsc-info-icon-size);
+	}
+	.info[data-variant="circle"] {
+		--_mtdsc-info-y: var(--ds-size-1); /* center-align to two lines, but not more */
+		--_mtdsc-info-x: calc(
+			var(--mtdsc-info-circle-size) +
+			var(--mtdsc-info-circle-gap)
+		);
+		min-height: calc(var(--mtdsc-info-circle-size) + var(--_mtdsc-info-y));
+	}
+	.info[data-variant="circle"] > :is(svg, i) {
+		background: var(--ds-color-background-tinted);
+		border-radius: var(--ds-border-radius-full);
+		color: var(--ds-color-text-default);
+		height: var(--mtdsc-info-circle-size);
+		margin-top: var(--_mtdsc-info-y);
+		width: var(--mtdsc-info-circle-size);
+		padding: calc(
+			(var(--mtdsc-info-circle-size) - var(--mtdsc-info-icon-size)) /
+			2
+		);
 	}
 
 	/**
