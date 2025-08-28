@@ -20,7 +20,7 @@ import * as stories from './typography.stories';
 ## Heading
 - Bruk klassen `styles.heading` på `<h[1-6]>` eller `<Heading as="h[1-6]">` komponenten
 - Bruk `data-size="2xs | xs | sm | md | lg | xl | 2xl"`
-- Bruk `data-justify="center"` for å midtstille tekst
+- Bruk `data-justify="start | center | end"` for å endre tekstjustering
 - I React kan du bruke `as="h1 | h2 | h3 | h4 | h5 | h6"` for å endre semantisk overskriftsnivå, hvor `h2` er default. 
 
 > **Merk:** `data-size` endrer kun størrelse - ikke semantisk overskriftsnivå. Benytt alltid korrekt HTML `<h[1-6]>` eller `as="h[1-6]"` for [god universell utforming &rarr;](https://www.uutilsynet.no/veiledning/246-overskrifter-og-ledetekster/1253)
@@ -29,6 +29,7 @@ import * as stories from './typography.stories';
 
 ## Prose
 - Bruk klassen `prose` på typisk `div` eller annen container som har prosa/skjema/typografisk innhold
+- Bruk `data-justify="start | center | end"` for å endre tekstjustering
 <div className="sbdocs-canvas-thumbnail">
   <Button data-arrow data-variant="primary" href="?path=/story/designsystem-typography--prose">Se prose-layout i egen visning</Button>
   <Canvas className="sbdocs-canvas--max-height" of={stories.Prose} />
