@@ -118,23 +118,17 @@
 		&[data-align-content="space-around"] { align-content: space-around }
 		&[data-align-content="space-between"] { align-content: space-between }
 		&[data-align-content="space-evenly"] { align-content: space-evenly}
-
-		&[data-justify="start"] { justify-content: start }
-		&[data-justify="center"] { justify-content: center }
-		&[data-justify="end"] { justify-content: end }
-		&[data-justify="space-around"] { justify-content: space-around }
-		&[data-justify="space-between"] { justify-content: space-between }
-		&[data-justify="space-evenly"] { justify-content: space-evenly }
-
-		&[data-justify-items="center"] { justify-items: center }
-		&[data-justify-items="end"] { justify-items: end}
-		&[data-justify-items="start"] { justify-items: start }
-		&[data-justify-items="stretch"] { justify-items: stretch }
 	}
 
 	/**
 	 * Flex
 	 */
+	.flex[data-justify="start"] { justify-content: start }
+	.flex[data-justify="center"] { justify-content: center }
+	.flex[data-justify="end"] { justify-content: end }
+	.flex[data-justify="space-around"] { justify-content: space-around }
+	.flex[data-justify="space-between"] { justify-content: space-between }
+	.flex[data-justify="space-evenly"] { justify-content: space-evenly }
 	.flex:where([data-items], :has(> [data-self])) > * { flex: 1 1 auto }
 	.flex[data-fixed] > *, .flex > [data-fixed] { flex-grow: 0 }
 	.flex[data-nowrap] { flex-wrap: nowrap }
@@ -157,6 +151,10 @@
 	/**
 	 * Grid
 	 */
+	.grid[data-justify="center"] { justify-items: center }
+	.grid[data-justify="end"] { justify-items: end}
+	.grid[data-justify="start"] { justify-items: start }
+	.grid[data-justify="stretch"] { justify-items: stretch }
 	.grid[data-items] {
 		--mtds-grid-size: 0px; /* Set default layout width */
 		--mtds-grid-grow: auto-fit; /* Allows columns to grow to fit container */

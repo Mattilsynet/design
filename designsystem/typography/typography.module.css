@@ -32,6 +32,10 @@
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 		line-height: var(--ds-heading-md-line-height);
 	}
+	.info:not([hidden]),
+	.info strong:not([hidden]) {
+		display: block;
+	}
 	.info > span[data-nowrap] {
 		overflow: clip;
 		text-overflow: ellipsis;
@@ -41,9 +45,6 @@
 		.info {
 			--_mtdsc-info-lh: 1lh;
 		}
-	}
-	.info strong:not([hidden]) {
-		display: block;
 	}
 	.info:has(> :is(svg, i)) {
 		padding-left: var(--_mtdsc-info-x);
@@ -94,6 +95,12 @@
 	.prose {
 		--mtdsc-prose-spacing: 1em;
 		--mtdsc-prose-max-width: calc(var(--mtdsc-prose-size) * 40);
+	}
+	.prose[data-justify="center"] {
+		text-align: center;
+	}
+	.prose[data-justify="end"] {
+		text-align: end;
 	}
 	.prose > * {
 		margin-block: 1em;
