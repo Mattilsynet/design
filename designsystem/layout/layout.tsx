@@ -30,7 +30,6 @@ type SharedProps = {
 		| "space-between"
 		| "space-around"
 		| "space-evenly";
-	"data-justify-items"?: "normal" | "stretch" | "start" | "center" | "end";
 	"data-fixed"?: boolean;
 	"data-items"?:
 		| "auto"
@@ -92,21 +91,3 @@ export const Grid: GridComponent = forwardRef<null>(function Grid<
 
 	return <Tag className={clsx(styles.grid, className)} ref={ref} {...rest} />;
 }) as GridComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
-
-/**
- * Prose
- */
-export type ProseProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
-
-type ProseComponent = <As extends React.ElementType = "div">(
-	props: ProseProps<As>,
-) => JSX.Element;
-
-export const Prose: ProseComponent = forwardRef<null>(function Prose<
-	As extends React.ElementType = "div",
->({ as, className, ...rest }: ProseProps<As>, ref?: PolymorphicRef<As>) {
-	const Tag = as || "div";
-
-	return <Tag className={clsx(styles.prose, className)} ref={ref} {...rest} />;
-}) as ProseComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

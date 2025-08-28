@@ -60,19 +60,40 @@ export const Ingress: IngressComponent = forwardRef<null>(function Ingress<
 	);
 }) as IngressComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
-export type InfoProps<As extends React.ElementType = "span"> =
+export type InfoProps<As extends React.ElementType = "div"> =
 	PolymorphicComponentPropWithRef<
 		As,
 		{ "data-variant"?: "regular" | "circle" }
 	>;
 
-type InfoComponent = <As extends React.ElementType = "span">(
+type InfoComponent = <As extends React.ElementType = "div">(
 	props: MutedProps<As>,
 ) => JSX.Element;
 
 export const Info: InfoComponent = forwardRef<null>(function Info<
-	As extends React.ElementType = "span",
+	As extends React.ElementType = "div",
 >({ as, className, ...rest }: InfoProps<As>, ref?: PolymorphicRef<As>) {
-	const Tag = as || "span";
+	const Tag = as || "div";
 	return <Tag className={clsx(styles.info, className)} ref={ref} {...rest} />;
 }) as InfoComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
+
+/**
+ * Prose
+ */
+export type ProseProps<As extends React.ElementType = "div"> =
+	PolymorphicComponentPropWithRef<
+		As,
+		{ "data-justify"?: "start" | "center" | "end" }
+	>;
+
+type ProseComponent = <As extends React.ElementType = "div">(
+	props: ProseProps<As>,
+) => JSX.Element;
+
+export const Prose: ProseComponent = forwardRef<null>(function Prose<
+	As extends React.ElementType = "div",
+>({ as, className, ...rest }: ProseProps<As>, ref?: PolymorphicRef<As>) {
+	const Tag = as || "div";
+
+	return <Tag className={clsx(styles.prose, className)} ref={ref} {...rest} />;
+}) as ProseComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
