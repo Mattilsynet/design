@@ -156,7 +156,7 @@ export const Responsive: Story = {
 								Bomsterlandet importerer bomster AS, Rogaland
 							</Info>
 						</Flex>
-						<Tag data-fixed data-color="info" data-icon="false">
+						<Tag data-fixed data-color="info" data-icon="none">
 							Skal på tilsyn
 						</Tag>
 					</Flex>
@@ -229,7 +229,7 @@ export const Responsive: Story = {
 									className={styles.tag}
 									data-size="sm"
 									data-color="info"
-									data-icon="false"
+									data-icon="none"
 								>
 									Kveld
 								</span>

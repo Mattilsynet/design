@@ -81,7 +81,7 @@ function handleTooltipMoveThrottled(target: Element | null) {
 
 	ANCHOR = anchor; // Store new anchor - might be null if no new anchor
 	if (ANCHOR) attr(ANCHOR, hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP?.id); // Use tooltip as description if allready has label
-	if (ANCHOR) TOOLTIP.hidePopover(); // Hide tooltip so it can be placed on top-layer on next show
+	if (ANCHOR?.isConnected) TOOLTIP.hidePopover(); // Hide tooltip so it can be placed on top-layer on next show
 	TOOLTIP.togglePopover(!!anchor);
 	anchorPosition(TOOLTIP, anchor || false, {
 		placement: position as Placement,
