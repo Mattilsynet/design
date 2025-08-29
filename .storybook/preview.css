@@ -159,6 +159,7 @@ u-tabpanel > pre > .docblock-source {
 	place-items: center;
 	place-self: center;
 }
+.sbdocs-example > div:first-child > * {max-width: 100%;min-width: 0;}
 .sbdocs-example > p > svg {
 	position: absolute;
 	margin: var(--mtds-4);

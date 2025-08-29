@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './tag.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -10,6 +12,20 @@ import * as stories from './tag.stories';
 ## Kode
 - Bruk klassen `tag` på typisk `<span>`
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+  {/* Tekstmengde i tag: */}
+  <Example data-color="success" text="Bruk korte konsiste ord i tags" zoom="100%">
+    <span className={styles.tag} data-color="success">Hest</span>
+  </Example>
+
+  <Example data-color="danger" text="Unngå lange tekster i tags. Prøv å begrense til maks et par ord" zoom="100%">
+    <span className={styles.tag} data-color="danger">Araberhest - Equus caballus arabicus</span>
+  </Example>
+
+
+</Flex>
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`

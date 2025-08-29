@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './tooltip.stories';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -16,3 +18,15 @@ import * as stories from './tooltip.stories';
 <Canvas of={stories.Default} />
 
 <CssVariables component="tooltip" />
+
+## Skikk og bruk
+<Flex data-items="350">
+  {/* Tooltip med lang tekst */}
+  <Example data-color="success" text="Bruk korte konsise forklaringer i Tooltip." zoom="100%">
+      <button type="button" className={styles.button} data-tooltip="Tooltip eksempel">Hover meg</button>
+  </Example>
+
+  <Example data-color="danger" text="Unngå lange tekster i tooltip. Bruk maks fire ord. Bruk heller popover hvis du trenger lengre forklaringer." zoom="100%">
+      <button type="button" className={styles.button} data-tooltip="Når du trykker på denne knappen vil det ikke skje noen ting. Dette er bare et eksempel på hvordan en tooltip ikke skal være.">Hover meg</button>
+  </Example>
+</Flex>

@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './input.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -23,7 +25,6 @@ import * as stories from './input.stories';
 - Bruk `size="number"` for å sette en bredde som indikere antall tegn
 <Canvas of={stories.Sizes} />
 
-
 ## Read only
 - Legg på attributt `readonly`
 - Husk også `disabled` dersom du legger `readonly` på `type="checkbox"` eller `type="radio"`, siden disse ikke stoppes automatisk av nettleseren
@@ -33,7 +34,6 @@ import * as stories from './input.stories';
 ## Disabled
 - Legg på attributt `disabled`
 <Canvas of={stories.Disabled} />
-
 
 ## Søk
 - Bruk `type="search"`

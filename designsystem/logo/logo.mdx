@@ -1,7 +1,10 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { Details } from '../react';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import { Flex } from '../react';
 import * as stories from './logo.stories';
+import styles from '../styles.module.css';
+
 
 <Meta of={stories} />
 
@@ -23,6 +26,25 @@ Det er dessverre lite å gjøre med i `@mattilsynet/design`, men du kan sette `"
 </Details>
 
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+
+   {/* Logofarger */}
+  <Example data-color="success" text="Logo skal kun brukes i fargene som er definert i designsystemet." zoom="100%">
+    
+    <a className={styles.logo} href="https://mattilsynet.no"></a>
+  
+  
+  </Example>
+
+  <Example data-color="danger" text="Ikke bruk Mattilsynets logo med andre farger enn definert i designsystemet." zoom="100%">
+      
+    <a style={{ color: 'purple' }} className={styles.logo} href="https://mattilsynet.no"></a>
+
+  </Example>
+
+</Flex>
 
 ## App logo
 - Applikasjonsnavn i Mattilsynet følger [språkrådets retningslinjer for statlige navn](https://sprakradet.no/stedsnavn-og-navn-pa-statsorgan/veiledning-om-valg-av-navn-i-staten/krav-til-og-rad-om-selve-navnet/)
