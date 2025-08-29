@@ -700,40 +700,40 @@ export const InfoStory: Story = {
 	parameters: { showInOverview: true },
 	render: () => (
 		<>
-			<span className={styles.info}>Informasjon</span>
+			<div className={styles.info}>Informasjon</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info}>
+			<div className={styles.info}>
 				<strong>Fet ledetekst</strong>Og informasjon
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info}>
+			<div className={styles.info}>
 				Ledetekst<strong>Og fet informasjon</strong>
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info}>
+			<div className={styles.info}>
 				<HeartIcon />
 				Ikon og informasjon
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info}>
+			<div className={styles.info}>
 				<HeartIcon /> <strong>Ikon og ledetekst</strong>
 				Og informasjon
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info} data-variant="circle">
+			<div className={styles.info} data-variant="circle">
 				<HeartIcon /> <strong>Sirkel og fet ledetekst</strong>
 				Og informasjon
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info} data-variant="circle">
+			<div className={styles.info} data-variant="circle">
 				<HeartIcon /> Sirkel og ledetekst
 				<strong>Og fet informasjon</strong>
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
-			<span className={styles.info}>
+			<div className={styles.info}>
 				<i>🇳🇴</i>
 				Norge
-			</span>
+			</div>
 			<hr className={styles.divider} data-gap="5" />
 			Info i card:
 			<Card>

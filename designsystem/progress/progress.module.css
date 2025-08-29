@@ -5,6 +5,7 @@
 		background: var(--ds-color-surface-tinted);
 		color: var(--ds-color-text-subtle);
 		height: var(--ds-size-3);
+		width: 100%;
 	}
 	.progress:not([hidden]) {
 		display: block;
