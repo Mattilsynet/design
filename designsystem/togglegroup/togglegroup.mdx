@@ -1,7 +1,10 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './togglegroup.stories';
 import { Grid } from '../react';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
+import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@phosphor-icons/react';
 
 <Meta of={stories} />
 
@@ -18,5 +21,49 @@ import { Grid } from '../react';
 
   > ❌ **Uegnet til:**<br />Navigasjon eller erstatning for radio/checkbox
 </Grid>
+
+## Skikk og bruk
+<Flex data-items="350">
+
+  {/* Togglegroup med ikon */}
+  <Example data-color="success" text="ToggleGroup med bare ikoner bør kun brukes i ekspertløsninger. Bruk tooltip sammen med ikon." zoom="100%">
+  <div className={styles.grid}>
+      <fieldset className={styles.togglegroup} aria-label="Mappe">
+        <label data-tooltip="Venstrejustert">
+          <input type="radio" name="my-icon-toggle" value="left" />
+          <TextAlignLeftIcon />
+        </label>
+        <label data-tooltip="Sentrert">
+          <input type="radio" name="my-icon-toggle" value="center" defaultChecked />
+          <TextAlignCenterIcon />
+        </label>
+        <label data-tooltip="Høyrejustert">
+          <input type="radio" name="my-icon-toggle" value="right" />
+          <TextAlignRightIcon />
+        </label>
+      </fieldset>
+    </div>
+  </Example>
+
+  <Example data-color="danger" text="ToggleGroup med bare ikoner bør ha tooltip." zoom="100%">
+    <div className={styles.grid}>
+      <fieldset className={styles.togglegroup} aria-label="Mappe">
+        <label>
+          <input type="radio" name="my-icon-toggle" value="left" />
+          <TextAlignLeftIcon />
+        </label>
+        <label>
+          <input type="radio" name="my-icon-toggle" value="center" defaultChecked />
+          <TextAlignCenterIcon />
+        </label>
+        <label>
+          <input type="radio" name="my-icon-toggle" value="right" />
+          <TextAlignRightIcon />
+        </label>
+      </fieldset>
+    </div>
+  </Example>
+
+</Flex>
 
 <CssVariables component="togglegroup" />

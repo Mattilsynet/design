@@ -1,7 +1,9 @@
 import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import { Flex } from '../react';
 import * as stories from './pagination.stories';
 import { Details } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -24,6 +26,69 @@ I React kan du velge å bruke `<Pagination>` med props for automatisk oppsett av
 </Details>
 <Canvas of={stories.WithLinks} />
 
+## Skikk og bruk
+<Flex data-items="700">
+
+   {/* Navngivning  */}
+  <Example data-color="success" text="Pagination er som default navngitt med «forrige» og «neste» slik at vi er konsistente." zoom="100%">
+    <nav aria-label="Sidenavigering" className={styles.pagination}>
+        <ul>
+          <li>
+            <a href="?p=1" className={styles.button} aria-disabled="true">Forrige</a>
+          </li>
+          <li>
+            <a href="?p=1" className={styles.button} aria-current="page">1</a>
+          </li>
+          <li>
+            <a href="?p=2" className={styles.button}>2</a>
+          </li>
+          <li>
+            <a href="?p=3" className={styles.button}>3</a>
+          </li>
+          <li>
+            <a href="?p=4" className={styles.button}>4</a>
+          </li>
+          <li></li>
+          <li>
+            <a href="?p=10" className={styles.button}>10</a>
+          </li>
+          <li>
+            <a href="?p=2" className={styles.button}>Neste</a>
+          </li>
+        </ul>
+      </nav>
+  </Example>
+
+  <Example data-color="danger" text="Unngå bruk av «Forrige side», «Neste side», «Gå tilbake», «Gå videre», «Videre» og «Tilbake»." zoom="100%">
+    <nav aria-label="Sidenavigering" className={styles.pagination}>
+      <ul>
+        <li>
+          <a href="?p=1" className={styles.button} aria-disabled="true">Forrige side</a>
+        </li>
+        <li>
+          <a href="?p=1" className={styles.button} aria-current="page">1</a>
+        </li>
+        <li>
+          <a href="?p=2" className={styles.button}>2</a>
+        </li>
+        <li>
+          <a href="?p=3" className={styles.button}>3</a>
+        </li>
+        <li>
+          <a href="?p=4" className={styles.button}>4</a>
+        </li>
+        <li></li>
+        <li>
+          <a href="?p=10" className={styles.button}>10</a>
+        </li>
+        <li>
+          <a href="?p=2" className={styles.button}>Neste side</a>
+        </li>
+      </ul>
+    </nav>
+  </Example>
+
+</Flex>
 
 ## Knapper
 - Bruk `<button type="button">` istedenfor `<a>` dersom du bygger en SPA

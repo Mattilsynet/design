@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './input.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -22,6 +24,105 @@ import * as stories from './input.stories';
 - Bruk `data-size="sm | md | lg"`
 - Bruk `size="number"` for å sette en bredde som indikere antall tegn
 <Canvas of={stories.Sizes} />
+
+## Skikk og bruk
+<Flex data-items="350">
+
+   {/* Vertikal vs horisontal alignment: */}
+  <Example data-color="success" text="Radiobutton- og checkboxgrupper skal i hovedsak stables vertikalt slik at alternativene er lette å lese." zoom="100%">
+    
+    <div className={styles.grid}>
+        <label>Velg dyregruppe</label>
+        <div className={styles.field}>
+             <label>Fisk</label>
+             <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+        </div>
+
+        <div className={styles.field}>
+              <label>Fjørfe</label>
+             <input type="radio" className={styles.input} name="my-radio" />
+         </div>
+
+        <div className={styles.field}>
+           <label>Storfe</label>
+              <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+    </div>
+
+  </Example>
+
+  <Example data-color="danger" text="Radiobutton- og checkboxgrupper bør ikke legges etter hverandre. Da er det vanskeligere skanne innholdet" zoom="100%">
+    <div className={styles.grid}>
+        <label>Velg dyregruppe</label>
+        
+        <Flex data-gap="10">
+        <div className={styles.field}>
+            <label>Fisk</label>
+            <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+        </div>
+
+        <div className={styles.field}>
+            <label>Fjørfe</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+
+        <div className={styles.field}>
+            <label>Storfe</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+        </Flex>
+
+     </div>
+
+  </Example>
+
+  {/* Label + Input: */}
+
+  <Example data-color="success" text="Input, radiobutton- og checkboxgrupper skal alltid ha en tydelig label." zoom="100%">
+
+    <div className={styles.grid}>
+         <label>Velg størrelse</label>
+        <div className={styles.field}>
+            <label>Liten</label>
+            <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+        </div>
+
+        <div className={styles.field}>
+            <label>Medium</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+
+        <div className={styles.field}>
+            <label>Stor</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+    </div>
+
+  </Example>
+
+  <Example data-color="danger" text="Uten en label kan alternativene være vanskelige eller umulige å forstå." zoom="100%">
+
+    <Flex data-gap="10">
+        <div className={styles.field}>
+            <label>Liten</label>
+            <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+        </div>
+
+        <div className={styles.field}>
+            <label>Medium</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+
+        <div className={styles.field}>
+            <label>Stor</label>
+            <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+
+     </Flex>
+
+  </Example>
+
+</Flex>
 
 
 ## Read only

@@ -1,7 +1,10 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './tabs.stories';
 import { Details } from '../react';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
+import { PencilSimpleIcon, ListMagnifyingGlassIcon, AddressBookTabsIcon, SquaresFourIcon } from '@phosphor-icons/react';
 
 <Meta of={stories} />
 
@@ -31,6 +34,65 @@ import {
 
 
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+
+  {/* Tekstmengde i Tabs */}
+  <Example data-color="success" text="Bruk korte beskrivende tekster i Tabs." zoom="80%">
+    <u-tabs class={styles.tabs}>
+      <u-tablist>
+        <u-tab role="tab" aria-selected="true"> Oversikt </u-tab>
+        <u-tab> Detaljer</u-tab>
+        <u-tab> Kontakter </u-tab>
+      </u-tablist>
+      <u-tabpanel> </u-tabpanel>
+      <u-tabpanel> </u-tabpanel>
+      <u-tabpanel> </u-tabpanel>
+    </u-tabs>
+  </Example>
+
+  <Example data-color="danger" text="Unngå lange tekster i Tabs. Tekst over flere linjer er ikke brukervennlig. Husk at Tabs være utfordrende å bruke på mobil" zoom="80%">
+      <u-tabs class={styles.tabs}>
+        <u-tablist>
+          <u-tab role="tab" aria-selected="true"> Oversikt over nylige hendelser </u-tab>
+          <u-tab> Detaljer </u-tab>
+          <u-tab> Kontakter </u-tab>
+        </u-tablist>
+        <u-tabpanel> </u-tabpanel>
+        <u-tabpanel> </u-tabpanel>
+        <u-tabpanel> </u-tabpanel>
+      </u-tabs>
+  </Example>
+
+  {/* Kun ikon i Tabs */}
+  <Example data-color="success" text="Tabs med bare ikoner bør kun brukes i ekspertløsninger. Bruk tooltip sammen med ikon." zoom="80%">
+    <u-tabs class={styles.tabs}>
+      <u-tablist>
+        <u-tab role="tab" aria-selected="true" data-tooltip="Oversikt"><SquaresFourIcon/></u-tab>
+        <u-tab data-tooltip="Detaljer"><ListMagnifyingGlassIcon /></u-tab>
+        <u-tab data-tooltip="Kontakter"><AddressBookTabsIcon /></u-tab>
+      </u-tablist>
+      <u-tabpanel> </u-tabpanel>
+      <u-tabpanel> </u-tabpanel>
+      <u-tabpanel> </u-tabpanel>
+    </u-tabs>
+  </Example>
+
+  <Example data-color="danger" text="Tabs med bare ikoner skal ha tooltip." zoom="80%">
+      <u-tabs class={styles.tabs}>
+        <u-tablist>
+          <u-tab role="tab" aria-selected="true"><SquaresFourIcon /></u-tab>
+          <u-tab><ListMagnifyingGlassIcon /></u-tab>
+          <u-tab><AddressBookTabsIcon /></u-tab>
+        </u-tablist>
+        <u-tabpanel> </u-tabpanel>
+        <u-tabpanel> </u-tabpanel>
+        <u-tabpanel> </u-tabpanel>
+      </u-tabs>
+  </Example>
+
+</Flex>
 
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
