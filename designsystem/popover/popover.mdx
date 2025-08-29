@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables, JumpTo } from '../../.storybook/blocks';
+import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
 import * as stories from './popover.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -36,6 +38,31 @@ import * as stories from './popover.stories';
 ## Tekst inline
 - Bruk `data-popover="inline"` på `<button>` for popover fra brødtekst:
 <Canvas of={stories.WithTextInline} />
+
+<Flex data-items="350">
+
+   {/* Lange tekster */}
+  <Example data-color="success" text="Innhold i popover bør være kort og konsist (trykk for å se)." zoom="100%">
+    
+
+    Vi bruker{" "} <button popoverTarget="pop-inline-1" type="button" data-popover="inline">
+    design tokens </button>{" "} for å sikre at vi har en konsistent design.
+
+    <div popover="auto" id="pop-inline-1" className={styles.popover}> Design tokens er en samling av variabler som definerer designet i et
+    designsystem. </div>
+
+  </Example>
+
+  <Example data-color="danger" text="Unngå lange tekster i popover (trykk for å se)." zoom="100%">
+   
+    Vi bruker{" "} <button popoverTarget="pop-inline-2" type="button" data-popover="inline">
+    design tokens </button>{" "} for å sikre at vi har en konsistent design.
+    
+    <div popover="auto" id="pop-inline-2" className={styles.popover}> Design tokens er navngitte variabler (navn-verdi-par) som representerer grunnleggende designattributter som farger, typografi, mellomrom, skygger og animasjoner. De fungerer som et "enkelt kilde til sannhet" som kan brukes på tvers av ulike plattformer, teknologier og designverktøy for å opprettholde et enhetlig og konsistent utseende i digitale produkter. Ved å erstatte hardkodede verdier med tokens, kan design og kode holdes synkronisert, noe som forenkler vedlikehold og gir skalerbarhet for designsystemer. </div>
+
+  </Example>
+
+</Flex>
 
 ## Pil
 - Bruk `data-arrow` på `<button>` for å få ikon:

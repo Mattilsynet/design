@@ -1,7 +1,10 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables, JumpTo } from '../../.storybook/blocks';
+import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
 import { Button, Popover } from '../react.tsx';
 import * as stories from './typography.stories';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
+import { BuildingOfficeIcon, HeartIcon } from '@phosphor-icons/react';
 
 <Meta of={stories} />
 
@@ -45,4 +48,18 @@ import * as stories from './typography.stories';
 - Kan også brukes rundt andre elementer for å lage informasjonsoppsett
 <Canvas of={stories.InfoStory} />
 
+<Flex data-items="350">
+
+  {/* Info med ikon i sirkel */}
+  <Example data-color="success" text="Med varianten circle skal både ledetekst og informasjon alltid vises." zoom="100%">
+    <div className={styles.info} data-variant="circle"><BuildingOfficeIcon /> <strong>Firma</strong>Fisk & Video AS</div>
+  </Example>
+
+  <Example data-color="danger" text="Unngå bare informasjonstekst eller ledetekst når du bruker circle." zoom="100%">
+    <div className={styles.info} data-variant="circle"><BuildingOfficeIcon /> Fisk & Video AS</div>
+  </Example>
+
+</Flex>
+
 <CssVariables component="prose" />
+

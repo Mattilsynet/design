@@ -1,7 +1,9 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import { Button } from '../react';
 import * as stories from './link.stories';
+import { Flex, Prose } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -15,5 +17,29 @@ import * as stories from './link.stories';
 - **Mønster:** [Se mønster for merking av eksterne lenker](https://www.designsystemet.no/no/patterns/external-links)
 
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+
+   {/* Lenker som CTA: */}
+  <Example data-color="success" text="Lenker brukes til å navigere eller laste ned innhold." zoom="100%">
+    
+    <a href="https://www.mattilsynet.no/">Mattilsynet</a> er et statlig tilsyn
+            og direktorat som har som visjon å trygge framtiden for mennesker, dyr og
+            natur.
+  
+
+  </Example>
+
+  <Example data-color="danger" text="Ikke bruk lenker til å utføre handlinger (call to action). Bruk heller Button-komponenten." zoom="100%">
+   
+        
+    Skjemaet er ferdig utfylt. <a href="https://www.mattilsynet.no/">Trykk her for å sende inn</a>
+
+  </Example>
+
+</Flex>
+
+
 
 <CssVariables component="link" />
