@@ -1,6 +1,8 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './fieldset.stories';
+import { Flex, Grid } from '../react';
+import styles from '../styles.module.css';
 
 <Meta of={stories} />
 
@@ -11,6 +13,85 @@ import * as stories from './fieldset.stories';
 - Legg klassen `fieldset` på `<fieldset>` rundt `<legend>` og skjemafelter
 - Dette grupperer typisk `checkbox` eller `radio` inputs
 <Canvas of={stories.Radios} />
+
+
+
+## Skikk og bruk
+<Flex data-items="350">
+   {/* Vertikal vs horisontal alignment: */}
+  <Example data-color="success" text="Radiobutton- og checkboxgrupper skal i hovedsak stables vertikalt slik at alternativene er lette å lese." zoom="100%">
+  <div className={styles.grid}>
+    <label>Velg dyregruppe</label>
+    <div className={styles.field}>
+        <label>Fisk</label>
+        <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+    </div>
+    <div className={styles.field}>
+      <label>Fjørfe</label>
+      <input type="radio" className={styles.input} name="my-radio" />
+    </div>
+    <div className={styles.field}>
+      <label>Storfe</label>
+      <input type="radio" className={styles.input} name="my-radio" />
+    </div>
+  </div>
+  </Example>
+  <Example data-color="danger" text="Radiobutton- og checkboxgrupper bør ikke legges etter hverandre. Da er det vanskeligere skanne innholdet" zoom="100%">
+    <div className={styles.grid}>
+      <label>Velg dyregruppe</label>
+      <Flex data-gap="10">
+        <div className={styles.field}>
+          <label>Fisk</label>
+          <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+        </div>
+        <div className={styles.field}>
+          <label>Fjørfe</label>
+          <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+        <div className={styles.field}>
+          <label>Storfe</label>
+          <input type="radio" className={styles.input} name="my-radio" />
+        </div>
+      </Flex>
+     </div>
+  </Example>
+
+  {/* Label + Input: */}
+  <Example data-color="success" text="Input, radiobutton- og checkboxgrupper skal alltid ha en tydelig label." zoom="100%">
+    <div className={styles.grid}>
+      <label>Velg størrelse</label>
+      <div className={styles.field}>
+        <label>Liten</label>
+        <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+      </div>
+      <div className={styles.field}>
+        <label>Medium</label>
+        <input type="radio" className={styles.input} name="my-radio" />
+      </div>
+      <div className={styles.field}>
+        <label>Stor</label>
+        <input type="radio" className={styles.input} name="my-radio" />
+      </div>
+    </div>
+  </Example>
+
+  <Example data-color="danger" text="Uten en label kan alternativene være vanskelige eller umulige å forstå." zoom="100%">
+    <Grid>
+      <div className={styles.field}>
+        <label>Liten</label>
+        <input type="radio" className={styles.input} name="my-radio" defaultChecked />
+      </div>
+      <div className={styles.field}>
+        <label>Medium</label>
+        <input type="radio" className={styles.input} name="my-radio" />
+      </div>
+      <div className={styles.field}>
+        <label>Stor</label>
+        <input type="radio" className={styles.input} name="my-radio" />
+      </div>
+     </Grid>
+  </Example>
+</Flex>
 
 ## Obligatoriske felter
 - Dersom alle skjemafelter er påkrevd, vises dette automatisk i `<legend>`
@@ -29,10 +110,10 @@ import * as stories from './fieldset.stories';
 - Legg attributten `readonly disabled` på hver `input`
 <Canvas of={stories.ReadOnly} />
 
-## Horisontal
+{/* ## Horisontal NOT RECOMMENDED
 - Legg attributten `field` inni en `flex` med `data-gap="9"`
 - Brukes kun ved få svaralternativer
-<Canvas of={stories.Horizontal} />
+<Canvas of={stories.Horizontal} /> */}
 
 ## Feilmelding
 - Legg klassen `validation` på et direkte barn for å knytte feilmelding til alle inputs
