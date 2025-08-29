@@ -76,6 +76,11 @@ export function IllustrationsGenerator() {
 
 	return (
 		<Card>
+			<style>{`
+				use[href^="#hoyre-"] { user-select: none; cursor: grab }
+				use:hover { filter:${" drop-shadow(0 0 2px black)".repeat(5)} }
+				use[href^="#hoyre-"]:active { cursor: grabbing }
+			`}</style>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
 			<Flex ref={ref} data-gap="1">
 				{Array.from(selects)
@@ -85,20 +90,20 @@ export function IllustrationsGenerator() {
 							<Button
 								data-variant="secondary"
 								data-tooltip={select.label}
-								popoverTarget={`popover-${key}`}
-								onPointerEnter={({ currentTarget: el }) =>
-									el.matches(":has(+ :popover-open)") || el.click()
+								popoverTarget={`pop-${key}`}
+								onPointerEnter={() =>
+									document.getElementById(`pop-${key}`)?.showPopover()
 								}
 							>
 								{ICONS[key as keyof typeof ICONS] || <LegoSmileyIcon />}
 							</Button>
 							<Popover
 								as="menu"
-								id={`popover-${key}`}
-								style={{ width: 300 }}
+								id={`pop-${key}`}
 								data-overscroll="contain"
+								style={{ width: 300 }}
 							>
-								{select.options.map(({ value, label }) => (
+								{select.options.map(({ value, label, x, y, w, h }) => (
 									<li key={value}>
 										<Button
 											// data-tooltip={label}
@@ -113,13 +118,10 @@ export function IllustrationsGenerator() {
 											}
 											value={value}
 										>
-											{label}
-											{/* <svg
-												style={{ width: "100%", height: 40 }}
-												viewBox={`${x} ${y} ${w} ${h}`}
-											>
+											<svg viewBox={`${x} ${y} ${w} ${h}`}>
 												<use key={value} href={`#${value}`} />
-											</svg> */}
+											</svg>
+											{label}
 										</Button>
 									</li>
 								))}
@@ -149,7 +151,6 @@ export function IllustrationsGenerator() {
 					<use
 						key={key}
 						href={`#${hovers.key === key ? hovers.value : value}`}
-						style={{ userSelect: "none" }}
 						role="button"
 						{...(key === "hoyre" ? dragging : null)}
 					/>

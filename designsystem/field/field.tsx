@@ -79,6 +79,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	// Render options if select
 	if (as === "select" && !rest.children)
 		Object.assign(rest, {
+			options: undefined, // Ensure options is not passed to DOM
 			children: (
 				<>
 					{(rest.options as FieldBaseProps["options"])

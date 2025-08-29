@@ -5,12 +5,9 @@ import "../index";
 
 const meta = {
 	title: "Designsystem/Progress",
-	parameters: {
-		layout: "padded",
-	},
 	decorators: [
 		(Story) => (
-			<div className={styles.grid}>
+			<div className={styles.grid} style={{ width: "80vw", maxWidth: 200 }}>
 				<Story />
 			</div>
 		),

@@ -59,10 +59,6 @@ export const Colors: Story = {
 				Neutral ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
 				tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
 			</output>
-			<output className={styles.alert} data-icon="none">
-				No icon ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-				tincidunt ipsum. Morbi et consequat felis, quis finibus quam.
-			</output>
 		</>
 	),
 };

@@ -44,6 +44,11 @@
 		transition-property: background-color, color, border-color;
 		position: relative;
 	}
+	.tabs [role="tab"][aria-disabled="true"] {
+		cursor: default;
+		pointer-events: none;
+		color: color-mix(in srgb, currentColor, transparent 60%);
+	}
 	.tabs [role="tab"]::after {
 		all: unset; /* Reset DigiDir */
 		border-color: inherit;

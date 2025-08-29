@@ -8,7 +8,6 @@ import styles from "../styles.module.css";
 
 type ButtonBaseProps<Href> = {
 	"data-arrow"?: "left" | "right" | true;
-	"data-color"?: "main" | "danger";
 	"data-justify"?: "start" | "center" | "right";
 	"data-nowrap"?: boolean;
 	"data-variant"?: "primary" | "secondary" | "tertiary";

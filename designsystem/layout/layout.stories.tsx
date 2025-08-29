@@ -342,6 +342,15 @@ export const Justify: Story = {
 				<b>Box</b>
 				<b>Box</b>
 			</div>
+			<span>
+				<code>.grid</code> +<br />
+				<code>data-justify="center"</code>
+			</span>
+			<div className={styles.grid} data-justify="center">
+				<b>Box Box</b>
+				<b>Box Box Box</b>
+				<b>Box</b>
+			</div>
 		</section>
 	),
 };
