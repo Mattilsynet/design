@@ -64,6 +64,7 @@
 				var(--dsc-table-border-color);
 		}
 	}
+	.table[data-border="none"],
 	.table[data-border="false"] {
 		--dsc-table-border-color: transparent;
 		--dsc-table-padding: var(--mtds-1) 0;
@@ -265,7 +266,10 @@
 		/**
 		 * Mobile data-border
 		 */
-		.table[data-mobile][data-border]:not([data-border="false"]) {
+		.table[data-mobile][data-border]:not(
+				[data-border="none"],
+				[data-border="false"]
+			) {
 			padding: var(--dsc-table-padding);
 			border: var(--dsc-table-border-width) var(--dsc-table-border-style)
 				var(--dsc-table-border-color);

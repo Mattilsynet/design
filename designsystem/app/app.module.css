@@ -12,12 +12,14 @@
 	}
 	.app {
 		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
-		--_mtdsc-app-spacing: var(--ds-size-4);
-		--_mtdsc-app-negative: calc(var(--_mtdsc-app-spacing) * -1);
+		--mtdsc-app-spacing: var(--ds-size-4);
+		--mtdsc-app-shadow:
+			0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
+		--_mtdsc-app-negative: calc(var(--mtdsc-app-spacing) * -1);
 
 		box-sizing: border-box;
 		min-height: 100vh;
-		padding: var(--_mtdsc-app-spacing);
+		padding: var(--mtdsc-app-spacing);
 		grid-template:
 			"header header" auto
 			"sidebar main" 1fr
@@ -53,10 +55,8 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, top);
 
-		bottom: var(--_mtdsc-app-spacing);
-		box-shadow:
-			0 3px 5px rgba(0, 0, 0, 0.1),
-			0 0 2px rgba(0, 0, 0, 0.2);
+		bottom: var(--mtdsc-app-spacing);
+		box-shadow: var(--mtdsc-app-shadow);
 		flex-direction: var(--mtds-app-expanded--false, column);
 		grid-area: sidebar;
 		height: var(--dsc-button-size);
@@ -92,7 +92,7 @@
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
 		grid-area: header;
 		margin: var(--_mtdsc-app-negative) var(--_mtdsc-app-negative) 0;
-		padding: var(--_mtdsc-app-spacing);
+		padding: var(--mtdsc-app-spacing);
 		align-items: center;
 
 		&:not([hidden]) {
@@ -116,7 +116,7 @@
 		color: var(--ds-color-text-default);
 		grid-area: sidebar;
 		margin-left: var(--_mtdsc-app-negative);
-		padding: var(--ds-size-5) calc(var(--_mtdsc-app-spacing) * 2);
+		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
 		view-transition-name: mtds-app--sidebar;
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
@@ -129,10 +129,10 @@
 			content: var(--mtds-app-expanded--true, attr(data-tooltip));
 		}
 		& menu [data-badge] {
+			--_mtdsc-badge-small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
 			display: var(--mtds-app-expanded--true, contents); /* Allow right aligned badge when maximized */
 		}
 		& menu [data-badge]::before {
-			--_mtdsc-badge-small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
 			margin-left: auto;
 			order: 1;
 		}
@@ -141,7 +141,7 @@
 	/* Sticky position */
 	.sticky {
 		margin-block: var(--_mtdsc-app-negative);
-		padding-block: var(--_mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
+		padding-block: var(--mtdsc-app-spacing) var(--mtds-18); /* Make space for <button> */
 		position: var(--pos);
 		top: var(--top);
 	}
@@ -164,9 +164,9 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-subtle);
 		grid-area: footer;
-		margin: var(--_mtdsc-app-spacing) var(--_mtdsc-app-negative)
+		margin: var(--mtdsc-app-spacing) var(--_mtdsc-app-negative)
 			var(--_mtdsc-app-negative);
-		padding: var(--_mtdsc-app-spacing);
+		padding: var(--mtdsc-app-spacing);
 
 		/* Force info if not set */
 		&:not([data-color]) {
@@ -210,9 +210,13 @@
 			--mtds-app-expanded--true: initial;
 			--mtds-app-expanded--false: ;
 		}
-		.app:has([data-command="toggle-app-expanded"]) > header,
-		.app:has([data-command="toggle-app-expanded"]) header:has(~ main) {
-			padding-right: calc(var(--mtds-15) + var(--mtds-2));
+		.app:not([data-variant="mobilebar"]):has(
+				[data-command="toggle-app-expanded"]
+			) {
+			& > header,
+			& header:has(~ main) {
+				padding-right: calc(var(--mtds-15) + var(--mtds-2));
+			}
 		}
 		.app > dialog,
 		.app dialog:has(~ main) {
@@ -232,7 +236,6 @@
 				visibility: hidden;
 			}
 		}
-
 		.app.app [data-command="toggle-app-expanded"] {
 			--dsc-button-background: transparent;
 			--dsc-button-border-color: transparent;
@@ -240,20 +243,65 @@
 			--mtds-app-expanded--false: initial; /* Minimize button */
 
 			box-shadow: none;
-			inset: var(--_mtdsc-app-spacing) calc(var(--_mtdsc-app-spacing) * 0.5)
-				auto auto;
+			inset: var(--mtdsc-app-spacing) calc(var(--mtdsc-app-spacing) * 0.5) auto
+				auto;
 			position: absolute;
 		}
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);
 		}
 		.app main {
-			margin-inline: calc(var(--_mtdsc-app-spacing) * -0.5);
+			margin-inline: calc(var(--mtdsc-app-spacing) * -0.5);
 			view-transition-name: none; /* No need to animate on mobile */
 		}
-
 		body:has(.app > dialog:modal, .app > dialog:modal ~ main) {
 			overflow: hidden; /* Prevent scroll when menu is open */
+		}
+
+		/**
+		 * Variant: mobilebar
+		 */
+		.app[data-variant="mobilebar"] {
+			padding-bottom: 200px;
+		}
+		.app[data-variant="mobilebar"] [data-command="toggle-app-expanded"] {
+			display: none;
+		}
+		.app[data-variant="mobilebar"] > dialog,
+		.app[data-variant="mobilebar"] dialog:has(~ main) {
+			background: var(--ds-color-background-default);
+			border-top: var(--ds-border-width-default) solid
+				var(--ds-color-border-subtle);
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: minmax(max-content, 1fr);
+			inset: auto 0 0 0;
+			padding: var(--ds-size-2);
+			visibility: visible;
+			width: auto;
+			overflow: auto;
+
+			& :not(svg, svg *) {
+				display: contents;
+			}
+			& :is(h1, h2, h3, h4, h5, h6, hr, [data-app-expanded="true"]) {
+				display: none;
+			}
+			& :is(a, button) {
+				--mtds-icon-size: 1.3rem;
+				display: grid;
+				font-size: 0.6875rem;
+				gap: var(--ds-size-1);
+				justify-content: center;
+				justify-items: center;
+			}
+			& [data-badge] {
+				--dsc-badge-size: 0.375rem;
+				--mtdsc-badge-offset: 0.125rem 0;
+				--_mtdsc-badge-small: initial;
+				display: inline-grid;
+				font-size: 1px;
+			}
 		}
 	}
 }

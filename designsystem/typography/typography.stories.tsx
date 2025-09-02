@@ -2,6 +2,7 @@ import {
 	DownloadSimpleIcon,
 	HeartIcon,
 	PaperPlaneRightIcon,
+	WarningIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect } from "react";
@@ -727,6 +728,11 @@ export const InfoStory: Story = {
 			<hr className={styles.divider} data-gap="5" />
 			<div className={styles.info} data-variant="circle">
 				<HeartIcon /> Sirkel og ledetekst
+				<strong>Og fet informasjon</strong>
+			</div>
+			<hr className={styles.divider} data-gap="5" />
+			<div className={styles.info} data-variant="circle" data-color="warning">
+				<WarningIcon /> Sirkel og ledetekst og farge
 				<strong>Og fet informasjon</strong>
 			</div>
 			<hr className={styles.divider} data-gap="5" />

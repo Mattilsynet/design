@@ -154,6 +154,7 @@
 	.steps:is(
 		:not([data-fade]),
 		[data-fade="false"],
+		[data-fade="none"],
 		[data-fade="end"]:not([data-direction="up"]),
 		[data-fade="start"][data-direction="up"]
 	)
@@ -163,6 +164,7 @@
 	.steps:is(
 			:not([data-fade]),
 			[data-fade="false"],
+			[data-fade="none"],
 			[data-fade="start"]:not([data-direction="up"]),
 			[data-fade="end"][data-direction="up"]
 		)
