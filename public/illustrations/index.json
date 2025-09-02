@@ -1,16 +1,16 @@
 {
 	"bird.svg": {
 		"categories": ["Landdyr"],
-		"tags": ["fugler", "pip-pipp", "due", "måke"]
+		"tags": ["dyr", "fugler", "pip-pipp", "due", "måke"]
 	},
 	"pig.svg": { "categories": ["Landdyr"], "tags": ["gris", "svin"] },
 	"fish.svg": {
 		"categories": ["Akvakultur"],
-		"tags": ["fisk", "torsk", "laks", "ørret", "sild", "røye"]
+		"tags": ["dyr", "fisk", "torsk", "laks", "ørret", "sild", "røye"]
 	},
 	"flounder.svg": {
 		"categories": ["Akvakultur"],
-		"tags": ["fisk", "flyndre", "skrubbe"]
+		"tags": ["dyr", "fisk", "flyndre", "skrubbe"]
 	},
 	"mussel-1.svg": {
 		"categories": ["Akvakultur"],
@@ -59,7 +59,7 @@
 	},
 	"flask-perfume.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["parfyme", "flaske", "duft"]
+		"tags": ["parfyme", "flaske", "flankong", "duft"]
 	},
 	"flask-pipette.svg": {
 		"categories": ["Kosmetikk"],
@@ -71,68 +71,146 @@
 	},
 	"flasks.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["flasker", "kremer", "hudkrem", "håndkrem"]
+		"tags": [
+			"flasker",
+			"kremer",
+			"hudkrem",
+			"håndkrem",
+			"ansiktskrem",
+			"hudpleie",
+			"hudpleieprodukter"
+		]
 	},
 	"jar.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["glasskrukke", "hudkrem", "håndkrem"]
+		"tags": [
+			"krukke",
+			"glasskrukke",
+			"hudkrem",
+			"håndkrem",
+			"ansiktskrem",
+			"hudpleieprodukt"
+		]
 	},
 	"person-flasks.svg": {
 		"categories": ["Mennesker", "Kosmetikk"],
-		"tags": ["person", "menneske", "flasker", "kremer", "hudkrem", "håndkrem"]
+		"tags": [
+			"person",
+			"menneske",
+			"flasker",
+			"kremer",
+			"hudkrem",
+			"håndkrem",
+			"ansiktskrem",
+			"hudpleieprodukter"
+		]
 	},
 	"person-tubes.svg": {
 		"categories": ["Mennesker", "Kosmetikk"],
-		"tags": ["person", "menneske", "flasker", "kremer", "hudkrem", "håndkrem"]
+		"tags": [
+			"person",
+			"menneske",
+			"flasker",
+			"kremer",
+			"hudkrem",
+			"håndkrem",
+			"ansiktskrem",
+			"hudpleieprodukter"
+		]
 	},
 	"tube-1.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["tube", "håndkrem", "hudkrem"]
+		"tags": ["tube", "håndkrem", "ansiktskrem", "hudkrem", "hudpleieprodukt"]
 	},
 	"tube-2.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["tube", "håndkrem", "hudkrem"]
+		"tags": ["tube", "håndkrem", "ansiktskrem", "hudkrem", "hudpleieprodukt"]
 	},
-	"apple-cup.svg": { "categories": ["Mat"], "tags": ["eple", "kopp", "frukt"] },
+	"apple-cup.svg": {
+		"categories": ["Mat"],
+		"tags": ["eple", "kaffekopp", "te", "frukt", "drikke"]
+	},
+	"cup.svg": { "categories": ["Mat"], "tags": ["kaffekopp", "te", "drikke"] },
 	"apple.svg": { "categories": ["Mat"], "tags": ["eple", "frukt"] },
 	"banana-apple-cup.svg": {
 		"categories": ["Mat"],
-		"tags": ["banana", "eple", "frukt", "kopp"]
+		"tags": [
+			"mat",
+			"drikke",
+			"banan",
+			"eple",
+			"frukt",
+			"kaffekopp",
+			"te",
+			"lunsj",
+			"måltid",
+			"pause"
+		]
 	},
-	"banana.svg": { "categories": ["Mat"], "tags": ["banana"] },
+	"banana.svg": { "categories": ["Mat"], "tags": ["banan", "frukt"] },
 	"farmer-turnip-plant.svg": {
 		"categories": ["Mat"],
-		"tags": ["nepe", "rotgrønnsak"]
+		"tags": ["mat", "nepe", "rotgrønnsak", "grønnsak"]
 	},
 	"pear.svg": { "categories": ["Mat"], "tags": ["pære", "frukt"] },
 	"person-fork-bush.svg": {
 		"categories": ["Mennesker", "Mat"],
-		"tags": ["person", "menneske", "mat", "busk", "gaffel"]
+		"tags": ["person", "menneske", "forkle", "mat", "busk", "gaffel", "sulten"]
 	},
 	"person-ham.svg": {
 		"categories": ["Mennesker", "Mat"],
-		"tags": ["kjøtt", "skinke", "slakter", "person", "menneske"]
+		"tags": [
+			"mat",
+			"kjøtt",
+			"skinke",
+			"slakter",
+			"slakteritilsyn",
+			"tilsyn",
+			"person",
+			"menneske"
+		]
 	},
 	"person-meat.svg": {
 		"categories": ["Mennesker", "Mat"],
-		"tags": ["kjøtt", "skinke", "slakter", "person", "menneske"]
+		"tags": [
+			"mat",
+			"kjøtt",
+			"skinke",
+			"slakter",
+			"slakteritilsyn",
+			"tilsyn",
+			"person",
+			"menneske"
+		]
 	},
 	"person-pear.svg": {
 		"categories": ["Mennesker", "Mat"],
-		"tags": ["person", "menneske", "pære", "frukt"]
+		"tags": ["person", "menneske", "pære", "frukt", "mat"]
 	},
-	"turnip.svg": { "categories": ["Mat"], "tags": ["nepe", "rotgrønnsak"] },
+	"turnip.svg": {
+		"categories": ["Mat"],
+		"tags": ["mat", "nepe", "rotgrønnsak", "grønnsak"]
+	},
 	"farmer-inviting.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "bonde", "peke", "arm"]
+		"tags": ["person", "menneske", "bonde", "snekkerbukse", "peke", "arm"]
 	},
 	"farmer-pig-plant.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "bonde", "gris", "svin", "plante", "veskt"]
+		"tags": [
+			"person",
+			"menneske",
+			"bonde",
+			"snekkerbukse",
+			"gris",
+			"svin",
+			"plante",
+			"vekst"
+		]
 	},
 	"farmer-pitchfork.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "bonde", "høygaffel"]
+		"tags": ["person", "menneske", "bonde", "snekkerbukse", "caps", "høygaffel"]
 	},
 	"person-alert.svg": {
 		"categories": ["Mennesker", "Beredskap"],
@@ -148,12 +226,22 @@
 			"skilt",
 			"varseltrekant",
 			"varsle",
-			"varsling"
+			"varsling",
+			"fare"
 		]
 	},
 	"inspector.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "inspektør", "ipad", "tavle", "plansje"]
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"ipad",
+			"tavle",
+			"plansje",
+			"digitalt verktøy",
+			"tilsyn"
+		]
 	},
 	"inspector-nature.svg": {
 		"categories": ["Mennesker"],
@@ -161,15 +249,27 @@
 			"person",
 			"menneske",
 			"inspektør",
+			"tilsyn",
 			"katt",
+			"ipad",
+			"digitalt verktøy",
 			"plansje",
 			"blomst",
-			"vekst"
+			"vekst",
+			"fagområder"
 		]
 	},
 	"meeting-plant.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["mennesker", "personer", "gruppe", "møte", "kaffe", "team"]
+		"tags": [
+			"mennesker",
+			"personer",
+			"gruppe",
+			"møte",
+			"samarbeid",
+			"kaffe",
+			"team"
+		]
 	},
 	"person-apron-bush.svg": {
 		"categories": ["Mennesker"],
@@ -189,7 +289,15 @@
 	},
 	"person-mobile.svg": {
 		"categories": ["Mennesker"],
-		"tags": ["person", "menneske", "inspektør", "mobiltelefon", "arm"]
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"mobiltelefon",
+			"iphone",
+			"digitalt verktøy",
+			"arm"
+		]
 	},
 	"team.svg": {
 		"categories": ["Mennesker"],
@@ -200,28 +308,38 @@
 			"møte",
 			"postit",
 			"post-it",
-			"team"
+			"workshop",
+			"team",
+			"designer"
 		]
 	},
 	"flower-seeds.svg": {
 		"categories": ["Planter"],
-		"tags": ["blomst", "plante", "frø", "rosa", "rød"]
+		"tags": ["blomst", "plante", "frø", "rosa", "rød", "prikker", "natur"]
 	},
 	"flower.svg": {
 		"categories": ["Planter"],
-		"tags": ["blomst", "plante", "gul"]
+		"tags": ["blomst", "plante", "gul", "natur"]
 	},
 	"grass-bush.svg": {
 		"categories": ["Planter"],
-		"tags": ["gress", "plante", "busk", "grønn", "blader"]
+		"tags": ["gress", "plante", "busk", "grønn", "blader", "natur"]
 	},
 	"oak-leaf.svg": {
 		"categories": ["Planter"],
-		"tags": ["gress", "plante", "busk", "grønn", "blader", "eik", "tre"]
+		"tags": ["plante", "busk", "grønn", "blader", "eik", "tre", "natur"]
 	},
 	"plant-round-leaves.svg": {
 		"categories": ["Planter"],
-		"tags": ["gress", "plante", "busk", "grønn", "blader", "tre"]
+		"tags": [
+			"plante",
+			"busk",
+			"grønn",
+			"blader",
+			"runde blader",
+			"tre",
+			"natur"
+		]
 	},
 	"plant.svg": {
 		"categories": ["Planter"],
@@ -234,7 +352,8 @@
 			"tang",
 			"tare",
 			"alger",
-			"sjøgress"
+			"sjøgress",
+			"natur"
 		]
 	},
 	"person-animal-nature-1.svg": {
@@ -242,13 +361,13 @@
 		"tags": [
 			"person",
 			"menneske",
-			"slakter",
 			"fisk",
 			"gris",
 			"svin",
 			"fugl",
 			"landskap",
-			"samling"
+			"samling",
+			"visjon"
 		]
 	},
 	"person-animal-nature-2.svg": {
@@ -256,22 +375,22 @@
 		"tags": [
 			"person",
 			"menneske",
-			"slakter",
 			"fisk",
 			"gris",
 			"svin",
 			"fugl",
 			"landskap",
-			"samling"
+			"samling",
+			"visjon"
 		]
 	},
 	"drop.svg": {
 		"categories": ["Drikkevann"],
-		"tags": ["drikkevann", "vanndråpe"]
+		"tags": ["drikkevann", "vanndråpe", "vann", "blå", "drikke"]
 	},
 	"faucet.svg": {
 		"categories": ["Drikkevann"],
-		"tags": ["vannkran", "drikkevann"]
+		"tags": ["vannkran", "kran", "drikkevann", "vann", "drikke"]
 	},
 	"person-drop.svg": {
 		"categories": ["Mennesker", "Drikkevann"],
@@ -279,23 +398,43 @@
 	},
 	"person-faucet-drop.svg": {
 		"categories": ["Mennesker", "Drikkevann"],
-		"tags": ["vannkran", "drikkevann", "vanndråpe", "person", "menneske"]
+		"tags": [
+			"vannkran",
+			"drikkevann",
+			"vanndråpe",
+			"person",
+			"menneske",
+			"inspektør"
+		]
 	},
 	"turnip-meat.svg": {
 		"categories": ["Mat"],
-		"tags": ["nepe", "kjøtt"]
+		"tags": ["mat", "nepe", "grønnsak", "rotgrønnsak"]
 	},
 	"bread.svg": {
 		"categories": ["Mat"],
-		"tags": ["brødskive", "loff"]
+		"tags": ["mat", "skive", "brødskive", "toast", "loff"]
 	},
 	"drop-apple-bread.svg": {
 		"categories": ["Drikkevann", "Mat"],
-		"tags": ["drikkevann", "vanndråpe", "eple", "frukt", "brød"]
+		"tags": [
+			"mat",
+			"drikkevann",
+			"vann",
+			"vanndråpe",
+			"eple",
+			"frukt",
+			"brød",
+			"brødskive",
+			"skive",
+			"toast",
+			"lunsj",
+			"måltid"
+		]
 	},
 	"drop-apple.svg": {
 		"categories": ["Drikkevann", "Mat"],
-		"tags": ["drikkevann", "vanndråpe", "eple", "frukt"]
+		"tags": ["mat", "drikkevann", "vanndråpe", "eple", "frukt", "måltid"]
 	},
 	"plane.svg": {
 		"categories": ["Eksport"],
@@ -313,9 +452,25 @@
 		"categories": ["Mat"],
 		"tags": ["mat", "gaffel", "spise"]
 	},
+	"pitchfork.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["høygaffel", "gårdsdrift", "bondegård"]
+	},
 	"heart-cat.svg": {
 		"categories": ["Dyr"],
-		"tags": ["hjerte", "katt", "dyr"]
+		"tags": ["hjerte", "katt", "dyr", "kjæledyr", "dyrevelferd"]
+	},
+	"cat.svg": {
+		"categories": ["Dyr"],
+		"tags": ["katt", "dyr", "kjæledyr", "dyrevelferd"]
+	},
+	"horse.svg": {
+		"categories": ["Dyr"],
+		"tags": ["hest", "riding", "dyr", "dyrevelferd"]
+	},
+	"chicken.svg": {
+		"categories": ["Dyr"],
+		"tags": ["høne", "høns", "kylling", "dyr", "dyrevelferd"]
 	},
 	"heart.svg": {
 		"categories": ["Visjon"],
@@ -341,12 +496,22 @@
 			"inspektør",
 			"ai",
 			"kunstig intelligens",
-			"teknologi"
+			"teknologi",
+			"digitalt verktøy",
+			"digitalt"
 		]
 	},
 	"inspector-cow.svg": {
 		"categories": ["Mennesker", "Dyr"],
-		"tags": ["inspektør", "person", "menneske", "ku", "kyr"]
+		"tags": [
+			"inspektør",
+			"person",
+			"menneske",
+			"ku",
+			"kyr",
+			"inspeksjon",
+			"tilsyn"
+		]
 	},
 	"knife.svg": {
 		"categories": ["Mat"],
@@ -363,12 +528,17 @@
 			"fisk",
 			"gris",
 			"svin",
-			"person"
+			"person",
+			"fagområder"
 		]
 	},
 	"plant-dog-fish.svg": {
 		"categories": ["Dyr", "Planter"],
 		"tags": ["plante", "hund", "fisk"]
+	},
+	"dog.svg": {
+		"categories": ["Dyr"],
+		"tags": ["hund", "voff"]
 	},
 	"postits.svg": {
 		"categories": ["Mennesker"],
@@ -401,7 +571,7 @@
 	},
 	"ship.svg": {
 		"categories": ["Eksport"],
-		"tags": ["skip", "båt", "eksport", "transport"]
+		"tags": ["skip", "båt", "eksport", "transport", "container"]
 	},
 	"spoon.svg": {
 		"categories": ["Mat"],
@@ -409,14 +579,14 @@
 	},
 	"star-1.svg": {
 		"categories": ["Visjon"],
-		"tags": ["drikkevann", "vanndråpe", "stjerner"]
+		"tags": ["stjerne", "visjon", "premium", "best", "lykkes"]
 	},
 	"star-2.svg": {
 		"categories": ["Visjon"],
-		"tags": ["drikkevann", "vanndråpe", "stjerner"]
+		"tags": ["stjerne", "visjon", "premium", "best", "lykkes"]
 	},
 	"stars.svg": {
 		"categories": ["Visjon"],
-		"tags": ["drikkevann", "vanndråpe", "stjerner"]
+		"tags": ["stjerner", "visjon", "premium", "best", "lykkes"]
 	}
 }

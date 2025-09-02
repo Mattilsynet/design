@@ -9,7 +9,7 @@
 
 		background: var(--mtdsc-card-background);
 		border-radius: var(--ds-border-radius-lg);
-		border: 1px solid var(--mtdsc-card-border-color);
+		border: var(--ds-border-width-default) solid var(--mtdsc-card-border-color);
 		box-sizing: border-box;
 		color: var(--mtdsc-card-color);
 		font: inherit;

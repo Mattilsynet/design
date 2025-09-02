@@ -3,6 +3,7 @@
 		--dsc-badge-background: var(--ds-color-base-default);
 		--dsc-badge-color: var(--ds-color-base-contrast-default);
 		--dsc-badge-size: var(--ds-size-3);
+		--mtdsc-badge-offset: 0px;
 		--_mtdsc-badge-small: ;
 
 		flex-shrink: 0; /* If placed in flex */

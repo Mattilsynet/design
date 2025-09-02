@@ -1,9 +1,9 @@
 import {
 	ArrowBendLeftDownIcon,
-	ArrowBendRightDownIcon,
 	HandSwipeLeftIcon,
 	HandSwipeRightIcon,
 	LegoSmileyIcon,
+	SelectionBackgroundIcon,
 	TShirtIcon,
 } from "@phosphor-icons/react";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -30,11 +30,11 @@ type Option = {
 
 const ICONS = {
 	head: <LegoSmileyIcon />,
-	overdel: <TShirtIcon />,
+	antrekk: <TShirtIcon />,
 	"hand-venstre": <HandSwipeRightIcon />,
 	"hand-hoyre": <HandSwipeLeftIcon />,
 	venstre: <ArrowBendLeftDownIcon />,
-	hoyre: <ArrowBendRightDownIcon />,
+	hoyre: <SelectionBackgroundIcon />,
 };
 
 const Skins = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
@@ -65,7 +65,7 @@ const Over = [
 export function IllustrationsGenerator() {
 	const ref = useRef<HTMLDivElement>(null);
 	const [selects, setSelects] = useState(new Map<string, Select>());
-	const [hovers, setHovers] = useState<Record<string, string>>({});
+	const [hovers, setHovers] = useState<string[]>([]);
 	const [apron] = useState(Apron[0]);
 	const [skin] = useState(Skins[2]);
 	const [over] = useState(Over[0]);
@@ -73,12 +73,16 @@ export function IllustrationsGenerator() {
 	const dragging = useSvgDraggable();
 
 	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
+	useEffect(() => {
+		const hoyre = hovers[0] === "hoyre" && document.getElementById("use-hoyre");
+		if (hoyre instanceof SVGUseElement) svgKeepInView(hoyre);
+	}, [hovers]);
 
 	return (
 		<Card>
 			<style>{`
 				use[href^="#hoyre-"] { user-select: none; cursor: grab }
-				use:hover { filter:${" drop-shadow(0 0 2px black)".repeat(5)} }
+				use[href^="#hoyre-"]:hover { filter:${" drop-shadow(0 0 2px black)".repeat(5)} }
 				use[href^="#hoyre-"]:active { cursor: grabbing }
 			`}</style>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
@@ -106,13 +110,9 @@ export function IllustrationsGenerator() {
 								{select.options.map(({ value, label, x, y, w, h }) => (
 									<li key={value}>
 										<Button
-											// data-tooltip={label}
-											data-variant={
-												select.value === value ? "secondary" : "tertiary"
-											}
 											aria-current={select.value === value}
-											onMouseEnter={() => setHovers({ key, value })}
-											onMouseLeave={() => setHovers({})}
+											onMouseEnter={() => setHovers([key, value])}
+											onMouseLeave={() => setHovers([])}
 											onClick={() =>
 												setSelects(selects.set(key, { ...select, value }))
 											}
@@ -125,8 +125,6 @@ export function IllustrationsGenerator() {
 										</Button>
 									</li>
 								))}
-								{/* <Grid data-items="100" data-gap="1" data-fixed>
-								</Grid> */}
 							</Popover>
 						</Fragment>
 					))}
@@ -149,8 +147,9 @@ export function IllustrationsGenerator() {
 				}`}</style>
 				{Array.from(selects, ([key, { value }]) => (
 					<use
+						id={`use-${key}`}
 						key={key}
-						href={`#${hovers.key === key ? hovers.value : value}`}
+						href={`#${hovers[0] === key ? hovers[1] : value}`}
 						role="button"
 						{...(key === "hoyre" ? dragging : null)}
 					/>
@@ -179,6 +178,17 @@ export function IllustrationsGenerator() {
 const svgX = (x: number, matrix: DOMMatrix) =>
 	new DOMPoint(x, 0).matrixTransform(matrix).x;
 
+const svgKeepInView = (el: SVGUseElement) => {
+	const view = el.ownerSVGElement?.viewBox.baseVal as DOMRect;
+	const rect = el.getBBox();
+	const x = el.x.baseVal.value;
+	const min = view.x - rect.x + x;
+	const max = min + view.width - rect.width;
+
+	if (x < min) el.x.baseVal.value = min;
+	if (x > max) el.x.baseVal.value = max;
+};
+
 function useSvgDraggable() {
 	const dragging = useRef({ x: 0, max: 0, min: 0, matrix: new DOMMatrix() });
 	const [x, setX] = useState(0);
@@ -195,13 +205,15 @@ function useSvgDraggable() {
 	const onPointerDown = useCallback(
 		({ currentTarget: el, clientX }: React.MouseEvent<SVGUseElement>) => {
 			const drag = dragging.current;
-			const view = el.ownerSVGElement?.viewBox.baseVal as DOMRect;
+			const owner = el.ownerSVGElement;
+			const view = owner?.viewBox.baseVal as DOMRect;
 			const rect = el.getBBox();
 			const x = el.x.baseVal.value;
-			drag.matrix = el.closest("svg")?.getScreenCTM()?.inverse() as DOMMatrix; // Convert to SVG coordinates
+			drag.matrix = owner?.getScreenCTM()?.inverse() as DOMMatrix; // Convert to SVG coordinates
 			drag.min = view.x - rect.x + x;
-			drag.max = view.x + view.width - rect.width - rect.x + x;
+			drag.max = drag.min + view.width - rect.width;
 			drag.x = svgX(clientX, drag.matrix) - x;
+			// svgKeepInView(el);
 			document.addEventListener("pointermove", onDrag);
 			document.addEventListener("pointerup", onDrop, { once: true });
 		},

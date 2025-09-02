@@ -4,7 +4,7 @@ import styles from "../styles.module.css";
 
 export type StepsProps = React.ComponentPropsWithoutRef<"ol"> & {
 	"data-direction"?: "right" | "up" | "down";
-	"data-fade"?: "true" | "false" | "start" | "end";
+	"data-fade"?: boolean | "true" | "false" | "none" | "start" | "end";
 	"data-state"?: "complete";
 };
 export const Steps = forwardRef<HTMLOListElement, StepsProps>(function Steps(

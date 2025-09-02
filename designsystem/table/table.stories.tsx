@@ -416,31 +416,24 @@ export const SortableTanstack: Story = {
 			columns: mockColumns,
 		});
 
-		const sort = {
-			asc: "ascending",
-			desc: "descending",
-			false: "none",
-		} as const;
-
 		return (
 			<Table aria-label="Sortable Tanstack table" {...args}>
 				<thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
 							{headers.map((header) => (
-								<th
+								<Table.ThSortable
 									key={header.id}
 									colSpan={header.colSpan}
 									data-numeric={isNumeric.includes(header.id)}
-									aria-sort={sort[`${header.column.getIsSorted()}`]}
+									aria-sort={header.column.getIsSorted()}
+									onClick={header.column.getToggleSortingHandler()}
 								>
-									<Button onClick={header.column.getToggleSortingHandler()}>
-										{flexRender(
-											header.column.columnDef.header,
-											header.getContext(),
-										)}
-									</Button>
-								</th>
+									{flexRender(
+										header.column.columnDef.header,
+										header.getContext(),
+									)}
+								</Table.ThSortable>
 							))}
 						</tr>
 					))}
