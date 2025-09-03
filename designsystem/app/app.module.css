@@ -88,12 +88,13 @@
 	 */
 	.app > header,
 	.app header:has(~ main) {
+		align-items: center;
 		box-sizing: border-box;
 		gap: 0.125rem; /* Add 2px space between buttons - same as in <menu> */
 		grid-area: header;
 		margin: var(--_mtdsc-app-negative) var(--_mtdsc-app-negative) 0;
+		min-width: 0; /* Fix CSS Grid sizing */
 		padding: var(--mtdsc-app-spacing);
-		align-items: center;
 
 		&:not([hidden]) {
 			display: flex;
@@ -116,6 +117,7 @@
 		color: var(--ds-color-text-default);
 		grid-area: sidebar;
 		margin-left: var(--_mtdsc-app-negative);
+		min-width: 0; /* Fix CSS Grid sizing */
 		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
 		view-transition-name: mtds-app--sidebar;
@@ -152,6 +154,7 @@
 	 */
 	.app main {
 		grid-area: main;
+		min-width: 0; /* Fix CSS Grid sizing */
 		view-transition-name: mtds-app--main;
 	}
 
@@ -164,9 +167,10 @@
 		box-sizing: border-box;
 		color: var(--ds-color-text-subtle);
 		grid-area: footer;
+		min-width: 0; /* Fix CSS Grid sizing */
+		padding: var(--mtdsc-app-spacing);
 		margin: var(--mtdsc-app-spacing) var(--_mtdsc-app-negative)
 			var(--_mtdsc-app-negative);
-		padding: var(--mtdsc-app-spacing);
 
 		/* Force info if not set */
 		&:not([data-color]) {

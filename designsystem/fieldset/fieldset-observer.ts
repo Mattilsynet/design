@@ -6,9 +6,9 @@ const CSS_VALIDATION = styles.validation.split(" ")[0];
 const ARIA_DESC = "aria-describedby";
 const ARIA_INVALID = "aria-invalid";
 
-// Using requestAnimationFrame to ensure it runs after field-observer
+// Using setTimeout to ensure it runs after field-observer
 function handleFieldsetMutation(fieldsets: HTMLCollectionOf<Element>) {
-	requestAnimationFrame(() => {
+	setTimeout(() => {
 		for (const fieldset of fieldsets)
 			if (fieldset.isConnected) {
 				const inputs: HTMLInputElement[] = [];
