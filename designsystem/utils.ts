@@ -106,7 +106,7 @@ declare global {
  */
 let UNBIND: Array<() => void> | null = null;
 export const onLoaded = (callback: () => void) => {
-	if (!IS_BROWSER) return;
+	if (!IS_BROWSER || !window.requestAnimationFrame) return; // Skip if not in browser environment
 	if (!window._mtdsUnbindEvents) window._mtdsUnbindEvents = new Map();
 
 	const run = () =>
@@ -181,6 +181,7 @@ export const onMutation = <T extends Element>(
 	className: string,
 	callback: (elems: HTMLCollectionOf<T>) => void,
 ) => {
+	if (!IS_BROWSER || !window.requestAnimationFrame) return; // Skip if not in browser environment
 	const elems = el.getElementsByClassName(className);
 	const mutator = MUTATORS.get(el) || [];
 
