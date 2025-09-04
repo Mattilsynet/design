@@ -58,10 +58,18 @@ export const Table = Object.assign(TableComp, {
 			ref,
 		) {
 			return (
-				<th ref={ref} aria-sort={SORT[`${sort}` as SORT_KEYS]} {...rest}>
-					<button type="button" onClick={onClick}>
-						{children}
-					</button>
+				<th
+					ref={ref}
+					aria-sort={onClick ? SORT[`${sort}` as SORT_KEYS] : undefined}
+					{...rest}
+				>
+					{onClick ? (
+						<button type="button" onClick={onClick}>
+							{children}
+						</button>
+					) : (
+						children
+					)}
 				</th>
 			);
 		},

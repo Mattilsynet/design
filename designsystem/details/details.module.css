@@ -2,19 +2,20 @@
 	.details {
 		composes: ds-details from "@digdir/designsystemet-css";
 
+		--dsc-details-size: auto; /* Set <summary> height based on content */
 		--dsc-details-background: transparent;
 		--dsc-details-icon-size: var(--mtds-icon-size);
 		--dsc-details-icon-url: var(--mtds-icon-chevron);
 		--dsc-details-summary-background--hover: var(--ds-color-background-tinted);
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
+		--dsc-details-padding: var(--mtdsc-details-padding-block)
+			var(--mtdsc-details-padding-inline);
+		--mtdsc-details-padding-block: var(--ds-size-3);
+		--mtdsc-details-padding-inline: var(--ds-size-4);
+		--mtdsc-details-content-padding: 0 var(--mtdsc-details-padding-inline)
+			var(--mtdsc-details-padding-inline);
 		--mtdsc-details-card-radius: var(--ds-border-radius-lg);
-		--mtdsc-details-content-padding: 0 var(--ds-size-4) var(--ds-size-4)
-			calc(
-				var(--ds-size-4) +
-				var(--dsc-details-icon-size) +
-				var(--dsc-details-icon-gap)
-			);
 	}
 	.details:not([data-variant="card"]) + .details {
 		margin-top: 0; /* Reset if placed in Prose */
@@ -23,6 +24,7 @@
 		margin-bottom: 0; /* Reset if placed in Prose */
 	}
 	.details > :is(summary, u-summary) {
+		align-items: start;
 		transition-duration: 0.2s;
 		transition-property: font-weight, background;
 	}
@@ -34,6 +36,7 @@
 		border: 0;
 		margin: 0;
 		padding: 0;
+		min-height: 1lh;
 		transition: rotate 0.2s ease-out;
 	}
 	.details[open] > :is(summary, u-summary)::before {
@@ -42,6 +45,7 @@
 
 	:where(.details > :not(summary, u-summary)) {
 		border-radius: 0; /* Reset DigiDir, using :where to allow any child element to override styling */
+		margin: 0; /* Reset DigiDir, using :where to allow any child element to override styling */
 		padding: 0;
 	}
 
@@ -56,11 +60,20 @@
 		padding-block: 0px;
 	}
 
+	.details:not([data-variant="card"])::details-content,
+	.details:not([data-variant="card"])::part(details-content) {
+		padding-left: calc(
+			var(--mtdsc-details-padding-inline) +
+			var(--dsc-details-icon-size) +
+			var(--dsc-details-icon-gap)
+		);
+	}
+
 	.details[data-variant="card"] {
 		--dsc-details-background: var(--ds-color-surface-default);
+		border-radius: var(--mtdsc-details-card-radius);
 		border: var(--dsc-details-border-block-width)
 			var(--dsc-details-border-block-style) var(--dsc-details-border-color);
-		border-radius: var(--mtdsc-details-card-radius);
 	}
 	.details[data-variant="card"][data-color]:not([data-color="main"]) {
 		--dsc-details-background: var(--ds-color-background-tinted);
@@ -71,6 +84,7 @@
 	.details[data-variant="card"]
 		> :is(summary, u-summary)
 		> :is(img, svg):first-child {
+		flex-shrink: 0; /* Prevent icon from shrinking */
 		width: var(--mtds-icon-size);
 		height: var(--mtds-icon-size);
 	}

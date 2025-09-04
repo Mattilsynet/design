@@ -17,6 +17,8 @@ export * as styles from "./styles.module.css";
 
 // Load behaviours
 import "./breadcrumbs/breadcrumbs-observer";
+// import "./chart/chart-axis";
+// import "./chart/chart-doughnut";
 import "./dialog/dialog-observer";
 import "./errorsummary/errorsummary-observer";
 import "./field/field-observer";

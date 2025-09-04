@@ -3,11 +3,13 @@ import {
 	HandSwipeLeftIcon,
 	HandSwipeRightIcon,
 	LegoSmileyIcon,
+	PaintBucketIcon,
+	PersonIcon,
 	SelectionBackgroundIcon,
 	TShirtIcon,
 } from "@phosphor-icons/react";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { Button, Card, Flex, Popover } from "../../designsystem/react";
+import { Button, Card, Flex, Popover, Tag } from "../../designsystem/react";
 import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
 
 type Select = { value?: string; label: string; options: Option[] };
@@ -19,14 +21,6 @@ type Option = {
 	x: number;
 	y: number;
 };
-// const DOTS = {
-// 	head: [0, -50],
-// 	overdel: [0, 150],
-// 	"hand-venstre": [-150, 150],
-// 	"hand-hoyre": [150, 150],
-// 	venstre: [-500, 600],
-// 	hoyre: [500, 600],
-// };
 
 const ICONS = {
 	head: <LegoSmileyIcon />,
@@ -37,39 +31,56 @@ const ICONS = {
 	hoyre: <SelectionBackgroundIcon />,
 };
 
-const Skins = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
-const Apron = ["#CDE5F2", "#054449", "#f9cc76"];
-const Under = [
-	"#153F7B",
-	"#0C4FA1",
-	"#9ECCED",
-	"#054449",
-	"#116E6B",
-	"#68B096",
-	"#f9cc76",
-	"#da573b",
-];
-const Over = [
-	"#054449",
-	"#68B096",
-	"#E2F1DF",
-	"#f9cc76",
-	"#F9C4AA",
-	"#da573b",
-	"#9ECCED",
-	"#CDE5F2",
+const SKINS = ["#F8E0D8", "#F9C4AA", "#C58F79", "#7F433B"];
+const SWATCHES = [
+	["#054449", "#153F7B", "#CDE5F2"],
+	["#054449", "#0C4FA1", "#CDE5F2"],
+	["#054449", "#da573b", "#CDE5F2"],
+	["#054449", "#68B096", "#CDE5F2"],
+	["#68B096", "#da573b", "#CDE5F2"],
+	["#f9cc76", "#054449", "#CDE5F2"],
+	["#f9cc76", "#da573b", "#CDE5F2"],
+	["#f9cc76", "#68B096", "#054449"],
+	["#f9cc76", "#153F7B", "#CDE5F2"],
+	["#da573b", "#153F7B", "#CDE5F2"],
+	["#9ECCED", "#054449", "#CDE5F2"],
+	["#68B096", "#054449", "#CDE5F2"],
+	["#f9c4aa", "#054449", "#CDE5F2"],
+	["#f9c4aa", "#153F7B", "#CDE5F2"],
 ];
 
-// TODO: Hudtone, fargepalett, høyre og venstre objekt
+// const Apron = ["#CDE5F2", "#054449", "#4c473fff"];
+// const Under = [
+// 	"#153F7B",
+// 	"#0C4FA1",
+// 	"#9ECCED",
+// 	"#054449",
+// 	"#116E6B",
+// 	"#68B096",
+// 	"#f9cc76",
+// 	"#da573b",
+// ];
+// const Over = [
+// 	"#054449",
+// 	"#68B096",
+// 	"#E2F1DF",
+// 	"#f9cc76",
+// 	"#F9C4AA",
+// 	"#da573b",
+// 	"#9ECCED",
+// 	"#CDE5F2",
+// ];
+
+// TODO: Hudtone, fargepalett, objekt bak
 
 export function IllustrationsGenerator() {
 	const ref = useRef<HTMLDivElement>(null);
 	const [selects, setSelects] = useState(new Map<string, Select>());
 	const [hovers, setHovers] = useState<string[]>([]);
-	const [apron] = useState(Apron[0]);
-	const [skin] = useState(Skins[2]);
-	const [over] = useState(Over[0]);
-	const [under] = useState(Under[0]);
+	const [swatchHover, setSwatchHover] = useState<number | null>(null);
+	const [skinHover, setSkinHover] = useState<number | null>(null);
+	const [swatch, setSwatch] = useState(0);
+	const [skin, setSkin] = useState(0);
 	const dragging = useSvgDraggable();
 
 	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
@@ -87,6 +98,55 @@ export function IllustrationsGenerator() {
 			`}</style>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
 			<Flex ref={ref} data-gap="1">
+				<Button
+					data-variant="secondary"
+					data-tooltip="Farger"
+					popoverTarget="pop-colors"
+				>
+					<PaintBucketIcon />
+				</Button>
+				<Popover as="menu" id="pop-colors" data-overscroll="contain">
+					{SWATCHES.map((colors, index) => (
+						<li key={colors.join(",")}>
+							<Button
+								onMouseEnter={() => setSwatchHover(index)}
+								onMouseLeave={() => setSwatchHover(null)}
+								onClick={() => setSwatch(index)}
+							>
+								{colors.map((color) => (
+									<Tag
+										key={color}
+										style={{ background: color, aspectRatio: 1 }}
+										data-icon="none"
+									/>
+								))}
+							</Button>
+						</li>
+					))}
+				</Popover>
+				<Button
+					data-variant="secondary"
+					data-tooltip="Hudtone"
+					popoverTarget="pop-skin"
+				>
+					<PersonIcon />
+				</Button>
+				<Popover as="menu" id="pop-skin" data-overscroll="contain">
+					{SKINS.map((skin, index) => (
+						<li key={skin}>
+							<Button
+								onMouseEnter={() => setSkinHover(index)}
+								onMouseLeave={() => setSkinHover(null)}
+								onClick={() => setSkin(index)}
+							>
+								<Tag
+									style={{ background: skin, aspectRatio: 1 }}
+									data-icon="none"
+								/>
+							</Button>
+						</li>
+					))}
+				</Popover>
 				{Array.from(selects)
 					.filter(([, { options }]) => options.length)
 					.map(([key, select]) => (
@@ -95,28 +155,21 @@ export function IllustrationsGenerator() {
 								data-variant="secondary"
 								data-tooltip={select.label}
 								popoverTarget={`pop-${key}`}
-								onPointerEnter={() =>
-									document.getElementById(`pop-${key}`)?.showPopover()
-								}
 							>
 								{ICONS[key as keyof typeof ICONS] || <LegoSmileyIcon />}
 							</Button>
-							<Popover
-								as="menu"
-								id={`pop-${key}`}
-								data-overscroll="contain"
-								style={{ width: 300 }}
-							>
+							<Popover as="menu" id={`pop-${key}`} data-overscroll="contain">
 								{select.options.map(({ value, label, x, y, w, h }) => (
 									<li key={value}>
 										<Button
 											aria-current={select.value === value}
 											onMouseEnter={() => setHovers([key, value])}
 											onMouseLeave={() => setHovers([])}
+											value={value}
+											popoverTargetAction="hide"
 											onClick={() =>
 												setSelects(selects.set(key, { ...select, value }))
 											}
-											value={value}
 										>
 											<svg viewBox={`${x} ${y} ${w} ${h}`}>
 												<use key={value} href={`#${value}`} />
@@ -136,11 +189,11 @@ export function IllustrationsGenerator() {
 				onClick={handleCopySvg}
 			>
 				<style>{`:root {
-					--color-apron: ${apron};
+					--color-apron: ${SWATCHES[swatchHover ?? swatch][2]};
 					--color-hair: #1E1A28;
-					--color-skin: ${skin};
-					--color-over: ${over};
-					--color-under: ${under};
+					--color-skin: ${SKINS[skinHover ?? skin]};
+					--color-over: ${SWATCHES[swatchHover ?? swatch][0]};
+					--color-under: ${SWATCHES[swatchHover ?? swatch][1]};
 					--color-shoes: #1E1A28;
 					--color-caps: #DA573B;
 					--color-hat: #9ECCED;
@@ -154,22 +207,6 @@ export function IllustrationsGenerator() {
 						{...(key === "hoyre" ? dragging : null)}
 					/>
 				))}
-				{/* {Array.from(selects)
-					.filter(([, { options }]) => options.length)
-					.map(([key, select]) => (
-						<circle
-							opacity={0}
-							cx={DOTS[key as keyof typeof DOTS]?.[0] || 0}
-							cy={DOTS[key as keyof typeof DOTS]?.[1] || 0}
-							data-tooltip={select.label}
-							fill="rgba(0,0,0,.1)"
-							key={key}
-							r="70"
-							stroke="rgba(0,0,0,.5)"
-							strokeOpacity={1}
-							strokeWidth={10}
-						/>
-					))} */}
 			</svg>
 		</Card>
 	);
@@ -213,7 +250,7 @@ function useSvgDraggable() {
 			drag.min = view.x - rect.x + x;
 			drag.max = drag.min + view.width - rect.width;
 			drag.x = svgX(clientX, drag.matrix) - x;
-			// svgKeepInView(el);
+
 			document.addEventListener("pointermove", onDrag);
 			document.addEventListener("pointerup", onDrop, { once: true });
 		},
@@ -234,10 +271,10 @@ function svgToSelects(innerHTML: string) {
 			(symbol) => ({
 				value: symbol.id,
 				label: symbol.querySelector("title")?.textContent || symbol.id,
-				h: Number.parseFloat(symbol.getAttribute("height") || "1"),
-				w: Number.parseFloat(symbol.getAttribute("width") || "1"),
-				x: Number.parseFloat(symbol.getAttribute("x") || "0"),
-				y: Number.parseFloat(symbol.getAttribute("y") || "0"),
+				h: Number(symbol.getAttribute("height") || "1"),
+				w: Number(symbol.getAttribute("width") || "1"),
+				x: Number(symbol.getAttribute("x") || "0"),
+				y: Number(symbol.getAttribute("y") || "0"),
 			}),
 		);
 		map.set(el.id, { label, options, value: options[0]?.value || el.id });

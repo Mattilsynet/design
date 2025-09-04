@@ -406,7 +406,7 @@ export const Graphics = ({
 					return (
 						<Card
 							data-color-scheme={mode || undefined}
-							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` "${name}"` : ""}`}
+							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` ${name.replace(".svg", "")}` : ""}`}
 							download={name.replace(".", mode === "dark" ? "-dark." : ".")}
 							href={href}
 							key={name}

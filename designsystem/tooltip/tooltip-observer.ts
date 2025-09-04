@@ -15,7 +15,8 @@ const LABELLEDBY = "aria-labelledby";
 const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
 const THROTTLE_DELAY = 300;
 const TOOLTIP = IS_BROWSER
-	? Object.assign(document.createElement("div"), {
+	? document.getElementById("mtds-tooltip") ||
+		Object.assign(document.createElement("div"), {
 			className: styles._tooltip,
 			id: "mtds-tooltip",
 			popover: "manual",

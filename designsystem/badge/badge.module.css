@@ -55,4 +55,9 @@
 		height: var(--mtds-icon-size);
 		width: var(--mtds-icon-size);
 	}
+
+	[data-variant="primary"] > .badge::before {
+		background: var(--ds-color-base-contrast-subtle);
+		color: var(--ds-color-base-default);
+	}
 }

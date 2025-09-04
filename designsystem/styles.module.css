@@ -7,6 +7,7 @@
 @import url("./breadcrumbs/breadcrumbs.module.css");
 @import url("./button/button.module.css");
 @import url("./card/card.module.css");
+/* @import url("./chart/chart.module.css"); */
 @import url("./chip/chip.module.css");
 @import url("./details/details.module.css");
 @import url("./dialog/dialog.module.css");
