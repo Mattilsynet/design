@@ -47,10 +47,20 @@ export const InElement: Story = {
 			<h2>
 				Under behandling <span className={styles.badge} data-badge="9"></span>
 			</h2>
-			<button type="button" className={styles.button} data-variant="secondary">
-				<EnvelopeIcon />
-				E-post <span className={styles.badge} data-badge="99+"></span>
-			</button>
+			<div className={styles.flex}>
+				<button
+					type="button"
+					className={styles.button}
+					data-variant="secondary"
+				>
+					<EnvelopeIcon />
+					E-post <span className={styles.badge} data-badge="99+"></span>
+				</button>
+				<button type="button" className={styles.button} data-variant="primary">
+					<EnvelopeIcon />
+					E-post <span className={styles.badge} data-badge="99+"></span>
+				</button>
+			</div>
 		</div>
 	),
 };

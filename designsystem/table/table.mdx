@@ -1,5 +1,5 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
 import { Button } from "../react";
 import * as stories from './table.stories';
 
@@ -7,6 +7,8 @@ import * as stories from './table.stories';
 
 # Table
 >Table brukes for å vise strukturert informasjon på en ryddig og oversiktlig måte. Tabeller kan gjøre det enklere for brukerne å skanne og sammenligne informasjon.
+
+<JumpTo />
 
 ## Kode
 - Legg klassen `table` på `<table>`
@@ -39,7 +41,7 @@ import * as stories from './table.stories';
 - Bruk `<th aria-sort="none | ascending | descending | other">`
 - Bruk `<button type="button">`eller `<a>` i `<th>` for client/server sorting
 - Bruk [TanStack Table](https://tanstack.com/table/latest) eller annen valgfri kode for å utføre sorteringen
-- **React?** Bruk `<Table.ThSortable aria-sort={} onClick={}>` for automisk knapp og støtte for flere verdier i `aria-sort={"acending" | "asc" | "desc" | "descending" | "down" | "false" | "none" | "up" | false | null}`
+- **React?** Bruk `<Table.ThSortable aria-sort={} onClick={}>` for automisk knapp og støtte for flere verdier i `aria-sort` : `"acending" | "asc" | "desc" | "descending" | "down" | "false" | "none" | "up" | false | null`. Dersom **onClick er undefined**, vil en vanlig `<th>` uten sortering rendres.
 - Se også [låste bredder](#laste-bredder)
 <Canvas of={stories.SortableSimple} />
 

@@ -18,6 +18,9 @@ import mockData from "./table.mockData";
 
 const meta = {
 	title: "Designsystem/Table",
+	parameters: {
+		layout: "padded",
+	},
 	decorators: [
 		(Story) => (
 			<div className={styles.grid} data-gap="4">

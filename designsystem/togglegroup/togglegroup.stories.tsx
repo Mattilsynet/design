@@ -1,7 +1,7 @@
 import {
-	TextAlignCenter,
-	TextAlignLeft,
-	TextAlignRight,
+	TextAlignCenterIcon,
+	TextAlignLeftIcon,
+	TextAlignRightIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
@@ -39,7 +39,7 @@ export const Default: Story = {
 			<fieldset className={styles.togglegroup} aria-label="Mappe">
 				<label>
 					<input type="radio" name="my-icon-toggle" value="left" />
-					<TextAlignLeft />
+					<TextAlignLeftIcon />
 				</label>
 				<label>
 					<input
@@ -48,11 +48,11 @@ export const Default: Story = {
 						value="center"
 						defaultChecked
 					/>
-					<TextAlignCenter />
+					<TextAlignCenterIcon />
 				</label>
 				<label>
 					<input type="radio" name="my-icon-toggle" value="right" />
-					<TextAlignRight />
+					<TextAlignRightIcon />
 				</label>
 			</fieldset>
 		</div>
@@ -65,7 +65,7 @@ export const React: Story = {
 		const [value, setValue] = useState(items[1]);
 
 		return (
-			<Togglegroup>
+			<Togglegroup aria-label="Mappe">
 				{items.map((item) => (
 					<Togglegroup.Item
 						checked={value === item}

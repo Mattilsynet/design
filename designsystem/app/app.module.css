@@ -306,6 +306,9 @@
 				display: inline-grid;
 				font-size: 1px;
 			}
+			& [data-badge]::before {
+				color: transparent;
+			}
 		}
 	}
 }

@@ -291,9 +291,15 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	},
 );
 
+export type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
 	Combobox: FieldCombobox,
 	Datalist: FieldDatalist,
 	Option: FieldOption,
+	Label: forwardRef<HTMLLabelElement, FieldLabelProps>(
+		function FieldLabel(rest, ref) {
+			return <label suppressHydrationWarning ref={ref} {...rest} />;
+		},
+	),
 });

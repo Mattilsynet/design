@@ -234,3 +234,15 @@ export const toCustomElementProps = (
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;
 };
+
+export const MTDSElement =
+	typeof HTMLElement === "undefined"
+		? (class {} as typeof HTMLElement)
+		: HTMLElement;
+
+export const customElements = {
+	define: (name: string, instance: CustomElementConstructor) =>
+		!IS_BROWSER ||
+		window.customElements.get(name) ||
+		window.customElements.define(name, instance),
+};
