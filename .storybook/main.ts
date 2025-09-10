@@ -5,7 +5,7 @@ import type { StorybookConfig } from "@storybook/react-vite";
 import fg from "fast-glob";
 
 const DESIGN_DIR = path.resolve("./designsystem");
-const FOLDERS = "@(identitet|designsystem|profilering)";
+const FOLDERS = "@(identitet|designsystem|profilering|teknologi)";
 const ICONS = "@phosphor-icons";
 
 const pkg = JSON.parse(
@@ -43,14 +43,14 @@ for (const file of fg.sync([
 
 // Generate overview.mdx
 const stories = fg
-	.sync(path.join(DESIGN_DIR, "*/*.stories.tsx"))
-	.sort()
-	.map((file) => ({
-		name: path
-			.basename(path.dirname(file))
-			.replace(/./, (m) => m.toUpperCase()),
-		file: path.relative(DESIGN_DIR, file),
-	}));
+  .sync(path.join(DESIGN_DIR, "*/*.stories.tsx"))
+  .sort()
+  .map((file) => ({
+    name: path
+      .basename(path.dirname(file))
+      .replace(/./, (m) => m.toUpperCase()),
+    file: path.relative(DESIGN_DIR, file),
+  }));
 
 fs.writeFileSync(
 	path.join(DESIGN_DIR, "overview.mdx"),
