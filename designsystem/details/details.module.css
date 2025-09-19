@@ -16,8 +16,9 @@
 		--mtdsc-details-content-padding: 0 var(--mtdsc-details-padding-inline)
 			var(--mtdsc-details-padding-inline);
 		--mtdsc-details-card-radius: var(--ds-border-radius-lg);
-
-		/* Make text color change when adding [data-color] */
+	}
+	/* Make text color change when adding [data-color] */
+	.details[data-color] {
 		color: var(--mtds-color-text-default);
 	}
 	.details:not([hidden]) {
