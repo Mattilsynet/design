@@ -16,6 +16,12 @@
 		--mtdsc-details-content-padding: 0 var(--mtdsc-details-padding-inline)
 			var(--mtdsc-details-padding-inline);
 		--mtdsc-details-card-radius: var(--ds-border-radius-lg);
+
+		/* Make text color change when adding [data-color] */
+		color: var(--mtds-color-text-default);
+	}
+	.details:not([hidden]) {
+		display: block; /* Make u-elements block even without JS */
 	}
 	.details:not([data-variant="card"]) + .details {
 		margin-top: 0; /* Reset if placed in Prose */

@@ -26,6 +26,7 @@ export * from "./steps/steps";
 export * from "./table/table";
 export * from "./tabs/tabs";
 export * from "./tag/tag";
+export * from "./toast/toast";
 export * from "./togglegroup/togglegroup";
 export * from "./typography/typography";
 export * from "./validation/validation";

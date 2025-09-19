@@ -94,6 +94,9 @@ export const HeadingStory: Story = {
 			<h2 className={styles.heading} data-justify="center">
 				Heading data-justify="center"
 			</h2>
+			<h2 className={styles.heading}>
+				<HeartIcon /> Heading with icon
+			</h2>
 		</>
 	),
 };
@@ -719,6 +722,10 @@ export const InfoStory: Story = {
 			<div className={styles.info}>
 				<HeartIcon /> <strong>Ikon og ledetekst</strong>
 				Og informasjon
+			</div>
+			<div className={styles.info}>
+				<HeartIcon /> Ikon og ledetekst
+				<strong>Og informasjon</strong>
 			</div>
 			<hr className={styles.divider} data-gap="5" />
 			<div className={styles.info} data-variant="circle">

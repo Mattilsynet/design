@@ -179,6 +179,7 @@ type OverviewProps = {
 		string,
 		{
 			title: string;
+			tags?: string[];
 			parameters: { tag?: string; showInOverview: boolean };
 		}
 	>[];
@@ -240,10 +241,9 @@ export const Overview = ({
 							Object.keys(stories)) as unknown as string[];
 						const variants = exports.filter(
 							(key) =>
-								key === "Default" ||
+								(key === "Default" && !stories[key]?.tags?.includes("!dev")) ||
 								(showAll && key !== "default" && !key.startsWith("__")) ||
-								stories[key as keyof typeof stories]?.parameters
-									?.showInOverview,
+								stories[key]?.parameters?.showInOverview,
 						);
 
 						return variants.map((variant) => {

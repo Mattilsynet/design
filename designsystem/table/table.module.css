@@ -3,6 +3,8 @@
 		composes: ds-table from "@digdir/designsystemet-css";
 
 		--dsc-table-background: transparent;
+		--dsc-table-background--hover: var(--ds-color-surface-hover);
+		--dsc-table-background--active: var(--ds-color-surface-active);
 		--dsc-table-border-color: var(--ds-color-border-subtle);
 		--dsc-table-border-radius: var(--ds-border-radius-md);
 		--dsc-table-color: inherit;
@@ -157,6 +159,31 @@
 	 */
 	.table > :is(thead, tbody, tfoot) > tr > :is(td, th) label {
 		font-weight: inherit;
+	}
+
+	/**
+	 * data-command="row"
+	 */
+	.table > tbody > tr > :is(td, th) > button[data-command="row"] {
+		all: unset;
+		cursor: pointer;
+		border-radius: var(--ds-border-radius-sm);
+
+		&:focus-visible {
+			box-shadow: var(--dsc-focus-boxShadow);
+			outline: var(--dsc-focus-outline);
+			outline-offset: var(--ds-border-width-focus);
+		}
+	}
+	.table > tbody > tr:has([data-command="row"]) > :is(td, th) {
+		transition: 0.2s background-color;
+		cursor: pointer;
+	}
+	.table > tbody > tr:has([data-command="row"]):hover > td {
+		background: var(--dsc-table-background--hover);
+	}
+	.table > tbody > tr:has([data-command="row"]):active > td {
+		background: var(--dsc-table-background--active);
 	}
 
 	/**

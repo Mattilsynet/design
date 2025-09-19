@@ -470,7 +470,23 @@
 	},
 	"chicken.svg": {
 		"categories": ["Dyr"],
-		"tags": ["høne", "høns", "kylling", "dyr", "dyrevelferd"]
+		"tags": ["høne", "høns", "fugl", "kylling", "dyr", "dyrevelferd"]
+	},
+	"eagle.svg": {
+		"categories": ["Dyr"],
+		"tags": ["ørn", "falk", "fugl", "dyr", "dyrevelferd"]
+	},
+	"moose.svg": {
+		"categories": ["Dyr"],
+		"tags": ["elg", "skogens konge", "dyr", "dyrevelferd"]
+	},
+	"bunny.svg": {
+		"categories": ["Dyr"],
+		"tags": ["hare", "kanin", "kjæledyr", "dyrevelferd"]
+	},
+	"polarbear.svg": {
+		"categories": ["Dyr"],
+		"tags": ["isbjørn", "dyr", "dyrevelferd"]
 	},
 	"heart.svg": {
 		"categories": ["Visjon"],
@@ -538,7 +554,11 @@
 	},
 	"dog.svg": {
 		"categories": ["Dyr"],
-		"tags": ["hund", "voff"]
+		"tags": ["hund", "voff", "kjæledyr", "dyrevelferd"]
+	},
+	"puppy.svg": {
+		"categories": ["Dyr"],
+		"tags": ["hund", "valp", "voff", "kjæledyr", "dyrevelferd"]
 	},
 	"postits.svg": {
 		"categories": ["Mennesker"],

@@ -22,7 +22,7 @@
 		color: var(--dsc-badge-color);
 		content: attr(data-badge) ""; /* Empty string need to ensure bade is shown even when data-badge is empty */
 		display: grid;
-		font-size: 0.77778em;
+		font-size: min(0.77778em, var(--ds-size-4));
 		font-variant-numeric: tabular-nums;
 		font-weight: 700;
 		inset: 0 0 auto auto;
@@ -30,7 +30,7 @@
 		margin: var(--mtdsc-badge-offset);
 		min-height: var(--dsc-badge-size);
 		min-width: var(--dsc-badge-size);
-		padding: var(--ds-size-2);
+		padding: calc(var(--ds-size-1) * 1.5);
 		place-items: center;
 		position: var(--_mtdsc-badge-small, absolute);
 		scale: var(--_mtdsc-badge-small, 0.85);

@@ -27,15 +27,15 @@ import * as stories from './table.stories';
 - Dette kan være upraktisk når innholdet endrer seg/sorteres/pagineres
 - Bruk `data-fixed` på `<table>` for låste bredder
 - Bruk evt. `style="width: X"` på `<th>` for å sette bredde på gitte kolonner
-<Canvas of={stories.FixedWidths} />
+<Canvas of={stories.WithFixedWidths} />
 
 ## Numeriske verider
 - Bruk `data-numeric` for tall med lik bredde.
-<Canvas of={stories.NumericValues} />
+<Canvas of={stories.WithNumericValues} />
 
 ## Vertikal justering av innhold
 - Bruk `data-align="start | center"` for å vertikalt justere innhold (`start` er default)
-<Canvas of={stories.Align} />
+<Canvas of={stories.WithAlign} />
 
 ## Sortering
 - Bruk `<th aria-sort="none | ascending | descending | other">`
@@ -61,6 +61,10 @@ import * as stories from './table.stories';
 ## Checkbox
 - Legg et [Field](/designsystem/field/) med `<input type="checkbox">` og `<label>` i første celle
 <Canvas of={stories.CheckableSimple} />
+
+## Rad med handling
+- Legg `data-command="row"` på en `<button>` eller `<input>` i en celle for å gjøre hele raden klikkbar
+<Canvas of={stories.WithInteraction} />
 
 ## Paginering
 - Tabell kan brukes sammen med [Pagination](/designsystem/pagination/)

@@ -70,6 +70,7 @@
 		}
 		& :is(p, [data-description]) {
 			font-size: var(--ds-font-size-minus-1);
+			padding-inline-start: 0; /* Reset DigDir */
 		}
 		&:has([readonly]:disabled) label {
 			cursor: default; /* Stiling when both readonly and disabled since browser does not prevent readonly on checkobx/radio */

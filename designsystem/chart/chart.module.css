@@ -1,44 +1,35 @@
-/* Render legend on tooltips with ::before as this is easier than interfering with tooltip content prop */
-[role="tooltip"][data-legend]::before {
-	content: attr(data-legend);
+:host(:not([hidden])) {
 	display: block;
-	font-weight: var(--builders-font-weight-500);
+	--mtdsc-chart-aspect: 16 / 9;
+	--mtdsc-chart-axis-border: var(--ds-border-width-default) solid
+		var(--ds-color-border-subtle);
+	--mtdsc-chart-axis-gap: var(--ds-size-2);
+	--mtdsc-chart-border-color: var(--ds-color-border-default);
+	--mtdsc-chart-color-text: var(--ds-color-text-default);
+	--mtdsc-chart-color: var(--ds-color-surface-tinted);
+	--mtdsc-chart-color-1: #b4cea0;
+	--mtdsc-chart-color-2: #68b096;
+	--mtdsc-chart-color-3: #cde5f2;
+	--mtdsc-chart-border-color-1: var(--ds-color-success-border-subtle);
+	--mtdsc-chart-border-color-2: var(--ds-color-info-border-subtle);
+	--mtdsc-chart-border-color-3: var(--ds-color-warning-border-subtle);
 }
 
-.chart {
-	--builders-chart-aspect: 16 / 9;
-	--builders-chart-border-color: var(--builders-color-default-text);
-	--builders-chart-axis-border: 1px solid var(--builders-color-default-opacity);
-	--builders-chart-axis-gap: var(--builders-unit-20);
-	--builders-chart-color-single: var(--builders-color-purple-700);
-	--builders-chart-color-text-single: var(--builders-color-white);
-	--builders-chart-color-1: var(--builders-color-blue-700);
-	--builders-chart-color-text-1: var(--builders-color-white);
-	--builders-chart-color-2: var(--builders-color-yellow-200);
-	--builders-chart-color-3: var(--builders-color-purple-700);
-	--builders-chart-color-text-3: var(--builders-color-white);
-	--builders-chart-color-4: var(--builders-color-white);
-	--builders-chart-color-5: var(--builders-color-blue-100);
-	--builders-chart-color-6: var(--builders-color-blue-300);
-	--builders-chart-color-7: var(--builders-color-success-100);
-	--builders-chart-color-8: var(--builders-color-success-200);
-	--builders-chart-color-9: var(--builders-color-warn-100);
-	--builders-chart-color-10: var(--builders-color-warn-200);
-	--builders-chart-color-11: var(--builders-color-error-100);
-	--builders-chart-color-12: var(--builders-color-error-200);
-	margin: 0;
+:host([data-variant="doughnut"]) {
+	--mtdsc-chart-aspect: 1 / 1;
 }
 
 .doughnut {
 	overflow: visible;
+	height: 100%;
+	width: 100%;
 }
-
 .doughnut > path {
 	cursor: pointer;
-	fill: var(--ds-color-surface-tinted);
+	fill: var(--mtdsc-chart-color);
 	outline: none;
-	stroke: var(--ds-color-border-default);
 	stroke-width: var(--ds-border-width-default);
+	/* stroke: var(--ds-color-border-default); */
 	transform-origin: center;
 	transition: scale 0.2s;
 	vector-effect: non-scaling-stroke;
@@ -47,437 +38,283 @@
 .doughnut > path:hover {
 	scale: 1.05;
 }
-.doughnut > path:focus-visible {
-	stroke: var(--builders-color-purple-700);
-	stroke-width: 3;
+
+.color-1 {
+	--mtdsc-chart-color: var(--mtdsc-chart-color-1);
+	--mtdsc-chart-border-color: var(--mtdsc-chart-border-color-1);
+}
+.color-2 {
+	--mtdsc-chart-color: var(--mtdsc-chart-color-2);
+	--mtdsc-chart-border-color: var(--mtdsc-chart-border-color-2);
+}
+.color-3 {
+	--mtdsc-chart-color: var(--mtdsc-chart-color-3);
+	--mtdsc-chart-border-color: var(--mtdsc-chart-border-color-3);
 }
 
 .axis {
-	overflow: clip visible;
-	aspect-ratio: 16 / 9;
+	aspect-ratio: var(--mtdsc-chart-aspect);
 	display: grid;
-	gap: var(--ds-size-2);
-	grid-template-columns: fit-content(7em) repeat(2, 1fr);
-	grid-template-rows: 1fr auto;
-	grid-template-areas:
-		"y-axis chart"
-		"y-axis x-axis";
-}
-
-.axis > ul {
-	position: relative; /* Place above line */
-	box-sizing: border-box;
-	column-gap: var(--ds-size-2);
-	display: grid;
-	/* grid-column: chart; */
-	grid-row: chart / x-axis;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: subgrid;
-	list-style: none;
-	margin: 0;
-	padding: 0 var(--ds-size-2);
-	text-align: center;
-}
-.axis > ul[aria-label]::after {
-	content: attr(aria-label);
-	text-align: center;
-	grid-column: 1 / -1;
-}
-
-.axis > ul > li {
-	--size: calc(var(--value) / var(--total, 1) * 100%);
-	align-self: flex-end;
-	background: var(--ds-color-surface-tinted);
-	border: var(--ds-border-width-default) solid var(--ds-color-border-default);
-	box-sizing: border-box;
-	grid-row: chart;
-	height: var(--size);
-	/* width: 100%; */
-}
-
-.axis > ol {
-	box-sizing: border-box;
-	display: grid;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	grid-auto-rows: 1fr;
-	grid-column: 0 / -1;
-	grid-row: chart;
-	grid-template-columns: subgrid;
-	grid-template-rows: 1px;
-}
-.axis > ol > li {
-	align-content: flex-end;
-	box-sizing: border-box;
-	display: grid;
-	grid-column: inherit;
-	grid-template-columns: inherit;
-	text-align: right;
-	position: relative;
-}
-.axis > ol > li::before {
-	content: attr(value);
-	translate: 0 50%;
-}
-.axis > ol > li::after {
-	content: "";
-	position: absolute;
-	left: calc(100% + var(--ds-size-2));
-	bottom: 0;
-	width: 100vw; /* Ensure line is long enough */
-	border-bottom: var(--ds-border-width-default) solid
-		var(--ds-color-border-subtle);
-}
-
-.old-axis,
-.old-bubbles,
-.old-doughnut,
-.old-percentage {
-	font-size: var(--builders-font-min-sm);
-	font-weight: 500;
-}
-
-/* We need a square canvas to position bubles and percentage correctly */
-.old-bubbles,
-.old-percentage {
-	aspect-ratio: var(--builders-chart-aspect);
-	position: relative;
-	& > * {
-		aspect-ratio: 1 / 1;
-		inset: 0;
-		margin: auto;
-		max-height: 100%;
-		max-width: 100%;
-		position: absolute;
-	}
-}
-
-.old-axis {
-	aspect-ratio: var(--builders-chart-aspect);
-	display: grid;
-	gap: calc(var(--builders-chart-axis-gap) / 2);
+	gap: calc(var(--mtdsc-chart-axis-gap) / 2);
 	grid-template-columns: fit-content(7em) 1fr;
 	grid-template-rows: 1fr auto;
 	grid-template-areas:
 		"y-axis chart"
 		"y-axis x-axis";
 }
-.old-axisValues,
-.old-axisValue,
-.old-axisGroups,
-.old-axisGroup {
+.axisSteps,
+.axisStep,
+.axisGroups,
+.axisGroup {
 	box-sizing: border-box;
 	display: grid;
-	position: relative; /* Help .old-lineContainer positioning */
+	position: relative; /* Help .lineContainer positioning */
 }
 
-.old-is-horizontal {
-	.old-axisGroups {
-		column-gap: var(--builders-chart-axis-gap);
-		grid-column: chart;
-		grid-row: chart / x-axis;
-		grid-template-rows: subgrid;
-		padding-inline: var(--builders-chart-axis-gap);
-		text-align: center;
-	}
-	.old-axisGroup {
-		grid-row: chart / x-axis;
-		grid-template-rows: inherit;
-	}
-	.old-axisValues {
-		grid-auto-rows: 1fr;
-		grid-column: y-axis / chart;
-		grid-row: chart;
-		grid-template-columns: subgrid;
-		grid-template-rows: 1px;
-	}
-	.old-axisValue {
-		align-content: flex-end;
-		grid-column: inherit;
-		grid-template-columns: inherit;
-		text-align: right;
-		&::after {
-			content: "";
-			border-bottom: var(--builders-chart-axis-border);
-		}
-		.old-axisLabel {
-			transform: translateY(50%);
-		}
-	}
+.is-horizontal .axisGroups {
+	column-gap: var(--mtdsc-chart-axis-gap);
+	grid-column: chart;
+	grid-row: chart / x-axis;
+	grid-template-rows: subgrid;
+	padding-inline: var(--mtdsc-chart-axis-gap);
+	text-align: center;
+}
+.is-horizontal .axisGroup {
+	grid-row: chart / x-axis;
+	grid-template-rows: inherit;
+}
+.is-horizontal .axisSteps {
+	grid-auto-rows: 1fr;
+	grid-column: y-axis / chart;
+	grid-row: chart;
+	grid-template-columns: subgrid;
+	grid-template-rows: 1px;
+}
+.is-horizontal .axisStep {
+	align-content: flex-end;
+	grid-column: inherit;
+	grid-template-columns: inherit;
+	text-align: right;
+}
+.is-horizontal .axisStep::after {
+	content: "";
+	border-bottom: var(--mtdsc-chart-axis-border);
+}
+.is-horizontal .axisStep .axisLabel {
+	transform: translateY(50%);
 }
 
-.old-is-vertical {
-	.old-axisValues,
-	.old-axisGroup {
-		direction: rtl;
-		> * {
-			direction: ltr;
-		}
-	} /* Reverse orders */
-	.old-axisGroups {
-		grid-column: y-axis / chart;
-		grid-row: chart;
-		grid-template-columns: subgrid;
-		padding-block: var(--builders-chart-axis-gap);
-		row-gap: var(--builders-chart-axis-gap);
-		text-align: right;
-		.old-axisLabel {
-			align-self: center;
-		} /* Since text-align does not work vertically */
-	}
-	.old-axisGroup {
-		grid-column: inherit;
-		grid-template-columns: inherit;
-	}
-	.old-axisValues {
-		grid-auto-columns: 1fr;
-		grid-column: chart;
-		grid-row: chart / x-axis;
-		grid-template-columns: 1px;
-		grid-template-rows: subgrid;
-	}
-	.old-axisValue {
-		grid-row: inherit;
-		grid-template-rows: inherit;
-		justify-content: flex-start;
-		text-align: center;
-		&::before {
-			content: "";
-			border-left: var(--builders-chart-axis-border);
-		}
-		.old-axisLabel {
-			transform: translateX(-50%);
-		}
-	}
+.is-vertical .axisSteps,
+.is-vertical .axisGroup {
+	direction: rtl; /* Reverse orders */
+}
+.is-vertical .axisSteps > *,
+.is-vertical .axisGroup > * {
+	direction: ltr;
+}
+.is-vertical .axisGroups {
+	grid-column: y-axis / chart;
+	grid-row: chart;
+	grid-template-columns: subgrid;
+	padding-block: var(--mtdsc-chart-axis-gap);
+	row-gap: var(--mtdsc-chart-axis-gap);
+	text-align: right;
+}
+.is-vertical .axisGroups .axisLabel {
+	align-self: center; /* Since text-align does not work vertically */
+}
+.is-vertical .axisGroup {
+	grid-column: inherit;
+	grid-template-columns: inherit;
+}
+.is-vertical .axisSteps {
+	grid-auto-columns: 1fr;
+	grid-column: chart;
+	grid-row: chart / x-axis;
+	grid-template-columns: 1px;
+	grid-template-rows: subgrid;
+}
+.is-vertical .axisStep {
+	grid-row: inherit;
+	grid-template-rows: inherit;
+	justify-content: flex-start;
+	text-align: center;
+}
+.is-vertical .axisStep::before {
+	content: "";
+	border-left: var(--mtdsc-chart-axis-border);
+}
+.is-vertical .axisStep .axisLabel {
+	transform: translateX(-50%);
 }
 
-.old-axisGroupContent {
+.axisGroupContent {
 	display: flex;
-	.old-is-horizontal.old-is-stacked & {
-		flex-direction: column-reverse;
-		row-gap: 0px;
-	}
-	.old-is-vertical.old-is-stacked & {
-		column-gap: 0px;
-	}
-	.old-is-vertical.old-is-spread & {
-		flex-direction: column;
-	}
+	/* gap: 1px; */
+}
+.is-horizontal.is-stacked .axisGroupContent {
+	flex-direction: column-reverse;
+	row-gap: 0px;
+}
+.is-vertical.is-stacked .axisGroupContent {
+	column-gap: 0px;
+}
+.is-vertical:not(.is-stacked) .axisGroupContent {
+	flex-direction: column;
 }
 
-.old-bar {
+.bar {
 	--size: calc(var(--value) / var(--total, 1) * 100%);
-	background: var(--builders-chart-color);
-	border: 1px solid var(--builders-chart-border-color);
+	background: var(--mtdsc-chart-color);
+	/* border: 1px solid var(--mtdsc-chart-border-color); */
 	box-sizing: border-box;
-	color: var(--builders-chart-color-text);
-	padding: var(--builders-unit-05);
-	position: relative; /* Place above .old-lineContainer */
-
-	&:hover,
-	&:focus-visible {
-		box-shadow: var(--builders-focus-boxShadow);
-		z-index: 2;
-	} /* z-index to place on top when outlined */
-	&[data-value="0"] {
-		display: none;
-	} /* Prevent rendering empty bars */
-	.old-is-horizontal & {
-		width: 100%;
-		height: var(--size);
-		align-self: flex-end;
-		grid-row: chart;
-	} /* grid-row is only used if placed directly in Chart.old-Axis */
-	.old-is-vertical & {
-		width: var(--size);
-		height: 100%;
-		grid-column: chart;
-	} /* grid-column is only used if placed directly in Chart.old-Axis */
-	.old-is-horizontal.old-is-spread .old-axisGroup & + & {
-		margin-left: -1px;
-	} /* Prevent double border - using margin to see border around bars */
-	.old-is-vertical.old-is-spread .old-axisGroup & + & {
-		margin-top: -1px;
-	} /* Prevent double border - using margin to see border around bars */
-	.old-is-horizontal.old-is-stacked .old-axisGroup & + & {
-		border-bottom: none;
-	} /* Prevent double border - using border to avoid affecting size */
-	.old-is-vertical.old-is-stacked .old-axisGroup & + & {
-		border-left: none;
-	} /* Prevent double border - using border to avoid affecting size */
+	color: var(--mtdsc-chart-color-text);
+	padding: var(--ds-size-1);
+	position: relative; /* Place above .lineContainer */
+}
+.bar:hover,
+.bar:focus-visible {
+	box-shadow: var(--dsc-focus-boxShadow);
+	outline: var(--dsc-focus-outline);
+	outline-offset: var(--ds-border-width-focus);
+	z-index: 2; /* z-index to place on top when outlined */
 }
 
-.old-lineContainer {
+.is-horizontal .bar {
+	width: 100%;
+	height: var(--size);
+	align-self: flex-end;
+	grid-row: chart;
+} /* grid-row is only used if placed directly in Chart.Axis */
+.is-vertical .bar {
+	width: var(--size);
+	height: 100%;
+	grid-column: chart;
+} /* grid-column is only used if placed directly in Chart.Axis */
+.is-horizontal:not(.is-stacked) .axisGroup .bar + .bar {
+	/* margin-left: -1px; */
+} /* Prevent double border - using margin to see border around bars */
+.is-vertical:not(.is-stacked) .axisGroup .bar + .bar {
+	/* margin-top: -1px; */
+} /* Prevent double border - using margin to see border around bars */
+.is-horizontal.is-stacked .axisGroup .bar + .bar {
+	border-bottom: none;
+} /* Prevent double border - using border to avoid affecting size */
+.is-vertical.is-stacked .axisGroup .bar + .bar {
+	border-left: none;
+} /* Prevent double border - using border to avoid affecting size */
+
+.lineContainer {
 	align-items: flex-start;
 	display: flex;
 	justify-content: space-between;
 	pointer-events: none;
-
-	& > svg,
-	& {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-	& > svg:first-child {
-		z-index: 2;
-	}
-	.old-is-horizontal & {
-		grid-row: chart;
-	}
-	.old-is-horizontal & > svg {
-		overflow: clip visible;
-	}
-	.old-is-horizontal & > div[role="listitem"] {
-		display: contents;
-	}
-	.old-is-horizontal & > div > div {
-		top: calc(100% - var(--value) / var(--total, 1) * 100%);
-	}
-	.old-is-vertical & {
-		flex-direction: column;
-		grid-column: chart;
-	}
-	.old-is-vertical & > svg {
-		overflow: visible clip;
-	}
-	.old-is-vertical & > div > div {
-		left: calc(var(--value) / var(--total, 1) * 100%);
-	}
 }
-.old-line,
-.old-lineBorder,
-.old-lineShade {
+.lineContainer > svg,
+.lineContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.lineContainer > svg:first-child {
+	z-index: 2;
+}
+.is-horizontal .lineContainer {
+	grid-row: chart;
+}
+.is-horizontal .lineContainer > svg {
+	overflow: clip visible;
+}
+.is-horizontal .lineContainer > div[role="listitem"] {
+	display: contents;
+}
+.is-horizontal .lineContainer .linePoint {
+	top: calc(100% - var(--value) / var(--total, 1) * 100%);
+}
+.is-vertical .lineContainer {
+	flex-direction: column;
+	grid-column: chart;
+}
+.is-vertical .lineContainer > svg {
+	overflow: visible clip;
+}
+.is-vertical .lineContainer .linePoint {
+	left: calc(var(--value) / var(--total, 1) * 100%);
+}
+
+.line,
+.lineBorder,
+.lineShade {
 	fill: none;
-	stroke: var(--builders-chart-color);
+	stroke: var(--mtdsc-chart-color);
 	stroke-linejoin: round;
 	stroke-linecap: round;
 	stroke-width: 3;
 	vector-effect: non-scaling-stroke;
 }
-.old-line {
-	fill: none !important;
-} /* Use !important as fill should always be drawn by .old-lineShade */
-.old-lineBorder {
-	stroke-width: 5;
-	stroke: var(--builders-chart-border-color);
+.line.line {
+	/* fill: none; /* Use double selector as fill should always be drawn by .lineShade */
 }
-.old-lineShade {
+.lineBorder {
+	/* stroke-width: 5;
+	stroke: var(--mtdsc-chart-border-color); */
+}
+.lineShade {
 	stroke: none;
-	fill: var(--builders-chart-color);
+	fill: var(--mtdsc-chart-color);
 	opacity: 0.15;
 }
-.old-linePoint {
+.linePoint {
 	--size: 0.625rem; /* 10px */
-	background-color: var(--builders-chart-color);
-	border-radius: var(--builders-radius-full);
-	border: 1px solid var(--builders-chart-border-color);
+	background-color: var(--mtdsc-chart-color);
+	border-radius: var(--ds-border-radius-full);
+	/* border: 1px solid var(--mtdsc-chart-border-color); */
 	box-sizing: border-box;
 	margin: calc(var(--size) / -2);
+	padding: 0;
 	pointer-events: all;
 	position: relative;
-	transition: scale var(--builders-transition-duration);
+	transition: scale 0.2s;
 	width: var(--size);
 	height: var(--size);
 	z-index: 2;
-	&[hidden] {
-		display: block;
-		visibility: hidden;
-	} /* All dots need to render to make parent display: flex work, so instead hide visibility */
-	&:focus-visible,
-	&:hover {
-		scale: 1.3;
-	}
-	&::before {
-		content: "";
-		inset: calc(var(--builders-unit-25) * -1);
-		position: absolute;
-	} /* Increase click surface */
 }
-
-.old-bubbles {
-	font-family: var(--builders-font-display);
-	text-align: center;
-	white-space: nowrap;
+.linePoint[hidden] {
+	display: block;
+	visibility: hidden;
+} /* All dots need to render to make parent display: flex work, so instead hide visibility */
+.linePoint:focus-visible,
+.linePoint:hover {
+	scale: 1.3;
 }
-.old-bubble {
-	--gap: var(--builders-unit-15);
-	align-items: center;
-	background-color: var(--builders-chart-color);
-	border-radius: var(--builders-radius-full);
-	border: 1px solid var(--builders-chart-border-color);
-	color: var(--builders-chart-color-text);
-	display: flex;
-	justify-content: center;
+.linePoint::before {
+	content: "";
+	inset: calc(var(--ds-size-2) * -1); /* Increase click surface */
 	position: absolute;
-	text-decoration: none !important; /* Overwrite <Tooltip> */
-	transition: scale var(--builders-transition-duration);
-	translate: -50% -50%;
-	&:focus-visible,
-	&:hover {
-		scale: 1.05;
-		z-index: 2;
-	}
 }
 
-.old-doughnut {
-	aspect-ratio: var(--builders-chart-aspect);
-	& > svg {
-		width: 100%;
-		height: 100%;
-		overflow: visible;
-	} /* Allow paintint stroke outside <svg> */
-}
-.old-doughnutSlice {
-	cursor: pointer;
-	fill: var(--builders-chart-color);
-	outline: none;
-	stroke: var(--builders-chart-border-color);
-	transform-origin: center;
-	transition: scale var(--builders-transition-duration);
-	vector-effect: non-scaling-stroke;
-	&:focus-visible,
-	&:hover {
-		scale: 1.05;
-	}
-	&:focus-visible {
-		stroke: var(--builders-color-purple-700);
-		stroke-width: 3;
-	}
-}
-
-.old-percentage > div {
-	--square: 10;
-	--gap: 4%;
+.legends {
+	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--gap);
-}
-.old-percentageDot {
-	--size: calc((100% - (var(--square) - 1) * var(--gap)) / var(--square)); /* Find  size based on square items minus gaps */
-	box-sizing: border-box;
-	border-radius: var(--builders-radius-full);
-	border: 1px solid var(--builders-chart-border-color);
-	width: var(--size);
-	height: var(--size);
-}
-.old-percentageFill {
-	background-color: var(
-		--builders-chart-color-single,
-		var(--builders-color-purple-700)
-	);
+	gap: var(--ds-size-6);
+	justify-content: center;
+	margin-top: var(--ds-size-6);
 }
 
-.old-legend::before {
-	background-color: var(--builders-chart-color);
-	border-radius: var(--builders-radius-full);
-	border: 1px solid var(--builders-chart-border-color);
+.legend {
+	display: flex;
+	align-items: center;
+	gap: var(--ds-size-2);
+}
+.legend::before {
+	background-color: var(--mtdsc-chart-color);
+	border-radius: var(--ds-border-radius-full);
+	/* border: 1px solid var(--mtdsc-chart-border-color); */
 	box-sizing: border-box;
 	content: "";
 	display: inline-block;
 	vertical-align: middle;
-	margin: 0 4px 4px 0;
-	width: var(--builders-unit-20);
-	height: var(--builders-unit-20);
+	width: var(--ds-size-6);
+	height: var(--ds-size-6);
 }

@@ -1,7 +1,12 @@
 @layer mt.design {
 	.heading {
 		composes: ds-heading from "@digdir/designsystemet-css";
+		--mtdsc-heading-gap: var(--ds-size-2);
 
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--mtdsc-heading-gap);
 		scroll-margin-block: 4em; /* Ensure scrolling to headings still have some comfortable spacing above */
 		text-wrap: pretty;
 	}
@@ -34,9 +39,10 @@
 		--mtdsc-info-icon-size: 1em;
 		--mtdsc-info-circle-gap: var(--ds-size-3);
 		--mtdsc-info-circle-size: var(--ds-size-10);
+		--mtdsc-info-line-height: var(--ds-line-height-sm);
 		--_mtdsc-info-lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
-		line-height: var(--ds-heading-md-line-height);
+		line-height: var(--mtdsc-info-line-height);
 	}
 	.info:not([hidden]),
 	.info strong:not([hidden]) {
@@ -87,20 +93,9 @@
 	/**
 	 * Prose
 	 */
-	[data-size="sm"] {
-		--mtdsc-prose-size: var(--ds-body-sm-font-size); /* TMP fix to get data-size down cascading */
-	}
-	body,
-	[data-size="md"] {
-		--mtdsc-prose-size: var(--ds-body-md-font-size);
-	}
-	[data-size="lg"] {
-		--mtdsc-prose-size: var(--ds-body-lg-font-size);
-	}
-
 	.prose {
 		--mtdsc-prose-spacing: 1em;
-		--mtdsc-prose-max-width: calc(var(--mtdsc-prose-size) * 40);
+		--mtdsc-prose-max-width: 45rem;
 	}
 	.prose[data-justify="start"] {
 		text-align: start;

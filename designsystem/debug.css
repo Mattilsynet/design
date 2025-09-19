@@ -18,7 +18,6 @@ img:not([alt]) {
 
 /* highlight on links without valid href attribute */
 a:not([href]),
-a[href="#"],
 a[href=""],
 a[href*="javascript:void(0)"] {
 	--note: "<a> is missing a valid href attribute";

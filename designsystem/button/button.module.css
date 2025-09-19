@@ -31,10 +31,12 @@
 		--dsc-button-background: var(--ds-color-surface-tinted);
 		font-weight: 700;
 	}
-	.button[data-justify="start"] {
+	.button[data-justify="start"],
+	.button[data-justify="left"] {
 		justify-content: start;
 		text-align: start;
 	}
+	.button[data-justify="right"],
 	.button[data-justify="end"] {
 		justify-content: end;
 		text-align: end;

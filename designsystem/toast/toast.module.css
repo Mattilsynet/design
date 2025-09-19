@@ -1,27 +1,124 @@
 @layer mt.design {
 	.toast {
+		--mtdsc-toast-animation-duration: 300ms;
+		--mtdsc-toast-background: var(--ds-color-surface-tinted);
+		--mtdsc-toast-close-size: var(--mtds-icon-size);
+		--mtdsc-toast-color: var(--ds-color-text-default);
+		--mtdsc-toast-gap: var(--ds-size-2);
+		--mtdsc-toast-inset: var(--ds-size-6);
+		--mtdsc-toast-max-width: 40ch;
 		--mtdsc-toast-padding: var(--ds-size-3);
+		--mtdsc-toast-transform-close: translateY(calc(var(--ds-size-2) * -1));
+		--mtdsc-toast-transform-open: translateY(var(--ds-size-6)) scale(0.5);
+		--mtdsc-toast-timeout: 3000ms;
 
-		animation: _toast 0.3s ease-out forwards;
-		background: var(--ds-color-main-base-default);
+		transition:
+			display 1s allow-discrete,
+			translate 0.5s;
+		animation: _toastClose var(--mtdsc-toast-animation-duration) ease-out
+			forwards;
+		background: var(--mtdsc-toast-background);
 		border-radius: var(--ds-border-radius-md);
-		border: 0;
-		box-shadow: var(--ds-shadow-lg);
+		border: 1px solid var(--ds-color-border-subtle);
+		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 		box-sizing: border-box;
-		color: var(--ds-color-main-base-contrast-default);
+		color: var(--mtdsc-toast-color);
 		font-size: var(--ds-font-size-minus-1);
+		display: flex;
+		gap: var(--mtdsc-toast-gap);
+		align-items: start;
 		inset: 0 0 auto auto;
-		margin: var(--ds-size-6);
-		max-width: 40ch;
+		margin: var(--mtdsc-toast-inset);
+		max-width: var(--mtdsc-toast-max-width);
+		outline: 0;
 		padding: var(--mtdsc-toast-padding);
-		position: absolute;
+		position: fixed;
 		z-index: 99999;
 	}
+	.toast[open] {
+		animation:
+			_toastOpen var(--mtdsc-toast-animation-duration) ease-out forwards,
+			_toastTimeout 1ms var(--mtdsc-toast-timeout) forwards;
+	}
+	.toast[data-timeout="false"],
+	.toast[data-timeout="none"],
+	.toast[aria-busy="true"],
+	.toast[open]:hover {
+		animation-play-state: running, paused; /* Pause timeout on :hover */
+	}
 
-	@keyframes _toast {
+	/**
+	 * Close button
+	 */
+	.toast:not([data-closedby="none"], [aria-busy="true"])::after {
+		background: currentcolor;
+		content: var(--mtds-text-close);
+		cursor: pointer;
+		flex-shrink: 0;
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat var(--mtds-icon-close) content-box;
+		width: var(--mtds-icon-size);
+	}
+
+	/**
+	 * Busy
+	 */
+	.toast::before {
+		background: currentcolor;
+		display: inline-block;
+		flex-shrink: 0;
+		height: var(--mtds-icon-size);
+		mask: center / contain no-repeat;
+		overflow: clip;
+		text-align: center;
+		vertical-align: middle;
+		white-space: nowrap;
+		width: var(--mtds-icon-size);
+	}
+	.toast[aria-busy="true"]::before {
+		content: var(--mtds-text-loading);
+		mask-image: var(--mtds-icon-spinner);
+	}
+
+	/**
+	 * Colors
+	 */
+	.toast[data-color="success"]::before {
+		content: "";
+		mask-image: var(--mtds-icon-success);
+	}
+	.toast[data-color="warning"]::before {
+		content: "";
+		mask-image: var(--mtds-icon-warning);
+	}
+	.toast[data-color="danger"]::before {
+		content: "";
+		mask-image: var(--mtds-icon-danger);
+	}
+	.toast[data-color="info"]::before {
+		content: "";
+		mask-image: var(--mtds-icon-info);
+	}
+	.toast[data-icon="none"],
+	.toast[data-icon="false"]::before {
+		display: none;
+	}
+
+	@keyframes _toastOpen {
 		from {
 			opacity: 0;
-			translate: 0 -1rem;
+			transform: var(--mtdsc-toast-transform-open);
+		}
+	}
+	@keyframes _toastTimeout {
+		to {
+			scale: 1; /* Need a animation not doing anything, with a different name than _toastClose, to ensure all animations play out nicely */
+		}
+	}
+	@keyframes _toastClose {
+		to {
+			opacity: 0;
+			transform: var(--mtdsc-toast-transform-close);
 		}
 	}
 }

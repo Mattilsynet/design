@@ -63,7 +63,7 @@
 	.alert > * + * {
 		margin-top: 1em;
 	}
-	.alert > :is(h2, h3, h3, h4):first-child {
+	.alert > :is(h2, h3, h3, h4):not([data-size]):first-child {
 		font-size: var(--ds-heading-2xs-font-size);
 		letter-spacing: var(--ds-heading-2xs-letter-spacing);
 		line-height: var(--ds-heading-2xs-line-height);
