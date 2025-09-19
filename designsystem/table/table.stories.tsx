@@ -248,7 +248,6 @@ export const HeadingsSimple: Story = {
 
 export const HeadingsTanstack: Story = {
 	render: function Render(args) {
-		const isNumeric = ["age", "visits", "date"];
 		const columns: ColumnDef<RowType>[] = useMemo(
 			() => [
 				{
@@ -299,11 +298,7 @@ export const HeadingsTanstack: Story = {
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
 							{headers.map((header) => (
-								<th
-									key={header.id}
-									colSpan={header.colSpan}
-									data-numeric={isNumeric.includes(header.id)}
-								>
+								<th key={header.id} colSpan={header.colSpan}>
 									{header.isPlaceholder ||
 										flexRender(
 											header.column.columnDef.header,
@@ -318,12 +313,7 @@ export const HeadingsTanstack: Story = {
 					{table.getRowModel().rows.map((row) => (
 						<tr key={row.id}>
 							{row.getVisibleCells().map((cell) => (
-								<td
-									key={cell.id}
-									data-numeric={isNumeric.includes(cell.column.id)}
-								>
-									{cell.getValue() as React.ReactNode}
-								</td>
+								<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
 							))}
 						</tr>
 					))}
@@ -409,7 +399,6 @@ export const SortableSimple: Story = {
 export const SortableTanstack: Story = {
 	render: function Render(args) {
 		const [sorting, setSorting] = useState<SortingState>([]);
-		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			getSortedRowModel: getSortedRowModel(),
@@ -428,7 +417,6 @@ export const SortableTanstack: Story = {
 								<Table.ThSortable
 									key={header.id}
 									colSpan={header.colSpan}
-									data-numeric={isNumeric.includes(header.id)}
 									aria-sort={header.column.getIsSorted()}
 									onClick={header.column.getToggleSortingHandler()}
 								>
@@ -445,12 +433,7 @@ export const SortableTanstack: Story = {
 					{table.getRowModel().rows.map((row) => (
 						<tr key={row.id}>
 							{row.getVisibleCells().map((cell) => (
-								<td
-									key={cell.id}
-									data-numeric={isNumeric.includes(cell.column.id)}
-								>
-									{cell.getValue() as React.ReactNode}
-								</td>
+								<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
 							))}
 						</tr>
 					))}
@@ -551,7 +534,6 @@ export const PaginatableSimple: Story = {
 
 export const PaginatableTanstack: Story = {
 	render: function Render(args) {
-		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			getPaginationRowModel: getPaginationRowModel(),
@@ -572,11 +554,7 @@ export const PaginatableTanstack: Story = {
 						{table.getHeaderGroups().map(({ id, headers }) => (
 							<tr key={id}>
 								{headers.map((header) => (
-									<th
-										key={header.id}
-										colSpan={header.colSpan}
-										data-numeric={isNumeric.includes(header.id)}
-									>
+									<th key={header.id} colSpan={header.colSpan}>
 										{flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
@@ -590,12 +568,7 @@ export const PaginatableTanstack: Story = {
 						{table.getRowModel().rows.map((row) => (
 							<tr key={row.id}>
 								{row.getVisibleCells().map((cell) => (
-									<td
-										key={cell.id}
-										data-numeric={isNumeric.includes(cell.column.id)}
-									>
-										{cell.getValue() as React.ReactNode}
-									</td>
+									<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
 								))}
 							</tr>
 						))}
@@ -698,7 +671,6 @@ export const SearchableSimple: Story = {
 export const SearchableTanstack: Story = {
 	render: function Render(args) {
 		const [search, setSearch] = useState("");
-		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			getFilteredRowModel: getFilteredRowModel(),
@@ -722,11 +694,7 @@ export const SearchableTanstack: Story = {
 						{table.getHeaderGroups().map(({ id, headers }) => (
 							<tr key={id}>
 								{headers.map((header) => (
-									<th
-										key={header.id}
-										colSpan={header.colSpan}
-										data-numeric={isNumeric.includes(header.id)}
-									>
+									<th key={header.id} colSpan={header.colSpan}>
 										{flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
@@ -740,12 +708,7 @@ export const SearchableTanstack: Story = {
 						{table.getRowModel().rows.map((row) => (
 							<tr key={row.id}>
 								{row.getVisibleCells().map((cell) => (
-									<td
-										key={cell.id}
-										data-numeric={isNumeric.includes(cell.column.id)}
-									>
-										{cell.getValue() as React.ReactNode}
-									</td>
+									<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
 								))}
 							</tr>
 						))}
@@ -814,7 +777,6 @@ export const ExpandableSimple: Story = {
 export const ExpandableTanstack: Story = {
 	render: function Render(args) {
 		const [expanded, setExpanded] = useState<ExpandedState>({});
-		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			onExpandedChange: setExpanded,
@@ -829,11 +791,7 @@ export const ExpandableTanstack: Story = {
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
 							{headers.map((header) => (
-								<th
-									key={header.id}
-									colSpan={header.colSpan}
-									data-numeric={isNumeric.includes(header.id)}
-								>
+								<th key={header.id} colSpan={header.colSpan}>
 									{flexRender(
 										header.column.columnDef.header,
 										header.getContext(),
@@ -848,10 +806,7 @@ export const ExpandableTanstack: Story = {
 						<Fragment key={row.id}>
 							<tr>
 								{row.getVisibleCells().map((cell, cellIndex) => (
-									<td
-										key={cell.id}
-										data-numeric={isNumeric.includes(cell.column.id)}
-									>
+									<td key={cell.id}>
 										{cellIndex === 0 ? (
 											<Button
 												aria-expanded={row.getIsExpanded()}
@@ -907,7 +862,11 @@ export const CheckableSimple: Story = {
 										row[key]
 									) : (
 										<div className={styles.field}>
-											<input className={styles.input} type="checkbox" />
+											<input
+												className={styles.input}
+												type="checkbox"
+												data-command="row"
+											/>
 											<label>{row[key]}</label>
 										</div>
 									)}
@@ -923,7 +882,6 @@ export const CheckableSimple: Story = {
 
 export const CheckableTanstack: Story = {
 	render: function Render(args) {
-		const isNumeric = ["age", "visits"];
 		const table = useReactTable({
 			getCoreRowModel: getCoreRowModel(),
 			data: mockData,
@@ -936,11 +894,7 @@ export const CheckableTanstack: Story = {
 					{table.getHeaderGroups().map(({ id, headers }) => (
 						<tr key={id}>
 							{headers.map((header) => (
-								<th
-									key={header.id}
-									colSpan={header.colSpan}
-									data-numeric={isNumeric.includes(header.id)}
-								>
+								<th key={header.id} colSpan={header.colSpan}>
 									{header.isPlaceholder ||
 										flexRender(
 											header.column.columnDef.header,
@@ -955,10 +909,7 @@ export const CheckableTanstack: Story = {
 					{table.getRowModel().rows.map((row) => (
 						<tr key={row.id}>
 							{row.getVisibleCells().map((cell, index) => (
-								<td
-									key={cell.id}
-									data-numeric={isNumeric.includes(cell.column.id)}
-								>
+								<td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)
 									) : (
@@ -969,6 +920,119 @@ export const CheckableTanstack: Story = {
 											onChange={row.getToggleSelectedHandler()}
 											label={cell.getValue() as React.ReactNode}
 										/>
+									)}
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</Table>
+		);
+	},
+};
+
+export const ClickableSimple: Story = {
+	render: () => (
+		<table
+			className={styles.table}
+			data-fixed
+			aria-label="Table with clickable rows"
+		>
+			<thead>
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+					<th>Age</th>
+					<th>Visits</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<button
+							data-command="row"
+							type="button"
+							onClick={() => alert("clicked row 1")}
+						>
+							Antoni
+						</button>
+					</td>
+					<td>Foyston</td>
+					<td>74</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<td>
+						<button
+							data-command="row"
+							type="button"
+							onClick={() => alert("clicked row 2")}
+						>
+							Jenine
+						</button>
+					</td>
+					<td>Healey</td>
+					<td>22</td>
+					<td>194</td>
+				</tr>
+				<tr>
+					<td>
+						<button
+							data-command="row"
+							type="button"
+							onClick={() => alert("clicked row 3")}
+						>
+							Leigh
+						</button>
+					</td>
+					<td>Klein</td>
+					<td>26</td>
+					<td>114</td>
+				</tr>
+			</tbody>
+		</table>
+	),
+};
+
+export const ClickableTanstack: Story = {
+	render: function Render(args) {
+		const table = useReactTable({
+			getCoreRowModel: getCoreRowModel(),
+			data: mockData,
+			columns: mockColumns,
+		});
+
+		return (
+			<Table aria-label="Checkable Tanstack table" {...args}>
+				<thead>
+					{table.getHeaderGroups().map(({ id, headers }) => (
+						<tr key={id}>
+							{headers.map((header) => (
+								<th key={header.id} colSpan={header.colSpan}>
+									{header.isPlaceholder ||
+										flexRender(
+											header.column.columnDef.header,
+											header.getContext(),
+										)}
+								</th>
+							))}
+						</tr>
+					))}
+				</thead>
+				<tbody>
+					{table.getRowModel().rows.map((row, rowIndex) => (
+						<tr key={row.id}>
+							{row.getVisibleCells().map((cell, index) => (
+								<td key={cell.id}>
+									{index ? (
+										(cell.getValue() as React.ReactNode)
+									) : (
+										<Button
+											data-command="row"
+											onClick={() => alert(`clicked row ${rowIndex + 1}`)}
+										>
+											{cell.getValue() as React.ReactNode}
+										</Button>
 									)}
 								</td>
 							))}
@@ -1021,7 +1085,7 @@ export const WithHorizontalTitles: Story = {
 	),
 };
 
-export const FixedWidths: Story = {
+export const WithFixedWidths: Story = {
 	render: () => (
 		<table
 			className={styles.table}
@@ -1066,7 +1130,7 @@ export const FixedWidths: Story = {
 	),
 };
 
-export const Align: Story = {
+export const WithAlign: Story = {
 	render: () => (
 		<div className={styles.grid}>
 			<code>data-align="start":</code>
@@ -1136,7 +1200,7 @@ export const Align: Story = {
 	),
 };
 
-export const NumericValues: Story = {
+export const WithNumericValues: Story = {
 	render: () => (
 		<table className={styles.table} aria-label="Table with numeric values">
 			<thead>
@@ -1308,109 +1372,71 @@ export const WithoutBorders: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<table data-size="sm" className={styles.table} aria-label="Small table">
-			<thead>
-				<tr>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Age</th>
-					<th>Visits</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Antoni</td>
-					<td>Foyston</td>
-					<td>74</td>
-					<td>128</td>
-				</tr>
-				<tr>
-					<td>Jenine</td>
-					<td>Healey</td>
-					<td>22</td>
-					<td>194</td>
-				</tr>
-				<tr>
-					<td>Leigh</td>
-					<td>Klein</td>
-					<td>26</td>
-					<td>114</td>
-				</tr>
-				<tr>
-					<td>Zara</td>
-					<td>Greenrodd</td>
-					<td>28</td>
-					<td>36</td>
-				</tr>
-			</tbody>
-		</table>
-	),
-};
-
-export const Checkbox: Story = {
-	tags: ["!dev"],
-	render: () => (
-		<table className={styles.table} aria-label="Small table">
-			<thead>
-				<tr>
-					<th>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>First name</label>
-						</div>
-					</th>
-					<th>Last name</th>
-					<th>Age</th>
-					<th>Visits</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Antoni</label>
-						</div>
-					</td>
-					<td>Foyston</td>
-					<td>74</td>
-					<td>128</td>
-				</tr>
-				<tr>
-					<td>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Jenine</label>
-						</div>
-					</td>
-					<td>Healey</td>
-					<td>22</td>
-					<td>194</td>
-				</tr>
-				<tr>
-					<td>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Leigh</label>
-						</div>
-					</td>
-					<td>Klein</td>
-					<td>26</td>
-					<td>114</td>
-				</tr>
-				<tr>
-					<td>
-						<div className={styles.field}>
-							<input type="checkbox" className={styles.input} />
-							<label>Zara</label>
-						</div>
-					</td>
-					<td>Greenrodd</td>
-					<td>28</td>
-					<td>36</td>
-				</tr>
-			</tbody>
-		</table>
+		<>
+			<table
+				data-fixed
+				data-size="sm"
+				className={styles.table}
+				aria-label="Small table"
+			>
+				<thead>
+					<tr>
+						<th>Size</th>
+						<th>Attr</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Small</td>
+						<td>
+							<code>data-size="sm"</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table
+				data-fixed
+				data-size="md"
+				className={styles.table}
+				aria-label="Small table"
+			>
+				<thead>
+					<tr>
+						<th>Size</th>
+						<th>Attr</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Medium</td>
+						<td>
+							<code>data-size="md"</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table
+				data-fixed
+				data-size="lg"
+				className={styles.table}
+				aria-label="Small table"
+			>
+				<thead>
+					<tr>
+						<th>Size</th>
+						<th>Attr</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Large</td>
+						<td>
+							<code>data-size="lg"</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</>
 	),
 };
 

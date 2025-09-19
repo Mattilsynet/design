@@ -112,9 +112,7 @@ export const onLoaded = (callback: () => void) => {
 	const run = () =>
 		requestAnimationFrame(() => {
 			const key = String(callback).replace(/(\n|\s)/g, "");
-			window._mtdsUnbindEvents?.get(key)?.forEach((unbind) => {
-				unbind(); // Unbind previous events
-			});
+			window._mtdsUnbindEvents?.get(key)?.map((unbind) => unbind()); // Unbind previous events
 			UNBIND = []; // Prepare to listen for newly bound events
 			callback(); // Run binding
 			window._mtdsUnbindEvents?.set(key, UNBIND?.slice(0)); // Store for later unbinding
@@ -233,16 +231,4 @@ export const toCustomElementProps = (
 	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;
-};
-
-export const MTDSElement =
-	typeof HTMLElement === "undefined"
-		? (class {} as typeof HTMLElement)
-		: HTMLElement;
-
-export const customElements = {
-	define: (name: string, instance: CustomElementConstructor) =>
-		!IS_BROWSER ||
-		window.customElements.get(name) ||
-		window.customElements.define(name, instance),
 };

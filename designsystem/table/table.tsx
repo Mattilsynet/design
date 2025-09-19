@@ -13,7 +13,7 @@ export type ThSortableProps = Omit<
 	React.ComponentPropsWithoutRef<"th">,
 	"aria-sort" | "onClick"
 > & {
-	onClick: React.ComponentPropsWithoutRef<"button">["onClick"];
+	onClick?: React.ComponentPropsWithoutRef<"button">["onClick"];
 	"aria-sort"?:
 		| ""
 		| "acending"

@@ -474,6 +474,7 @@ export const WithInteraction: Story = {
 };
 
 export const Timeline: Story = {
+	parameters: { showInOverview: true },
 	render: () => (
 		<ol className={styles.steps} data-direction="up">
 			<li data-color="main">

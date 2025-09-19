@@ -2,10 +2,12 @@ import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { Example, CssVariables } from '../../.storybook/blocks';
 import * as stories from './chart.stories';
 
-<Meta of={stories} />
+<Meta of={stories} isTemplate />
 
 # Chart
 
 ## Kode
-- Bruk klassen `chip` på `<mtds-chart>`
+- Bruk elementet `<mtds-chart>`
 <Canvas of={stories.Default} />
+
+<CssVariables component="chart" />

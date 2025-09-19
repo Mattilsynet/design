@@ -2,6 +2,7 @@ import styles from "../styles.module.css";
 import { attr, IS_BROWSER, on, onLoaded, QUICK_EVENT } from "../utils";
 
 const CSS_BREADCRUMBS = `.${styles.breadcrumbs.split(" ")[0]}`;
+const CSS_CARD = `.${styles.card.split(" ")[0]}`;
 const CSS_CHIP = `.${styles.chip.split(" ")[0]}`;
 const CSS_HELPTEXT = `.${styles.helptext.split(" ")[0]}`;
 const CSS_PAGINATION = `.${styles.pagination.split(" ")[0]}`;
@@ -219,6 +220,9 @@ function processTrack({ type, target }: Event) {
 	} else if (el.closest(CSS_PAGINATION)) {
 		category = "Pagintation";
 		action = "navigate";
+	} else if (el.closest(CSS_CARD)) {
+		category = "Card";
+		action = el instanceof HTMLAnchorElement ? "navigate" : "click";
 	} else if (el.closest(CSS_CHIP)) {
 		category = "Chip";
 		action = el.hasAttribute("data-removable") ? "remove" : "click";

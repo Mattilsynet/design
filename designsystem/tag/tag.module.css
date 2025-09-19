@@ -8,28 +8,14 @@
 		--mtdsc-tag-gap: var(--ds-size-1);
 		--mtdsc-tag-min-height: var(--ds-size-7);
 
-		/* TMP fix to scale down text, but keep --ds-size scale */
-		--_mtdsc-tag-zoom: 0.88;
-		--_mtdsc-tag-unzoom: 1 / var(--_mtdsc-tag-zoom);
 		border-radius: var(--mtdsc-tag-border-radius);
 		border: var(--mtdsc-tag-border-width) var(--mtdsc-tag-border-solid)
 			var(--ds-color-border-subtle);
-		font-size: calc(1em * var(--_mtdsc-tag-zoom));
-		min-height: calc(var(--mtdsc-tag-min-height) * var(--_mtdsc-tag-unzoom));
+		font-size: var(--ds-body-sm-font-size);
 		font-weight: normal;
 		flex-shrink: 0; /* If placed in display: flex */
 		font-variant-numeric: tabular-nums;
-		gap: calc(var(--mtdsc-tag-gap) * var(--_mtdsc-tag-unzoom));
-	}
-	.tag[data-size="xs"],
-	.tag[data-size="sm"] {
-		font-size: calc(var(--ds-body-sm-font-size) * var(--_mtdsc-tag-zoom));
-	}
-	.tag[data-size="md"] {
-		font-size: calc(var(--ds-body-md-font-size) * var(--_mtdsc-tag-zoom));
-	}
-	.tag[data-size="lg"] {
-		font-size: calc(var(--ds-body-lg-font-size) * var(--_mtdsc-tag-zoom));
+		gap: var(--mtdsc-tag-gap);
 	}
 
 	/**

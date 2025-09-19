@@ -3,12 +3,11 @@ import styles from "../styles.module.css";
 import { anchorPosition, attr, on, onLoaded, QUICK_EVENT } from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
-let OPEN_POPOVERS = 0; // Speed up by only checking clicks if we have open popovers
+const CSS_AUTO = `_mtds-popover-auto`;
 
-function handlePopoverToggle({
-	target: el,
-	newState,
-}: Event & { newState?: string }) {
+type EventToggle = Event & Partial<ToggleEvent>;
+
+function handlePopoverToggle({ target: el, newState }: EventToggle) {
 	if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
 		const isClosing = newState === "closed";
 		const isContain = attr(el, "data-overscroll") === "contain";
@@ -16,7 +15,6 @@ function handlePopoverToggle({
 			`[popovertarget="${el.id}"]`,
 		);
 
-		OPEN_POPOVERS += isClosing ? -1 : 1;
 		if (isClosing) anchorPosition(el, false);
 		else if (anchor)
 			anchorPosition(el, anchor, {
@@ -35,26 +33,42 @@ function handlePopoverToggle({
 	}
 }
 
+function handlePopoverBeforetoggle({ target: el, newState }: EventToggle) {
+	if (
+		newState === "open" &&
+		el instanceof HTMLElement &&
+		el.classList.contains(CSS_POPOVER) &&
+		attr(el, "popover") !== "manual"
+	) {
+		el.classList.add(CSS_AUTO);
+		attr(el, "popover", "manual"); // Make manual to prevent closing when clicking scrollbar
+	}
+}
+
 // Polyfill popovertarget for <a> (not supported by native)
 // and automatically assume popovertarget is the closest parent popover
 // but respect the popovertarget and popovertargetaction attribute
 function handlePopoverLinkClick({ target }: Event) {
-	const close =
-		OPEN_POPOVERS && (target as Element)?.closest?.("a,[popovertargetaction]");
+	const el = (target as Element)?.closest?.("a,[popovertargetaction]");
+	const id = el && attr(el, "popovertarget");
+	const pop = id ? document.getElementById(id) : el?.closest(`.${CSS_POPOVER}`);
 
-	if (close) {
-		const action = attr(close, "popovertargetaction") || "toggle";
+	// Manually close popovers where click was outside
+	for (const el of document.getElementsByClassName(CSS_AUTO))
+		el.contains(target as Node) || (el as HTMLElement).hidePopover();
+
+	if (pop && el) {
+		const action = attr(el, "popovertargetaction") || "toggle";
 		const open = action === "show" || (action === "hide" ? false : undefined);
-		const target = document.getElementById(attr(close, "popovertarget") || "");
-		const popover = (target || close).closest<HTMLElement>(`.${CSS_POPOVER}`);
 
 		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
-		if (popover?.isConnected && popover?.togglePopover)
-			popover.togglePopover(open);
+		if (pop instanceof HTMLElement && pop.isConnected && pop.togglePopover)
+			pop.togglePopover(open);
 	}
 }
 
 onLoaded(() => {
-	on(document, "toggle", handlePopoverToggle, QUICK_EVENT); // Use capture since toggle does not bubble
 	on(document, "click", handlePopoverLinkClick); // Allow `<a>` to use `popovertarget` as well
+	on(document, "toggle", handlePopoverToggle, QUICK_EVENT); // Use capture since toggle does not bubble
+	on(document, "beforetoggle", handlePopoverBeforetoggle, QUICK_EVENT); // Use capture since toggle does not bubble
 });

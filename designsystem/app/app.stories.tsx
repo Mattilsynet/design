@@ -34,7 +34,7 @@ const meta = {
 			<>
 				<style>
 					{
-						"body:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }"
+						"body:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) } img { display: block }"
 					}
 				</style>
 				<Story />

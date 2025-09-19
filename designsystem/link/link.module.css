@@ -27,7 +27,7 @@
 		}
 
 		&:not([data-size]) {
-			font-size: inherit;
+			font-size: inherit; /* Needed if <button> */
 		}
 
 		& > svg {

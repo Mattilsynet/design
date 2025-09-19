@@ -1,4 +1,3 @@
-/* This file is deprecated and will be removed in a future release. Use types.d.ts instead */
 /* build: v1.5.1 */
 import type {} from '@digdir/designsystemet/types';
 
