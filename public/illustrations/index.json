@@ -126,6 +126,18 @@
 		"categories": ["Kosmetikk"],
 		"tags": ["tube", "håndkrem", "ansiktskrem", "hudkrem", "hudpleieprodukt"]
 	},
+	"supplement-jar.svg": {
+		"categories": ["Kosttilskudd"],
+		"tags": ["krukke", "glass", "kosttilskudd", "burk"]
+	},
+	"supplement-tube.svg": {
+		"categories": ["Kosttilskudd"],
+		"tags": ["tube", "glass", "kosttilskudd", "reagensrør"]
+	},
+	"supplement-group.svg": {
+		"categories": ["Kosttilskudd"],
+		"tags": ["tube", "krukke", "bruk", "glass", "kosttilskudd", "reagensrør"]
+	},
 	"apple-cup.svg": {
 		"categories": ["Mat"],
 		"tags": ["eple", "kaffekopp", "te", "frukt", "drikke"]
@@ -455,6 +467,14 @@
 	"pitchfork.svg": {
 		"categories": ["Utstyr"],
 		"tags": ["høygaffel", "gårdsdrift", "bondegård"]
+	},
+	"bucket.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["bøtte", "gårdsdrift", "bondegård"]
+	},
+	"bucket-feed.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["bøtte", "for", "mat", "gårdsdrift", "bondegård"]
 	},
 	"heart-cat.svg": {
 		"categories": ["Dyr"],

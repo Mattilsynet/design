@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { analytics } from "../designsystem"; // Load JS functionaility
 import styles from "../designsystem/styles.module.css";
 import "./preview.css";
-// import { transformSource } from "./transformSource";
 
 const CSS_ALERT = styles.alert.split(" ");
 const CSS_TABLE = styles.table.split(" ");
@@ -50,22 +49,6 @@ function useTheme() {
 if (typeof window !== "undefined") urlTheme();
 
 export default {
-	// globalTypes: {
-	// 	codePreview: {
-	// 		description: '"Show code" will output the selected format',
-	// 		toolbar: {
-	// 			icon: "markup",
-	// 			items: [
-	// 				{ title: "HTML", value: "html" },
-	// 				{ title: "React", value: "react" },
-	// 			],
-	// 			dynamicTitle: true,
-	// 		},
-	// 	},
-	// },
-	// initialGlobals: {
-	// 	codePreview: "react",
-	// },
 	decorators: [
 		(Story) => {
 			useTheme();
@@ -92,10 +75,6 @@ export default {
 			expanded: false,
 		},
 		docs: {
-			// source: {
-			// 	transform: () => "",
-			// 	type: "auto",
-			// },
 			canvas: {
 				layout: "centered",
 			},

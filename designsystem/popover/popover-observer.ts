@@ -48,16 +48,20 @@ function handlePopoverBeforetoggle({ target: el, newState }: EventToggle) {
 // Polyfill popovertarget for <a> (not supported by native)
 // and automatically assume popovertarget is the closest parent popover
 // but respect the popovertarget and popovertargetaction attribute
-function handlePopoverLinkClick({ target }: Event) {
-	const el = (target as Element)?.closest?.("a,[popovertargetaction]");
+function handlePopoverLinkClick(event: Event) {
+	const el = (event.target as Element)?.closest?.(
+		"a,button,[popovertargetaction]",
+	);
 	const id = el && attr(el, "popovertarget");
 	const pop = id ? document.getElementById(id) : el?.closest(`.${CSS_POPOVER}`);
 
 	// Manually close popovers where click was outside
-	for (const el of document.getElementsByClassName(CSS_AUTO))
-		el.contains(target as Node) || (el as HTMLElement).hidePopover();
+	for (const open of document.getElementsByClassName(CSS_AUTO))
+		if (!open.contains(event.target as Node) && pop !== open)
+			(open as HTMLElement).hidePopover();
 
 	if (pop && el) {
+		event.preventDefault(); // Prevent browser popover API
 		const action = attr(el, "popovertargetaction") || "toggle";
 		const open = action === "show" || (action === "hide" ? false : undefined);
 
