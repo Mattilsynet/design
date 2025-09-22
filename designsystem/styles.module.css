@@ -200,7 +200,7 @@
 	}
 }
 
-/* TODO: Automate this */
+/* Needed since we add custom colors to our palette, and renames "primary" to "main" */
 @layer ds.theme.color {
 	[data-color="inverted"],
 	[data-color-scheme][data-color="inverted"] {
@@ -226,8 +226,8 @@
 		);
 	}
 	:root,
-	[data-color="main"],
-	[data-color-scheme][data-color="main"] {
+	[data-color-scheme],
+	[data-color="main"] {
 		--ds-color-background-default: var(--ds-color-main-background-default);
 		--ds-color-background-tinted: var(--ds-color-main-background-tinted);
 		--ds-color-surface-default: var(--ds-color-main-surface-default);

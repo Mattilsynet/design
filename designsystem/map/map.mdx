@@ -1,0 +1,16 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Details } from '../react';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import { Flex } from '../react';
+import * as stories from './map.stories';
+import styles from '../styles.module.css';
+
+
+<Meta of={stories} isTemplate />
+
+# Kart
+
+## Kode
+- Vi bruker [OpenLayers](https://openlayers.org/doc/quickstart.html) som kartløsning i Mattilsynet.
+
+<Canvas of={stories.Default} />
