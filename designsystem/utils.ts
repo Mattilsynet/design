@@ -1,4 +1,5 @@
 import { autoUpdate, computePosition } from "@floating-ui/dom";
+import clsx from "clsx";
 
 export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
@@ -227,7 +228,7 @@ export const toCustomElementProps = (
 	rest.suppressHydrationWarning = true; // Make Next.js happy
 	if (rest[SELECTED] !== undefined)
 		rest[SELECTED] = `${(rest[SELECTED] || "false") !== "false"}`; // Ensure aria-selected boolean is string
-	if (className || klass) rest.class = `${klass} ${className}`.trim(); // Use class instead of className
+	if (className || klass) rest.class = clsx(klass, className as string); // Use class instead of className
 	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;
