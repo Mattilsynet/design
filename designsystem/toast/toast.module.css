@@ -20,7 +20,7 @@
 		background: var(--mtdsc-toast-background);
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-subtle);
-		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+		box-shadow: var(--ds-box-shadow-sm);
 		box-sizing: border-box;
 		color: var(--mtdsc-toast-color);
 		font-size: var(--ds-font-size-minus-1);

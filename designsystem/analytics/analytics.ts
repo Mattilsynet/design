@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, on, onLoaded, QUICK_EVENT } from "../utils";
+import { attr, IS_BROWSER, on, onLoaded, QUICK_EVENT, tag } from "../utils";
 
 const CSS_BREADCRUMBS = `.${styles.breadcrumbs.split(" ")[0]}`;
 const CSS_CARD = `.${styles.card.split(" ")[0]}`;
@@ -95,12 +95,7 @@ export function analytics<Action extends keyof AnalyticsActions>(
 				: `https://cdn.matomo.cloud/${MATOMO}/matomo.js`;
 
 			document.querySelector(`script[src="${src}"]`) ||
-				document.head.append(
-					Object.assign(document.createElement("script"), {
-						async: true,
-						src,
-					}),
-				);
+				document.head.append(tag("script", { async: "", src }));
 		}
 	}
 
@@ -192,7 +187,7 @@ function processTrack({ type, target }: Event) {
 		const group =
 			type === "checkbox" || type === "radio" ? el.closest("fieldset") : null;
 
-		category = "Form";
+		category = el.closest(CSS_CHIP) ? "Chip" : "Form";
 		action = "change";
 		name =
 			label(group || el) ||

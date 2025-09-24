@@ -6,15 +6,14 @@
 	 * NOTE3: Global variables used to avoid Next.js hydration conflict
 	 */
 	:root {
-		--mtds-app-expanded: var(--mtds-app-expanded--true); /* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+		/* Cyclic dependency space toggles: https://kizu.dev/cyclic-toggles/ */
+		--mtds-app-expanded: var(--mtds-app-expanded--true);
 		--mtds-app-expanded--false: var(--mtds-app-expanded,);
 		--mtds-app-expanded--true: var(--mtds-app-expanded,);
 	}
 	.app {
 		--mtdsc-app-sidebar-width: 14em; /* Using rem and not -ds-size as we do not want this to be fluid */
 		--mtdsc-app-spacing: var(--ds-size-4);
-		--mtdsc-app-shadow:
-			0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
 		--_mtdsc-app-negative: calc(var(--mtdsc-app-spacing) * -1);
 
 		box-sizing: border-box;
@@ -39,12 +38,13 @@
 	}
 
 	/* Hide relevant child elements with data-expanded attribute */
+	/* Using content-visibility to avoid conflicts with display */
 	.app [data-app-expanded="true"] {
-		visibility: var(--mtds-app-expanded--false, hidden); /* Using content-visibility to avoid conflicts with display */
+		visibility: var(--mtds-app-expanded--false, hidden);
 		position: var(--mtds-app-expanded--false, fixed);
 	}
 	.app [data-app-expanded="false"] {
-		visibility: var(--mtds-app-expanded--true, hidden); /* Using content-visibility to avoid conflicts with display */
+		visibility: var(--mtds-app-expanded--true, hidden);
 		position: var(--mtds-app-expanded--true, fixed);
 	}
 
@@ -56,12 +56,13 @@
 			var(--mtds-app-expanded--false, top);
 
 		bottom: var(--mtdsc-app-spacing);
-		box-shadow: var(--mtdsc-app-shadow);
+		box-shadow: var(--ds-box-shadow-md);
 		flex-direction: var(--mtds-app-expanded--false, column);
 		grid-area: sidebar;
 		height: var(--dsc-button-size);
 		justify-content: start; /* Clip from start */
-		letter-spacing: var(--mtds-app-expanded--false, -1em); /* Compress text when small */
+		/* Compress text when small */
+		letter-spacing: var(--mtds-app-expanded--false, -1em);
 		margin-top: auto; /* Push to bottom */
 		overflow: clip;
 		position: sticky;
@@ -124,15 +125,17 @@
 		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
 			var(--mtds-app-expanded--false, right);
 
+		/* Minus margin on li instead of menu to allow menu to be .sticky */
 		& menu > li {
-			margin-inline: var(--_mtdsc-app-negative); /* Minus margin on li instead of menu to allow menu to be .sticky */
+			margin-inline: var(--_mtdsc-app-negative);
 		}
 		& menu [data-tooltip]::after {
 			content: var(--mtds-app-expanded--true, attr(data-tooltip));
 		}
+		/* Allow right aligned badge when maximized */
 		& menu [data-badge] {
 			--_mtdsc-badge-small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
-			display: var(--mtds-app-expanded--true, contents); /* Allow right aligned badge when maximized */
+			display: var(--mtds-app-expanded--true, contents);
 		}
 		& menu [data-badge]::before {
 			margin-left: auto;
@@ -174,7 +177,9 @@
 
 		/* Force info if not set */
 		&:not([data-color]) {
-			--ds-color-background-default: var(--ds-color-inverted-background-default);
+			--ds-color-background-default: var(
+				--ds-color-inverted-background-default
+			);
 			--ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
 			--ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
 			--ds-color-surface-hover: var(--ds-color-inverted-surface-hover);

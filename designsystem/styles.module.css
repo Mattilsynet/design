@@ -95,6 +95,9 @@
 		--ds-border-width-focus: 2px;
 		--dsc-focus-boxShadow: 0 0 0 var(--ds-border-width-focus)
 			var(--ds-color-focus-inner);
+		
+		--ds-box-shadow-sm: 0 3px 5px rgba(0, 0, 0, 0.1);
+		--ds-box-shadow-md: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
 	}
 
 	/**

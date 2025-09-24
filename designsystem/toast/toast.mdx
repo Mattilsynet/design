@@ -23,12 +23,17 @@ eller krysses ut.
 - Bruk `toast(content, { timeout })` eller `data-timeout` i HTML for å endre timeout
 <Canvas of={stories.WithNoTimeout} />
 
-## Programatisk oppdatering og skjuling
+## Programatisk oppdatering
 - Funksjonen `toast()` returner en `id` som kan brukes for oppdateringer
 - Bruk `toast(content, { id })` for å oppdatere en toast
 <Canvas of={stories.WithLoading} />
 
-## Lukkekruss
+## Lasting / Promise
+- Funksjonen `toast.promise()` kan brukes for å vise lasting, suksess og feil
+- Bruk `toast(promise, { loading, success, error })`
+<Canvas of={stories.WithPromise} />
+
+## Lukkekryss
 - Lukkekryss tegnes automatisk
 - Bruk `toast(content, { closedby: 'none' })` eller `data-closedby="none"` i HTML for å skjule
 - Bruk `data-command="close"` en button inni for egendefinert lukke-knapp
@@ -37,7 +42,7 @@ eller krysses ut.
 ## Farger
 - Støtter `main | info | success | warning | danger | neutral` (hvor `main` er default)
 - Ikon følger automatisk med farge, med mindre du setter `toast(content, { icon: false })` eller `data-icon="false"`
-- Bruk `toast(content, { color })` eller `data-color` i HTML for å endre farge
+- Bruk `toast.success`, `toast.danger`, `toast.info`, `toast.warning` eller `toast.neutral`, *eller* bruk `toast(content, { color })` eller `data-color` i HTML for å endre farge
 <Canvas of={stories.Colors} />
 
 <CssVariables component="toast" />

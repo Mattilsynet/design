@@ -233,3 +233,28 @@ export const toCustomElementProps = (
 	if (open) rest.open = true; // Ensure boolean prop behaviour
 	return rest;
 };
+
+/**
+ * tag
+ * @description creates element and assigns properties
+ * @param tagName The tagname of element to create
+ * @param attrs Optional attributes to add to the element
+ * @param text Optional text content to add to the element
+ * @return HTMLElement with props
+ */
+export const tag = <TagName extends keyof HTMLElementTagNameMap>(
+	tagName: TagName,
+	attrs?: Record<string, string | null>,
+	text?: string | null,
+): HTMLElementTagNameMap[TagName] => {
+	const el = document.createElement(tagName);
+	if (text) el.textContent = text;
+	if (attrs) for (const [key, val] of Object.entries(attrs)) attr(el, key, val);
+	return el;
+};
+
+// Make sure we have a HTMLElement to extend (for server side rendering)
+export const MTDSElement =
+	typeof HTMLElement === "undefined"
+		? (class {} as typeof HTMLElement)
+		: HTMLElement;

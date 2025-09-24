@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import styles from "../styles.module.css";
-import { attr } from "../utils";
+import { attr, tag } from "../utils";
 
 export type ToastOptions = {
 	className?: string;
@@ -14,8 +14,7 @@ export type ToastOptions = {
 };
 
 export function toast(content: string, opt: ToastOptions = {}) {
-	const dialog =
-		document.getElementById(opt.id || "") || document.createElement("dialog");
+	const dialog = document.getElementById(opt.id || "") || tag("dialog");
 
 	attr(dialog, "aria-busy", opt.busy ? "true" : null);
 	attr(dialog, "class", clsx(styles.toast, opt.className));
@@ -36,3 +35,34 @@ function handleToastClose({ animationName, target }: Partial<AnimationEvent>) {
 	if (animationName === styles._toastClose)
 		(target as HTMLDialogElement).remove();
 }
+
+// Expose toast.danger, toast.info, toast.success etc.
+toast.success = (content: string, opt?: ToastOptions) =>
+	toast(content, { color: "success", ...opt });
+toast.danger = (content: string, opt?: ToastOptions) =>
+	toast(content, { color: "danger", ...opt });
+toast.info = (content: string, opt: ToastOptions) =>
+	toast(content, { color: "info", ...opt });
+toast.warning = (content: string, opt?: ToastOptions) =>
+	toast(content, { color: "warning", ...opt });
+toast.neutral = (content: string, opt?: ToastOptions) =>
+	toast(content, { color: "neutral", ...opt });
+toast.promise = async function promise<T>(
+	action: () => Promise<T>,
+	props: ToastOptions & {
+		loading: string;
+		success: string;
+		error: string;
+	},
+): Promise<T> {
+	const { loading, success, error, ...opt } = props;
+	const id = toast(loading, { busy: true, ...opt });
+	try {
+		const result = await action();
+		toast.success(success, { id, busy: false });
+		return result;
+	} catch (_error) {
+		toast.danger(error, { id, busy: false });
+		throw _error;
+	}
+};

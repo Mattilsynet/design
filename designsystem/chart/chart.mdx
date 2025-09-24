@@ -1,13 +1,48 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { Example, CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
+import { Grid, Table } from '../react';
 import * as stories from './chart.stories';
 
-<Meta of={stories} isTemplate />
+<Meta of={stories} />
 
-# Chart
+# Chart (Eksperimentell)
+
+<JumpTo />
 
 ## Kode
 - Bruk elementet `<mtds-chart>`
+- Bruk `data-variant="bar | bar-stacked | column | column-stacked | line | area | doughnut"` for å sette type diagram.
+- Fyll `<mtds-chart>` med en tabell som inneholder dataene
 <Canvas of={stories.Default} />
 
-<CssVariables component="chart" />
+## Liggende stolpediagram
+- Bruk `data-variant="bar"` for liggende søylediagram
+- Bruk `data-variant="bar-stacked"` for stablet gruppering
+<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
+
+## Stående stolpediagram
+- Bruk `data-variant="bar"` for liggende søylediagram
+- Bruk `data-variant="bar-stacked"` for stablet gruppering
+<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
+
+## Linjediagram
+- Bruk `data-variant="line"` for linjediagram eller  `data-variant="area"` for fylt linjediagram
+- Bruk `data-variant="line-SMOOTHING` eller `data-variant="area-SMOOTHING"`, hvor `SMOOTHING` er et tall, for å endre hvor mye kurven skal jevnes ut (`10` er default)
+<Grid data-items="300"><Canvas of={stories.Line} /><Canvas of={stories.Area} /></Grid>
+
+## Kakediagram
+- Bruk `data-variant="pie"` eller `data-variant="doughnut"` for Kakediagram
+<Grid data-items="300"><Canvas of={stories.Pie} /><Canvas of={stories.Doughnut} /></Grid>
+
+{/* Inline vairabel-tabell siden disse er i chart.css som ikke er en del av styles.modules */}
+<CssVariables component='chart' />
+<Table data-fixed>
+<thead><tr><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>--mtdsc-chart-aspect</td><td>16 / 9</td></tr>
+<tr><td>--mtdsc-chart-axis-border</td><td>var(--mtds-border-width-default) solid var(--mtds-color-border-subtle)</td></tr>
+<tr><td>--mtdsc-chart-border-color</td><td>var(--ds-color-border-default)</td></tr>
+<tr><td>--mtdsc-chart-border-width</td><td>var(--ds-border-width-default)</td></tr>
+<tr><td>--mtdsc-chart-color-NUMBER</td><td>Farge på hver linje</td></tr>
+</tbody>
+</Table>
