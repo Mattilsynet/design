@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Map as OlMap, View } from "ol";
-import { Zoom } from "ol/control";
+import { Control, Zoom } from "ol/control";
 import { getTopLeft, getWidth } from "ol/extent";
 import { defaults as defaultInteractions } from "ol/interaction";
 import { Tile } from "ol/layer";
@@ -8,6 +8,35 @@ import { get as getProjection } from "ol/proj";
 import { OSM, WMTS } from "ol/source";
 import { WMTS as WMTSTileGrid } from "ol/tilegrid";
 import { useEffect, useRef } from "react";
+import "../../node_modules/ol/ol.css";
+import { tag } from "../utils";
+
+class RotateNorthControl extends Control {
+	/**
+	 * @param {Object} [opt_options] Control options.
+	 */
+	constructor(opt_options?: Record<string, string>) {
+		const options = opt_options || {};
+
+		const button = tag("button");
+		button.innerHTML = "N";
+
+		const element = tag("div");
+		element.className = "rotate-north ol-unselectable ol-control";
+		element.appendChild(button);
+
+		super({
+			element: element,
+			target: options.target,
+		});
+
+		button.addEventListener("click", this.handleRotateNorth.bind(this), false);
+	}
+
+	handleRotateNorth() {
+		this.getMap()?.getView().setRotation(0);
+	}
+}
 
 const createKartverketGraatoneWMTSLayer = () => {
 	const projection = getProjection("EPSG:3857");
@@ -78,6 +107,7 @@ export const Default: Story = {
 						zoomInTipLabel: "Zoom inn",
 						zoomOutTipLabel: "Zoom ut",
 					}),
+					new RotateNorthControl(),
 				],
 				interactions: defaultInteractions({
 					doubleClickZoom: true,

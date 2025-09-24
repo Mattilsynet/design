@@ -7,6 +7,7 @@ import {
 	on,
 	onLoaded,
 	QUICK_EVENT,
+	tag,
 } from "../utils";
 
 const DESCRIBEDBY = "aria-describedby";
@@ -14,14 +15,15 @@ const ESC = "Escape";
 const LABELLEDBY = "aria-labelledby";
 const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
 const THROTTLE_DELAY = 300;
+const TOOLTIP_ID = "mtds-tooltip";
 const TOOLTIP = IS_BROWSER
-	? document.getElementById("mtds-tooltip") ||
-		Object.assign(document.createElement("div"), {
+	? document.getElementById(TOOLTIP_ID) ||
+		tag("div", {
 			className: styles._tooltip,
-			id: "mtds-tooltip",
+			id: TOOLTIP_ID,
 			popover: "manual",
 		})
-	: null; // Create a dummy element to avoid null checks
+	: null;
 
 let ANCHOR: Element | null = null;
 let LAST_CALL = Number.NEGATIVE_INFINITY;

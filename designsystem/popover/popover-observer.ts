@@ -49,9 +49,7 @@ function handlePopoverBeforetoggle({ target: el, newState }: EventToggle) {
 // and automatically assume popovertarget is the closest parent popover
 // but respect the popovertarget and popovertargetaction attribute
 function handlePopoverLinkClick(event: Event) {
-	const el = (event.target as Element)?.closest?.(
-		"a,button,[popovertargetaction]",
-	);
+	const el = (event.target as Element)?.closest?.("a,button");
 	const id = el && attr(el, "popovertarget");
 	const pop = id ? document.getElementById(id) : el?.closest(`.${CSS_POPOVER}`);
 
@@ -62,10 +60,11 @@ function handlePopoverLinkClick(event: Event) {
 
 	if (pop && el) {
 		event.preventDefault(); // Prevent browser popover API
-		const action = attr(el, "popovertargetaction") || "toggle";
+		const action = attr(el, "popovertargetaction");
 		const open = action === "show" || (action === "hide" ? false : undefined);
 
 		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
+		if (el instanceof HTMLButtonElement && !action && pop.contains(el)) return; // Require "popovertargetaction" attribute to make buttons inside popover toggle
 		if (pop instanceof HTMLElement && pop.isConnected && pop.togglePopover)
 			pop.togglePopover(open);
 	}

@@ -2,7 +2,9 @@ import { forwardRef } from "react";
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";
 
-export type DetailsProps = React.ComponentPropsWithoutRef<"details">;
+export type DetailsProps = React.ComponentPropsWithoutRef<"details"> & {
+	"data-variant"?: "default" | "card";
+};
 const DetailsComp = forwardRef<HTMLDetailsElement, DetailsProps>(
 	function Details(props, ref) {
 		return (

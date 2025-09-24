@@ -51,7 +51,7 @@ export const Colors: Story = {
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
-				onClick={() => toast(<span>Toast default</span>)}
+				onClick={() => toast("Toast default")}
 			>
 				Vis default
 			</button>
@@ -60,7 +60,7 @@ export const Colors: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				data-color="info"
-				onClick={() => toast(<span>Toast info</span>, { color: "info" })}
+				onClick={() => toast.info("Toast info")}
 			>
 				Vis info
 			</button>
@@ -69,7 +69,7 @@ export const Colors: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				data-color="success"
-				onClick={() => toast(<span>Toast success</span>, { color: "success" })}
+				onClick={() => toast.success("Toast success")}
 			>
 				Vis success
 			</button>
@@ -78,7 +78,7 @@ export const Colors: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				data-color="warning"
-				onClick={() => toast(<span>Toast warning</span>, { color: "warning" })}
+				onClick={() => toast.warning("Toast warning")}
 			>
 				Vis warning
 			</button>
@@ -87,7 +87,7 @@ export const Colors: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				data-color="danger"
-				onClick={() => toast(<span>Toast danger</span>, { color: "danger" })}
+				onClick={() => toast.danger("Toast danger")}
 			>
 				Vis danger
 			</button>
@@ -96,7 +96,7 @@ export const Colors: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				data-color="neutral"
-				onClick={() => toast(<span>Toast neutral</span>, { color: "neutral" })}
+				onClick={() => toast.neutral("Toast neutral")}
 			>
 				Vis neutral
 			</button>
@@ -114,11 +114,30 @@ export const WithLoading: Story = {
 			onClick={() => {
 				const id = toast(<span>Toast loading</span>, { busy: true });
 				someApiCall()
-					.then(() => toast("Ferdig!", { id, busy: false, color: "success" }))
-					.catch(() => toast("Feil!", { id, busy: false, color: "danger" }));
+					.then(() => toast.success("Ferdig!", { id, busy: false }))
+					.catch(() => toast.danger("Feil!", { id, busy: false }));
 			}}
 		>
 			Vis laster
+		</button>
+	),
+};
+
+export const WithPromise: Story = {
+	render: () => (
+		<button
+			type="button"
+			className={styles.button}
+			data-variant="secondary"
+			onClick={() =>
+				toast.promise(someApiCall, {
+					loading: <span>Toast loading</span>,
+					success: "Handlingen ble fullført",
+					error: "Noe gikk galt under utføring",
+				})
+			}
+		>
+			Vis promise
 		</button>
 	),
 };
@@ -152,7 +171,7 @@ export const WithCustomClose: Story = {
 				className={styles.button}
 				data-variant="secondary"
 				onClick={() =>
-					toast(
+					toast.info(
 						<div className={styles.prose}>
 							<p>Pellentesque scelerisque urna orci in placerat.</p>
 							<button
@@ -164,7 +183,7 @@ export const WithCustomClose: Story = {
 								Ok
 							</button>
 						</div>,
-						{ closedby: "none", timeout: false, color: "info" },
+						{ closedby: "none", timeout: false },
 					)
 				}
 			>

@@ -9,11 +9,11 @@ export {
 
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
-export { analytics } from "./analytics/analytics";
-export { toggleAppExpanded } from "./app/app-observer";
-export { pagination } from "./pagination/pagination-helper";
+export * from "./analytics/analytics";
+export * from "./app/app-observer";
+export * from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
-export { toast } from "./toast/toast-helper";
+export * from "./toast/toast-helper";
 
 // Load behaviours
 import "./breadcrumbs/breadcrumbs-observer";

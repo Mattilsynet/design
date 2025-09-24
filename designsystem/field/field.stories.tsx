@@ -228,19 +228,20 @@ export const Indeterminate: Story = {
 						}}
 					/>
 				</div>
-				<hr className={styles.divider} data-gap="2" />
-				{all.map((value) => (
-					<div className={styles.field} key={value}>
-						<label>Alternativ 1</label>
-						<input
-							checked={checked.includes(value)}
-							className={styles.input}
-							onChange={onChange}
-							type="checkbox"
-							value={value}
-						/>
-					</div>
-				))}
+				<div className={styles.grid} style={{ paddingLeft: "var(--mtds-8)" }}>
+					{all.map((value) => (
+						<div className={styles.field} key={value}>
+							<label>Alternativ 1</label>
+							<input
+								checked={checked.includes(value)}
+								className={styles.input}
+								onChange={onChange}
+								type="checkbox"
+								value={value}
+							/>
+						</div>
+					))}
+				</div>
 			</fieldset>
 		);
 	},

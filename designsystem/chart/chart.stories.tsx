@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Grid } from "../react";
 import { Chart } from "./chart";
 
 const meta = {
@@ -6,15 +7,151 @@ const meta = {
 	parameters: {
 		layout: "padded",
 	},
+	decorators: [
+		(Story) => (
+			<div
+				style={{
+					maxWidth: 600,
+					margin: "auto",
+				}}
+			>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const table = (
+	<table>
+		<thead>
+			<tr>
+				<th>Risikofordeling</th>
+				<th>Q1</th>
+				<th>Q2 hei</th>
+				<th>Q3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Large</th>
+				<td>50</td>
+				<td>20</td>
+				<td>40</td>
+			</tr>
+			<tr>
+				<th>Medium</th>
+				<td>25</td>
+				<td>30</td>
+				<td>35</td>
+			</tr>
+			<tr>
+				<th>Small</th>
+				<td>15</td>
+				<td>5</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<th>Venti</th>
+				<td>35</td>
+				<td>80</td>
+				<td>35</td>
+			</tr>
+			<tr>
+				<th>Grandi</th>
+				<td>40</td>
+				<td>30</td>
+				<td>10</td>
+			</tr>
+			{/* <tr>
+				<th>Max</th>
+				<td>100</td>
+				<td>90</td>
+				<td>80</td>
+			</tr> */}
+		</tbody>
+	</table>
+);
+
 export const Default: Story = {
-	tags: ["!dev"],
 	render: () => (
-		<Chart data-variant="area" style={{ width: 600 }}>
+		<mtds-chart>
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>50</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>25</td>
+					</tr>
+					<tr>
+						<th>Small</th>
+						<td>15</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
+export const React: Story = {
+	render: () => (
+		<Chart>
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>50</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>25</td>
+					</tr>
+					<tr>
+						<th>Small</th>
+						<td>15</td>
+					</tr>
+				</tbody>
+			</table>
+		</Chart>
+	),
+};
+
+export const Bar: Story = {
+	render: () => <mtds-chart data-variant="bar">{table}</mtds-chart>,
+};
+
+export const BarStacked: Story = {
+	render: () => <mtds-chart data-variant="bar-stacked">{table}</mtds-chart>,
+};
+
+export const Column: Story = {
+	render: () => <mtds-chart data-variant="column">{table}</mtds-chart>,
+};
+
+export const ColumnStacked: Story = {
+	render: () => <mtds-chart data-variant="column-stacked">{table}</mtds-chart>,
+};
+
+export const Line: Story = {
+	render: () => (
+		<mtds-chart data-variant="line">
 			<table>
 				<thead>
 					<tr>
@@ -22,29 +159,175 @@ export const Default: Story = {
 						<th>Q1</th>
 						<th>Q2</th>
 						<th>Q3</th>
+						<th>Q4</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th>Large</th>
-						<td>50</td>
-						<td>20</td>
+						<td>30</td>
 						<td>40</td>
+						<td>20</td>
+						<td>60</td>
 					</tr>
 					<tr>
 						<th>Medium</th>
-						<td>25</td>
-						<td>30</td>
-						<td>35</td>
-					</tr>
-					<tr>
-						<th>Small</th>
-						<td>15</td>
-						<td>5</td>
-						<td>100</td>
+						<td>10</td>
+						<td>20</td>
+						<td>40</td>
+						<td>50</td>
 					</tr>
 				</tbody>
 			</table>
-		</Chart>
+		</mtds-chart>
+	),
+};
+
+export const LineStraight: Story = {
+	render: () => (
+		<mtds-chart data-variant="line-0">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+						<th>Q2</th>
+						<th>Q3</th>
+						<th>Q4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>30</td>
+						<td>40</td>
+						<td>20</td>
+						<td>60</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>10</td>
+						<td>20</td>
+						<td>40</td>
+						<td>50</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
+export const Area: Story = {
+	render: () => (
+		<mtds-chart data-variant="area">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+						<th>Q2</th>
+						<th>Q3</th>
+						<th>Q4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>30</td>
+						<td>40</td>
+						<td>20</td>
+						<td>60</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>10</td>
+						<td>20</td>
+						<td>40</td>
+						<td>50</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
+export const Doughnut: Story = {
+	render: () => <mtds-chart data-variant="doughnut">{table}</mtds-chart>,
+};
+
+export const Pie: Story = {
+	render: () => <mtds-chart data-variant="pie">{table}</mtds-chart>,
+};
+
+export const WithCustomTooltips: Story = {
+	render: () => (
+		<mtds-chart data-variant="doughnut">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td data-tooltip="En">50%</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td data-tooltip="To">25%</td>
+					</tr>
+					<tr>
+						<th>Small</th>
+						<td data-tooltip="Tre">15%</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
+export const WithCustomInteractions: Story = {
+	render: () => (
+		<Grid>
+			Trykk på pai-sykkene:
+			<mtds-chart data-variant="doughnut">
+				<table>
+					<thead>
+						<tr>
+							<th>Risikofordeling</th>
+							<th>Q1</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Large</th>
+							<td>
+								<button type="button" onClick={() => alert("Klikk på 50%")}>
+									50%
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<th>Medium</th>
+							<td>
+								<button type="button" onClick={() => alert("Klikk på 25%")}>
+									25%
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<th>Small</th>
+							<td>
+								<button type="button" onClick={() => alert("Klikk på 15%")}>
+									15%
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</mtds-chart>
+		</Grid>
 	),
 };

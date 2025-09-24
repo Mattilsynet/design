@@ -173,3 +173,10 @@ disse krever ofte konfigurasjon (som [A/B testing](https://developer.matomo.org/
 ```
 analytics('matomo', ['HeatmapSessionRecording::enable']);
 ```
+
+## Debugging
+- Du kan til en hver tid skru på "debug", for å se hva som blir logget
+- Debug er kun aktivt på den siden du aktiverer det på - det vil automatisk være av igjen dersom du endrer url eller laster siden på nytt
+1. Åpne console i nettleseren (Høyreklikk &rarr; Inspiser &rarr; Console)
+2. Lim inn `window._mtdsTracking.enabled = 'debug'` i console og trykk enter
+3. Alt `analytics` blir nå synlig i console istedefor å sendes til Matomo

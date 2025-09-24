@@ -20,6 +20,7 @@
 		list-style: none;
 		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
+		overflow: visible; /* Ensure content can render outside */
 		padding: var(--mtdsc-popover-padding);
 		position: absolute;
 		transition-behavior: allow-discrete;
