@@ -1,3 +1,4 @@
+"use client";
 import type { Placement } from "@floating-ui/dom";
 import type {
 	ReactUcombobox,

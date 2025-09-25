@@ -92,3 +92,24 @@ export const cssToTailwind: Plugin = {
 		);
 	},
 };
+
+const useClientFiles = new Set<string>();
+export const preserveUseClient: Plugin = {
+	name: "preserve-use-client-directive",
+	moduleParsed({ ast, id }) {
+		if (ast?.body && ast.body[0]?.type === "ExpressionStatement") {
+			const expression = ast.body[0].expression;
+			if (expression.type === "Literal" && expression.value === "use client")
+				useClientFiles.add(id);
+		}
+	},
+	generateBundle(_options, bundle) {
+		for (const file of Object.values(bundle)) {
+			if (
+				file.type === "chunk" &&
+				file.moduleIds.some((id) => useClientFiles.has(id))
+			)
+				file.code = `'use client';\n${file.code}`;
+		}
+	},
+};

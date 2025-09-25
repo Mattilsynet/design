@@ -1,3 +1,4 @@
+"use client";
 import clsx from "clsx";
 import { createRoot } from "react-dom/client";
 import styles from "../styles.module.css";
