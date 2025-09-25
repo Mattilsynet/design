@@ -18,15 +18,15 @@ import * as stories from './chart.stories';
   - **React?** Du kan alternativt sende inn data som en array via `data`-prop
 <Canvas of={stories.Default} />
 
-## Liggende stolpediagram
-- Bruk `data-variant="bar"` for liggende søylediagram
+## Stående stolpediagram
+- Bruk `data-variant="bar"` for stående søylediagram
 - Bruk `data-variant="bar-stacked"` for stablet gruppering
 <Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
 
-## Stående stolpediagram
-- Bruk `data-variant="bar"` for liggende søylediagram
-- Bruk `data-variant="bar-stacked"` for stablet gruppering
-<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
+## Liggende stolpediagram
+- Bruk `data-variant="column"` for liggende søylediagram
+- Bruk `data-variant="column-stacked"` for stablet gruppering
+<Grid data-items="300"><Canvas of={stories.Column} /><Canvas of={stories.ColumnStacked} /></Grid>
 
 ## Linjediagram
 - Bruk `data-variant="line"` for linjediagram eller  `data-variant="area"` for fylt linjediagram
