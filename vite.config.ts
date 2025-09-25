@@ -4,7 +4,11 @@ import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import { cssPropsRename, cssToTailwind } from "./vite.plugins";
+import {
+	cssPropsRename,
+	cssToTailwind,
+	preserveUseClient,
+} from "./vite.plugins";
 
 const root = path.resolve(__dirname, "designsystem");
 const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
@@ -86,8 +90,14 @@ export default defineConfig(({ mode }) =>
 						formats: ["es"],
 					},
 					rollupOptions: {
+						plugins: [preserveUseClient],
 						// Externalize React
-						external: ["react", "react-dom", "react/jsx-runtime"],
+						external: [
+							"react",
+							"react-dom",
+							"react-dom/client",
+							"react/jsx-runtime",
+						],
 						output: {
 							// Needed to truly enable being treeshakable when Vite is in lib mode
 							// https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode

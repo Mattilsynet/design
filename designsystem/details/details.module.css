@@ -10,19 +10,37 @@
 		--dsc-details-summary-background--open: transparent;
 		--dsc-details-summary-background: transparent;
 		--dsc-details-padding: var(--mtdsc-details-padding-block)
-			var(--mtdsc-details-padding-inline);
+			var(--mtdsc-details-padding-inline); /* Sets Designsystemet property */
 		--mtdsc-details-padding-block: var(--ds-size-3);
 		--mtdsc-details-padding-inline: var(--ds-size-4);
-		--mtdsc-details-content-padding: 0 var(--mtdsc-details-padding-inline)
-			var(--mtdsc-details-padding-inline);
 		--mtdsc-details-card-radius: var(--ds-border-radius-lg);
-	}
-	/* Make text color change when adding [data-color] */
-	.details[data-color] {
-		color: var(--mtds-color-text-default);
+		--mtdsc-details-transition-duration: 400ms;
+		--_mtdsc-details-padding-left: var(--mtdsc-details-padding-inline);
+
+		padding-left: var(--_mtdsc-details-padding-left);
+		padding-right: var(--mtdsc-details-padding-inline);
+		transition-duration: var(--mtdsc-details-transition-duration);
+		transition-property: padding;
 	}
 	.details:not([hidden]) {
 		display: block; /* Make u-elements block even without JS */
+	}
+	.details:not(:defined) /* When no JS */,
+	.details[open] {
+		padding-bottom: var(--mtdsc-details-padding-block);
+	}
+	.details:not([data-variant="card"]),
+	.details:not([data-variant="card"]) {
+		--_mtdsc-details-padding-left: calc(
+			var(--mtdsc-details-padding-inline) +
+			var(--dsc-details-icon-size) +
+			var(--dsc-details-icon-gap)
+		);
+	}
+
+	/* Make text color change when adding [data-color] */
+	.details[data-color] {
+		color: var(--mtds-color-text-default);
 	}
 	.details:not([data-variant="card"]) + .details {
 		margin-top: 0; /* Reset if placed in Prose */
@@ -32,6 +50,8 @@
 	}
 	.details > :is(summary, u-summary) {
 		align-items: start;
+		margin-left: calc(var(--_mtdsc-details-padding-left) * -1);
+		margin-right: calc(var(--mtdsc-details-padding-inline) * -1);
 		transition-duration: 0.2s;
 		transition-property: font-weight, background;
 	}
@@ -57,22 +77,8 @@
 
 	.details::details-content,
 	.details::part(details-content) {
-		padding: var(--mtdsc-details-content-padding);
-		transition-duration: 400ms;
-		transition-property: content-visibility, height, padding;
-	}
-	.details:not([open])::details-content,
-	.details:not([open])::part(details-content) {
-		padding-block: 0px;
-	}
-
-	.details:not([data-variant="card"])::details-content,
-	.details:not([data-variant="card"])::part(details-content) {
-		padding-left: calc(
-			var(--mtdsc-details-padding-inline) +
-			var(--dsc-details-icon-size) +
-			var(--dsc-details-icon-gap)
-		);
+		transition-duration: var(--mtdsc-details-transition-duration);
+		transition-property: content-visibility, height;
 	}
 
 	.details[data-variant="card"] {

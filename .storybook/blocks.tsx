@@ -324,16 +324,14 @@ export const Graphics = ({
 	...rest
 }: GraphicsProps) => {
 	const [mode, setMode] = useState(_mode === true ? "light" : _mode);
-	const isPhosphor = path.startsWith("@phosphor-icons");
 	const graphics = useMemo(() => {
 		return Object.entries(window.GRAPHICS)
 			.filter(([file]) => file.startsWith(path))
-			.map(([file, data]) => ({
-				file,
-				href: data.svg ? encodeSVG(data.svg) : `/${file}`,
-				...data,
-			}))
-			.sort((a, b) => a.name.localeCompare(b.name));
+			.sort(([a], [b]) => a.localeCompare(b))
+			.map(([file, data]) => {
+				const href = data.svg ? encodeSVG(data.svg) : `/${file}`;
+				return { file, href, ...data };
+			});
 	}, [path]);
 	const categories = useMemo(() => {
 		return new Set(
@@ -417,7 +415,7 @@ export const Graphics = ({
 					return (
 						<Card
 							data-color-scheme={mode || undefined}
-							data-tooltip={`Trykk for å kopiere${isPhosphor ? ` ${name.replace(".svg", "")}` : ""}`}
+							data-tooltip={`Trykk for å kopiere "${name.replace(".svg", "")}"`}
 							download={name.replace(".", mode === "dark" ? "-dark." : ".")}
 							href={href}
 							key={name}
