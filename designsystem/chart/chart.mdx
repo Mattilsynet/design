@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Grid, Table } from '../react';
+import { Grid, Prose, Table } from '../react';
 import * as stories from './chart.stories';
 
 <Meta of={stories} />
@@ -10,9 +10,12 @@ import * as stories from './chart.stories';
 <JumpTo />
 
 ## Kode
-- Bruk elementet `<mtds-chart>`
-- Bruk `data-variant="bar | bar-stacked | column | column-stacked | line | area | doughnut"` for å sette type diagram.
-- Fyll `<mtds-chart>` med en tabell som inneholder dataene
+- Bruk elementet `<mtds-chart>` med `data-variant="bar | bar-stacked | column | column-stacked | line | area | doughnut"`
+- Sett inn en tabell som inneholder:
+  - Første rad med grupperings-ledetekster
+  - Andre rad og utover med dataserier, hvor første kolonne er dataserie-tittel
+  - **Merk:** Bruk av `thead`, `tbody` eller `th` er valgfritt - radene parses uansett
+  - **React?** Du kan alternativt sende inn data som en array via `data`-prop
 <Canvas of={stories.Default} />
 
 ## Liggende stolpediagram
@@ -34,15 +37,14 @@ import * as stories from './chart.stories';
 - Bruk `data-variant="pie"` eller `data-variant="doughnut"` for Kakediagram
 <Grid data-items="300"><Canvas of={stories.Pie} /><Canvas of={stories.Doughnut} /></Grid>
 
-{/* Inline vairabel-tabell siden disse er i chart.css som ikke er en del av styles.modules */}
 <CssVariables component='chart' />
-<Table data-fixed>
-<thead><tr><th>Name</th><th>Value</th></tr></thead>
-<tbody>
-<tr><td>--mtdsc-chart-aspect</td><td>16 / 9</td></tr>
-<tr><td>--mtdsc-chart-axis-border</td><td>var(--mtds-border-width-default) solid var(--mtds-color-border-subtle)</td></tr>
-<tr><td>--mtdsc-chart-border-color</td><td>var(--ds-color-border-default)</td></tr>
-<tr><td>--mtdsc-chart-border-width</td><td>var(--ds-border-width-default)</td></tr>
-<tr><td>--mtdsc-chart-color-NUMBER</td><td>Farge på hver linje</td></tr>
-</tbody>
-</Table>
+
+Du kan med andre ord styre hvilket dataset som har hvilken farge, ved å f.eks gjøre:
+
+```css
+.my-chart {
+  --mtdsc-chart-color-1: var(--mtdsc-chart-color-success);
+  --mtdsc-chart-color-2: var(--mtdsc-chart-color-warning);
+  --mtdsc-chart-color-3: var(--mtdsc-chart-color-danger);
+}
+```

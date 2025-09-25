@@ -31,7 +31,7 @@
 		max-width: 25em;
 		opacity: 0;
 		padding: var(--ds-size-1) var(--ds-size-2);
-		position: fixed;
+		position: absolute;
 		scale: 0.9;
 		transition-duration: 0.15s;
 		transition-property: opacity, visibility, scale;
@@ -42,7 +42,7 @@
 	/* Used by charts */
 	._tooltip:not([popover]) {
 		pointer-events: none;
-		position: fixed;
+		position: absolute;
 		top: var(--ds-size-1);
 		left: var(--ds-size-1);
 		scale: 1;

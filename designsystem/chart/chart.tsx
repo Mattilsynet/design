@@ -14,6 +14,7 @@ declare global {
 }
 
 export type ChartProps = React.ComponentPropsWithoutRef<"div"> & {
+	data?: (number | string)[][];
 	"data-variant"?:
 		| "area"
 		| "bar"
@@ -27,8 +28,25 @@ export type ChartProps = React.ComponentPropsWithoutRef<"div"> & {
 		| `line-${number}`;
 };
 
-export const Chart = forwardRef<HTMLDivElement, ChartProps>(
-	function Chart(props, ref) {
-		return <mtds-chart ref={ref} {...toCustomElementProps(props)} />;
-	},
-);
+export const Chart = forwardRef<HTMLDivElement, ChartProps>(function Chart(
+	{ data, children, ...rest },
+	ref,
+) {
+	return (
+		<mtds-chart ref={ref} {...toCustomElementProps(rest)}>
+			{data ? (
+				<table>
+					{data.map((row, rowIndex) => (
+						<tr key={`${rowIndex + 1}`}>
+							{row.map((cell, cellIndex) => (
+								<td key={`${cellIndex + 1}`}>{cell}</td>
+							))}
+						</tr>
+					))}
+				</table>
+			) : (
+				children
+			)}
+		</mtds-chart>
+	);
+});

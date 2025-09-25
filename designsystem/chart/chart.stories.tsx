@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Grid } from "../react";
-import { Chart } from "./chart";
+import { Chart, Grid } from "../react";
 
 const meta = {
 	title: "Designsystem/Chart",
@@ -11,7 +10,7 @@ const meta = {
 		(Story) => (
 			<div
 				style={{
-					maxWidth: 600,
+					maxWidth: 800,
 					margin: "auto",
 				}}
 			>
@@ -30,7 +29,7 @@ const table = (
 			<tr>
 				<th>Risikofordeling</th>
 				<th>Q1</th>
-				<th>Q2 hei</th>
+				<th>Q2</th>
 				<th>Q3</th>
 			</tr>
 		</thead>
@@ -65,12 +64,6 @@ const table = (
 				<td>30</td>
 				<td>10</td>
 			</tr>
-			{/* <tr>
-				<th>Max</th>
-				<td>100</td>
-				<td>90</td>
-				<td>80</td>
-			</tr> */}
 		</tbody>
 	</table>
 );
@@ -106,30 +99,41 @@ export const Default: Story = {
 
 export const React: Story = {
 	render: () => (
-		<Chart>
-			<table>
-				<thead>
-					<tr>
-						<th>Risikofordeling</th>
-						<th>Q1</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Large</th>
-						<td>50</td>
-					</tr>
-					<tr>
-						<th>Medium</th>
-						<td>25</td>
-					</tr>
-					<tr>
-						<th>Small</th>
-						<td>15</td>
-					</tr>
-				</tbody>
-			</table>
-		</Chart>
+		<Grid data-items="300">
+			<Chart>
+				<table>
+					<thead>
+						<tr>
+							<th>Risikofordeling</th>
+							<th>Q1</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Large</th>
+							<td>50</td>
+						</tr>
+						<tr>
+							<th>Medium</th>
+							<td>25</td>
+						</tr>
+						<tr>
+							<th>Small</th>
+							<td>15</td>
+						</tr>
+					</tbody>
+				</table>
+			</Chart>
+			<Chart
+				data-variant="doughnut"
+				data={[
+					["Risikofordeling", "Q1"],
+					["Large", 50],
+					["Medium", 25],
+					["Small", 15],
+				]}
+			/>
+		</Grid>
 	),
 };
 

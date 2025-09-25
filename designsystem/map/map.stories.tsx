@@ -21,8 +21,9 @@ class RotateNorthControl extends Control {
 		const button = tag("button");
 		button.innerHTML = "N";
 
-		const element = tag("div");
-		element.className = "rotate-north ol-unselectable ol-control";
+		const element = tag("div", {
+			class: "rotate-north ol-unselectable ol-control",
+		});
 		element.appendChild(button);
 
 		super({

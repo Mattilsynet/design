@@ -1,20 +1,6 @@
 :host(:not([hidden])) {
 	display: grid;
 	gap: var(--ds-size-6);
-
-	--mtdsc-chart-aspect: 16 / 9;
-	--mtdsc-chart-axis-border: var(--ds-border-width-default) solid
-		var(--ds-color-border-subtle);
-	--mtdsc-chart-axis-gap: var(--ds-size-4);
-	--mtdsc-chart-border-width: var(--ds-border-width-default);
-	--mtdsc-chart-border-color: #054449; /*var(--ds-color-border-default);*/
-	--mtdsc-chart-color: var(--ds-color-surface-tinted);
-	--mtdsc-chart-color-1: #116e6b; /* var(--ds-color-base-default); */
-	--mtdsc-chart-color-2: #cae8ca; /*var(--ds-color-surface-active); */
-	--mtdsc-chart-color-3: #b6d9f2;
-	--mtdsc-chart-color-4: #feecbe; /*var(--ds-color-warning-surface-hover);*/
-	--mtdsc-chart-color-5: #fdd2c9; /*var(--ds-color-danger-surface-active);*/
-	--mtdsc-chart-color-6: var(--ds-color-neutral-surface-tinted);
 }
 
 [data-event-proxy] {
@@ -77,7 +63,8 @@
 .axisGroups {
 	gap: var(--mtdsc-chart-axis-gap);
 	grid-area: chart / chart / x-axis / chart;
-	grid-template: subgrid / none;
+	grid-template-rows: subgrid;
+	grid-auto-columns: minmax(0, 1fr);
 	padding: 0 var(--mtdsc-chart-axis-gap);
 	text-align: center;
 }
@@ -107,6 +94,9 @@
 	content: attr(data-label);
 	translate: 0 50%;
 }
+.axisStep[data-label="0"]::after {
+	opacity: 0; /* Hide 0 line as it overlapps with .axis::before */
+}
 
 :host([data-variant|="column"]) .axisSteps,
 :host([data-variant|="column"]) .axisGroup {
@@ -129,7 +119,6 @@
 :host([data-variant|="column"]) .axisGroup {
 	grid-column: inherit;
 	grid-row: auto;
-	grid-template: inherit;
 }
 :host([data-variant|="column"]) .axisSteps {
 	grid-auto-columns: 1fr;
