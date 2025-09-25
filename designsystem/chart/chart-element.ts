@@ -91,7 +91,7 @@ function onMoveTooltip(event: MouseEvent) {
 	const tip = (el instanceof Element && el.getAttribute("aria-label")) || "";
 
 	if (tip)
-		TOOLTIP.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+		TOOLTIP.style.transform = `translate(${event.pageX}px, ${event.pageY}px)`;
 	if (tip !== TOOLTIP_TEXT) {
 		if (tip) TOOLTIP.textContent = tip;
 		TOOLTIP_TEXT = tip;
@@ -105,7 +105,7 @@ const toData = (table?: HTMLTableElement | null) =>
 		Array.from(row.cells, (cell, cellIndex) => ({
 			number: (cellIndex && rowIndex && Number.parseFloat(text(cell))) || 0, // First row and column is not a number
 			event: cell.querySelector("a,button") && `${rowIndex}-${cellIndex}`, // Reference to proxy events
-			style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color))`,
+			style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base))`,
 			value: text(cell),
 			tooltip:
 				attr(cell, "data-tooltip") ||

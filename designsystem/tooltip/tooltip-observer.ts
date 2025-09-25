@@ -19,7 +19,7 @@ const TOOLTIP_ID = "mtds-tooltip";
 const TOOLTIP = IS_BROWSER
 	? document.getElementById(TOOLTIP_ID) ||
 		tag("div", {
-			className: styles._tooltip,
+			class: styles._tooltip,
 			id: TOOLTIP_ID,
 			popover: "manual",
 		})

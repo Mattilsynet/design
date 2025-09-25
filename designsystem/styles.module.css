@@ -1,6 +1,6 @@
 /* Do not load @digdir/designsystemet-css as is implicitt with "composes", and it creates lots of Typescript types we don't want */
-@import url("../design-tokens-build/mattilsynet/typography/primary.css");
 @import url("../design-tokens-build/mattilsynet.css");
+@import url("../design-tokens-build/mattilsynet/typography/primary.css");
 @import url("./alert/alert.module.css");
 @import url("./app/app.module.css");
 @import url("./avatar/avatar.module.css");
@@ -8,6 +8,7 @@
 @import url("./breadcrumbs/breadcrumbs.module.css");
 @import url("./button/button.module.css");
 @import url("./card/card.module.css");
+@import url("./chart/chart.module.css");
 @import url("./chip/chip.module.css");
 @import url("./details/details.module.css");
 @import url("./dialog/dialog.module.css");

@@ -136,7 +136,18 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 								!excludes.some((exclude) => name.includes(exclude)) && (
 									<tr key={name}>
 										<td>{name}</td>
-										<td>{val}</td>
+										<td>
+											<Flex data-align="center" data-gap="2">
+												{val.startsWith("#") && (
+													<Tag
+														data-icon="none"
+														data-size="sm"
+														style={{ aspectRatio: 1, background: val }}
+													/>
+												)}
+												{val}
+											</Flex>
+										</td>
 									</tr>
 								),
 						)}
@@ -165,7 +176,7 @@ function getCssVars(component: string) {
 		const isDSC = styles[component]?.includes(" "); // Is composed by from Designsystemet
 
 		if (isMTDS ? !res[key]?.mtds : isDSC && !res[key])
-			res[key] = { val: decodeURIComponent(val), mtds: isMTDS };
+			res[key] = { val: decodeURIComponent(val.trim()), mtds: isMTDS };
 	}
 
 	return res;

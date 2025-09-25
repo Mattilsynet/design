@@ -5,6 +5,7 @@ export * from "./badge/badge";
 export * from "./breadcrumbs/breadcrumbs";
 export * from "./button/button";
 export * from "./card/card";
+export * from "./chart/chart";
 export * from "./chip/chip";
 export * from "./details/details";
 export * from "./dialog/dialog";
