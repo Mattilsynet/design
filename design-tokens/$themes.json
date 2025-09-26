@@ -44,7 +44,8 @@
       "_size.30": "f1b656cb38dff499335c93dec716e60deddee2d5",
       "_size.mode-font-size": "bc1f740a4f5e7b573b353df605a2980b8ca0e1e7",
       "_size.base": "debe379619b8f3757c3eb5a37798be2a8cc748a9",
-      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769"
+      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769",
+      "_size.unit": "222080d6d9e36a33ff46d645bd5de519effe6e07"
     }
   },
   {
@@ -92,7 +93,8 @@
       "_size.30": "f1b656cb38dff499335c93dec716e60deddee2d5",
       "_size.mode-font-size": "bc1f740a4f5e7b573b353df605a2980b8ca0e1e7",
       "_size.base": "debe379619b8f3757c3eb5a37798be2a8cc748a9",
-      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769"
+      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769",
+      "_size.unit": "222080d6d9e36a33ff46d645bd5de519effe6e07"
     }
   },
   {
@@ -140,7 +142,8 @@
       "_size.30": "f1b656cb38dff499335c93dec716e60deddee2d5",
       "_size.mode-font-size": "bc1f740a4f5e7b573b353df605a2980b8ca0e1e7",
       "_size.base": "debe379619b8f3757c3eb5a37798be2a8cc748a9",
-      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769"
+      "_size.step": "6c561863135e392c0df91dd5fb380f4ccc312769",
+      "_size.unit": "222080d6d9e36a33ff46d645bd5de519effe6e07"
     }
   },
   {
@@ -404,7 +407,12 @@
       "mattilsynet.inverted.13": "a204603a17bd28c281cc010d41b54e969ba794f0",
       "mattilsynet.inverted.14": "3b1bf2f9f3cd0ca5352c4ddfcc9d090344ef84bd",
       "mattilsynet.inverted.15": "f0f3c9b9fb0ea4883d46432760aeaf43c98bf0cb",
-      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a"
+      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a",
+      "mattilsynet.charts.a": "7140f646a23ba4cf7791ab9332cba12700a2f1eb",
+      "mattilsynet.charts.b": "2905bdd122a8232992c3ce4345d1420ec40948e9",
+      "mattilsynet.charts.c": "32836fea55fbac4c361ea1048fc6d362b100f43c",
+      "mattilsynet.charts.d": "59af25001d79e7ddc5b574563b9091f4c31c2cee",
+      "mattilsynet.charts.e": "96ea0222c235856134ec4221129039ca7394e0c4"
     },
     "$figmaStyleReferences": {
       "global.blue.1": "S:158aa3202977fe372d0b47d1a7f4230e99582f8f,",
@@ -675,7 +683,12 @@
       "mattilsynet.inverted.13": "a204603a17bd28c281cc010d41b54e969ba794f0",
       "mattilsynet.inverted.14": "3b1bf2f9f3cd0ca5352c4ddfcc9d090344ef84bd",
       "mattilsynet.inverted.15": "f0f3c9b9fb0ea4883d46432760aeaf43c98bf0cb",
-      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a"
+      "mattilsynet.inverted.16": "25810e559e12eedada87e531ff1ffddddbae384a",
+      "mattilsynet.charts.a": "7140f646a23ba4cf7791ab9332cba12700a2f1eb",
+      "mattilsynet.charts.b": "2905bdd122a8232992c3ce4345d1420ec40948e9",
+      "mattilsynet.charts.c": "32836fea55fbac4c361ea1048fc6d362b100f43c",
+      "mattilsynet.charts.d": "59af25001d79e7ddc5b574563b9091f4c31c2cee",
+      "mattilsynet.charts.e": "96ea0222c235856134ec4221129039ca7394e0c4"
     },
     "$figmaStyleReferences": {
       "global.blue.1": "S:158aa3202977fe372d0b47d1a7f4230e99582f8f,",
@@ -934,6 +947,11 @@
       "color.warning.base-contrast-default": "7e94cb576efa314d79a456090f036a08d700bfbb",
       "color.focus.inner": "017f968dff7989ee881c4251d21cca040b45c0f2",
       "color.focus.outer": "be476510a8043d83922449b519eec2f31a09c67e",
+      "color.charts.chart-a": "f73514b8bdd633973528723f1f7955be074888b3",
+      "color.charts.chart-b": "acdc3a36b64608d96d8b615d1fe01589c56847d5",
+      "color.charts.chart-c": "78f6a3dbfe5ce41ce35e23208f8e963f8ea387eb",
+      "color.charts.chart-d": "223437fd3b08594806d1978b7c9e43fb4e6cd06a",
+      "color.charts.chart-e": "c45580427e5af88d226a04523a9b0f2405a9aa97",
       "link.color.visited": "20f24d40707f02b98dbd2c9ca375aa7aa59f8421",
       "opacity.disabled": "83a96f9215a743479bccca49977b10c5be8d9dea",
       "border-width.default": "7a5f3eb5e0bc43f6d9b11061b1bf727bf92f1d31",

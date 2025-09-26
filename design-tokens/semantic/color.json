@@ -471,6 +471,28 @@
         "$type": "color",
         "$value": "{color.neutral.text-default}"
       }
+    },
+    "charts": {
+      "chart-a": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.a}"
+      },
+      "chart-b": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.b}"
+      },
+      "chart-c": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.c}"
+      },
+      "chart-d": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.d}"
+      },
+      "chart-e": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.e}"
+      }
     }
   },
   "link": {
