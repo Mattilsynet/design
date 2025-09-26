@@ -182,6 +182,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1E1A28;
   --ds-color-focus-inner: #ffffff;
   --ds-color-focus-outer: #3D3D3D;
+  --ds-color-charts-chart-a: #116e6b;
+  --ds-color-charts-chart-b: #cae8ca;
+  --ds-color-charts-chart-c: #b6d9f2;
+  --ds-color-charts-chart-d: #feecbe;
+  --ds-color-charts-chart-e: #fdd2c9;
   --ds-link-color-visited: #663299;
 
   color-scheme: light;
@@ -303,6 +308,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1E1A28;
   --ds-color-focus-inner: #ffffff;
   --ds-color-focus-outer: #3D3D3D;
+  --ds-color-charts-chart-a: #116e6b;
+  --ds-color-charts-chart-b: #cae8ca;
+  --ds-color-charts-chart-c: #b6d9f2;
+  --ds-color-charts-chart-d: #feecbe;
+  --ds-color-charts-chart-e: #fdd2c9;
   --ds-link-color-visited: #663299;
 
   color-scheme: light;
@@ -504,6 +514,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1B160E;
   --ds-color-focus-inner: #191A1D;
   --ds-color-focus-outer: #BBBEC3;
+  --ds-color-charts-chart-a: #116e6b;
+  --ds-color-charts-chart-b: #cae8ca;
+  --ds-color-charts-chart-c: #b6d9f2;
+  --ds-color-charts-chart-d: #feecbe;
+  --ds-color-charts-chart-e: #fdd2c9;
   --ds-link-color-visited: #b49acd;
 
   color-scheme: dark;
@@ -625,6 +640,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1B160E;
   --ds-color-focus-inner: #191A1D;
   --ds-color-focus-outer: #BBBEC3;
+  --ds-color-charts-chart-a: #116e6b;
+  --ds-color-charts-chart-b: #cae8ca;
+  --ds-color-charts-chart-c: #b6d9f2;
+  --ds-color-charts-chart-d: #feecbe;
+  --ds-color-charts-chart-e: #fdd2c9;
   --ds-link-color-visited: #b49acd;
 
   color-scheme: dark;

@@ -136,18 +136,7 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 								!excludes.some((exclude) => name.includes(exclude)) && (
 									<tr key={name}>
 										<td>{name}</td>
-										<td>
-											<Flex data-align="center" data-gap="2">
-												{val.startsWith("#") && (
-													<Tag
-														data-icon="none"
-														data-size="sm"
-														style={{ aspectRatio: 1, background: val }}
-													/>
-												)}
-												{val}
-											</Flex>
-										</td>
+										<td>{val}</td>
 									</tr>
 								),
 						)}

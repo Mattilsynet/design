@@ -59,14 +59,15 @@ function handlePopoverLinkClick(event: Event) {
 			(open as HTMLElement).hidePopover();
 
 	if (pop && el) {
-		event.preventDefault(); // Prevent browser popover API
 		const action = attr(el, "popovertargetaction");
 		const open = action === "show" || (action === "hide" ? false : undefined);
 
 		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
 		if (el instanceof HTMLButtonElement && !action && pop.contains(el)) return; // Require "popovertargetaction" attribute to make buttons inside popover toggle
-		if (pop instanceof HTMLElement && pop.isConnected && pop.togglePopover)
+		if (pop instanceof HTMLElement && pop.isConnected && pop.togglePopover) {
+			event.preventDefault(); // Prevent browser popover API since we are doing it ourselves
 			pop.togglePopover(open);
+		}
 	}
 }
 

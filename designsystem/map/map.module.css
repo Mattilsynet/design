@@ -1,5 +1,5 @@
 @layer mt.design {
 	.map {
-		font-size: inherit;
+		background: var(--ds-color-neutral-surface-tinted);
 	}
 }

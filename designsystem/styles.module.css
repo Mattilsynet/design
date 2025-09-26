@@ -22,6 +22,7 @@
 @import url("./layout/layout.module.css");
 @import url("./link/link.module.css");
 @import url("./logo/logo.module.css");
+@import url("./map/map.module.css");
 @import url("./pagination/pagination.module.css");
 @import url("./popover/popover.module.css");
 @import url("./progress/progress.module.css");

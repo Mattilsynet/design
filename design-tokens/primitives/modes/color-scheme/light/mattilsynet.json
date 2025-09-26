@@ -245,6 +245,30 @@
         "$value": "#054449",
         "$description": "base-contrast-default"
       }
+    },
+    "charts": {
+      "a": {
+        "$type": "color",
+        "$value": "#116e6b",
+        "$description": "\n"
+      },
+      "b": {
+        "$type": "color",
+        "$value": "#cae8ca"
+      },
+      "c": {
+        "$type": "color",
+        "$value": "#b6d9f2"
+      },
+      "d": {
+        "$type": "color",
+        "$value": "#feecbe"
+      },
+      "e": {
+        "$type": "color",
+        "$value": "#fdd2c9",
+        "$description": "\n"
+      }
     }
   }
 }

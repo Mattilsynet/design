@@ -23,9 +23,7 @@ export type ChartProps = React.ComponentPropsWithoutRef<"div"> & {
 		| "column-stacked"
 		| "doughnut"
 		| "line"
-		| "pie"
-		| `area-${number}`
-		| `line-${number}`;
+		| "pie";
 };
 
 export const Chart = forwardRef<HTMLDivElement, ChartProps>(function Chart(
