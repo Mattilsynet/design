@@ -247,30 +247,27 @@
       }
     },
     "charts": {
-      "1": {
+      "a": {
         "$type": "color",
         "$value": "#116e6b",
-        "$description": "chart_1\n"
+        "$description": "\n"
       },
-      "2": {
+      "b": {
         "$type": "color",
-        "$value": "#cae8ca",
-        "$description": "chart_2"
+        "$value": "#cae8ca"
       },
-      "3": {
+      "c": {
         "$type": "color",
-        "$value": "#b6d9f2",
-        "$description": "chart_3"
+        "$value": "#b6d9f2"
       },
-      "4": {
+      "d": {
         "$type": "color",
-        "$value": "#feecbe",
-        "$description": "chart_4"
+        "$value": "#feecbe"
       },
-      "5": {
+      "e": {
         "$type": "color",
         "$value": "#fdd2c9",
-        "$description": "chart_5\n"
+        "$description": "\n"
       }
     }
   }

@@ -473,25 +473,25 @@
       }
     },
     "charts": {
-      "chart-1": {
+      "chart-a": {
         "$type": "color",
-        "$value": "{mattilsynet.charts.1}"
+        "$value": "{mattilsynet.charts.a}"
       },
-      "chart-2": {
+      "chart-b": {
         "$type": "color",
-        "$value": "{mattilsynet.charts.2}"
+        "$value": "{mattilsynet.charts.b}"
       },
-      "chart-3": {
+      "chart-c": {
         "$type": "color",
-        "$value": "{mattilsynet.charts.3}"
+        "$value": "{mattilsynet.charts.c}"
       },
-      "chart-4": {
+      "chart-d": {
         "$type": "color",
-        "$value": "{mattilsynet.charts.4}"
+        "$value": "{mattilsynet.charts.d}"
       },
-      "chart-5": {
+      "chart-e": {
         "$type": "color",
-        "$value": "{mattilsynet.charts.5}"
+        "$value": "{mattilsynet.charts.e}"
       }
     }
   },
