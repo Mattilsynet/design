@@ -471,6 +471,28 @@
         "$type": "color",
         "$value": "{color.neutral.text-default}"
       }
+    },
+    "charts": {
+      "green": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.1}"
+      },
+      "light_green": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.2}"
+      },
+      "blue": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.3}"
+      },
+      "yellow": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.4}"
+      },
+      "pink": {
+        "$type": "color",
+        "$value": "{mattilsynet.charts.5}"
+      }
     }
   },
   "link": {

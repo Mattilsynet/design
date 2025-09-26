@@ -245,6 +245,33 @@
         "$value": "#054449",
         "$description": "base-contrast-default"
       }
+    },
+    "charts": {
+      "1": {
+        "$type": "color",
+        "$value": "#116e6b",
+        "$description": "background-default\n(mørk granskog)"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "#cae8ca",
+        "$description": "background-tinted\n4%"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "#b6d9f2",
+        "$description": "surface-default"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "#feecbe",
+        "$description": "surface-tinted"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "#fdd2c9",
+        "$description": "surface-hover\n"
+      }
     }
   }
 }
