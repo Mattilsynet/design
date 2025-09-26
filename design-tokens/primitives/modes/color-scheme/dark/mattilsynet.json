@@ -248,27 +248,27 @@
       "1": {
         "$type": "color",
         "$value": "#116e6b",
-        "$description": "background-default\n(mørk granskog)"
+        "$description": "chart_1"
       },
       "2": {
         "$type": "color",
         "$value": "#cae8ca",
-        "$description": "background-tinted\n4%"
+        "$description": "chart_2"
       },
       "3": {
         "$type": "color",
         "$value": "#b6d9f2",
-        "$description": "surface-default"
+        "$description": "chart_3"
       },
       "4": {
         "$type": "color",
         "$value": "#feecbe",
-        "$description": "surface-tinted"
+        "$description": "chart_4"
       },
       "5": {
         "$type": "color",
         "$value": "#fdd2c9",
-        "$description": "surface-hover\n"
+        "$description": "chart_5\n"
       }
     }
   }

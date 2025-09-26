@@ -473,23 +473,23 @@
       }
     },
     "charts": {
-      "green": {
+      "chart-1": {
         "$type": "color",
         "$value": "{mattilsynet.charts.1}"
       },
-      "light_green": {
+      "chart-2": {
         "$type": "color",
         "$value": "{mattilsynet.charts.2}"
       },
-      "blue": {
+      "chart-3": {
         "$type": "color",
         "$value": "{mattilsynet.charts.3}"
       },
-      "yellow": {
+      "chart-4": {
         "$type": "color",
         "$value": "{mattilsynet.charts.4}"
       },
-      "pink": {
+      "chart-5": {
         "$type": "color",
         "$value": "{mattilsynet.charts.5}"
       }
