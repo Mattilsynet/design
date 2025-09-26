@@ -64,6 +64,7 @@
 		margin: 0;
 		padding: 0;
 		transition: rotate 0.2s ease-out;
+		height: 1lh; /* Align with first line */
 	}
 	.details[open] > :is(summary, u-summary)::before {
 		rotate: -180deg;
@@ -98,7 +99,7 @@
 		> :is(img, svg):first-child {
 		flex-shrink: 0; /* Prevent icon from shrinking */
 		width: var(--mtds-icon-size);
-		height: var(--mtds-icon-size);
+		height: 1lh; /* Align with first line */
 	}
 	.details[data-variant="card"] > :is(summary, u-summary)::before {
 		margin-inline-start: auto;

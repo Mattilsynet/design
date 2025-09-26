@@ -231,24 +231,30 @@
 	stroke: var(--color);
 	stroke-linejoin: round;
 	stroke-linecap: round;
-	stroke-width: 3;
+	stroke-width: 1.5;
 	vector-effect: non-scaling-stroke;
 }
-.line {
-	filter: brightness(0.8) saturate(2); /* Ensure more contrast for line colors */
-}
+
 .lineShade {
 	stroke: none;
 	fill: var(--color);
 	opacity: 0.3;
 	mask: linear-gradient(to bottom, black, transparent);
 }
+
+.line,
+.linePoint,
+:host:has(.linePoint) .legend::before {
+	filter: brightness(0.8) saturate(2); /* Ensure more contrast for line colors */
+}
+
 .linePoint {
 	--size: var(--ds-size-3);
 	background-color: var(--color);
 	border-radius: var(--ds-border-radius-full);
 	border: var(--mtdsc-chart-border-width) solid var(--mtdsc-chart-border-color);
 	box-sizing: border-box;
+	filter: brightness(0.8) saturate(2);
 	height: var(--size);
 	margin: calc(var(--size) / -2);
 	padding: 0;

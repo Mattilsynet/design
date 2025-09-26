@@ -141,6 +141,49 @@ export const Bar: Story = {
 	render: () => <mtds-chart data-variant="bar">{table}</mtds-chart>,
 };
 
+export const BarSingleDataset: Story = {
+	render: () => (
+		<mtds-chart data-variant="bar" data-aspect="3/1">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>J</th>
+						<th>F</th>
+						<th>M</th>
+						<th>A</th>
+						<th>M</th>
+						<th>J</th>
+						<th>J</th>
+						<th>A</th>
+						<th>S</th>
+						<th>O</th>
+						<th>N</th>
+						<th>D</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Slakt av laks</th>
+						<td data-tooltip="Januar: 10">10</td>
+						<td data-tooltip="Februar: 15">15</td>
+						<td data-tooltip="Mars: 25">25</td>
+						<td data-tooltip="April: 40">40</td>
+						<td data-tooltip="Mai: 10">10</td>
+						<td data-tooltip="Juni: 5">5</td>
+						<td data-tooltip="Juli: 15">15</td>
+						<td data-tooltip="August: 30">30</td>
+						<td data-tooltip="September: 20">20</td>
+						<td data-tooltip="Oktober: 25">25</td>
+						<td data-tooltip="November: 35">35</td>
+						<td data-tooltip="Desember: 55">55</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
 export const BarStacked: Story = {
 	render: () => <mtds-chart data-variant="bar-stacked">{table}</mtds-chart>,
 };
@@ -156,40 +199,6 @@ export const ColumnStacked: Story = {
 export const Line: Story = {
 	render: () => (
 		<mtds-chart data-variant="line">
-			<table>
-				<thead>
-					<tr>
-						<th>Risikofordeling</th>
-						<th>Q1</th>
-						<th>Q2</th>
-						<th>Q3</th>
-						<th>Q4</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Large</th>
-						<td>30</td>
-						<td>40</td>
-						<td>20</td>
-						<td>60</td>
-					</tr>
-					<tr>
-						<th>Medium</th>
-						<td>10</td>
-						<td>20</td>
-						<td>40</td>
-						<td>50</td>
-					</tr>
-				</tbody>
-			</table>
-		</mtds-chart>
-	),
-};
-
-export const LineStraight: Story = {
-	render: () => (
-		<mtds-chart data-variant="line-0">
 			<table>
 				<thead>
 					<tr>

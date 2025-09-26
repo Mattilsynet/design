@@ -26,6 +26,9 @@
 	.card:is(label, button:enabled, button:not([aria-disabled="true"])) {
 		cursor: pointer;
 	}
+	.card:is(button) {
+		width: 100%;
+	}
 
 	.card:is(u-details, details):has(> :is(u-summary, summary):hover),
 	.card:is(:any-link, button, [role="button"]):hover {

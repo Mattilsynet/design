@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Map as OpenLayersMap, View } from "ol";
+import { fromLonLat } from "ol/proj";
 import { useEffect, useRef } from "react";
+import styles from "../styles.module.css";
+import { MtdsTile, Zoom } from "./map";
 import "../../node_modules/ol/ol.css";
-import { getTilesColor, getTilesGrascale } from "./map";
 
 const meta = {
 	title: "Designsystem/Map",
@@ -21,12 +23,15 @@ export const Default: Story = {
 
 		// Initialize the map when the component mounts
 		useEffect(() => {
-			if (!mapRef.current) return;
 			const map = new OpenLayersMap({
-				target: mapRef.current,
-				layers: [getTilesColor(), getTilesGrascale()],
-				view: new View({ center: [0, 0], zoom: 2 }),
+				target: mapRef.current || undefined,
+				layers: [
+					new MtdsTile("color", { visible: false }),
+					new MtdsTile("gray"),
+				],
+				view: new View({ center: fromLonLat([8.4689, 64]), zoom: 5 }),
 				controls: [
+					new Zoom(),
 					// new Zoom({
 					// 	zoomInTipLabel: "Zoom inn",
 					// 	zoomOutTipLabel: "Zoom ut",
@@ -39,6 +44,8 @@ export const Default: Story = {
 			return () => map.setTarget(undefined);
 		}, []);
 
-		return <div ref={mapRef} style={{ aspectRatio: 2 }} />;
+		return (
+			<div ref={mapRef} className={styles.map} style={{ aspectRatio: 2 }} />
+		);
 	},
 };

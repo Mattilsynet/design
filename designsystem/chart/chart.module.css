@@ -5,19 +5,11 @@
 			var(--ds-color-border-subtle);
 		--mtdsc-chart-axis-gap: var(--ds-size-4);
 		--mtdsc-chart-border-width: var(--ds-border-width-default);
-		--mtdsc-chart-border-color: #054449; /*var(--ds-color-border-default);*/
-		--mtdsc-chart-color-base: #116e6b; /* var(--ds-color-base-default); */
-		--mtdsc-chart-color-success: #cae8ca; /*var(--ds-color-surface-active); */
-		--mtdsc-chart-color-info: #b6d9f2; /*var(--ds-color-info-surface-hover); */
-		--mtdsc-chart-color-warning: #feecbe; /*var(--ds-color-warning-surface-hover);*/
-		--mtdsc-chart-color-danger: #fdd2c9; /*var(--ds-color-danger-surface-active);*/
-		--mtdsc-chart-color-neutral: var(--ds-color-neutral-surface-tinted);
-		--mtdsc-chart-color-1: var(--mtdsc-chart-color-base);
-		--mtdsc-chart-color-2: var(--mtdsc-chart-color-success);
-		--mtdsc-chart-color-3: var(--mtdsc-chart-color-info);
-		--mtdsc-chart-color-4: var(--mtdsc-chart-color-warning);
-		--mtdsc-chart-color-5: var(--mtdsc-chart-color-danger);
-		--mtdsc-chart-color-6: var(--ds-color-neutral-surface-tinted);
+		--mtdsc-chart-color-1: var(--ds-color-charts-chart-a);
+		--mtdsc-chart-color-2: var(--ds-color-charts-chart-b);
+		--mtdsc-chart-color-3: var(--ds-color-charts-chart-c);
+		--mtdsc-chart-color-4: var(--ds-color-charts-chart-d);
+		--mtdsc-chart-color-5: var(--ds-color-charts-chart-e);
 	}
 	mtds-chart table {
 		border-collapse: collapse;
