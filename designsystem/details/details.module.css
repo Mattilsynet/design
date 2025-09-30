@@ -109,7 +109,7 @@
 		margin-inline-start: auto;
 		order: 1;
 	}
-	.details[data-variant="card"][data-align="start"] > :is(summary, u-summary) {
+	.details[data-align="start"] > :is(summary, u-summary) {
 		align-items: start;
 	}
 }
