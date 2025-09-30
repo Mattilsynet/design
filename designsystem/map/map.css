@@ -1,0 +1,18 @@
+:host {
+	background: var(--ds-color-neutral-surface-tinted);
+	display: grid;
+	position: relative;
+}
+:host slot {
+	display: grid;
+	inset: var(--mtds-3);
+	pointer-events: none;
+	position: absolute;
+	z-index: 2;
+}
+::slotted(*) {
+	pointer-events: all;
+}
+:host .leaflet-container {
+	outline: 0;
+}

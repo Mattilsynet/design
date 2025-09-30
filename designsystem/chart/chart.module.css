@@ -4,6 +4,7 @@
 		--mtdsc-chart-axis-border: var(--ds-border-width-default) solid
 			var(--ds-color-border-subtle);
 		--mtdsc-chart-axis-gap: var(--ds-size-4);
+		--mtdsc-chart-border-color: var(--ds-color-border-default);
 		--mtdsc-chart-border-width: var(--ds-border-width-default);
 		--mtdsc-chart-color-1: var(--ds-color-charts-chart-a);
 		--mtdsc-chart-color-2: var(--ds-color-charts-chart-b);

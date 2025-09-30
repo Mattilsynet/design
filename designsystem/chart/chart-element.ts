@@ -14,7 +14,8 @@ const TOOLTIP = IS_BROWSER
 	? document.getElementById(TOOLTIP_ID) ||
 		tag("div", { class: styles._tooltip, id: TOOLTIP_ID, hidden: "" })
 	: null;
-export class MTDSChart extends MTDSElement {
+
+export class MTDSChartElement extends MTDSElement {
 	_observer?: MutationObserver; // Using underscore instead of # for backwards compatibility
 
 	static get observedAttributes() {
@@ -71,7 +72,7 @@ export class MTDSChart extends MTDSElement {
 	}
 }
 
-function onClick(event: Event, self: MTDSChart) {
+function onClick(event: Event, self: MTDSChartElement) {
 	if (event instanceof KeyboardEvent && event.key !== "Enter") return; // Only handle enter key
 	const el = event.composedPath()[0];
 	const table = self.querySelector("table");
@@ -114,4 +115,4 @@ const toData = (table?: HTMLTableElement | null) =>
 	);
 
 if (IS_BROWSER && !window.customElements.get("mtds-chart"))
-	window.customElements.define("mtds-chart", MTDSChart);
+	window.customElements.define("mtds-chart", MTDSChartElement);

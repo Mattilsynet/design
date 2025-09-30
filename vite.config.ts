@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import pkg from "./package.json";
 import {
 	cssPropsRename,
 	cssToTailwind,
@@ -15,17 +16,18 @@ const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for rea
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 
 export default defineConfig(({ mode }) =>
-	mode === "iife"
+	// IIFE builds can contain dash to enable i.e. `iife-map`
+	mode.startsWith("iife")
 		? {
 				build: {
+					emptyOutDir: !mode.includes("-"), // IIFE build without dash is the first to build
 					outDir: dist,
-					sourcemap: "inline",
 					lib: {
-						entry: path.resolve(root, "index.ts"),
+						entry: path.resolve(root, `${mode.split("-")[1] || "index"}.ts`),
 						cssFileName: "iife",
 						fileName: "[name]",
 						formats: ["iife"],
-						name: "mtds",
+						name: `mtds${mode.split("-")[1] || ""}`,
 					},
 				},
 			}
@@ -83,6 +85,7 @@ export default defineConfig(({ mode }) =>
 					lib: {
 						entry: [
 							path.resolve(root, "index.ts"),
+							path.resolve(root, "map.ts"),
 							path.resolve(root, "react.tsx"),
 						],
 						cssFileName: "styles",
@@ -93,11 +96,12 @@ export default defineConfig(({ mode }) =>
 						plugins: [preserveUseClient],
 						// Externalize React
 						external: [
+							"ol",
 							"react",
 							"react-dom",
-							"react-dom/client",
 							"react/jsx-runtime",
-						],
+							...Object.keys(pkg.dependencies),
+						].map((name) => new RegExp(`^${name}(/.*)?`)),
 						output: {
 							// Needed to truly enable being treeshakable when Vite is in lib mode
 							// https://stackoverflow.com/questions/74362685/tree-shaking-does-not-work-in-vite-library-mode
