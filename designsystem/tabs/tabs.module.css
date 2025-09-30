@@ -35,6 +35,7 @@
 		flex-grow: 1;
 		border-bottom: var(--dsc-tabs-list-border-bottom-width)
 			var(--dsc-tabs-list-border-bottom-style) var(--dsc-tabs-list-border-color);
+		pointer-events: none;
 	}
 	.tabs [role="tab"] {
 		border-color: var(--dsc-tabs-list-border-color);
@@ -57,6 +58,7 @@
 		border-width: 0 0 var(--dsc-tabs-list-border-bottom-width);
 		content: "";
 		inset: 0 calc(var(--dsc-tabs-gap) * -1);
+		pointer-events: none;
 		position: absolute;
 	}
 	.tabs [role="tab"] + [role="tab"] {

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { forwardRef } from "react";
-import { Button } from "../react";
+import { Button } from "../button/button";
 import styles from "../styles.module.css";
 import { pagination } from "./pagination-helper";
 

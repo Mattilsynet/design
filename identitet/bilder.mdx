@@ -4,9 +4,7 @@ import { Button, Divider, Details, Grid, Prose } from '../designsystem/react';
 import { MountainsIcon } from "@phosphor-icons/react";
 import naertogfjert from './bilder/1-naert-og-fjernt.png';
 import mennesker from './bilder/2-mennesker.png';
-import dyr from './bilder/3-dyr.png';
 import ekte from './bilder/4-ekte.png';
-import framtid from './bilder/5-framtid.png';
 
 <Meta title="Identitet/Bilder" />
 
@@ -54,11 +52,21 @@ import framtid from './bilder/5-framtid.png';
   - være både nærbilder og oversiktsbilder 
   - være tydelige, også for nærbilder 
 
-  <img src={dyr} alt="Dyr" />
+  <Grid data-items="300" data-gap="6">
+    <img src="/docs/bilder/gaard-kuer-ute-1.jpg" alt="" />
+    <img src="/docs/bilder/gaard-kuer-ute-2.jpg" alt="" />
+    <img src="/docs/bilder/gaard-gris.jpg" alt="" />
+    <img src="/docs/bilder/gaard-griser.jpg" alt="" />
+  </Grid>
 
   #### Framtid
   Vi ønsker også bilder som viser hvordan vi utvikler oss, for eksempel bilder som viser bruk av digitale verktøy, noe som demonstrer at vi er moderne og fremtidsrettet aktør. 
-  <img src={framtid} alt="Framtid" />
+  <Grid data-items="300" data-gap="6">
+    <img src="/docs/bilder/kontor-laptop.jpg" alt="" />
+    <img src="/docs/bilder/kontor-to-utviklere-smiler.jpg" alt="" />
+    <img src="/docs/bilder/gaard-hest-inspeksjon-bonde.jpg" alt="" />
+    <img src="/docs/bilder/gaard-ku-inspeksjon-ute.jpg" alt="" />
+  </Grid>
 </Prose>
 </Details>
 <Details>

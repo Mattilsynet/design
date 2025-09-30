@@ -3,6 +3,7 @@ import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";
 
 export type DetailsProps = React.ComponentPropsWithoutRef<"details"> & {
+	"data-align"?: "start" | "center";
 	"data-variant"?: "default" | "card";
 };
 const DetailsComp = forwardRef<HTMLDetailsElement, DetailsProps>(

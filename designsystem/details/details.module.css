@@ -49,7 +49,7 @@
 		margin-bottom: 0; /* Reset if placed in Prose */
 	}
 	.details > :is(summary, u-summary) {
-		align-items: start;
+		align-items: center;
 		margin-left: calc(var(--_mtdsc-details-padding-left) * -1);
 		margin-right: calc(var(--mtdsc-details-padding-inline) * -1);
 		transition-duration: 0.2s;
@@ -94,15 +94,22 @@
 	.details[data-variant="card"] > :is(summary, u-summary) {
 		border-radius: var(--mtdsc-details-card-radius);
 	}
+	.details[data-variant="card"] > * {
+		flex-grow: 1; /* Make children grow... */
+	}
 	.details[data-variant="card"]
 		> :is(summary, u-summary)
 		> :is(img, svg):first-child {
-		flex-shrink: 0; /* Prevent icon from shrinking */
+		flex: 0 0 auto; /* ..but prevent icon from shrinking or growing */
 		width: var(--mtds-icon-size);
-		height: 1lh; /* Align with first line */
+		height: 1lh; /* Align with first line if using `data-align="start"` */
 	}
 	.details[data-variant="card"] > :is(summary, u-summary)::before {
+		height: 1lh; /* Align with first line if using `data-align="start"` */
 		margin-inline-start: auto;
 		order: 1;
+	}
+	.details[data-align="start"] > :is(summary, u-summary) {
+		align-items: start;
 	}
 }

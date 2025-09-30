@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.6",
+	"version": "2.2.7",
 	"type": "module",
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
@@ -20,18 +20,23 @@
 			"import": "./mtds/react.js",
 			"types": "./mtds/react.d.ts"
 		},
+		"./map": {
+			"import": "./mtds/map.js",
+			"types": "./mtds/map.d.ts"
+		},
 		"./*.svg": "./mtds/*.svg",
 		"./*.ico": "./mtds/*.ico",
 		"./icons/*": "./mtds/icons/*",
 		"./illustrations/*": "./mtds/illustrations/*",
 		"./index.iife.js": "./mtds/index.iife.js",
+		"./map.iife.js": "./mtds/map.iife.js",
 		"./package.json": "./package.json",
 		"./styles.css": "./mtds/styles.css",
 		"./styles.json": "./mtds/styles.json",
 		"./tailwind.css": "./mtds/tailwind.css"
 	},
 	"scripts": {
-		"build": "vite build --mode iife && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
+		"build": "vite build --mode iife && vite build --mode iife-map && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
 		"build:tokens": "npx @digdir/designsystemet tokens build",
 		"format": "npx @biomejs/biome format",
 		"lint": "npx @biomejs/biome lint",
@@ -42,20 +47,20 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.4",
-		"@digdir/designsystemet": "^1.5.1",
-		"@digdir/designsystemet-css": "^1.5.1",
+		"@digdir/designsystemet": "^1.6.0",
+		"@digdir/designsystemet-css": "^1.6.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
 		"@storybook/addon-docs": "^9.1.8",
 		"@storybook/addon-themes": "^9.1.8",
 		"@storybook/react-vite": "^9.1.8",
 		"@tanstack/react-table": "^8.21.3",
-		"@types/node": "^24.5.2",
-		"@types/react": "^19.1.13",
+		"@types/leaflet": "^1.9.20",
+		"@types/node": "^24.6.0",
+		"@types/react": "^19.1.16",
 		"@types/react-dom": "^19.1.9",
-		"@vitejs/plugin-react": "^5.0.3",
+		"@vitejs/plugin-react": "^5.0.4",
 		"fast-glob": "^3.3.3",
-		"ol": "^10.6.1",
 		"postcss": "^8.5.6",
 		"postcss-nesting": "^13.0.2",
 		"react": "^19.1.1",
@@ -72,7 +77,8 @@
 		"@u-elements/u-details": "^0.1.5",
 		"@u-elements/u-progress": "^0.0.6",
 		"@u-elements/u-tabs": "^0.0.12",
-		"clsx": "^2.1.1"
+		"clsx": "^2.1.1",
+		"leaflet": "^1.9.4"
 	},
 	"overrides": {
 		"ansi-regex": "^6.2.2",

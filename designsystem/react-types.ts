@@ -18,10 +18,6 @@ export type PolymorphicComponentPropWithRef<
 export type PolymorphicRef<As extends React.ElementType> =
 	React.ComponentPropsWithRef<As>["ref"];
 
-// Make React support popover attributes
-// https://github.com/facebook/react/issues/27479
-export type PopoverValues = "" | "auto" | "manual" | undefined;
-
 export type Sizes =
 	| "0"
 	| "1"
@@ -68,7 +64,7 @@ declare global {
 	namespace React {
 		/* biome-ignore lint/correctness/noUnusedVariables: The <T> is required to replicate React implementation */
 		interface HTMLAttributes<T> {
-			popover?: PopoverValues;
+			popover?: React.HTMLAttributes<HTMLElement>["popover"];
 			popovertarget?: string;
 			"data-color"?:
 				| "main"
@@ -85,7 +81,7 @@ declare global {
 	}
 	namespace React.JSX {
 		interface IntrinsicAttributes {
-			popover?: PopoverValues;
+			popover?: React.HTMLAttributes<HTMLElement>["popover"];
 			popovertarget?: string;
 			popovertargetaction?: string;
 		}

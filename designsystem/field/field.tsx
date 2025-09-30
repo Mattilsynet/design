@@ -7,7 +7,8 @@ import type {
 import clsx from "clsx";
 import type { JSX } from "react";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import { HelpText, Input, type InputProps } from "../react";
+import { HelpText } from "../helptext/helptext";
+import { Input, type InputProps } from "../input/input";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -27,12 +28,6 @@ type FieldBaseProps = {
 	readOnly?: boolean; // Allow readoOnly also on <select>
 	suffix?: string;
 	validation?: React.ReactNode;
-	value?: React.ComponentPropsWithRef<"input">["value"];
-	onInput?: (
-		e: React.ChangeEvent<
-			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-		>,
-	) => void;
 };
 
 export type FieldProps<As extends React.ElementType = "div"> =
@@ -169,7 +164,10 @@ export type FieldComboboxSelected = {
 	value: string;
 	children?: React.ReactNode;
 }[];
-export type FieldComboboxProps = ReactUcombobox & {
+export type FieldComboboxProps = Omit<
+	ReactUcombobox,
+	"onChange" | "onInput"
+> & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
 	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
@@ -182,7 +180,14 @@ export type FieldComboboxProps = ReactUcombobox & {
 	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
 } & Pick<
 		InputProps,
-		"disabled" | "readOnly" | "placeholder" | "type" | "name"
+		| "disabled"
+		| "name"
+		| "onChange"
+		| "onInput"
+		| "placeholder"
+		| "readOnly"
+		| "type"
+		| "value"
 	> & // Allow input props to be passed down
 	Pick<FieldDatalistProps, "data-position" | "data-nofilter">; // Allow datalist props to be passed down
 

@@ -222,11 +222,11 @@
 	},
 	"gaard-ku-inspeksjon-inne.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
-		"tags": ["fjøs", "ku", "melkeku", "storfe"]
+		"tags": ["fjøs", "kuer", "kyr", "melkeku", "storfe"]
 	},
 	"gaard-ku-inspeksjon-ute.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
-		"tags": ["fjøs", "ku", "melkeku", "storfe"]
+		"tags": ["fjøs", "kuer", "kyr", "melkeku", "storfe"]
 	},
 	"gaard-ku-inspektor-inne.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
@@ -234,7 +234,8 @@
 			"fjøs",
 			"inspektør",
 			"kontroll",
-			"ku",
+			"kuer",
+			"kyr",
 			"melkeku",
 			"storfe",
 			"tilsyn"
@@ -242,11 +243,11 @@
 	},
 	"gaard-kuer-ute-1.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
-		"tags": ["beite", "jordbruk", "kuer", "storfe"]
+		"tags": ["beite", "jordbruk", "kuer", "kyr", "melkeku", "storfe"]
 	},
 	"gaard-kuer-ute-2.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
-		"tags": ["beite", "jordbruk", "kuer", "storfe"]
+		"tags": ["beite", "jordbruk", "kuer", "kyr", "melkeku", "storfe"]
 	},
 	"gaard-sau-inspeksjon-ute-1.jpg": {
 		"categories": ["Gård", "Gård og husdyr"],
