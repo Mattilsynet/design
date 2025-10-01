@@ -1,3 +1,4 @@
+import { FunnelIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Button, Dialog, Heading, Prose } from "../react";
@@ -9,6 +10,29 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const LOREM_IPSUM = (
+	<>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+			malesuada eget risus nec viverra. Nam dapibus nec arcu in tristique. Fusce
+			varius urna odio, vel bibendum odio imperdiet eget. Aliquam consectetur
+			arcu mi, quis elementum mi convallis a. Sed venenatis nec enim vel
+			molestie. Vestibulum nec auctor ligula. Nunc id sollicitudin ligula. Fusce
+			interdum quam posuere augue fringilla, dignissim convallis ex suscipit.
+		</p>
+		<p>
+			Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia curae; Aliquam commodo bibendum risus non luctus. Etiam molestie
+			lectus commodo quam ornare posuere. Vestibulum aliquam viverra ligula non
+			ultricies. Pellentesque eu bibendum nibh, vel vestibulum tortor. Duis
+			rutrum metus sed dictum sagittis. Vivamus in arcu sed neque cursus
+			condimentum. Praesent vel turpis malesuada, ullamcorper justo et,
+			facilisis neque. In ex enim, semper sed sapien sit amet, mollis laoreet
+			mi. Fusce vitae bibendum nulla, in condimentum tortor.
+		</p>
+	</>
+);
 
 export const Default: Story = {
 	render: function Render() {
@@ -31,26 +55,7 @@ export const Default: Story = {
 					<button aria-label="Lukk" data-command="close" type="button"></button>
 					<div className={styles.prose}>
 						<h2 className={styles.heading}>Eksempeldialog</h2>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Suspendisse malesuada eget risus nec viverra. Nam dapibus nec arcu
-							in tristique. Fusce varius urna odio, vel bibendum odio imperdiet
-							eget. Aliquam consectetur arcu mi, quis elementum mi convallis a.
-							Sed venenatis nec enim vel molestie. Vestibulum nec auctor ligula.
-							Nunc id sollicitudin ligula. Fusce interdum quam posuere augue
-							fringilla, dignissim convallis ex suscipit.
-						</p>
-						<p>
-							Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-							posuere cubilia curae; Aliquam commodo bibendum risus non luctus.
-							Etiam molestie lectus commodo quam ornare posuere. Vestibulum
-							aliquam viverra ligula non ultricies. Pellentesque eu bibendum
-							nibh, vel vestibulum tortor. Duis rutrum metus sed dictum
-							sagittis. Vivamus in arcu sed neque cursus condimentum. Praesent
-							vel turpis malesuada, ullamcorper justo et, facilisis neque. In ex
-							enim, semper sed sapien sit amet, mollis laoreet mi. Fusce vitae
-							bibendum nulla, in condimentum tortor.
-						</p>
+						{LOREM_IPSUM}
 					</div>
 				</dialog>
 			</>
@@ -69,26 +74,7 @@ export const React: Story = {
 					<Button aria-label="Lukk" onClick={() => setOpen(false)} />
 					<Prose>
 						<Heading>Eksempeldialog</Heading>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Suspendisse malesuada eget risus nec viverra. Nam dapibus nec arcu
-							in tristique. Fusce varius urna odio, vel bibendum odio imperdiet
-							eget. Aliquam consectetur arcu mi, quis elementum mi convallis a.
-							Sed venenatis nec enim vel molestie. Vestibulum nec auctor ligula.
-							Nunc id sollicitudin ligula. Fusce interdum quam posuere augue
-							fringilla, dignissim convallis ex suscipit.
-						</p>
-						<p>
-							Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-							posuere cubilia curae; Aliquam commodo bibendum risus non luctus.
-							Etiam molestie lectus commodo quam ornare posuere. Vestibulum
-							aliquam viverra ligula non ultricies. Pellentesque eu bibendum
-							nibh, vel vestibulum tortor. Duis rutrum metus sed dictum
-							sagittis. Vivamus in arcu sed neque cursus condimentum. Praesent
-							vel turpis malesuada, ullamcorper justo et, facilisis neque. In ex
-							enim, semper sed sapien sit amet, mollis laoreet mi. Fusce vitae
-							bibendum nulla, in condimentum tortor.
-						</p>
+						{LOREM_IPSUM}
 					</Prose>
 				</Dialog>
 			</>
@@ -168,6 +154,54 @@ export const WithBackdropClose: Story = {
 	},
 };
 
+export const WithStickyFooter: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState(false);
+
+		return (
+			<>
+				<button
+					className={styles.button}
+					type="button"
+					onClick={() => setOpen(true)}
+				>
+					Open
+				</button>
+				<dialog
+					className={styles.dialog}
+					onClose={() => setOpen(false)}
+					open={open}
+				>
+					<div className={styles.prose}>
+						<h2 className={styles.heading}>Vilkår</h2>
+						{LOREM_IPSUM}
+						{LOREM_IPSUM}
+						{LOREM_IPSUM}
+						{LOREM_IPSUM}
+						{LOREM_IPSUM}
+					</div>
+					<footer className={styles.flex}>
+						<button
+							type="button"
+							className={styles.button}
+							data-variant="primary"
+						>
+							Godta vilkår
+						</button>
+						<button
+							type="button"
+							data-command="close"
+							className={styles.button}
+						>
+							Avbryt
+						</button>
+					</footer>
+				</dialog>
+			</>
+		);
+	},
+};
+
 export const WithoutBackdrop: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
@@ -198,7 +232,7 @@ export const WithoutBackdrop: Story = {
 	},
 };
 
-export const AsDrawer: Story = {
+export const VariantDrawer: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
 
@@ -219,9 +253,74 @@ export const AsDrawer: Story = {
 				>
 					<button type="button" aria-label="Lukk" data-command="close" />
 					<div className={styles.prose}>
-						<h2 className={styles.heading}>Eksempelskuff</h2>
-						<p>Kan brukes med og uten backdrop</p>
+						<h2 className={styles.heading}>Eksempelskuff med backdrop</h2>
+						<p>Kan også brukes uten backdrop</p>
 					</div>
+				</dialog>
+			</>
+		);
+	},
+};
+
+export const VariantDrawerWithoutBackdrop: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState(false);
+
+		return (
+			<>
+				<button
+					className={styles.button}
+					data-variant="secondary"
+					type="button"
+					onClick={() => setOpen(!open)}
+				>
+					<FunnelIcon />
+					Filtrer
+				</button>
+				<dialog
+					className={styles.dialog}
+					data-closedby="any"
+					data-modal="false"
+					data-variant="drawer"
+					onClose={() => setOpen(false)}
+					open={open}
+				>
+					<button type="button" aria-label="Lukk" data-command="close" />
+					<div className={styles.prose}>
+						<h2 className={styles.heading}>Filtrer</h2>
+						<div className={styles.field}>
+							<label>Filter 1</label>
+							<input className={styles.input} />
+						</div>
+						<div className={styles.field}>
+							<label>Filter 2</label>
+							<input className={styles.input} />
+						</div>
+						<div className={styles.field}>
+							<label>Filter 3</label>
+							<input className={styles.input} />
+						</div>
+						<div className={styles.field}>
+							<label>Filter 4</label>
+							<input className={styles.input} />
+						</div>
+						<div className={styles.field}>
+							<label>Filter 5</label>
+							<input className={styles.input} />
+						</div>
+					</div>
+					<footer className={styles.flex}>
+						<button
+							type="button"
+							className={styles.button}
+							data-variant="primary"
+						>
+							Bruk
+						</button>
+						<button type="button" className={styles.button}>
+							Tøm filter
+						</button>
+					</footer>
 				</dialog>
 			</>
 		);

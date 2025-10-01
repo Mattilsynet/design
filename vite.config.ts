@@ -96,7 +96,6 @@ export default defineConfig(({ mode }) =>
 						plugins: [preserveUseClient],
 						// Externalize React
 						external: [
-							"ol",
 							"react",
 							"react-dom",
 							"react/jsx-runtime",

@@ -1,9 +1,15 @@
 :host {
+	aspect-ratio: 2;
 	background: var(--ds-color-neutral-surface-tinted);
-	display: grid;
+	border-radius: var(--ds-border-radius-md);
+	overflow: clip;
 	position: relative;
+	user-select: none;
 }
-:host slot {
+:host(:not([hidden])) {
+	display: grid;
+}
+slot {
 	display: grid;
 	inset: var(--mtds-3);
 	pointer-events: none;
@@ -13,6 +19,23 @@
 ::slotted(*) {
 	pointer-events: all;
 }
-:host .leaflet-container {
+.leaflet-div-icon {
+	background: none;
+	border: 0;
+}
+.leaflet-container {
+	background: var(--ds-color-neutral-surface-tinted);
+}
+.leaflet-container {
 	outline: 0;
+}
+.leaflet-tile-container {
+	filter: contrast(0.75) brightness(1.15);
+}
+
+.map-pin rect {
+	fill: var(--ds-color-surface-default);
+}
+.map-pin path {
+	fill: var(--ds-color-text-default);
 }

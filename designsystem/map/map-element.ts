@@ -1,61 +1,61 @@
-import L, { type LatLngExpression } from "leaflet";
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import LCSS from "leaflet/dist/leaflet.css?raw";
+import * as L from "leaflet";
+import LeafletCSS from "leaflet/dist/leaflet.css?raw";
+import LeafletClusterCSS from "leaflet.markercluster/dist/MarkerCluster.css?raw";
+import "leaflet.markercluster";
 import type * as ReactTypes from "react";
-import { IS_BROWSER, MTDSElement, off, on, tag } from "../utils";
-import css from "./map.css?raw";
+import { IS_BROWSER, MTDSElement, tag } from "../utils";
+import MapCss from "./map.css?raw";
 
+type JSXMapAttrs = ReactTypes.HTMLAttributes<MTDSMapElement>;
+type JSXMapProps = ReactTypes.DetailedHTMLProps<JSXMapAttrs, MTDSMapElement>;
 declare global {
 	namespace React.JSX {
 		interface IntrinsicElements {
-			"mtds-map": ReactTypes.DetailedHTMLProps<
-				ReactTypes.HTMLAttributes<MTDSMapElement>,
-				MTDSMapElement
-			> & { class?: string };
+			"mtds-map": JSXMapProps & { class?: string };
 		}
 	}
 }
 
-const KARTVERKET_GRAY = 'https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png';
+L.Marker.prototype.options.icon = L.divIcon({
+	html: '<svg class="map-pin" viewBox="0 0 256 256"><rect x="78" y="50" width="100" height="100" /><path fill="var(--mtds-)" d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/></svg>',
+	iconAnchor: [15, 30],
+	iconSize: [30, 30],
+});
 
+const KARTVERKET_GRAY =
+	"https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png";
+
+export { L };
 export class MTDSMapElement extends MTDSElement {
 	map?: L.Map;
+	markers: L.MarkerClusterGroup;
 
 	constructor() {
 		super();
 		const sheet = new CSSStyleSheet();
-		sheet.replaceSync(`${LCSS}\n${css}`);
+		sheet.replaceSync(`${LeafletCSS}\n${LeafletClusterCSS}\n${MapCss}`);
 		this.attachShadow({ mode: "open" }).adoptedStyleSheets = [sheet];
 		this.shadowRoot?.append(tag("slot"), tag("div"));
-
-		L.Marker.prototype.options.icon = L.icon({
-			iconAnchor: [12, 41],
-			iconUrl: icon,
-			shadowUrl: iconShadow
-		});
+		this.markers = L.markerClusterGroup();
 	}
 	connectedCallback() {
-		const center: LatLngExpression = [63.43067801397488, 10.402166438219403];
-		this.map = L.map(this.shadowRoot?.lastElementChild as HTMLElement, { attributionControl: false });
-		this.map.addLayer(L.tileLayer(KARTVERKET_GRAY, { maxZoom: 19 }));
-		this.map.addLayer(L.marker(center));
-		this.map.setView(center, 13)
-
-		on(this, "click", this);
+		this.map = L.map(this.shadowRoot?.lastElementChild as HTMLElement, {
+			attributionControl: false,
+			center: [63.43067801397488, 10.402166438219403],
+			zoom: 13,
+			layers: [L.tileLayer(KARTVERKET_GRAY, { maxZoom: 18 }), this.markers],
+		});
 	}
-	handleEvent({ target }: Event) {
-		console.log(target);
+	addMarker(point: L.LatLngExpression) {
+		return L.marker(point).addTo(this.markers);
 	}
 	disconnectedCallback() {
-		off(this, "click", this);
 		this.map?.remove();
 	}
 }
 
-if (IS_BROWSER && !window.customElements.get("mtds-map")) {
+if (IS_BROWSER && !window.customElements.get("mtds-map"))
 	window.customElements.define("mtds-map", MTDSMapElement);
-}
 
 export type Adresse = {
 	adressekode: number;
