@@ -22,7 +22,6 @@
 @import url("./layout/layout.module.css");
 @import url("./link/link.module.css");
 @import url("./logo/logo.module.css");
-@import url("./map/map.module.css");
 @import url("./pagination/pagination.module.css");
 @import url("./popover/popover.module.css");
 @import url("./progress/progress.module.css");
@@ -100,6 +99,7 @@
 		
 		--ds-box-shadow-sm: 0 3px 5px rgba(0, 0, 0, 0.1);
 		--ds-box-shadow-md: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
+		--ds-box-shadow-lg: 0 3px 15px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
 	}
 
 	/**

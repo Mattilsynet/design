@@ -4,7 +4,11 @@
 		--dsc-dialog-background: var(--ds-color-surface-default);
 		--dsc-dialog-color: var(--ds-color-text-default);
 		--dsc-dialog-border-width: 0px;
+		--dsc-dialog-max-width--drawer: 25rem;
 		--dsc-dialog-max-height: 90vh;
+		--mtdsc-dialog-box-shadow: var(--ds-box-shadow-lg);
+
+		box-shadow: var(--mtdsc-dialog-box-shadow);
 	}
 	.dialog:not(:modal) {
 		z-index: 1000; /* Needed as non-modal does not use #top-layer */
@@ -19,10 +23,11 @@
 		all: unset;
 		border-radius: var(--ds-border-radius-md);
 		cursor: pointer;
-		float: right;
-		margin: calc(var(--dsc-dialog-icon-spacing) * -1);
+		inset: 0 0 auto auto;
+		margin: var(--dsc-dialog-icon-spacing);
 		padding: var(--dsc-dialog-icon-spacing);
-		transition: scale 0.2s;
+		position: absolute;
+		transition: 0.2s;
 
 		&:focus-visible {
 			box-shadow: var(--dsc-focus-boxShadow);
@@ -48,16 +53,41 @@
 			width: var(--mtds-icon-size);
 		}
 	}
+
+	.dialog[open]:has(> footer) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.dialog > :has(+ footer) {
+		margin-bottom: auto;
+	}
+
+	.dialog > footer {
+		--_mtdsc-dialog-negative: calc(var(--dsc-dialog-spacing) * -1);
+		background: var(--dsc-dialog-background);
+		border-top: var(--ds-border-width-default) solid
+			var(--ds-color-border-subtle);
+		inset: auto 0 var(--_mtdsc-dialog-negative);
+		justify-self: end;
+		margin: var(--dsc-dialog-spacing) var(--_mtdsc-dialog-negative)
+			var(--_mtdsc-dialog-negative);
+		padding: var(--dsc-dialog-spacing);
+		position: sticky;
+	}
+
 	.dialog[data-variant="drawer"] {
-		--dsc-dialog-max-height: none;
 		animation: _drawer 0.2s forwards;
 		border-radius: 0;
 		height: auto;
 		inset: 0 0 0 auto;
+		max-height: none;
+		max-width: var(--dsc-dialog-max-width--drawer);
 		transform: none;
 	}
 	@keyframes _drawer {
 		from {
+			opacity: 0;
 			translate: 3rem;
 		}
 	}

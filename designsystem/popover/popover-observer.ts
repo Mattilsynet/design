@@ -11,6 +11,7 @@ function handlePopoverToggle({ target: el, newState }: EventToggle) {
 	if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
 		const isClosing = newState === "closed";
 		const isContain = attr(el, "data-overscroll") === "contain";
+		const padding = Number(attr(el, "data-inset")) || 20;
 		const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(
 			`[popovertarget="${el.id}"]`,
 		);
@@ -19,10 +20,10 @@ function handlePopoverToggle({ target: el, newState }: EventToggle) {
 		else if (anchor)
 			anchorPosition(el, anchor, {
 				placement: (attr(el, "data-position") || "bottom") as Placement,
-				middleware: [flip(), shift({ padding: 10 })].concat(
+				middleware: [flip(), shift({ padding })].concat(
 					isContain
 						? size({
-								padding: 10,
+								padding,
 								apply({ availableHeight }) {
 									el.style.maxHeight = `${Math.max(50, availableHeight)}px`;
 								},
@@ -58,15 +59,16 @@ function handlePopoverLinkClick(event: Event) {
 		if (!open.contains(event.target as Node) && pop !== open)
 			(open as HTMLElement).hidePopover();
 
-	if (pop && el) {
+	if (pop?.classList.contains(CSS_POPOVER) && el) {
 		const action = attr(el, "popovertargetaction");
 		const open = action === "show" || (action === "hide" ? false : undefined);
 
 		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
 		if (el instanceof HTMLButtonElement && !action && pop.contains(el)) return; // Require "popovertargetaction" attribute to make buttons inside popover toggle
-		if (pop instanceof HTMLElement && pop.isConnected && pop.togglePopover) {
+		if (pop instanceof HTMLElement && pop.isConnected) {
 			event.preventDefault(); // Prevent browser popover API since we are doing it ourselves
-			pop.togglePopover(open);
+			if (pop.hasAttribute("popover")) return pop.togglePopover(open);
+			console.error(`Element "${pop.id}" is missing "popover" attribute`);
 		}
 	}
 }
