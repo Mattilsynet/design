@@ -13,9 +13,8 @@ import { useEffect, useState } from "react";
 
 // TODO Ottar: tall 1 eller i. når romertall?
 // TODO Ottar "Nr. 1, 3 og 5 i denne artikkel gjelder for slike forsendelser." i "sikre etterlevelse av regelverket for mat" = Ledd + Ledd
-// Todo: Punkt "-" må fikses på Forskrifter om internasjonal transport av lett bedervelige næringsmidler
 
-const FIRST_HEADING = ':is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child';
+// const FIRST_HEADING = ':is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child';
 
 const meta = {
 	title: "Designsystem/Lovvelger",
@@ -70,8 +69,9 @@ export const Default: Story = {
 			)
 				.then((res) => res.text())
 				.then((html) => {
+					const htmlA11Y = html.replace(/<(\/?)article/g, "<$1div"); // Too many <article> tags for a11y
 					const parser = new DOMParser();
-					const doc = parser.parseFromString(html, "text/html");
+					const doc = parser.parseFromString(htmlA11Y, "text/html");
 					const base = doc.querySelector("base")?.href || "";
 
 					doc.querySelectorAll("a").forEach((a) => {
@@ -79,20 +79,20 @@ export const Default: Story = {
 						a.rel = "noreferrer noopener";
 						a.href = `${base}${a.getAttribute("href")}`;
 					});
-					doc
-						.querySelectorAll(`main > .section:has(> ${FIRST_HEADING})`)
-						.forEach((el) => {
-							const details = Object.assign(
-								document.createElement("u-details"),
-								{ className: styles.details, open: true },
-							);
-							const summary = details.appendChild(
-								document.createElement("u-summary"),
-							);
-							summary.append(el.querySelector(FIRST_HEADING) || "");
-							el.replaceWith(details);
-							details.append(el);
-						});
+					// doc
+					// 	.querySelectorAll(`main > .section:has(> ${FIRST_HEADING})`)
+					// 	.forEach((el) => {
+					// 		const details = Object.assign(
+					// 			document.createElement("u-details"),
+					// 			{ className: styles.details, open: true },
+					// 		);
+					// 		const summary = details.appendChild(
+					// 			document.createElement("u-summary"),
+					// 		);
+					// 		summary.append(el.querySelector(FIRST_HEADING) || "");
+					// 		el.replaceWith(details);
+					// 		details.append(el);
+					// 	});
 					// doc.querySelectorAll('main > .legalArticle:has(.legalArticleHeader:first-child)').forEach((el) => {
 					//   const details = Object.assign(document.createElement('u-details'), { className: styles.details, open: true });
 					//   const summary = details.appendChild(document.createElement('u-summary'));
@@ -135,9 +135,7 @@ export const Default: Story = {
 					(el) => {
 						const li = el.parentElement;
 						const name = li?.getAttribute("data-name")?.replace(/\.$/, "");
-						const value = li?.parentElement
-							? Array.from(li.parentElement.children).indexOf(li) + 1
-							: li?.getAttribute("value");
+						const value = li?.getAttribute("value");
 						const type = li?.parentElement?.getAttribute("type");
 						if (li instanceof HTMLLIElement && name)
 							return `${type === "a" ? "Bokstav" : name === "-" ? "Punkt" : "Tall"} ${name === "-" ? value : name}`;
@@ -184,8 +182,8 @@ export const Default: Story = {
 					{`
           .lovdata { --inset: 2rem; padding: 30px 0 50px var(--inset) }
           .lovdata input { position: absolute; margin-top: .25em; margin-left: calc(var(--inset) * -1) }
-          .lovdata u-summary > * { all: unset }
-          .lovdata u-details > article { overflow-y: clip; position: relative; padding-bottom: 30px }
+          /*.lovdata u-summary > * { all: unset }
+          .lovdata u-details > article { overflow-y: clip; position: relative; padding-bottom: 30px }*/
 
           .lovdata .footnote,
           .lovdata .legalP,
