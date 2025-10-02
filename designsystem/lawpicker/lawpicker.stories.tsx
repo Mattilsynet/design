@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 // Todo: Punkt "-" må fikses på Forskrifter om internasjonal transport av lett bedervelige næringsmidler
 
 const FIRST_HEADING = ':is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child';
-const LAW_DOMAIN = "SF"; // SF = Stortingsforordning, NL = Norsk Lov
 
 const meta = {
 	title: "Designsystem/Lovvelger",
@@ -47,7 +46,7 @@ export const Default: Story = {
 		useEffect(() => {
 			if (!key) return;
 			window.localStorage.setItem("lovdata-api-key", key);
-			fetch(`https://api.lovdata.no/v1/structuredRules/list/${LAW_DOMAIN}`, {
+			fetch(`https://api.lovdata.no/v1/structuredRules/list/${domain}`, {
 				headers: { Accept: "application/json", "X-API-key": key },
 			})
 				.then((res) => res.json())
@@ -59,12 +58,12 @@ export const Default: Story = {
 						})),
 					),
 				);
-		}, [key]);
+		}, [key, domain]);
 
 		useEffect(() => {
 			if (!key || !lovId) return;
 			fetch(
-				`https://api.lovdata.no/v1/structuredRules/get/${LAW_DOMAIN}/${lovId}.html`,
+				`https://api.lovdata.no/v1/structuredRules/get/${domain}/${lovId}.html`,
 				{
 					headers: { Accept: "text/html", "X-API-key": key },
 				},
@@ -125,7 +124,7 @@ export const Default: Story = {
 
 					setLovHTML(doc.querySelector("main")?.innerHTML || "");
 				});
-		}, [key, lovId]);
+		}, [key, domain, lovId]);
 
 		const handleChange = (event: React.ChangeEvent<HTMLDivElement>) => {
 			const { target: el } = event;
