@@ -319,3 +319,19 @@ export const VariantInline: Story = {
 		</>
 	),
 };
+
+// <Field
+// 	as="input"
+// 	label="Dato"
+// 	onFocus={() =>
+// 		document
+// 			.querySelector<HTMLInputElement>('input[type="date"]')
+// 			?.showPicker()
+// 	}
+// />
+// <Input
+// 	type="date"
+// 	aria-hidden="true"
+// 	tabIndex={-1}
+// 	style={{ marginTop: -60, opacity: 0, pointerEvents: "none" }}
+// />
