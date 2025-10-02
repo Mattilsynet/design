@@ -1,12 +1,14 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
 import * as stories from './dialog.stories';
 
 <Meta of={stories} />
 
 # Dialog
 
->Dialog lar deg lage et vindu som kan vises foran innholdet på en side. Den kan enten være modal, som betyr at brukeren må gjøre noe før de kan komme videre, eller ikke-modalt, som bare er et vanlig vindu som kan lukkes når man vil.
+> Dialog lar deg lage et vindu som kan vises foran innholdet på en side. Den kan enten være modal, som betyr at brukeren må gjøre noe før de kan komme videre, eller ikke-modalt, som bare er et vanlig vindu som kan lukkes når man vil.
+
+<JumpTo />
 
 ## Kode
 - Legg klassen `dialog` på `<dialog>`
@@ -27,5 +29,9 @@ import * as stories from './dialog.stories';
 ## Ikke-modal
 - Legg `data-modal="false"` på `<dialog>`
 <Canvas of={stories.WithoutBackdrop} />
+
+## Med sticky footer
+- Legg et `<footer>` element inn som siste barn for å få sticky footer
+<Canvas of={stories.VariantDrawerWithoutBackdrop} />
 
 <CssVariables component="dialog" exclude="divider" />

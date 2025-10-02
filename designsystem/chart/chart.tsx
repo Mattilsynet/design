@@ -34,13 +34,24 @@ export const Chart = forwardRef<HTMLDivElement, ChartProps>(function Chart(
 		<mtds-chart ref={ref} {...toCustomElementProps(rest)}>
 			{data ? (
 				<table>
-					{data.map((row, rowIndex) => (
-						<tr key={`${rowIndex + 1}`}>
-							{row.map((cell, cellIndex) => (
-								<td key={`${cellIndex + 1}`}>{cell}</td>
-							))}
-						</tr>
-					))}
+					<thead>
+						{data.slice(0, 1).map((tr, row) => (
+							<tr key={`${row + 1}`}>
+								{tr.map((td, i) => (
+									<th key={`${i}-${td}`}>{td}</th>
+								))}
+							</tr>
+						))}
+					</thead>
+					<tbody>
+						{data.slice(1).map((tr, row) => (
+							<tr key={`${row + 1}`}>
+								{tr.map((td, i) =>
+									i ? <th key="th">{td}</th> : <td key={`${i}-${td}`}>{td}</td>,
+								)}
+							</tr>
+						))}
+					</tbody>
 				</table>
 			) : (
 				children

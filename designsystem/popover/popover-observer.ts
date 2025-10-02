@@ -1,4 +1,3 @@
-import { flip, type Placement, shift, size } from "@floating-ui/dom";
 import styles from "../styles.module.css";
 import { anchorPosition, attr, on, onLoaded, QUICK_EVENT } from "../utils";
 
@@ -9,27 +8,16 @@ type EventToggle = Event & Partial<ToggleEvent>;
 
 function handlePopoverToggle({ target: el, newState }: EventToggle) {
 	if (el instanceof HTMLElement && el.classList.contains(CSS_POPOVER)) {
-		const isClosing = newState === "closed";
-		const isContain = attr(el, "data-overscroll") === "contain";
-		const padding = Number(attr(el, "data-inset")) || 20;
-		const anchor = (el.getRootNode() as ShadowRoot)?.querySelector<HTMLElement>(
-			`[popovertarget="${el.id}"]`,
-		);
+		const anchor = document.querySelector(`[popovertarget="${el.id}"]`);
 
-		if (isClosing) anchorPosition(el, false);
+		if (newState === "closed") anchorPosition(el, false);
 		else if (anchor)
 			anchorPosition(el, anchor, {
-				placement: (attr(el, "data-position") || "bottom") as Placement,
-				middleware: [flip(), shift({ padding })].concat(
-					isContain
-						? size({
-								padding,
-								apply({ availableHeight }) {
-									el.style.maxHeight = `${Math.max(50, availableHeight)}px`;
-								},
-							})
-						: [],
-				),
+				contain:
+					attr(el, "data-overscroll") === "contain" &&
+					(({ availableHeight }) => {
+						el.style.maxHeight = `${Math.max(50, availableHeight)}px`;
+					}),
 			});
 	}
 }

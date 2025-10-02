@@ -103,15 +103,19 @@ function onMoveTooltip(event: MouseEvent) {
 const text = (el?: Element | null) => el?.textContent?.trim() || ""; // Helper to get trimmed text
 const toData = (table?: HTMLTableElement | null) =>
 	Array.from(table?.rows || [], (row, rowIndex) =>
-		Array.from(row.cells, (cell, cellIndex) => ({
-			number: (cellIndex && rowIndex && Number.parseFloat(text(cell))) || 0, // First row and column is not a number
-			event: cell.querySelector("a,button") && `${rowIndex}-${cellIndex}`, // Reference to proxy events
-			style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base))`,
-			value: text(cell),
-			tooltip:
-				attr(cell, "data-tooltip") ||
-				`${text(row.cells[0])}: ${text(cell)} (${text(table?.rows[0].cells[cellIndex])})`,
-		})),
+		Array.from(row.cells, (cell, cellIndex) => {
+			const rowHeading = text(row.cells[0]);
+			const colHeading = text(table?.rows[0].cells[cellIndex]);
+			const tooltip = `${rowHeading}: ${text(cell)}${colHeading ? ` (${colHeading})` : ""}`;
+
+			return {
+				number: (cellIndex && rowIndex && Number.parseFloat(text(cell))) || 0, // First row and column is not a number
+				event: cell.querySelector("a,button") && `${rowIndex}-${cellIndex}`, // Reference to proxy events
+				style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base))`,
+				value: text(cell),
+				tooltip: attr(cell, "data-tooltip") || tooltip,
+			};
+		}),
 	);
 
 if (IS_BROWSER && !window.customElements.get("mtds-chart"))

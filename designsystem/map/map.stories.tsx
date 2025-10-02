@@ -39,7 +39,7 @@ export const Default: Story = {
 
 			for (let i = 0; i < addressPoints.length; i++) {
 				const [lat, lng, title] = addressPoints[i];
-				map?.markers.addLayer(L.marker([lat, lng], { title }));
+				map?.cluster.addLayer(L.marker([lat, lng], { title }));
 			}
 			map?.map?.addLayer(
 				L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
