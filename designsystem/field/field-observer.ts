@@ -1,4 +1,3 @@
-import { flip, type Placement, shift, size } from "@floating-ui/dom";
 import { UHTMLComboboxElement } from "@u-elements/u-combobox";
 import { UHTMLDataListElement } from "@u-elements/u-datalist";
 import styles from "../styles.module.css";
@@ -117,29 +116,20 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
-function handleFieldToggle(event: Event & { newState?: string }) {
-	if (event.target instanceof UHTMLDataListElement) {
-		const list = event.target;
-		const root = list.getRootNode() as ShadowRoot | null;
+function handleFieldToggle({ target: el, newState }: Partial<ToggleEvent>) {
+	if (el instanceof UHTMLDataListElement) {
+		const root = el.getRootNode() as ShadowRoot | null;
 		const anchor = root?.querySelector<HTMLElement>(
-			`[popovertarget="${list.id}"]`,
+			`[popovertarget="${el.id}"]`,
 		);
 
-		if (event.newState === "closed") anchorPosition(list, false);
+		if (newState === "closed") anchorPosition(el, false);
 		else if (anchor)
-			anchorPosition(list, anchor, {
-				placement: (attr(list, "data-position") ?? "bottom") as Placement,
-				middleware: [
-					flip(),
-					shift(),
-					size({
-						padding: 10,
-						apply({ availableHeight }) {
-							list.style.width = `${anchor.offsetWidth}px`;
-							list.style.maxHeight = `${Math.max(50, availableHeight)}px`;
-						},
-					}),
-				],
+			anchorPosition(el, anchor, {
+				contain({ availableHeight }) {
+					el.style.width = `${anchor.clientWidth}px`;
+					el.style.maxHeight = `${Math.max(50, availableHeight)}px`;
+				},
 			});
 	}
 }

@@ -44,6 +44,6 @@ export const Group: GroupComponent = forwardRef<null>(function Group<
 	As extends React.ElementType = "div",
 >({ as, className, ...rest }: GroupProps<As>, ref?: PolymorphicRef<As>) {
 	const Tag = as || "div";
-
+	if (Tag === "button" && !rest.type) Object.assign(rest, { type: "button" }); // Default type for button to avoid accidental submits
 	return <Tag className={clsx(styles.group, className)} ref={ref} {...rest} />;
 }) as GroupComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

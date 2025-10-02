@@ -1,5 +1,13 @@
-import { autoUpdate, computePosition } from "@floating-ui/dom";
+import type { Placement, SizeOptions } from "@floating-ui/dom";
+import {
+	autoUpdate,
+	computePosition,
+	flip,
+	shift,
+	size,
+} from "@floating-ui/dom";
 import clsx from "clsx";
+import styles from "./styles.module.css";
 
 export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
@@ -124,27 +132,48 @@ export const onLoaded = (callback: () => void) => {
 	else on(window, "load", run);
 };
 
+type AnchorOptions = Parameters<typeof computePosition>[2] & {
+	contain?: SizeOptions["apply"] | false;
+};
 const ANCHORED = new WeakMap<Element, ReturnType<typeof autoUpdate>>();
+const DIALOG = `.${styles.dialog.split(" ")[0]}`;
 export function anchorPosition(
 	target: HTMLElement,
 	anchor: false | Element,
-	options?: Parameters<typeof computePosition>[2],
+	{ contain, middleware, placement, ...options }: AnchorOptions = {},
 ) {
 	ANCHORED.get(target)?.(); // Unbind previous anchor position
 	ANCHORED.delete(target);
 
-	if (anchor)
+	// TODO aria-label på app
+	if (anchor) {
+		const footer = target.closest(DIALOG)?.querySelector(":scope > footer");
+		const inset = Number(attr(target, "data-inset")) || 20;
+		const bottom = (footer?.clientHeight || 0) + inset;
+		const padding = { bottom, left: inset, right: inset, top: inset };
+		const position = (attr(target, "data-position") ?? "bottom") as Placement;
+
 		ANCHORED.set(
 			target,
 			autoUpdate(anchor, target, () => {
 				if (!target.isConnected || !anchor.isConnected || target.hidden)
 					return anchorPosition(target, false);
-				computePosition(anchor, target, options).then(({ x, y }) => {
+				computePosition(anchor, target, {
+					...options,
+					placement: placement || position,
+					middleware: [
+						flip({ padding }),
+						shift(),
+						...(contain ? [size({ padding, apply: contain })] : []),
+						...(middleware || []),
+					],
+				}).then(({ x, y }) => {
 					target.style.left = `${x}px`;
 					target.style.top = `${y}px`;
 				});
 			}),
 		);
+	}
 }
 
 /**

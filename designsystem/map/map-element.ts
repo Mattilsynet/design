@@ -28,7 +28,7 @@ const KARTVERKET_GRAY =
 export { L };
 export class MTDSMapElement extends MTDSElement {
 	map?: L.Map;
-	markers: L.MarkerClusterGroup;
+	cluster: L.MarkerClusterGroup;
 
 	constructor() {
 		super();
@@ -36,18 +36,20 @@ export class MTDSMapElement extends MTDSElement {
 		sheet.replaceSync(`${LeafletCSS}\n${LeafletClusterCSS}\n${MapCss}`);
 		this.attachShadow({ mode: "open" }).adoptedStyleSheets = [sheet];
 		this.shadowRoot?.append(tag("slot"), tag("div"));
-		this.markers = L.markerClusterGroup();
+		this.cluster = L.markerClusterGroup({
+			showCoverageOnHover: false,
+		});
 	}
 	connectedCallback() {
 		this.map = L.map(this.shadowRoot?.lastElementChild as HTMLElement, {
 			attributionControl: false,
 			center: [63.43067801397488, 10.402166438219403],
 			zoom: 13,
-			layers: [L.tileLayer(KARTVERKET_GRAY, { maxZoom: 18 }), this.markers],
+			layers: [L.tileLayer(KARTVERKET_GRAY, { maxZoom: 18 }), this.cluster],
 		});
 	}
 	addMarker(point: L.LatLngExpression) {
-		return L.marker(point).addTo(this.markers);
+		return L.marker(point).addTo(this.cluster);
 	}
 	disconnectedCallback() {
 		this.map?.remove();

@@ -12,10 +12,11 @@ export function toPies(data: ChartData, { variant }: { variant: string }) {
 	const total = data.slice(1).reduce((tot, [, td]) => tot + td.number, 0);
 
 	data.slice(1).forEach(([, { tooltip, number, event, style }]) => {
+		if (!number) return; // Skip empty
 		const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 		const start = offset / total;
 		offset += number;
-		const end = offset / total;
+		const end = Math.min(offset / total, 0.99999); // Ensure full circle works
 		const largeArc = end - start > 0.5 ? 1 : 0;
 		const a0 = 2 * Math.PI * (start - 0.25);
 		const a1 = 2 * Math.PI * (end - 0.25);

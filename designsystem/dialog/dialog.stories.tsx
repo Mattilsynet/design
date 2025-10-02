@@ -1,7 +1,7 @@
 import { FunnelIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Button, Dialog, Heading, Prose } from "../react";
+import { Button, Dialog, Field, Flex, Heading, Prose } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -262,66 +262,47 @@ export const VariantDrawer: Story = {
 	},
 };
 
+const options = Array.from({ length: 25 }, (_, i) => ({
+	label: `Alternativ ${i + 1}`,
+	value: `${i}`,
+}));
+
 export const VariantDrawerWithoutBackdrop: Story = {
 	render: function Render() {
 		const [open, setOpen] = useState(false);
 
 		return (
 			<>
-				<button
-					className={styles.button}
-					data-variant="secondary"
-					type="button"
-					onClick={() => setOpen(!open)}
-				>
+				<Button data-variant="secondary" onClick={() => setOpen(!open)}>
 					<FunnelIcon />
 					Filtrer
-				</button>
-				<dialog
-					className={styles.dialog}
-					data-closedby="any"
+				</Button>
+				<Dialog
 					data-modal="false"
 					data-variant="drawer"
 					onClose={() => setOpen(false)}
 					open={open}
 				>
-					<button type="button" aria-label="Lukk" data-command="close" />
-					<div className={styles.prose}>
-						<h2 className={styles.heading}>Filtrer</h2>
-						<div className={styles.field}>
-							<label>Filter 1</label>
-							<input className={styles.input} />
-						</div>
-						<div className={styles.field}>
-							<label>Filter 2</label>
-							<input className={styles.input} />
-						</div>
-						<div className={styles.field}>
-							<label>Filter 3</label>
-							<input className={styles.input} />
-						</div>
-						<div className={styles.field}>
-							<label>Filter 4</label>
-							<input className={styles.input} />
-						</div>
-						<div className={styles.field}>
-							<label>Filter 5</label>
-							<input className={styles.input} />
-						</div>
-					</div>
-					<footer className={styles.flex}>
-						<button
-							type="button"
-							className={styles.button}
-							data-variant="primary"
-						>
-							Bruk
-						</button>
-						<button type="button" className={styles.button}>
-							Tøm filter
-						</button>
-					</footer>
-				</dialog>
+					<Button data-command="close" />
+					<Prose>
+						<Heading>
+							<FunnelIcon /> Filtrer
+						</Heading>
+						<Field as={Field.Combobox} label="Filter 1" options={options} />
+						<Field as={Field.Combobox} label="Filter 2" options={options} />
+						<Field as={Field.Combobox} label="Filter 3" options={options} />
+						<Field as={Field.Combobox} label="Filter 4" options={options} />
+						<Field as={Field.Combobox} label="Filter 5" options={options} />
+						<Field as={Field.Combobox} label="Filter 6" options={options} />
+						<Field as={Field.Combobox} label="Filter 7" options={options} />
+						<Field as={Field.Combobox} label="Filter 8" options={options} />
+						<Field as={Field.Combobox} label="Filter 9" options={options} />
+					</Prose>
+					<Flex as="footer">
+						<Button data-variant="primary">Bruk</Button>
+						<Button>Tøm filter</Button>
+					</Flex>
+				</Dialog>
 			</>
 		);
 	},

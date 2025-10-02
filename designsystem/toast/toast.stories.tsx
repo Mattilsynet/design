@@ -23,10 +23,10 @@ let count = 1;
 export const Default: Story = {
 	render: () => (
 		<button
+			onClick={() => toast(`Toast #${++count}`)}
 			type="button"
 			className={styles.button}
 			data-variant="secondary"
-			onClick={() => toast(`Toast #${++count}`)}
 		>
 			Vis en toast
 		</button>
@@ -36,8 +36,8 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<Button
-			data-variant="secondary"
 			onClick={() => toast(<span>Toast #{++count}</span>)}
+			data-variant="secondary"
 		>
 			Vis en toast
 		</Button>
@@ -48,55 +48,55 @@ export const Colors: Story = {
 	render: () => (
 		<Flex>
 			<button
+				onClick={() => toast("Toast default")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
-				onClick={() => toast("Toast default")}
 			>
 				Vis default
 			</button>
 			<button
+				onClick={() => toast.info("Toast info")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
 				data-color="info"
-				onClick={() => toast.info("Toast info")}
 			>
 				Vis info
 			</button>
 			<button
+				onClick={() => toast.success("Toast success")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
 				data-color="success"
-				onClick={() => toast.success("Toast success")}
 			>
 				Vis success
 			</button>
 			<button
+				onClick={() => toast.warning("Toast warning")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
 				data-color="warning"
-				onClick={() => toast.warning("Toast warning")}
 			>
 				Vis warning
 			</button>
 			<button
+				onClick={() => toast.danger("Toast danger")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
 				data-color="danger"
-				onClick={() => toast.danger("Toast danger")}
 			>
 				Vis danger
 			</button>
 			<button
+				onClick={() => toast.neutral("Toast neutral")}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
 				data-color="neutral"
-				onClick={() => toast.neutral("Toast neutral")}
 			>
 				Vis neutral
 			</button>
@@ -105,18 +105,18 @@ export const Colors: Story = {
 };
 
 const someApiCall = () => new Promise((resolve) => setTimeout(resolve, 2000));
-export const WithLoading: Story = {
+export const WithUpdates: Story = {
 	render: () => (
 		<button
-			type="button"
-			className={styles.button}
-			data-variant="secondary"
 			onClick={() => {
-				const id = toast(<span>Toast loading</span>, { busy: true });
+				const id = toast.info(<span>Toast loading</span>, { busy: true });
 				someApiCall()
 					.then(() => toast.success("Ferdig!", { id, busy: false }))
 					.catch(() => toast.danger("Feil!", { id, busy: false }));
 			}}
+			type="button"
+			className={styles.button}
+			data-variant="secondary"
 		>
 			Vis laster
 		</button>
@@ -126,9 +126,6 @@ export const WithLoading: Story = {
 export const WithPromise: Story = {
 	render: () => (
 		<button
-			type="button"
-			className={styles.button}
-			data-variant="secondary"
 			onClick={() =>
 				toast.promise(someApiCall, {
 					loading: <span>Toast loading</span>,
@@ -136,6 +133,9 @@ export const WithPromise: Story = {
 					error: "Noe gikk galt under utføring",
 				})
 			}
+			type="button"
+			className={styles.button}
+			data-variant="secondary"
 		>
 			Vis promise
 		</button>
@@ -145,10 +145,10 @@ export const WithPromise: Story = {
 export const WithNoTimeout: Story = {
 	render: () => (
 		<button
+			onClick={() => toast("Blir stående åpen", { timeout: false })}
 			type="button"
 			className={styles.button}
 			data-variant="secondary"
-			onClick={() => toast("Blir stående åpen", { timeout: false })}
 		>
 			Vis uten automatisk lukking
 		</button>
@@ -159,17 +159,14 @@ export const WithCustomClose: Story = {
 	render: () => (
 		<div className={styles.prose}>
 			<button
+				onClick={() => toast("Ingen lukke-kryss", { closedby: "none" })}
 				type="button"
 				className={styles.button}
 				data-variant="secondary"
-				onClick={() => toast("Ingen lukke-kryss", { closedby: "none" })}
 			>
 				Vis uten lukke-kryss
 			</button>
 			<button
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
 				onClick={() =>
 					toast.info(
 						<div className={styles.prose}>
@@ -186,6 +183,9 @@ export const WithCustomClose: Story = {
 						{ closedby: "none", timeout: false },
 					)
 				}
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
 			>
 				Vis egen lukk knapp
 			</button>
@@ -193,16 +193,16 @@ export const WithCustomClose: Story = {
 	),
 };
 
-export const HTML: Story = {
+export const AsHTML: Story = {
 	render: () => (
 		<>
 			<button
-				type="button"
-				className={styles.button}
-				data-variant="secondary"
 				onClick={() =>
 					document.querySelector<HTMLDialogElement>("#my-toast")?.show()
 				}
+				type="button"
+				className={styles.button}
+				data-variant="secondary"
 			>
 				Vis en toast
 			</button>
