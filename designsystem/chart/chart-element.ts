@@ -17,15 +17,18 @@ const TOOLTIP = IS_BROWSER
 
 export class MTDSChartElement extends MTDSElement {
 	_observer?: MutationObserver; // Using underscore instead of # for backwards compatibility
+	_resize?: ResizeObserver;
 
 	static get observedAttributes() {
-		return ["data-variant"]; // Using ES2015 syntax for backwards compatibility
+		return ["data-variant", "data-aspect"]; // Using ES2015 syntax for backwards compatibility
 	}
 	constructor() {
 		super();
 		this.attachShadow({ mode: "open" });
 	}
 	connectedCallback() {
+		this._resize = new ResizeObserver(this.handleResize.bind(this));
+		this._resize.observe(this);
 		this._observer = new MutationObserver(
 			this.attributeChangedCallback.bind(this),
 		);
@@ -42,33 +45,41 @@ export class MTDSChartElement extends MTDSElement {
 	disconnectedCallback() {
 		if (TOOLTIP) TOOLTIP.hidden = true;
 		off(this, EVENTS, this);
+		this._resize?.disconnect();
 		this._observer?.disconnect();
-		this._observer = undefined;
+		this._observer = this._resize = undefined;
 	}
 	attributeChangedCallback() {
 		Array.from(this.shadowRoot?.children || []).map((el) => el.remove()); // Clear shadowRoot
 
+		const [variant, type] = (attr(this, "data-variant") || "column").split("-");
+		const aspect = attr(this, "data-aspect") || undefined;
 		const data = toData(this.querySelector("table"));
-		const [variant, type] = (attr(this, "data-variant") || "bar").split("-");
 		const style = tag("style", {}, css);
 		const legend = tag("div", { class: "legends" });
 		data.slice(1).forEach(([{ value, style }]) => {
 			legend.appendChild(tag("div", { class: "legend", style }, value));
 		});
 
-		const { axis, groups, total } = toAxis(data, { type });
-		if (variant === "bar" || variant === "column")
+		const { axis, groups, total } = toAxis(data, { aspect, type });
+		if (variant === "column" || variant === "bar")
 			groups.append(...toBars(data));
 		if (variant === "line" || variant === "area")
 			groups.append(toLines(data, { total, variant, type }));
 		if (variant === "doughnut" || variant === "pie")
-			this.shadowRoot?.append(toPies(data, { variant }));
+			this.shadowRoot?.append(toPies(data, { aspect, variant }));
 
-		this.shadowRoot?.append(style, axis, legend);
+		this.shadowRoot?.append(axis, legend, style); // Axis must be first
 	}
 	handleEvent(e: Event) {
 		if (e.type === "click" || e.type === "keydown") onClick(e, this);
 		else onMoveTooltip(e as MouseEvent);
+	}
+	handleResize() {
+		const axis = this.shadowRoot?.firstElementChild as HTMLElement | null;
+		const steps = axis?.firstElementChild as HTMLElement | null;
+		axis?.classList.toggle("axisStepsYHalf", (steps?.offsetHeight || 0) < 400);
+		axis?.classList.toggle("axisStepsXHalf", (steps?.offsetWidth || 0) < 500);
 	}
 }
 

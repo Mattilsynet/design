@@ -1,0 +1,25 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Wide } from '../.storybook/blocks.tsx';
+import { PlusIcon, TrashIcon } from '@phosphor-icons/react';
+import { Details } from '../designsystem/react.tsx';
+import * as stories from '../designsystem/chart/chart.stories.tsx';
+import { InfografikkGenerator } from './infografikk-generator/index.tsx';
+
+<Meta title='Identitet/Infografikk' />
+
+# Infografikk
+
+> Vi bruker infografikk for å formidle informasjon på en enkel og visuelt tydelig måte.
+> Bruk vår generator for å lage infografikk.
+
+<Details>
+<Details.Summary>Tips og triks</Details.Summary>
+
+1. Høyreklikk i tabellen for å endre rader/kolonner
+2. Du kan også lime inn data fra Excel eller liknende
+3. Data lagres lokalt i nettleseren, så du kan fortsette senere
+4. Trykk "Kopier infografikk" og lim inn i PowerPoint, Word, Figma, etc.
+
+</Details>
+
+<Wide><InfografikkGenerator /></Wide>

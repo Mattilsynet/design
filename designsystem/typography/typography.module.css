@@ -11,12 +11,15 @@
 		text-wrap: pretty;
 	}
 	.heading[data-justify="start"] {
+		justify-content: start;
 		text-align: start;
 	}
 	.heading[data-justify="center"] {
+		justify-content: center;
 		text-align: center;
 	}
 	.heading[data-justify="end"] {
+		justify-content: end;
 		text-align: end;
 	}
 	.heading svg {
@@ -40,7 +43,10 @@
 		--mtdsc-info-circle-gap: var(--ds-size-3);
 		--mtdsc-info-circle-size: var(--ds-size-10);
 		--mtdsc-info-line-height: var(--ds-line-height-sm);
-		--_mtdsc-info-lh: calc(var(--mtdsc-info-line-height) * 1em); /* Fallback if not supporting lh unit */
+		--_mtdsc-info-lh: calc(
+			var(--mtdsc-info-line-height) *
+			1em
+		); /* Fallback if not supporting lh unit */
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 		line-height: var(--mtdsc-info-line-height);
 	}
@@ -70,7 +76,9 @@
 		width: var(--mtdsc-info-icon-size);
 	}
 	.info[data-variant="circle"] {
-		--_mtdsc-info-y: var(--ds-size-1); /* center-align to two lines, but not more */
+		--_mtdsc-info-y: var(
+			--ds-size-1
+		); /* center-align to two lines, but not more */
 		--_mtdsc-info-x: calc(
 			var(--mtdsc-info-circle-size) +
 			var(--mtdsc-info-circle-gap)

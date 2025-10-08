@@ -137,29 +137,29 @@ export const React: Story = {
 	),
 };
 
-export const Bar: Story = {
-	render: () => <mtds-chart data-variant="bar">{table}</mtds-chart>,
+export const Column: Story = {
+	render: () => <mtds-chart data-variant="column">{table}</mtds-chart>,
 };
 
-export const BarSingleDataset: Story = {
+export const ColumnSingleDataset: Story = {
 	render: () => (
-		<mtds-chart data-variant="bar" data-aspect="3/1">
+		<mtds-chart data-variant="column">
 			<table>
 				<thead>
 					<tr>
 						<th>Risikofordeling</th>
-						<th>J</th>
-						<th>F</th>
-						<th>M</th>
-						<th>A</th>
-						<th>M</th>
-						<th>J</th>
-						<th>J</th>
-						<th>A</th>
-						<th>S</th>
-						<th>O</th>
-						<th>N</th>
-						<th>D</th>
+						<th>Janaur</th>
+						<th>Februar</th>
+						<th>Mars</th>
+						<th>April</th>
+						<th>Mai</th>
+						<th>Juni</th>
+						<th>Juli</th>
+						<th>August</th>
+						<th>September</th>
+						<th>Oktober</th>
+						<th>November</th>
+						<th>Desember</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -184,16 +184,16 @@ export const BarSingleDataset: Story = {
 	),
 };
 
-export const BarStacked: Story = {
-	render: () => <mtds-chart data-variant="bar-stacked">{table}</mtds-chart>,
-};
-
-export const Column: Story = {
-	render: () => <mtds-chart data-variant="column">{table}</mtds-chart>,
-};
-
 export const ColumnStacked: Story = {
 	render: () => <mtds-chart data-variant="column-stacked">{table}</mtds-chart>,
+};
+
+export const Bar: Story = {
+	render: () => <mtds-chart data-variant="bar">{table}</mtds-chart>,
+};
+
+export const BarStacked: Story = {
+	render: () => <mtds-chart data-variant="bar-stacked">{table}</mtds-chart>,
 };
 
 export const Line: Story = {
@@ -272,6 +272,35 @@ export const Pie: Story = {
 	render: () => <mtds-chart data-variant="pie">{table}</mtds-chart>,
 };
 
+export const WithLegendDisabled: Story = {
+	render: () => (
+		<mtds-chart data-legend="false">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td data-tooltip="En">50%</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td data-tooltip="To">25%</td>
+					</tr>
+					<tr>
+						<th>Small</th>
+						<td data-tooltip="Tre">15%</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
 export const WithCustomTooltips: Story = {
 	render: () => (
 		<mtds-chart data-variant="doughnut">
@@ -294,6 +323,40 @@ export const WithCustomTooltips: Story = {
 					<tr>
 						<th>Small</th>
 						<td data-tooltip="Tre">15%</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
+export const WithDotsDisabled: Story = {
+	render: () => (
+		<mtds-chart data-variant="line" data-dots="false">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+						<th>Q2</th>
+						<th>Q3</th>
+						<th>Q4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>30</td>
+						<td>40</td>
+						<td>20</td>
+						<td>60</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>10</td>
+						<td>20</td>
+						<td>40</td>
+						<td>50</td>
 					</tr>
 				</tbody>
 			</table>

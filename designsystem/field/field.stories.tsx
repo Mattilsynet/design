@@ -573,7 +573,7 @@ export const ReactWithComboboxWithChildren: Story = {
 					selected={selected}
 					onSelectedChange={setSelected}
 				>
-					<Input className={styles.input} />
+					<Input />
 					<del role="img" aria-label="Fjern tekst"></del>
 					<Field.Datalist>
 						<Field.Option value="saft" label="Saft">

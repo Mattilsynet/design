@@ -247,23 +247,23 @@
     "charts": {
       "a": {
         "$type": "color",
-        "$value": "#116e6b"
+        "$value": "#158E8A"
       },
       "b": {
         "$type": "color",
-        "$value": "#cae8ca"
+        "$value": "#A9DAA9"
       },
       "c": {
         "$type": "color",
-        "$value": "#b6d9f2"
+        "$value": "#97C9EC"
       },
       "d": {
         "$type": "color",
-        "$value": "#feecbe"
+        "$value": "#FDD368"
       },
       "e": {
         "$type": "color",
-        "$value": "#fdd2c9",
+        "$value": "#FB9D89",
         "$description": "\n"
       }
     }
