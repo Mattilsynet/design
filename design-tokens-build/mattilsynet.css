@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*
-build: v1.5.1
+build: v1.6.0
 design-tokens: v1.5.1
 */
 
@@ -64,6 +64,19 @@ design-tokens: v1.5.1
   --ds-text-ingress-font-size: var(--ds-font-size-6);
   --ds-text-bold-font-size: var(--ds-font-size-4);
   --ds-text-italic-font-size: var(--ds-font-size-4);
+
+  @supports (width: round(down, .1em, 1px)) {
+    --ds-font-size-1: round(calc(0.75rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-2: round(calc(0.875rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-3: round(calc(1rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-4: round(calc(1.125rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-5: round(calc(1.3125rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-6: round(calc(1.5rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-7: round(calc(1.875rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-8: round(calc(2.25rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-9: round(calc(2.75rem * var(--_ds-font-size-factor)), 1px);
+    --ds-font-size-10: round(calc(3.75rem * var(--_ds-font-size-factor)), 1px);
+  }
 }
 }
 @layer ds.theme.color-scheme.light {
@@ -514,11 +527,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1B160E;
   --ds-color-focus-inner: #191A1D;
   --ds-color-focus-outer: #BBBEC3;
-  --ds-color-charts-chart-a: #116e6b;
-  --ds-color-charts-chart-b: #cae8ca;
-  --ds-color-charts-chart-c: #b6d9f2;
-  --ds-color-charts-chart-d: #feecbe;
-  --ds-color-charts-chart-e: #fdd2c9;
+  --ds-color-charts-chart-a: #158E8A;
+  --ds-color-charts-chart-b: #A9DAA9;
+  --ds-color-charts-chart-c: #97C9EC;
+  --ds-color-charts-chart-d: #FDD368;
+  --ds-color-charts-chart-e: #FB9D89;
   --ds-link-color-visited: #b49acd;
 
   color-scheme: dark;
@@ -640,11 +653,11 @@ design-tokens: v1.5.1
   --ds-color-warning-base-contrast-default: #1B160E;
   --ds-color-focus-inner: #191A1D;
   --ds-color-focus-outer: #BBBEC3;
-  --ds-color-charts-chart-a: #116e6b;
-  --ds-color-charts-chart-b: #cae8ca;
-  --ds-color-charts-chart-c: #b6d9f2;
-  --ds-color-charts-chart-d: #feecbe;
-  --ds-color-charts-chart-e: #fdd2c9;
+  --ds-color-charts-chart-a: #158E8A;
+  --ds-color-charts-chart-b: #A9DAA9;
+  --ds-color-charts-chart-c: #97C9EC;
+  --ds-color-charts-chart-d: #FDD368;
+  --ds-color-charts-chart-e: #FB9D89;
   --ds-link-color-visited: #b49acd;
 
   color-scheme: dark;

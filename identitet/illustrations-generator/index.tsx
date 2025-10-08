@@ -45,31 +45,9 @@ const SWATCHES = [
 	["#da573b", "#153F7B", "#CDE5F2"],
 	["#9ECCED", "#054449", "#CDE5F2"],
 	["#68B096", "#054449", "#CDE5F2"],
-	["#f9c4aa", "#054449", "#CDE5F2"],
-	["#f9c4aa", "#153F7B", "#CDE5F2"],
+	// ["#f9c4aa", "#054449", "#CDE5F2"], // Removed to avoid "nakedness"
+	// ["#f9c4aa", "#153F7B", "#CDE5F2"], // Removed to avoid "nakedness"
 ];
-
-// const Apron = ["#CDE5F2", "#054449", "#4c473fff"];
-// const Under = [
-// 	"#153F7B",
-// 	"#0C4FA1",
-// 	"#9ECCED",
-// 	"#054449",
-// 	"#116E6B",
-// 	"#68B096",
-// 	"#f9cc76",
-// 	"#da573b",
-// ];
-// const Over = [
-// 	"#054449",
-// 	"#68B096",
-// 	"#E2F1DF",
-// 	"#f9cc76",
-// 	"#F9C4AA",
-// 	"#da573b",
-// 	"#9ECCED",
-// 	"#CDE5F2",
-// ];
 
 // TODO: Hudtone, fargepalett, objekt bak
 

@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Grid, Prose, Table } from '../react';
+import { CssVariables, JumpTo } from '../../.storybook/blocks';
+import { Button, Grid } from '../react';
 import * as stories from './chart.stories';
 
 <Meta of={stories} />
@@ -9,8 +9,11 @@ import * as stories from './chart.stories';
 
 <JumpTo />
 
+<Button style={{ marginBlock: '0 -1em' }} href="?path=/docs/identitet-infografikk--docs" data-variant="secondary" data-arrow>Se også Infografikk-generator</Button>
+
 ## Kode
-- Bruk elementet `<mtds-chart>` med `data-variant="bar | bar-stacked | column | column-stacked | line | area | doughnut"`
+- Bruk elementet `<mtds-chart>`
+- Bruk `data-variant="column | column-stacked | bar | bar-stacked | line | area | doughnut"`
 - Sett inn en tabell som inneholder:
   - Første rad med grupperings-ledetekster
   - Andre rad og utover med dataserier, hvor første kolonne er dataserie-tittel
@@ -19,14 +22,14 @@ import * as stories from './chart.stories';
 <Canvas of={stories.Default} />
 
 ## Stående stolpediagram
-- Bruk `data-variant="bar"` for stående søylediagram
-- Bruk `data-variant="bar-stacked"` for stablet gruppering
-<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
-
-## Liggende stolpediagram
-- Bruk `data-variant="column"` for liggende søylediagram
+- Bruk `data-variant="column"` for stående søylediagram
 - Bruk `data-variant="column-stacked"` for stablet gruppering
 <Grid data-items="300"><Canvas of={stories.Column} /><Canvas of={stories.ColumnStacked} /></Grid>
+
+## Liggende stolpediagram
+- Bruk `data-variant="bar"` for liggende søylediagram
+- Bruk `data-variant="bar-stacked"` for stablet gruppering
+<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
 
 ## Linjediagram
 - Bruk `data-variant="line"` for linjediagram eller  `data-variant="area"` for fylt linjediagram
@@ -35,6 +38,11 @@ import * as stories from './chart.stories';
 ## Kakediagram
 - Bruk `data-variant="pie"` eller `data-variant="doughnut"` for Kakediagram
 <Grid data-items="300"><Canvas of={stories.Pie} /><Canvas of={stories.Doughnut} /></Grid>
+
+## Skjule elementer
+- Bruk `data-legend="false"` for å skjule legend
+- Bruk `data-dots="false"` for å dotter i `data-variant="line | area"`
+<Grid data-items="300"><Canvas of={stories.WithLegendDisabled} /><Canvas of={stories.WithDotsDisabled} /></Grid>
 
 <CssVariables component='chart' />
 

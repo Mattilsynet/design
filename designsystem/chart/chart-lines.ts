@@ -7,8 +7,8 @@ type Config = {
 	variant: string;
 };
 
-export function toLines(data: ChartData, { total, variant }: Config) {
-	const smoothing = 0; // Number.parseFloat(type || "10") || 0;
+export function toLines(data: ChartData, { total, type, variant }: Config) {
+	const smoothing = Number.parseFloat(type || "0") || 0;
 	const group = tag("div", { class: "axisGroup" });
 	data.slice(1).forEach(([, ...values]) => {
 		const lineContainer = tag("div", {

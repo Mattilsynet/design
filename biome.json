@@ -8,6 +8,7 @@
 			"!**/card.module.css",
 			"!**/divider.module.css",
 			"!**/layout.module.css",
+			"!**/lawpicker.css",
 			"!**/link.module.css",
 			"!**/styles.module.css"
 		]

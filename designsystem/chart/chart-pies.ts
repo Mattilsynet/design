@@ -1,8 +1,11 @@
 import { attr } from "../utils";
 import type { ChartData } from "./chart-element";
 
-export function toPies(data: ChartData, { variant }: { variant: string }) {
+type Options = { aspect?: string; variant: string };
+
+export function toPies(data: ChartData, { aspect, variant }: Options) {
 	const pie = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	if (aspect) pie.style.setProperty("--mtdsc-chart-aspect", aspect);
 	attr(pie, "class", "pie");
 	attr(pie, "viewBox", "0 0 100 100");
 

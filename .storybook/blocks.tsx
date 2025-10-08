@@ -117,8 +117,12 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 						<small>
 							<code>{`.my-${component} { --mtdsc-${component}-TOKEN: VERDI; }`}</code>
 						</small>
-						.<br />
-						Komponenten <strong>{component}</strong> støtter følende:
+						.<br />I React må du skrive{" "}
+						<small>
+							<code>{`style={{ "--variabel": "verdi" } as React.CSSProperties}`}</code>{" "}
+						</small>
+						for at React skal forstå CSS custom properties. Komponenten{" "}
+						<strong>{component}</strong> støtter følende:
 					</>
 				)}
 			</p>

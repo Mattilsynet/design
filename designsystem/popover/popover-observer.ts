@@ -50,11 +50,12 @@ function handlePopoverLinkClick(event: Event) {
 	if (pop?.classList.contains(CSS_POPOVER) && el) {
 		const action = attr(el, "popovertargetaction");
 		const open = action === "show" || (action === "hide" ? false : undefined);
+		const isButton = el instanceof HTMLButtonElement;
 
 		// Popover can be disconneted by click handler deeper down in the DOM three before reaching document
-		if (el instanceof HTMLButtonElement && !action && pop.contains(el)) return; // Require "popovertargetaction" attribute to make buttons inside popover toggle
+		if (isButton && !action && pop.contains(el)) return; // Require "popovertargetaction" attribute to make buttons inside popover toggle
 		if (pop instanceof HTMLElement && pop.isConnected) {
-			event.preventDefault(); // Prevent browser popover API since we are doing it ourselves
+			if (isButton && id) return; // Let native handle it if properly connected
 			if (pop.hasAttribute("popover")) return pop.togglePopover(open);
 			console.error(`Element "${pop.id}" is missing "popover" attribute`);
 		}

@@ -32,7 +32,6 @@
 
 .axis {
 	font-size: var(--ds-body-sm-font-size);
-	aspect-ratio: var(--mtdsc-chart-aspect);
 	display: grid;
 	gap: var(--mtdsc-chart-axis-gap);
 	grid-template-columns: fit-content(7em) 1fr;
@@ -43,12 +42,15 @@
 }
 
 .axis::before {
+	border-bottom-left-radius: var(--mtdsc-chart-axis-edge-radius);
+	border-color: var(--mtdsc-chart-axis-edge-color);
+	border-style: solid;
+	border-width: 0 0 var(--mtdsc-chart-axis-edge-width)
+		var(--mtdsc-chart-axis-edge-width);
 	content: "";
 	grid-area: chart;
-	border-style: solid;
-	border-width: 0 0 var(--ds-border-width-default)
-		var(--ds-border-width-default);
-	border-bottom-left-radius: var(--ds-border-radius-lg);
+	pointer-events: none;
+	z-index: 2;
 }
 
 .axisSteps,
@@ -59,12 +61,19 @@
 	display: grid;
 	position: relative; /* Help .lineContainer positioning */
 }
-
 .axisGroups {
-	gap: var(--mtdsc-chart-axis-gap);
+	--gap: max(
+		1px,
+		clamp(
+			.5%,
+			calc(10% / var(--bars) * var(--groups)),
+			var(--mtdsc-chart-axis-gap)
+		)
+	);
+	gap: var(--mtdsc-chart-axis-gap) var(--gap);
 	grid-area: chart / chart / x-axis / chart;
+	grid-auto-columns: 1fr;
 	grid-template-rows: subgrid;
-	grid-auto-columns: minmax(0, 1fr);
 	padding: 0 var(--mtdsc-chart-axis-gap);
 	text-align: center;
 }
@@ -74,16 +83,33 @@
 }
 .axisGroup::after {
 	content: attr(data-label);
+	min-width: 0; /* Allow word-wrapping */
+}
+:host(:not([data-variant|="bar"])) {
+	.axisGroup::after {
+		justify-self: center;
+		text-align: start;
+		writing-mode: vertical-rl;
+		/* If wanting 45deg text: */
+		/* justify-self: center;
+		rotate: 45deg;
+		text-align: end;
+		writing-mode: sideways-lr;
+		transform-origin: 50% 0; */
+	}
 }
 .axisSteps {
-	grid-auto-rows: 1fr;
+	align-items: end;
+	aspect-ratio: var(--mtdsc-chart-aspect);
 	grid-area: chart / y-axis / chart / chart;
+	grid-auto-rows: 1fr;
 	grid-template: 1px / subgrid;
 }
 .axisStep {
+	align-items: start;
 	grid-column: inherit;
 	grid-template-columns: inherit;
-	place-content: end start;
+	height: 1px;
 	text-align: right;
 }
 .axisStep::after {
@@ -92,64 +118,91 @@
 }
 .axisStep::before {
 	content: attr(data-label);
-	translate: 0 50%;
+	translate: 0 -50%;
 }
 .axisStep[data-label="0"]::after {
 	opacity: 0; /* Hide 0 line as it overlapps with .axis::before */
 }
 
-:host([data-variant|="column"]) .axisSteps,
-:host([data-variant|="column"]) .axisGroup {
+/* Reduce amount of steps if small space */
+:host(:not([data-variant|="bar"]))
+	.axisStepsYHalf
+	.axisStep:nth-last-child(even) {
+	display: none;
+}
+:host(:not([data-variant|="bar"]))
+	.axisStepsYHalf
+	.axisSteps:has(.axisStep:nth-last-child(even):first-child) {
+	grid-template-rows: 0.5fr;
+}
+
+:host([data-variant|="bar"]) .axisStepsXHalf .axisStep:nth-last-child(even) {
+	display: none;
+}
+:host([data-variant|="bar"])
+	.axisStepsXHalf
+	.axisSteps:has(.axisStep:nth-last-child(even):first-child) {
+	grid-template-columns: 0.5fr;
+}
+
+:host([data-variant|="bar"]) .axisSteps,
+:host([data-variant|="bar"]) .axisGroup {
 	direction: rtl; /* Reverse orders */
 }
-:host([data-variant|="column"]) .axisSteps > *,
-:host([data-variant|="column"]) .axisGroup > * {
+:host([data-variant|="bar"]) .axisSteps > *,
+:host([data-variant|="bar"]) .axisGroup > * {
 	direction: ltr;
 }
-:host([data-variant|="column"]) .axisGroups {
+:host([data-variant|="bar"]) .axisGroups {
+	aspect-ratio: var(--mtdsc-chart-aspect);
+	gap: 1% var(--mtdsc-chart-axis-gap);
 	grid-area: chart / y-axis / chart / chart;
 	grid-template: none / subgrid;
 	padding: var(--mtdsc-chart-axis-gap) 0;
 	row-gap: var(--mtdsc-chart-axis-gap);
 	text-align: right;
 }
-:host([data-variant|="column"]) .axisGroup::after {
+:host([data-variant|="bar"]) .axisGroup::after {
 	align-self: center; /* Since text-align does not work vertically */
 }
-:host([data-variant|="column"]) .axisGroup {
+:host([data-variant|="bar"]) .axisGroup {
 	grid-column: inherit;
 	grid-row: auto;
 }
-:host([data-variant|="column"]) .axisSteps {
-	grid-auto-columns: 1fr;
+:host([data-variant|="bar"]) .axisSteps {
+	align-items: stretch;
+	aspect-ratio: auto;
 	grid-area: chart / chart / x-axis / chart;
+	grid-auto-columns: 1fr;
 	grid-template: subgrid / 1px;
 }
-:host([data-variant|="column"]) .axisStep {
+:host([data-variant|="bar"]) .axisStep {
+	align-items: stretch;
 	grid-row: inherit;
 	grid-column: auto;
 	grid-template-rows: inherit;
 	grid-template-columns: none;
+	text-align: center;
 }
-:host([data-variant|="column"]) .axisStep::after {
+:host([data-variant|="bar"]) .axisStep::after {
 	order: -1;
 	border-left: var(--mtdsc-chart-axis-border);
 	border-bottom: 0;
 }
-:host([data-variant|="column"]) .axisStep::before {
+:host([data-variant|="bar"]) .axisStep::before {
 	translate: -50% 0;
 }
 
 .axisGroupContent {
 	display: flex;
 }
-:host([data-variant="bar-stacked"]) .axisGroupContent {
+:host([data-variant="column-stacked"]) .axisGroupContent {
 	flex-direction: column-reverse;
 }
-:host([data-variant="column"]) .axisGroupContent {
+:host([data-variant="bar"]) .axisGroupContent {
 	flex-direction: column;
 }
-:host([data-variant="column-stacked"]) .axisGroupContent {
+:host([data-variant="bar-stacked"]) .axisGroupContent {
 	flex-direction: row;
 }
 
@@ -171,7 +224,7 @@
 	z-index: 2; /* z-index to place on top when outlined */
 }
 
-:host([data-variant|="column"]) .bar {
+:host([data-variant|="bar"]) .bar {
 	border-radius: 0 var(--ds-border-radius-sm) var(--ds-border-radius-sm) 0;
 	width: var(--size);
 	height: 100%;
@@ -181,22 +234,22 @@
 /* Prevent double border - using margin to see border around bars */
 /* Prevent double border - using border to avoid affecting size */
 :host(:not([data-variant])) .bar + .bar,
-:host([data-variant="bar"]) .bar + .bar {
-	margin-left: -1px;
-}
-:host([data-variant="bar-stacked"]) .bar:not(:last-child) {
-	border-radius: 0;
-}
-:host([data-variant="bar-stacked"]) .bar + .bar {
-	border-bottom: none;
-}
 :host([data-variant="column"]) .bar + .bar {
-	margin-top: -1px;
+	margin-left: -1px;
 }
 :host([data-variant="column-stacked"]) .bar:not(:last-child) {
 	border-radius: 0;
 }
 :host([data-variant="column-stacked"]) .bar + .bar {
+	border-bottom: none;
+}
+:host([data-variant="bar"]) .bar + .bar {
+	margin-top: -1px;
+}
+:host([data-variant="bar-stacked"]) .bar:not(:last-child) {
+	border-radius: 0;
+}
+:host([data-variant="bar-stacked"]) .bar + .bar {
 	border-left: none;
 }
 
@@ -242,19 +295,19 @@
 	mask: linear-gradient(to bottom, black, transparent);
 }
 
+/* Ensure more contrast for line colors */
 .line,
 .linePoint,
 :host:has(.linePoint) .legend::before {
-	filter: brightness(0.8) saturate(2); /* Ensure more contrast for line colors */
+	filter: var(--_mtdsc-chart-line-filter);
 }
 
 .linePoint {
-	--size: var(--ds-size-3);
-	background-color: var(--color);
+	--size: var(--ds-size-2);
+	background: var(--color);
 	border-radius: var(--ds-border-radius-full);
 	border: var(--mtdsc-chart-border-width) solid var(--mtdsc-chart-border-color);
 	box-sizing: border-box;
-	filter: brightness(0.8) saturate(2);
 	height: var(--size);
 	margin: calc(var(--size) / -2);
 	padding: 0;
@@ -271,8 +324,15 @@
 }
 .linePoint::before {
 	content: "";
-	inset: calc(var(--ds-size-2) * -1); /* Increase click surface */
+	inset: calc(var(--ds-size-3) * -1); /* Increase click surface */
 	position: absolute;
+}
+
+:host([data-dots="false"]) .linePoint,
+:host([data-dots="hidden"]) .linePoint,
+:host([data-dots="none"]) .linePoint {
+	background: none;
+	border: none;
 }
 
 .legends {
@@ -297,4 +357,10 @@
 	height: var(--ds-size-5);
 	vertical-align: middle;
 	width: var(--ds-size-5);
+}
+
+:host([data-legend="false"]) .legends,
+:host([data-legend="hidden"]) .legends,
+:host([data-legend="none"]) .legends {
+	display: none;
 }

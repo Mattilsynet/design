@@ -3,8 +3,11 @@
 		--mtdsc-chart-aspect: 16 / 9;
 		--mtdsc-chart-axis-border: var(--ds-border-width-default) solid
 			var(--ds-color-border-subtle);
-		--mtdsc-chart-axis-gap: var(--ds-size-4);
-		--mtdsc-chart-border-color: var(--ds-color-border-default);
+		--mtdsc-chart-axis-edge-color: var(--ds-color-border-default);
+		--mtdsc-chart-axis-edge-radius: var(--ds-border-radius-lg);
+		--mtdsc-chart-axis-edge-width: var(--ds-border-width-default);
+		--mtdsc-chart-axis-gap: var(--ds-size-3);
+		--mtdsc-chart-border-color: #054449;
 		--mtdsc-chart-border-width: var(--ds-border-width-default);
 		--mtdsc-chart-color-1: var(--ds-color-charts-chart-a);
 		--mtdsc-chart-color-2: var(--ds-color-charts-chart-b);
@@ -21,5 +24,18 @@
 		border-bottom: var(--mtdsc-chart-axis-border);
 		text-align: inherit;
 		padding: var(--ds-size-1);
+	}
+
+	/* Line filter */
+	:root {
+		--_mtdsc-chart-line-filter: brightness(0.8) saturate(2);
+	}
+	[data-color-scheme="dark"] {
+		--_mtdsc-chart-line-filter: saturate(1.5);
+	}
+	@media (prefers-color-scheme: dark) {
+		[data-color-scheme="auto"] {
+			--_mtdsc-chart-line-filter: saturate(1.5);
+		}
 	}
 }
