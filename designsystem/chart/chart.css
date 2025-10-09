@@ -83,6 +83,7 @@
 }
 .axisGroup::after {
 	content: attr(data-label);
+	direction: ltr; /* Prevent inherited rtl */
 	min-width: 0; /* Allow word-wrapping */
 }
 :host(:not([data-variant|="bar"])) {

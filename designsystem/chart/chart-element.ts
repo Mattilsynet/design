@@ -12,7 +12,12 @@ const EVENTS = "click,keydown,mousemove,mouseout";
 const TOOLTIP_ID = "mtds-chart-tooltip";
 const TOOLTIP = IS_BROWSER
 	? document.getElementById(TOOLTIP_ID) ||
-		tag("div", { class: styles._tooltip, id: TOOLTIP_ID, hidden: "" })
+		tag("div", {
+			"aria-hidden": "true",
+			class: styles._tooltip,
+			hidden: "",
+			id: TOOLTIP_ID,
+		})
 	: null;
 
 export class MTDSChartElement extends MTDSElement {
