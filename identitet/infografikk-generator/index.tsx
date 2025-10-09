@@ -47,16 +47,16 @@ const TYPES = [
 	["doughnut", "Smultring"],
 ] as const;
 const RATIOS = [
-	"16:9",
-	"9:16",
-	"5:4",
-	"4:5",
-	"4:3",
-	"3:4",
-	"3:2",
-	"2:3",
 	"2:1",
 	"1:2",
+	"16:9",
+	"9:16",
+	"3:2",
+	"2:3",
+	"4:3",
+	"3:4",
+	"5:4",
+	"4:5",
 	"1:1",
 ] as const;
 
@@ -106,11 +106,8 @@ export const InfografikkGenerator = () => {
 			data-nowrap
 			data-pad="10"
 		>
-			<div // Must be outside Chart so it doesn't get exported
-				data-self="400"
-				data-fixed
-				style={{ pointerEvents: "none" }} // Disable tooltips
-			>
+			{/* Must be outside Chart so it doesn't get exported */}
+			<div data-self="400" data-fixed>
 				<Chart
 					data-variant={type}
 					data-aspect={ratio.replace(":", "/")}
