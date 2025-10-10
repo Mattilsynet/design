@@ -9,6 +9,7 @@ import {
 	Chart,
 	Flex,
 	Grid,
+	Group,
 	Popover,
 } from "../../designsystem/react";
 import styles from "../../designsystem/styles.module.css";
@@ -99,39 +100,45 @@ export const InfografikkGenerator = () => {
 	}, []);
 
 	return (
-		<Flex
-			as={Card}
-			className="chart-generator"
-			data-gap="15"
-			data-nowrap
-			data-pad="10"
-		>
+		<Flex className="chart-generator">
 			{/* Must be outside Chart so it doesn't get exported */}
-			<div data-self="400" data-fixed>
-				<Chart
-					data-variant={type}
-					data-aspect={ratio.replace(":", "/")}
-					data={chart.slice(0, -1).map((row) => row.slice(0, -1))}
-				/>
-			</div>
-			<Grid data-align-content="start" data-gap="5">
+			<Card data-pad="8" data-self="350">
+				<div style={{ maxWidth: 400, marginInline: "auto" }}>
+					<Chart
+						data-variant={type}
+						data-aspect={ratio.replace(":", "/")}
+						data={chart.slice(0, -1).map((row) => row.slice(0, -1))}
+					/>
+				</div>
+			</Card>
+			<Grid
+				as={Group}
+				style={{ flexBasis: 600 }}
+				data-align-content="start"
+				data-gap="5"
+				data-pad="8"
+			>
 				<Flex data-self="400" data-align="center">
 					<Button data-variant="secondary" data-arrow popoverTarget="type-pop">
 						Diagramtype
 					</Button>
-					<Popover id="type-pop" style={{ width: 500 }}>
+					<Popover
+						id="type-pop"
+						data-position="bottom-start"
+						style={{ width: 500 }}
+					>
 						<Grid data-items="200">
 							{TYPES.map(([value, label]) => (
 								<Button
-									key={value}
-									data-justify="start"
 									aria-pressed={type === value}
+									data-justify="start"
+									key={value}
 									onClick={() => setData((prev) => ({ ...prev, type: value }))}
 								>
 									<div style={{ flex: "0 0 70px", pointerEvents: "none" }}>
 										<Chart
-											data-variant={value}
 											data-legend={false}
+											data-variant={value}
 											data={DEMO}
 											style={{
 												width: 200,
@@ -157,22 +164,22 @@ export const InfografikkGenerator = () => {
 
 								return (
 									<Button
-										key={value}
-										data-justify="start"
 										aria-pressed={value === ratio}
+										data-justify="start"
+										key={value}
 										onClick={() =>
 											setData((prev) => ({ ...prev, ratio: value }))
 										}
 									>
 										<div
 											style={{
-												boxSizing: "border-box",
 												background: "var(--mtds-color-surface-tinted)",
 												border: "1px solid var(--mtds-color-border-default)",
 												borderRadius: "var(--mtds-border-radius-sm)",
+												boxSizing: "border-box",
+												height: size * height,
 												marginInline: 25 - (size * width) / 2,
 												width: size * width,
-												height: size * height,
 											}}
 										/>
 										{value}

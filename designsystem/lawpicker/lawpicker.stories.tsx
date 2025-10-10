@@ -157,23 +157,34 @@ export const Default: Story = {
 					// 		);
 					// 	});
 
-					doc
-						.querySelectorAll(`
-							.defaultP,
-							.legalArticle,
-							.legalP,
-							.marginIdArticle,
-							.numberedLegalP
-						`)
-						.forEach((el) => {
-							el.prepend(
-								tag("input", { type: "checkbox", class: styles.input }),
-							);
-						});
+					// doc
+					// 	.querySelectorAll(`
+					// 		.defaultP,
+					// 		.listArticle,
+					// 		.legalArticle,
+					// 		.legalP:has(~ .legalP),
+					// 		.legalP ~ .legalP,
+					// 		.marginIdArticle,
+					// 		.numberedLegalP
+					// 	`)
+					// 	.forEach((el) => {
+					// 		el.prepend(
+					// 			tag("input", { type: "checkbox", class: styles.input }),
+					// 		);
+					// 	});
 
 					setLovHTML(doc.querySelector("main")?.innerHTML || "");
 				});
 		}, [key, domain, lovId]);
+
+		// useEffect(() => {
+		// 	if (!lovHTML) return;
+		// 	const input = tag("input", { type: "checkbox", class: styles.input });
+		// 	document.querySelectorAll(".lovdata *").forEach((el) => {
+		// 		const content = getComputedStyle(el, "::before").content || "none";
+		// 		if (content !== "none") el.prepend(input.cloneNode());
+		// 	});
+		// }, [lovHTML]);
 
 		const handleChange = (event: React.ChangeEvent<HTMLDivElement>) => {
 			const { target: el } = event;
