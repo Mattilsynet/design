@@ -3,14 +3,91 @@
   --input-gap: var(--mtds-2);
   --inset: calc(var(--input-size) + var(--input-gap));
   padding: 30px 0 50px var(--inset);
+  position: relative;
 }
-.lovdata input { position: absolute; translate: calc(var(--inset) * -1) .2em }
+.lovdata input { position: absolute; left: 0 }
 .lovdata table { margin: 1em 0; border-collapse: separate; border: 1px solid var(--mtds-color-border-subtle); border-radius: var(--mtds-border-radius-default); border-spacing: 0px; width: 100% }
 .lovdata table tr:not(:last-child) > * { border-bottom: 1px solid var(--mtds-color-border-subtle) }
 .lovdata table tr > * { padding: .2em .5em; text-align: inherit; vertical-align: top }
 .lovdata table tr > * + * { border-left: 1px solid var(--mtds-color-border-subtle) }
 .lovdata table thead th { border-bottom: 1px solid var(--mtds-color-border-default); background: var(--mtds-color-surface-tinted) }
 .lovdata table caption { text-align: inherit; font-weight: bold; margin-block: .5em }
+
+.lovdata * { --law-unit: none } /* Reset for all elements to prevent inheritance (could use @property but this is not supported in iOS <=16.3) */
+.lovdata ::before {
+  content: var(--law-unit);
+  color: var(--mtds-color-danger-text-default);
+  padding: 0 var(--mtds-1);
+  border-radius: var(--mtds-border-radius-default);
+  background: var(--mtds-color-danger-surface-tinted);
+  border: 1px solid var(--mtds-color-danger-border-subtle);
+  font-size: .875rem;
+  line-height: 1.5;
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: .2em;
+  margin-right: .2em;
+}
+
+.lovdata h1 { color: red }
+.lovdata :is(.legalArticle, .listArticle) {
+  & .legalArticleHeader,
+  & .data-originalId,
+  & .marginIdArticle > .data-marginOriginalId,
+  & .marginIdArticle > .miscHeadline,
+  & .section > :is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child {
+    color: red;
+  }
+}
+
+/* .lovdata .defaultP::before,
+.lovdata .legalArticle > .legalArticleHeader::before,
+.lovdata .legalP::before,
+.lovdata .listArticle > .data-originalId::before,
+.lovdata .marginIdArticle > .data-marginOriginalId::before,
+.lovdata .numberedLegalP::before,
+.lovdata .section > :is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child::before {
+  color: var(--mtds-color-danger-text-default);
+  padding: 0 var(--mtds-1);
+  border-radius: var(--mtds-border-radius-default);
+  background: var(--mtds-color-danger-surface-tinted);
+  border: 1px solid var(--mtds-color-danger-border-subtle);
+  font-size: .875rem;
+  line-height: 1.5;
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: .2em;
+  margin-right: .2em;
+} */
+
+/*
+TODO: Sample eksempel på defaultP til Ottar
+TODO: Seksjoner som inneholder .legalArticle / .listArticle må være med i juridisk sti for å unngå at vi "mangler" toppnivå
+*/
+
+.lovdata .legalArticle > .legalArticleHeader { --law-unit: 'UKJENT!' }
+.lovdata .legalArticle[data-name^="a"] > .legalArticleHeader { --law-unit: 'Artikkel (Grovnivå)' }
+.lovdata .legalArticle[data-name^="§"] > .legalArticleHeader { --law-unit: 'Paragraf (Grovnivå)' }
+.lovdata :is(.legalArticle, .listArticle, .marginIdArticle, .section) { counter-reset: ledd }
+.lovdata :is(.legalArticle, .listArticle) {
+  & .section > :is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child { --law-unit: 'Seksjon' }
+
+  & .marginIdArticle > .data-marginOriginalId { --law-unit: 'Artikkelliste' }
+  & .defaultList .listArticle > .data-originalId { --law-unit: 'Punkt ' }
+  & .defaultList[type="1" i] .listArticle > .data-originalId { --law-unit: 'Nummer' }
+  & .defaultList[type="a" i] .listArticle > .data-originalId { --law-unit: 'Bokstav' }
+  & .defaultList[type="i" i] .listArticle > .data-originalId { --law-unit: 'Tall' }
+  & .numberedLegalP { counter-reset: number-ledd 1; --law-unit: 'Numerert Paragraf ' attr(data-numerator)  ' (Grovnivå)' }
+  & .numberedLegalP:has(+ .defaultP) { --law-unit: 'Numerert Paragraf ' attr(data-numerator) ', Underledd ' counter(number-ledd) }
+  & .numberedLegalP ~ .defaultP { counter-increment: number-ledd; --law-unit: "Underledd " counter(number-ledd) }
+
+  & .legalP:has(~ .legalP), & .legalP ~ .legalP { counter-increment: ledd; --law-unit: "Ledd " counter(ledd) }
+  & .legalP:has(~ .defaultP), & .legalP ~ .defaultP { counter-increment: ledd; --law-unit: "Underledd " counter(ledd) }
+} 
+
+
+.lovdata .listArticle > .data-originalId { float: left; margin-right: .2em }
+.lovdata .marginIdArticle > .data-marginOriginalId { margin-right: .2em; }
 
 /* Headings and insets */
 /*.lovdata .section > :not(:first-child:is(h1,h2,h3,h4,h5,h6,[role="heading"])),
@@ -24,7 +101,6 @@
 .lovdata .footnote,
 .lovdata .legalP,
 .lovdata .marginIdArticle,
-.lovdata .miscHeadline,
 .lovdata .numberedLegalP {
   margin-block: .5em;
 }
@@ -33,19 +109,27 @@
 .lovdata :is(h5, h6, [role="heading"]) { font-weight: bold; font-size: 1.125em } /* Ensure headings are not too small */
 .lovdata .defaultList { list-style: none; padding: 0; margin-bottom: 1em } /* Indent comes from [data-text-indent], so remove ol/ul paddings */
 
-.lovdata [data-text-indent] { margin-left: var(--inset) }
+.lovdata .listArticle,
+.lovdata .numberedLegalP ~ :not(.numberedLegalP), /* More space after numberedLegalP */
+.lovdata .marginIdArticle > .data-marginOriginalId ~ :not(.miscHeadline),
+.lovdata .legalP:has(~ .legalP),
+.lovdata .legalP ~ .legalP {
+  position: relative;
+  padding-left: var(--inset);
+}
+
 .lovdata :is(.footnote, .changesToParent) { font-size: .875rem }
 
-.lovdata .listArticle > .data-originalId { float: left; display: flex; flex-direction: row-reverse; width: 0 } /* Inline list numbers */
-.lovdata .marginIdArticle > .data-marginOriginalId { margin-right: .2em } /* Space up marginOriginalId with miscHeadline */
-.lovdata :is(.data-originalId, .data-marginOriginalId) ~ * { /* Make indent to put <input> between list number and content */
+/* .lovdata .listArticle > .data-originalId { float: left; display: flex; flex-direction: row-reverse; width: 0 } /* Inline list numbers * /
+.lovdata .marginIdArticle > .data-marginOriginalId { margin-right: .2em } /* Space up marginOriginalId with miscHeadline *
+.lovdata :is(.data-originalId, .data-marginOriginalId) ~ * { /* Make indent to put <input> between list number and content *
   box-sizing: border-box;
   translate: calc(var(--inset) + var(--input-gap));
   width: calc(100% - var(--inset) - var(--input-gap));
-}
+}*/
 
 /* In EU directives (i.e. "Forskrift om avliving av dyr", .numberedLegalP followed by .defaultP should be be perceived as a sub-element) */
-.lovdata .numberedLegalP ~ :not(.numberedLegalP) { margin-left: var(--inset) } /* More space after numberedLegalP */
+/*.lovdata .numberedLegalP ~ :not(.numberedLegalP) { padding-left: var(--inset) } /* More space after numberedLegalP */
 .lovdata :not(.numberedLegalP):has(+ .numberedLegalP) { margin-bottom: 1em } /* More space before numberedLegalP */
 
 

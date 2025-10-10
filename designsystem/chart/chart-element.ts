@@ -61,7 +61,11 @@ export class MTDSChartElement extends MTDSElement {
 		const aspect = attr(this, "data-aspect") || undefined;
 		const data = toData(this.querySelector("table"));
 		const style = tag("style", {}, css);
-		const legend = tag("div", { class: "legends" });
+		const legend = tag("div", {
+			"aria-hidden": "hidden",
+			class: "legends",
+			role: "group",
+		});
 		data.slice(1).forEach(([{ value, style }]) => {
 			legend.appendChild(tag("div", { class: "legend", style }, value));
 		});
