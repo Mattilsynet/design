@@ -28,7 +28,8 @@
 	}
 	.details:not(:defined) /* When no JS */,
 	.details[open] {
-		padding-bottom: var(--mtdsc-details-padding-block);
+		/* Using padding-inline as bottom should match sides */
+		padding-bottom: var(--mtdsc-details-padding-inline);
 	}
 	.details:not([data-variant="card"]),
 	.details:not([data-variant="card"]) {

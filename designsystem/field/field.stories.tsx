@@ -144,7 +144,7 @@ export const React: Story = {
 			<Field>
 				<label>Ledetekst</label>
 				<p>Beskrivelse</p>
-				<Input className={styles.input} />
+				<Input />
 			</Field>
 			<br />
 			<h2>
@@ -382,7 +382,7 @@ export const WithCombobox: Story = {
 		<div className={styles.field}>
 			<label>Med forslag</label>
 			<u-combobox>
-				<input className={styles.input} />
+				<Input />
 				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
@@ -408,7 +408,7 @@ export const WithComboboxMultiple: Story = {
 			<label>Med forslag flervalg</label>
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
-				<input className={styles.input} />
+				<Input />
 				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
@@ -632,7 +632,7 @@ export const ReactWithComboboxLong: Story = {
 				<label>React med lange og mange</label>
 				<p>Beskrivelse</p>
 				<Field.Combobox>
-					<Input className={styles.input} />
+					<Input />
 					<del role="img" aria-label="Fjern tekst"></del>
 					<Field.Datalist data-position="top">
 						<Field.Option>

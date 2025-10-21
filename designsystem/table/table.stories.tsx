@@ -959,7 +959,9 @@ export const ClickableSimple: Story = {
 					</td>
 					<td>Foyston</td>
 					<td>74</td>
-					<td>128</td>
+					<td>
+						<a href="#none">128</a>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -1207,8 +1209,8 @@ export const WithNumericValues: Story = {
 				<tr>
 					<th>First name</th>
 					<th>Last name</th>
-					<th data-numeric>Age</th>
-					<th data-numeric>Visits</th>
+					<th>Age</th>
+					<th>Visits</th>
 				</tr>
 			</thead>
 			<tbody>

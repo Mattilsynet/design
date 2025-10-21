@@ -1,7 +1,11 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.10",
+	"version": "2.2.11",
 	"type": "module",
+	"repository": {
+    	"type": "git",
+    	"url": "git@github.com:Mattilsynet/design.git"
+  	},
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
 	"files": [
@@ -46,19 +50,19 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.2.5",
-		"@digdir/designsystemet": "^1.6.0",
-		"@digdir/designsystemet-css": "^1.6.0",
+		"@biomejs/biome": "^2.2.6",
+		"@digdir/designsystemet": "^1.6.1",
+		"@digdir/designsystemet-css": "^1.6.1",
 		"@handsontable/react-wrapper": "^16.1.1",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
-		"@storybook/addon-docs": "^9.1.10",
-		"@storybook/addon-themes": "^9.1.10",
-		"@storybook/react-vite": "^9.1.10",
+		"@storybook/addon-docs": "^9.1.13",
+		"@storybook/addon-themes": "^9.1.13",
+		"@storybook/react-vite": "^9.1.13",
 		"@tanstack/react-table": "^8.21.3",
-		"@types/node": "^24.7.0",
+		"@types/node": "^24.9.1",
 		"@types/react": "^19.2.2",
-		"@types/react-dom": "^19.2.1",
+		"@types/react-dom": "^19.2.2",
 		"@vitejs/plugin-react": "^5.0.4",
 		"fast-glob": "^3.3.3",
 		"handsontable": "^16.1.1",
@@ -66,14 +70,14 @@
 		"postcss-nesting": "^13.0.2",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
-		"storybook": "^9.1.10",
+		"storybook": "^9.1.13",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.9",
+		"vite": "^7.1.11",
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.7.4",
-		"@types/leaflet": "^1.9.20",
+		"@types/leaflet": "^1.9.21",
 		"@types/leaflet.markercluster": "^1.5.6",
 		"@u-elements/u-combobox": "^1.0.2",
 		"@u-elements/u-datalist": "^1.0.14",

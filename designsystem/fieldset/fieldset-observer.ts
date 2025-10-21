@@ -1,15 +1,25 @@
 import styles from "../styles.module.css";
-import { attr, isInputLike, onLoaded, onMutation, useId } from "../utils";
+import {
+	attr,
+	IS_BROWSER,
+	isInputLike,
+	onLoaded,
+	onMutation,
+	useId,
+} from "../utils";
 
 const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
 const ARIA_DESC = "aria-describedby";
 const ARIA_INVALID = "aria-invalid";
+const FIELDSETS = IS_BROWSER
+	? document.getElementsByClassName(CSS_FIELDSET)
+	: [];
 
 // Using setTimeout to ensure it runs after field-observer
-function handleFieldsetMutation(fieldsets: HTMLCollectionOf<Element>) {
+function handleFieldsetMutation() {
 	setTimeout(() => {
-		for (const fieldset of fieldsets)
+		for (const fieldset of FIELDSETS)
 			if (fieldset.isConnected) {
 				const inputs: HTMLInputElement[] = [];
 				let validId: string | null = null;
@@ -32,6 +42,4 @@ function handleFieldsetMutation(fieldsets: HTMLCollectionOf<Element>) {
 	});
 }
 
-onLoaded(() =>
-	onMutation(document.documentElement, CSS_FIELDSET, handleFieldsetMutation),
-);
+onLoaded(() => [onMutation(handleFieldsetMutation, "class")]);

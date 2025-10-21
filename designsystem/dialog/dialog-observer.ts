@@ -1,10 +1,10 @@
 import styles from "../styles.module.css";
 import {
 	attr,
-	createOptimizedMutationObserver,
 	IS_BROWSER,
 	on,
 	onLoaded,
+	onMutation,
 	QUICK_EVENT,
 } from "../utils";
 
@@ -15,7 +15,7 @@ const DIALOGS = IS_BROWSER
 		) as HTMLCollectionOf<HTMLDialogElement>)
 	: [];
 
-const handleModal = () => {
+function handleDialogModal() {
 	for (const dialog of DIALOGS)
 		if (dialog.isConnected && dialog.showModal && dialog.close) {
 			if (dialog.matches('[open]:not([data-modal="false"]):not(:modal)')) {
@@ -26,33 +26,34 @@ const handleModal = () => {
 				dialog.close(); // So we correclty can call .close, removing <dialog> from #top-layer
 			}
 		}
+}
+
+let START_INSIDE = false; // Prevent close if selecting text inside dialog
+type Mouse = Partial<MouseEvent>;
+const isInside = (el: Element, { clientX: x = 0, clientY: y = 0 }: Mouse) => {
+	const { top, right, bottom, left } = el.getBoundingClientRect();
+	return top <= y && y <= bottom && left <= x && x <= right;
 };
 
-const handleDialogClick = ({
-	clientX: x,
-	clientY: y,
-	target: el,
-}: MouseEvent) => {
-	for (const dialog of DIALOGS)
-		if (dialog.open && attr(dialog, "data-closedby") === "any") {
-			const { top, right, bottom, left } = dialog.getBoundingClientRect();
-			const isInside = top <= y && y <= bottom && left <= x && x <= right;
-			if (!isInside) return dialog.close();
+function handleDialogDown(event: Event) {
+	const dialog = (event.target as Element)?.closest?.("dialog");
+	START_INSIDE = !!dialog && isInside(dialog, event);
+}
+
+function handleDialogClick(event: Event) {
+	for (const el of DIALOGS)
+		if (el.open) {
+			const close = isInside(el, event)
+				? (event.target as Element)?.closest?.('[data-command="close"]')
+				: !START_INSIDE && attr(el, "data-closedby") === "any";
+
+			if (close) el.close();
 		}
-	const dialog = (el as Element)?.closest?.("dialog");
-	const close = dialog && (el as Element)?.closest?.('[data-command="close"]');
-	if (close) dialog.close();
-};
+	START_INSIDE = false; // Reset on every click
+}
 
-onLoaded(() => {
-	on(document, "click", handleDialogClick as EventListener, QUICK_EVENT);
-	createOptimizedMutationObserver(handleModal).observe(
-		document.documentElement,
-		{
-			attributeFilter: ["open"],
-			attributes: true,
-			childList: true,
-			subtree: true,
-		},
-	);
-});
+onLoaded(() => [
+	on(document, "click", handleDialogClick, QUICK_EVENT),
+	on(document, "pointerdown", handleDialogDown, QUICK_EVENT),
+	onMutation(handleDialogModal, "open"),
+]);

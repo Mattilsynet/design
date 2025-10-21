@@ -1,11 +1,12 @@
 import styles from "../styles.module.css";
-import { attr, on, onLoaded, onMutation } from "../utils";
+import { attr, IS_BROWSER, on, onLoaded, onMutation } from "../utils";
 
 const CSS_TABLE = styles.table.split(" ")[0];
 const INTERACTIVE = 'a,button,label,input,select,textarea,[role="button"]';
+const TABLES = IS_BROWSER ? document.getElementsByClassName(CSS_TABLE) : [];
 
-function handleTableMutation(tables: HTMLCollectionOf<HTMLTableElement>) {
-	for (const table of tables) {
+function handleTableMutation() {
+	for (const table of TABLES as HTMLCollectionOf<HTMLTableElement>) {
 		const ths = Array.from(table.tHead?.rows[0]?.cells || [], (th) =>
 			th.innerText.trim(),
 		);
@@ -24,7 +25,7 @@ function handleTableClick({ target: el }: Event) {
 	if (action && !el.closest(INTERACTIVE)) action.click?.(); // Forward click to data-command="row" element
 }
 
-onLoaded(() => {
-	onMutation(document.documentElement, CSS_TABLE, handleTableMutation);
-	on(document, "click", handleTableClick);
-});
+onLoaded(() => [
+	on(document, "click", handleTableClick),
+	onMutation(handleTableMutation, "class"),
+]);

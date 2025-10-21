@@ -1,10 +1,8 @@
-import type { FieldComboboxSelected } from "@mattilsynet/design/react";
-import { Field, Flex } from "@mattilsynet/design/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
-import styles from "../styles.module.css";
+import { Field, type FieldComboboxSelected, Flex, toast } from "../react";
+import { attr, tag } from "../utils";
 import "./lawpicker.css";
-import { tag } from "../utils";
 
 // sikre etterlevelse av regelverket for mat https://lovdata.no/forskrift/2020-03-03-704/ARTIKKEL_138 - EU-forordning
 // Forskrift om dyrehelse https://lovdata.no/forskrift/2022-04-06-631/ARTIKKEL_1
@@ -16,15 +14,14 @@ import { tag } from "../utils";
 // Forskrift om avliving av dyr (Forskrift om avliving av dyr) - mye kluss inkl. .marginIdArticle
 // Forskrifter om pelsing av pelsdyr - .listAritcle med flere .legalP + .legalP
 
-// TODO Ottar: tall 1 eller i. når romertall?
-// TODO Ottar "Nr. 1, 3 og 5 i denne artikkel gjelder for slike forsendelser." i "sikre etterlevelse av regelverket for mat" = Ledd + Ledd
-// TODO Ottar: Artikkel 22. i Forskrifter om pelsing av pelsdyr
-// TODO: liste defaultP under ledd, selv om de i praksis ikke er der, og "gjett" avsnittsnummer
-// TODO: ✅ lag en "scan" som henter _alle_ regelverk og finner _alle_ instanser av klasser som f.eks defaultP
-
-// del II nr. 1 og andre setning i nr. 3, nr. 6, 7 og 8 og den første setningen i nr. 9, = Artikkel 28.1 a.ii. hilsen Øyvind
-
-const FIRST_HEADING = ':is(h1,h2,h3,h4,h5,h6,[role="heading"]):first-child';
+// TODO: Ottar: "Kategorier vinprodukter" Vinforskriften - se på path
+// TODO: Ottar: "Nr. 1, 3 og 5 i denne artikkel gjelder for slike forsendelser." i "sikre etterlevelse av regelverket for mat" = Ledd + Ledd
+// TODO: Ottar: Artikkel 22. i Forskrifter om pelsing av pelsdyr
+// TODO: Ottar: defaultP har ikke noe data-absoluteaddress (Forslag: ikke gjøre defaultP valgbar, se "fôranalyseforskriften", Artikkel 1 = underlegg konsekvens)
+// TODO: Ottar: Artikkel 108, Gebyrer i vinforskriften - ikke noe "Ledd 1"
+// TODO: Ottar: Hva heter "Angivelsene som angår vindyrkingssonen og de behandlinger som er utført, skal gis i tillegg til angivelsene som angår produktbetegnelsen og skal plasseres i samme synsfelt som disse." i vinforskriften?
+// TODO: Ottar: "Kilde til omega-3-fettsyrer" i Forskrift om ernærings- og helsepåstander om næringsmidler (defaultP brukt feil)
+// TODO: "Henvisninger til artikler, numre og bokstaver i EØS-rettsakter settes opp slik: «artikkel 1 nr. 1 bokstav a» Det skal altså ikke være parenteser eller halvparenteser. Ved henvisninger til tredjenivået, det vil si et avsnitt i et nr. eller en bokstav, brukes «første avsnitt», «andre avsnitt», osv."
 
 const meta = {
 	title: "Designsystem/Lovvelger",
@@ -36,12 +33,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// const IS_FETCHING = false;
-
-const isCheckable = (el: unknown): el is Element =>
-	el instanceof Element && el.matches(":has(> input:first-child)");
-const hasHeading = (el: unknown): el is Element =>
-	el instanceof Element && el.matches(`:has(> ${FIRST_HEADING})`);
+const NAME = "data-mtds-name";
+const PATH = "data-mtds-path";
+const TYPE = "data-mtds-type";
+const UUID = "data-absoluteaddress";
+const CHECK = "aria-checked";
+const TOAST = "lov-toast";
+const text = (el?: Node | null) => el?.textContent?.trim() || "";
+const queryUntil = (parent: Element | null, selector: string): Node[] => {
+	const nodes = [...(parent?.childNodes || [])];
+	const child = parent?.querySelector(`:scope > ${selector}`);
+	return nodes.slice(0, child ? nodes.indexOf(child) : undefined);
+};
 
 export const Default: Story = {
 	tags: ["!dev"],
@@ -59,15 +62,6 @@ export const Default: Story = {
 			setDomain(params.get("domain") || "SF");
 			setLovId(params.get("lovId") || "");
 			setKey(key);
-
-			// if (!IS_FETCHING) {
-			// 	IS_FETCHING = true;
-			// 	fetch(`/docs/laws.json`)
-			// 		.then((res) => res.json())
-			// 		.then((all: Array<{ file: string; title: string; html: string }>) => {
-			// 			console.log(all.filter(({ html }) => html.includes("defaultP")));
-			// 		});
-			// }
 		}, []);
 
 		useEffect(() => {
@@ -88,202 +82,161 @@ export const Default: Story = {
 
 		useEffect(() => {
 			if (!key || !lovId) return;
+			const src = `https://api.lovdata.no/v1/structuredRules/get/${domain}/${lovId}.html`;
 			const url = new URL(window.top?.location.href || "");
 			url.searchParams.set("lovId", lovId);
 			url.searchParams.set("domain", domain);
-			window.top?.history.replaceState(null, "", url.toString());
-			fetch(
-				`https://api.lovdata.no/v1/structuredRules/get/${domain}/${lovId}.html`,
-				{
-					headers: { Accept: "text/html", "X-API-key": key },
-				},
-			)
-				.then((res) => res.text())
-				.then((html) => {
-					const htmlA11Y = html.replace(/<(\/?)article/g, "<$1div"); // Too many <article> tags for a11y
-					const parser = new DOMParser();
-					const doc = parser.parseFromString(htmlA11Y, "text/html");
-					const base = doc.querySelector("base")?.href || "";
+			window.top?.history.pushState(null, "", url.toString());
 
-					doc.querySelectorAll("a").forEach((a) => {
-						a.target = "_blank";
-						a.rel = "noreferrer noopener";
-						a.href = `${base}${a.getAttribute("href")}`;
+			fetch(src, {
+				headers: { Accept: "text/html", "X-API-key": key },
+			})
+				.then((res) => res.text())
+				.then((rawHTML) => {
+					const parser = new DOMParser();
+					const html = rawHTML.replace(/<(\/?)article/g, "<$1div"); // Too many <article> tags for a11y
+					const doc = parser.parseFromString(html, "text/html");
+					const url = doc.querySelector("base")?.href || "";
+
+					// doc.querySelectorAll("h1").forEach((el) => {
+					// 	const sf = el.querySelector('[data-lovdata-url^="SF"]');
+					// 	const type = sf ? "Forskrift" : "Lov";
+					// 	attr(el, TYPE, type);
+					// 	attr(el, NAME, type);
+					// 	attr(el, PATH, text(el));
+					// });
+
+					doc.querySelectorAll(".numberedLegalP").forEach((el) => {
+						el.innerHTML = el.innerHTML.replace(/\d+\./, ""); // Remove number first ledd sentence
+						const count = `${attr(el, "data-numerator")}.`;
+						const id = tag("span", { class: "data-originalId" }, count);
+						const div = tag("div", { class: "legalP", [UUID]: attr(el, UUID) }); // Create "fake" legalP as numberedLegalP always starts with text
+
+						div.append(...queryUntil(el, ":is(ol, ul, div)")); // Move all nodes before list/div to new legalP
+						el.prepend(id, div);
+						attr(el, TYPE, `Numerert ledd`);
+						attr(el, NAME, `Nr. ${count}`);
 					});
 
-					// doc
-					// 	.querySelectorAll(`main > .section:has(> ${FIRST_HEADING})`)
-					// 	.forEach((el) => {
-					// 		const details = Object.assign(
-					// 			document.createElement("u-details"),
-					// 			{ className: styles.details, open: true },
-					// 		);
-					// 		const summary = details.appendChild(
-					// 			document.createElement("u-summary"),
-					// 		);
-					// 		summary.append(el.querySelector(FIRST_HEADING) || "");
-					// 		el.replaceWith(details);
-					// 		details.append(el);
-					// 	});
-					// doc.querySelectorAll('main > .legalArticle:has(.legalArticleHeader:first-child)').forEach((el) => {
-					//   const details = Object.assign(document.createElement('u-details'), { className: styles.details, open: true });
-					//   const summary = details.appendChild(document.createElement('u-summary'));
-					//   summary.append(el.querySelector('.legalArticleHeader') || '')
-					//   el.replaceWith(details);
-					//   details.append(el);
-					// })
+					doc.querySelectorAll(".listArticle").forEach((el) => {
+						const id = el.querySelector(":scope > .data-originalId");
+						const item = el.parentElement as Element;
+						const list = item.parentElement;
+						const name = text(id).replace(/^-$/, ""); // Some .listArticle have .data-originalId...
+						const count = [...(list?.children || [])].indexOf(item) + 1; // ...if no .data-originalId, we use index in list
+						const type = list ? attr(list, "type")?.toLowerCase() : "";
+						const unit =
+							(type === "a" && "Bokstav") ||
+							(type === "1" && "Nummer") ||
+							(type === "i" && "Tall") ||
+							"Punkt";
 
-					// doc
-					// 	.querySelectorAll(
-					// 		[
-					// 			// '.listDefaultP',
-					// 			// '.listLegalP',
-					// 			".defaultList > li",
-					// 			".defaultP",
-					// 			".listeitemNummer",
-					// 			".numberedLegalP",
-					// 			".legalP",
-					// 			".legalArticle",
-					// 			// ":not(.listArticle) > .legalP", // .listArticle always contains .legalP
-					// 			// ":not(u-summary) > .legalArticleHeader",
-					// 		].join(","),
-					// 	)
-					// 	.forEach((el) => {
-					// 		el.prepend(
-					// 			Object.assign(document.createElement("input"), {
-					// 				type: "checkbox",
-					// 				className: styles.input,
-					// 			}),
-					// 		);
-					// 	});
+						attr(el, TYPE, "Listepunkt");
+						attr(el, NAME, `${unit} ${name || count}`);
+					});
 
-					// doc
-					// 	.querySelectorAll(`
-					// 		.defaultP,
-					// 		.listArticle,
-					// 		.legalArticle,
-					// 		.legalP:has(~ .legalP),
-					// 		.legalP ~ .legalP,
-					// 		.marginIdArticle,
-					// 		.numberedLegalP
-					// 	`)
-					// 	.forEach((el) => {
-					// 		el.prepend(
-					// 			tag("input", { type: "checkbox", class: styles.input }),
-					// 		);
-					// 	});
+					doc.querySelectorAll(".section").forEach((el) => {
+						const name = attr(el, "data-name") || "";
+						const head = el.querySelector("h2,h3,h4,h5,h6,[role='heading']");
+						const path = queryUntil(head, "br").map(text).join(" ");
+						const unit =
+							(name.startsWith("del") && ["Del", name.slice(3)]) ||
+							(name.startsWith("kap") && ["Kapittel", name.slice(3)]) ||
+							(name.startsWith("vedlegg") && ["Vedlegg", name.slice(7)]) ||
+							[];
+
+						attr(el, TYPE, unit[0] || "Seksjon");
+						attr(el, NAME, unit.join(" ") || null);
+						attr(el, PATH, name ? null : path);
+					});
+
+					doc.querySelectorAll(".legalP").forEach((el) => {
+						const items = el.parentNode?.querySelectorAll(":scope > .legalP");
+						const count = `${[...(items || [])].indexOf(el) + 1}`; // Must run after .numberedLegalP processing for correct count
+						attr(el, TYPE, "Ledd");
+						attr(el, NAME, `Avsnitt ${count}`);
+					});
+
+					doc.querySelectorAll(".legalArticle").forEach((el) => {
+						const id = el.querySelector(".legalArticleValue");
+						const name = text(id);
+						const type = name.startsWith("§") ? "Paragraf" : "";
+						attr(el, TYPE, type || "Artikkel");
+						attr(el, NAME, `${type} ${name}`.trim());
+					});
+
+					doc.querySelectorAll(".marginIdArticle").forEach((el) => {
+						const id = el.querySelector(":scope > .data-marginOriginalId");
+						attr(el, TYPE, "Artikkelliste");
+						attr(el, NAME, `Nr. ${text(id)}`);
+					});
+
+					doc.querySelectorAll(`[${NAME}]`).forEach((el) => {
+						el.insertAdjacentHTML(
+							"afterbegin",
+							`<button type="button" role="checkbox" ${CHECK}="false">${attr(el, NAME)}</button>`,
+						);
+					});
+
+					// Fix URLs for links and images to be absolute
+					doc.querySelectorAll("a").forEach((a) => {
+						a.href = `${url}${attr(a, "href")}`;
+						a.rel = "noreferrer noopener";
+						a.target = "_blank";
+					});
+
+					doc.querySelectorAll("img").forEach((img) => {
+						img.src = `${url}${attr(img, "src")}`;
+					});
 
 					setLovHTML(doc.querySelector("main")?.innerHTML || "");
 				});
 		}, [key, domain, lovId]);
 
-		// useEffect(() => {
-		// 	if (!lovHTML) return;
-		// 	const input = tag("input", { type: "checkbox", class: styles.input });
-		// 	document.querySelectorAll(".lovdata *").forEach((el) => {
-		// 		const content = getComputedStyle(el, "::before").content || "none";
-		// 		if (content !== "none") el.prepend(input.cloneNode());
-		// 	});
-		// }, [lovHTML]);
+		const handleClick = (event: React.SyntheticEvent) => {
+			if ((event.target as Element)?.nodeName !== "BUTTON") return; // Only accept clicks on mark elements
 
-		const handleChange = (event: React.ChangeEvent<HTMLDivElement>) => {
-			const { target: el } = event;
+			const path = event.nativeEvent
+				.composedPath()
+				.filter((el) => el instanceof Element)
+				.filter((el) => el.hasAttribute?.(TYPE))
+				.map((el, index) => {
+					const btn = el.querySelector(`[${CHECK}]`) as Element;
+					let check = `${attr(btn, CHECK) !== "true"}`;
+					if (index) {
+						const on = el.querySelector(`[${CHECK}="true"]`);
+						const off = el.querySelector(`[${CHECK}]:not([${CHECK}="true"])`);
+						check = on ? (off ? "mixed" : "true") : "false";
+					} else
+						el.querySelectorAll(`[${CHECK}]`).forEach((sub) => {
+							attr(sub, CHECK, check);
+						});
 
-			if (el instanceof HTMLInputElement) {
-				// const elements: ((
-				// 	el: HTMLElement,
-				// ) => false | null | undefined | string)[] = [
-				// 	(el) => {
-				// 		const li = el.parentElement;
-				// 		const name = li?.getAttribute("data-name")?.replace(/\.$/, "");
-				// 		const value = li?.getAttribute("value");
-				// 		const type = li?.parentElement?.getAttribute("type");
-				// 		if (li instanceof HTMLLIElement && name)
-				// 			return `${type === "a" ? "Bokstav" : name === "-" ? "Punkt" : "Nummer"} ${name === "-" ? value : name}`;
-				// 	},
-				// 	// (el) => el.classList.contains('section') && el.querySelector(`:scope > ${FIRST_HEADING}`)?.textContent,
-				// 	(el) =>
-				// 		el.classList.contains("legalArticle") &&
-				// 		el
-				// 			.querySelector<HTMLElement>(".legalArticleValue")
-				// 			?.innerText.replace(/§\s+/, "§")
-				// 			.replace(/\s+/g, " "),
-				// 	(el) =>
-				// 		(el.classList.contains("legalP") ||
-				// 			el.classList.contains("numberedLegalP")) &&
-				// 		!(
-				// 			el.parentElement?.classList.contains("listArticle") &&
-				// 			el.parentElement.querySelectorAll(
-				// 				":scope > :is(.legalP,.numberedLegalP)",
-				// 			).length === 1
-				// 		) && // Unngå ledd paragraf dersom dette er en listArticle med kun et ledd
-				// 		`Ledd ${Array.from(el.parentElement?.querySelectorAll(":scope > :is(.legalP,.numberedLegalP)") || []).indexOf(el) + 1}`, // Ledd paragraf
-				// 	// (el) =>
-				// 	// 	el.classList.contains("defaultP") &&
-				// 	// 	!(
-				// 	// 		el.parentElement?.classList.contains("listArticle") &&
-				// 	// 		el.parentElement.querySelectorAll(":scope > .defaultP").length ===
-				// 	// 			1
-				// 	// 	) && // Unngå ledd paragraf dersom dette er en listArticle med kun et ledd
-				// 	// 	`Avsnitt ${Array.from(el.parentElement?.querySelectorAll(":scope > .defaultP") || []).indexOf(el) + 1}`, // Ledd paragraf
+					attr(btn, CHECK, check);
 
-				// 	(el) =>
-				// 		el.classList.contains("listArticle") &&
-				// 		el.innerText.replace(/\s+/g, " "),
-				// 	(el) =>
-				// 		el.classList.contains("numberedLegalP") &&
-				// 		`Ledd ${el.getAttribute("data-numerator")}`,
-				// ];
+					return {
+						name: attr(el, NAME),
+						path: attr(el, PATH),
+						type: attr(el, TYPE),
+						uuid: attr(el, UUID),
+						check,
+					};
+				})
+				.reverse();
 
-				// const path = event.nativeEvent
-				// 	.composedPath()
-				// 	.map(
-				// 		(el) =>
-				// 			el instanceof HTMLElement &&
-				// 			elements.map((fn) => fn(el)).filter(Boolean)[0],
-				// 	)
-				// 	.filter(Boolean);
+			const named = path.find(({ name }) => name) || path[0]; // Sections does not have name, so we want to find the first named element
+			const slice = path.indexOf(named) - (named?.type === "Ledd" ? 1 : 0); // If a ledd is the first named element, include the parent section for reference
 
-				// const ids = ":scope > .data-originalId";
-				// Forskrifter om pelsing av pelsdyr.
-				const lovdata = event.currentTarget;
-				const eventPath = event.nativeEvent.composedPath().reverse();
-				const path = eventPath
-					.slice(eventPath.indexOf(lovdata))
-					.filter((el) => isCheckable(el) || hasHeading(el));
+			console.log(path);
 
-				const text = path.flatMap((el) => {
-					if (hasHeading(el))
-						return el.querySelector(`:scope > ${FIRST_HEADING}`)?.textContent;
-
-					const parent = (el as Element).parentElement;
-					const li = parent?.parentElement;
-					const name = li?.getAttribute("data-name");
-					const type = li?.parentElement?.getAttribute("type")?.toLowerCase();
-					// const id = parent?.querySelector(ids)?.textContent;
-					const items = Array.from(parent?.children || []).filter(isCheckable);
-					const number = items.indexOf(el) + 1;
-
-					if (name) {
-						return [
-							`${type === "a" ? "Bokstav" : name === "-" ? "Punkt" : "Nummer"} ${name === "-" ? number : name}`,
-						].concat(items.length > 1 ? [`Avsnitt ${number}`] : []);
-					}
-
-					return `Ledd ${number}`;
-				});
-
-				console.log(text, path);
-
-				// console.log(path.reverse());
-			}
+			toast(
+				path
+					.slice(Math.max(0, slice)) // If a section contains a article, start from the article
+					.map(({ name, path }) => `${path || name}`.trim())
+					.join(" > "),
+				{ timeout: false, id: TOAST },
+			);
 		};
-
-		// useEffect(() => {
-		// 	console.log(
-		// 		document.querySelectorAll(".listArticle:has(.legalP + .legalP)"),
-		// 	);
-		// });
 
 		return (
 			<>
@@ -293,10 +246,10 @@ export const Default: Story = {
 							as="input"
 							name="key"
 							label="API-nøkkel"
-							onKeyDown={({ currentTarget: el, key }) =>
-								key === "Enter" && setKey(el.value)
+							onBlur={({ currentTarget: { value } }) => setKey(value)}
+							onKeyDown={({ currentTarget: { value }, key }) =>
+								key === "Enter" && setKey(value)
 							}
-							onBlur={({ currentTarget: el }) => setKey(el.value)}
 						/>
 					</div>
 					<div data-fixed>
@@ -315,51 +268,16 @@ export const Default: Story = {
 						as={Field.Combobox}
 						label="Lovverk"
 						onSelectedChange={([{ value }]) => setLovId(value)}
-						options={lover}
 						selected={lover.filter(({ value }) => value === lovId)}
+						options={lover}
 					/>
 				</Flex>
 				<div
 					className="lovdata"
-					onInput={handleChange}
+					onClickCapture={handleClick}
 					dangerouslySetInnerHTML={{ __html: lovHTML }}
 				/>
 			</>
 		);
 	},
 };
-
-/*
-<Button data-variant="secondary" onClick={() => setOpen(true)}>
-	<PlusIcon />
-	Legg til regelverk
-</Button> 
-<Dialog
-	open={open}
-	data-closedby="any"
-	onClose={() => setOpen(false)}
-	style={{
-		width: 1400,
-		padding: 0,
-		height: "90vh",
-		maxWidth: "calc(100vw - 2em)",
-	}}
->
-	<Button
-		data-command="close"
-		style={{ position: "absolute", right: 20, top: 20, zIndex: 9 }}
-	/>
-	<Grid
-		data-gap="0"
-		style={{ height: "100%", gridTemplateColumns: "350px 1fr" }}
-	>
-		<Group
-			data-self="350"
-			data-fixed
-			style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-		>
-			<Heading>Valge bestemmelser</Heading>
-		</Group>
-		<Card style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}></Card>
-		</Grid>
-</Dialog> */

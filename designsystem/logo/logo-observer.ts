@@ -1,14 +1,17 @@
 import styles from "../styles.module.css";
-import { onLoaded, onMutation, tag } from "../utils";
+import { IS_BROWSER, onLoaded, onMutation, tag } from "../utils";
 
 const CSS_LOGO = styles.logo.split(" ")[0];
+const LOGOS = IS_BROWSER ? document.getElementsByClassName(CSS_LOGO) : [];
 
-function handleLogoMutation([logo]: HTMLCollectionOf<HTMLElement>) {
-	if (logo?.isConnected && logo?.firstElementChild instanceof SVGSVGElement) {
+function handleLogoMutation() {
+	const logo = LOGOS[0];
+	const svg = logo?.firstElementChild;
+
+	if (svg instanceof SVGSVGElement) {
 		for (const icon of document.head.querySelectorAll("link[rel~='icon']"))
 			icon.setAttribute("rel", "disabled"); // Disable previous icon (but not remove is as this makes Next.js sad)
 
-		const svg = logo.firstElementChild;
 		const isDot = logo?.hasAttribute("data-env");
 		const style = window.getComputedStyle(svg);
 		const text = style.getPropertyValue("color");
@@ -27,6 +30,4 @@ function handleLogoMutation([logo]: HTMLCollectionOf<HTMLElement>) {
 	}
 }
 
-onLoaded(() =>
-	onMutation(document.documentElement, CSS_LOGO, handleLogoMutation),
-);
+onLoaded(() => [onMutation(handleLogoMutation, "class")]);

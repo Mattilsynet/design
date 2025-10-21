@@ -85,10 +85,9 @@ const events = (
 export const on = (
 	element: Node | Window,
 	...rest: Parameters<typeof Element.prototype.addEventListener>
-): void => {
-	if (UNBIND && (element === window || element === document))
-		UNBIND.push(() => off(element, ...rest));
+): (() => void) => {
 	events("add", element, rest);
+	return () => off(element, ...rest);
 };
 
 /**
@@ -104,7 +103,7 @@ export const off = (
 
 declare global {
 	interface Window {
-		_mtdsUnbindEvents?: Map<string, Array<() => void>>;
+		_mtdsCleanups?: Map<string, Array<() => void>>;
 	}
 }
 
@@ -113,19 +112,15 @@ declare global {
  * @description Runs a callback when window is loaded in browser, and ensures events are unbound if hot reloading
  * @param callback The callback to run when the page is ready
  */
-let UNBIND: Array<() => void> | null = null;
-export const onLoaded = (callback: () => void) => {
+export const onLoaded = (setup: () => Array<() => void>) => {
 	if (!IS_BROWSER || !window.requestAnimationFrame) return; // Skip if not in browser environment
-	if (!window._mtdsUnbindEvents) window._mtdsUnbindEvents = new Map();
+	if (!window._mtdsCleanups) window._mtdsCleanups = new Map();
 
 	const run = () =>
 		requestAnimationFrame(() => {
-			const key = String(callback).replace(/(\n|\s)/g, "");
-			window._mtdsUnbindEvents?.get(key)?.map((unbind) => unbind()); // Unbind previous events
-			UNBIND = []; // Prepare to listen for newly bound events
-			callback(); // Run binding
-			window._mtdsUnbindEvents?.set(key, UNBIND?.slice(0)); // Store for later unbinding
-			UNBIND = null; // Stop listening for newly bound events
+			const key = String(setup).replace(/(\n|\s)/g, ""); // Create a key based on setup function body
+			window._mtdsCleanups?.get(key)?.map((cleanup) => cleanup()); // Run cleanups
+			window._mtdsCleanups?.set(key, setup()); // Rum setup and store cleanups
 		});
 
 	if (document.readyState === "complete") run();
@@ -180,7 +175,7 @@ export function anchorPosition(
  * Speed up MutationObserver by debouncing and only running when page is visible
  * @return new MutaionObserver
  */
-export function createOptimizedMutationObserver(callback: MutationCallback) {
+export function onMutation(callback: MutationCallback, ...attrs: string[]) {
 	let queue = 0;
 
 	const onFrame = () => setTimeout(onTimer, 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
@@ -193,44 +188,15 @@ export function createOptimizedMutationObserver(callback: MutationCallback) {
 		if (!queue) queue = requestAnimationFrame(onFrame);
 	});
 
-	return observer;
+	observer.observe(document.documentElement, {
+		attributeFilter: attrs,
+		attributes: true,
+		childList: true,
+		subtree: true,
+	});
+
+	return () => observer.disconnect();
 }
-
-/**
- * onMutation
- * @description Utility to quickly observe mutations on a specific class name
- * @param el The Element to use as EventTarget
- * @param className The class name to observe
- * @param callback The callback to run when mutations are detected
- */
-const MUTATORS = new WeakMap<Element, Array<() => void>>();
-export const onMutation = <T extends Element>(
-	el: Element,
-	className: string,
-	callback: (elems: HTMLCollectionOf<T>) => void,
-) => {
-	if (!IS_BROWSER || !window.requestAnimationFrame) return; // Skip if not in browser environment
-	const elems = el.getElementsByClassName(className);
-	const mutator = MUTATORS.get(el) || [];
-
-	if (!mutator.length) {
-		MUTATORS.set(el, mutator);
-		createOptimizedMutationObserver((_, observer) => {
-			if (el.isConnected && mutator?.length) {
-				for (const callback of mutator) callback();
-			} else {
-				observer?.disconnect();
-				MUTATORS.delete(el);
-			}
-		}).observe(el, {
-			attributeFilter: ["class", "hidden"],
-			attributes: true,
-			childList: true,
-			subtree: true,
-		});
-	}
-	mutator.push(() => callback(elems as HTMLCollectionOf<T>));
-};
 
 /**
  * isInputLike
