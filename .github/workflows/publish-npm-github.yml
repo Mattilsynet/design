@@ -1,9 +1,9 @@
 name: Publish to npm and GitHub
 
-on: 
+on:
   push:
     branches:
-      - main
+      - not_a_branch
   workflow_dispatch:
 
 jobs:
@@ -66,7 +66,7 @@ jobs:
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
         run: |
-          rm $HOME/.npmrc && 
+          rm $HOME/.npmrc &&
           cat << EOF > "$HOME/.npmrc"
             @mattilsynet:registry=https://npm.pkg.github.com
             //npm.pkg.github.com/:_authToken=$NPM_TOKEN
