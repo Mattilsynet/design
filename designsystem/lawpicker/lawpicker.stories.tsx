@@ -1,10 +1,8 @@
-import type { FieldComboboxSelected } from "@mattilsynet/design/react";
-import { Field, Flex } from "@mattilsynet/design/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useState } from "react";
-import "./lawpicker.css";
-import { toast } from "../react";
+import { Field, type FieldComboboxSelected, Flex, toast } from "../react";
 import { attr, tag } from "../utils";
+import "./lawpicker.css";
 
 // sikre etterlevelse av regelverket for mat https://lovdata.no/forskrift/2020-03-03-704/ARTIKKEL_138 - EU-forordning
 // Forskrift om dyrehelse https://lovdata.no/forskrift/2022-04-06-631/ARTIKKEL_1

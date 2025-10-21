@@ -11,7 +11,10 @@
 		--dsc-input-border-width--toggle: var(--ds-border-width-default);
 		--dsc-input-color--readonly: var(--ds-color-text-default);
 		--dsc-input-color: var(--ds-color-text-default);
+		--dsc-input-outline-color--hover: transparent;
+		--dsc-input-outline-color--toggle--hover: transparent;
 		--dsc-input-stroke: 0.045em;
+
 		--_mtdsc-input-color-placeholder: color-mix(
 			in srgb,
 			var(--dsc-input-color),
