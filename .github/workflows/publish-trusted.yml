@@ -1,17 +1,21 @@
-name: Publish to npm and GitHub
+name: Publish to trusted npm and GitHub Packages
 
 on:
   push:
     branches:
-      - not_a_branch
+      - main
   workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   build:
     name: "Check version, build and publish"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -22,16 +26,16 @@ jobs:
             echo "Version changed, continuing."
             echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else
-            echo "Version not changed, skipping workflow."
+            echo "Version not changed, skipping workflow. "
             echo "VERSION_CHANGED=false" >> $GITHUB_ENV
           fi
 
       # Node setup
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         if: env.VERSION_CHANGED == 'true'
         with:
-          node-version: lts/*
-          cache: npm
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
@@ -52,11 +56,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "$VERSION" -m "Release $VERSION"
           git push origin "$VERSION"
-
-      # Publishing to npm
-      - name: Creating .npmrc
-        if: env.VERSION_CHANGED == 'true'
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
 
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
