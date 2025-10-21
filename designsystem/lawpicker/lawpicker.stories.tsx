@@ -14,6 +14,8 @@ import "./lawpicker.css";
 // Forskrift om avliving av dyr (Forskrift om avliving av dyr) - mye kluss inkl. .marginIdArticle
 // Forskrifter om pelsing av pelsdyr - .listAritcle med flere .legalP + .legalP
 
+// TODO: Ottar: "INSTRUKSER FOR UTARBEIDING OG BRUK AV FØLGEDOKUMENTER" Vinforskriften - hva vil den hete
+// TODO: Ottar: "M1 Vedlegg IXa" Vinforskriften - flere språk
 // TODO: Ottar: "Kategorier vinprodukter" Vinforskriften - se på path
 // TODO: Ottar: "Nr. 1, 3 og 5 i denne artikkel gjelder for slike forsendelser." i "sikre etterlevelse av regelverket for mat" = Ledd + Ledd
 // TODO: Ottar: Artikkel 22. i Forskrifter om pelsing av pelsdyr
@@ -126,9 +128,9 @@ export const Default: Story = {
 						const count = [...(list?.children || [])].indexOf(item) + 1; // ...if no .data-originalId, we use index in list
 						const type = list ? attr(list, "type")?.toLowerCase() : "";
 						const unit =
-							(type === "a" && "Bokstav") ||
-							(type === "1" && "Nummer") ||
-							(type === "i" && "Tall") ||
+							(type?.startsWith("a") && "Bokstav") ||
+							(type?.startsWith("1") && "Nummer") ||
+							(type?.startsWith("i") && "Tall") ||
 							"Punkt";
 
 						attr(el, TYPE, "Listepunkt");
