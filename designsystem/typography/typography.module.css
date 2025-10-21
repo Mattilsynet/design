@@ -50,9 +50,8 @@
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 		line-height: var(--mtdsc-info-line-height);
 	}
-	.info:not([hidden]),
-	.info strong:not([hidden]) {
-		display: block;
+	:where(.info:not([hidden]), .info strong:not([hidden])) {
+		display: block; /* Using where to make it easy to use other display values */
 	}
 	.info > span[data-nowrap] {
 		overflow: clip;

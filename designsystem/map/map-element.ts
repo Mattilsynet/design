@@ -3,7 +3,7 @@ import LeafletCSS from "leaflet/dist/leaflet.css?raw";
 import LeafletClusterCSS from "leaflet.markercluster/dist/MarkerCluster.css?raw";
 import "leaflet.markercluster";
 import type * as ReactTypes from "react";
-import { IS_BROWSER, MTDSElement, tag } from "../utils";
+import { attr, IS_BROWSER, MTDSElement, tag } from "../utils";
 import MapCss from "./map.css?raw";
 
 type JSXMapAttrs = ReactTypes.HTMLAttributes<MTDSMapElement>;
@@ -22,6 +22,9 @@ L.Marker.prototype.options.icon = L.divIcon({
 	iconSize: [30, 30],
 });
 
+// const strToLatLng = (str?: string | null) =>
+// 	[0, 0, ...(str || "").split(",").map(parseFloat)].slice(-2) as L.LatLngTuple;
+
 const KARTVERKET_GRAY =
 	"https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png";
 
@@ -38,18 +41,33 @@ export class MTDSMapElement extends MTDSElement {
 		this.shadowRoot?.append(tag("slot"), tag("div"));
 		this.cluster = L.markerClusterGroup({
 			showCoverageOnHover: false,
+			disableClusteringAtZoom: 1,
 		});
 	}
 	connectedCallback() {
+		const json = `[${attr(this, "data-view") || "57.95, 4.73, 71.19, 31.44, 15"}]`;
+		const view = JSON.parse(json);
+
 		this.map = L.map(this.shadowRoot?.lastElementChild as HTMLElement, {
-			attributionControl: false,
-			center: [63.43067801397488, 10.402166438219403],
-			zoom: 13,
 			layers: [L.tileLayer(KARTVERKET_GRAY, { maxZoom: 18 }), this.cluster],
+			attributionControl: false,
+			wheelPxPerZoomLevel: 10,
+			zoomControl: false,
+			zoomSnap: 0,
 		});
+		this.map.addControl(L.control.zoom({ position: "bottomright" }));
+
+		// If no view is set, use Norway as default bounding box
+		if (view.length === 3) this.map.setView([view[0], view[1]], view[2]);
+		if (view.length >= 4) {
+			const nw = [view[0], view[1]] as L.LatLngTuple;
+			const se = [view[2], view[3]] as L.LatLngTuple;
+			const padding = [view[4] ?? 0, view[5] ?? view[4] ?? 0] as L.PointTuple;
+			this.map.fitBounds([nw, se], { padding });
+		}
 	}
-	addMarker(point: L.LatLngExpression) {
-		return L.marker(point).addTo(this.cluster);
+	addMarker(latlng: L.LatLngExpression, options: L.MarkerOptions) {
+		return L.marker(latlng, options).addTo(this.cluster);
 	}
 	disconnectedCallback() {
 		this.map?.remove();

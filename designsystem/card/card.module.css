@@ -18,30 +18,27 @@
 		text-align: inherit;
 		text-decoration: none;
 		transition-duration: 0.15s;
-		transition-property: border-color, scale;
+		transition-property: background-color, border-color, scale;
 	}
 	:where(.card:not(tr, [hidden])) {
 		display: block;
 	}
-	.card:is(label, button:enabled, button:not([aria-disabled="true"])) {
+	.card:is(label, button:enabled, button:not([aria-disabled="true"], [role="button"])) {
 		cursor: pointer;
+	}
+	.card:is(label, button, [role="button"], :any-link):hover {
+		border-color: var(--mtdsc-card-border-color--hover);
 	}
 	.card:is(button) {
 		width: 100%;
 	}
-
-	.card:is(u-details, details):has(> :is(u-summary, summary):hover),
-	.card:is(:any-link, button, [role="button"]):hover {
-		border-color: var(--mtdsc-card-border-color--hover);
+	label.card:has(input:checked) {
+		border-color: var(--ds-color-border-strong);
+		background-color: var(--ds-color-surface-hover);
 	}
 
-	.card:is(:any-link, button, [role="button"]):active {
+	.card:is(button, [role="button"], :any-link):active {
 		scale: 0.99;
-	}
-
-	.card:is(u-details, details) > :is(u-summary, summary) {
-		margin: calc(var(--mtdsc-card-padding) * -1);
-		padding: var(--mtdsc-card-padding);
 	}
 
 	.card,

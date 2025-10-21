@@ -2,11 +2,13 @@ import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import * as stories from './map.stories';
 
 
-<Meta of={stories} isTemplate />
+<Meta of={stories} />
 
 # Kart
 
 ## Kode
-- Vi bruker [OpenLayers](https://openlayers.org/doc/quickstart.html) som kartløsning i Mattilsynet.
+- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) for å oppnå god ytelse og bred funksjonalitet.
+- **Kartlag** leveres av [Kartverket](https://cache.kartverket.no/) for oppnå gjenkjennlige og presise norgeskart.
+- Bruk elementet `<mtds-map>` for å få standard Mattilsynet oppsett av kart.
 
 <Canvas of={stories.Default} />

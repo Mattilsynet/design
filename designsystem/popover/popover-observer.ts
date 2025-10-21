@@ -62,8 +62,8 @@ function handlePopoverLinkClick(event: Event) {
 	}
 }
 
-onLoaded(() => {
-	on(document, "click", handlePopoverLinkClick); // Allow `<a>` to use `popovertarget` as well
-	on(document, "toggle", handlePopoverToggle, QUICK_EVENT); // Use capture since toggle does not bubble
-	on(document, "beforetoggle", handlePopoverBeforetoggle, QUICK_EVENT); // Use capture since toggle does not bubble
-});
+onLoaded(() => [
+	on(document, "click", handlePopoverLinkClick), // Allow `<a>` to use `popovertarget` as well
+	on(document, "toggle", handlePopoverToggle, QUICK_EVENT), // Use capture since toggle does not bubble
+	on(document, "beforetoggle", handlePopoverBeforetoggle, QUICK_EVENT), // Use capture since toggle does not bubble
+]);

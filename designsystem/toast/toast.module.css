@@ -35,6 +35,9 @@
 		position: fixed;
 		z-index: 99999;
 	}
+	.toast > * {
+		min-width: 0px; /* Ensure children keep inside */
+	}
 	.toast[open] {
 		animation:
 			_toastOpen var(--mtdsc-toast-animation-duration) ease-out forwards,

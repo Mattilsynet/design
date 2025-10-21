@@ -4,6 +4,7 @@ import styles from "../styles.module.css";
 import {
 	anchorPosition,
 	attr,
+	IS_BROWSER,
 	isInputLike,
 	on,
 	onLoaded,
@@ -15,15 +16,13 @@ import {
 const CSS_FIELD = styles.field.split(" ")[0];
 const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
+const FIELDS = IS_BROWSER ? document.getElementsByClassName(CSS_FIELD) : [];
 
 const getText = (style: CSSStyleDeclaration, key: string) =>
 	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
-function handleFieldMutation(
-	fields: HTMLCollectionOf<Element>,
-	validate?: boolean,
-) {
-	for (const field of fields)
+function handleFieldMutation(validate?: boolean) {
+	for (const field of FIELDS)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
 			const descs: Element[] = [];
@@ -144,12 +143,12 @@ function handleFieldInput(event: Event) {
 function handleFieldValdiation(event: Event) {
 	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
 	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
-	handleFieldMutation(document.getElementsByClassName(CSS_FIELD), true); // Update state
+	handleFieldMutation(true); // Update state
 }
 
-onLoaded(() => {
-	onMutation(document.documentElement, CSS_FIELD, handleFieldMutation);
-	on(document, "input", handleFieldInput, QUICK_EVENT);
-	on(document, "invalid,submit", handleFieldValdiation, true); // Use capture as invalid and submit does not bubble
-	on(document, "toggle", handleFieldToggle, QUICK_EVENT); // Use capture since toggle does not bubble
-});
+onLoaded(() => [
+	onMutation(() => handleFieldMutation()),
+	on(document, "input", handleFieldInput, QUICK_EVENT),
+	on(document, "toggle", handleFieldToggle, QUICK_EVENT), // Use capture since toggle does not bubble
+	on(document, "invalid,submit", handleFieldValdiation, true), // Use capture as invalid and submit does not bubble
+]);
