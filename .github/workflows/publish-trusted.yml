@@ -65,7 +65,6 @@ jobs:
       - name: Recreating .npmrc for publishing to GitHub
         if: env.VERSION_CHANGED == 'true'
         run: |
-          rm $HOME/.npmrc &&
           cat << EOF > "$HOME/.npmrc"
             @mattilsynet:registry=https://npm.pkg.github.com
             //npm.pkg.github.com/:_authToken=$NPM_TOKEN
