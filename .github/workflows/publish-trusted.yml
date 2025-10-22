@@ -93,6 +93,7 @@ jobs:
         with:
           node-version: 24
           registry-url: "https://npm.pkg.github.com"
+          scope: "@mattilsynet"
       - run: npm ci
       - uses: actions/download-artifact@v4
         with:
@@ -101,7 +102,6 @@ jobs:
       - run: npm publish --tag canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          npm_config_registry: https://npm.pkg.github.com
 
       # Initiate a publish to Clojars
       #- name: Dispatch event for publishing to Clojars
