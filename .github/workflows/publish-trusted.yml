@@ -91,7 +91,7 @@ jobs:
 
   publish-npm:
     name: 📦 Publish to npm
-    needs: check-version
+    needs: [check-version, build]
     if: needs.check-version.outputs.version_changed == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -109,7 +109,7 @@ jobs:
 
   publish-github:
     name: 📦 Publish to GitHub
-    needs: check-version
+    needs: [check-version, build]
     if: needs.check-version.outputs.version_changed == 'true'
     runs-on: ubuntu-latest
     steps:
