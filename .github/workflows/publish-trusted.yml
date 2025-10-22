@@ -61,24 +61,9 @@ jobs:
           name: mtds
           path: mtds/
 
-  #publish-clojars:
-  #  needs: check-version
-  #  if: needs.check-version.outputs.should_release == 'true'
-  #  runs-on: ubuntu-latest
-  #  name: 📦 Publish to Clojars
-  #  steps:
-  #    - name: Dispatch event for publishing to Clojars
-  #      if: env.VERSION_CHANGED == 'true'
-   #     run: |
-   #       curl -X POST \
-   #         -H "Accept: application/vnd.github.v3+json" \
-  #          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-  #          https://api.github.com/repos/mattilsynet/design/dispatches \
-  #          -d '{"event_type":"npm_publish_done"}'
-
   tag:
     name: 🏷️ Tag release
-    needs: check-version
+    needs: [build, check-version]
     if: needs.check-version.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -92,6 +77,21 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "${{needs.check-version.outputs.version}}" -m "Release ${{needs.check-version.outputs.version}}"
           git push origin "${{needs.check-version.outputs.version}}"
+
+  #publish-clojars:
+  #  needs: [tag, check-version]
+  #  if: needs.check-version.outputs.should_release == 'true'
+  #  runs-on: ubuntu-latest
+  #  name: 📦 Publish to Clojars
+  #  steps:
+  #    - name: Dispatch event for publishing to Clojars
+  #      if: env.VERSION_CHANGED == 'true'
+   #     run: |
+   #       curl -X POST \
+   #         -H "Accept: application/vnd.github.v3+json" \
+  #          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+  #          https://api.github.com/repos/mattilsynet/design/dispatches \
+  #          -d '{"event_type":"npm_publish_done"}'
 
   publish-npm:
     name: 📦 Publish to npm
