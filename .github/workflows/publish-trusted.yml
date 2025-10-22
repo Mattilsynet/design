@@ -1,4 +1,4 @@
-name: Publish to trusted npm and GitHub Packages
+name: "🏭 Publish to trusted npm and GitHub Packages"
 
 on:
   push:
@@ -9,79 +9,81 @@ on:
 permissions:
   id-token: write
   contents: write
+  packages: write
 
 jobs:
+  check-version:
+    name: "👷‍♀️ Check version change"
+    runs-on: ubuntu-latest
+    outputs:
+          should_release: ${{ env.SHOULD_RELEASE }}
+          version: ${{ env.VERSION }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Check version change
+        id: check_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag $VERSION already exists, skipping release."
+            echo "SHOULD_RELEASE=false" >> $GITHUB_ENV
+          else
+            echo "Tag $VERSION does not exist, proceeding with release."
+            echo "SHOULD_RELEASE=true" >> $GITHUB_ENV
+          fi
+
   build:
-    name: "Check version, build and publish"
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'true'
+    name: "👷 Install and build"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-
-      - name: Check version change
-        id: check_version
-        run: |
-          if git diff HEAD^ HEAD -- package.json | grep '"version"'; then
-            echo "Version changed, continuing."
-            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
-          else
-            echo "Version not changed, skipping workflow. "
-            echo "VERSION_CHANGED=false" >> $GITHUB_ENV
-          fi
-
-      # Node setup
       - uses: actions/setup-node@v6
-        if: env.VERSION_CHANGED == 'true'
         with:
           node-version: 24
 
-      - name: Install dependencies
-        if: env.VERSION_CHANGED == 'true'
+      - name: 🏗️ Install dependencies
         run: npm ci
 
-      - name: Build
-        if: env.VERSION_CHANGED == 'true'
+      - name: 👩‍🏭 Build
         run: npm run build
 
-      # Tagging the new release
-      - name: Create a new Git tag
-        if: env.VERSION_CHANGED == 'true'
+      - name: 📡 Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+
+  tag:
+    name: 🏷️ Tag release
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: 🏷️ Create a new Git tag
         run: |
-         VERSION=$(node -p "require('./package.json').version")
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Creating tag: $VERSION"
+          echo "Creating tag: ${{needs.check-version.outputs.version}}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "$VERSION" -m "Release $VERSION"
-          git push origin "$VERSION"
+          git tag -a "${{needs.check-version.outputs.version}}" -m "Release ${{needs.check-version.outputs.version}}"
+          git push origin "${{needs.check-version.outputs.version}}"
 
-      # Publishing to npm
-      - name: Creating .npmrc
-        if: env.VERSION_CHANGED == 'true'
-        run: echo "@mattilsynet:registry=https://registry.npmjs.org" > ~/.npmrc
-      - name: Publish to npm
-        if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public
-
-      # Publishing to GitHub
-      - name: Recreating .npmrc for publishing to GitHub
-        if: env.VERSION_CHANGED == 'true'
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            @mattilsynet:registry=https://npm.pkg.github.com
-            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to GPR
-        if: env.VERSION_CHANGED == 'true'
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Initiate a publish to Clojars
+  publish-clojars:
+    needs: [tag, check-version]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    name: 📦 Publish to Clojars
+    steps:
       - name: Dispatch event for publishing to Clojars
         if: env.VERSION_CHANGED == 'true'
         run: |
@@ -90,3 +92,52 @@ jobs:
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/mattilsynet/design/dispatches \
             -d '{"event_type":"npm_publish_done"}'
+
+  publish-npm:
+    name: 📦 Publish to npm
+    needs: [check-version, build, tag]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish --access public --tag canary
+
+  publish-github:
+    name: 📦 Publish to GitHub
+    needs: [check-version, build, tag]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@mattilsynet"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish --tag canary
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  cry:
+    name: 😭 No release needed
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "No release needed"
+          exit 1
