@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.15",
+	"version": "2.2.15-canary",
 	"type": "module",
 	"repository": {
 		"type": "git",

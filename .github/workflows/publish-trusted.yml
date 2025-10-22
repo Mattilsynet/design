@@ -3,7 +3,7 @@ name: Publish to trusted npm and GitHub Packages
 on:
   push:
     branches:
-      - main
+      - chore/trusted-release-5
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
             echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           else
             echo "Version not changed, skipping workflow. "
-            echo "VERSION_CHANGED=false" >> $GITHUB_ENV
+            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
           fi
 
       # Node setup
@@ -79,7 +79,7 @@ jobs:
         with:
           name: mtds
           path: mtds/
-      - run: npm publish --access public
+      - run: npm publish --access public --tag canary
 
   publish-github:
     needs: build
@@ -96,17 +96,17 @@ jobs:
         with:
           name: mtds
           path: mtds/
-      - run: npm publish
+      - run: npm publish --tag canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           npm_config_registry: https://npm.pkg.github.com
 
       # Initiate a publish to Clojars
-      - name: Dispatch event for publishing to Clojars
-        if: env.VERSION_CHANGED == 'true'
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/mattilsynet/design/dispatches \
-            -d '{"event_type":"npm_publish_done"}'
+      #- name: Dispatch event for publishing to Clojars
+      #  if: env.VERSION_CHANGED == 'true'
+      #  run: |
+      #    curl -X POST \
+      #      -H "Accept: application/vnd.github.v3+json" \
+      #      -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      #      https://api.github.com/repos/mattilsynet/design/dispatches \
+      #      -d '{"event_type":"npm_publish_done"}'
