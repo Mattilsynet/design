@@ -14,6 +14,8 @@ jobs:
   build:
     name: "Check version, build and publish"
     runs-on: ubuntu-latest
+    outputs:
+          version_changed: ${{ env.VERSION_CHANGED }}
     steps:
       - uses: actions/checkout@v5
         with:
