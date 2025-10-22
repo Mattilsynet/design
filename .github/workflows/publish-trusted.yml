@@ -131,3 +131,13 @@ jobs:
       - run: npm publish --tag canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  cry:
+    name: 😭 No release needed
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "No release needed"
+          exit 1
