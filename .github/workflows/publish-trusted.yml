@@ -56,30 +56,50 @@ jobs:
           git tag -a "$VERSION" -m "Release $VERSION"
           git push origin "$VERSION"
 
-      # Publishing to npm
-      - name: Creating .npmrc
-        if: env.VERSION_CHANGED == 'true'
-        run: echo "@mattilsynet:registry=https://registry.npmjs.org" > ~/.npmrc
-      - name: Publish to npm
-        if: env.VERSION_CHANGED == 'true'
-        run: npm publish --access public
 
-      # Publishing to GitHub
-      - name: Recreating .npmrc for publishing to GitHub
+      - name: Upload build artifact
         if: env.VERSION_CHANGED == 'true'
-        run: |
-          cat << EOF > "$HOME/.npmrc"
-            @mattilsynet:registry=https://npm.pkg.github.com
-            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
 
-      - name: Publish to GPR
-        if: env.VERSION_CHANGED == 'true'
-        run: npm publish
+  publish-npm:
+    needs: build
+    if: needs.build.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish --access public
+
+  publish-github:
+    needs: build
+    if: needs.build.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://npm.pkg.github.com"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          npm_config_registry: https://npm.pkg.github.com
 
       # Initiate a publish to Clojars
       - name: Dispatch event for publishing to Clojars
