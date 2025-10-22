@@ -1,10 +1,10 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.14",
+	"version": "2.2.16",
 	"type": "module",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:Mattilsynet/design.git"
+		"url": "git+ssh://git@github.com/Mattilsynet/design.git"
 	},
 	"main": "./mtds/index.js",
 	"types": "./mtds/index.d.ts",
