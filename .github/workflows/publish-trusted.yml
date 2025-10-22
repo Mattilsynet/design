@@ -85,7 +85,6 @@ jobs:
     name: 📦 Publish to Clojars
     steps:
       - name: Dispatch event for publishing to Clojars
-        if: env.VERSION_CHANGED == 'true'
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github.v3+json" \
