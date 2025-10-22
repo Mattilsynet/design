@@ -109,7 +109,7 @@ jobs:
         with:
           name: mtds
           path: mtds/
-      - run: npm publish --access public --tag canary
+      - run: npm publish --access public
 
   publish-github:
     name: 📦 Publish to GitHub
@@ -128,7 +128,7 @@ jobs:
         with:
           name: mtds
           path: mtds/
-      - run: npm publish --tag canary
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
