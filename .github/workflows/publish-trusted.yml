@@ -35,7 +35,6 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         with:
           node-version: 24
-          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         if: env.VERSION_CHANGED == 'true'
@@ -57,6 +56,10 @@ jobs:
           git tag -a "$VERSION" -m "Release $VERSION"
           git push origin "$VERSION"
 
+      # Publishing to npm
+      - name: Creating .npmrc
+        if: env.VERSION_CHANGED == 'true'
+        run: echo "@mattilsynet:registry=https://registry.npmjs.org" > ~/.npmrc
       - name: Publish to npm
         if: env.VERSION_CHANGED == 'true'
         run: npm publish --access public
