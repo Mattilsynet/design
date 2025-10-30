@@ -2,6 +2,7 @@
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
 
+		background-color: red;
 		flex-shrink: 0; /* If placed in flex */
 		max-width: 100%;
 		text-align: center;
