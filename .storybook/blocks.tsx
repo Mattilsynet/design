@@ -404,7 +404,6 @@ export const Graphics = ({
 							tags.some((tag) => tag.includes(query)));
 
 					if (!show) return null;
-					console.log(name);
 
 					return (
 						<Card
