@@ -7,17 +7,17 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#FFFFFF0A",
-        "$description": "background-tinted\n4%"
+        "$value": "#0661ff1f",
+        "$description": "background-tinted\n"
       },
       "3": {
         "$type": "color",
-        "$value": "#20282C",
+        "$value": "#152832",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#18222f",
+        "$value": "#0E1A20",
         "$description": "surface-tinted"
       },
       "5": {
@@ -52,7 +52,7 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#9DD1F0",
+        "$value": "#66C6FF",
         "$description": "text-default"
       },
       "12": {
@@ -88,17 +88,17 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#FFFFFF0A",
-        "$description": "background-tinted\n4%"
+        "$value": "#00BD941A",
+        "$description": "background-tinted\n"
       },
       "3": {
         "$type": "color",
-        "$value": "#1A2323",
+        "$value": "#152726",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#1c2a2b",
+        "$value": "#071B1D",
         "$description": "surface-tinted"
       },
       "5": {
@@ -133,7 +133,7 @@
       },
       "11": {
         "$type": "color",
-        "$value": "#94D1BB",
+        "$value": "#7DE8C1",
         "$description": "text-default"
       },
       "12": {
@@ -169,17 +169,17 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#FFFFFF0A",
-        "$description": "background-tinted\n4%"
+        "$value": "#FFDF0E0F",
+        "$description": "background-tinted\n"
       },
       "3": {
         "$type": "color",
-        "$value": "#262624",
+        "$value": "#212B1C",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#272116",
+        "$value": "#1D1911",
         "$description": "surface-tinted"
       },
       "5": {
@@ -250,7 +250,7 @@
       "2": {
         "$type": "color",
         "$value": "#FFFFFF0A",
-        "$description": "background-tinted\n4%"
+        "$description": "background-tinted"
       },
       "3": {
         "$type": "color",
@@ -316,17 +316,16 @@
       },
       "2": {
         "$type": "color",
-        "$value": "#FFFFFF0A",
-        "$description": "background-tinted\n4%"
+        "$value": "#FF32321F"
       },
       "3": {
         "$type": "color",
-        "$value": "#1F1F1F",
+        "$value": "#272323",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#2d1b1b",
+        "$value": "#1D1111",
         "$description": "surface-tinted"
       },
       "5": {
