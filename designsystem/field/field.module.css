@@ -10,7 +10,7 @@
 	}
 
 	/* Remove space between label and description */
-	.field > p:first-of-type,
+	.field > label + p,
 	.field > [data-description] {
 		margin-top: 0;
 	}
