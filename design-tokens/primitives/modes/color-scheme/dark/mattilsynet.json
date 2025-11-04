@@ -13,12 +13,12 @@
       },
       "3": {
         "$type": "color",
-        "$value": "#1B2E32",
+        "$value": "#152E32",
         "$description": "surface-default\n"
       },
       "4": {
         "$type": "color",
-        "$value": "#05433B",
+        "$value": "#054341",
         "$description": "surface-tinted"
       },
       "5": {
@@ -48,7 +48,7 @@
       },
       "10": {
         "$type": "color",
-        "$value": "#68b096",
+        "$value": "#A0C5B9",
         "$description": "text-subtle\n"
       },
       "11": {
@@ -85,7 +85,7 @@
     "neutral": {
       "1": {
         "$type": "color",
-        "$value": "#191A1D"
+        "$value": "#151F21"
       },
       "2": {
         "$type": "color",
@@ -94,72 +94,72 @@
       },
       "3": {
         "$type": "color",
-        "$value": "#212527",
+        "$value": "#1E282A",
         "$description": "surface-default"
       },
       "4": {
         "$type": "color",
-        "$value": "#222326",
+        "$value": "#0D1E21",
         "$description": "surface-tinted"
       },
       "5": {
         "$type": "color",
-        "$value": "#2C2D30",
+        "$value": "#2A3032",
         "$description": "surface-hover"
       },
       "6": {
         "$type": "color",
-        "$value": "#36373A",
+        "$value": "#343B3C",
         "$description": "surface-active"
       },
       "7": {
         "$type": "color",
-        "$value": "#3D3E40",
+        "$value": "#3A4244",
         "$description": "border-subtle \n(25% av tekst-default)"
       },
       "8": {
         "$type": "color",
-        "$value": "#61646A",
+        "$value": "#61686A",
         "$description": "border-default"
       },
       "9": {
         "$type": "color",
-        "$value": "#9EA2A9",
+        "$value": "#98A2A4",
         "$description": "border-strong"
       },
       "10": {
         "$type": "color",
-        "$value": "#9EA2A9",
+        "$value": "#98A2A4",
         "$description": "text-subtle"
       },
       "11": {
         "$type": "color",
-        "$value": "#BBBEC3",
+        "$value": "#BBC2C3",
         "$description": "text-default"
       },
       "12": {
         "$type": "color",
-        "$value": "#9EA2A9",
+        "$value": "#98A2A4",
         "$description": "base-default"
       },
       "13": {
         "$type": "color",
-        "$value": "#A8ACB2",
+        "$value": "#A6AEB0",
         "$description": "base-hover"
       },
       "14": {
         "$type": "color",
-        "$value": "#B3B6BC",
+        "$value": "#B3BBBC",
         "$description": "base-active"
       },
       "15": {
         "$type": "color",
-        "$value": "#1B1C1F",
+        "$value": "#162224",
         "$description": "base-contrast-subtle"
       },
       "16": {
         "$type": "color",
-        "$value": "#131416",
+        "$value": "#0B1B1E",
         "$description": "base-contrast-default"
       }
     },
