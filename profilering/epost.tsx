@@ -197,10 +197,11 @@ export function Epost() {
 					data-variant="primary"
 					onClick={({ currentTarget: button }) => {
 						const html = document.getElementById("email-preview")?.innerHTML;
-						const type = "text/html";
-						const blob = new Blob([html || ""], { type });
-						const data = [new ClipboardItem({ [type]: blob })];
-						navigator.clipboard.write(data);
+						navigator.clipboard.write([
+							new ClipboardItem({
+								"text/html": new Blob([html || ""], { type: "text/html" }),
+							}),
+						]);
 
 						button.replaceChildren("Kopiert!");
 						setTimeout(() => button.replaceChildren("Kopier signatur"), 2000);

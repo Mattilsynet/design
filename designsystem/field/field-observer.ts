@@ -22,11 +22,12 @@ const getText = (style: CSSStyleDeclaration, key: string) =>
 	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
 function handleFieldMutation(validate?: boolean) {
+	let firstInvalid: HTMLInputElement | null = null;
 	for (const field of FIELDS)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
-			const descs: Element[] = [];
-			const valids: Element[] = [];
+			const descriptions: Element[] = [];
+			const validationMessages: Element[] = [];
 			let combobox: UHTMLComboboxElement | null = null;
 			let input: HTMLInputElement | null = null;
 			let valid = true;
@@ -35,28 +36,32 @@ function handleFieldMutation(validate?: boolean) {
 				if (el instanceof HTMLLabelElement) labels.push(el);
 				else if (el instanceof UHTMLComboboxElement) combobox = el;
 				else if (isInputLike(el) && !el.hidden) input = el;
-				else if (el.hasAttribute("data-description")) descs.push(el);
+				else if (el.hasAttribute("data-description")) descriptions.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
 					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
-					valids.push(el);
-					descs.unshift(el);
+					validationMessages.push(el);
+					descriptions.unshift(el);
 				} else if (el instanceof HTMLParagraphElement)
-					descs.some((desc) => desc.contains(el)) || descs.push(el); // Only add if not already inside description
+					descriptions.some((desc) => desc.contains(el)) ||
+						descriptions.push(el); // Only add if not already inside description
 			}
 
 			if (input) {
 				for (const label of labels) label.htmlFor = useId(input);
 				if (validate && attr(field, "data-validation") === "form") {
 					valid = input.matches(":valid");
-					for (const el of valids) attr(el, "hidden", valid ? "" : null);
+					if (!firstInvalid && !valid) firstInvalid = input;
+					for (const el of validationMessages)
+						attr(el, "hidden", valid ? "" : null);
 				}
 				renderCombobox(combobox);
 				renderCounter(input);
 				renderTextareaSize(input);
-				attr(input, "aria-describedby", descs.map(useId).join(" ") || null); // Remove if empty
+				attr(input, "aria-describedby", descriptions.map(useId).join(" "));
 				attr(input, "aria-invalid", `${!valid}`);
 			}
 		}
+	firstInvalid?.focus(); // Move focus to first invalid field if doing validation
 }
 
 // iOS does not support field-sizing: content, so we need to manually resize

@@ -93,10 +93,10 @@ export const Default: Story = {
 		// 	}
 		// };
 
+		// data-view="63.43067801397488, 10.402166438219403, 13" // Trondheim
 		return (
 			<mtds-map
 				data-view="60.722, 10.985, 16" // Trondheim
-				// data-view="63.43067801397488, 10.402166438219403, 13" // Trondheim
 				ref={mapRef}
 			/>
 		);

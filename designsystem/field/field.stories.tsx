@@ -625,64 +625,52 @@ export const ReactWithComboboxLong: Story = {
 	parameters: {
 		layout: "padded",
 	},
-	render: () => (
-		<>
-			<div style={{ height: 400 }} />
-			<Field>
-				<label>React med lange og mange</label>
-				<p>Beskrivelse</p>
-				<Field.Combobox>
-					<Input />
-					<del role="img" aria-label="Fjern tekst"></del>
-					<Field.Datalist data-position="top">
-						<Field.Option>
-							Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
-							Thunder Thunder Thunder Thunder Thunder
-						</Field.Option>
-						<Field.Option>Whisper</Field.Option>
-						<Field.Option>Galaxy</Field.Option>
-						<Field.Option>Melody</Field.Option>
-						<Field.Option>Crystal</Field.Option>
-						<Field.Option>Sunset</Field.Option>
-						<Field.Option>Journey</Field.Option>
-						<Field.Option>Phoenix</Field.Option>
-						<Field.Option>Harmony</Field.Option>
-						<Field.Option>Neptune</Field.Option>
-						<Field.Option>Cascade</Field.Option>
-						<Field.Option>Velvet</Field.Option>
-						<Field.Option>Rhythm</Field.Option>
-						<Field.Option>Compass</Field.Option>
-						<Field.Option>Prism</Field.Option>
-						<Field.Option>Breeze</Field.Option>
-						<Field.Option>Eclipse</Field.Option>
-						<Field.Option>Sterling</Field.Option>
-						<Field.Option>Canvas</Field.Option>
-						<Field.Option>Zenith</Field.Option>
-						<Field.Option>Whisper</Field.Option>
-						<Field.Option>Galaxy</Field.Option>
-						<Field.Option>Melody</Field.Option>
-						<Field.Option>Crystal</Field.Option>
-						<Field.Option>Sunset</Field.Option>
-						<Field.Option>Journey</Field.Option>
-						<Field.Option>Phoenix</Field.Option>
-						<Field.Option>Harmony</Field.Option>
-						<Field.Option>Neptune</Field.Option>
-						<Field.Option>Cascade</Field.Option>
-						<Field.Option>Velvet</Field.Option>
-						<Field.Option>Rhythm</Field.Option>
-						<Field.Option>Compass</Field.Option>
-						<Field.Option>Prism</Field.Option>
-						<Field.Option>Breeze</Field.Option>
-						<Field.Option>Eclipse</Field.Option>
-						<Field.Option>Sterling</Field.Option>
-						<Field.Option>Canvas</Field.Option>
-						<Field.Option>Zenith</Field.Option>
-					</Field.Datalist>
-				</Field.Combobox>
-			</Field>
-			<div style={{ height: 800 }} />
-		</>
-	),
+	render: () => {
+		// IMPORTANT:
+		// Using Field.Combobox requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+
+		return (
+			<>
+				<div style={{ height: 400 }} />
+				<Field>
+					<label>React med lange og mange</label>
+					<p>Beskrivelse</p>
+					<Field.Combobox selected={selected} onSelectedChange={setSelected}>
+						<Input />
+						<del role="img" aria-label="Fjern tekst"></del>
+						<Field.Datalist data-nofilter data-position="top">
+							<Field.Option>
+								Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
+								Thunder Thunder Thunder Thunder Thunder
+							</Field.Option>
+							<Field.Option>Whisper</Field.Option>
+							<Field.Option>Galaxy</Field.Option>
+							<Field.Option>Melody</Field.Option>
+							<Field.Option>Crystal</Field.Option>
+							<Field.Option>Sunset</Field.Option>
+							<Field.Option>Journey</Field.Option>
+							<Field.Option>Phoenix</Field.Option>
+							<Field.Option>Harmony</Field.Option>
+							<Field.Option>Neptune</Field.Option>
+							<Field.Option>Cascade</Field.Option>
+							<Field.Option>Velvet</Field.Option>
+							<Field.Option>Rhythm</Field.Option>
+							<Field.Option>Compass</Field.Option>
+							<Field.Option>Prism</Field.Option>
+							<Field.Option>Breeze</Field.Option>
+							<Field.Option>Eclipse</Field.Option>
+							<Field.Option>Sterling</Field.Option>
+							<Field.Option>Canvas</Field.Option>
+							<Field.Option>Zenith</Field.Option>
+						</Field.Datalist>
+					</Field.Combobox>
+				</Field>
+				<div style={{ height: 800 }} />
+			</>
+		);
+	},
 };
 
 export const ReactWithCombobxCustomFilter: Story = {

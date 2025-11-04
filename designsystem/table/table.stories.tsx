@@ -1243,6 +1243,45 @@ export const WithNumericValues: Story = {
 	),
 };
 
+export const WithJustify: Story = {
+	render: () => (
+		<table className={styles.table} aria-label="Table with numeric values">
+			<thead>
+				<tr>
+					<th>Kostnad</th>
+					<th data-justify="end">Pris</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Gebyr 1</td>
+					<td data-justify="end" data-numeric>
+						128 kr
+					</td>
+				</tr>
+				<tr>
+					<td>Gebyr 2</td>
+					<td data-justify="end" data-numeric>
+						194 kr
+					</td>
+				</tr>
+				<tr>
+					<td>Gebyr 3</td>
+					<td data-justify="end" data-numeric>
+						114 kr
+					</td>
+				</tr>
+				<tr>
+					<th>Total</th>
+					<th data-justify="end" data-numeric>
+						194 kr
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	),
+};
+
 export const WithFooter: Story = {
 	render: () => (
 		<table className={styles.table} aria-label="Table with footer">

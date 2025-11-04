@@ -80,6 +80,14 @@
 		padding-right: 0;
 	}
 
+	/* Data-justify */
+	.table [data-justify="end"]:is(th, td) {
+		text-align: end;
+	}
+	.table [data-justify="center"]:is(th, td) {
+		text-align: center;
+	}
+
 	/**
 	 * Sortable
 	 */

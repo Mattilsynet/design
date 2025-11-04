@@ -16,6 +16,7 @@
 @import url("./errorsummary/errorsummary.module.css");
 @import url("./field/field.module.css");
 @import url("./fieldset/fieldset.module.css");
+@import url("./fileupload/fileupload.module.css");
 @import url("./font.css");
 @import url("./helptext/helptext.module.css");
 @import url("./input/input.module.css");
@@ -163,12 +164,6 @@
 		--mtds-text-required: "Required";
 	}
 
-	/* Used as background input, so need to swap */
-	[data-color-scheme="dark"] {
-		--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
-		--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
-	}
-
 	/* Using :where to allow overwrites */
 	:where([data-color-scheme], body, .body) {
 		background: var(--ds-color-background-default);
@@ -201,6 +196,22 @@
 	@media (prefers-reduced-motion: no-preference) {
 		html {
 			scroll-behavior: smooth;
+		}
+	}
+}
+
+/* Used as background input, so need to swap */
+@layer mt.design {
+	[data-color-scheme="dark"] {
+		--ds-shadow-md: inset 0 0 0 1px rgba(255,255,255,.03), 0 7px 14px rgba(0,0,0,.4);
+		--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
+		--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
+	}
+	@media (prefers-color-scheme: dark) {
+		[data-color-scheme="auto"] {
+			--ds-shadow-md: inset 0 0 0 1px rgba(255,255,255,.1), 0 7px 14px rgba(0,0,0,.4);
+			--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");
+			--mtds-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='m229.7 218.3-50.1-50a88.1 88.1 0 1 0-11.3 11.3l50 50a8 8 0 0 0 11.4-11.3ZM40 112a72 72 0 1 1 72 72 72 72 0 0 1-72-72Z'/%3E%3C/svg%3E");
 		}
 	}
 }

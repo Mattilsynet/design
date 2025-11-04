@@ -302,7 +302,7 @@ export const WithDivider: Story = {
 						</button>
 					</li>
 					<li>
-						<hr />
+						<hr className={styles.divider} />
 					</li>
 					<li>
 						<button type="button" className={styles.button}>

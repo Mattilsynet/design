@@ -89,7 +89,6 @@ export const InfografikkGenerator = () => {
 				const next = { ...prev, chart };
 				const json = JSON.stringify(next);
 				const isChanged = chart && jsonRef.current !== json;
-				console.log(isChanged, chart, json);
 
 				if (!isChanged) return prev; // Skips update sinces we return previous value
 				jsonRef.current = json;
@@ -234,6 +233,26 @@ export const InfografikkGenerator = () => {
 	);
 };
 
+const svgToCanvas = async (svg: SVGSVGElement) => {
+	// Convert SVG to Image
+	const img = await new Promise<HTMLImageElement>((resolve) => {
+		const img = new Image();
+		img.onload = () => resolve(img);
+		img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(svg))}`;
+	});
+
+	// Convert Image to Canvas
+	const canvas = tag("canvas");
+	const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+	const ratio = window.devicePixelRatio || 1;
+	canvas.width = svg.width.baseVal.value * ratio;
+	canvas.height = svg.height.baseVal.value * ratio;
+	context.imageSmoothingEnabled = false;
+	context.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+	return canvas;
+};
+
 const handleExport = async () => {
 	const chart = document.querySelector("mtds-chart") as MTDSChartElement;
 	const extend = 20; // Extend size to avoid cropping text at edges
@@ -246,33 +265,22 @@ const handleExport = async () => {
 	// Convert HTML to SVG url using <foreignObject>
 	const div = tag("div");
 	div.innerHTML = `<svg width="${width}" height="${height}"><foreignObject x="0" y="0" width="${width}" height="${height}">${html.replace(/[\n\t]/g, "")}</foreignObject></svg>`;
+	const svg = div.firstElementChild as SVGSVGElement;
 
-	// Convert SVG to Image
-	const img = await new Promise<HTMLImageElement>((resolve) => {
-		const img = new Image();
-		img.onload = () => resolve(img);
-		img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(div.firstElementChild as SVGSVGElement))}`;
-	});
-
-	// Convert Image to Canvas
-	const canvas = tag("canvas");
-	const context = canvas.getContext("2d") as CanvasRenderingContext2D;
-	const ratio = window.devicePixelRatio || 1;
-	canvas.width = width * ratio;
-	canvas.height = height * ratio;
-	context.imageSmoothingEnabled = false;
-	context.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-	// Convert Canvas to Blob and copy to clipboard
-	canvas.toBlob((blob) => {
-		if (!blob) return console.error("Kunne ikke kopiere infografikk");
-		toast.success("Infografikk kopiert til utklippstavlen");
-		const svg = `<svg id="Infografikk" title="Infografikk" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><image width="${width}" height="${height}" href="${canvas.toDataURL("image/png")}" /></svg>`;
-		navigator.clipboard.write([
-			new ClipboardItem({
-				"text/plain": new Blob([svg], { type: "text/plain" }), // For Figma, put in SVG so it is correctly sized
-				"image/png": blob, // For PowerPoint, Word, etc. (PNG is more widely supported than SVG)
+	navigator.clipboard.write([
+		new ClipboardItem({
+			// For PowerPoint, Word, etc. (PNG is more widely supported than SVG) - Note: must be placed first for PowerPoint to prefer it
+			"image/png": new Promise((resolve) => {
+				svgToCanvas(svg).then((canvas) => {
+					canvas.toBlob((blob) => resolve(blob || ""), "image/png");
+				});
 			}),
-		]);
-	}, "image/png");
+			// For Figma, put in SVG so it is correctly sized
+			"text/plain": svgToCanvas(svg).then((canvas) => {
+				toast.success("Infografikk kopiert til utklippstavlen");
+				const svg = `<svg id="Infografikk" title="Infografikk" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><image width="${width}" height="${height}" href="${canvas.toDataURL("image/png")}" /></svg>`;
+				return new Blob([svg], { type: "text/plain" });
+			}),
+		}),
+	]);
 };

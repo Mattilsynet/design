@@ -1,0 +1,50 @@
+@layer mt.design {
+	.fileupload {
+		--mtdsc-fileupload-padding: var(--ds-size-10) var(--ds-size-5)
+			var(--ds-size-13);
+		--mtdsc-fileupload-background--hover: var(--ds-color-background-tinted);
+		--mtdsc-fileupload-border-radius: var(--ds-border-radius-md);
+		--mtdsc-fileupload-border: var(--ds-border-width-default) dashed
+			var(--ds-color-border-default);
+
+		border-radius: var(--mtdsc-fileupload-border-radius);
+		border: var(--mtdsc-fileupload-border);
+		box-sizing: border-box;
+		cursor: pointer;
+		padding: var(--mtdsc-fileupload-padding);
+		place-items: center;
+		position: relative;
+		text-align: center;
+		font-weight: normal;
+		transition: 0.2s background;
+	}
+	.fileupload:hover {
+		background: var(--mtdsc-fileupload-background--hover);
+	}
+	:not([hidden]):is(.fileupload, .fileupload strong, .fileupload small) {
+		display: block;
+	}
+	.fileupload > svg:first-child {
+		width: var(--mtds-icon-size);
+		height: var(--mtds-icon-size);
+	}
+	.fileupload u {
+		text-decoration: underline;
+		text-underline-offset: 0.27em; /* 5px ish */
+		text-decoration-thickness: 0.0625em; /* 1px ish */
+	}
+	.fileupload small {
+		margin-top: var(--ds-size-4);
+		font-size: var(--ds-body-sm-font-size);
+	}
+	.fileupload > input {
+		box-sizing: border-box;
+		cursor: inherit;
+		height: 100%;
+		inset: 0;
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+	}
+}
