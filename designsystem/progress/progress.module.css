@@ -1,7 +1,8 @@
 @layer mt.design {
 	.progress {
 		border-radius: var(--ds-border-radius-full);
-		border-width: 0;
+		box-shadow: inset 0 0 0 1px var(--ds-color-border-subtle);
+		border: 0;
 		background: var(--ds-color-surface-tinted);
 		color: var(--ds-color-text-subtle);
 		height: var(--ds-size-3);

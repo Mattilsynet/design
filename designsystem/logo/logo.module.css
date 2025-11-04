@@ -1,7 +1,4 @@
 @layer mt.design {
-	:root {
-		--mtds-logo-color: #bcdcd0;
-	}
 	.logo {
 		--_mtdsc-logo-solid: linear-gradient(currentcolor, currentcolor);
 		--_mtdsc-logo-indent: var(--_mtdsc-logo-icon-size);
@@ -23,13 +20,19 @@
 		font-size: 1.2em;
 		font-weight: 700;
 		height: var(--_mtdsc-logo-icon-size);
-		line-height: calc(var(--_mtdsc-logo-icon-size) + 0.15em); /* Align environment with logo */
+		/* Align environment with logo */
+		line-height: calc(var(--_mtdsc-logo-icon-size) + 0.15em);
 		margin: 0; /* If <h1> */
 		max-width: max-content;
 		min-height: var(--_mtdsc-logo-icon-size);
 		overflow: clip;
 		text-decoration: none;
 		white-space: normal; /* Allow wrap */
+	}
+	/* Only set when not data-env to inherit from html when env */
+	.logo:not([data-env]) {
+		--mtdsc-logo-color: #054449; /* Hard code granskog as this is consistent across dark/light mode */
+		--mtdsc-logo-background: #bcdcd0;
 	}
 	.logo[hidden] {
 		display: none;
@@ -105,7 +108,7 @@
 		line-height: var(--_mtdsc-logo-icon-size);
 
 		&:before {
-			background: var(--mtds-logo-color);
+			background: var(--mtdsc-logo-background);
 			border-radius: var(--ds-border-radius-full);
 			content: "";
 			float: left;
@@ -120,6 +123,7 @@
 	}
 	.logo svg {
 		box-sizing: border-box;
+		color: var(--mtdsc-logo-color);
 		fill: currentColor; /* Specify fill for custom svgs */
 		float: left;
 		height: var(--_mtdsc-logo-icon-size);
@@ -127,15 +131,12 @@
 		padding: 0.25em;
 		width: var(--_mtdsc-logo-icon-size);
 	}
-	.logo:not([data-env]) svg {
-		color: #054449; /* Hard code granskog as this is consistent across dark/light mode */
-	}
 
 	/**
 	 * Environment
 	 */
 	.logo[data-env] {
-		color: var(--mtds-logo-color);
+		color: var(--mtdsc-logo-color);
 	}
 	.logo[data-env]:not([data-env=""]):empty::before,
 	.logo[data-env]:not([data-env=""]):not(:empty)::after {
@@ -144,7 +145,7 @@
 		font-weight: 400;
 	}
 	html:has(.logo[data-env])::before {
-		border-top: 5px solid var(--mtds-logo-color);
+		border-top: 5px solid var(--mtdsc-logo-color);
 		content: "";
 		inset: 0 0 auto;
 		pointer-events: none;
@@ -153,9 +154,9 @@
 		z-index: 99999;
 	}
 	html:has(.logo[data-env]) {
-		--mtds-logo-color: var(--ds-color-danger-text-subtle); /* Rognebær */
+		--mtdsc-logo-color: var(--ds-color-danger-text-subtle); /* Rognebær */
 	}
 	html:has(.logo[data-env][data-color="info"]) {
-		--mtds-logo-color: var(--ds-color-info-text-subtle);
+		--mtdsc-logo-color: var(--ds-color-info-text-subtle);
 	}
 }

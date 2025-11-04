@@ -125,6 +125,12 @@
 	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
 		max-width: var(--mtdsc-prose-max-width);
 	}
+	.prose > ul {
+		list-style: disc; /* Restore styling potentially removed by Tailwind */
+	}
+	.prose > ol {
+		list-style: decimal; /* Restore styling potentially removed by Tailwind */
+	}
 	.prose > :where(ul, ol):not([class]) {
 		padding-left: 1em;
 	}

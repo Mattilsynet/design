@@ -16,13 +16,20 @@ export const React: Story = {
 			<p>Fellesbeskrivelse</p>
 			<Field
 				as="input"
-				type="radio"
-				label="Alternativ 1"
-				description="Beskrivelse"
-				required
 				defaultChecked
+				description="Beskrivelse"
+				label="Alternativ 1"
+				name="my-react-radio"
+				required
+				type="radio"
 			/>
-			<Field as="input" type="radio" label="Alternativ 2" required />
+			<Field
+				as="input"
+				label="Alternativ 2"
+				name="my-react-radio"
+				required
+				type="radio"
+			/>
 		</Fieldset>
 	),
 };
@@ -179,6 +186,37 @@ export const WithValidation: Story = {
 				<label>Alternativ 2</label>
 			</div>
 			<div className={styles.validation}>Feilmelding</div>
+		</fieldset>
+	),
+};
+
+export const WithTexts: Story = {
+	parameters: {
+		showInOverview: true,
+	},
+	render: () => (
+		<fieldset className={styles.fieldset}>
+			<legend>Hva heter du?</legend>
+			<div className={styles.grid} data-items="200" data-fixed>
+				<div className={styles.field}>
+					<input
+						aria-label="Fornavn"
+						placeholder="Fornavn"
+						className={styles.input}
+						name="fornavn"
+						type="text"
+					/>
+				</div>
+				<div className={styles.field}>
+					<input
+						aria-label="Etternavn"
+						placeholder="Etternavn"
+						className={styles.input}
+						name="etternavn"
+						type="text"
+					/>
+				</div>
+			</div>
 		</fieldset>
 	),
 };

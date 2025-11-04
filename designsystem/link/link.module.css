@@ -3,8 +3,8 @@
 	a,
 	.link {
 		--mtdsc-link-text-decoration-thickness--hover: 0.125em;
-		--mtdsc-link-text-decoration-thickness: 0.0625em;
-		--mtdsc-link-text-decoration-offset: 0.27em;
+		--mtdsc-link-text-decoration-thickness: 0.0625em; /* 1px ish */
+		--mtdsc-link-text-decoration-offset: 0.27em; /* 5px ish */
 
 		/* In case used on <button> */
 		background: none;
@@ -19,8 +19,8 @@
 		outline: 2px none currentcolor;
 		padding: 0;
 		text-decoration: underline;
-		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness); /* 1px ish */
-		text-underline-offset: var(--mtdsc-link-text-decoration-offset); /* 5px ish */
+		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness);
+		text-underline-offset: var(--mtdsc-link-text-decoration-offset);
 
 		&:where(:not([hidden])) {
 			display: inline;

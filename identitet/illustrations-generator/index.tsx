@@ -277,7 +277,7 @@ function handleCopySvg(event: React.MouseEvent<SVGSVGElement>) {
 						.replace(/(<\/?)symbol/g, "$1svg") // Replace <symbol> with <svg>
 						.replace(/var\(([^)]+)\)/g, (_, key) => css.getPropertyValue(key)), // Replace CSS variables with their computed values
 				],
-				{ type: "text/plain" },
+				{ type: "text/plain" }, // TODO
 			),
 		}),
 	]);

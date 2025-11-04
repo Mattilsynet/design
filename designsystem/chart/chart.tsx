@@ -2,21 +2,24 @@ import type * as ReactTypes from "react";
 import { forwardRef } from "react";
 import { toCustomElementProps } from "../utils";
 import "./chart-element";
+import type { MTDSChartElement } from "./chart-element";
 
 declare global {
 	namespace React.JSX {
 		interface IntrinsicElements {
-			"mtds-chart": ReactTypes.JSX.IntrinsicElements["div"] & {
-				class?: string;
-			};
+			"mtds-chart": ChartProps;
 		}
 	}
 }
 
-export type ChartProps = React.ComponentPropsWithoutRef<"div"> & {
+export type ChartProps = ReactTypes.DetailedHTMLProps<
+	ReactTypes.HTMLAttributes<MTDSChartElement>,
+	MTDSChartElement
+> & {
+	class?: string;
 	data?: (number | string)[][];
-	"data-legend"?: "none" | "hidden" | boolean;
-	"data-axis"?: "none" | "hidden" | boolean;
+	"data-legend"?: "none" | "hidden" | "false" | "true" | boolean;
+	"data-axis"?: "none" | "hidden" | "false" | "true" | boolean;
 	"data-variant"?:
 		| "area"
 		| "bar"
@@ -28,7 +31,7 @@ export type ChartProps = React.ComponentPropsWithoutRef<"div"> & {
 		| "pie";
 };
 
-export const Chart = forwardRef<HTMLDivElement, ChartProps>(function Chart(
+export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 	{ data, children, ...rest },
 	ref,
 ) {

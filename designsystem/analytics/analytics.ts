@@ -101,7 +101,7 @@ export function analytics<Action extends keyof AnalyticsActions>(
 
 	if (window._mtdsTracking?.enabled === false) return;
 	if (window._mtdsTracking?.enabled === "debug")
-		return console.info(`analytics("${action}", `, args, ")");
+		return console.info(`analytics ${action}:`, args);
 
 	if (action === "pageview") {
 		const { url, title } = args as AnalyticsActions["pageview"];

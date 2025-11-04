@@ -628,5 +628,144 @@
 	"stars.svg": {
 		"categories": ["Visjon"],
 		"tags": ["stjerner", "visjon", "premium", "best", "lykkes"]
+	},
+	"tre-1.svg": {
+		"categories": ["Planter"],
+		"tags": ["tre"]
+	},
+	"tre-2.svg": {
+		"categories": ["Planter"],
+		"tags": ["tre"]
+	},
+	"tre-3.svg": {
+		"categories": ["Planter"],
+		"tags": ["tre"]
+	},
+	"byggning-1-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-1-mattilsynet.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus", "mattilsynet"]
+	},
+	"byggning-2-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-3-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-4-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-5-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-6-blaa.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-7-blaa.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggning-8-blaa.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus"]
+	},
+	"byggningsrekke-1-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus", "byggningsrekke"]
+	},
+	"byggningsrekke-1-mattilsynet.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus", "byggningsrekke"]
+	},
+	"byggningsrekke-2-gronn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus", "byggningsrekke"]
+	},
+	"byggningsrekke-3-blaa.svg": {
+		"categories": ["Bygg"],
+		"tags": ["byggninger", "by", "hus", "byggningsrekke"]
+	},
+	"debatt.svg": {
+		"categories": ["Mennesker", "Visjon"],
+		"tags": [
+			"paneldebatt",
+			"diskusjon",
+			"samtale",
+			"mennesker",
+			"personer",
+			"gruppe"
+		]
+	},
+	"egg.svg": {
+		"categories": ["Mat"],
+		"tags": ["egg"]
+	},
+	"flagg-aaland.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Åland"]
+	},
+	"flagg-danmark.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Danmark"]
+	},
+	"flagg-faeroyene.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Færøyene"]
+	},
+	"flagg-finland.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Finland"]
+	},
+	"flagg-gronland.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Grønland"]
+	},
+	"flagg-island.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Island"]
+	},
+	"flagg-norge.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Norge"]
+	},
+	"flagg-sapmi.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Sapmi"]
+	},
+	"flagg-sverige.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "Sverige"]
+	},
+	"forstorrelsesglass.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["forstørrelsesglass", "lupe"]
+	},
+	"hengelas.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["hengelås", "nøkkel"]
+	},
+	"kompass.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["kompass"]
+	},
+	"skinke.svg": {
+		"categories": ["Mat"],
+		"tags": ["skinke", "kjøtt"]
+	},
+	"system-stotte.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["systemstøtte", "støttesystem"]
+	},
+	"system.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["system"]
 	}
 }

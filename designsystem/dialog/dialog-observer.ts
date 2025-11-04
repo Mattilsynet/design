@@ -40,14 +40,15 @@ function handleDialogDown(event: Event) {
 	START_INSIDE = !!dialog && isInside(dialog, event);
 }
 
-function handleDialogClick(event: Event) {
-	for (const el of DIALOGS)
-		if (el.open) {
-			const close = isInside(el, event)
-				? (event.target as Element)?.closest?.('[data-command="close"]')
-				: !START_INSIDE && attr(el, "data-closedby") === "any";
+function handleDialogClick({ target: el }: Event) {
+	for (const dialog of DIALOGS)
+		if (dialog.open) {
+			const isChildNode = dialog !== el && dialog.contains(el as Node);
+			const isClose = isChildNode
+				? (el as Element)?.closest?.('[data-command="close"]')
+				: !START_INSIDE && attr(dialog, "data-closedby") === "any";
 
-			if (close) el.close();
+			if (isClose) dialog.close();
 		}
 	START_INSIDE = false; // Reset on every click
 }
