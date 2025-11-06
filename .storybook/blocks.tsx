@@ -445,28 +445,26 @@ const copyToImage = async (event: React.MouseEvent<HTMLAnchorElement>) => {
 			Object.assign(document.createElement("canvas"), { hidden: true }),
 		);
 
-	const w = svg ? img.viewBox.baseVal.width : img.naturalWidth;
-	const h = svg ? img.viewBox.baseVal.height : img.naturalHeight;
-	const ratio = svg ? 900 / Math.max(w, h) : 1;
-
-	CANVAS.width = Math.round(w * ratio);
-	CANVAS.height = Math.round(h * ratio);
-
-	const ctx = CANVAS.getContext("2d");
-	const loaded = await new Promise<HTMLImageElement>((resolve) => {
-		const hex = encodeURIComponent(window.getComputedStyle(img).color);
-		const tmp = new Image();
-		tmp.onload = () => resolve(tmp);
-		tmp.src = card.href.replace(/currentColor/g, hex); // Make color explicit
-	});
-
-	ctx?.drawImage(loaded, 0, 0, CANVAS.width, CANVAS.height);
-
 	navigator.clipboard.write([
 		new ClipboardItem({
-			"image/png": await fetch(CANVAS.toDataURL("image/png")).then((r) =>
-				r.blob(),
-			),
+			"image/png": new Promise<HTMLImageElement>((resolve) => {
+				const hex = encodeURIComponent(window.getComputedStyle(img).color);
+				const tmp = new Image();
+				tmp.onload = () => resolve(tmp);
+				tmp.src = card.href.replace(/currentColor/g, hex); // Make color explicit
+			})
+				.then((tmp) => {
+					const w = svg ? img.viewBox.baseVal.width : img.naturalWidth;
+					const h = svg ? img.viewBox.baseVal.height : img.naturalHeight;
+					const ratio = svg ? 900 / Math.max(w, h) : 1;
+					const ctx = CANVAS.getContext("2d");
+
+					CANVAS.width = Math.round(w * ratio);
+					CANVAS.height = Math.round(h * ratio);
+					ctx?.drawImage(tmp, 0, 0, CANVAS.width, CANVAS.height);
+					return fetch(CANVAS.toDataURL("image/png"));
+				})
+				.then((r) => r.blob()),
 			"text/plain": svg
 				? new Blob([img.outerHTML], { type: "text/plain" })
 				: card.href,

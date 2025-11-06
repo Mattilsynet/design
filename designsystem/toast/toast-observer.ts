@@ -42,7 +42,7 @@ function handleToastClick({ target, clientX: x, clientY: y }: MouseEvent) {
 	}
 }
 
-onLoaded(() => {
-	on(document, "animationstart", handleToastState);
-	on(document, "click", handleToastClick as EventListener);
-});
+onLoaded(() => [
+	on(document, "animationstart", handleToastState),
+	on(document, "click", handleToastClick as EventListener),
+]);

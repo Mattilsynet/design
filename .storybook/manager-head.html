@@ -8,8 +8,8 @@
   #root > div { padding: 1em min(1rem, 1%); gap: .25rem }
   #root > div > * { border-radius: .75rem; border: 1px solid color-mix(in hsl, currentcolor, transparent 90%); overflow: hidden }
   #root > div > :has(> .sidebar-container) { border: 0; overflow: visible }
-  #root div:has(+ .sidebar-container)::after { opacity: 0!important }
-  #root .sb-bar { box-shadow: none!important }
+  #root div:has(+ .sidebar-container)::after { opacity: 0 !important }
+  #root .sb-bar { box-shadow: none !important }
 
   /**
    * Hide stuff
@@ -18,7 +18,9 @@
   .sidebar-container.sidebar-container svg[type], /* Hide sidebar type icons */
   .sidebar-container.sidebar-container button[data-action="expand-all"], /* Hide expand <button> */
   .sidebar-container.sidebar-container button[title="Tag filters"], /* Hide filter tags <button> */
-  .sidebar-container.sidebar-container .search-field + :has(button) /* Disable "Create new story" <button> */
+  .sidebar-container.sidebar-container .search-field + :has(button), /* Disable "Create new story" <button> */
+  .sidebar-container.sidebar-container [data-displayed], /* Hide "Open in edtior" context menu in sidebar */
+  .sb-bar.sb-bar button[title="Open in editor"] /* Hide "Open in edtior" */
     { display: none !important }
 
   /**

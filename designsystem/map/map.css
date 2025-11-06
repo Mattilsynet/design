@@ -1,5 +1,5 @@
 :host {
-	aspect-ratio: 2;
+	aspect-ratio: 2; /* TODO: make possible to overwrite */
 	background: var(--ds-color-neutral-surface-tinted);
 	border-radius: var(--ds-border-radius-md);
 	overflow: clip;

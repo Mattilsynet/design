@@ -11,6 +11,6 @@ function handleErrosummaryInject(event: Event & { animationName?: string }) {
 	}
 }
 
-onLoaded(() =>
+onLoaded(() => [
 	on(document, "animationend", handleErrosummaryInject, QUICK_EVENT),
-);
+]);

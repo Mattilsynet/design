@@ -11,34 +11,18 @@
 .chart-generator .wtHolder {
 	overscroll-behavior: contain;
 }
-@media (prefers-color-scheme: dark) {
-	[data-color-scheme="auto"] .chart-generator .ht-theme-main {
-		--ht-color-accent-subtle: rgba(104, 176, 150, 1);
-		--ht-color-accent: #68b096;
-		--ht-color-base: #c2d4d6;
-		--ht-color-border: rgba(255, 255, 255, 0.14901960784313725);
-		--ht-color-subtle: rgba(255, 255, 255, 0.6);
-		--ht-color-surface-tinted: #394b4d;
-		--ht-color-surface: #1b2e32;
-	}
-}
-[data-color-scheme="dark"] .chart-generator .ht-theme-main {
-	--ht-color-accent-subtle: rgba(104, 176, 150, 1);
-	--ht-color-accent: #68b096;
-	--ht-color-base: #c2d4d6;
-	--ht-color-border: rgba(255, 255, 255, 0.14901960784313725);
-	--ht-color-subtle: rgba(255, 255, 255, 0.6);
-	--ht-color-surface-tinted: #394b4d;
-	--ht-color-surface: #1b2e32;
-}
 .chart-generator .ht-theme-main {
-	--ht-color-accent-subtle: rgba(17, 110, 107, 0.4);
-	--ht-color-accent: #116e6b;
-	--ht-color-base: #054449;
-	--ht-color-border: rgba(107, 107, 107, 0.14901960784313725);
-	--ht-color-subtle: rgba(107, 107, 107, 0.6);
-	--ht-color-surface-tinted: #eee;
-	--ht-color-surface: #fff;
+	--ht-color-accent-subtle: color-mix(
+		in srgb,
+		var(--mtds-color-base-default),
+		transparent 20%
+	);
+	--ht-color-accent: var(--mtds-color-base-default);
+	--ht-color-base: var(--mtds-color-base-default);
+	--ht-color-border: var(--mtds-color-border-subtle);
+	--ht-color-subtle: var(--mtds-color-background-tinted);
+	--ht-color-surface-tinted: var(--mtds-color-background-tinted);
+	--ht-color-surface: var(--mtds-color-surface-default);
 	font: inherit;
 
 	--ht-font-size: 14px;

@@ -80,10 +80,18 @@
 		padding-right: 0;
 	}
 
+	/* Data-justify */
+	.table [data-justify="end"]:is(th, td) {
+		text-align: end;
+	}
+	.table [data-justify="center"]:is(th, td) {
+		text-align: center;
+	}
+
 	/**
 	 * Sortable
 	 */
-	.table > thead > tr > th[aria-sort] > button {
+	.table > thead > tr > th[aria-sort] > button:not([data-justify]) {
 		text-align: inherit;
 		justify-content: start;
 	}
@@ -179,11 +187,15 @@
 		transition: 0.2s background-color;
 		cursor: pointer;
 	}
-	.table > tbody > tr:has([data-command="row"]):hover > td {
-		background: var(--dsc-table-background--hover);
-	}
-	.table > tbody > tr:has([data-command="row"]):active > td {
-		background: var(--dsc-table-background--active);
+
+	/* Hover a row, that has [data-command="row"], but not hovering non-data-command-row-button/link */
+	.table > tbody:not(:has(:is(a, button):not([data-command="row"]):hover)) {
+		& > tr:has([data-command="row"]):hover > :is(td, th) {
+			background: var(--dsc-table-background--hover);
+		}
+		& > tr:has([data-command="row"]):active > :is(td, th) {
+			background: var(--dsc-table-background--active);
+		}
 	}
 
 	/**

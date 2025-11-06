@@ -35,6 +35,10 @@ u-tabpanel > pre > .docblock-source {
 	max-width: 100%;
 }
 
+.sbdocs-content hr:not([class]) {
+	margin-block: 3rem;
+}
+
 .sbdocs-content h1 {
 	margin-top: 0;
 }

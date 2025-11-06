@@ -101,7 +101,7 @@ export function analytics<Action extends keyof AnalyticsActions>(
 
 	if (window._mtdsTracking?.enabled === false) return;
 	if (window._mtdsTracking?.enabled === "debug")
-		return console.info(`analytics("${action}", `, args, ")");
+		return console.info(`analytics ${action}:`, args);
 
 	if (action === "pageview") {
 		const { url, title } = args as AnalyticsActions["pageview"];
@@ -161,7 +161,7 @@ function renderBanner() {
 	banner.show();
 }
 
-function handleTrack(event: Event) {
+function handleAnalyticsTrack(event: Event) {
 	if (window._mtdsTracking?.enabled) setTimeout(processTrack, 0, event); // Let other events process first
 }
 
@@ -257,4 +257,4 @@ const heading = (el: Element) => {
 	return (body.startsWith(head) && head) || body.slice(0, 100).trim(); // Limit to 100 characters
 };
 
-onLoaded(() => on(document, EVENTS, handleTrack, QUICK_EVENT));
+onLoaded(() => [on(document, EVENTS, handleAnalyticsTrack, QUICK_EVENT)]);

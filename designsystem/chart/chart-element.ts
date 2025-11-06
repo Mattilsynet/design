@@ -34,8 +34,8 @@ export class MTDSChartElement extends MTDSElement {
 	connectedCallback() {
 		this._resize = new ResizeObserver(this.handleResize.bind(this));
 		this._resize.observe(this);
-		this._observer = new MutationObserver(
-			this.attributeChangedCallback.bind(this),
+		this._observer = new MutationObserver(() =>
+			this.attributeChangedCallback(),
 		);
 		this._observer.observe(this, {
 			attributeFilter: ["data-tooltip"],

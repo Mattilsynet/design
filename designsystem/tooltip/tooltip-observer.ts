@@ -6,14 +6,12 @@ import {
 	IS_BROWSER,
 	on,
 	onLoaded,
+	onMutation,
 	QUICK_EVENT,
 	tag,
 } from "../utils";
 
-const DESCRIBEDBY = "aria-describedby";
 const ESC = "Escape";
-const LABELLEDBY = "aria-labelledby";
-const POSITION_CSS_PROPERTY = "--mtds-tooltip-position";
 const THROTTLE_DELAY = 300;
 const TOOLTIP_ID = "mtds-tooltip";
 const TOOLTIP = IS_BROWSER
@@ -29,19 +27,19 @@ let ANCHOR: Element | null = null;
 let LAST_CALL = Number.NEGATIVE_INFINITY;
 let THROTTLE: number | ReturnType<typeof setTimeout> = 0;
 
-function handleTooltipMove({ target, type, key }: Event & { key?: string }) {
+function handleTipToggle({ target, type, key }: Event & { key?: string }) {
 	if (type === "keydown" && key !== ESC) return; // Allow ESC dismiss to follow https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 	const wait = LAST_CALL + THROTTLE_DELAY - Date.now();
 	clearTimeout(THROTTLE);
 	THROTTLE = setTimeout(
-		handleTooltipMoveThrottled,
+		handleMoveThrottled,
 		Math.max(wait, 0),
 		key === ESC ? null : target,
 	);
 }
 
 // Using a throttled function to avoid performance issues
-function handleTooltipMoveThrottled(target: Element | null) {
+function handleMoveThrottled(target: Element | null) {
 	LAST_CALL = Date.now();
 
 	// Build and append tooltip if not existing
@@ -52,48 +50,44 @@ function handleTooltipMoveThrottled(target: Element | null) {
 	// No need to update
 	if (anchor === ANCHOR) return;
 
-	const content = (anchor && attr(anchor, "data-tooltip")) || "";
+	const text = (anchor && attr(anchor, "data-tooltip")) || "";
 	const position =
 		(anchor && attr(anchor, "data-tooltip-position")) ||
 		window
 			.getComputedStyle(anchor || document.body)
-			.getPropertyValue(POSITION_CSS_PROPERTY)
+			.getPropertyValue("--mtds-tooltip-position")
 			?.trim() ||
-		"top";
+		"top"; // Position can both be set by attribute or CSS custom property
 
 	const isHidden =
-		!content ||
-		content === "false" ||
-		content === "true" ||
-		position === "none";
+		!text || text === "false" || text === "true" || position === "none";
 
 	if (isHidden) anchor = null; // Do not show tooltip if boolish value
-	if (anchor) TOOLTIP.textContent = content; // Only update content if new anchor
+	if (anchor) TOOLTIP.textContent = text; // Only update content if new anchor
 
-	const hadLabel = ANCHOR && attr(ANCHOR, LABELLEDBY) === TOOLTIP?.id;
-	const hasLabel =
-		(anchor instanceof HTMLElement
-			? anchor.innerText
-			: anchor?.textContent
-		)?.trim() ||
-		anchor?.hasAttribute(LABELLEDBY) ||
-		anchor?.hasAttribute("aria-label");
-
-	ANCHOR?.removeAttribute(hadLabel ? LABELLEDBY : DESCRIBEDBY); // Unlink previous anchor
 	anchorPosition(TOOLTIP, false); // Reset anchor position
 
 	ANCHOR = anchor; // Store new anchor - might be null if no new anchor
-	if (ANCHOR) attr(ANCHOR, hasLabel ? DESCRIBEDBY : LABELLEDBY, TOOLTIP?.id); // Use tooltip as description if allready has label
-	if (ANCHOR?.isConnected) TOOLTIP.hidePopover(); // Hide tooltip so it can be placed on top-layer on next show
+	TOOLTIP.hidePopover(); // Hide tooltip so it can be placed on top-layer on next show
 	TOOLTIP.togglePopover(!!anchor);
 	anchorPosition(TOOLTIP, anchor || false, {
+		strategy: "fixed",
 		placement: position as Placement,
 		middleware: [flip(), shift({ padding: 10 })],
 	});
 }
 
-onLoaded(() => {
-	on(document, "blur,focus,mouseout,mouseover", handleTooltipMove, QUICK_EVENT);
-	on(window, "keydown", handleTooltipMove, QUICK_EVENT);
-	on(window, "blur", handleTooltipMove, QUICK_EVENT);
-});
+function handleTipLabels() {
+	document.querySelectorAll("[data-tooltip]").forEach((el) => {
+		const empty = !el?.textContent?.trim();
+		const text = attr(el, "data-tooltip");
+		attr(el, `aria-${empty ? "label" : "description"}`, text);
+	});
+}
+
+onLoaded(() => [
+	on(document, "blur,focus,mouseout,mouseover", handleTipToggle, QUICK_EVENT),
+	on(window, "keydown", handleTipToggle, QUICK_EVENT),
+	on(window, "blur", handleTipToggle, QUICK_EVENT),
+	onMutation(handleTipLabels, "data-tooltip"),
+]);

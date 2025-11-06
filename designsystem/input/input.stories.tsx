@@ -242,7 +242,11 @@ export const TypeSearch: Story = {
 		<>
 			<div className={styles.field}>
 				<label>Søkefelt</label>
-				<input className={styles.input} type="search" />
+				<input
+					className={styles.input}
+					type="search"
+					placeholder="Skriv for å søke"
+				/>
 			</div>
 			<div className={styles.field}>
 				<label>Søkefelt data-icon="none"</label>

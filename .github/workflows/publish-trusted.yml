@@ -1,0 +1,142 @@
+name: "🏭 Publish to trusted npm and GitHub Packages"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+
+jobs:
+  check-version:
+    name: "👷‍♀️ Check version change"
+    runs-on: ubuntu-latest
+    outputs:
+          should_release: ${{ env.SHOULD_RELEASE }}
+          version: ${{ env.VERSION }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Check version change
+        id: check_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag $VERSION already exists, skipping release."
+            echo "SHOULD_RELEASE=false" >> $GITHUB_ENV
+          else
+            echo "Tag $VERSION does not exist, proceeding with release."
+            echo "SHOULD_RELEASE=true" >> $GITHUB_ENV
+          fi
+
+  build:
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'true'
+    name: "👷 Install and build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: 🏗️ Install dependencies
+        run: npm ci
+
+      - name: 👩‍🏭 Build
+        run: npm run build
+
+      - name: 📡 Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+
+  tag:
+    name: 🏷️ Tag release
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: 🏷️ Create a new Git tag
+        run: |
+          echo "Creating tag: ${{needs.check-version.outputs.version}}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{needs.check-version.outputs.version}}" -m "Release ${{needs.check-version.outputs.version}}"
+          git push origin "${{needs.check-version.outputs.version}}"
+
+  publish-clojars:
+    needs: [tag, check-version]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    name: 📦 Publish to Clojars
+    steps:
+      - name: Dispatch event for publishing to Clojars
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/mattilsynet/design/dispatches \
+            -d '{"event_type":"npm_publish_done"}'
+
+  publish-npm:
+    name: 📦 Publish to npm
+    needs: [check-version, build, tag]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish --access public
+
+  publish-github:
+    name: 📦 Publish to GitHub
+    needs: [check-version, build, tag]
+    if: needs.check-version.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@mattilsynet"
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: mtds
+          path: mtds/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  cry:
+    name: 😭 No release needed
+    needs: check-version
+    if: needs.check-version.outputs.should_release == 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "No release needed"
+          exit 1

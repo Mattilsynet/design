@@ -11,7 +11,15 @@
 		--dsc-input-border-width--toggle: var(--ds-border-width-default);
 		--dsc-input-color--readonly: var(--ds-color-text-default);
 		--dsc-input-color: var(--ds-color-text-default);
+		--dsc-input-outline-color--hover: transparent;
+		--dsc-input-outline-color--toggle--hover: transparent;
 		--dsc-input-stroke: 0.045em;
+
+		--_mtdsc-input-color-placeholder: color-mix(
+			in srgb,
+			var(--dsc-input-color),
+			transparent 35%
+		);
 	}
 
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
@@ -30,6 +38,20 @@
 		background-repeat: no-repeat;
 		background-size: var(--ds-size-6);
 		padding-left: var(--ds-size-12);
+	}
+
+	/* Style placeholder for better contrast in dark mode */
+	.input::-webkit-input-placeholder {
+		color: var(--_mtdsc-input-color-placeholder); /* Chrome/Opera/Safari */
+	}
+	.input::-moz-placeholder {
+		color: var(--_mtdsc-input-color-placeholder); /* Firefox 19+ */
+	}
+	.input:-ms-input-placeholder {
+		color: var(--_mtdsc-input-color-placeholder); /* IE 10+ */
+	}
+	.input::placeholder {
+		color: var(--_mtdsc-input-color-placeholder); /* Modern */
 	}
 
 	/* Re-create DigiDir chevron */

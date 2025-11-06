@@ -248,6 +248,7 @@ export const VariantDrawer: Story = {
 				<dialog
 					className={styles.dialog}
 					data-variant="drawer"
+					data-closedby="any"
 					onClose={() => setOpen(false)}
 					open={open}
 				>

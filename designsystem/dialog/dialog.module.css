@@ -28,6 +28,7 @@
 		padding: var(--dsc-dialog-icon-spacing);
 		position: absolute;
 		transition: 0.2s;
+		z-index: 2; /* Place above other content with opacity/transform */
 
 		&:focus-visible {
 			box-shadow: var(--dsc-focus-boxShadow);

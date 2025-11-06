@@ -19,4 +19,4 @@ function handleTogglegroupKeydown(event: Event & Partial<KeyboardEvent>) {
 	}
 }
 
-onLoaded(() => on(document, "keydown", handleTogglegroupKeydown));
+onLoaded(() => [on(document, "keydown", handleTogglegroupKeydown)]);

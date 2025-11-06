@@ -44,6 +44,7 @@ export const Button: ButtonComponent = forwardRef<null>(function Button<
 
 	return (
 		<Tag
+			suppressHydrationWarning // aria-label might change on client when using data-tooltip
 			className={clsx(styles.button, className)}
 			type={type ?? (Tag === "button" ? Tag : undefined)} // Default to type="button" if not set and tag is button
 			ref={ref}

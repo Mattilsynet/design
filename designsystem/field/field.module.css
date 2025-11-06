@@ -10,15 +10,16 @@
 	}
 
 	/* Remove space between label and description */
-	.field > p:first-of-type,
+	.field > label + p,
 	.field > [data-description] {
 		margin-top: 0;
 	}
 	.field > :not(:disabled, [aria-disabled="true"]) {
 		opacity: 1; /* Overwrite DigiDir disabled */
 	}
+	/* Set height through CSS custom property instead of directly in JS for easier overwrite */
 	.field textarea {
-		height: var(--mtds-textarea-height); /* Set height through CSS custom property instead of directly in JS for easier overwrite */
+		height: var(--mtds-textarea-height);
 	}
 
 	/**
@@ -146,11 +147,12 @@
 	}
 	.field u-combobox > data::after {
 		background: currentcolor;
+		border-radius: var(--ds-border-radius-full);
+		flex-shrink: 0;
 		height: var(--ds-size-8);
 		mask: center / 60% no-repeat var(--mtds-icon-close);
-		width: var(--ds-size-8);
 		padding: 0;
-		border-radius: var(--ds-border-radius-full);
+		width: var(--ds-size-8);
 	}
 	.field u-combobox > data:hover::after {
 		mask-image: var(--mtds-icon-close--filled);
@@ -165,7 +167,7 @@
 		animation: _datalist 0.2s forwards;
 		background: var(--ds-color-surface-default);
 		border-radius: var(--ds-border-radius-md);
-		border: var(--ds-border-width-default) solid var(--ds-color-border-subtle);
+		border: 0;
 		box-shadow: var(--ds-shadow-md);
 		box-sizing: border-box;
 		color: var(--ds-color-text-default);

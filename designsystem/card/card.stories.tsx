@@ -10,7 +10,17 @@ import {
 	UploadSimpleIcon,
 } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Card, Flex, Grid, Group, Heading, Info, Tag } from "../react";
+import {
+	Card,
+	Flex,
+	Grid,
+	Group,
+	Heading,
+	Info,
+	Input,
+	Prose,
+	Tag,
+} from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -27,7 +37,7 @@ const meta = {
 			>
 				<style>
 					{
-						"body:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }"
+						"html:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }"
 					}
 				</style>
 				<Story />
@@ -392,5 +402,38 @@ export const GroupStory: Story = {
 				<div className={styles.card}>Card</div>
 			</div>
 		</div>
+	),
+};
+
+export const WithInput: Story = {
+	render: () => (
+		<Grid data-items="400" data-fixed>
+			<Card as="label">
+				<Prose>
+					<Heading>
+						<Input type="radio" name="radio-card" />
+						Velg dette kortet
+					</Heading>
+					<p>
+						Quisque vitae nibh quis dui lobortis consectetur. Vivamus sed nisl
+						quis enim venenatis hendrerit eu vitae mauris. Praesent at commodo
+						libero.
+					</p>
+				</Prose>
+			</Card>
+			<Card as="label">
+				<Prose>
+					<Heading>
+						<Input type="radio" name="radio-card" />
+						Velg dette kortet
+					</Heading>
+					<p>
+						Quisque vitae nibh quis dui lobortis consectetur. Vivamus sed nisl
+						quis enim venenatis hendrerit eu vitae mauris. Praesent at commodo
+						libero.
+					</p>
+				</Prose>
+			</Card>
+		</Grid>
 	),
 };

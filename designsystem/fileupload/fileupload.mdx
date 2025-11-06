@@ -1,0 +1,16 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import * as stories from './fileupload.stories';
+import { Flex, Grid } from '../react';
+import styles from '../styles.module.css';
+
+<Meta of={stories} />
+
+# Fileupload (Eksperimentell)
+
+## Kode
+- Legg klassen `fileupload` på `<label>` rundt `<input type="file">`
+- Du kan selv knytte til funkjonalitet med JavaScript
+<Canvas of={stories.Default} />
+
+<CssVariables component="fileupload" />
