@@ -1,0 +1,67 @@
+:host {
+	--mtdsc-atlas-background: var(--ds-color-surface-default);
+	--mtdsc-atlas-cluster-size: var(--mtds-8);
+
+	aspect-ratio: 2; /* TODO: make possible to overwrite */
+	border-radius: var(--ds-border-radius-md);
+	border: 1px solid var(--ds-color-border-subtle);
+	overflow: clip;
+	position: relative;
+	user-select: none;
+}
+:host(:not([hidden])) {
+	display: grid;
+}
+
+:host([data-cursor="pointer"]) .leaflet-grab {
+	cursor: pointer;
+}
+:host([data-tiles="color"]) {
+	--mtdsc-atlas-background: #e0fefe;
+}
+:host([data-tiles="grayscale"]) .leaflet-tile-container,
+:host(:not([data-tiles])) .leaflet-tile-container {
+	filter: contrast(0.75) brightness(1.15);
+}
+slot {
+	display: grid;
+	inset: var(--mtds-3);
+	pointer-events: none; /* Ensure slot does not stop pointer from reaching leaflet */
+	position: absolute;
+	z-index: 2;
+}
+::slotted(*) {
+	pointer-events: all; /* But let children of slot stop pointer from reaching leaflet */
+}
+.leaflet-div-icon {
+	background: none;
+	border: 0;
+}
+.leaflet-container {
+	font: inherit;
+	background: var(--mtdsc-atlas-background);
+	outline: 0;
+}
+.map-pin rect {
+	fill: var(--ds-color-base-contrast-default);
+}
+.map-pin path {
+	fill: var(--ds-color-base-default);
+}
+
+.marker-cluster {
+	background-color: var(--mtds-color-base-default);
+	border-radius: 100%;
+	color: var(--mtds-color-base-contrast-default);
+	font-weight: 500;
+	font-size: var(--ds-body-xs-font-size);
+	line-height: var(--mtdsc-atlas-cluster-size);
+	text-align: center;
+
+	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
+	width: var(--mtdsc-atlas-cluster-size) !important;
+	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
+	height: var(--mtdsc-atlas-cluster-size) !important;
+	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
+	margin: calc(var(--mtdsc-atlas-cluster-size) / -2) !important;
+}

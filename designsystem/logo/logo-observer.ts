@@ -15,7 +15,7 @@ function handleLogoMutation() {
 		const isDot = logo?.hasAttribute("data-env");
 		const style = window.getComputedStyle(svg);
 		const text = style.getPropertyValue("color");
-		const back = style.getPropertyValue("--mtds-logo-color");
+		const back = style.getPropertyValue("--mtdsc-logo-background");
 		const icon = svg.outerHTML
 			.replace(/\n+/g, " ") // Prevent line breaks
 			.replace(/(fill|width|height|xmlns)="[^"]+"/gi, "")

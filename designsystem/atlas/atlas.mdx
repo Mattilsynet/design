@@ -1,0 +1,47 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { JumpTo } from '../../.storybook/blocks';
+import * as stories from './atlas.stories';
+import { Popover } from '../react';
+
+
+<Meta of={stories} />
+
+# Atlas (Eksperimentell)
+
+> Atlas er en standardisert oppsett og uttegning av kart.
+
+<JumpTo />
+<Popover id="pop-jsref" style={{ maxWidth: 500 }}>For eksempel via `document.getElementById` eller via `useRef` i React.</Popover>
+
+## Kode
+- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) for å oppnå god ytelse og bred funksjonalitet.
+- **Kartlag** leveres av [Kartverket](https://cache.kartverket.no/) for oppnå gjenkjennlige og presise norgeskart.
+- Importer kart via `import "@mattilsynet/design/atlas"`
+- Bruk elementet `<mtds-atlas>` for å få Mattilsynet oppsett av kart - også i React.
+- Ved å <button data-popover="inline" popoverTarget="pop-jsref">hente atlas-elementet via javascript</button> får du tilgang til `mytlasElement.leaflet` (hele [Leaflet biblioteket](https://leafletjs.com/reference.html)) og `atlasElement.map` ([Leaflet.Map](https://leafletjs.com/reference.html#map-factory) objektet).
+<Canvas of={stories.Default} />
+
+## Utnsitt
+- Bruk `data-view="lat, lng, zoom"` for å endre utsnittet kartet starter med
+- Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React) og kall `atlasElement.map.setView([lat, lng], zoom)` for å endre utsnitt programatisk
+<Canvas of={stories.WithView} />
+
+## Kartlag
+- Bruk `data-tiles="grayscale | color"` for å endre kartlag
+<Canvas of={stories.WithColor} />
+
+## Markører
+- Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React)
+- Legg til markører via `atlasElement.addMarker(latlng, options?)`
+- Funksjonen returnerer [Leaflet markør-objekt](https://leafletjs.com/reference.html#marker) for videre manipulering ved behov
+<Canvas of={stories.WithMarker} />
+
+## Klikk
+- Bruk `data-cursor="pointer"` for å indikere at kartet er klikkbart
+- Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React)
+- Legg til `click` event via `atlasElement.map.on('click', (e) => { /* Your action here */ })`
+<Canvas of={stories.WithClickToMarker} />
+
+## Custering
+- Bruk `data-cluster="minium-zoom"` for å aktivere clustring fra et gitt zoom-nivå
+<Canvas of={stories.WithClustering} />

@@ -1,59 +1,61 @@
-.law:not([hidden]) { display: block; isolation: isolate; contain: content }
-.law { box-sizing: border-box; padding-left: 5.5em } /* 5.5em is enough to write "artikkel xxx"*/
-.law :where(h1, h2, h3, h4, h5, h6, [role="heading"]) { margin-block: 2em 0.25em; line-height: 1.3 } /* More margin for headings */
-.law :is(h5, h6, [role="heading"]) { font-weight: bold; font-size: 1.125em } /* Ensure headings are not too small */
-.law :is(:global(.footnote), :global(.changesToParent)) { font-size: 0.875rem }
-.law :is(ol, ul) { list-style: none; margin: 0; padding: 0 }
-.law :is(ol, ul, div, article, footer) + :is(ol, ul, div, article, footer) { margin-block: 1em }
-.law :is(li, li :is(ol, ul, div, article, footer) + :is(ol, ul, div, article, footer)) { margin-block: 0.25em } /* Decrease space inside lists */
-.law :is(ol, ul, [data-text-indent], :global(.numberedLegalP) > :is(div, article, footer)) { margin-left: var(--ds-size-8) } /* Add indent to sub items */
-.law :is(:global(.section), :global(.legalArticle)) { margin-block: 1.5em }
-.law h1 { margin-block-start: 0 } /* No margin before first heading */
+@layer mt.design {
+	.law { box-sizing: border-box; isolation: isolate; contain: content; border: 0; margin: 0; padding: 0 0 0 5.5em } /* 5.5em is enough to write "artikkel xxx"*/
+	.law :where(h1, h2, h3, h4, h5, h6) { font-weight: bold; margin-block: 2em 0.25em; line-height: 1.3 } /* More margin for headings */
+	.law :is(h5, h6) { font-size: 1.125em } /* Ensure headings are not too small */
+	.law :is(ol, ul) { list-style: none; margin: 0; padding: 0 }
+	.law :is(ol, ul, div) + :is(ol, ul, div) { margin-block: 1em }
+	.law :is(li, li :is(ol, ul, div) + :is(ol, ul, div)) { margin-block: 0.25em } /* Decrease space inside lists */
+	.law :global(:is(ol, ul, [data-text-indent]) > :is(ol, ul, div)) { margin-left: var(--ds-size-8) } /* Add indent to sub items */
+	.law :global(:is(.section, .legalArticle)) { margin-block: 1.5em }
+	.law :global(:is(.footnote, .changesToParent)) { font-size: 0.875rem }
+	.law h1 { margin-block-start: 0 } /* No margin before first heading */
+	.law [id] { scroll-margin-block: 2rem }
 
-.law a { color: inherit }
-.law img { box-sizing: border-box; border: 1px solid var(--ds-color-border-subtle); width: 100%; padding: var(--ds-size-2); object-fit: contain; background: var(--ds-color-background-tinted); border-radius: var(--ds-border-radius-default); filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2)) }
-.law table { border-collapse: separate; border-radius: var(--ds-border-radius-default); border-spacing: 0px; border: 1px solid var(--ds-color-border-subtle); box-sizing: border-box; font-size: 0.875em; margin-block: 1em; table-layout: fixed; width: 100%; word-break: break-word }
-.law thead th { background: var(--ds-color-surface-tinted); border-bottom: 1px solid var(--ds-color-border-default) }
-.law caption { font-weight: bold; margin-block: 0.5em; text-align: inherit }
-.law table :is(th, td) { border-bottom: 1px solid var(--ds-color-border-subtle); padding: 0.2em 0.5em; text-align: inherit; vertical-align: top }
-.law tbody :is(th, td) + :is(th, td) { border-left: 1px solid var(--ds-color-border-subtle) }
-.law tbody :is(th, td):empty { padding: 0; border-bottom: 0 }
-.law tbody tr:last-child > :is(th, td) { border-bottom: 0 }
+	.law a { color: inherit }
+	.law img { border: 1px solid var(--ds-color-border-subtle); border-radius: var(--ds-border-radius-default) }
+	.law table { border-collapse: separate; border-radius: var(--ds-border-radius-default); border-spacing: 0px; border: 1px solid var(--ds-color-border-subtle); box-sizing: border-box; font-size: 0.875em; margin-block: 1em; table-layout: fixed; width: 100%; word-break: break-word }
+	.law thead th { background: var(--ds-color-surface-tinted); border-bottom: 1px solid var(--ds-color-border-default) }
+	.law caption { font-weight: bold; margin-block: 0.5em; text-align: inherit }
+	.law table :is(th, td) { border-bottom: 1px solid var(--ds-color-border-subtle); padding: 0.2em 0.5em; text-align: inherit; vertical-align: top }
+	.law tbody :is(th, td) + :is(th, td) { border-left: 1px solid var(--ds-color-border-subtle) }
+	.law tbody :is(th, td):empty { padding: 0; border-bottom: 0 }
+	.law tbody tr:last-child > :is(th, td) { border-bottom: 0 }
 
-.law :is(:global(.data-originalId), :global(.data-marginOriginalId)) { float: left; margin-right: 0.25em} /* Place IDs left of related title or paragraph, not over */
-.law :is(li[data-name] > :global(.listArticle), :global(.marginIdArticle)) > :is(div, article) { margin-left: 1.5em } /* Make space for IDs */
-.law li[data-name="-"] > :global(.listArticle) > :is(div, article) { margin-left: 0.75em } /* No need for lagre gap if ID is a dash */
+	.law :global(:is(.data-originalId, .data-marginOriginalId)) { float: left; margin-right: 0.25em} /* Place IDs left of related title or paragraph, not over */
+	.law :global(:is(.listArticle, .numberedLegalP, .marginIdArticle) > :is(ol, ul, div)) { margin-left: 1.5em } /* Make space for IDs */
+	.law :global(li[data-name="-"] > .listArticle) > :is(ol, ul, div) { margin-left: 0.75em } /* No need for lagre gap if ID is a dash */
 
-/* Label */
-.law [id] { scroll-margin-block: 2rem }
-.law [id]:not(:global(.legalP)):not(:has(> :global(.legalP) ~ :is(div, article, ol, ul))) > :global(.legalP) > button { display: none } /* Hide Avsnitt if only one */
-.law :global(.section) > button::before { content: "seksjon " } /* Only show "seksjon" as titles can become very long */
-.law :global(.legalP) > button { width: auto } /* Place all "avsnitt" inside .legalP area */
-.law button { all: unset; cursor: pointer; direction: rtl; float: left; font: inherit; width: 0; isolation: isolate }
-.law button::before {
-	background: var(--ds-color-surface-tinted);
-	border-radius: var(--ds-border-radius-default);
-	border: var(--ds-border-width-default) solid var(--ds-color-border-subtle);
-	color: var(--ds-color-text-default);
-	content: attr(aria-label);
-	contain: content; /* Speed up rendering */
-	direction: ltr;
-	display: block;
-	font-size: 0.875rem;
-	margin-right: 0.5em;
-	padding: 0 var(--ds-size-1);
-	translate: 0 0.1em;
-	user-select: none;
-	white-space: nowrap;
-	width: max-content;
-}
-.law button[aria-checked="true"]::before {
-	background: var(--ds-color-base-default);
-	border-color: var(--ds-color-base-default);
-	color: var(--ds-color-base-contrast-subtle);
-}
-.law button:focus-visible::before {
-	box-shadow: var(--dsc-focus-boxShadow);
-	outline: var(--dsc-focus-outline);
-	outline-offset: var(--ds-border-width-focus);
+	/* Button */
+	.law[data-variant="view"] button { display: none }
+	.law :global([id]:not(.legalP):not(:has(> .legalP ~ :is(div, ol, ul))) > .legalP > button) { display: none } /* Hide Avsnitt if only one */
+	.law :global(.section > button::before) { content: "seksjon " } /* Only show "seksjon" as titles can become very long */
+	.law :global(.legalP > button) { width: auto } /* Place all "avsnitt" inside .legalP area */
+	.law button { all: unset; cursor: pointer; direction: rtl; float: left; font: inherit; width: 0; isolation: isolate }
+	.law button::before {
+		background: var(--ds-color-surface-tinted);
+		border-radius: var(--ds-border-radius-default);
+		border: var(--ds-border-width-default) solid var(--ds-color-border-subtle);
+		color: var(--ds-color-text-default);
+		content: attr(aria-label);
+		contain: content; /* Speed up rendering */
+		direction: ltr;
+		display: block;
+		font-size: 0.875rem;
+		margin-right: 0.5em;
+		padding: 0 var(--ds-size-1);
+		translate: 0 0.1em;
+		user-select: none;
+		white-space: nowrap;
+		width: max-content;
+	}
+	.law button[aria-checked="true"]::before {
+		background: var(--ds-color-base-default);
+		border-color: var(--ds-color-base-default);
+		color: var(--ds-color-base-contrast-subtle);
+	}
+	.law button:focus-visible::before {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
+	}
 }

@@ -1,10 +1,12 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables } from '../../.storybook/blocks';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
 import * as stories from './toast.stories';
 
 <Meta of={stories} />
 
-# Toast (Eksperimentell)
+# Toast
 
 > Toasts gir korte oppdateringer om status.
 De skal ikke forstyrre brukeropplevelsen og kan forsvinne automatisk
@@ -15,6 +17,21 @@ eller krysses ut.
 - **React:** Kall `toast(content: React.ReactNode, options)` fra `@mattilsynet/design/react`
 - **HTML:** Bruk klassen `toast` på `<dialog open data-timeout="milliseconds:  | false">`
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+  {/* Viser toast med lange navn: */}
+  <Example data-color="success" data-variant="false" text="Bruk en kort, generisk og beskrivende setning i toast som bekrefter en handling." zoom="80%">
+    <div className={styles.alert} data-color="success">
+            Dokumentet er lagret
+        </div>
+  </Example>
+  <Example data-color="danger" data-variant="false" text="Unngå lange setninger og innhold som er viktig for brukeren. Husk at det er anbefalt at toasten forsvinner automatisk." zoom="80%">
+        <div className={styles.alert} data-color="success">
+            Helsesertifikat-til-Storbritannia123.pdf har blitt lastet ned på din datamaskin. Husk å signere dokumentet og send det til mottaker i løpet av en uke.
+        </div>
+  </Example>
+</Flex>
 
 ## Automatisk lukking
 - Toast skjules automatisk etter 3000 millisekunder nedtelling

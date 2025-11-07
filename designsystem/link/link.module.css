@@ -30,12 +30,6 @@
 			font-size: inherit; /* Needed if <button> */
 		}
 
-		& > svg {
-			width: 1em;
-			height: 1em;
-			vertical-align: middle; /* Align img or svg icon with text */
-		}
-
 		&:hover {
 			text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness--hover); /* 2px ish */
 		}
@@ -43,5 +37,14 @@
 		&:focus-visible {
 			outline-style: solid;
 		}
+	}
+}
+
+@layer mt.design {
+	:is(a, .link) > svg {
+		display: inline-block; /* Fix Tailwind default */
+		vertical-align: middle; /* Align img or svg icon with text */
+		height: 1em;
+		width: 1em;
 	}
 }

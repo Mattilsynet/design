@@ -1,9 +1,10 @@
 html {
-	background: var(--mtds-color-surface-default); /* White preview area */
+	--html-bg: var(--mtds-color-surface-default); /* White preview area */
+	background: var(--html-bg);
 }
 @supports (background: light-dark(white, black)) {
 	html {
-		background: light-dark(
+		--html-bg: light-dark(
 			var(--mtds-color-surface-default),
 			var(--mtds-color-background-default)
 		);
@@ -43,6 +44,8 @@ u-tabpanel > pre > .docblock-source {
 	margin-top: 0;
 }
 
+.sbdocs-content td > :first-child, .sbdocs-content td > pre:first-child > .docblock-source { margin-top: 0 }
+.sbdocs-content td > :last-child, .sbdocs-content td > pre:last-child > .docblock-source { margin-bottom: 0 }
 .sbdocs-content table th svg {
 	vertical-align: -0.15em;
 }
@@ -136,13 +139,12 @@ u-tabpanel > pre > .docblock-source {
 }
 
 .sbdocs-example {
-	display: grid;
-	align-content: space-between;
-	position: relative;
-	padding-top: var(--mtds-12);
-	background: var(--mtds-color-success-surface-tinted);
-	border: 1px solid var(--mtds-color-success-border-subtle);
+	--sbdocs-example-spacing: var(--mtds-3);
+	--sbdocs-example-background: var(--mtds-color-success-background-tinted);
+	--sbdocs-example-border-color: var(--mtds-color-success-border-subtle);
+	background: var(--sbdocs-example-background);
 	border-radius: var(--mtds-border-radius-md);
+	padding: var(--sbdocs-example-spacing);
 }
 .sbdocs-example::before {
 	border-bottom: 0;
@@ -151,13 +153,15 @@ u-tabpanel > pre > .docblock-source {
 	pointer-events: none;
 }
 .sbdocs-example:has(> p[data-color="danger"]) {
-	background: var(--mtds-color-danger-surface-tinted);
-	border-color: var(--mtds-color-danger-border-subtle);
+	--sbdocs-example-background: var(--mtds-color-danger-background-tinted);
+	--sbdocs-example-border-color: var(--mtds-color-danger-border-subtle);
 }
 .sbdocs-example > div:first-child {
-	padding-inline: var(--mtds-4);
+	background: var(--mtds-color-surface-default);
+	border: 1px solid var(--sbdocs-example-border-color);
+	border-radius: var(--mtds-border-radius-sm);
+	padding: var(--mtds-8);
 	box-sizing: border-box;
-	aspect-ratio: 16 / 9;
 	display: grid;
 	grid-area: 1 / 1;
 	place-items: center;
@@ -166,20 +170,18 @@ u-tabpanel > pre > .docblock-source {
 .sbdocs-example > div:first-child > * {max-width: 100%;min-width: 0;}
 .sbdocs-example > p > svg {
 	position: absolute;
-	margin: var(--mtds-4);
 	left: 0;
 	top: 0;
 	color: var(--mtds-color-base-default);
-	width: var(--mtds-8);
-	height: var(--mtds-8);
+	width: var(--mtds-icon-size);
+	height: var(--mtds-icon-size);
 }
 .sbdocs-example > p {
-	padding: var(--mtds-4);
-	border-radius: 0 0 var(--mtds-border-radius-md) var(--mtds-border-radius-md);
 	color: var(--mtds-color-text-subtle);
-	margin: 0;
-	border-top: 0;
 	font-size: var(--mtds-body-sm-font-size);
+	margin: var(--sbdocs-example-spacing) 0 0;
+	padding-left: calc(var(--mtds-icon-size) + var(--sbdocs-example-spacing));
+	position: relative;
 }
 [class*="flex"]:has(> .sbdocs-example) {
 	gap: var(--mtds-6);

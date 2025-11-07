@@ -11,6 +11,7 @@ export {
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export * from "./analytics/analytics";
 export * from "./app/app-observer";
+export * from "./law/law-helper";
 export * from "./pagination/pagination-helper";
 export * as styles from "./styles.module.css";
 export * from "./toast/toast-helper";

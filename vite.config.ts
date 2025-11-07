@@ -85,7 +85,7 @@ export default defineConfig(({ mode }) =>
 					lib: {
 						entry: [
 							path.resolve(root, "index.ts"),
-							path.resolve(root, "map.ts"),
+							path.resolve(root, "atlas.ts"),
 							path.resolve(root, "react.tsx"),
 						],
 						cssFileName: "styles",

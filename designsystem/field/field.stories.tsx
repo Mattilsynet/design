@@ -294,7 +294,7 @@ export const WithValidation: Story = {
 
 export const WithValidationForm: Story = {
 	parameters: { layout: "padded" },
-	name: "With Validation Form (eksperimentell)",
+	name: "With Validation Form",
 	render: () => (
 		<form action="#" className={styles.prose}>
 			<div className={styles.field} data-validation="form">

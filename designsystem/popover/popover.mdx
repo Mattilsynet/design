@@ -20,25 +20,7 @@ import styles from '../styles.module.css';
 
 <Canvas of={stories.Default} />
 
-## Nedtrekksmeny / Dropdown
-- Bruk `<menu>` med `<li><button type="button">` eller ` <li><a>` som barn
-- Dersom du legger `<a>` inni en `popover`, vil den automatsk lukke popoveren på klikk, med mindre du setter `popovertargetaction="show"` eller kjører `event.preventDefault()` på `onClick`
-
-<Canvas of={stories.Dropdown} />
-
-## Position
-- Bruk `data-position="top | top-start | top-end | right | right-start | right-end | bottom | bottom-start | bottom-end | left | left-start | left-end"` for å plassere popoveren
-- Popover vil alltid legge seg der det er plass i skjermbildet
-<Canvas of={stories.Position} />
-
-## Lukkeknapp
-- Bruk `popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
-<Canvas of={stories.WithClose} />
-
-## Tekst inline
-- Bruk `data-popover="inline"` på `<button>` for popover fra brødtekst:
-<Canvas of={stories.WithTextInline} />
-
+## Skikk og bruk
 <Flex data-items="350">
 
    {/* Lange tekster */}
@@ -63,6 +45,27 @@ import styles from '../styles.module.css';
   </Example>
 
 </Flex>
+
+## Nedtrekksmeny / Dropdown
+- Bruk `<menu>` med `<li><button type="button">` eller ` <li><a>` som barn
+- Dersom du legger `<a>` inni en `popover`, vil den automatsk lukke popoveren på klikk, med mindre du setter `popovertargetaction="show"` eller kjører `event.preventDefault()` på `onClick`
+
+<Canvas of={stories.Dropdown} />
+
+## Position
+- Bruk `data-position="top | top-start | top-end | right | right-start | right-end | bottom | bottom-start | bottom-end | left | left-start | left-end"` for å plassere popoveren
+- Popover vil alltid legge seg der det er plass i skjermbildet
+<Canvas of={stories.Position} />
+
+## Lukkeknapp
+- Bruk `popovertargetaction="hide"` på `<button>` (eller `<a>` dersom du lager en SPA) for å lage lukkeknapp:
+<Canvas of={stories.WithClose} />
+
+## Tekst inline
+- Bruk `data-popover="inline"` på `<button>` for popover fra brødtekst:
+<Canvas of={stories.WithTextInline} />
+
+
 
 ## Pil
 - Bruk `data-arrow` på `<button>` for å få ikon:

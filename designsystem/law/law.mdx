@@ -1,10 +1,81 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { HeartIcon } from '@phosphor-icons/react';
 import * as stories from './law.stories';
+import { Alert, Table, Popover } from '../react';
 
 
-<Meta of={stories} isTemplate />
+<Meta of={stories} />
 
-# Lovvelger
+# Law (Eksperimentell)
+> Law gir visning og valg av lover og forskrifter fra Lovdata.
+
+<Alert data-color="warning">
+  På grunn av pågådende kartlegging av bruk og behov, er Law foreløpig først og fremst et sett med hjelpefunksjoner og CSS.
+  Vi setter stor pris på [tilbakemeldinger](https://mattilsynet-hq.slack.com/archives/C03FAJ7N1EU) <HeartIcon style={{ verticalAlign: -3 }} />
+</Alert>
 
 ## Kode
-<Canvas of={stories.Default} />
+
+- Legg klassen `law` på en `<div>` og fyll med HTML generert av `fixLawHtml()`
+- Bruk `data-variant="view"` dersom du ikke ønsker valg-knapper
+- Du må selv hente [HTML via Lovdatas API](https://api.lovdata.no/), mens valg og parsing løses av hjelpefunksjonene `fixLawHtml`, `parseLawIds` og `setLawChecked` (støtter strukturer fra både Lovdatas betalte og gratis API). <button data-popover="inline" popoverTarget='pop-filenameHTML'>Vær obs på feil i feltet filenameHTML</button>
+<Popover id='pop-filenameHTML' style={{ maxWidth: 500 }}>Lovdatas felt `filenameHTML` slutter noen ganger på `.html`, og noen ganger ikke. Sørg for at kall til `https://api.lovdata.no/v1/structuredRules/get/` alltid slutter på `.html`</Popover>
+
+
+<Table data-fixed>
+<thead>
+  <tr>
+    <th style={{ width: 450 }}>Funksjon</th>
+    <th>Beskrivelse</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      ```ts
+      fixLawHtml(html: string)
+      // Returns:
+      string
+      ```
+    </td>
+    <td>
+      - Parser, renser og legger på valg-knapper i HTML fra Lovdata
+      - **Kan kjøre på:** Server og nettleser
+      - **React?** Bruk `useMemo`
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ```ts
+      parseLawIds(ids: string[], html: string)
+      // Returns:
+      {
+        id: string;        // Element ID
+        label: string;     // Juridisk henvisning
+        html: string;      // Outer HTML
+        url: string;       // Closest lovdata url
+        className: string; // From Lovdata
+      }
+      ```
+    </td>
+    <td>
+      - Parser en liste med IDer til et strukturert objekt, som blant annet inneholder juridisk henvisningstekst til bruk i vedtaksbrev osv.
+      - **Kan kjøre på:** Server og nettleser
+      - **Merk:** Send inn ferdig renset HTML (fra `fixLawHtml`) for å unngå dobbel parsing.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ```ts
+      setLawChecked(ids: string[], element: HTMLElement)
+      // Returns:
+      void
+      ```
+    </td>
+    <td>
+      - Markerer valgte deler av regelverk i et `Law` element.
+      - **Kan kjøre på:** Kun nettleser
+    </td>
+  </tr>
+</tbody>
+</Table>

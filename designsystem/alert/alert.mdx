@@ -1,5 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { CssVariables } from '../../.storybook/blocks';
+import { CssVariables, Example } from '../../.storybook/blocks';
+import { Flex } from '../react';
+import styles from '../styles.module.css';
 import * as stories from './alert.stories';
 
 <Meta of={stories} />
@@ -11,6 +13,31 @@ import * as stories from './alert.stories';
 - Legg klassen `alert` på `<output>` eller `<div>` eller bruk `<Alert>` komponenten i React
 - Bruk `<div role="alert">` ved kritiske feil og `<output>` ved andre varsel
 <Canvas of={stories.Default} />
+
+## Skikk og bruk
+<Flex data-items="350">
+
+  <Example data-color="success" text="Skriv kort og konsist i alerts" zoom="100%">
+    <output className={styles.alert}>
+        Det er lange køer for å bestille pass om dagen, det kan være lurt å bestille i god tid før du skal reise.
+    </output>
+  </Example>
+  <Example data-color="danger" text="Unngå lange tekster i alerts" zoom="100%">
+    <output className={styles.alert}>
+        For å ivareta en helhetlig oppfølging av innbyggere som mottar flere typer offentlige tjenester, 
+        har vi opprettet et eget koordinerende team som inkluderer representanter fra helse, sosial, NAV og teknisk etat. 
+        Hensikten er å etablere et samlet kontaktpunkt for brukere med sammensatte behov, 
+        slik at de slipper å navigere mellom ulike kontorer og etater på egen hånd. 
+        I praksis betyr dette at en brukers sak kan drøftes i fellesmøter der alle relevante fagpersoner er til stede, 
+        noe som gir bedre informasjonsflyt og mer tilpassede løsninger. 
+        Et typisk eksempel kan være en person med nedsatt funksjonsevne og mangelfull boligtilpasning, 
+        som samtidig har behov for sosialhjelp og helsetjenester. 
+        Tidligere ville vedkommende måtte oppsøke NAV for økonomisk støtte, 
+        eget kontor for ergoterapi og enda en avdeling for kommunale boligtjenester. 
+        Resultatet ble ofte ulike vedtak som ikke henger sammen, og tidkrevende oppfølging. 
+    </output>
+  </Example>
+</Flex>
 
 ## Farger og ikon
 - Bruk `data-color="info | success | warning | danger | neutral"`
