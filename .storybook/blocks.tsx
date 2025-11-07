@@ -58,7 +58,7 @@ export const DoAndDont = (props: FlexProps) => <Flex data-gap="4" {...props} />;
 
 export const Example = ({
 	"data-color": color = "success",
-	aspect: aspectRatio = "19/6",
+	aspect: aspectRatio = "16/9",
 	children,
 	zoom = "100%",
 	text = "",
@@ -177,7 +177,6 @@ function getCssVars(component: string) {
 
 type OverviewProps = {
 	fullWidth?: boolean;
-	showAll?: boolean;
 	scale?: number | string;
 	items: Record<
 		string,
@@ -189,11 +188,7 @@ type OverviewProps = {
 	>[];
 };
 
-export const Overview = ({
-	items,
-	scale = 0.5,
-	showAll = false,
-}: OverviewProps) => {
+export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 	const [filter, setFilter] = useState("");
 	const ts = Date.now(); // Used to create keys to run CSS animations
 	const baseUrl = window.top?.location.href.replace(/-[^-]+--[^-]+$/, ""); // -page--about from url
@@ -243,12 +238,14 @@ export const Overview = ({
 						const file = name.toLowerCase().replace(/[^a-z]+/g, "-"); // Convert to safe url like storybook does
 						const exports = (stories.__namedExportsOrder ||
 							Object.keys(stories)) as unknown as string[];
-						const variants = exports.filter(
-							(key) =>
-								(key === "Default" && !stories[key]?.tags?.includes("!dev")) ||
-								(showAll && key !== "default" && !key.startsWith("__")) ||
-								stories[key]?.parameters?.showInOverview,
-						);
+						const variants = exports.filter((key) => {
+							const isInternal = key.startsWith("__");
+							const isDev = stories[key]?.tags?.includes("!dev");
+							const inOverview =
+								stories[key]?.parameters?.showInOverview ?? key === "Default";
+
+							return !isInternal && inOverview && !isDev;
+						});
 
 						return variants.map((variant) => {
 							const of = stories[variant as keyof typeof stories];
@@ -352,7 +349,7 @@ export const Graphics = ({
 					.graphics mark { position: absolute }
 					.graphics svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }
 					.graphics img { aspect-ratio: 12 / 8; display: block; min-width: calc(100% + 1em); object-fit: cover; margin: -.5em }
-					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
+					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--html-bg) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
 					.graphics-bar:empty { display: none }`}
 			</style>
 			<Flex data-gap="4" className="graphics-bar">

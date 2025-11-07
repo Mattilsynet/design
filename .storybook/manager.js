@@ -50,7 +50,6 @@ addons.setConfig({
 		eject: { hidden: false }, // Open canvas only in new window
 		fullscreen: { hidden: false }, // Hide sidebar
 		remount: { hidden: true }, // Same as reload
-		share: { hidden: true },
 		title: { hidden: true },
 		zoom: { hidden: true },
 	},

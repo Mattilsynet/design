@@ -16,6 +16,7 @@ export * from "./fieldset/fieldset";
 export * from "./fileupload/fileupload";
 export * from "./helptext/helptext";
 export * from "./input/input";
+export * from "./law/law";
 export * from "./layout/layout";
 export * from "./link/link";
 export * from "./logo/logo";

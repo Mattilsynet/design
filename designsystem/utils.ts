@@ -177,9 +177,9 @@ export function anchorPosition(
  */
 export function onMutation(callback: MutationCallback, ...attrs: string[]) {
 	let queue = 0;
-
 	const onFrame = () => setTimeout(onTimer, 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
 	const onTimer = () => {
+		if (!IS_BROWSER) return cleanup(); // If using JSDOM, the document might have been removed
 		callback([], observer);
 		observer.takeRecords(); // Clear records to avoid running callback multiple times
 		queue = 0;
@@ -187,6 +187,13 @@ export function onMutation(callback: MutationCallback, ...attrs: string[]) {
 	const observer = new MutationObserver(() => {
 		if (!queue) queue = requestAnimationFrame(onFrame);
 	});
+	const cleanup = () => {
+		try {
+			observer.disconnect();
+		} catch (_) {
+			// No more observer
+		}
+	};
 
 	observer.observe(document.documentElement, {
 		attributeFilter: attrs,
@@ -195,7 +202,7 @@ export function onMutation(callback: MutationCallback, ...attrs: string[]) {
 		subtree: true,
 	});
 
-	return () => observer.disconnect();
+	return cleanup;
 }
 
 /**

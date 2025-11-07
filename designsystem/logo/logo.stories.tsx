@@ -14,7 +14,7 @@ const meta = {
 				<div className={`${styles.grid} demo-resize`} data-gap="8">
 					<Story />
 					<style>{`
-						body:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }
+						html:not(:has(.sbdocs-content)) { background: var(--ds-color-background-default) }
 						html:has(.sbdocs-preview)::before { display: none } /* Hide environment bar in Storybook *
 						.demo-resize {
 							box-sizing: border-box;
@@ -119,16 +119,7 @@ export const WithSubbrandEnvironmentBlue: Story = {
 	),
 };
 
-const decorators: Story["decorators"] = [
-	(Story) => (
-		<div style={{ "--mtds-logo-color": "#bcdcd0" } as React.CSSProperties}>
-			<Story />
-		</div>
-	),
-];
-
 export const WithAppIcon: Story = {
-	decorators,
 	render: () => (
 		<a className={styles.logo} href="/">
 			<PlantIcon weight="fill" />

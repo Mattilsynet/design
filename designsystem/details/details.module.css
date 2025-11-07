@@ -74,6 +74,7 @@
 
 	.details::details-content,
 	.details::part(details-content) {
+		position: relative; /* Ensure child elements are really cropped by overflow-y: hidden */
 		transition-duration: var(--mtdsc-details-transition-duration);
 		transition-property: content-visibility, height;
 	}

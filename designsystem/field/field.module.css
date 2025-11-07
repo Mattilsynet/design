@@ -32,6 +32,7 @@
 		margin-top: 0; /* Remove space if label is hidden */
 	}
 	.field label svg {
+		display: inline-block; /* Fix Tailwind default */
 		vertical-align: -0.15em;
 	}
 	.field:has(:required, [aria-required="true"]) label::after {
@@ -47,6 +48,9 @@
 		padding: 0.18em var(--ds-size-2);
 		vertical-align: 0.1em;
 		white-space: nowrap;
+	}
+	.field p[data-count] {
+		font-size: var(--mtds-font-size-muted);
 	}
 
 	/**
