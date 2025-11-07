@@ -21,7 +21,7 @@ import { Popover } from '../react';
 - Ved å <button data-popover="inline" popoverTarget="pop-jsref">hente atlas-elementet via javascript</button> får du tilgang til `mytlasElement.leaflet` (hele [Leaflet biblioteket](https://leafletjs.com/reference.html)) og `atlasElement.map` ([Leaflet.Map](https://leafletjs.com/reference.html#map-factory) objektet).
 <Canvas of={stories.Default} />
 
-## Utnsitt
+## Utsnitt
 - Bruk `data-view="lat, lng, zoom"` for å endre utsnittet kartet starter med
 - Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React) og kall `atlasElement.map.setView([lat, lng], zoom)` for å endre utsnitt programatisk
 <Canvas of={stories.WithView} />
