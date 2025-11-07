@@ -177,7 +177,6 @@ function getCssVars(component: string) {
 
 type OverviewProps = {
 	fullWidth?: boolean;
-	showAll?: boolean;
 	scale?: number | string;
 	items: Record<
 		string,
@@ -189,11 +188,7 @@ type OverviewProps = {
 	>[];
 };
 
-export const Overview = ({
-	items,
-	scale = 0.5,
-	showAll = false,
-}: OverviewProps) => {
+export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 	const [filter, setFilter] = useState("");
 	const ts = Date.now(); // Used to create keys to run CSS animations
 	const baseUrl = window.top?.location.href.replace(/-[^-]+--[^-]+$/, ""); // -page--about from url
@@ -243,12 +238,14 @@ export const Overview = ({
 						const file = name.toLowerCase().replace(/[^a-z]+/g, "-"); // Convert to safe url like storybook does
 						const exports = (stories.__namedExportsOrder ||
 							Object.keys(stories)) as unknown as string[];
-						const variants = exports.filter(
-							(key) =>
-								(key === "Default" && !stories[key]?.tags?.includes("!dev")) ||
-								(showAll && key !== "default" && !key.startsWith("__")) ||
-								stories[key]?.parameters?.showInOverview,
-						);
+						const variants = exports.filter((key) => {
+							const isInternal = key.startsWith("__");
+							const isDev = stories[key]?.tags?.includes("!dev");
+							const inOverview =
+								stories[key]?.parameters?.showInOverview ?? key === "Default";
+
+							return !isInternal && inOverview && !isDev;
+						});
 
 						return variants.map((variant) => {
 							const of = stories[variant as keyof typeof stories];

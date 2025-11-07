@@ -14,6 +14,7 @@ const meta = {
 	title: "Designsystem/Law",
 	parameters: {
 		layout: "padded",
+		showInOverview: false,
 	},
 	decorators: [
 		(Story) => {
@@ -61,6 +62,9 @@ const SIDEBAR_STYLE: React.CSSProperties = {
 };
 
 export const Default: Story = {
+	parameters: {
+		showInOverview: false,
+	},
 	render: () => {
 		const [checkedIds, setCheckedIds] = useState<string[]>([]);
 		const lawElement = useRef<HTMLDivElement>(null);
