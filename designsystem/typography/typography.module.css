@@ -23,6 +23,7 @@
 		text-align: end;
 	}
 	.heading svg {
+		display: inline-block; /* Fix Tailwind default */
 		vertical-align: -0.15em;
 	}
 
@@ -31,7 +32,7 @@
 	}
 	.muted,
 	small {
-		font-size: max(0.888888em, 0.75rem);
+		font-size: var(--mtds-font-size-muted);
 	}
 
 	/**

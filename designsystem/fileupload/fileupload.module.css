@@ -1,32 +1,43 @@
 @layer mt.design {
 	.fileupload {
-		--mtdsc-fileupload-padding: var(--ds-size-10) var(--ds-size-5)
-			var(--ds-size-13);
 		--mtdsc-fileupload-background--hover: var(--ds-color-background-tinted);
-		--mtdsc-fileupload-border-radius: var(--ds-border-radius-md);
-		--mtdsc-fileupload-border: var(--ds-border-width-default) dashed
-			var(--ds-color-border-default);
+		--mtdsc-fileupload-padding: var(--ds-size-9) var(--ds-size-5)
+			var(--ds-size-13);
+		--_mtdsc-fileupload-dash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vector-effect='non-scaling-stroke'%3E%3Crect fill='none' stroke-dasharray='6, 6' stroke-dashoffset='0' stroke-width='2.25 ' stroke='black' rx='10' ry='10' x='0' y='0' width='100%25' height='100%25' %3E%3C/rect%3E%3C/svg%3E");
+		--_mtdsc-fileupload-dash--hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vector-effect='non-scaling-stroke'%3E%3Crect fill='none' stroke-dasharray='6, 6' stroke-dashoffset='0' stroke-width='3' stroke='black' rx='10' ry='10' x='0' y='0' width='100%25' height='100%25' %3E%3C/rect%3E%3C/svg%3E");
 
-		border-radius: var(--mtdsc-fileupload-border-radius);
-		border: var(--mtdsc-fileupload-border);
+		border-radius: var(--ds-border-radius-lg);
 		box-sizing: border-box;
 		cursor: pointer;
+		font-weight: normal;
+		overflow: clip;
 		padding: var(--mtdsc-fileupload-padding);
 		place-items: center;
 		position: relative;
 		text-align: center;
-		font-weight: normal;
 		transition: 0.2s background;
 	}
+	.fileupload::before {
+		background: currentColor;
+		content: "";
+		height: 100%;
+		inset: 0;
+		mask: var(--_mtdsc-fileupload-dash);
+		position: absolute;
+		width: 100%;
+	}
 	.fileupload:hover {
+		--_mtdsc-fileupload-dash: var(--_mtdsc-fileupload-dash--hover);
 		background: var(--mtdsc-fileupload-background--hover);
 	}
 	:not([hidden]):is(.fileupload, .fileupload strong, .fileupload small) {
 		display: block;
 	}
-	.fileupload > svg:first-child {
-		width: var(--mtds-icon-size);
+	.fileupload > svg {
+		display: inline-block; /* Fix Tailwind default */
+		vertical-align: middle;
 		height: var(--mtds-icon-size);
+		width: var(--mtds-icon-size);
 	}
 	.fileupload u {
 		text-decoration: underline;

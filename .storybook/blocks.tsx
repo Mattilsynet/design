@@ -58,7 +58,7 @@ export const DoAndDont = (props: FlexProps) => <Flex data-gap="4" {...props} />;
 
 export const Example = ({
 	"data-color": color = "success",
-	aspect: aspectRatio = "19/6",
+	aspect: aspectRatio = "16/9",
 	children,
 	zoom = "100%",
 	text = "",
@@ -352,7 +352,7 @@ export const Graphics = ({
 					.graphics mark { position: absolute }
 					.graphics svg { aspect-ratio: 1 / 1; margin: auto; display: block; box-sizing: border-box; padding: 10% 20%; width: 100%; height: auto }
 					.graphics img { aspect-ratio: 12 / 8; display: block; min-width: calc(100% + 1em); object-fit: cover; margin: -.5em }
-					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--mtds-color-surface-default) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
+					.graphics-bar { background: linear-gradient(to top, transparent 0%, var(--html-bg) 75%); padding-top: var(--mtds-4); position: sticky; top: 0; z-index: 2; }
 					.graphics-bar:empty { display: none }`}
 			</style>
 			<Flex data-gap="4" className="graphics-bar">
