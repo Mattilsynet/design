@@ -1,8 +1,9 @@
+import { MagnifyingGlassMinusIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useEffect, useRef } from "react";
-import type { MTDSAtlasElement } from "../atlas";
+import { useEffect, useRef, useState } from "react";
+import type { L, MTDSAtlasElement } from "../atlas";
+import { Button, Details, Flex, Group, Prose, toast } from "../react";
 import "../atlas";
-import { toast } from "..";
 
 const meta = {
 	title: "Designsystem/Atlas",
@@ -25,13 +26,80 @@ export const Default: Story = {
 
 export const WithView: Story = {
 	render: function Render() {
-		return <mtds-atlas data-view="63.43067801397488, 10.402166438219403, 12" />;
+		return <mtds-atlas data-view="63.431958, 10.397461, 12" />;
+	},
+};
+
+export const WithViewAdvanced: Story = {
+	render: function Render() {
+		const [open, setOpen] = useState<(typeof markers)[number]>();
+		const atlasRef = useRef<MTDSAtlasElement>(null);
+		const markers: {
+			latlng: [number, number];
+			summary: string;
+			content: React.ReactNode;
+		}[] = [
+			{
+				latlng: [59.910815, 10.754078],
+				summary: "Oslo",
+				content: "Informasjon om Oslo",
+			},
+			{
+				latlng: [63.431958, 10.397461],
+				summary: "Trondheim",
+				content: "Informasjon om Trondheim",
+			},
+			{
+				latlng: [60.391449, 5.324119],
+				summary: "Bergen",
+				content: "Informasjon om Bergen",
+			},
+		];
+
+		// Add markers
+		useEffect(() => {
+			markers.forEach((marker) => {
+				atlasRef.current
+					?.addMarker(marker.latlng)
+					.on("click", () => setOpen(marker));
+			});
+		}, []);
+
+		return (
+			<Flex data-items="400" data-nowrap>
+				<mtds-atlas
+					data-view={open ? [...open.latlng, 14] : "fit"}
+					ref={atlasRef}
+				/>
+				<Group data-items="200" data-fixed>
+					<Prose>
+						{markers.map((marker) => (
+							<Details
+								key={marker.summary}
+								open={open?.summary === marker.summary}
+								name="place"
+							>
+								<Details.Summary onClick={() => setOpen(marker)}>
+									{marker.summary}
+								</Details.Summary>
+								<div>{marker.content}</div>
+							</Details>
+						))}
+						<Button onClick={() => setOpen(undefined)}>
+							<MagnifyingGlassMinusIcon /> Zoom ut
+						</Button>
+					</Prose>
+				</Group>
+			</Flex>
+		);
 	},
 };
 
 export const WithColor: Story = {
 	render: function Render() {
-		return <mtds-atlas data-tiles="color" data-view="60.722, 10.985, 16" />;
+		return (
+			<mtds-atlas data-tiles="color" data-view="63.431958, 10.397461, 12" />
+		);
 	},
 };
 
@@ -56,7 +124,7 @@ export const WithMarker: Story = {
 	},
 };
 
-export const WithClickToMarker: Story = {
+export const WithClickToAddMarker: Story = {
 	render: function Render() {
 		const atlasRef = useRef<MTDSAtlasElement>(null);
 
@@ -65,7 +133,7 @@ export const WithClickToMarker: Story = {
 			atlas?.map?.on("click", (e) => {
 				const marker = atlas.addMarker(e.latlng, { draggable: true });
 				marker.on("click", () => marker.remove());
-				toast(`<code>${e.latlng}</code>`);
+				toast(<code>{`${e.latlng}`}</code>);
 			});
 		}, []);
 
@@ -86,29 +154,79 @@ export const WithClickToMarker: Story = {
 	},
 };
 
+const getRandomCoordinates = (view: number[]): L.LatLngTuple[] =>
+	Array.from({ length: 100 }, () => {
+		const offsetLat = (Math.random() - 0.5) * 0.025;
+		const offsetLng = (Math.random() - 0.5) * 0.1;
+		return [view[0] + offsetLat, view[1] + offsetLng];
+	});
+
 export const WithClustering: Story = {
 	render: function Render() {
 		const atlasRef = useRef<MTDSAtlasElement>(null);
+		const view = [60.722, 10.985, 12];
 
 		useEffect(() => {
-			if (!atlasRef.current) return;
 			const atlas = atlasRef.current;
-			const center = atlas?.map?.getCenter() || new atlas.leaflet.LatLng(0, 0);
-
-			for (let i = 0; i < 100; i++) {
-				const offsetLat = (Math.random() - 0.5) * 0.025;
-				const offsetLng = (Math.random() - 0.5) * 0.1;
-				atlas?.addMarker([center.lat + offsetLat, center.lng + offsetLng]);
-			}
+			getRandomCoordinates(view).map((latlng) => atlas?.addMarker(latlng));
 		}, []);
 
-		return (
-			<mtds-atlas
-				data-view="60.722, 10.985, 12"
-				data-cluster="15"
-				ref={atlasRef}
-			/>
-		);
+		return <mtds-atlas data-view={view} data-cluster="15" ref={atlasRef} />;
+	},
+};
+
+// export const WithPopover: Story = {
+// 	render: function Render() {
+// 		const atlasRef = useRef<MTDSAtlasElement>(null);
+
+// 		useEffect(() => {
+// 			const atlas = atlasRef.current;
+// 			// const popover = new L.Popup();
+// 			atlas?.addMarker([60.722, 10.985]).bindPopup("#my-popover");
+// 			// .bindPopup(`<strong>Oslo</strong><br/>Hovedstaden i Norge.`);
+// 			// console.log(marker?.getElement());
+// 			// marker.on('click', () => pop)
+// 			// marker?
+// 		}, []);
+
+// 		return (
+// 			<Prose>
+// 				<p>
+// 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+// 					finibus dui id efficitur lobortis. Aliquam erat volutpat. Pellentesque
+// 					imperdiet consectetur posuere. Donec ultrices libero eu velit egestas
+// 					tincidunt. Suspendisse placerat risus non tellus faucibus, eu
+// 					ultricies augue tempus. Donec vestibulum arcu diam, efficitur auctor
+// 					lectus placerat vel. Nullam aliquam turpis vel mollis pharetra. Etiam
+// 					eget pulvinar dui, imperdiet congue nisi. Nullam vel finibus risus. Ut
+// 					sodales luctus odio quis interdum. Donec ligula quam, viverra vitae
+// 					finibus a, bibendum quis odio. Quisque sodales erat volutpat
+// 					condimentum maximus. Sed eget augue sed ligula congue hendrerit id sed
+// 					turpis. Fusce nec leo fringilla, faucibus turpis a, tristique est. In
+// 					ac semper libero, nec lacinia tellus.
+// 				</p>
+// 				<p>
+// 					Curabitur varius imperdiet ante, ut elementum diam. In hac habitasse
+// 					platea dictumst. Praesent elit odio, suscipit sit amet cursus a,
+// 					suscipit eget ipsum. Praesent sem leo, porta at lorem sed, viverra
+// 					aliquet mauris. Nunc ante nisl, fringilla vel massa non, consectetur
+// 					dapibus ex. Vestibulum ante ipsum primis in faucibus orci luctus et
+// 					ultrices posuere cubilia curae; Phasellus nec lorem justo. Nulla eget
+// 					interdum lectus.
+// 				</p>
+// 				<mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef}>
+// 					<Popover id="my-popover">
+// 						<Button data-commant="close">Hei</Button>
+// 					</Popover>
+// 				</mtds-atlas>
+// 			</Prose>
+// 		);
+// 	},
+// };
+
+export const WithoutScrollZoom: Story = {
+	render: function Render() {
+		return <mtds-atlas data-scrollzoom="false" />;
 	},
 };
 

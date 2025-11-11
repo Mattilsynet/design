@@ -29,9 +29,9 @@ export function debounce<T extends unknown[]>(
 ) {
 	let timer: ReturnType<typeof setTimeout>;
 
-	return (...args: T) => {
+	return function (this: unknown, ...args: T) {
 		clearTimeout(timer);
-		timer = setTimeout(() => callback(...args), delay);
+		timer = setTimeout(() => callback.apply(this, args), delay);
 	};
 }
 

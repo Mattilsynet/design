@@ -147,9 +147,6 @@
 		padding: 0;
 		margin: 0;
 	}
-	menu:where(:has(> li > .button)) > li + li {
-		margin-top: 0.125rem; /* Add 2px space between buttons in menu */
-	}
 	menu > li > .button {
 		border-radius: var(--ds-border-radius-md);
 		font-weight: normal;

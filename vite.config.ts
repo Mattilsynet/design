@@ -16,7 +16,7 @@ const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for rea
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 
 export default defineConfig(({ mode }) =>
-	// IIFE builds can contain dash to enable i.e. `iife-map`
+	// IIFE builds can contain dash to enable i.e. `iife-atlas`
 	mode.startsWith("iife")
 		? {
 				build: {

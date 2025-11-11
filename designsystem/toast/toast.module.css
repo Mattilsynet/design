@@ -122,6 +122,7 @@
 		to {
 			opacity: 0;
 			transform: var(--mtdsc-toast-transform-close);
+			visibility: hidden;
 		}
 	}
 }

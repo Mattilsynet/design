@@ -14,16 +14,15 @@ import { Popover } from '../react';
 <Popover id="pop-jsref" style={{ maxWidth: 500 }}>For eksempel via `document.getElementById` eller via `useRef` i React.</Popover>
 
 ## Kode
-- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) for å oppnå god ytelse og bred funksjonalitet.
-- **Kartlag** leveres av [Kartverket](https://cache.kartverket.no/) for oppnå gjenkjennlige og presise norgeskart.
-- Importer kart via `import "@mattilsynet/design/atlas"`
-- Bruk elementet `<mtds-atlas>` for å få Mattilsynet oppsett av kart - også i React.
-- Ved å <button data-popover="inline" popoverTarget="pop-jsref">hente atlas-elementet via javascript</button> får du tilgang til `mytlasElement.leaflet` (hele [Leaflet biblioteket](https://leafletjs.com/reference.html)) og `atlasElement.map` ([Leaflet.Map](https://leafletjs.com/reference.html#map-factory) objektet).
-<Canvas of={stories.Default} />
+- Bruk elementet `<mtds-atlas>` - også i React
+- Importer `import "@mattilsynet/design/atlas"` eller<br/>`import { L } from "@mattilsynet/design/atlas"` ved behov for tilgang til [Leaflet](https://leafletjs.com/)
+- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) (2.0.0@alpha.1) for å oppnå god ytelse og kompatibilitet
+- **Kartlag** leveres av [Kartverket](https://cache.kartverket.no/) for oppnå gjenkjennlige og presise norgeskart
 
 ## Utsnitt
-- Bruk `data-view="lat, lng, zoom"` for å endre utsnittet kartet starter med
-- Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React) og kall `atlasElement.map.setView([lat, lng], zoom)` for å endre utsnitt programatisk
+- Bruk `data-view="lat, lng, zoom"` for å  kartutsnittet
+- Bruk `data-view="fit"` for å få et utsnitt med alle markører
+- Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React) og kall `atlasElement.setView([lat, lng, zoom])` eller `atlasElement.setView('fit')` for å endre utsnitt programatisk
 <Canvas of={stories.WithView} />
 
 ## Kartlag
@@ -33,15 +32,19 @@ import { Popover } from '../react';
 ## Markører
 - Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React)
 - Legg til markører via `atlasElement.addMarker(latlng, options?)`
-- Funksjonen returnerer [Leaflet markør-objekt](https://leafletjs.com/reference.html#marker) for videre manipulering ved behov
+- Funksjonen returnerer [`L.Marker`](https://leafletjs.com/reference.html#marker) for videre manipulering ved behov
 <Canvas of={stories.WithMarker} />
 
-## Klikk
+## Klikk-for-handling
 - Bruk `data-cursor="pointer"` for å indikere at kartet er klikkbart
 - Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React)
 - Legg til `click` event via `atlasElement.map.on('click', (e) => { /* Your action here */ })`
 <Canvas of={stories.WithClickToMarker} />
 
 ## Clustering
-- Bruk `data-cluster="minium-zoom"` for å aktivere clustring fra et gitt zoom-nivå
+- Bruk `data-cluster="number"` for å aktivere clustring fra til et gitt zoom-nivå og utover
 <Canvas of={stories.WithClustering} />
+
+## Uten scroll-zoom
+- Bruk `data-scroll-zoom="false"` for å deaktivere zooming med scroll-hjul
+<Canvas of={stories.WithoutScrollZoom} />
