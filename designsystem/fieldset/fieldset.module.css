@@ -10,6 +10,7 @@
 	}
 	.fieldset > legend:not([hidden]) {
 		display: contents;
+		/* TODO: Margin when wrapping text */
 	}
 	.fieldset > legend,
 	.fieldset > legend + p {

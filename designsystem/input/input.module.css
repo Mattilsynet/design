@@ -22,6 +22,8 @@
 		);
 	}
 
+	/* TODO: size="fit" */
+
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 	.input[readonly]:disabled {
 		opacity: 1;
