@@ -123,6 +123,10 @@ if (IS_BROWSER && !window.customElements.get("mtds-atlas")) {
 	window.customElements.define("mtds-atlas", MTDSAtlasElement);
 }
 
+// TODO: Style markers
+// TODO: Popover
+// TODO: Synlig label til marker
+
 const fitWhenMarkers = debounce(function (this: MTDSAtlasElement) {
 	this.cluster?.off("layeradd", fitWhenMarkers);
 	if (this.cluster?.getBounds().isValid()) this.setView("fit");
