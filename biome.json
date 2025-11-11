@@ -46,6 +46,7 @@
 				"noSvgWithoutTitle": "off",
 				"useAnchorContent": "off",
 				"useAriaPropsForRole": "off",
+				"useAriaPropsSupportedByRole": "off",
 				"useFocusableInteractive": "off",
 				"useHeadingContent": "off",
 				"useSemanticElements": "off",

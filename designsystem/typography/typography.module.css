@@ -152,7 +152,7 @@
 		display: flex; /* Swap to flex instead of inline-flex to make margins collapse */
 		width: fit-content;
 	}
-	.prose > figure:not([hidden]) {
+	.prose > :where(figure:not([hidden])) {
 		display: grid;
 		gap: var(--ds-size-3);
 		margin: var(--ds-size-8) 0;

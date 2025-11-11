@@ -9,6 +9,7 @@
 		--mtdsc-dialog-box-shadow: var(--ds-box-shadow-lg);
 
 		box-shadow: var(--mtdsc-dialog-box-shadow);
+		outline: none; /* Prevent Chrome outline */
 	}
 	.dialog:not(:modal) {
 		z-index: 1000; /* Needed as non-modal does not use #top-layer */
