@@ -92,6 +92,8 @@
 		--mtds-text-previous: "Forrige";
 		--mtds-text-required: "Må fylles ut";
 
+		--mtds-field-required-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Crect x='0.5em' y='0' height='100%25' rx='5' style='width: calc(100%25 - 0.5em)' /%3E%3C/svg%3E");
+		--mtds-field-required-background: var(--ds-color-info-surface-tinted) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Crect x='0.5em' y='0' height='100%25' rx='5' fill='none' stroke='hsla(207,70%,75%, .45)' stroke-width='1.5' style='width: calc(100%25 - 0.5em)' /%3E%3C/svg%3E");
 		--mtds-font-size-muted: max(0.888888em, 0.75rem);
 
 		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */

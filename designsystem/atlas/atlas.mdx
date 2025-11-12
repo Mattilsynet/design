@@ -35,7 +35,7 @@ import { Popover } from '../react';
 - Funksjonen returnerer [`L.Marker`](https://leafletjs.com/reference.html#marker) for videre manipulering ved behov
 <Canvas of={stories.WithMarker} />
 
-## Klikk-for-handling
+## Klikk-for-markør
 - Bruk `data-cursor="pointer"` for å indikere at kartet er klikkbart
 - Hent Atlas elementet via JS (f.eks `document.getElementById` eller `useRef` i React)
 - Legg til `click` event via `atlasElement.map.on('click', (e) => { /* Your action here */ })`
@@ -44,6 +44,11 @@ import { Popover } from '../react';
 ## Clustering
 - Bruk `data-cluster="number"` for å aktivere clustring fra til et gitt zoom-nivå og utover
 <Canvas of={stories.WithClustering} />
+
+## Popover
+- Legg et Popover element med `id` inni `<mtds-atlas>` med ønsket innhold
+- Bruk `marker.bindPopup('#ID-OF-POPUP')` for å binde sammen markør og popover
+<Canvas of={stories.WithPopover} />
 
 ## Uten scroll-zoom
 - Bruk `data-scroll-zoom="false"` for å deaktivere zooming med scroll-hjul

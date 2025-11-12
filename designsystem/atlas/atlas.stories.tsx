@@ -2,7 +2,16 @@ import { MagnifyingGlassMinusIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import type { L, MTDSAtlasElement } from "../atlas";
-import { Button, Details, Flex, Group, Prose, toast } from "../react";
+import {
+	Button,
+	Details,
+	Flex,
+	Group,
+	Heading,
+	Popover,
+	Prose,
+	toast,
+} from "../react";
 import "../atlas";
 
 const meta = {
@@ -14,6 +23,9 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const LOREM_IPSUM =
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus dui id efficitur lobortis. Aliquam erat volutpat. Pellentesque imperdiet consectetur posuere. Donec ultrices libero eu velit egestas tincidunt. Suspendisse placerat risus non tellus faucibus, eu ultricies augue tempus. Donec vestibulum arcu diam, efficitur auctor lectus placerat vel. Nullam aliquam turpis vel mollis pharetra. Etiam eget pulvinar dui, imperdiet congue nisi. Nullam vel finibus risus. Ut sodales luctus odio quis interdum. Donec ligula quam, viverra vitae finibus a, bibendum quis odio. Quisque sodales erat volutpat condimentum maximus. Sed eget augue sed ligula congue hendrerit id sed turpis. Fusce nec leo fringilla, faucibus turpis a, tristique est. In ac semper libero, nec lacinia tellus.";
 
 export const Default: Story = {
 	parameters: {
@@ -175,58 +187,56 @@ export const WithClustering: Story = {
 	},
 };
 
-// export const WithPopover: Story = {
-// 	render: function Render() {
-// 		const atlasRef = useRef<MTDSAtlasElement>(null);
+export const WithPopover: Story = {
+	render: function Render() {
+		const atlasRef = useRef<MTDSAtlasElement>(null);
+		const [content, setContent] = useState<React.ReactNode>();
+		const markers: { latlng: L.LatLngTuple; content: React.ReactNode }[] = [
+			{ latlng: [60.722, 10.985], content: "Min nydelige popover" },
+			{
+				latlng: [60.721, 10.982],
+				content: (
+					<Prose>
+						<Heading>Avansert popover</Heading>
+						<p>Innhold</p>
+						<Button data-variant="secondary" popoverTargetAction="hide">
+							Lukk
+						</Button>
+					</Prose>
+				),
+			},
+		];
 
-// 		useEffect(() => {
-// 			const atlas = atlasRef.current;
-// 			// const popover = new L.Popup();
-// 			atlas?.addMarker([60.722, 10.985]).bindPopup("#my-popover");
-// 			// .bindPopup(`<strong>Oslo</strong><br/>Hovedstaden i Norge.`);
-// 			// console.log(marker?.getElement());
-// 			// marker.on('click', () => pop)
-// 			// marker?
-// 		}, []);
+		useEffect(() => {
+			const atlas = atlasRef.current;
 
-// 		return (
-// 			<Prose>
-// 				<p>
-// 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-// 					finibus dui id efficitur lobortis. Aliquam erat volutpat. Pellentesque
-// 					imperdiet consectetur posuere. Donec ultrices libero eu velit egestas
-// 					tincidunt. Suspendisse placerat risus non tellus faucibus, eu
-// 					ultricies augue tempus. Donec vestibulum arcu diam, efficitur auctor
-// 					lectus placerat vel. Nullam aliquam turpis vel mollis pharetra. Etiam
-// 					eget pulvinar dui, imperdiet congue nisi. Nullam vel finibus risus. Ut
-// 					sodales luctus odio quis interdum. Donec ligula quam, viverra vitae
-// 					finibus a, bibendum quis odio. Quisque sodales erat volutpat
-// 					condimentum maximus. Sed eget augue sed ligula congue hendrerit id sed
-// 					turpis. Fusce nec leo fringilla, faucibus turpis a, tristique est. In
-// 					ac semper libero, nec lacinia tellus.
-// 				</p>
-// 				<p>
-// 					Curabitur varius imperdiet ante, ut elementum diam. In hac habitasse
-// 					platea dictumst. Praesent elit odio, suscipit sit amet cursus a,
-// 					suscipit eget ipsum. Praesent sem leo, porta at lorem sed, viverra
-// 					aliquet mauris. Nunc ante nisl, fringilla vel massa non, consectetur
-// 					dapibus ex. Vestibulum ante ipsum primis in faucibus orci luctus et
-// 					ultrices posuere cubilia curae; Phasellus nec lorem justo. Nulla eget
-// 					interdum lectus.
-// 				</p>
-// 				<mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef}>
-// 					<Popover id="my-popover">
-// 						<Button data-commant="close">Hei</Button>
-// 					</Popover>
-// 				</mtds-atlas>
-// 			</Prose>
-// 		);
-// 	},
-// };
+			markers.forEach(({ latlng, content }) => {
+				atlas
+					?.addMarker(latlng)
+					.bindPopup("#my-popover")
+					.on("popupopen", () => setContent(content));
+			});
+		}, []);
+
+		return (
+			<Prose>
+				<mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef}>
+					<Popover id="my-popover">{content}</Popover>
+				</mtds-atlas>
+			</Prose>
+		);
+	},
+};
 
 export const WithoutScrollZoom: Story = {
 	render: function Render() {
-		return <mtds-atlas data-scrollzoom="false" />;
+		return (
+			<Prose>
+				<p>{LOREM_IPSUM}</p>
+				<mtds-atlas data-scrollzoom="false" />
+				<p>{LOREM_IPSUM}</p>
+			</Prose>
+		);
 	},
 };
 
