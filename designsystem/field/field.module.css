@@ -36,15 +36,12 @@
 		vertical-align: -0.15em;
 	}
 	.field:has(:required, [aria-required="true"]) label::after {
-		background: var(--ds-color-info-surface-tinted);
-		border-radius: var(--ds-border-radius-md);
-		border: var(--ds-border-width-default) solid
-			var(--ds-color-info-border-subtle);
+		background: var(--mtds-field-required-background);
 		color: var(--ds-color-info-text-default);
-		content: var(--mtds-text-required);
+		content: "\2002" var(--mtds-text-required); /* en-space to break together with last word */
 		font-size: 0.75em;
 		font-weight: normal;
-		margin-left: 1ch;
+		mask: var(--mtds-field-required-mask);
 		padding: 0.18em var(--ds-size-2);
 		vertical-align: 0.1em;
 		white-space: nowrap;

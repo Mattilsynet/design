@@ -52,6 +52,8 @@ slot {
 	box-sizing: border-box;
 	font: inherit;
 	outline: 0;
+	position: relative;
+	z-index: 1; /* Ensure <slot> is always on top */
 }
 .leaflet-control-attribution {
 	font-size: 12px;

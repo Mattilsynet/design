@@ -38,7 +38,7 @@
 	:where(.popover:not([hidden])) {
 		display: block;
 	}
-	.popover:not(:popover-open) {
+	.popover:not(:popover-open):not([data-popover="open"]) {
 		display: none;
 		opacity: 0;
 		transform: translateY(-2px);
