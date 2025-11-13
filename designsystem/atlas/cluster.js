@@ -126,7 +126,7 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		}
 
 		this._addLayer(layer, this._maxZoom);
-		this.fire("layeradd", { layer });
+		this.fire("layeradd", { layer, propagatedFrom: layer });
 
 		// Refresh bounds and weighted positions.
 		this._topClusterLevel._recalculateBounds();

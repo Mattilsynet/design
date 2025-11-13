@@ -1,6 +1,7 @@
+/* NOTE: Using --mtds- not --mtds- since we're inside shadow dom */
 :host(:not([hidden])) {
 	display: grid;
-	gap: var(--ds-size-6);
+	gap: var(--mtds-6);
 }
 
 [data-event-proxy] {
@@ -31,7 +32,7 @@
 }
 
 .axis {
-	font-size: var(--ds-body-sm-font-size);
+	font-size: var(--mtds-body-sm-font-size);
 	display: grid;
 	gap: var(--mtdsc-chart-axis-gap);
 	grid-template-columns: fit-content(7em) 1fr;
@@ -212,7 +213,7 @@
 	align-self: end;
 	background: var(--color);
 	border: var(--mtdsc-chart-border-color) solid var(--mtdsc-chart-border-width);
-	border-radius: var(--ds-border-radius-sm) var(--ds-border-radius-sm) 0 0;
+	border-radius: var(--mtds-border-radius-sm) var(--mtds-border-radius-sm) 0 0;
 	box-sizing: border-box;
 	height: var(--size);
 	width: 100%;
@@ -221,12 +222,12 @@
 .linePoint:focus-visible {
 	box-shadow: var(--dsc-focus-boxShadow);
 	outline: var(--dsc-focus-outline);
-	outline-offset: var(--ds-border-width-focus);
+	outline-offset: var(--mtds-border-width-focus);
 	z-index: 2; /* z-index to place on top when outlined */
 }
 
 :host([data-variant|="bar"]) .bar {
-	border-radius: 0 var(--ds-border-radius-sm) var(--ds-border-radius-sm) 0;
+	border-radius: 0 var(--mtds-border-radius-sm) var(--mtds-border-radius-sm) 0;
 	width: var(--size);
 	height: 100%;
 	align-self: start;
@@ -304,9 +305,9 @@
 }
 
 .linePoint {
-	--size: var(--ds-size-2);
+	--size: var(--mtds-2);
 	background: var(--color);
-	border-radius: var(--ds-border-radius-full);
+	border-radius: var(--mtds-border-radius-full);
 	border: var(--mtdsc-chart-border-width) solid var(--mtdsc-chart-border-color);
 	box-sizing: border-box;
 	height: var(--size);
@@ -325,7 +326,7 @@
 }
 .linePoint::before {
 	content: "";
-	inset: calc(var(--ds-size-3) * -1); /* Increase click surface */
+	inset: calc(var(--mtds-3) * -1); /* Increase click surface */
 	position: absolute;
 }
 
@@ -340,24 +341,24 @@
 	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--ds-size-2) var(--ds-size-5);
+	gap: var(--mtds-2) var(--mtds-5);
 	justify-content: center;
 }
 .legend {
 	display: flex;
 	align-items: center;
-	gap: var(--ds-size-2);
+	gap: var(--mtds-2);
 }
 .legend::before {
 	background: var(--color);
-	border-radius: var(--ds-border-radius-full);
+	border-radius: var(--mtds-border-radius-full);
 	border: var(--mtdsc-chart-border-color) solid var(--mtdsc-chart-border-width);
 	box-sizing: border-box;
 	content: "";
 	display: inline-block;
-	height: var(--ds-size-5);
+	height: var(--mtds-5);
 	vertical-align: middle;
-	width: var(--ds-size-5);
+	width: var(--mtds-5);
 }
 
 :host([data-legend="false"]) .legends,

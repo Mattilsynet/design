@@ -18,16 +18,13 @@ const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 const FIELDS = IS_BROWSER ? document.getElementsByClassName(CSS_FIELD) : [];
 
-const getText = (style: CSSStyleDeclaration, key: string) =>
-	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
-
 function handleFieldMutation(validate?: boolean) {
 	let firstInvalid: HTMLInputElement | null = null;
 	for (const field of FIELDS)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
 			const descriptions: Element[] = [];
-			const validationMessages: Element[] = [];
+			const validationMsg: Element[] = [];
 			let combobox: UHTMLComboboxElement | null = null;
 			let input: HTMLInputElement | null = null;
 			let valid = true;
@@ -39,7 +36,7 @@ function handleFieldMutation(validate?: boolean) {
 				else if (el.hasAttribute("data-description")) descriptions.push(el);
 				else if (el.classList.contains(CSS_VALIDATION)) {
 					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
-					validationMessages.push(el);
+					validationMsg.push(el);
 					descriptions.unshift(el);
 				} else if (el instanceof HTMLParagraphElement)
 					descriptions.some((desc) => desc.contains(el)) ||
@@ -48,11 +45,17 @@ function handleFieldMutation(validate?: boolean) {
 
 			if (input) {
 				for (const label of labels) label.htmlFor = useId(input);
-				if (validate && attr(field, "data-validation") === "form") {
-					valid = input.matches(":valid");
+				if (
+					(validate || combobox?.control?.validity.customError) && // Live re-evaluate combobox if invalid to correct validity before form sumbit
+					attr(field, "data-validation") === "form"
+				) {
+					valid = combobox?.hasAttribute("data-required")
+						? !!combobox?.items.length
+						: input.validity.valid;
+
 					if (!firstInvalid && !valid) firstInvalid = input;
-					for (const el of validationMessages)
-						attr(el, "hidden", valid ? "" : null);
+					for (const el of validationMsg) attr(el, "hidden", valid ? "" : null);
+					combobox?.control?.setCustomValidity(valid ? "" : "Invalid"); // Combobox does not have native validation
 				}
 				renderCombobox(combobox);
 				renderCounter(input);
@@ -62,6 +65,7 @@ function handleFieldMutation(validate?: boolean) {
 			}
 		}
 	firstInvalid?.focus(); // Move focus to first invalid field if doing validation
+	return firstInvalid;
 }
 
 // iOS does not support field-sizing: content, so we need to manually resize
@@ -74,6 +78,9 @@ function renderTextareaSize(textarea: Element) {
 		);
 	}
 }
+
+const getText = (style: CSSStyleDeclaration, key: string) =>
+	style.getPropertyValue(`--mtds-text-${key}`)?.slice(1, -1) || ""; // slice to trim quotes
 
 // Setup translations from CSS custom properties
 function renderCombobox(el: UHTMLComboboxElement | null) {
@@ -148,11 +155,11 @@ function handleFieldInput(event: Event) {
 function handleFieldValdiation(event: Event) {
 	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
 	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
-	handleFieldMutation(true); // Update state
+	if (handleFieldMutation(true)) event.preventDefault(); // Prevent submit if invalid fields found
 }
 
 onLoaded(() => [
-	onMutation(() => handleFieldMutation()),
+	onMutation(() => handleFieldMutation(), "class"),
 	on(document, "input", handleFieldInput, QUICK_EVENT),
 	on(document, "toggle", handleFieldToggle, QUICK_EVENT), // Use capture since toggle does not bubble
 	on(document, "invalid,submit", handleFieldValdiation, true), // Use capture as invalid and submit does not bubble

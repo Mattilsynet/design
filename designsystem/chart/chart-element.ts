@@ -1,5 +1,14 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, MTDSElement, off, on, tag } from "../utils";
+import {
+	attr,
+	IS_BROWSER,
+	MTDSElement,
+	off,
+	on,
+	onMutation,
+	onResize,
+	tag,
+} from "../utils";
 import css from "./chart.css?raw";
 import { toAxis } from "./chart-axis";
 import { toBars } from "./chart-bars";
@@ -21,8 +30,8 @@ const TOOLTIP = IS_BROWSER
 	: null;
 
 export class MTDSChartElement extends MTDSElement {
-	_observer?: MutationObserver; // Using underscore instead of # for backwards compatibility
-	_resize?: ResizeObserver;
+	#unmutate?: () => void;
+	#unresize?: () => void;
 
 	static get observedAttributes() {
 		return ["data-variant", "data-aspect"]; // Using ES2015 syntax for backwards compatibility
@@ -32,17 +41,10 @@ export class MTDSChartElement extends MTDSElement {
 		this.attachShadow({ mode: "open" });
 	}
 	connectedCallback() {
-		this._resize = new ResizeObserver(this.handleResize.bind(this));
-		this._resize.observe(this);
-		this._observer = new MutationObserver(() =>
-			this.attributeChangedCallback(),
-		);
-		this._observer.observe(this, {
-			attributeFilter: ["data-tooltip"],
-			attributes: true,
-			characterData: true,
-			childList: true,
-			subtree: true,
+		this.#unresize = onResize(() => this.handleResize(), this);
+		this.#unmutate = onMutation(() => this.attributeChangedCallback(), {
+			attr: "data-tooltip",
+			root: this,
 		});
 		this.attributeChangedCallback(); // Initial setup
 		on(this, EVENTS, this);
@@ -50,9 +52,9 @@ export class MTDSChartElement extends MTDSElement {
 	disconnectedCallback() {
 		if (TOOLTIP) TOOLTIP.hidden = true;
 		off(this, EVENTS, this);
-		this._resize?.disconnect();
-		this._observer?.disconnect();
-		this._observer = this._resize = undefined;
+		this.#unresize?.();
+		this.#unmutate?.();
+		this.#unmutate = this.#unresize = undefined;
 	}
 	attributeChangedCallback() {
 		Array.from(this.shadowRoot?.children || []).map((el) => el.remove()); // Clear shadowRoot

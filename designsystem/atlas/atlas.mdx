@@ -16,7 +16,7 @@ import { Popover } from '../react';
 ## Kode
 - Bruk elementet `<mtds-atlas>` - også i React
 - Importer `import "@mattilsynet/design/atlas"` eller<br/>`import { L } from "@mattilsynet/design/atlas"` ved behov for tilgang til [Leaflet](https://leafletjs.com/)
-- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) (2.0.0@alpha.1) for å oppnå god ytelse og kompatibilitet
+- **Karttegning** leveres av [Leaflet](https://leafletjs.com/) ([2.0.0@alpha.1](https://leafletjs.com/2025/05/18/leaflet-2.0.0-alpha.html)) i [EPSG:4326 koordinatsystem](https://epsg.io/4326)
 - **Kartlag** leveres av [Kartverket](https://cache.kartverket.no/) for oppnå gjenkjennlige og presise norgeskart
 
 ## Utsnitt
@@ -26,7 +26,7 @@ import { Popover } from '../react';
 <Canvas of={stories.WithView} />
 
 ## Kartlag
-- Bruk `data-tiles="grayscale | color"` for å endre kartlag
+- Bruk `data-tiles="gray | color"` for å endre kartlag
 <Canvas of={stories.WithColor} />
 
 ## Markører
@@ -43,6 +43,7 @@ import { Popover } from '../react';
 
 ## Clustering
 - Bruk `data-cluster="number"` for å aktivere clustring fra til et gitt zoom-nivå og utover
+- Bruk `data-cluster="true"` dersom du har datapunker som kan stå på samme posisjon
 <Canvas of={stories.WithClustering} />
 
 ## Popover

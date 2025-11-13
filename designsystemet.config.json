@@ -1,0 +1,18 @@
+{
+	"outDir": "design-tokens",
+	"themes": {
+		"mattilsynet": {
+			"colors": {
+				"main": {},
+				"support": {
+					"inverted": "#E2F1DF"
+				},
+				"neutral": "#5F5F5F"
+			},
+			"borderRadius": 5,
+			"typography": {
+				"fontFamily": "Mattilsynet Sans Variable"
+			}
+		}
+	}
+}
