@@ -72,7 +72,7 @@ export const WithViewAdvanced: Story = {
 		useEffect(() => {
 			markers.forEach((marker) => {
 				atlasRef.current
-					?.addMarker(marker.latlng)
+					?.addMarker(marker.latlng, { title: marker.summary })
 					.on("click", () => setOpen(marker));
 			});
 		}, []);
@@ -129,7 +129,7 @@ export const WithMarker: Story = {
 
 		useEffect(() => {
 			const atlas = atlasRef.current;
-			atlas?.addMarker([60.722, 10.985]);
+			atlas?.addMarker([60.722, 10.985], { title: "Min markør" });
 		}, []);
 
 		return <mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef} />;
@@ -143,7 +143,10 @@ export const WithClickToAddMarker: Story = {
 		useEffect(() => {
 			const atlas = atlasRef.current;
 			atlas?.map?.on("click", (e) => {
-				const marker = atlas.addMarker(e.latlng, { draggable: true });
+				const marker = atlas.addMarker(e.latlng, {
+					title: "Markør",
+					draggable: true,
+				});
 				marker.on("click", () => marker.remove());
 				toast(<code>{`${e.latlng}`}</code>);
 			});
@@ -180,17 +183,19 @@ export const WithClustering: Story = {
 
 		useEffect(() => {
 			const atlas = atlasRef.current;
-			getRandomCoordinates(view).map((latlng) => atlas?.addMarker(latlng));
+			getRandomCoordinates(view).map((latlng, index) =>
+				atlas?.addMarker(latlng, { title: `Markør ${index + 1}` }),
+			);
 		}, []);
 
-		return <mtds-atlas data-view={view} data-cluster="15" ref={atlasRef} />;
+		return <mtds-atlas data-view={view} data-cluster="true" ref={atlasRef} />;
 	},
 };
 
 export const WithPopover: Story = {
 	render: function Render() {
 		const atlasRef = useRef<MTDSAtlasElement>(null);
-		const [content, setContent] = useState<React.ReactNode>();
+		const [open, setOpen] = useState<(typeof markers)[number]>();
 		const markers: { latlng: L.LatLngTuple; content: React.ReactNode }[] = [
 			{ latlng: [60.722, 10.985], content: "Min nydelige popover" },
 			{
@@ -209,22 +214,42 @@ export const WithPopover: Story = {
 
 		useEffect(() => {
 			const atlas = atlasRef.current;
-
-			markers.forEach(({ latlng, content }) => {
+			markers.forEach((marker) => {
 				atlas
-					?.addMarker(latlng)
+					?.addMarker(marker.latlng, { title: "Markør med popover" })
 					.bindPopup("#my-popover")
-					.on("popupopen", () => setContent(content));
+					.on("popupopen", () => setOpen(marker));
 			});
 		}, []);
 
 		return (
 			<Prose>
 				<mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef}>
-					<Popover id="my-popover">{content}</Popover>
+					<Popover id="my-popover">{open?.content}</Popover>
 				</mtds-atlas>
 			</Prose>
 		);
+	},
+};
+
+export const WithTooltip: Story = {
+	render: function Render() {
+		const atlasRef = useRef<MTDSAtlasElement>(null);
+		const markers: { latlng: L.LatLngTuple; tooltip: string }[] = [
+			{ latlng: [60.722, 10.985], tooltip: "Tooltip 1" },
+			{ latlng: [60.721, 10.982], tooltip: "Tooltip 2" },
+		];
+
+		useEffect(() => {
+			const atlas = atlasRef.current;
+			markers.forEach(({ latlng, tooltip }, index) => {
+				atlas
+					?.addMarker(latlng, { title: `Markør ${index + 1}` })
+					.bindTooltip(tooltip);
+			});
+		}, []);
+
+		return <mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef} />;
 	},
 };
 
@@ -239,6 +264,23 @@ export const WithoutScrollZoom: Story = {
 		);
 	},
 };
+
+// ts-expect-error just testing
+// window.top.getGeoNorgeAdresser = getGeoNorgeAdresser;
+
+// export const WithLatLng: Story = {
+// 	render: function Render() {
+// 		const atlasRef = useRef<MTDSAtlasElement>(null);
+
+// 		return (
+// 			<Prose>
+// 				<mtds-atlas data-view="60.722, 10.985, 16" ref={atlasRef}>
+// 					<Tag data-latlng="60.722, 10.985">Hei</Tag>
+// 				</mtds-atlas>
+// 			</Prose>
+// 		);
+// 	},
+// };
 
 // data-layers="bydd,slam,https://url.no" // Ting fra matgeo
 // data-view="63.43067801397488, 10.402166438219403, 13" // Trondheim

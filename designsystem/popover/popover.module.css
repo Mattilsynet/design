@@ -16,6 +16,7 @@
 		box-shadow: var(--mtdsc-popover-box-shadow);
 		box-sizing: border-box;
 		color: var(--mtdsc-popover-color); /* Needed to overwrite browser default */
+		display: block;
 		inset: 0 auto auto 0;
 		list-style: none;
 		margin: 0;
@@ -25,23 +26,21 @@
 		position: absolute;
 		transition-behavior: allow-discrete;
 		transition-duration: 0.2s;
-		transition-property: display, opacity, transform, visibility;
+		transition-property: display, opacity, margin-top, visibility;
 		width: max-content;
 		z-index: 9999;
 
 		@starting-style {
 			opacity: 0;
-			transform: translateY(-2px);
+			margin-top: -2px;
 			visibility: hidden;
 		}
 	}
-	:where(.popover:not([hidden])) {
-		display: block;
-	}
-	.popover:not(:popover-open):not([data-popover="open"]) {
+	.popover[hidden],
+	.popover[popover]:not(:popover-open) {
 		display: none;
 		opacity: 0;
-		transform: translateY(-2px);
+		margin-top: -2px;
 		visibility: hidden;
 	}
 	.popover:is(menu),

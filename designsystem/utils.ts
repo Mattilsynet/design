@@ -13,16 +13,6 @@ export const QUICK_EVENT = { capture: true, passive: true };
 export const IS_BROWSER =
 	typeof window !== "undefined" && typeof document !== "undefined";
 
-// TODO: Documentation for prettyNumber
-let INTL_NUM: Intl.NumberFormat | undefined;
-export function prettyNumber(number: number | string) {
-	if (!INTL_NUM)
-		INTL_NUM = new Intl.NumberFormat(
-			(IS_BROWSER && attr(document.documentElement, "lang")) || "no",
-		);
-	return INTL_NUM.format(Number(number));
-}
-
 export function debounce<T extends unknown[]>(
 	callback: (...args: T) => void,
 	delay: number,
@@ -175,12 +165,16 @@ export function anchorPosition(
  * Speed up MutationObserver by debouncing and only running when page is visible
  * @return new MutaionObserver
  */
-export function onMutation(callback: MutationCallback, ...attrs: string[]) {
+export function onMutation(
+	callback: (observer: MutationObserver) => void,
+	attr: string | { attr: string; root?: HTMLElement; delay?: number },
+) {
 	let queue = 0;
-	const onFrame = () => setTimeout(onTimer, 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
+	const config = typeof attr === "string" ? { attr } : attr;
+	const onFrame = () => setTimeout(onTimer, config?.delay ?? 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
 	const onTimer = () => {
 		if (!IS_BROWSER) return cleanup(); // If using JSDOM, the document might have been removed
-		callback([], observer);
+		callback(observer);
 		observer.takeRecords(); // Clear records to avoid running callback multiple times
 		queue = 0;
 	};
@@ -195,14 +189,21 @@ export function onMutation(callback: MutationCallback, ...attrs: string[]) {
 		}
 	};
 
-	observer.observe(document.documentElement, {
-		attributeFilter: attrs,
+	observer.observe(config?.root || document.documentElement, {
+		attributeFilter: [config.attr],
 		attributes: true,
 		childList: true,
 		subtree: true,
 	});
 
+	callback(observer); // Initial run
 	return cleanup;
+}
+
+export function onResize(callback: ResizeObserverCallback, element: Element) {
+	const resize = new ResizeObserver(callback);
+	resize.observe(element);
+	return () => resize.disconnect();
 }
 
 /**
@@ -246,7 +247,7 @@ export const toCustomElementProps = (
  */
 export const tag = <TagName extends keyof HTMLElementTagNameMap>(
 	tagName: TagName,
-	attrs?: Record<string, string | null>,
+	attrs?: Record<string, string | null> | null,
 	text?: string | null,
 ): HTMLElementTagNameMap[TagName] => {
 	const el = document.createElement(tagName);

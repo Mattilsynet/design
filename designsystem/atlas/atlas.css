@@ -1,39 +1,23 @@
+/* NOTE: Using --mtds- not --mtds- since we're inside shadow dom */
 :host {
-	--mtdsc-atlas-cluster-size: var(--mtds-8);
 	--mtdsc-atlas-background: #fbfbfb;
-	--mtdsc-atlas-border-color: var(--ds-color-border-subtle);
-	--mtdsc-atlas-border: var(--ds-border-width-default) solid
-		var(--mtdsc-atlas-border-color);
+	--mtdsc-atlas-border: var(--mtds-border-width-default) solid
+		var(--mtds-color-border-subtle);
 
-	border-radius: var(--ds-border-radius-md);
+	border-radius: var(--mtds-border-radius-md);
 	aspect-ratio: 2;
 	overflow: clip;
 	position: relative;
-	user-select: none;
 }
 :host(:not([hidden])) {
-	display: grid;
+	display: block;
 }
 :host([data-cursor="pointer"]) .leaflet-grab {
 	cursor: pointer;
 }
-.leaflet-tile-container {
-	filter: grayscale(1) contrast(0.75) brightness(1.15);
-}
-:host([data-tiles="color"]) .leaflet-tile-container {
-	filter: grayscale(0.2);
-}
-:host([data-tiles="color"]) {
-	--mtdsc-atlas-background: #e5fcfd;
-}
-:host:has(.leaflet-container:focus-visible) {
-	box-shadow: var(--dsc-focus-boxShadow);
-	outline: var(--dsc-focus-outline);
-	outline-offset: var(--ds-border-width-focus);
-}
 slot {
-	display: grid;
-	inset: var(--mtds-3);
+	display: block;
+	inset: 0;
 	pointer-events: none; /* Ensure slot does not stop pointer from reaching leaflet */
 	position: absolute;
 	z-index: 2;
@@ -41,45 +25,113 @@ slot {
 ::slotted(*) {
 	pointer-events: all; /* But let children of slot stop pointer from reaching leaflet */
 }
-.leaflet-div-icon {
-	background: none;
-	border: 0;
+
+/* Focus */
+.leaflet-control-zoom a:focus-visible,
+:host:has(.leaflet-container:focus-visible) {
+	box-shadow: var(--dsc-focus-boxShadow);
+	outline: var(--dsc-focus-outline);
+	outline-offset: var(--mtds-border-width-focus);
 }
+
+/* Map and tiles */
 .leaflet-container {
 	background: var(--mtdsc-atlas-background);
 	border-radius: inherit;
 	border: var(--mtdsc-atlas-border);
 	box-sizing: border-box;
 	font: inherit;
+	height: 100%;
 	outline: 0;
 	position: relative;
 	z-index: 1; /* Ensure <slot> is always on top */
 }
+.leaflet-tile-container {
+	filter: grayscale(1) contrast(0.75) brightness(1.15);
+	transition: filter 0.5s;
+}
+:host([data-tiles="color"]) {
+	--mtdsc-atlas-background: #e5fcfd;
+}
+:host([data-tiles="color"]) .leaflet-tile-container {
+	filter: grayscale(0.2);
+}
+
+/* Controls */
 .leaflet-control-attribution {
 	font-size: 12px;
-	border-top-left-radius: var(--ds-border-radius-md);
+	border-top-left-radius: var(--mtds-border-radius-md);
+}
+.leaflet-control-zoom {
+	border-radius: var(--mtds-border-radius-md);
+	border: 1px solid var(--mtds-color-border-default);
+}
+.leaflet-control-zoom a {
+	border-color: inherit;
+	background: var(--mtds-color-surface-default);
+	color: var(--mtds-color-text-default);
+	display: flex;
+	height: var(--mtds-10);
+	outline: 0;
+	place-content: center;
+	place-items: center;
+	transition: 0.2s;
+	width: var(--mtds-10);
+}
+.leaflet-control-zoom a:first-child {
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+.leaflet-control-zoom a:last-child {
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+.leaflet-control-zoom a:hover {
+	background: var(--mtds-color-surface-hover);
+}
+.leaflet-control-zoom a:active {
+	background: var(--mtds-color-surface-active);
 }
 
-.map-pin rect {
-	fill: var(--ds-color-base-contrast-default);
+/* Markers */
+.leaflet-tooltip {
+	background: var(--mtds-color-surface-default);
+	border-radius: var(--mtds-border-radius-md);
+	box-shadow: var(--mtds-box-shadow-sm);
+	color: var(--mtds-color-text-default);
+	padding: var(--mtds-1) var(--mtds-2);
 }
-.map-pin path {
-	fill: var(--ds-color-base-default);
+.leaflet-marker-icon {
+	background: none;
+	border: 0;
 }
-
-.marker-cluster {
+.leaflet-marker-icon rect {
+	fill: var(--mtds-color-base-contrast-default);
+}
+.leaflet-marker-icon path {
+	fill: var(--mtds-color-base-default);
+	stroke: var(--mtds-color-base-contrast-default);
+	vector-effect: non-scaling-stroke;
+}
+.leaflet-cluster-icon {
 	background-color: var(--mtds-color-base-default);
 	border-radius: 100%;
+	border: 1px solid;
+	box-sizing: border-box;
 	color: var(--mtds-color-base-contrast-default);
+	display: flex;
+	font-size: var(--mtds-body-xs-font-size);
 	font-weight: 500;
-	font-size: var(--ds-body-xs-font-size);
-	line-height: var(--mtdsc-atlas-cluster-size);
-	text-align: center;
-
-	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
-	width: var(--mtdsc-atlas-cluster-size) !important;
-	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
-	height: var(--mtdsc-atlas-cluster-size) !important;
-	/* biome-ignore lint/complexity/noImportantStyles: need to overwrite style attribute */
-	margin: calc(var(--mtdsc-atlas-cluster-size) / -2) !important;
+	place-content: center;
+	place-items: center;
 }
+/* .leaflet-marker-icon::after {
+	aspect-ratio: 1;
+	background: #fff;
+	border-radius: 50% 50% 0 50%;
+	border: 1px solid red;
+	content: "";
+	inset: 0 0 auto;
+	position: absolute;
+	rotate: 45deg;
+} */

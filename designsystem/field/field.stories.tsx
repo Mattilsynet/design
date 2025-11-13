@@ -313,6 +313,25 @@ export const WithValidationForm: Story = {
 					Må fylles ut
 				</div>
 			</div>
+			<div className={styles.field} data-validation="form">
+				<label>Ledetekst</label>
+				<u-combobox data-required>
+					<input type="text" className={styles.input} />
+					<del role="img" aria-label="Fjern tekst"></del>
+					<u-datalist>
+						<u-option value="Sogndal">Sogndal</u-option>
+						<u-option value="Oslo">Oslo</u-option>
+						<u-option value="Brønnøysund">Brønnøysund</u-option>
+						<u-option value="Stavanger">Stavanger</u-option>
+						<u-option value="Trondheim">Trondheim</u-option>
+						<u-option value="Bergen">Bergen</u-option>
+						<u-option value="Lillestrøm">Lillestrøm</u-option>
+					</u-datalist>
+				</u-combobox>
+				<div className={styles.validation} hidden>
+					Må fylles ut
+				</div>
+			</div>
 			<button type="submit" className={styles.button} data-variant="primary">
 				Send inn
 			</button>
@@ -382,7 +401,7 @@ export const WithCombobox: Story = {
 		<div className={styles.field}>
 			<label>Med forslag</label>
 			<u-combobox>
-				<Input />
+				<input type="text" className={styles.input} />
 				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
@@ -408,7 +427,7 @@ export const WithComboboxMultiple: Story = {
 			<label>Med forslag flervalg</label>
 			<u-combobox data-multiple>
 				<data value="Sogndal">Sogndal</data>
-				<Input />
+				<input type="text" className={styles.input} />
 				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
