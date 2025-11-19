@@ -15,8 +15,10 @@ import type {
 } from "../react-types";
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";
+import { Validation } from "../validation/validation";
 
 type FieldBaseProps = {
+	"data-validation"?: "form" | "false" | false;
 	count?: number;
 	description?: React.ReactNode;
 	error?: React.ReactNode; // Kept for backwards compatibility
@@ -47,6 +49,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 >(
 	{
 		"data-size": size,
+		"data-validation": validationType,
 		as,
 		className,
 		count,
@@ -58,16 +61,17 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 		prefix,
 		style,
 		suffix,
-		validation,
+		validation: validationContent,
 		...rest
 	}: FieldProps<As>,
 	ref?: PolymorphicRef<As>,
 ) {
 	const Tag = as || "div";
 	const affixes = !!suffix || !!prefix;
-	const valid = validation || error; // error kept for backwards compatibility
+	const validation = validationContent || error; // error kept for backwards compatibility
 	const shared = {
 		"data-size": size,
+		"data-validation": validationType,
 		className: clsx(styles.field, className),
 		style,
 	};
@@ -114,10 +118,8 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 					{...rest}
 				/>
 			)}
-			{!!valid && (
-				<div suppressHydrationWarning className={styles.validation}>
-					{valid}
-				</div>
+			{!!validation && (
+				<Validation hidden={validationType === "form"}>{validation}</Validation>
 			)}
 			{!!count && <p suppressHydrationWarning data-count={count} />}
 		</div>
@@ -194,9 +196,10 @@ export type FieldComboboxProps = Omit<
 const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 	function FieldCombobox(
 		{
-			"data-multiple": multiple,
-			"data-nofilter": nofilter,
+			"aria-required": required,
 			"data-position": position,
+			"data-nofilter": nofilter,
+			"data-multiple": multiple,
 			onAfterChange,
 			onAfterSelect,
 			onBeforeChange,
@@ -274,11 +277,12 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 				{children || (
 					<>
 						<Input
-							name={name}
-							type={type}
+							aria-required={required}
 							disabled={disabled}
-							readOnly={readOnly}
+							name={name}
 							placeholder={placeholder}
+							readOnly={readOnly}
+							type={type}
 						/>
 						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
 					</>

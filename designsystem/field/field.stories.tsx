@@ -160,7 +160,7 @@ export const React: Story = {
 				helpText="Hjelpetekst"
 				helpTextLabel="Vis hjelpetekst"
 				description="Beskrivelse"
-				error="Feilmelding"
+				validation="Feilmelding"
 				prefix="Før"
 				suffix="Etter"
 			/>
@@ -295,48 +295,73 @@ export const WithValidation: Story = {
 export const WithValidationForm: Story = {
 	parameters: { layout: "padded" },
 	name: "With Validation Form",
-	render: () => (
-		<form action="#" className={styles.prose}>
-			<div className={styles.field} data-validation="form">
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<input type="email" className={styles.input} required />
-				<div className={styles.validation} hidden>
-					Må inneholde en gyldig e-postadresse
+	render: () => {
+		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+
+		return (
+			<form action="#" className={styles.prose}>
+				<div className={styles.field} data-validation="form">
+					<label>E-post</label>
+					<p>Beskrivelse</p>
+					<input type="email" className={styles.input} required />
+					<div className={styles.validation} hidden>
+						Må inneholde en gyldig e-postadresse
+					</div>
 				</div>
-			</div>
-			<div className={styles.field} data-validation="form">
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<input type="text" className={styles.input} required />
-				<div className={styles.validation} hidden>
-					Må fylles ut
+				<div className={styles.field} data-validation="form">
+					<label>Tekst</label>
+					<p>Beskrivelse</p>
+					<input type="text" className={styles.input} required />
+					<div className={styles.validation} hidden>
+						Må fylles ut
+					</div>
 				</div>
-			</div>
-			<div className={styles.field} data-validation="form">
-				<label>Ledetekst</label>
-				<u-combobox data-required>
-					<input type="text" className={styles.input} />
-					<del role="img" aria-label="Fjern tekst"></del>
-					<u-datalist>
-						<u-option value="Sogndal">Sogndal</u-option>
-						<u-option value="Oslo">Oslo</u-option>
-						<u-option value="Brønnøysund">Brønnøysund</u-option>
-						<u-option value="Stavanger">Stavanger</u-option>
-						<u-option value="Trondheim">Trondheim</u-option>
-						<u-option value="Bergen">Bergen</u-option>
-						<u-option value="Lillestrøm">Lillestrøm</u-option>
-					</u-datalist>
-				</u-combobox>
-				<div className={styles.validation} hidden>
-					Må fylles ut
+				<div className={styles.field} data-validation="form">
+					<label>Combobox</label>
+					<u-combobox>
+						<input type="text" className={styles.input} aria-required="true" />
+						<del role="img" aria-label="Fjern tekst"></del>
+						<u-datalist>
+							<u-option value="Sogndal">Sogndal</u-option>
+							<u-option value="Oslo">Oslo</u-option>
+							<u-option value="Brønnøysund">Brønnøysund</u-option>
+							<u-option value="Stavanger">Stavanger</u-option>
+							<u-option value="Trondheim">Trondheim</u-option>
+							<u-option value="Bergen">Bergen</u-option>
+							<u-option value="Lillestrøm">Lillestrøm</u-option>
+						</u-datalist>
+					</u-combobox>
+					<div className={styles.validation} hidden>
+						Må fylles ut
+					</div>
 				</div>
-			</div>
-			<button type="submit" className={styles.button} data-variant="primary">
-				Send inn
-			</button>
-		</form>
-	),
+				<Field
+					as="input"
+					data-validation="form"
+					validation="Må fylles ut"
+					label="React input"
+					required
+				/>
+				<Field
+					aria-required="true"
+					as={Field.Combobox}
+					data-validation="form"
+					label="React combobox"
+					onSelectedChange={setSelected}
+					selected={selected}
+					validation="Må fylles ut"
+					options={[
+						{ value: "Sogndal", label: "Sogndal" },
+						{ value: "Oslo", label: "Oslo" },
+						{ value: "Bergen", label: "Bergen" },
+					]}
+				/>
+				<button type="submit" className={styles.button} data-variant="primary">
+					Send inn
+				</button>
+			</form>
+		);
+	},
 };
 
 export const WithAffixes: Story = {

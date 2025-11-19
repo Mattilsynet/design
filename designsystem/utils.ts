@@ -57,7 +57,7 @@ export function useId(el: Element) {
 // Internal helper for on / off
 const events = (
 	action: "add" | "remove",
-	element: Node | Window,
+	element: Node | Window | ShadowRoot,
 	[...rest]: Parameters<typeof Element.prototype.addEventListener>, // Spreat to make a copy of the array
 ): void => {
 	for (const type of rest[0].split(",")) {
@@ -73,7 +73,7 @@ const events = (
  * @param listener An event listener function or listener object
  */
 export const on = (
-	element: Node | Window,
+	element: Node | Window | ShadowRoot,
 	...rest: Parameters<typeof Element.prototype.addEventListener>
 ): (() => void) => {
 	events("add", element, rest);
@@ -87,7 +87,7 @@ export const on = (
  * @param listener An event listener function or listener object
  */
 export const off = (
-	element: Node | Window,
+	element: Node | Window | ShadowRoot,
 	...rest: Parameters<typeof Element.prototype.removeEventListener>
 ): void => events("remove", element, rest);
 
@@ -165,13 +165,14 @@ export function anchorPosition(
  * Speed up MutationObserver by debouncing and only running when page is visible
  * @return new MutaionObserver
  */
+type Attr = string | string[];
 export function onMutation(
 	callback: (observer: MutationObserver) => void,
-	attr: string | { attr: string; root?: HTMLElement; delay?: number },
+	attr: Attr | { attr: Attr; root?: HTMLElement; delay?: number },
 ) {
 	let queue = 0;
-	const config = typeof attr === "string" ? { attr } : attr;
-	const onFrame = () => setTimeout(onTimer, config?.delay ?? 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
+	const opt = Array.isArray(attr) || typeof attr === "string" ? { attr } : attr;
+	const onFrame = () => setTimeout(onTimer, opt?.delay ?? 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
 	const onTimer = () => {
 		if (!IS_BROWSER) return cleanup(); // If using JSDOM, the document might have been removed
 		callback(observer);
@@ -189,8 +190,8 @@ export function onMutation(
 		}
 	};
 
-	observer.observe(config?.root || document.documentElement, {
-		attributeFilter: [config.attr],
+	observer.observe(opt?.root || document.documentElement, {
+		attributeFilter: ([] as string[]).concat(opt.attr),
 		attributes: true,
 		childList: true,
 		subtree: true,

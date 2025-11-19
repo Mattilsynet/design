@@ -19,7 +19,7 @@
 	}
 
 	/* Close button */
-	.dialog > button:first-child:empty,
+	.dialog [data-command="close"]:empty,
 	.dialog > form[method="dialog"]:first-child > button:only-child {
 		all: unset;
 		border-radius: var(--ds-border-radius-md);

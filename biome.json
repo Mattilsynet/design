@@ -1,15 +1,17 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.6/schema.json",
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"formatter": {
 		"enabled": true,
 		"includes": [
 			"**",
+			"!**/atlas.css",
 			"!**/card.module.css",
+			"!**/chart.css",
 			"!**/divider.module.css",
-			"!**/layout.module.css",
-			"!**/law.module.css",
 			"!**/law.css",
+			"!**/law.module.css",
+			"!**/layout.module.css",
 			"!**/link.module.css",
 			"!**/styles.module.css"
 		]

@@ -36,6 +36,9 @@
 			visibility: hidden;
 		}
 	}
+	.popover[slot] {
+		position: static;
+	}
 	.popover[hidden],
 	.popover[popover]:not(:popover-open) {
 		display: none;
