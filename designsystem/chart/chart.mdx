@@ -41,7 +41,9 @@ import * as stories from './chart.stories';
 
 ## Skjule elementer
 - Bruk `data-legend="false"` for å skjule legend
-- Bruk `data-dots="false"` for å dotter i `data-variant="line | area"`
+- Bruk `data-dots="false"` for å skjule dotter i `data-variant="line | area"`
+- Bruk `data-steps="false"` for å skjule steg-tekster
+- Bruk `data-labels="false"` for å skjule grupperings-lekster
 <Grid data-items="300"><Canvas of={stories.WithLegendDisabled} /><Canvas of={stories.WithDotsDisabled} /></Grid>
 
 <CssVariables component='chart' />

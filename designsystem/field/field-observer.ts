@@ -44,19 +44,20 @@ function handleFieldMutation(validate?: boolean) {
 			}
 
 			if (input) {
-				for (const label of labels) label.htmlFor = useId(input);
-				if (
-					(validate || combobox?.control?.validity.customError) && // Live re-evaluate combobox if invalid to correct validity before form sumbit
-					attr(field, "data-validation") === "form"
-				) {
-					valid = combobox?.hasAttribute("data-required")
-						? !!combobox?.items.length
-						: input.validity.valid;
+				const comboboxInput = combobox?.control;
+				const shouldValidate = validate || comboboxInput?.validity.customError; // Live re-evaluate combobox if invalid to correct validity before form sumbit
+
+				if (shouldValidate && attr(field, "data-validation") === "form") {
+					valid =
+						comboboxInput?.getAttribute("aria-required") === "true"
+							? !!combobox?.items.length
+							: input.validity.valid;
 
 					if (!firstInvalid && !valid) firstInvalid = input;
 					for (const el of validationMsg) attr(el, "hidden", valid ? "" : null);
-					combobox?.control?.setCustomValidity(valid ? "" : "Invalid"); // Combobox does not have native validation
+					comboboxInput?.setCustomValidity(valid ? "" : "Invalid"); // Combobox does not have native validation
 				}
+				for (const label of labels) label.htmlFor = useId(input);
 				renderCombobox(combobox);
 				renderCounter(input);
 				renderTextareaSize(input);
@@ -64,7 +65,7 @@ function handleFieldMutation(validate?: boolean) {
 				attr(input, "aria-invalid", `${!valid}`);
 			}
 		}
-	firstInvalid?.focus(); // Move focus to first invalid field if doing validation
+	if (validate) firstInvalid?.focus(); // Only move focus to first invalid field if validate was true
 	return firstInvalid;
 }
 

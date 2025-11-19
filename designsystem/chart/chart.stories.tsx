@@ -407,3 +407,19 @@ export const WithCustomInteractions: Story = {
 		</Grid>
 	),
 };
+
+export const WithHiddenSteps: Story = {
+	render: () => (
+		<mtds-chart data-variant="bar" data-steps="false">
+			{table}
+		</mtds-chart>
+	),
+};
+
+export const WithHiddeLabels: Story = {
+	render: () => (
+		<mtds-chart data-variant="bar" data-labels="false">
+			{table}
+		</mtds-chart>
+	),
+};

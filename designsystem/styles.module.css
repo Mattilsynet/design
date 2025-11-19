@@ -146,7 +146,7 @@
 		}
 	}
 
-	/* Change language of "required" */
+	/* Change language */
 	[lang="en"] {
 		--mtds-text-combobox-added: "Added";
 		--mtds-text-combobox-clear: "Remove text";

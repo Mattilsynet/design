@@ -31,6 +31,7 @@ export type ChartProps = ReactTypes.DetailedHTMLProps<
 		| "pie";
 };
 
+let RENDER = 0; // Ensure re-render on data change
 export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 	{ data, children, ...rest },
 	ref,
@@ -38,24 +39,24 @@ export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 	return (
 		<mtds-chart ref={ref} {...toCustomElementProps(rest)}>
 			{data ? (
-				<table>
+				<table key={`table_${++RENDER}`}>
 					<thead>
 						{data.slice(0, 1).map((tr, row) => (
-							<tr key={`${row + 1}`}>
+							<tr key={`${row}_${RENDER}`}>
 								{tr.map((td, i) => (
-									<th key={`${i + 1}`}>{td}</th>
+									<th key={`${i}_${RENDER}`}>{td}</th>
 								))}
 							</tr>
 						))}
 					</thead>
 					<tbody>
 						{data.slice(1).map((tr, row) => (
-							<tr key={`${row + 1}`}>
+							<tr key={`${row}_${RENDER}`}>
 								{tr.map((td, i) =>
 									i ? (
-										<td key={`${i + 1}`}>{td}</td>
+										<td key={`${i}_${RENDER}`}>{td}</td>
 									) : (
-										<th key={`${i + 1}`}>{td}</th>
+										<th key={`${i}_${RENDER}`}>{td}</th>
 									),
 								)}
 							</tr>
