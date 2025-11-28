@@ -4,7 +4,7 @@ import styles from "../styles.module.css";
 import {
 	anchorPosition,
 	attr,
-	IS_BROWSER,
+	isBrowser,
 	isInputLike,
 	on,
 	onLoaded,
@@ -16,7 +16,7 @@ import {
 const CSS_FIELD = styles.field.split(" ")[0];
 const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
-const FIELDS = IS_BROWSER ? document.getElementsByClassName(CSS_FIELD) : [];
+const FIELDS = isBrowser() ? document.getElementsByClassName(CSS_FIELD) : [];
 
 function handleFieldMutation(validate?: boolean) {
 	let firstInvalid: HTMLInputElement | null = null;

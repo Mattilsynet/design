@@ -3,7 +3,7 @@ import styles from "../styles.module.css";
 import {
 	anchorPosition,
 	attr,
-	IS_BROWSER,
+	isBrowser,
 	on,
 	onLoaded,
 	onMutation,
@@ -14,7 +14,7 @@ import {
 const ESC = "Escape";
 const THROTTLE_DELAY = 300;
 const TOOLTIP_ID = "mtds-tooltip";
-const TOOLTIP = IS_BROWSER
+const TOOLTIP = isBrowser()
 	? document.getElementById(TOOLTIP_ID) ||
 		tag("div", {
 			class: styles._tooltip,

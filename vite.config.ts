@@ -82,11 +82,13 @@ export default defineConfig(({ mode }) =>
 					emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder
 					outDir: dist,
 					sourcemap: true,
+					minify: false,
 					lib: {
 						entry: [
 							path.resolve(root, "index.ts"),
-							path.resolve(root, "atlas.ts"),
 							path.resolve(root, "react.tsx"),
+							path.resolve(root, "atlas.ts"),
+							path.resolve(root, "react-atlas.tsx"),
 						],
 						cssFileName: "styles",
 						fileName: "[name]",

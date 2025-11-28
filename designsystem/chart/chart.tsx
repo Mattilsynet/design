@@ -1,7 +1,7 @@
-import type * as ReactTypes from "react";
 import { forwardRef } from "react";
 import { toCustomElementProps } from "../utils";
 import "./chart-element";
+import type { CustomReactElementProps } from "../react-types";
 import type { MTDSChartElement } from "./chart-element";
 
 declare global {
@@ -12,11 +12,7 @@ declare global {
 	}
 }
 
-export type ChartProps = ReactTypes.DetailedHTMLProps<
-	ReactTypes.HTMLAttributes<MTDSChartElement>,
-	MTDSChartElement
-> & {
-	class?: string;
+export type ChartProps = CustomReactElementProps<MTDSChartElement> & {
 	data?: (number | string)[][];
 	"data-legend"?: "none" | "hidden" | "false" | "true" | boolean;
 	"data-axis"?: "none" | "hidden" | "false" | "true" | boolean;

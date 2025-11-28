@@ -1,137 +1,117 @@
 /* NOTE: Using --mtds- not --mtds- since we're inside shadow dom */
 :host {
-	--mtdsc-atlas-background: #fbfbfb;
-	--mtdsc-atlas-border: var(--mtds-border-width-default) solid
-		var(--mtds-color-border-subtle);
+	--mtdsc-atlas-border: 1px solid var(--mtds-color-border-subtle);
+	--mtdsc-atlas-cluster-border: 1px solid;
+	--mtdsc-atlas-marker-background: var(--mtds-color-base-default);
+	--mtdsc-atlas-marker-border: 1px solid;
+	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
+	--mtdsc-atlas-marker-inset: 3px;
+	--mtdsc-atlas-marker-shadow: rgba(0,0,0,.2);
+	--mtdsc-atlas-marker-size: var(--mtds-6);
+	--mtdsc-atlas-tile-background: #fbfbfb;
+	--mtdsc-atlas-tile-filter: grayscale(1) contrast(0.75) brightness(1.15);
 
 	border-radius: var(--mtds-border-radius-md);
 	aspect-ratio: 2;
 	overflow: clip;
 	position: relative;
 }
-:host(:not([hidden])) {
-	display: block;
-}
-:host([data-cursor="pointer"]) .leaflet-grab {
-	cursor: pointer;
-}
-slot {
-	display: block;
-	inset: 0;
-	pointer-events: none; /* Ensure slot does not stop pointer from reaching leaflet */
-	position: absolute;
-	z-index: 2;
-}
-::slotted(*) {
-	pointer-events: all; /* But let children of slot stop pointer from reaching leaflet */
-}
+:host(:not([hidden])) { display: block }
+:host([data-cursor="pointer"]) .leaflet-grab { cursor: pointer }
 
 /* Focus */
 .leaflet-control-zoom a:focus-visible,
-:host:has(.leaflet-container:focus-visible) {
-	box-shadow: var(--dsc-focus-boxShadow);
-	outline: var(--dsc-focus-outline);
+:host:has(.leaflet-container:focus-visible),
+::slotted(mtds-atlas-marker:focus-visible) {
+	box-shadow: var(--mtdsc-focus-boxShadow);
+	outline: var(--mtdsc-focus-outline);
 	outline-offset: var(--mtds-border-width-focus);
 }
 
-/* Map and tiles */
+/* Tiles */
+.leaflet-tile-container { filter: var(--mtdsc-atlas-tile-filter); transition: filter 0.5s }
 .leaflet-container {
-	background: var(--mtdsc-atlas-background);
+	background: var(--mtdsc-atlas-tile-background);
 	border-radius: inherit;
 	border: var(--mtdsc-atlas-border);
 	box-sizing: border-box;
 	font: inherit;
 	height: 100%;
+	margin: 0;
 	outline: 0;
 	position: relative;
 	z-index: 1; /* Ensure <slot> is always on top */
 }
-.leaflet-tile-container {
-	filter: grayscale(1) contrast(0.75) brightness(1.15);
-	transition: filter 0.5s;
-}
 :host([data-tiles="color"]) {
-	--mtdsc-atlas-background: #e5fcfd;
-}
-:host([data-tiles="color"]) .leaflet-tile-container {
-	filter: grayscale(0.2);
+	--mtdsc-atlas-tile-background: #e5fcfd;
+	--mtdsc-atlas-tile-filter: grayscale(0.2);
 }
 
 /* Controls */
-.leaflet-control-attribution {
-	font-size: 12px;
-	border-top-left-radius: var(--mtds-border-radius-md);
-}
-.leaflet-control-zoom {
-	border-radius: var(--mtds-border-radius-md);
-	border: 1px solid var(--mtds-color-border-default);
-}
-.leaflet-control-zoom a {
-	border-color: inherit;
-	background: var(--mtds-color-surface-default);
-	color: var(--mtds-color-text-default);
-	display: flex;
-	height: var(--mtds-10);
-	outline: 0;
-	place-content: center;
-	place-items: center;
-	transition: 0.2s;
-	width: var(--mtds-10);
-}
-.leaflet-control-zoom a:first-child {
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-}
-.leaflet-control-zoom a:last-child {
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-}
-.leaflet-control-zoom a:hover {
-	background: var(--mtds-color-surface-hover);
-}
-.leaflet-control-zoom a:active {
-	background: var(--mtds-color-surface-active);
-}
+.leaflet-control-attribution { font-size: 12px; border-top-left-radius: var(--mtds-border-radius-md) }
+.leaflet-control-zoom { border-radius: var(--mtds-border-radius-md); border: 1px solid var(--mtds-color-border-default) }
+.leaflet-control-zoom a { background: var(--mtds-color-surface-default); border-color: inherit; color: var(--mtds-color-text-default); height: var(--mtds-10); line-height: var(--mtds-10); transition: 0.2s; width: var(--mtds-10) }
+.leaflet-control-zoom a:first-child { border-top-left-radius: inherit; border-top-right-radius: inherit }
+.leaflet-control-zoom a:last-child { border-bottom-left-radius: inherit; border-bottom-right-radius: inherit }
+.leaflet-control-zoom a:hover { background: var(--mtds-color-surface-hover) }
+.leaflet-control-zoom a:active { background: var(--mtds-color-surface-active) }
 
 /* Markers */
-.leaflet-tooltip {
-	background: var(--mtds-color-surface-default);
-	border-radius: var(--mtds-border-radius-md);
-	box-shadow: var(--mtds-box-shadow-sm);
-	color: var(--mtds-color-text-default);
-	padding: var(--mtds-1) var(--mtds-2);
+::slotted(mtds-atlas-marker) {
+	all: unset;
+	color: var(--mtdsc-atlas-marker-color);
+	background: var(--mtdsc-atlas-marker-background);
+	border-radius: 100%;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	place-content: center;
+	font-size: var(--mtds-body-sm-font-size);
+	font-weight: var(--mtds-font-weight-bold);
+	height: var(--mtdsc-atlas-marker-size);
+	/* biome-ignore lint/complexity/noImportantStyles: Overwrite Tailwind */
+	margin-bottom: calc(var(--mtdsc-atlas-marker-size) * .25 + var(--mtdsc-atlas-marker-inset))!important;
+	width: var(--mtdsc-atlas-marker-size);
 }
-.leaflet-marker-icon {
-	background: none;
-	border: 0;
+::slotted(mtds-atlas-marker[data-color]) {
+	--mtdsc-atlas-marker-background: var(--mtds-color-base-default); /* Ensure data-color is respected */
+	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
 }
-.leaflet-marker-icon rect {
-	fill: var(--mtds-color-base-contrast-default);
+::slotted(mtds-atlas-marker)::after {
+	box-shadow: 2px 2px 2px var(--mtdsc-atlas-marker-shadow);
+	aspect-ratio: 1;
+	background: var(--mtdsc-atlas-marker-color);
+	color: var(--mtdsc-atlas-marker-background);
+	border-radius: 50% 50% 0 50%;
+	/* biome-ignore lint/complexity/noImportantStyles: Overwrite Tailwind */
+	border: var(--mtdsc-atlas-marker-border)!important;
+	content: "";
+	rotate: 45deg;
+	position: absolute;
+	inset: calc(var(--mtdsc-atlas-marker-inset) * -1);
+	z-index: -1;
 }
-.leaflet-marker-icon path {
-	fill: var(--mtds-color-base-default);
-	stroke: var(--mtds-color-base-contrast-default);
-	vector-effect: non-scaling-stroke;
-}
+
+.leaflet-marker-icon { background: none; border: 0 }
+.leaflet-marker-icon slot { display: block; position: absolute; left: 0; top: 0; translate: -50% -100% }
 .leaflet-cluster-icon {
+	box-shadow: 0 3px 3px var(--mtdsc-atlas-marker-shadow);
 	background-color: var(--mtds-color-base-default);
 	border-radius: 100%;
-	border: 1px solid;
+	border: var(--mtdsc-atlas-cluster-border);
 	box-sizing: border-box;
+	outline: 1px solid var(--mtds-color-base-default);
 	color: var(--mtds-color-base-contrast-default);
 	display: flex;
 	font-size: var(--mtds-body-xs-font-size);
-	font-weight: 500;
+	font-weight: var(--mtds-font-weight-bold);
 	place-content: center;
 	place-items: center;
 }
-/* .leaflet-marker-icon::after {
-	aspect-ratio: 1;
-	background: #fff;
-	border-radius: 50% 50% 0 50%;
-	border: 1px solid red;
-	content: "";
-	inset: 0 0 auto;
-	position: absolute;
-	rotate: 45deg;
-} */
+
+/* Popover */
+.leaflet-popup:has(slot) .leaflet-popup-tip { background: var(--mtds-color-surface-default) }
+.leaflet-popup:has(slot) .leaflet-popup-close-button { display: none } /* Popup closes on clicking marker anyway */
+.leaflet-popup:has(slot) .leaflet-popup-content-wrapper { display: contents } /* No need for styling this element */
+.leaflet-popup:has(slot) .leaflet-popup-content { margin: 0; font: inherit }

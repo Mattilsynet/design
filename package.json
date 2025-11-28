@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.24",
+	"version": "2.2.25",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -28,6 +28,10 @@
 			"import": "./mtds/atlas.js",
 			"types": "./mtds/atlas.d.ts"
 		},
+		"./atlas/react": {
+			"import": "./mtds/react-atlas.js",
+			"types": "./mtds/react-atlas.d.ts"
+		},
 		"./*.svg": "./mtds/*.svg",
 		"./*.ico": "./mtds/*.ico",
 		"./icons/*": "./mtds/icons/*",
@@ -50,31 +54,31 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.6",
+		"@biomejs/biome": "2.3.8",
 		"@digdir/designsystemet-css": "^1.7.3",
-		"@handsontable/react-wrapper": "^16.1.1",
+		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
-		"@storybook/addon-docs": "^10.0.8",
-		"@storybook/addon-themes": "^10.0.8",
-		"@storybook/react-vite": "^10.0.8",
+		"@storybook/addon-docs": "^10.1.0",
+		"@storybook/addon-themes": "^10.1.0",
+		"@storybook/react-vite": "^10.1.0",
 		"@tanstack/react-table": "^8.21.3",
 		"@types/leaflet": "^1.9.21",
 		"@types/leaflet.markercluster": "^1.5.6",
 		"@types/node": "^24.10.1",
-		"@types/react": "^19.2.6",
+		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^5.1.1",
 		"fast-glob": "^3.3.3",
-		"handsontable": "^16.1.1",
+		"handsontable": "^16.2.0",
 		"leaflet": "^2.0.0-alpha.1",
 		"postcss": "^8.5.6",
 		"postcss-nesting": "^13.0.2",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
-		"storybook": "^10.0.8",
+		"storybook": "^10.1.0",
 		"typescript": "^5.9.3",
-		"vite": "^7.2.2",
+		"vite": "^7.2.4",
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {

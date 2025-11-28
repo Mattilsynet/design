@@ -1,8 +1,8 @@
 import styles from "../styles.module.css";
-import { IS_BROWSER, onLoaded, onMutation, tag } from "../utils";
+import { isBrowser, onLoaded, onMutation, tag } from "../utils";
 
 const CSS_LOGO = styles.logo.split(" ")[0];
-const LOGOS = IS_BROWSER ? document.getElementsByClassName(CSS_LOGO) : [];
+const LOGOS = isBrowser() ? document.getElementsByClassName(CSS_LOGO) : [];
 
 function handleLogoMutation() {
 	const logo = LOGOS[0];

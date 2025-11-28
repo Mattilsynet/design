@@ -1,8 +1,8 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, onLoaded, onMutation } from "../utils";
+import { attr, isBrowser, onLoaded, onMutation } from "../utils";
 
 const CSS_BREADCRUMBS = styles.breadcrumbs.split(" ")[0];
-const BREADCRUMBS = IS_BROWSER
+const BREADCRUMBS = isBrowser()
 	? document.getElementsByClassName(CSS_BREADCRUMBS)
 	: [];
 

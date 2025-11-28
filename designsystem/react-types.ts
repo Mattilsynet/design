@@ -18,6 +18,10 @@ export type PolymorphicComponentPropWithRef<
 export type PolymorphicRef<As extends React.ElementType> =
 	React.ComponentPropsWithRef<As>["ref"];
 
+export type CustomReactElementProps<T> = {
+	class?: string;
+} & React.DetailedHTMLProps<React.HTMLAttributes<T>, T>;
+
 export type Sizes =
 	| "0"
 	| "1"

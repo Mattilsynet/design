@@ -28,8 +28,9 @@ export const Popover: PopoverComponent = forwardRef<null>(function Popover<
 
 	return (
 		<Tag
-			popover="auto"
 			className={clsx(styles.popover, className)}
+			suppressHydrationWarning // Client side attributes changes when positioning is calculated
+			popover="auto"
 			ref={ref}
 			{...rest}
 		/>

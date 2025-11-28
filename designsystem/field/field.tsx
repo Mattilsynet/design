@@ -206,6 +206,8 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 			onBeforeMatch,
 			onBeforeSelect,
 			onSelectedChange,
+			onInput,
+			onChange,
 			children,
 			disabled,
 			name,
@@ -280,6 +282,8 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 							aria-required={required}
 							disabled={disabled}
 							name={name}
+							onInput={onInput}
+							onChange={onChange}
 							placeholder={placeholder}
 							readOnly={readOnly}
 							type={type}

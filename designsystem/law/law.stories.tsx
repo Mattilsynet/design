@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { fixLawHtml, parseLawIds, setLawChecked } from "../";
+import {
+	fixLawHtml,
+	getLawChecked,
+	parseLawIds,
+	setLawChecked,
+	toggleLawChecked,
+} from "../";
 import { Flex, Law } from "../react";
 import styles from "../styles.module.css";
 import { vinforskriften } from "./vinforskriften-new";
@@ -31,7 +37,6 @@ const meta = {
 					<pre data-self="300" data-fixed style={SIDEBAR_STYLE}>
 						<strong>Valgte:</strong>
 						<div id="log"></div>
-						{}
 					</pre>
 				</Flex>
 			);
@@ -39,13 +44,12 @@ const meta = {
 	],
 } satisfies Meta;
 
-const CSS_LAW = `.${styles.law.split(" ")[0]}`;
-const log = (checked: string[]) => {
-	const log = document.getElementById("log") as HTMLElement;
-	const html = document.querySelector(CSS_LAW)?.innerHTML || "";
-	log.textContent = parseLawIds(checked, html)
-		.map(({ label }) => `\n- ${label}`)
-		.join("");
+const console = {
+	log: (laws: ReturnType<typeof parseLawIds>) => {
+		const log = document.getElementById("log") as HTMLElement;
+		log.textContent = laws.map(({ label }) => `\n- ${label}`).join("");
+		window.console.log(laws);
+	},
 };
 
 export default meta;
@@ -66,7 +70,6 @@ export const Default: Story = {
 		showInOverview: false,
 	},
 	render: () => {
-		const [checkedIds, setCheckedIds] = useState<string[]>([]);
 		const lawElement = useRef<HTMLDivElement>(null);
 
 		// Avoid re-processing on every render:
@@ -74,8 +77,18 @@ export const Default: Story = {
 
 		// Sync checked state to Law component:
 		useEffect(() => {
-			setLawChecked(checkedIds, lawElement.current);
-		}, [checkedIds]);
+			const self = lawElement.current;
+			const onClick = ({ target }: Event) => {
+				if (target instanceof HTMLButtonElement) {
+					toggleLawChecked(target, self);
+					const checked = getLawChecked(self);
+					console.log(parseLawIds(checked, html.__html));
+				}
+			};
+
+			self?.addEventListener("click", onClick);
+			return () => self?.removeEventListener("click", onClick);
+		}, [html]);
 
 		// Render:
 		return (
@@ -83,17 +96,6 @@ export const Default: Story = {
 				className={styles.law}
 				dangerouslySetInnerHTML={html}
 				ref={lawElement}
-				onClickCapture={(event) => {
-					if (event.target instanceof HTMLButtonElement) {
-						const id = event.target.value;
-						const next = checkedIds.includes(id)
-							? checkedIds.filter((cid) => cid !== id)
-							: [...checkedIds, id];
-
-						setCheckedIds(next);
-						log(next); // Only for demo purposes
-					}
-				}}
 			/>
 		);
 	},
@@ -117,15 +119,15 @@ export const React: Story = {
 			<Law
 				dangerouslySetInnerHTML={html}
 				ref={lawElement}
-				onClickCapture={(event) => {
+				onClick={(event) => {
 					if (event.target instanceof HTMLButtonElement) {
 						const id = event.target.value;
-						const next = checkedIds.includes(id)
+						const checked = checkedIds.includes(id)
 							? checkedIds.filter((cid) => cid !== id)
 							: [...checkedIds, id];
 
-						setCheckedIds(next);
-						log(next); // Only for demo purposes
+						setCheckedIds(checked);
+						console.log(parseLawIds(checked, html.__html));
 					}
 				}}
 			/>
@@ -142,6 +144,22 @@ export const VariantView: Story = {
 		return (
 			<div
 				data-variant="view"
+				className={styles.law}
+				dangerouslySetInnerHTML={html}
+			/>
+		);
+	},
+};
+
+export const VariantReadOnly: Story = {
+	render: () => {
+		// Avoid re-processing on every render:
+		const html = useMemo(() => ({ __html: fixLawHtml(vinforskriften) }), []);
+
+		// Render:
+		return (
+			<div
+				data-variant="readonly"
 				className={styles.law}
 				dangerouslySetInnerHTML={html}
 			/>

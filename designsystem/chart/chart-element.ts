@@ -1,7 +1,8 @@
 import styles from "../styles.module.css";
 import {
 	attr,
-	IS_BROWSER,
+	defineElement,
+	isBrowser,
 	MTDSElement,
 	off,
 	on,
@@ -17,9 +18,15 @@ import { toPies } from "./chart-pies";
 
 export type ChartData = ReturnType<typeof toData>;
 
+declare global {
+	interface HTMLElementTagNameMap {
+		"mtds-chart": MTDSChartElement;
+	}
+}
+
 const EVENTS = "click,keydown,mousemove,mouseout";
 const TOOLTIP_ID = "mtds-chart-tooltip";
-const TOOLTIP = IS_BROWSER
+const TOOLTIP = isBrowser()
 	? document.getElementById(TOOLTIP_ID) ||
 		tag("div", {
 			"aria-hidden": "true",
@@ -140,5 +147,4 @@ const toData = (table?: HTMLTableElement | null) =>
 		}),
 	);
 
-if (IS_BROWSER && !window.customElements.get("mtds-chart"))
-	window.customElements.define("mtds-chart", MTDSChartElement);
+defineElement("mtds-chart", MTDSChartElement);

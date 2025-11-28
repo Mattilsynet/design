@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, on, onLoaded, QUICK_EVENT, tag } from "../utils";
+import { attr, isBrowser, on, onLoaded, QUICK_EVENT, tag } from "../utils";
 
 const CSS_BREADCRUMBS = `.${styles.breadcrumbs.split(" ")[0]}`;
 const CSS_CARD = `.${styles.card.split(" ")[0]}`;
@@ -40,7 +40,7 @@ export type AnalyticsActions = {
 				matomoTagManagerId?: never;
 		  }
 		| {
-				matomoId?: never;
+				matomoId?: number | string;
 				matomoTagManagerId: string;
 		  }
 	);
@@ -66,7 +66,7 @@ export function analytics<Action extends keyof AnalyticsActions>(
 	action: Action,
 	args = {} as AnalyticsActions[Action],
 ) {
-	if (!IS_BROWSER) return;
+	if (!isBrowser()) return;
 	if (!window._paq) {
 		window._paq = [];
 		window._paq.push(["HeatmapSessionRecording::disable"]); // Disable heatmaps by default as this require cookies
@@ -131,7 +131,9 @@ export function analytics<Action extends keyof AnalyticsActions>(
 		} = args as AnalyticsActions["search"];
 		window._paq.push(["trackSiteSearch", query, category, results]);
 	} else if (action === "matomo") {
-		window._paq.push(args as AnalyticsActions["matomo"]);
+		const props = args as AnalyticsActions["matomo"];
+		if (props?.[0] === "setReferrerUrl" && !props[1]) props[1] = ""; // Matomo dies if referrer is undefined
+		window._paq.push(props);
 	}
 }
 
@@ -233,6 +235,9 @@ function processTrack({ type, target }: Event) {
 	} else if (el.hasAttribute("aria-expanded")) {
 		if (attr(el, "aria-expanded") !== "true") return; // Skip if not open
 		category = "Expand";
+		action = "open";
+	} else if (el.nodeName.startsWith("MTDS-ATLAS-")) {
+		category = "Map Marker";
 		action = "open";
 	}
 
