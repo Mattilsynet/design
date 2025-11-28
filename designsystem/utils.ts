@@ -10,8 +10,8 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 export const QUICK_EVENT = { capture: true, passive: true };
-export const IS_BROWSER =
-	typeof window !== "undefined" && typeof document !== "undefined";
+export const isBrowser = () =>
+	typeof window !== "undefined" && typeof document !== "undefined"; // Using function to play nice with Vitest where DOM can come and go
 
 export function debounce<T extends unknown[]>(
 	callback: (...args: T) => void,
@@ -103,7 +103,7 @@ declare global {
  * @param callback The callback to run when the page is ready
  */
 export const onLoaded = (setup: () => Array<() => void>) => {
-	if (!IS_BROWSER || !window.requestAnimationFrame) return; // Skip if not in browser environment
+	if (!isBrowser() || !window.requestAnimationFrame) return; // Skip if not in browser environment
 	if (!window._mtdsCleanups) window._mtdsCleanups = new Map();
 
 	const run = () =>
@@ -130,7 +130,6 @@ export function anchorPosition(
 	ANCHORED.get(target)?.(); // Unbind previous anchor position
 	ANCHORED.delete(target);
 
-	// TODO aria-label på app
 	if (anchor) {
 		const footer = target.closest(DIALOG)?.querySelector(":scope > footer");
 		const inset = Number(attr(target, "data-inset")) || 20;
@@ -174,7 +173,7 @@ export function onMutation(
 	const opt = Array.isArray(attr) || typeof attr === "string" ? { attr } : attr;
 	const onFrame = () => setTimeout(onTimer, opt?.delay ?? 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
 	const onTimer = () => {
-		if (!IS_BROWSER) return cleanup(); // If using JSDOM, the document might have been removed
+		if (!isBrowser()) return cleanup(); // If using JSDOM, the document might have been removed
 		callback(observer);
 		observer.takeRecords(); // Clear records to avoid running callback multiple times
 		queue = 0;
@@ -225,18 +224,20 @@ export const isInputLike = (el: unknown): el is HTMLInputElement =>
  * @returns The converted props
  */
 const SELECTED = "aria-selected";
-export const toCustomElementProps = (
-	{ className, hidden, open, ...rest }: Record<string, unknown>,
+export const toCustomElementProps = <T extends Record<string, unknown>>(
+	rest: T,
 	klass?: string,
-) => {
-	rest.suppressHydrationWarning = true; // Make Next.js happy
-	if (rest[SELECTED] !== undefined)
-		rest[SELECTED] = `${(rest[SELECTED] || "false") !== "false"}`; // Ensure aria-selected boolean is string
-	if (className || klass) rest.class = clsx(klass, className as string); // Use class instead of className
-	if (hidden) rest.hidden = true; // Ensure boolean prop behaviour
-	if (open) rest.open = true; // Ensure boolean prop behaviour
-	return rest;
-};
+) =>
+	Object.assign({}, rest, {
+		suppressHydrationWarning: true, // Make Next.js happy
+		[SELECTED]:
+			rest[SELECTED] === undefined
+				? undefined
+				: (`${(rest[SELECTED] || "false") !== "false"}` as unknown as boolean), // Ensure aria-selected boolean is string
+		class: clsx(klass, rest.className as string), // Use class instead of className
+		hidden: !!rest.hidden, // Ensure boolean prop behaviour
+		open: !!rest.open, // Ensure boolean prop behaviour
+	});
 
 /**
  * tag
@@ -262,3 +263,15 @@ export const MTDSElement =
 	typeof HTMLElement === "undefined"
 		? (class {} as typeof HTMLElement)
 		: HTMLElement;
+
+/**
+ * defineElement
+ * @description Defines a customElement if running in browser and if not already registered
+ */
+export const defineElement = (
+	name: string,
+	instance: CustomElementConstructor,
+) =>
+	!isBrowser() ||
+	window.customElements.get(name) ||
+	window.customElements.define(name, instance);

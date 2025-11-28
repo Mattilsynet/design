@@ -17,8 +17,8 @@ import { Alert, Table, Popover } from '../react';
 ## Kode
 
 - Legg klassen `law` på en `<div>` og fyll med HTML generert av `fixLawHtml()`
-- Bruk `data-variant="view"` dersom du ikke ønsker valg-knapper
-- Du må selv hente [HTML via Lovdatas API](https://api.lovdata.no/), mens valg og parsing løses av hjelpefunksjonene `fixLawHtml`, `parseLawIds` og `setLawChecked` (støtter strukturer fra både Lovdatas betalte og gratis API). <button data-popover="inline" popoverTarget='pop-filenameHTML'>Vær obs på feil i feltet filenameHTML</button>
+- Bruk `data-variant="view"` eller `data-variant="readonly"` dersom du ikke ønsker valg-knapper
+- Du må selv hente [HTML via Lovdatas API](https://api.lovdata.no/), mens valg og parsing løses av hjelpefunksjonene `fixLawHtml`, `parseLawIds`, `setLawChecked`, `getLawChecked` og `toggleLawChecked` (støtter strukturer fra både Lovdatas betalte og gratis API). <button data-popover="inline" popoverTarget='pop-filenameHTML'>Vær obs på feil i feltet filenameHTML</button>
 <Popover id='pop-filenameHTML' style={{ maxWidth: 500 }}>Lovdatas felt `filenameHTML` slutter noen ganger på `.html`, og noen ganger ikke. Sørg for at kall til `https://api.lovdata.no/v1/structuredRules/get/` alltid slutter på `.html`</Popover>
 
 

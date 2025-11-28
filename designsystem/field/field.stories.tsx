@@ -468,6 +468,31 @@ export const WithComboboxMultiple: Story = {
 	),
 };
 
+export const WithComboboxCreatable: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<div className={styles.field}>
+			<label>Skriv noe som ikke finnes i listen og trykk Enter:</label>
+			<u-combobox data-multiple data-creatable>
+				<data value="Sogndal">Sogndal</data>
+				<input type="text" className={styles.input} />
+				<del role="img" aria-label="Fjern tekst"></del>
+				<u-datalist>
+					<u-option value="Sogndal">Sogndal</u-option>
+					<u-option value="Oslo">Oslo</u-option>
+					<u-option value="Brønnøysund">Brønnøysund</u-option>
+					<u-option value="Stavanger">Stavanger</u-option>
+					<u-option value="Trondheim">Trondheim</u-option>
+					<u-option value="Bergen">Bergen</u-option>
+					<u-option value="Lillestrøm">Lillestrøm</u-option>
+				</u-datalist>
+			</u-combobox>
+		</div>
+	),
+};
+
 export const WithComboboxAPI: Story = {
 	parameters: {
 		layout: "padded",
@@ -653,6 +678,35 @@ export const ReactWithComboboxMultiple: Story = {
 			<Field
 				as={Field.Combobox}
 				data-multiple
+				label="React med forslag flervalg"
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={[
+					{ value: "saft", label: "Saft" },
+					{ value: "suse", label: "Suse" },
+				]}
+			/>
+		);
+	},
+};
+
+export const ReactWithComboboxCreatable: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field.Combobox requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldComboboxSelected>([
+			{ value: "saft", label: "Saft" },
+		]);
+
+		return (
+			<Field
+				as={Field.Combobox}
+				data-multiple
+				data-creatable
 				label="React med forslag flervalg"
 				selected={selected}
 				onSelectedChange={setSelected}

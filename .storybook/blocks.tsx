@@ -85,12 +85,16 @@ export const Example = ({
 export const getPkgVersion = () =>
 	(window as unknown as { VERSION: string }).VERSION;
 
-type CssVariablesProps = { component: string; exclude?: string };
-export function CssVariables({ component = "", exclude }: CssVariablesProps) {
+type CssVariablesProps = { component: string; exclude?: string; css?: string };
+export function CssVariables({
+	component = "",
+	exclude,
+	css,
+}: CssVariablesProps) {
 	const [cssVars, setCssVars] = useState<ReturnType<typeof getCssVars>>({});
 	const excludes = exclude?.split(",").map((ex) => ex.trim()) || [];
 	const hasTokens = !!Object.keys(cssVars).length;
-	useEffect(() => setCssVars(getCssVars(component)), [component]);
+	useEffect(() => setCssVars(getCssVars(component, css)), [component, css]);
 
 	return (
 		<>
@@ -102,7 +106,7 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 				<small>
 					<code>@mattilsynet/design</code>
 				</small>
-				-komponenter kan kombineres med egen-laget styling, f.eks:{" "}
+				-komponenter kan kombineres med egen styling, f.eks:{" "}
 				<small>
 					<code>{`.my-${component} { color: red }`}</code>
 				</small>
@@ -152,11 +156,11 @@ export function CssVariables({ component = "", exclude }: CssVariablesProps) {
 }
 
 /* get variables and its value from css file */
-function getCssVars(component: string) {
+function getCssVars(component: string, source = css) {
 	// temporarily remove inline strings, as they may contain ; and } characters
 	// and thus ruin the matching for property declarations
 	const res: Record<string, { val: string; mtds: boolean }> = {};
-	const clean = css.replace(/"[^"]*"/g, encodeURIComponent);
+	const clean = source.replace(/"[^"]*"/g, encodeURIComponent);
 	const regex = new RegExp(`(?<!var\\()--(mt)?dsc-${component}-[^;}]+`, "g");
 	const mtdsIndex = clean.indexOf("@layer mt.");
 

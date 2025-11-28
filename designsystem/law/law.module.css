@@ -1,4 +1,9 @@
 @layer mt.design {
+	.law {
+		--dsc-law-button-background: var(--ds-color-surface-tinted);
+		--dsc-law-button-border-color: var(--ds-color-border-subtle);
+		--dsc-law-button-color: var(--ds-color-text-default);
+	}
 	.law { box-sizing: border-box; isolation: isolate; contain: content; border: 0; margin: 0; padding: 0 0 0 5.5em } /* 5.5em is enough to write "artikkel xxx"*/
 	.law :where(h1, h2, h3, h4, h5, h6) { font-weight: bold; margin-block: 2em 0.25em; line-height: 1.3 } /* More margin for headings */
 	.law :is(h5, h6) { font-size: 1.125em } /* Ensure headings are not too small */
@@ -27,15 +32,21 @@
 
 	/* Button */
 	.law[data-variant="view"] button { display: none }
+	.law[data-variant="readonly"] button {
+		--dsc-law-button-background: var(--ds-color-neutral-surface-tinted);
+		--dsc-law-button-border-color: var(--ds-color-neutral-border-subtle);
+		--dsc-law-button-color: var(--ds-color-neutral-text-default);
+		pointer-events: none;
+	}
 	.law :global([id]:not(.legalP):not(:has(> .legalP ~ :is(div, ol, ul))) > .legalP > button) { display: none } /* Hide Avsnitt if only one */
 	.law :global(.section > button::before) { content: "seksjon " } /* Only show "seksjon" as titles can become very long */
 	.law :global(.legalP > button) { width: auto } /* Place all "avsnitt" inside .legalP area */
 	.law button { all: unset; cursor: pointer; direction: rtl; float: left; font: inherit; width: 0; isolation: isolate }
 	.law button::before {
-		background: var(--ds-color-surface-tinted);
+		background: var(--dsc-law-button-background);
 		border-radius: var(--ds-border-radius-default);
-		border: var(--ds-border-width-default) solid var(--ds-color-border-subtle);
-		color: var(--ds-color-text-default);
+		border: var(--ds-border-width-default) solid var(--dsc-law-button-border-color);
+		color: var(--dsc-law-button-color);
 		content: attr(aria-label);
 		contain: content; /* Speed up rendering */
 		direction: ltr;

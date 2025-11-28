@@ -1,7 +1,7 @@
 import { attr } from "../utils";
 
 // NOTE: The law format is documentet in https://api.lovdata.no/xmldocs
-const REGEX_ID = /<[^>]+id="([^"]+)[^>]+>/gi;
+const REGEX_ID = /<[^>]+\bid="([^"]+)[^>]+>/gi;
 const REGEX_FORORDNING = /\([^)]{1,4}\).{1,9}\d+\/\d+/i; // Match (EU) 2016/2031, (EF) nr. 2020/1054, (EFF) ..., etc.
 const REGEX_HEADING = /<(h\d|[^>]+role="heading")[^>]*>(.*?)<\/?(h\d|br|div)/i; // Can be both <h1>-<h6> and or <div> with role="heading" if level 7+
 const REGEX_KAPITTEL_LEDD = /kapittel-\d+-ledd-\d+/;
@@ -30,17 +30,38 @@ const META_DEFAULT: Record<
 	url: { label: "Url", value: "" },
 };
 
-export const setLawChecked = (
-	checked: string[],
-	lawElement?: HTMLElement | null,
-) =>
-	lawElement?.querySelectorAll("button").forEach((btn) => {
-		attr(btn, "aria-checked", `${checked.includes(btn.value) || false}`);
-	});
+type Ids = string | string[] | HTMLButtonElement | HTMLButtonElement[];
+const toIdArray = (ids: Ids): string[] =>
+	Array.from(Array.isArray(ids) ? ids : [ids], (id) =>
+		id instanceof HTMLButtonElement ? id.value : id,
+	);
 
-export const parseLawIds = (ids: string[], lawHtml: string) => {
+export const getLawChecked = (lawElement?: HTMLElement | null) =>
+	Array.from(
+		lawElement?.querySelectorAll(`button[aria-checked="true"]`) || [],
+		(btn) => (btn as HTMLButtonElement).value,
+	);
+
+export const toggleLawChecked = (ids: Ids, lawElement?: HTMLElement | null) => {
+	const idArray = toIdArray(ids);
+	lawElement?.querySelectorAll(`button`).forEach((btn) => {
+		if (idArray.includes(btn.value))
+			attr(btn, "aria-checked", `${attr(btn, "aria-checked") !== "true"}`);
+	});
+};
+
+export const setLawChecked = (ids: Ids, lawElement?: HTMLElement | null) => {
+	const idArray = toIdArray(ids);
+	lawElement?.querySelectorAll("button").forEach((btn) => {
+		attr(btn, "aria-checked", `${idArray.includes(btn.value) || false}`);
+	});
+};
+
+export const parseLawIds = (ids: string | string[], lawHtml: string) => {
 	const html = fixLawHtml(lawHtml);
-	return ids.map((id) => parseLawId(id, html)).filter((unit) => !!unit);
+	return toIdArray(ids)
+		.map((id) => parseLawId(id, html))
+		.filter((unit) => !!unit);
 };
 
 export const parseLawMeta = (lawHtml: string) => {
@@ -155,7 +176,7 @@ const LABELS: Record<string, typeof getLabel> = {
 		return id.replace(REGEX_STRIP_TAGS, "").replace("Artikkel", "artikkel");
 	},
 	legalP: (_tag, id) => {
-		const [parent, _, type, idx] = id.split("-").slice(-4); // If placed inside numberedLegalP, parent is "nummer"
+		const [idx, type, _, parent] = id.split("-").reverse(); // If placed inside numberedLegalP, parent is "nummer"
 		const count = type === "nummer" ? 1 : Number(idx); // If "fake" ledd 1 created by fixNumberedLegalP, type is "number"
 		return `avsnitt ${count + (parent === "nummer" ? 1 : 0)}`; // Adjust for numberedLegalP creating fake legalP starting at 1
 	},

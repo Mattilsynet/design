@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.6/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"formatter": {
 		"enabled": true,
@@ -24,13 +24,14 @@
 	"files": {
 		"includes": [
 			"**",
-			"!**/storybook-static",
-			"!**/mtds",
-			"!**/dist",
+			"!**/.storybook/manager-head.html",
+			"!**/debug.css",
 			"!**/design-tokens",
 			"!**/design-tokens-build",
-			"!**/debug.css",
-			"!**/preview.css"
+			"!**/dist",
+			"!**/mtds",
+			"!**/preview.css",
+			"!**/storybook-static"
 		]
 	},
 	"linter": {

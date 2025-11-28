@@ -1,7 +1,7 @@
 import styles from "../styles.module.css";
 import {
 	attr,
-	IS_BROWSER,
+	isBrowser,
 	isInputLike,
 	onLoaded,
 	onMutation,
@@ -12,7 +12,7 @@ const CSS_FIELDSET = styles.fieldset.split(" ")[0];
 const CSS_VALIDATION = styles.validation.split(" ")[0];
 const ARIA_DESC = "aria-describedby";
 const ARIA_INVALID = "aria-invalid";
-const FIELDSETS = IS_BROWSER
+const FIELDSETS = isBrowser()
 	? document.getElementsByClassName(CSS_FIELDSET)
 	: [];
 

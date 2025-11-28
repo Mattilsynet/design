@@ -1,12 +1,12 @@
 import styles from "../styles.module.css";
-import { debounce, IS_BROWSER, on, onLoaded, QUICK_EVENT } from "../utils";
+import { debounce, isBrowser, on, onLoaded, QUICK_EVENT } from "../utils";
 import "./app-toggle";
 
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_STICKY = styles.sticky.split(" ")[0];
 const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
 const CSS_SIDEBAR = `.${CSS_APP} > dialog,.${CSS_APP} dialog ~ main`;
-const STICKIES = IS_BROWSER ? document.getElementsByClassName(CSS_STICKY) : [];
+const STICKIES = isBrowser() ? document.getElementsByClassName(CSS_STICKY) : [];
 
 const useTransition = (callback: () => void) => {
 	if (!document.startViewTransition) callback();

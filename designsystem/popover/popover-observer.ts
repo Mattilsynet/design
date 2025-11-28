@@ -1,8 +1,17 @@
 import styles from "../styles.module.css";
-import { anchorPosition, attr, on, onLoaded, QUICK_EVENT } from "../utils";
+import {
+	anchorPosition,
+	attr,
+	isBrowser,
+	on,
+	onLoaded,
+	QUICK_EVENT,
+} from "../utils";
 
 const CSS_POPOVER = styles.popover.split(" ")[0];
-const CSS_AUTO = `_mtds-popover-auto`;
+const POPOVERS = isBrowser()
+	? document.getElementsByClassName(CSS_POPOVER)
+	: [];
 
 type EventToggle = Event & Partial<ToggleEvent>;
 
@@ -28,10 +37,8 @@ function handlePopoverBeforetoggle({ target: el, newState }: EventToggle) {
 		el instanceof HTMLElement &&
 		el.classList.contains(CSS_POPOVER) &&
 		attr(el, "popover") !== "manual"
-	) {
-		el.classList.add(CSS_AUTO);
+	)
 		attr(el, "popover", "manual"); // Make manual to prevent closing when clicking scrollbar
-	}
 }
 
 // Polyfill popovertarget for <a> (not supported by native)
@@ -43,9 +50,9 @@ function handlePopoverLinkClick(event: Event) {
 	const pop = id ? document.getElementById(id) : el?.closest(`.${CSS_POPOVER}`);
 
 	// Manually close popovers where click was outside
-	for (const open of document.getElementsByClassName(CSS_AUTO))
-		if (!open.contains(event.target as Node) && pop !== open)
-			(open as HTMLElement).hidePopover();
+	for (const open of POPOVERS)
+		if (pop !== open && !open.contains(event.target as Node))
+			open.hasAttribute("popover") && (open as HTMLElement).hidePopover();
 
 	if (pop?.classList.contains(CSS_POPOVER) && el) {
 		const action = attr(el, "popovertargetaction");

@@ -1,9 +1,9 @@
 import styles from "../styles.module.css";
-import { attr, IS_BROWSER, on, onLoaded, onMutation } from "../utils";
+import { attr, isBrowser, on, onLoaded, onMutation } from "../utils";
 
 const CSS_TABLE = styles.table.split(" ")[0];
 const INTERACTIVE = 'a,button,label,input,select,textarea,[role="button"]';
-const TABLES = IS_BROWSER ? document.getElementsByClassName(CSS_TABLE) : [];
+const TABLES = isBrowser() ? document.getElementsByClassName(CSS_TABLE) : [];
 
 function handleTableMutation() {
 	for (const table of TABLES as HTMLCollectionOf<HTMLTableElement>) {

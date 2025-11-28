@@ -213,6 +213,7 @@
 		overflow: auto;
 		overscroll-behavior-x: contain; /* Prevent browser back/forward history on end of scroll */
 		position: relative; /* Ensure also inner position: absolute elements are scrolled */
+		-webkit-overflow-scrolling: touch; /* Enhance scrolling on iOS */
 		/* TODO: see if shadow can pseudo element so it can be positioned over content/backgrounds */
 	}
 	@keyframes _scrollShadow {

@@ -1,7 +1,7 @@
 import styles from "../styles.module.css";
 import {
 	attr,
-	IS_BROWSER,
+	isBrowser,
 	on,
 	onLoaded,
 	onMutation,
@@ -9,7 +9,7 @@ import {
 } from "../utils";
 
 const CSS_DIALOG = styles.dialog.split(" ")[0];
-const DIALOGS = IS_BROWSER
+const DIALOGS = isBrowser()
 	? (document.getElementsByClassName(
 			CSS_DIALOG,
 		) as HTMLCollectionOf<HTMLDialogElement>)
