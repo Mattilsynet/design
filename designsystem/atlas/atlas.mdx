@@ -54,7 +54,8 @@ import atlasCSS from './atlas.css?raw';
 ## Matgeo
 - Matgeo er Mattilsynets egne stedfestede data fra alle fagområder
 - Du kan vise Matgeo-data i Atlas ved å bruke `<mtds-atlas-matgeo>` eller `<Atlas.Matgeo>`
-- Bruk `data-collection="ID"` for å velge collection
+- Bruk `data-collection="COLLECTION-ID"` for å velge collection
+  - Hvis du ikke setter en gyldig `COLLECTION-ID`, listes mulige collections i konsoll
 - Bruk `data-color` for å endre farge
 - Bruk `popovertarget="ID"` for å knytte en popover til matgeo
 - Lytt til `atlasfeatureclick` (eller `onFeatureClick` i React) for å fange opp klikk på matgeo
