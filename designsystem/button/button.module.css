@@ -9,8 +9,7 @@
 		transition-property: background-color, scale, translate;
 	}
 	.button:where(:not([hidden])) {
-		display: inline-flex;
-		vertical-align: middle;
+		width: fit-content;
 	}
 
 	/* Overwrite to same as tertiary from Designsystemet  */

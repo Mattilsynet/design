@@ -29,7 +29,7 @@
 }
 
 /* Tiles */
-.leaflet-tile-container { filter: var(--mtdsc-atlas-tile-filter); transition: filter 0.5s }
+.leaflet-kartverket-tiles { filter: var(--mtdsc-atlas-tile-filter); transition: filter 0.5s }
 .leaflet-container {
 	background: var(--mtdsc-atlas-tile-background);
 	border-radius: inherit;
@@ -57,6 +57,7 @@
 .leaflet-control-zoom a:active { background: var(--mtds-color-surface-active) }
 
 /* Markers */
+.leaflet-marker-generated-icon,
 ::slotted(mtds-atlas-marker) {
 	all: unset;
 	color: var(--mtdsc-atlas-marker-color);
@@ -74,10 +75,7 @@
 	margin-bottom: calc(var(--mtdsc-atlas-marker-size) * .25 + var(--mtdsc-atlas-marker-inset))!important;
 	width: var(--mtdsc-atlas-marker-size);
 }
-::slotted(mtds-atlas-marker[data-color]) {
-	--mtdsc-atlas-marker-background: var(--mtds-color-base-default); /* Ensure data-color is respected */
-	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
-}
+.leaflet-marker-generated-icon::after,
 ::slotted(mtds-atlas-marker)::after {
 	box-shadow: 2px 2px 2px var(--mtdsc-atlas-marker-shadow);
 	aspect-ratio: 1;
@@ -92,9 +90,17 @@
 	inset: calc(var(--mtdsc-atlas-marker-inset) * -1);
 	z-index: -1;
 }
+::slotted(mtds-atlas-marker[data-color]) {
+	--mtdsc-atlas-marker-background: var(--mtds-color-base-default); /* Ensure data-color is respected */
+	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
+}
+::slotted(mtds-atlas-marker.leaflet-drag-target) {
+	cursor: grabbing;
+}
 
-.leaflet-marker-icon { background: none; border: 0 }
+.leaflet-marker-generated-slot,
 .leaflet-marker-icon slot { display: block; position: absolute; left: 0; top: 0; translate: -50% -100% }
+.leaflet-marker-icon { background: none; border: 0 }
 .leaflet-cluster-icon {
 	box-shadow: 0 3px 3px var(--mtdsc-atlas-marker-shadow);
 	background-color: var(--mtds-color-base-default);

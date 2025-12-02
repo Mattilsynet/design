@@ -46,7 +46,7 @@
 		--_mtdsc-badge-small: initial;
 	}
 	.badge:has([class*="avatar"]) {
-		--mtdsc-badge-offset: var(--ds-size-2);
+		--mtdsc-badge-offset: 15%;
 	}
 	.badge > svg {
 		fill: currentColor;

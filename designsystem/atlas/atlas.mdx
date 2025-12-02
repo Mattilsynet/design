@@ -59,7 +59,14 @@ import atlasCSS from './atlas.css?raw';
 - Bruk `data-color` for å endre farge
 - Bruk `popovertarget="ID"` for å knytte en popover til matgeo
 - Lytt til `atlasfeatureclick` (eller `onFeatureClick` i React) for å fange opp klikk på matgeo
+- Bruk `await AtlasMatgeoElement.getCollection()` for å hente collection metadata
 <Canvas of={stories.WithMatgeo} />
+
+## WMS
+- WMS (web map service), er en åpen standard for utveksling av kartlag på tvers av kilder
+- Du kan vise WMS-lag fra f.eks [geonorge](https://kartkatalog.geonorge.no/) ved å bruke `<mtds-atlas-wma>` eller `<Atlas.WMS>`
+- Bruk `data-url="MATRIKKEL-URL-MED-PARAMETER"` for å hente karlag
+<Canvas of={stories.WithWMS} />
 
 ## Klikk-for-markør
 - Bruk `data-cursor="pointer"` på `<mtds-atlas>` for å indikere at kartet er klikkbart

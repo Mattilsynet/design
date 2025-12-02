@@ -44,7 +44,7 @@ export const JumpTo = () => {
 		<menu style={{ listStyle: "none", columns: "13em", marginBlock: "2em" }}>
 			{links.map(({ text, href }) => (
 				<li key={href}>
-					<Button href={href} data-nowrap>
+					<Button href={href} data-nowrap style={{ overflow: "hidden" }}>
 						<ArrowDownIcon />
 						<span data-nowrap>{text}</span>
 					</Button>
