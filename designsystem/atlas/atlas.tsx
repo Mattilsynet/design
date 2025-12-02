@@ -5,6 +5,7 @@ import type {
 	MTDSAtlasElement,
 	MTDSAtlasMarkerElement,
 	MTDSAtlasMatgeoElement,
+	MTDSAtlasWMSElement,
 } from "./atlas-element";
 
 export * from "./atlas-element"; // Expose { L } for Leaflet import
@@ -21,6 +22,9 @@ declare global {
 			"mtds-atlas-marker": CustomReactElementProps<MTDSAtlasMarkerElement> & {
 				"data-latlng": string;
 			};
+			"mtds-atlas-wms": CustomReactElementProps<MTDSAtlasWMSElement> & {
+				"data-url": string;
+			};
 			"mtds-atlas-matgeo": CustomReactElementProps<MTDSAtlasMatgeoElement> & {
 				"data-collection": string;
 				onatlasfeatureclick?: (
@@ -33,6 +37,7 @@ declare global {
 
 export type AtlasProps = React.JSX.IntrinsicElements["mtds-atlas"];
 export type AtlasMarkerProps = React.JSX.IntrinsicElements["mtds-atlas-marker"];
+export type AtlasWMSProps = React.JSX.IntrinsicElements["mtds-atlas-wms"];
 export type AtlasMatgeoProps =
 	React.JSX.IntrinsicElements["mtds-atlas-matgeo"] & {
 		onFeatureClick?: React.JSX.IntrinsicElements["mtds-atlas-matgeo"]["onatlasfeatureclick"];
@@ -59,6 +64,11 @@ export const Atlas = Object.assign(AtlasComp, {
 					{...toCustomElementProps(rest)}
 				/>
 			);
+		},
+	),
+	WMS: forwardRef<MTDSAtlasWMSElement, AtlasWMSProps>(
+		function AtlasWMS(props, ref) {
+			return <mtds-atlas-wms ref={ref} {...toCustomElementProps(props)} />;
 		},
 	),
 });

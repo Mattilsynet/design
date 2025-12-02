@@ -14,7 +14,7 @@ export class MTDSAtlasMarkerElement extends MTDSElement {
 	marker?: L.Marker;
 
 	static get observedAttributes() {
-		return ["draggable", "data-latlng", "popovertarget"]; // Using ES2015 syntax for backwards compatibility
+		return ["hidden", "draggable", "data-latlng", "popovertarget"]; // Using ES2015 syntax for backwards compatibility
 	}
 	connectedCallback() {
 		queueMicrotask(() => {
@@ -33,17 +33,21 @@ export class MTDSAtlasMarkerElement extends MTDSElement {
 			attr(this, "slot", `${SLOT}`); // Link slot to marker icon
 			attr(this, "role", "button");
 			attr(this, "tabindex", "0");
-			this.atlas?.cluster?.addLayer(this.marker);
+			this.attributeChangedCallback("hidden"); // Maybe add to map
 		}); // Let the atlas parent initialize first
 	}
 	attributeChangedCallback(name: string) {
-		if (name === "popovertarget") this.marker?.getPopup()?.update();
+		const mark = this.marker;
+		const cluster = this.atlas?.cluster;
+		if (name === "popovertarget") mark?.getPopup()?.update();
 		if (name === "data-latlng") {
 			const latlng = this.#parseLatLng();
-			this.marker?.getLatLng().equals(latlng) || this.marker?.setLatLng(latlng);
+			mark?.getLatLng().equals(latlng) || mark?.setLatLng(latlng);
 		}
 		if (name === "draggable")
-			this.marker?.dragging?.[this.draggable ? "enable" : "disable"]();
+			mark?.dragging?.[this.draggable ? "enable" : "disable"]();
+		if (name === "hidden" && mark && cluster)
+			cluster[this.hidden ? "removeLayer" : "addLayer"](mark);
 	}
 	disconnectedCallback() {
 		off(this, "click,keydown", this);

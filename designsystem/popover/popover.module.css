@@ -38,6 +38,7 @@
 	}
 	.popover[slot] {
 		position: static; /* Let slot handle positioning */
+		max-width: 100%;
 	}
 	.popover[hidden],
 	.popover[popover]:not(:popover-open) {

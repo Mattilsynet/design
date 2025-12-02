@@ -67,17 +67,6 @@ export const WithViewAdvanced: Story = {
 			},
 		];
 
-		// TODO: Typing click events
-		// useEffect(() => {
-		// 	const self = atlasRef.current;
-		// 	const handleClick = (event: L.LeafletMouseEvent) => {
-		// 		toast(<code>{JSON.stringify(event.latlng)}</code>);
-		// 	};
-
-		// 	self?.addEventListener("click", handleClick);
-		// 	return () => self?.removeEventListener("click", handleClick);
-		// }, []);
-
 		return (
 			<Flex data-items="400" data-nowrap>
 				<Atlas ref={atlasRef} data-view={open ? `${open.latlng}, 14` : "fit"}>
@@ -255,9 +244,32 @@ export const WithMatgeo: Story = {
 					popoverTarget="my-matgeo-popover"
 					onFeatureClick={(event) => {
 						setContent(
-							JSON.stringify(event.detail.feature?.properties, null, " "),
+							JSON.stringify(
+								event.detail.targets.map((layer) => layer.feature?.properties),
+								null,
+								" ",
+							),
 						);
 					}}
+				/>
+				<Popover as={Prose} id="my-matgeo-popover">
+					<pre data-size="sm">{content}</pre>
+				</Popover>
+			</Atlas>
+		);
+	},
+};
+
+export const WithWMS: Story = {
+	render: () => {
+		const [content, _setContent] = useState("");
+
+		return (
+			<Atlas data-view="63.431958, 10.397461, 16">
+				<Atlas.WMS
+					data-url="https://wms.geonorge.no/skwms1/wms.matrikkel?request=GetMap&version=1.3.0&layers=matrikkel_WMS&format=image/png&transparent=true"
+					popoverTarget="my-matgeo-popover"
+					onClick={console.log}
 				/>
 				<Popover as={Prose} id="my-matgeo-popover">
 					<pre data-size="sm">{content}</pre>

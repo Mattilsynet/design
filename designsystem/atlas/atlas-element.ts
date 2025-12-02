@@ -2,13 +2,25 @@ import L from "leaflet";
 import LeafletCSS from "leaflet/dist/leaflet.css?raw";
 import type {} from "leaflet.markercluster"; // Extend L namespace
 import "./cluster.js";
-import { attr, defineElement, MTDSElement, off, on, tag } from "../utils";
+import {
+	attr,
+	defineElement,
+	isBrowser,
+	MTDSElement,
+	off,
+	on,
+	tag,
+} from "../utils";
 import css from "./atlas.css?raw";
 export { L };
 export { MTDSAtlasMarkerElement } from "./atlas-marker";
 export { MTDSAtlasMatgeoElement } from "./atlas-matgeo";
+export { MTDSAtlasWMSElement } from "./atlas-wms";
 
 // TODO: Add minimum zoom level for adding markers (minimum 17 som standard?)
+// TODO: Add search helper
+// TODO: Show matgeo-loading?
+// TODO: matgeo-autoload popover info
 
 declare global {
 	interface HTMLElementTagNameMap {
@@ -37,7 +49,7 @@ export class MTDSAtlasElement extends MTDSElement {
 		this.attachShadow({ mode: "open" }).append(
 			tag(
 				"style",
-				{},
+				null,
 				`@layer leaflet{${LeafletCSS}}\n@layer mt.design{${css}`,
 			),
 			tag("figure"),
@@ -48,6 +60,7 @@ export class MTDSAtlasElement extends MTDSElement {
 		const cluster = attr(this, "data-cluster") ?? "false";
 		const tiles = new L.TileLayer(KARTVERKET_TILES_URL, {
 			attribution: "&copy; Kartverket",
+			className: "leaflet-kartverket-tiles",
 			maxZoom: KARTVERKET_MAX_ZOOM,
 		});
 
@@ -56,7 +69,7 @@ export class MTDSAtlasElement extends MTDSElement {
 			fadeAnimation: false, // Prevent popup fades
 			layers: [tiles],
 			zoomControl: false,
-			zoomSnap: 0.2,
+			zoomSnap: 0,
 		});
 
 		on(this, "pointerup,click", this.#skipClick); // Prevent clicks from bubbling up unless sent from Leaflet
@@ -113,7 +126,7 @@ export class MTDSAtlasElement extends MTDSElement {
 		const el = document.getElementById(slot?.name || id); // If content of popup is #id, replace with <slot>
 
 		if (!el) return open && id && popup.close(); // Close popup if target element not found
-		L.Util.setOptions(popup, { maxWidth: 9999 });
+		L.Util.setOptions(popup, { maxWidth: this.offsetWidth - 40 });
 		attr(el, "data-popover", open ? attr(el, "popover") : null); // Store previous popover mode
 		attr(el, "popover", open ? null : attr(el, "data-popover")); // But temporarily remove it so popover renders
 		attr(el, "slot", open ? el.id : null); // Render popover in slot
@@ -129,3 +142,9 @@ export class MTDSAtlasElement extends MTDSElement {
 }
 
 defineElement("mtds-atlas", MTDSAtlasElement);
+
+if (isBrowser())
+	L.Marker.prototype.options.icon = new L.DivIcon({
+		html: '<div class="leaflet-marker-generated-slot"><div class="leaflet-marker-generated-icon"></div></div>',
+		iconSize: [0, 0],
+	});

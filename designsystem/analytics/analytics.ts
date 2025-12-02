@@ -9,6 +9,7 @@ const CSS_PAGINATION = `.${styles.pagination.split(" ")[0]}`;
 const CLICKS = `summary,u-summary,a,button,[role="tab"],[role="button"]`;
 const EVENTS = "click,toggle,submit,change";
 const MATOMO = "mattilsynet.matomo.cloud";
+const MATOMO_STRINGS = ["setCustomUrl", "setDocumentTitle", "setReferrerUrl"];
 const BANNER = "mtds-analytics-banner"; // Dialog to show Matomo script loading
 const BANNER_URL =
 	"https://www.mattilsynet.no/om-mattilsynet/personvernerklaering/informasjonskapsler";
@@ -132,7 +133,8 @@ export function analytics<Action extends keyof AnalyticsActions>(
 		window._paq.push(["trackSiteSearch", query, category, results]);
 	} else if (action === "matomo") {
 		const props = args as AnalyticsActions["matomo"];
-		if (props?.[0] === "setReferrerUrl" && !props[1]) props[1] = ""; // Matomo dies if referrer is undefined
+		const needStr = MATOMO_STRINGS.includes(props?.[0] as string);
+		if (needStr && typeof props[1] !== "string") props[1] = `${props[1] ?? ""}`; // Matomo dies if not string
 		window._paq.push(props);
 	}
 }

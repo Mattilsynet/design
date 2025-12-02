@@ -67,11 +67,28 @@ export const Sizes: Story = {
 
 export const WithBadge: Story = {
 	render: () => (
-		<div className={styles.badge}>
-			<div className={styles.avatar} data-size="xs">
-				<img src={avatar} alt="Navn Navnesen" />
+		<>
+			<div className={styles.badge}>
+				<div className={styles.avatar} data-size="xs">
+					<img src={avatar} alt="Navn Navnesen" />
+				</div>
 			</div>
-		</div>
+			<div className={styles.badge}>
+				<div className={styles.avatar} data-size="sm">
+					<img src={avatar} alt="Navn Navnesen" />
+				</div>
+			</div>
+			<div className={styles.badge}>
+				<div className={styles.avatar} data-size="md">
+					<img src={avatar} alt="Navn Navnesen" />
+				</div>
+			</div>
+			<div className={styles.badge}>
+				<div className={styles.avatar} data-size="lg">
+					<img src={avatar} alt="Navn Navnesen" />
+				</div>
+			</div>
+		</>
 	),
 };
 
