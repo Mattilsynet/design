@@ -23,8 +23,8 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<Field>
-			<label>Ledetekst</label>
-			<p>Beskrivelse</p>
+			<Field.Label>Ledetekst</Field.Label>
+			<Field.Description>Beskrivelse</Field.Description>
 			<Input />
 			<Validation>Feilmelding</Validation>
 		</Field>

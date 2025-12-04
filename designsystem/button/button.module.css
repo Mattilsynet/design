@@ -7,9 +7,10 @@
 		text-align: center;
 		transition-duration: 0.2s;
 		transition-property: background-color, scale, translate;
-	}
-	.button:where(:not([hidden])) {
 		width: fit-content;
+	}
+	.button[data-self="full"] {
+		width: 100%;
 	}
 
 	/* Overwrite to same as tertiary from Designsystemet  */

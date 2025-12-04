@@ -78,7 +78,7 @@ export const React: Story = {
 				<Popover id={popInlineId}>Popover i tekst</Popover>
 				<br />
 				<Field>
-					<label>
+					<Field.Label>
 						Et{" "}
 						<button
 							type="button"
@@ -88,7 +88,7 @@ export const React: Story = {
 							vanskelig ord
 						</button>{" "}
 						i ledetekst
-					</label>
+					</Field.Label>
 					<Popover id={popLabelId}>
 						Legg popover elementet <i>etter</i> label elementet (ikke inni), for
 						å oppnå semantisk riktig HTML

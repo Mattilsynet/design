@@ -222,7 +222,7 @@ const proseDecorator: Story["decorators"] = (Story) => {
 					}
 				`}</style>
 				<Field>
-					<label>Vis avstander</label>
+					<Field.Label>Vis avstander</Field.Label>
 					<Input type="checkbox" role="switch" />
 				</Field>
 				<Story />

@@ -180,24 +180,22 @@ export const WithClustering: Story = {
 };
 
 export const WithPopover: Story = {
-	render: function Render() {
-		return (
-			<Atlas data-view="60.722, 10.985, 16">
-				<Atlas.Marker
-					aria-label="Markør 1"
-					data-latlng="60.722, 10.985"
-					popoverTarget="popover-1"
-				/>
-				<Atlas.Marker
-					aria-label="Markør 2"
-					data-latlng="60.721, 10.980"
-					popoverTarget="popover-2"
-				/>
-				<Popover id="popover-1">Popover 1</Popover>
-				<Popover id="popover-2">Popover 2</Popover>
-			</Atlas>
-		);
-	},
+	render: () => (
+		<Atlas data-view="60.722, 10.985, 16">
+			<Atlas.Marker
+				aria-label="Markør 1"
+				data-latlng="60.722, 10.985"
+				popoverTarget="popover-1"
+			/>
+			<Atlas.Marker
+				aria-label="Markør 2"
+				data-latlng="60.721, 10.980"
+				popoverTarget="popover-2"
+			/>
+			<Popover id="popover-1">Popover 1</Popover>
+			<Popover id="popover-2">Popover 2</Popover>
+		</Atlas>
+	),
 };
 
 export const WithPopoverDynamic: Story = {
@@ -261,22 +259,11 @@ export const WithMatgeo: Story = {
 };
 
 export const WithWMS: Story = {
-	render: () => {
-		const [content, _setContent] = useState("");
-
-		return (
-			<Atlas data-view="63.431958, 10.397461, 16">
-				<Atlas.WMS
-					data-url="https://wms.geonorge.no/skwms1/wms.matrikkel?request=GetMap&version=1.3.0&layers=matrikkel_WMS&format=image/png&transparent=true"
-					popoverTarget="my-matgeo-popover"
-					onClick={console.log}
-				/>
-				<Popover as={Prose} id="my-matgeo-popover">
-					<pre data-size="sm">{content}</pre>
-				</Popover>
-			</Atlas>
-		);
-	},
+	render: () => (
+		<Atlas data-view="63.431958, 10.397461, 16">
+			<Atlas.WMS data-url="https://wms.geonorge.no/skwms1/wms.matrikkel?request=GetMap&version=1.3.0&layers=matrikkel_WMS&format=image/png&transparent=true" />
+		</Atlas>
+	),
 };
 
 export const WithTooltip: Story = {

@@ -96,9 +96,9 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	// Using suppressHydrationWarning to avoid Next.js vs field-observer.ts hydration conflict
 	return as ? (
 		<div {...shared}>
-			{!!label && <label suppressHydrationWarning>{label}</label>}
+			{!!label && <FieldLabel>{label}</FieldLabel>}
 			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
-			{!!description && <p suppressHydrationWarning>{description}</p>}
+			{!!description && <FieldDescription>{description}</FieldDescription>}
 			{affixes ? (
 				<FieldAffixes>
 					{!!prefix && <span>{prefix}</span>}
@@ -121,7 +121,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 			{!!validation && (
 				<Validation hidden={validationType === "form"}>{validation}</Validation>
 			)}
-			{!!count && <p suppressHydrationWarning data-count={count} />}
+			{!!count && <FieldCount data-count={count} />}
 		</div>
 	) : (
 		<div ref={ref} {...shared} {...rest} />
@@ -306,14 +306,35 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 );
 
 export type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
+const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
+	function FieldLabel(rest, ref) {
+		return <label suppressHydrationWarning ref={ref} {...rest} />;
+	},
+);
+
+export type FieldDescriptionProps = React.ComponentPropsWithoutRef<"p">;
+const FieldDescription = forwardRef<
+	HTMLParagraphElement,
+	FieldDescriptionProps
+>(function FieldDescription(rest, ref) {
+	return <p suppressHydrationWarning ref={ref} {...rest} />;
+});
+
+export type FieldCountProps = React.ComponentPropsWithoutRef<"p"> & {
+	"data-count": number;
+};
+const FieldCount = forwardRef<HTMLParagraphElement, FieldCountProps>(
+	function FieldCount(rest, ref) {
+		return <p suppressHydrationWarning ref={ref} {...rest} />;
+	},
+);
+
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
 	Combobox: FieldCombobox,
 	Datalist: FieldDatalist,
 	Option: FieldOption,
-	Label: forwardRef<HTMLLabelElement, FieldLabelProps>(
-		function FieldLabel(rest, ref) {
-			return <label suppressHydrationWarning ref={ref} {...rest} />;
-		},
-	),
+	Description: FieldDescription,
+	Label: FieldLabel,
+	Count: FieldCount,
 });

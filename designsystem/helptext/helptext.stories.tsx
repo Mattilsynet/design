@@ -88,11 +88,11 @@ export const React: Story = {
 				Tekst som forklarer hva som menes med mottaker
 			</HelpText>
 			<Field>
-				<label>Ledetekst</label>
+				<Field.Label>Ledetekst</Field.Label>
 				<HelpText aria-label="Hva menes med mottaker">
 					Tekst som forklarer hva som menes med mottaker
 				</HelpText>
-				<p>Beskrivelse</p>
+				<Field.Description>Beskrivelse</Field.Description>
 				<Input />
 			</Field>
 			<Field
