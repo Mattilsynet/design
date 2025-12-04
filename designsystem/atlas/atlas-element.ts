@@ -18,8 +18,7 @@ export { MTDSAtlasMatgeoElement } from "./atlas-matgeo";
 export { MTDSAtlasWMSElement } from "./atlas-wms";
 
 // TODO: Add minimum zoom level for adding markers (minimum 17 som standard?)
-// TODO: Add search helper
-// TODO: Show matgeo-loading?
+// TODO: Add search helper (https://ws.geonorge.no/adresser/v1/openapi.json + https://ws.geonorge.no/adresser/v1/#/default/get_sok)
 // TODO: matgeo-autoload popover info
 
 declare global {
@@ -69,7 +68,7 @@ export class MTDSAtlasElement extends MTDSElement {
 			fadeAnimation: false, // Prevent popup fades
 			layers: [tiles],
 			zoomControl: false,
-			zoomSnap: 0,
+			zoomSnap: 0.2,
 		});
 
 		on(this, "pointerup,click", this.#skipClick); // Prevent clicks from bubbling up unless sent from Leaflet

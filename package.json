@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.2.26",
+	"version": "2.2.27",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -59,9 +59,9 @@
 		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
-		"@storybook/addon-docs": "^10.1.2",
-		"@storybook/addon-themes": "^10.1.2",
-		"@storybook/react-vite": "^10.1.2",
+		"@storybook/addon-docs": "^10.1.4",
+		"@storybook/addon-themes": "^10.1.4",
+		"@storybook/react-vite": "^10.1.4",
 		"@tanstack/react-table": "^8.21.3",
 		"@turf/boolean-point-in-polygon": "^7.3.1",
 		"@turf/helpers": "^7.3.1",
@@ -76,9 +76,9 @@
 		"leaflet": "^2.0.0-alpha.1",
 		"postcss": "^8.5.6",
 		"postcss-nesting": "^13.0.2",
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0",
-		"storybook": "^10.1.2",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
+		"storybook": "^10.1.4",
 		"typescript": "^5.9.3",
 		"vite": "^7.2.6",
 		"vite-plugin-dts": "^4.5.4"

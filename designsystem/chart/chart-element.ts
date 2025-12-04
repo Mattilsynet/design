@@ -121,7 +121,7 @@ function onMoveTooltip(event: MouseEvent) {
 	const tip = (el instanceof Element && el.getAttribute("aria-label")) || "";
 
 	if (tip)
-		TOOLTIP.style.transform = `translate(${event.pageX}px, ${event.pageY}px)`;
+		TOOLTIP.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
 	if (tip !== TOOLTIP_TEXT) {
 		if (tip) TOOLTIP.textContent = tip;
 		TOOLTIP_TEXT = tip;

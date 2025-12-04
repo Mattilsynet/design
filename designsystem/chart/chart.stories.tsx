@@ -143,7 +143,7 @@ export const Column: Story = {
 
 export const ColumnSingleDataset: Story = {
 	render: () => (
-		<mtds-chart data-variant="column">
+		<mtds-chart data-variant="column" style={{ marginBlock: 900 }}>
 			<table>
 				<thead>
 					<tr>

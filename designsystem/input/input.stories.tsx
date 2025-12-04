@@ -28,7 +28,7 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<Field>
-			<label>Ledetekst</label>
+			<Field.Label>Ledetekst</Field.Label>
 			<Input />
 		</Field>
 	),

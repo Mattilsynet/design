@@ -309,6 +309,19 @@ export const WithSpinner: Story = {
 	),
 };
 
+export const WithFullWidth: Story = {
+	render: () => (
+		<button
+			className={styles.button}
+			data-self="full"
+			data-variant="primary"
+			type="button"
+		>
+			Knapp
+		</button>
+	),
+};
+
 export const WithMenu: Story = {
 	render: () => (
 		<>

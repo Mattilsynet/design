@@ -4,7 +4,7 @@ import styles from "../styles.module.css";
 
 export type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset">;
 
-export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
+export const FieldsetComp = forwardRef<HTMLFieldSetElement, FieldsetProps>(
 	function Fieldset({ className, ...rest }, ref) {
 		return (
 			<fieldset
@@ -15,3 +15,23 @@ export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
 		);
 	},
 );
+
+export type FieldsetLegendProps = React.ComponentPropsWithoutRef<"legend">;
+const FieldsetLegend = forwardRef<HTMLLegendElement, FieldsetLegendProps>(
+	function FieldsetLegend(rest, ref) {
+		return <legend suppressHydrationWarning ref={ref} {...rest} />;
+	},
+);
+
+export type FieldsetDescriptionProps = React.ComponentPropsWithoutRef<"p">;
+const FieldsetDescription = forwardRef<
+	HTMLParagraphElement,
+	FieldsetDescriptionProps
+>(function FieldsetDescription(rest, ref) {
+	return <p suppressHydrationWarning ref={ref} {...rest} />;
+});
+
+export const Fieldset = Object.assign(FieldsetComp, {
+	Legend: FieldsetLegend,
+	Description: FieldsetDescription,
+});

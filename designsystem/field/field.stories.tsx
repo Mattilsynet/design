@@ -142,8 +142,8 @@ export const React: Story = {
 				Field uten <code>as</code> attributt lar deg bygge opp av bestanddeler:
 			</h2>
 			<Field>
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
+				<Field.Label>Ledetekst</Field.Label>
+				<Field.Description>Beskrivelse</Field.Description>
 				<Input />
 			</Field>
 			<br />
@@ -635,8 +635,10 @@ export const ReactWithComboboxWithChildren: Story = {
 
 		return (
 			<Field>
-				<label>React med Field.Combobox med barn</label>
-				<p>Hvis Field.Combobox har barn, tegner den ikke input selv.</p>
+				<Field.Label>React med Field.Combobox med barn</Field.Label>
+				<Field.Description>
+					Hvis Field.Combobox har barn, tegner den ikke input selv.
+				</Field.Description>
 				<Field.Combobox
 					data-multiple={multiple}
 					selected={selected}
@@ -733,8 +735,8 @@ export const ReactWithComboboxLong: Story = {
 			<>
 				<div style={{ height: 400 }} />
 				<Field>
-					<label>React med lange og mange</label>
-					<p>Beskrivelse</p>
+					<Field.Label>React med lange og mange</Field.Label>
+					<Field.Description>Beskrivelse</Field.Description>
 					<Field.Combobox selected={selected} onSelectedChange={setSelected}>
 						<Input />
 						<del role="img" aria-label="Fjern tekst"></del>
@@ -790,7 +792,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 
 		return (
 			<Field>
-				<label>Filterer på starten av ordet</label>
+				<Field.Label>Filterer på starten av ordet</Field.Label>
 				<Field.Combobox
 					data-nofilter
 					data-multiple

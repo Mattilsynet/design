@@ -12,8 +12,8 @@ type Story = StoryObj<typeof meta>;
 export const React: Story = {
 	render: () => (
 		<Fieldset>
-			<legend>Hva foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
+			<Fieldset.Legend>Hva foretrekker du?</Fieldset.Legend>
+			<Fieldset.Description>Fellesbeskrivelse</Fieldset.Description>
 			<Field
 				as="input"
 				defaultChecked

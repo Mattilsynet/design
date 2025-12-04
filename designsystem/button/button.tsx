@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { forwardRef, type JSX } from "react";
+import type { FlexProps } from "../react";
 import type {
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
@@ -12,6 +13,7 @@ type ButtonBaseProps<Href> = {
 	"data-nowrap"?: boolean;
 	"data-variant"?: "primary" | "secondary" | "tertiary";
 	"data-command"?: string;
+	"data-self"?: FlexProps["data-items"];
 	href?: Href;
 	popovertarget?: string;
 	popovertargetaction?: string;

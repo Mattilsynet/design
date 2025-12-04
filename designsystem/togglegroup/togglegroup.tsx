@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { forwardRef } from "react";
+import type { InputProps } from "../react";
 import styles from "../styles.module.css";
 
 export type TogglegroupProps = React.ComponentPropsWithoutRef<"fieldset">;
@@ -7,10 +8,8 @@ export type TogglegroupItemProps = Omit<
 	React.ComponentPropsWithoutRef<"label">,
 	"onChange"
 > &
-	Pick<
-		React.ComponentPropsWithoutRef<"input">,
-		"defaultChecked" | "checked" | "onChange"
-	> & { name: string; value: string }; // Make name and value required
+	Pick<InputProps, "defaultChecked" | "checked" | "onChange" | "value"> &
+	Required<Pick<InputProps, "name">>; // Make name required
 
 const TogglegroupComp = forwardRef<HTMLFieldSetElement, TogglegroupProps>(
 	function Togglegroup({ className, ...rest }, ref) {
@@ -25,12 +24,14 @@ const TogglegroupComp = forwardRef<HTMLFieldSetElement, TogglegroupProps>(
 );
 const TogglegroupItem = forwardRef<HTMLLabelElement, TogglegroupItemProps>(
 	function TogglegroupItem(
-		{ children, checked, defaultChecked, name, onChange, ...rest },
+		{ children, checked, defaultChecked, value, name, onChange, ...rest },
 		ref,
 	) {
 		return (
 			<label ref={ref} {...rest}>
-				<input type="radio" {...{ checked, defaultChecked, name, onChange }} />
+				<input
+					{...{ type: "radio", checked, defaultChecked, value, name, onChange }}
+				/>
 				{children}
 			</label>
 		);

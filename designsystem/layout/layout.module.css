@@ -176,4 +176,8 @@
 	.grid[data-items="400"] { --mtds-grid-size: calc(1rem / 16 * 400) }
 	.grid[data-items="450"] { --mtds-grid-size: calc(1rem / 16 * 450) }
 	.grid[data-items="500"] { --mtds-grid-size: calc(1rem / 16 * 500) }
+	
+	.grid > [class*="button"] {
+		width: auto; /* Let buttons inside grids be auto width, not width: fit-contnent */
+	}
 }
