@@ -237,12 +237,10 @@ export const WithMatgeo: Story = {
 
 		return (
 			<Atlas data-view="60.722, 10.985, 16">
-				<Atlas.Matgeo data-collection="slam" data-color="danger" />
 				<Atlas.Matgeo
 					data-collection="bygg"
 					popoverTarget="my-matgeo-popover"
 					onFeatureClick={(event) => {
-						console.log(event.detail.targets);
 						setContent(
 							JSON.stringify(
 								event.detail.targets.map((layer) => layer.feature?.properties),
