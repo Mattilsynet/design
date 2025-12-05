@@ -190,6 +190,74 @@ export const WithValidation: Story = {
 	),
 };
 
+export const WithValidationForm: Story = {
+	parameters: {
+		showInOverview: true,
+	},
+	render: () => (
+		<form action="#" className={styles.prose}>
+			<fieldset className={styles.fieldset} data-validation="form">
+				<legend>Hvilke foretrekker du?</legend>
+				<div className={styles.field}>
+					<input
+						type="checkbox"
+						className={styles.input}
+						name="my-check-validation"
+						required
+					/>
+					<label>Checkbox 1</label>
+				</div>
+				<div className={styles.field}>
+					<input
+						type="checkbox"
+						className={styles.input}
+						name="my-check-validation"
+						required
+					/>
+					<label>Checkbox 2</label>
+				</div>
+				<div className={styles.validation} hidden>
+					Feilmelding
+				</div>
+			</fieldset>
+			<fieldset className={styles.fieldset} data-validation="form">
+				<legend>Hvilke foretrekker du?</legend>
+				<div className={styles.field}>
+					<input
+						type="radio"
+						className={styles.input}
+						name="my-radio-validation"
+						required
+					/>
+					<label>Radio 1</label>
+					<div className={styles.validation} hidden>
+						Feilmelding 1
+					</div>
+				</div>
+				<div className={styles.field}>
+					<input
+						type="radio"
+						className={styles.input}
+						name="my-radio-validation"
+						required
+					/>
+					<label>Radio 2</label>
+					<div className={styles.validation} hidden>
+						Feilmelding 2
+					</div>
+				</div>
+				<div className={styles.validation} hidden>
+					Feilmelding
+				</div>
+			</fieldset>
+
+			<button type="submit" className={styles.button} data-variant="primary">
+				Send inn
+			</button>
+		</form>
+	),
+};
+
 export const WithTexts: Story = {
 	parameters: {
 		showInOverview: true,

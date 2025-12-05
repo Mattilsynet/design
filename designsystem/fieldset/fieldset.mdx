@@ -14,8 +14,6 @@ import styles from '../styles.module.css';
 - Dette grupperer typisk `checkbox` eller `radio` inputs
 <Canvas of={stories.Radios} />
 
-
-
 ## Skikk og bruk
 <Flex data-items="350">
    {/* Vertikal vs horisontal alignment: */}
@@ -98,6 +96,12 @@ import styles from '../styles.module.css';
 - Teksten `Må fylles ut` oversettes automatisk til `Required` dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property: `--mtds-text-required: "Må fylles ut";`
 - **Merk:** Dersom du ønsker å skru denne [lovpålagte merkingen av obligatoriske felter](https://www.designsystemet.no/monstre/obligatoriske-og-valgfrie-felt), kan du legge `data-required="hidden"` på hvilket som helst element (f.eks. `<html data-required="hidden">` for å skru av for hele dokumentet)
 <Canvas of={stories.Radios} />
+
+## Innebygget skjemavalidering
+- Nettleserens innebyggede valideringsmeldinger skjules pga. begrenset styling og universell utforming
+- Du kan allikevel få [nettleserens innebygge skjemavalidering](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation#using_built-in_form_validation) til å automatisk skjule og vise [validation-komponentet](?path=/docs/designsystem-validation--docs) ved å legge `data-validation="form"` på `fieldset` 
+- **Merk:** Legg du vil vise valideringsmelding ved hvert input-element, må `data-validation="form"` legges på hvert enkelt `field`
+<Canvas of={stories.WithValidationForm} />
 
 ## Checkboxes
 <Canvas of={stories.Checkboxes} />

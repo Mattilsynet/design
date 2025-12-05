@@ -67,9 +67,9 @@ export function Epost() {
 					value={data.position}
 				/>
 				<Fieldset>
-					<legend>
+					<Fieldset.Legend>
 						<IdentificationBadgeIcon aria-hidden="true" /> Tilknytning
-					</legend>
+					</Fieldset.Legend>
 					<Flex>
 						<Field
 							as="input"
