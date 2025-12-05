@@ -45,17 +45,24 @@ function handleFieldMutation(validate?: boolean) {
 
 			if (input) {
 				const comboboxInput = combobox?.control;
-				const shouldValidate = validate || comboboxInput?.validity.customError; // Live re-evaluate combobox if invalid to correct validity before form sumbit
+				const validateEl =
+					(validate || comboboxInput?.validity.customError) && // Live re-evaluate combobox if invalid to correct validity before form sumbit
+					input.closest('[data-validation="form"]');
 
-				if (shouldValidate && attr(field, "data-validation") === "form") {
+				if (validateEl) {
 					valid =
 						comboboxInput?.getAttribute("aria-required") === "true"
 							? !!combobox?.items.length
-							: input.validity.valid;
+							: input.validity.valid; // If checkbox, only one needs to be vaild when same name
 
 					if (!firstInvalid && !valid) firstInvalid = input;
-					for (const el of validationMsg) attr(el, "hidden", valid ? "" : null);
 					comboboxInput?.setCustomValidity(valid ? "" : "Invalid"); // Combobox does not have native validation
+					const validateElValid = !validateEl.querySelector(":invalid"); // Check if any invalid inputs inside field or fieldset
+					validateEl
+						.querySelectorAll(`:scope > .${CSS_VALIDATION}`)
+						.forEach((el) => {
+							attr(el, "hidden", validateElValid ? "" : null);
+						});
 				}
 				for (const label of labels) label.htmlFor = useId(input);
 				renderCombobox(combobox);

@@ -46,9 +46,10 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
 <Canvas of={stories.WithValidation} />
 
 ## Innebygget skjemavalidering
-- Nettleserens valideringsmeldinger skjules pga. begrenset styling og universell utforming
+- Nettleserens innebyggede valideringsmeldinger skjules pga. begrenset styling og universell utforming
 - Du kan allikevel få [nettleserens innebygge skjemavalidering](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation#using_built-in_form_validation) til å automatisk skjule og vise [validation-komponentet](?path=/docs/designsystem-validation--docs) ved å legge `data-validation="form"` på `field` 
 - **Merk:** `u-combobox` krever `input aria-required="true"` (ikke `input required`) siden combobox ikke er et native skjemaelement
+- **Merk:** Fieldset støtter også `data-validation="form"` for grupper felt
 <Canvas of={stories.WithValidationForm} />
 
 ## Prefiks og suffiks
