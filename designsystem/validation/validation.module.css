@@ -17,4 +17,8 @@
 	.validation[data-color="info"] {
 		--dsc-validation-message-icon-url: var(--mtds-icon-info);
 	}
+
+	[data-validation="form"] .validation:not([data-validation="invalid"]) {
+		display: none;
+	}
 }

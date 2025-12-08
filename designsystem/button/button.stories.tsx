@@ -1,7 +1,7 @@
 import { HeartIcon, ListIcon, StarIcon, XIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { Button } from "../react";
+import { Button, Flex, Grid } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -276,36 +276,54 @@ export const WithIcons: Story = {
 
 export const WithSpinner: Story = {
 	render: () => (
-		<>
-			<button
-				aria-busy="true"
-				className={styles.button}
-				data-variant="primary"
-				disabled
-				type="button"
-			>
-				Knapp
-			</button>
-			<a
-				aria-busy="true"
-				className={styles.button}
-				data-variant="primary"
-				href="#none"
-				tabIndex={-1}
-			>
-				Lenkeknapp
-			</a>
-			<button
-				aria-busy="true"
-				className={styles.button}
-				data-arrow="right"
-				data-variant="primary"
-				disabled
-				type="button"
-			>
-				Knapp med høyrepil
-			</button>
-		</>
+		<Grid>
+			<Flex>
+				<Button aria-busy="true" data-variant="primary">
+					Knapp
+				</Button>
+				<Button aria-busy="true" data-variant="primary">
+					Lenkeknapp
+				</Button>
+			</Flex>
+			<Flex>
+				<Button aria-busy="true" data-arrow="right" data-variant="primary">
+					Knapp med høyrepil
+				</Button>
+				<Button aria-busy="true" data-arrow="left" data-variant="primary">
+					Knapp med venstrepil
+				</Button>
+			</Flex>
+			<Flex>
+				<Button aria-busy="true" data-variant="primary">
+					Knapp med høyre-ikon
+					<StarIcon />
+				</Button>
+				<Button aria-busy="true" data-variant="primary">
+					<StarIcon />
+					Knapp med venstre-ikon
+				</Button>
+			</Flex>
+			<Flex>
+				<Button aria-busy="true" data-variant="primary" data-arrow="right">
+					Knapp med høyre-ikon og høyrepil
+					<StarIcon />
+				</Button>
+				<Button aria-busy="true" data-variant="primary" data-arrow="left">
+					<StarIcon />
+					Knapp med venstre-ikon og venstrepil
+				</Button>
+			</Flex>
+			<Flex>
+				<Button aria-busy="true" data-variant="primary" data-arrow="left">
+					Knapp med høyre-ikon og venstreepil
+					<StarIcon />
+				</Button>
+				<Button aria-busy="true" data-variant="primary" data-arrow="right">
+					<StarIcon />
+					Knapp med venstre-ikon og høyrepil
+				</Button>
+			</Flex>
+		</Grid>
 	),
 };
 

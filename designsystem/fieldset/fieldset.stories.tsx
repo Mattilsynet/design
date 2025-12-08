@@ -195,8 +195,8 @@ export const WithValidationForm: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<form action="#" className={styles.prose}>
-			<fieldset className={styles.fieldset} data-validation="form">
+		<form action="#" className={styles.prose} data-validation="form">
+			<fieldset className={styles.fieldset}>
 				<legend>Hvilke foretrekker du?</legend>
 				<div className={styles.field}>
 					<input
@@ -220,7 +220,7 @@ export const WithValidationForm: Story = {
 					Feilmelding
 				</div>
 			</fieldset>
-			<fieldset className={styles.fieldset} data-validation="form">
+			<fieldset className={styles.fieldset}>
 				<legend>Hvilke foretrekker du?</legend>
 				<div className={styles.field}>
 					<input

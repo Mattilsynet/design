@@ -51,8 +51,12 @@
 		vertical-align: 0.1em;
 		white-space: nowrap;
 	}
-	.field p[data-count] {
+	.field [data-count]:not([hidden]) {
+		display: block; /* Overwrite validation message */
+	}
+	.field [data-count]::after {
 		font-size: var(--mtds-font-size-muted);
+		content: attr(aria-label);
 	}
 
 	/**

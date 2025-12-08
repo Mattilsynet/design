@@ -2,9 +2,7 @@ import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
-export type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset"> & {
-	"data-validation"?: "form";
-};
+export type FieldsetProps = React.ComponentPropsWithoutRef<"fieldset">;
 
 export const FieldsetComp = forwardRef<HTMLFieldSetElement, FieldsetProps>(
 	function Fieldset({ className, ...rest }, ref) {

@@ -29,6 +29,7 @@ import "./table/table-observer";
 import "./toast/toast-observer";
 import "./togglegroup/togglegroup-observer";
 import "./tooltip/tooltip-observer";
+import "./validation/validation-observer";
 import "@u-elements/u-combobox";
 import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element

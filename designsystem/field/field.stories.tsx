@@ -299,24 +299,22 @@ export const WithValidationForm: Story = {
 		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
 
 		return (
-			<form action="#" className={styles.prose}>
-				<div className={styles.field} data-validation="form">
+			<form action="#" className={styles.prose} data-validation="form">
+				<div className={styles.field}>
 					<label>E-post</label>
 					<p>Beskrivelse</p>
 					<input type="email" className={styles.input} required />
-					<div className={styles.validation} hidden>
+					<div className={styles.validation}>
 						Må inneholde en gyldig e-postadresse
 					</div>
 				</div>
-				<div className={styles.field} data-validation="form">
+				<div className={styles.field}>
 					<label>Tekst</label>
 					<p>Beskrivelse</p>
 					<input type="text" className={styles.input} required />
-					<div className={styles.validation} hidden>
-						Må fylles ut
-					</div>
+					<div className={styles.validation}>Må fylles ut</div>
 				</div>
-				<div className={styles.field} data-validation="form">
+				<div className={styles.field}>
 					<label>Combobox</label>
 					<u-combobox>
 						<input type="text" className={styles.input} aria-required="true" />
@@ -331,13 +329,10 @@ export const WithValidationForm: Story = {
 							<u-option value="Lillestrøm">Lillestrøm</u-option>
 						</u-datalist>
 					</u-combobox>
-					<div className={styles.validation} hidden>
-						Må fylles ut
-					</div>
+					<div className={styles.validation}>Må fylles ut</div>
 				</div>
 				<Field
 					as="input"
-					data-validation="form"
 					validation="Må fylles ut"
 					label="React input"
 					required
@@ -345,7 +340,6 @@ export const WithValidationForm: Story = {
 				<Field
 					aria-required="true"
 					as={Field.Combobox}
-					data-validation="form"
 					label="React combobox"
 					onSelectedChange={setSelected}
 					selected={selected}

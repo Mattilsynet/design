@@ -54,6 +54,7 @@
 	.button:disabled,
 	.button[aria-disabled="true"] {
 		pointer-events: none;
+		opacity: 0.6;
 	}
 
 	.button:active {
@@ -114,6 +115,7 @@
 	 */
 	.button[aria-busy="true"] {
 		pointer-events: none;
+		opacity: 1; /* Undo :disabled style */
 	}
 	.button[aria-busy="true"]::before {
 		background: currentcolor;
@@ -126,6 +128,10 @@
 		vertical-align: middle;
 		white-space: nowrap;
 		width: var(--mtds-icon-size);
+	}
+
+	.button[aria-busy="true"]:not([data-arrow]) > svg {
+		display: none; /* Replace icon if no arrow */
 	}
 
 	/**
