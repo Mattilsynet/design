@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { getPkgVersion, JumpTo } from '../.storybook/blocks';
-import { CubeIcon, ChatsCircleIcon, GitBranchIcon } from "@phosphor-icons/react";
-import { Badge, Card, Details, Divider, Flex, Button, Tabs, Prose } from './react'
+import { CubeIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { Alert, Badge, Card, Details, Divider, Flex, Grid, Group, Heading, Button, Tabs, Prose } from './react'
 import { styles } from './';
 import colors from './assets/colors.png';
 import library from './assets/library.png';
@@ -311,3 +311,37 @@ Variabler og tekststiler er tilgjengelige i høyremenyen når du for eksempel tr
 
 </Prose>
 </Details>
+
+## Universell utforming
+
+Designsystemet følger [WCAG-kravene som inngår i regelverket for universell utforming](https://www.uutilsynet.no/wcag-standarden/wcag-standarden/86), for å gjøre løsningene mest mulig brukervennlige for alle.
+Mye universell utforming løses automatisk ved bruk av `@mattilsynet/design`, men noen ting må du som utvikler/designer også ta hensyn til i egen løsning:
+
+<Grid data-items="300">
+<Alert data-color="success">
+<Heading as="h3">Dette løser designsystemet:</Heading>
+<Prose>
+<ul>
+<li>**Fokustilstander:** Tydelige og synlige fokustilstander for interaktive elementer på alle bakgrunner.</li>
+<li>**Fargekontrast:** Tilstrekkelig kontrast og form på innhold for både svaksynte og fargeblinde.</li>
+<li>**Tastaturtilgjengelighet:** Alle interaktive elementer kan nås og betjenes med tastatur.</li>
+<li>**Skalerbart design:** Tilpasning til forskjellige skjermstørrelser, zoom or preferert tekststørrelse.</li>
+<li>**Rolle og tilstand:** Støtte hjelpeteknologi med semantikk og ARIA-attributter.</li>
+<li>**Tilgjengelige skjema:** Korrekt struktur, sammenknytting og validering.</li>
+<li>**Interaktiv elementstørrelse:** Tilstrekkelig berøringsflate.</li>
+</ul>
+</Prose>
+</Alert>
+<Alert>
+<Heading as="h3">Dette må du sørge for:</Heading>
+<Prose>
+<ul>
+<li>**Semantisk HTML:** Bruk passende elementer for å formidle riktig rolle og overskriftshierarki.</li>
+<li>**Tekstalternativer:** Beskrivende aria-label for områder og ikke-tekstlig innhold. Dette står dokumentert på de enkelte komponent-sider.</li>
+<li>**Spesifiser innholdsspråk:** ved hjelp av `<html lang="">`.</li>
+<li>**Aktivere darkmode:** ved hjelp av `<body data-color-scheme="auto">`.</li>
+<li>**Korrekt token-bruk:** Dersom en token heter `border` - bruk den til border og ikke `background`, osv.</li>
+</ul>
+</Prose>
+</Alert>
+</Grid>

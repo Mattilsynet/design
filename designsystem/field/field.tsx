@@ -18,7 +18,6 @@ import { toCustomElementProps } from "../utils";
 import { Validation } from "../validation/validation";
 
 type FieldBaseProps = {
-	"data-validation"?: "form" | "false" | false;
 	count?: number;
 	description?: React.ReactNode;
 	error?: React.ReactNode; // Kept for backwards compatibility
@@ -49,7 +48,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 >(
 	{
 		"data-size": size,
-		"data-validation": validationType,
+		"data-validation": dataValidation,
 		as,
 		className,
 		count,
@@ -71,7 +70,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	const validation = validationContent || error; // error kept for backwards compatibility
 	const shared = {
 		"data-size": size,
-		"data-validation": validationType,
+		"data-validation": dataValidation,
 		className: clsx(styles.field, className),
 		style,
 	};
@@ -118,9 +117,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 					{...rest}
 				/>
 			)}
-			{!!validation && (
-				<Validation hidden={validationType === "form"}>{validation}</Validation>
-			)}
+			{!!validation && <Validation>{validation}</Validation>}
 			{!!count && <FieldCount data-count={count} />}
 		</div>
 	) : (
@@ -288,7 +285,7 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 							readOnly={readOnly}
 							type={type}
 						/>
-						<del {...toCustomElementProps({ "aria-label": "Fjern tekst" })} />
+						<del aria-label="Fjern tekst" suppressHydrationWarning />
 					</>
 				)}
 				{!!options && (

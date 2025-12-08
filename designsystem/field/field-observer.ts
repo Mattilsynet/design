@@ -18,8 +18,7 @@ const CSS_VALIDATIONS = styles.validation.split(" ");
 const CSS_VALIDATION = CSS_VALIDATIONS[0];
 const FIELDS = isBrowser() ? document.getElementsByClassName(CSS_FIELD) : [];
 
-function handleFieldMutation(validate?: boolean) {
-	let firstInvalid: HTMLInputElement | null = null;
+function handleFieldMutation() {
 	for (const field of FIELDS)
 		if (field.isConnected) {
 			const labels: HTMLLabelElement[] = [];
@@ -44,26 +43,6 @@ function handleFieldMutation(validate?: boolean) {
 			}
 
 			if (input) {
-				const comboboxInput = combobox?.control;
-				const validateEl =
-					(validate || comboboxInput?.validity.customError) && // Live re-evaluate combobox if invalid to correct validity before form sumbit
-					input.closest('[data-validation="form"]');
-
-				if (validateEl) {
-					valid =
-						comboboxInput?.getAttribute("aria-required") === "true"
-							? !!combobox?.items.length
-							: input.validity.valid; // If checkbox, only one needs to be vaild when same name
-
-					if (!firstInvalid && !valid) firstInvalid = input;
-					comboboxInput?.setCustomValidity(valid ? "" : "Invalid"); // Combobox does not have native validation
-					const validateElValid = !validateEl.querySelector(":invalid"); // Check if any invalid inputs inside field or fieldset
-					validateEl
-						.querySelectorAll(`:scope > .${CSS_VALIDATION}`)
-						.forEach((el) => {
-							attr(el, "hidden", validateElValid ? "" : null);
-						});
-				}
 				for (const label of labels) label.htmlFor = useId(input);
 				renderCombobox(combobox);
 				renderCounter(input);
@@ -72,8 +51,6 @@ function handleFieldMutation(validate?: boolean) {
 				attr(input, "aria-invalid", `${!valid}`);
 			}
 		}
-	if (validate) firstInvalid?.focus(); // Only move focus to first invalid field if validate was true
-	return firstInvalid;
 }
 
 // iOS does not support field-sizing: content, so we need to manually resize
@@ -123,15 +100,13 @@ function renderCounter(input: HTMLInputElement) {
 		const style = window.getComputedStyle(el || input);
 		const over = getText(style, "count-over");
 		const under = getText(style, "count-under");
+		const label = `${(nextInvalid ? over : under).replace("%d", `${Math.abs(remainder)}`)}`;
 
 		if (prevInvalid !== nextInvalid) {
 			attr(el, "aria-live", nextInvalid ? "polite" : "off");
 			for (const css of CSS_VALIDATIONS) el.classList.toggle(css, nextInvalid);
 		}
-		el.textContent = (nextInvalid ? over : under).replace(
-			"%d",
-			`${Math.abs(remainder)}`,
-		);
+		attr(el, "aria-label", label);
 	}
 }
 
@@ -161,14 +136,13 @@ function handleFieldInput(event: Event) {
 }
 
 function handleFieldValdiation(event: Event) {
-	const field = (event.target as Element)?.closest?.(`.${CSS_FIELD}`);
-	if (event.type === "invalid" && field) event.preventDefault(); // Prevent browsers from showing default validation bubbles
-	if (handleFieldMutation(true)) event.preventDefault(); // Prevent submit if invalid fields found
+	if ((event.target as Element)?.closest?.(`.${CSS_FIELD}`))
+		event.preventDefault(); // Prevent browsers from showing default validation bubbles
 }
 
 onLoaded(() => [
 	onMutation(() => handleFieldMutation(), "class"),
 	on(document, "input", handleFieldInput, QUICK_EVENT),
 	on(document, "toggle", handleFieldToggle, QUICK_EVENT), // Use capture since toggle does not bubble
-	on(document, "invalid,submit", handleFieldValdiation, true), // Use capture as invalid and submit does not bubble
+	on(document, "invalid", handleFieldValdiation, true), // Use capture as invalid and submit does not bubble
 ]);

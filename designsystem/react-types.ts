@@ -70,6 +70,7 @@ declare global {
 		interface HTMLAttributes<T> {
 			popover?: React.HTMLAttributes<HTMLElement>["popover"];
 			popovertarget?: string;
+			"data-validation"?: "form";
 			"data-color"?:
 				| "main"
 				| "neutral"

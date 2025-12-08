@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Chip, Fieldset, Flex, Input } from "../react";
+import {
+	Button,
+	Chip,
+	Fieldset,
+	Flex,
+	Input,
+	Prose,
+	Validation,
+} from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -172,5 +180,32 @@ export const Nowrap: Story = {
 				</button>
 			</div>
 		</div>
+	),
+};
+
+export const WithValidationForm: Story = {
+	parameters: {
+		showInOverview: true,
+	},
+	render: () => (
+		<Prose as="form" action="#" data-validation="form">
+			<Fieldset>
+				<Fieldset.Legend>Hvilke foretrekker du?</Fieldset.Legend>
+				<Flex>
+					<Chip>
+						<Input type="radio" name="my-radio-validation" required />
+						Radio 1
+					</Chip>
+					<Chip>
+						<Input type="radio" name="my-radio-validation" required />
+						Radio 2
+					</Chip>
+				</Flex>
+				<Validation hidden>Feilmelding</Validation>
+			</Fieldset>
+			<Button type="submit" data-variant="primary">
+				Send inn
+			</Button>
+		</Prose>
 	),
 };
