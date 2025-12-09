@@ -45,7 +45,7 @@
 	},
 	"scripts": {
 		"build": "vite build --mode iife && vite build --mode iife-atlas && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
-		"build:tokens": "npx @digdir/designsystemet tokens build",
+		"build:tokens": "npx @digdir/designsystemet@latest tokens build --config designsystemet.config.json",
 		"format": "npx @biomejs/biome format",
 		"lint": "npx @biomejs/biome lint",
 		"publish:clojure": "npm run build && cd ./clojure && ./publish.sh",
@@ -55,7 +55,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.8",
-		"@digdir/designsystemet-css": "^1.7.3",
+		"@digdir/designsystemet-css": "^1.8.0",
+		"@digdir/designsystemet-types": "^1.8.0",
 		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",

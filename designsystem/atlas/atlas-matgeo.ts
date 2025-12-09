@@ -2,18 +2,10 @@ import { booleanPointInPolygon as inGeo } from "@turf/boolean-point-in-polygon";
 import { point as turfPoint } from "@turf/helpers";
 
 import L from "leaflet";
-import {
-	attr,
-	debounce,
-	defineElement,
-	isBrowser,
-	MTDSElement,
-} from "../utils";
-import type { MTDSAtlasElement } from "./atlas-element";
+import { attr, debounce, defineElement, MTDSElement } from "../utils";
+import type { MTDSAtlasCollection, MTDSAtlasElement } from "./atlas-element";
 
 type Feature = L.Polygon["feature"];
-type Collection = Record<string, unknown>;
-type Collections = Map<string, Collection>;
 type LayerWithFeature = L.Layer & { feature?: Feature };
 declare global {
 	interface HTMLElementTagNameMap {
@@ -23,23 +15,13 @@ declare global {
 		atlasfeatureclick: CustomEvent<
 			Omit<L.LeafletMouseEvent, "target"> & {
 				targets: LayerWithFeature[];
-				collections: Collections;
+				collections: MTDSAtlasCollection[];
 			}
 		>;
 	}
-	interface Window {
-		_matgeoCollections?: Promise<Collections>;
-	}
 }
 
-const MATGEO_EVENTS = "moveend zoomend refresh";
-const MATGEO_URL =
-	"https://matgeoservice-256616427209.europe-north1.run.app/ogc/features/collections";
-
-if (isBrowser() && !window._matgeoCollections)
-	window._matgeoCollections = fetch(MATGEO_URL)
-		.then((res) => res.json())
-		.then((d) => new Map(d.collections?.map((c: Collection) => [c.id, c])));
+const EVENTS = "moveend zoomend refresh";
 
 export class MTDSAtlasMatgeoElement extends MTDSElement {
 	atlas?: MTDSAtlasElement;
@@ -55,7 +37,7 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 	connectedCallback() {
 		queueMicrotask(() => {
 			this.atlas = this.closest<MTDSAtlasElement>("mtds-atlas") || undefined;
-			this.atlas?.map?.on(MATGEO_EVENTS, this.refresh, this);
+			this.atlas?.map?.on(EVENTS, this.refresh, this);
 			this.geojson = new L.GeoJSON(null, {
 				style: this.#getStyle(),
 				onEachFeature: (_, layer) => layer.on("click", this.handleEvent, this),
@@ -74,29 +56,31 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 			map[this.hidden ? "removeLayer" : "addLayer"](geojson);
 	}
 	disconnectedCallback() {
-		this.atlas?.map?.off(MATGEO_EVENTS, this.refresh, this);
+		this.atlas?.map?.off(EVENTS, this.refresh, this);
 		this.geojson?.unbindPopup().remove();
 		this.geojson = this.atlas = undefined;
 	}
 	refresh(nocache?: boolean | L.LeafletEvent) {
 		if (!this.geojson || !this.atlas?.map?.hasLayer(this.geojson)) return;
-		getCollections().then((collections) => {
-			const collection = attr(this, "data-collection") || "";
+		this.getCollection().then((collection) => {
+			const items = collection?.links.find(({ rel }) => rel === "items");
 			const cache = nocache === true ? `&nocache=${Date.now()}` : "";
 			const bbox = this.atlas?.map?.getBounds().toBBoxString();
-			if (!collections.has(collection))
-				console.warn(
-					`mtds-atlas-matgeo: Please set a vaild \x1B[103mdata-collection="${Array.from(collections.keys()).join(" | ")}"\x1B[m`,
-				);
+
+			if (!collection)
+				this.atlas?.getCollections().then((collections) => {
+					const message = `mtds-atlas-matgeo: Please set a vaild \x1B[103mdata-collection="${Object.keys(collections).join(" | ")}"\x1B[m`;
+					console.warn(message);
+				});
 			else
-				fetch(`${MATGEO_URL}/${collection}/items?bbox=${bbox}${cache}`)
+				fetch(`${items?.href}?bbox=${bbox}${cache}`)
 					.then((res) => res.json())
 					.then((data) => this.geojson?.clearLayers().addData(data));
 		});
 	}
 	handleEvent(event: L.LeafletMouseEvent) {
 		event.originalEvent.stopPropagation(); // Prevent clicks from bubbling from ShadowDOM
-		getCollections().then((collections) => {
+		this.atlas?.getCollections().then((collections) => {
 			const targets: LayerWithFeature[] = [event.target]; // Leaflet does not list all clicked layers, so we find them manually
 			const detail = { ...event, targets, collections };
 			const point = turfPoint([event.latlng.lng, event.latlng.lat]);
@@ -116,8 +100,9 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 		});
 	}
 	async getCollection() {
-		const id = attr(this, "data-collection") || "";
-		return getCollections().then((col) => col.get(id));
+		return this.atlas
+			?.getCollections()
+			.then((cols) => cols?.[attr(this, "data-collection") || ""]);
 	}
 	#getStyle() {
 		return {
@@ -127,7 +112,3 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 }
 
 defineElement("mtds-atlas-matgeo", MTDSAtlasMatgeoElement);
-
-function getCollections() {
-	return window._matgeoCollections || Promise.resolve(new Map());
-}

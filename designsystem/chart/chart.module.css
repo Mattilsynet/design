@@ -29,13 +29,28 @@
 	/* Line filter */
 	:root {
 		--_mtdsc-chart-line-filter: brightness(0.8) saturate(2);
+		--mtds-color-charts-chart-a: #116e6b;
+		--mtds-color-charts-chart-b: #cae8ca;
+		--mtds-color-charts-chart-c: #b6d9f2;
+		--mtds-color-charts-chart-d: #feecbe;
+		--mtds-color-charts-chart-e: #fdd2c9;
 	}
 	[data-color-scheme="dark"] {
 		--_mtdsc-chart-line-filter: saturate(1.5);
+		--mtds-color-charts-chart-a: #158e8a;
+		--mtds-color-charts-chart-b: #a9daa9;
+		--mtds-color-charts-chart-c: #97c9ec;
+		--mtds-color-charts-chart-d: #fdd368;
+		--mtds-color-charts-chart-e: #fb9d89;
 	}
 	@media (prefers-color-scheme: dark) {
 		[data-color-scheme="auto"] {
 			--_mtdsc-chart-line-filter: saturate(1.5);
+			--mtds-color-charts-chart-a: #158e8a;
+			--mtds-color-charts-chart-b: #a9daa9;
+			--mtds-color-charts-chart-c: #97c9ec;
+			--mtds-color-charts-chart-d: #fdd368;
+			--mtds-color-charts-chart-e: #fb9d89;
 		}
 	}
 }

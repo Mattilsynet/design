@@ -1,49 +1,44 @@
-import {
-	PersonArmsSpreadIcon,
-	PlusIcon,
-	// ArrowBendLeftDownIcon,
-	// HandSwipeLeftIcon,
-	// HandSwipeRightIcon,
-	// LegoSmileyIcon,
-	// SelectionBackgroundIcon,
-	// TShirtIcon,
-} from "@phosphor-icons/react";
-import { useEffect, useRef, useState } from "react";
+import { PersonArmsSpreadIcon, PlusIcon } from "@phosphor-icons/react";
+import { useRef, useState } from "react";
 import Moveable from "react-moveable";
 import { Button, Card, Flex, Grid, Popover } from "../../designsystem/react";
-import svg from "./index.svg?raw"; // Assuming all parts are exported from this file
+import svg from "./index.svg?raw";
 
 // TODO: Flip
 // TODO: Config
 // TODO: Backward/forward
 // TODO: Persist
 // TODO: Remove
-
-type Select = { value?: string; label: string; options: Map<string, Option> };
-type Option = {
-	value: string;
-	label: string;
-	h: number;
-	w: number;
-	x: number;
-	y: number;
-};
-
 // TODO: Hudtone, fargepalett, objekt bak
+
+const OBJECTS = isBrowser()
+	? new Map(
+			Object.entries(window.GRAPHICS)
+				.filter(([key]) => key.startsWith("illustrations/"))
+				.map(([_, value]) => [value.name, value]),
+		)
+	: null;
 
 export function IllustrationsGenerator() {
 	const moveableRef = useRef<Moveable>(null);
-	const [targets, setTargets] = useState<(HTMLElement | SVGElement)[]>();
-	const [items, setItems] = useState<{ id: string; x: number; y: number }[]>(
+	const objects = OBJECTS;
+	const [target, setTarget] = useState<HTMLElement | SVGElement>();
+	const [items, setItems] = useState<{ name: string; x: number; y: number }[]>(
 		[],
 	);
 
-	const [selects, setSelects] = useState(new Map<string, Select>());
-	const objects = selects.get("objects")?.options;
-	useEffect(() => setSelects(svgToSelects(svg)), []); // Parse selects
-
 	return (
 		<Grid>
+			<style>{`
+					.canvas { aspect-ratio: 17 / 6; position: relative; padding: 0 }
+					.canvas > figure { position: absolute; top: 0; left: 0; margin: 0 }
+					.thumbnail > svg { aspect-ratio: 1 / 1; width: var(--mtds-icon-size); height: auto }
+
+					@supports (pointer-events: visiblePainted) {
+						.canvas > figure { pointer-events: none }
+						.canvas > figure > svg > * { pointer-events: visiblePainted }
+					}
+				`}</style>
 			<Flex>
 				<Button popoverTarget="add" data-variant="primary">
 					<PlusIcon /> Legg til
@@ -54,46 +49,44 @@ export function IllustrationsGenerator() {
 							<PersonArmsSpreadIcon weight="fill" /> Person
 						</Button>
 					</li>
-					{Array.from(
-						objects?.values() || [],
-						({ label, value, x, y, w, h }) => (
-							<li key={value}>
-								<Button
-									popoverTargetAction="hide"
-									onClick={() =>
-										setItems([...items, { id: value, x: 0, y: 0 }])
-									}
-								>
-									<svg viewBox={`${x} ${y} ${w} ${h}`}>
+					{Array.from(OBJECTS?.values() || [], ({ name, svg }) => (
+						<li key={name}>
+							<Button
+								popoverTargetAction="hide"
+								onClick={() => setItems([...items, { name, x: 0, y: 0 }])}
+							>
+								<span
+									className="thumbnail"
+									dangerouslySetInnerHTML={{ __html: svg }}
+								/>
+								{/* <svg viewBox={`${x} ${y} ${w} ${h}`}>
 										<use key={value} href={`#${value}`} />
-									</svg>
-									{label}
-								</Button>
-							</li>
-						),
-					)}
+									</svg> */}
+								{name}
+							</Button>
+						</li>
+					))}
 				</Popover>
 			</Flex>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
-			<style>{`:root {
-					.canvas { aspect-ratio: 17 / 6; position: relative; padding: 0 }
-					.canvas > svg { position: absolute; top: 0; left: 0; width: 10%; height: auto; overflow: visible }
-				}`}</style>
 			<Card
 				className="canvas"
-				onPointerDown={({ target }) => {
-					const svg = target instanceof Element && target.closest("svg");
-					setTargets(svg ? [svg] : []);
+				onPointerDown={({ target: el }) => {
+					if (moveableRef.current?.getControlBoxElement().contains(el as Node))
+						return;
+					const figure = (el as Element).closest?.("figure") || undefined;
+					if (target !== figure) setTarget(figure);
 				}}
+				// <svg key={`${id}-${index + 1}`} viewBox={`${x} ${y} ${w} ${h}`}>
+				// 	<use href={`#${id}`} />
+				// </svg>
 			>
-				{items.map(({ id }, index) => {
-					const { x, y, w, h } = objects?.get(id) || {};
-					return (
-						<svg key={`${id}-${index + 1}`} viewBox={`${x} ${y} ${w} ${h}`}>
-							<use href={`#${id}`} />
-						</svg>
-					);
-				})}
+				{items.map(({ name }, index) => (
+					<figure
+						key={`${name}-${index + 1}`}
+						dangerouslySetInnerHTML={{ __html: objects?.get(name)?.svg || "" }}
+					/>
+				))}
 				<Moveable
 					bounds={{ left: 0, top: 0, right: 0, bottom: 0, position: "css" }}
 					draggable
@@ -104,8 +97,7 @@ export function IllustrationsGenerator() {
 					rotatable
 					scalable
 					snappable
-					targets={targets}
-					svgOrigin="50% 50%"
+					target={target}
 					throttleRotate={5}
 					onDragEnd={console.log}
 					onRotateEnd={console.log}
@@ -134,34 +126,34 @@ export function IllustrationsGenerator() {
 		</Grid>
 	);
 }
-function svgToSelects(innerHTML: string) {
-	const div = Object.assign(document.createElement("div"), { innerHTML });
-	const map = new Map();
+// function svgToSelects(innerHTML: string) {
+// 	const div = Object.assign(tag("div"), { innerHTML });
+// 	const map = new Map<string, Select>();
 
-	for (const el of div.querySelectorAll("svg > [id]")) {
-		const label = el.querySelector("title")?.textContent || el.id;
-		const options = new Map<string, Option>(
-			Array.from(el.querySelectorAll<SVGSymbolElement>("symbol"), (symbol) => [
-				symbol.id,
-				{
-					value: symbol.id,
-					label: symbol.querySelector("title")?.textContent || symbol.id,
-					h: Number(symbol.getAttribute("height") || "1"),
-					w: Number(symbol.getAttribute("width") || "1"),
-					x: Number(symbol.getAttribute("x") || "0"),
-					y: Number(symbol.getAttribute("y") || "0"),
-				},
-			]),
-		);
-		map.set(el.id, {
-			label,
-			options,
-			value: Array.from(options.values())[0]?.value || el.id,
-		});
-	}
-	div.innerHTML = "";
-	return map;
-}
+// 	for (const el of div.querySelectorAll("svg > [id]")) {
+// 		const label = el.querySelector("title")?.textContent || el.id;
+// 		const options = new Map<string, Option>(
+// 			Array.from(el.querySelectorAll<SVGSymbolElement>("symbol"), (symbol) => [
+// 				symbol.id,
+// 				{
+// 					value: symbol.id,
+// 					label: symbol.querySelector("title")?.textContent || symbol.id,
+// 					h: Number(attr(symbol, "height") || "1"),
+// 					w: Number(attr(symbol, "width") || "1"),
+// 					x: Number(attr(symbol, "x") || "0"),
+// 					y: Number(attr(symbol, "y") || "0"),
+// 				},
+// 			]),
+// 		);
+// 		map.set(el.id, {
+// 			label,
+// 			options,
+// 			value: Array.from(options.values())[0]?.value || el.id,
+// 		});
+// 	}
+// 	div.innerHTML = "";
+// 	return map;
+// }
 
 // const svgKeepInView = (el: SVGUseElement) => {
 // 	const view = el.ownerSVGElement?.viewBox.baseVal as DOMRect;
@@ -328,3 +320,21 @@ function svgToSelects(innerHTML: string) {
 // 	// ["#f9c4aa", "#054449", "#CDE5F2"], // Removed to avoid "nakedness"
 // 	// ["#f9c4aa", "#153F7B", "#CDE5F2"], // Removed to avoid "nakedness"
 // ];
+
+// import { attr, isBrowser, tag } from "../../designsystem/utils";
+// type Select = { value?: string; label: string; options: Map<string, Option> };
+// type Option = {
+// 	value: string;
+// 	label: string;
+// 	h: number;
+// 	w: number;
+// 	x: number;
+// 	y: number;
+// };
+// const SVGS = isBrowser() ? svgToSelects(svg) : null;
+// ArrowBendLeftDownIcon,
+// HandSwipeLeftIcon,
+// HandSwipeRightIcon,
+// LegoSmileyIcon,
+// SelectionBackgroundIcon,
+// TShirtIcon,

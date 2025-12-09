@@ -52,6 +52,45 @@ const TableComp = forwardRef<HTMLTableElement, TableProps>(function Table(
 });
 
 export const Table = Object.assign(TableComp, {
+	Td: forwardRef<HTMLTableCellElement, React.ComponentPropsWithoutRef<"td">>(
+		function Td(props, ref) {
+			return <td suppressHydrationWarning ref={ref} {...props} />;
+		},
+	),
+	Th: forwardRef<HTMLTableCellElement, React.ComponentPropsWithoutRef<"th">>(
+		function Th(props, ref) {
+			return <th suppressHydrationWarning ref={ref} {...props} />;
+		},
+	),
+	Tr: forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<"tr">>(
+		function Tr(props, ref) {
+			return <tr suppressHydrationWarning ref={ref} {...props} />;
+		},
+	),
+	Thead: forwardRef<
+		HTMLTableSectionElement,
+		React.ComponentPropsWithoutRef<"tbody">
+	>(function Thead(props, ref) {
+		return <thead suppressHydrationWarning ref={ref} {...props} />;
+	}),
+	Tbody: forwardRef<
+		HTMLTableSectionElement,
+		React.ComponentPropsWithoutRef<"tbody">
+	>(function Tbody(props, ref) {
+		return <tbody suppressHydrationWarning ref={ref} {...props} />;
+	}),
+	Tfoot: forwardRef<
+		HTMLTableSectionElement,
+		React.ComponentPropsWithoutRef<"tfoot">
+	>(function Tfoot(props, ref) {
+		return <tfoot suppressHydrationWarning ref={ref} {...props} />;
+	}),
+	Caption: forwardRef<
+		HTMLTableCaptionElement,
+		React.ComponentPropsWithoutRef<"caption">
+	>(function Caption(props, ref) {
+		return <caption suppressHydrationWarning ref={ref} {...props} />;
+	}),
 	ThSortable: forwardRef<HTMLTableCellElement, ThSortableProps>(
 		function ThSortable(
 			{ "aria-sort": sort, children, onClick, ...rest },
