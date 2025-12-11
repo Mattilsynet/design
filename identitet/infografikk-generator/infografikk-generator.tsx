@@ -16,7 +16,7 @@ import styles from "../../designsystem/styles.module.css";
 import css from "../../designsystem/styles.module.css?inline";
 import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
-import "./index.css";
+import "./infografikk-generator.css";
 import { CopyIcon } from "@phosphor-icons/react";
 import { toast } from "../../designsystem";
 import type { MTDSChartElement } from "../../designsystem/chart/chart-element";

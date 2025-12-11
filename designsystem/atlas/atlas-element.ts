@@ -21,9 +21,27 @@ export { MTDSAtlasWMSElement } from "./atlas-wms";
 // TODO: Add search helper (https://ws.geonorge.no/adresser/v1/openapi.json + https://ws.geonorge.no/adresser/v1/#/default/get_sok)
 // TODO: matgeo-autoload popover info
 
+type Link = { href: string; rel: string; type: string; title: string };
+type BBox = [number, number, number, number];
+export type MTDSAtlasCollections = Record<string, MTDSAtlasCollection>;
+export type MTDSAtlasCollection = {
+	crs: string[];
+	description: string;
+	extent: { spatial: { bbox: BBox[] } };
+	geometry: string;
+	id: string;
+	itemType: string;
+	links: Link[];
+	title: string;
+};
+
 declare global {
 	interface HTMLElementTagNameMap {
 		"mtds-atlas": MTDSAtlasElement;
+	}
+
+	interface Window {
+		_matgeoCollections?: Promise<MTDSAtlasCollections>;
 	}
 }
 
@@ -31,10 +49,18 @@ let SKIP_CLICK: number | NodeJS.Timeout = 0;
 const KARTVERKET_MAX_ZOOM = 18; // Kartverket does not support more than zoom level 18
 const KARTVERKET_TILES_URL =
 	"https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/webmercator/{z}/{y}/{x}.png";
+export const MATGEO_URL =
+	"https://matgeoservice-256616427209.europe-north1.run.app/ogc/features/collections";
 const BOUNDS_NORWAY: L.LatLngBoundsLiteral = [
 	[57.5, 4.73],
 	[71.5, 31.44],
 ];
+
+if (isBrowser() && !window._matgeoCollections)
+	window._matgeoCollections = fetch(MATGEO_URL)
+		.then((res) => res.json())
+		.then((d) => d.collections.map((c: MTDSAtlasCollection) => [c.id, c]))
+		.then(Object.fromEntries);
 
 export class MTDSAtlasElement extends MTDSElement {
 	cluster?: L.MarkerClusterGroup;
@@ -116,6 +142,11 @@ export class MTDSAtlasElement extends MTDSElement {
 		off(this, "pointerup,click", this.#skipClick);
 		this.map?.remove();
 		this.map = this.cluster = undefined;
+	}
+	async getCollections() {
+		return (
+			window._matgeoCollections || Promise.resolve({} as MTDSAtlasCollections)
+		);
 	}
 	#handlePopup({ type, popup }: { type: string; popup: L.Popup }) {
 		const open = type === "popupopen";

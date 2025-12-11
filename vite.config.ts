@@ -82,7 +82,7 @@ export default defineConfig(({ mode }) =>
 					emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder
 					outDir: dist,
 					sourcemap: true,
-					minify: false,
+					minify: true,
 					lib: {
 						entry: [
 							path.resolve(root, "index.ts"),

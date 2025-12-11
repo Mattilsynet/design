@@ -1,10 +1,12 @@
 import { MagnifyingGlassMinusIcon, StarIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useRef, useState } from "react";
-import type { MTDSAtlasElement } from "../atlas";
+import { useEffect, useRef, useState } from "react";
+import type { MTDSAtlasCollection, MTDSAtlasElement } from "../atlas";
 import {
 	Button,
 	Details,
+	Field,
+	Fieldset,
 	Flex,
 	Group,
 	Heading,
@@ -12,7 +14,7 @@ import {
 	Prose,
 	toast,
 } from "../react";
-import { Atlas } from "../react-atlas";
+import { Atlas, type AtlasMatgeoProps } from "../react-atlas";
 
 const meta = {
 	title: "Designsystem/Atlas",
@@ -68,7 +70,7 @@ export const WithViewAdvanced: Story = {
 		];
 
 		return (
-			<Flex data-items="400" data-nowrap>
+			<Flex data-items="300" data-nowrap>
 				<Atlas ref={atlasRef} data-view={open ? `${open.latlng}, 14` : "fit"}>
 					{markers.map((marker) => (
 						<Atlas.Marker
@@ -254,6 +256,68 @@ export const WithMatgeo: Story = {
 					<pre data-size="sm">{content}</pre>
 				</Popover>
 			</Atlas>
+		);
+	},
+};
+
+export const WithMatgeoToggle: Story = {
+	render: () => {
+		const atlasRef = useRef<MTDSAtlasElement>(null);
+		const colors = ["info", "success", "warning", "danger"] as const;
+		const [content, setContent] = useState("");
+		const [collections, setCollections] = useState<
+			(MTDSAtlasCollection & { hidden?: boolean })[]
+		>([]);
+
+		const handleFeatureClick: AtlasMatgeoProps["onFeatureClick"] = (event) => {
+			const targets = event.detail.targets;
+			const props = targets.map((layer) => layer.feature?.properties);
+			setContent(JSON.stringify(props, null, " "));
+		};
+
+		useEffect(() => {
+			atlasRef.current
+				?.getCollections()
+				.then((collections) => setCollections(Object.values(collections)));
+		}, []);
+
+		return (
+			<Flex data-nowrap data-items="300">
+				<Atlas ref={atlasRef} data-view="60.722, 10.985, 16">
+					{collections.map((collection, index) => (
+						<Atlas.Matgeo
+							hidden={collection.hidden}
+							key={collection.id}
+							data-collection={collection.id}
+							data-color={colors[index % colors.length]}
+							popoverTarget="my-matgeo-popover"
+							onFeatureClick={handleFeatureClick}
+						/>
+					))}
+					<Popover as={Prose} id="my-matgeo-popover">
+						<pre data-size="sm">{content}</pre>
+					</Popover>
+				</Atlas>
+				<Group data-fixed>
+					<Fieldset aria-label="Lag">
+						{collections.map((collection, index) => (
+							<Field
+								as="input"
+								type="checkbox"
+								key={collection.id}
+								data-color={colors[index % colors.length]}
+								checked={!collection.hidden}
+								label={collection.title}
+								onChange={() => {
+									const clone = collections.slice();
+									clone[index].hidden = !clone[index].hidden;
+									setCollections(clone);
+								}}
+							/>
+						))}
+					</Fieldset>
+				</Group>
+			</Flex>
 		);
 	},
 };

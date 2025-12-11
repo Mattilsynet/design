@@ -117,40 +117,40 @@ export const Default: Story = {
 export const React: Story = {
 	render: () => (
 		<Table aria-label="Example table">
-			<thead>
-				<tr>
-					<th>First name</th>
-					<th>Last name</th>
-					<th>Age</th>
-					<th>Visits</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Antoni</td>
-					<td>Foyston</td>
-					<td>74</td>
-					<td>128</td>
-				</tr>
-				<tr>
-					<td>Jenine</td>
-					<td>Healey</td>
-					<td>22</td>
-					<td>194</td>
-				</tr>
-				<tr>
-					<td>Leigh</td>
-					<td>Klein</td>
-					<td>26</td>
-					<td>114</td>
-				</tr>
-				<tr>
-					<td>Zara</td>
-					<td>Greenrodd</td>
-					<td>28</td>
-					<td>36</td>
-				</tr>
-			</tbody>
+			<Table.Thead>
+				<Table.Tr>
+					<Table.Th>First name</Table.Th>
+					<Table.Th>Last name</Table.Th>
+					<Table.Th>Age</Table.Th>
+					<Table.Th>Visits</Table.Th>
+				</Table.Tr>
+			</Table.Thead>
+			<Table.Tbody>
+				<Table.Tr>
+					<Table.Td>Antoni</Table.Td>
+					<Table.Td>Foyston</Table.Td>
+					<Table.Td>74</Table.Td>
+					<Table.Td>128</Table.Td>
+				</Table.Tr>
+				<Table.Tr>
+					<Table.Td>Jenine</Table.Td>
+					<Table.Td>Healey</Table.Td>
+					<Table.Td>22</Table.Td>
+					<Table.Td>194</Table.Td>
+				</Table.Tr>
+				<Table.Tr>
+					<Table.Td>Leigh</Table.Td>
+					<Table.Td>Klein</Table.Td>
+					<Table.Td>26</Table.Td>
+					<Table.Td>114</Table.Td>
+				</Table.Tr>
+				<Table.Tr>
+					<Table.Td>Zara</Table.Td>
+					<Table.Td>Greenrodd</Table.Td>
+					<Table.Td>28</Table.Td>
+					<Table.Td>36</Table.Td>
+				</Table.Tr>
+			</Table.Tbody>
 		</Table>
 	),
 };
@@ -166,11 +166,11 @@ export const DefaultTanstack: Story = {
 
 		return (
 			<Table aria-label="Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
-								<th
+								<Table.Th
 									key={header.id}
 									colSpan={header.colSpan}
 									data-numeric={isNumeric.includes(header.id)}
@@ -179,25 +179,25 @@ export const DefaultTanstack: Story = {
 										header.column.columnDef.header,
 										header.getContext(),
 									)}
-								</th>
+								</Table.Th>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
-						<tr key={row.id}>
+						<Table.Tr key={row.id}>
 							{row.getVisibleCells().map((cell) => (
-								<td
+								<Table.Td
 									key={cell.id}
 									data-numeric={isNumeric.includes(cell.column.id)}
 								>
 									{cell.getValue() as React.ReactNode}
-								</td>
+								</Table.Td>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},
@@ -294,30 +294,32 @@ export const HeadingsTanstack: Story = {
 
 		return (
 			<Table aria-label="Headings Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
-								<th key={header.id} colSpan={header.colSpan}>
+								<Table.Th key={header.id} colSpan={header.colSpan}>
 									{header.isPlaceholder ||
 										flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-								</th>
+								</Table.Th>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
-						<tr key={row.id}>
+						<Table.Tr key={row.id}>
 							{row.getVisibleCells().map((cell) => (
-								<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
+								<Table.Td key={cell.id}>
+									{cell.getValue() as React.ReactNode}
+								</Table.Td>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},
@@ -410,9 +412,9 @@ export const SortableTanstack: Story = {
 
 		return (
 			<Table aria-label="Sortable Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
 								<Table.ThSortable
 									key={header.id}
@@ -426,18 +428,20 @@ export const SortableTanstack: Story = {
 									)}
 								</Table.ThSortable>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
-						<tr key={row.id}>
+						<Table.Tr key={row.id}>
 							{row.getVisibleCells().map((cell) => (
-								<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
+								<Table.Td key={cell.id}>
+									{cell.getValue() as React.ReactNode}
+								</Table.Td>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},
@@ -550,29 +554,31 @@ export const PaginatableTanstack: Story = {
 		return (
 			<>
 				<Table aria-label="Paginatable Tanstack table" {...args}>
-					<thead>
+					<Table.Thead>
 						{table.getHeaderGroups().map(({ id, headers }) => (
-							<tr key={id}>
+							<Table.Tr key={id}>
 								{headers.map((header) => (
-									<th key={header.id} colSpan={header.colSpan}>
+									<Table.Th key={header.id} colSpan={header.colSpan}>
 										{flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-									</th>
+									</Table.Th>
 								))}
-							</tr>
+							</Table.Tr>
 						))}
-					</thead>
-					<tbody>
+					</Table.Thead>
+					<Table.Tbody>
 						{table.getRowModel().rows.map((row) => (
-							<tr key={row.id}>
+							<Table.Tr key={row.id}>
 								{row.getVisibleCells().map((cell) => (
-									<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
+									<Table.Td key={cell.id}>
+										{cell.getValue() as React.ReactNode}
+									</Table.Td>
 								))}
-							</tr>
+							</Table.Tr>
 						))}
-					</tbody>
+					</Table.Tbody>
 				</Table>
 				<Pagination data-size="sm" aria-label="Sidenavigering">
 					<ul>
@@ -690,29 +696,31 @@ export const SearchableTanstack: Story = {
 					value={search}
 				/>
 				<Table aria-label="Searchable Tanstack table" data-fixed {...args}>
-					<thead>
+					<Table.Thead>
 						{table.getHeaderGroups().map(({ id, headers }) => (
-							<tr key={id}>
+							<Table.Tr key={id}>
 								{headers.map((header) => (
-									<th key={header.id} colSpan={header.colSpan}>
+									<Table.Th key={header.id} colSpan={header.colSpan}>
 										{flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-									</th>
+									</Table.Th>
 								))}
-							</tr>
+							</Table.Tr>
 						))}
-					</thead>
-					<tbody>
+					</Table.Thead>
+					<Table.Tbody>
 						{table.getRowModel().rows.map((row) => (
-							<tr key={row.id}>
+							<Table.Tr key={row.id}>
 								{row.getVisibleCells().map((cell) => (
-									<td key={cell.id}>{cell.getValue() as React.ReactNode}</td>
+									<Table.Td key={cell.id}>
+										{cell.getValue() as React.ReactNode}
+									</Table.Td>
 								))}
-							</tr>
+							</Table.Tr>
 						))}
-					</tbody>
+					</Table.Tbody>
 				</Table>
 			</>
 		);
@@ -787,26 +795,26 @@ export const ExpandableTanstack: Story = {
 
 		return (
 			<Table aria-label="Expandable Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
-								<th key={header.id} colSpan={header.colSpan}>
+								<Table.Th key={header.id} colSpan={header.colSpan}>
 									{flexRender(
 										header.column.columnDef.header,
 										header.getContext(),
 									)}
-								</th>
+								</Table.Th>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Fragment key={row.id}>
-							<tr>
+							<Table.Tr>
 								{row.getVisibleCells().map((cell, cellIndex) => (
-									<td key={cell.id}>
+									<Table.Td key={cell.id}>
 										{cellIndex === 0 ? (
 											<Button
 												aria-expanded={row.getIsExpanded()}
@@ -817,17 +825,17 @@ export const ExpandableTanstack: Story = {
 										) : (
 											(cell.getValue() as React.ReactNode)
 										)}
-									</td>
+									</Table.Td>
 								))}
-							</tr>
-							<tr hidden={!row.getIsExpanded()}>
-								<td colSpan={row.getVisibleCells().length}>
+							</Table.Tr>
+							<Table.Tr hidden={!row.getIsExpanded()}>
+								<Table.Td colSpan={row.getVisibleCells().length}>
 									{row.original.expand}
-								</td>
-							</tr>
+								</Table.Td>
+							</Table.Tr>
 						</Fragment>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},
@@ -890,26 +898,26 @@ export const CheckableTanstack: Story = {
 
 		return (
 			<Table aria-label="Checkable Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
-								<th key={header.id} colSpan={header.colSpan}>
+								<Table.Th key={header.id} colSpan={header.colSpan}>
 									{header.isPlaceholder ||
 										flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-								</th>
+								</Table.Th>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
-						<tr key={row.id}>
+						<Table.Tr key={row.id}>
 							{row.getVisibleCells().map((cell, index) => (
-								<td key={cell.id}>
+								<Table.Td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)
 									) : (
@@ -921,11 +929,11 @@ export const CheckableTanstack: Story = {
 											label={cell.getValue() as React.ReactNode}
 										/>
 									)}
-								</td>
+								</Table.Td>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},
@@ -1006,26 +1014,26 @@ export const ClickableTanstack: Story = {
 
 		return (
 			<Table aria-label="Checkable Tanstack table" {...args}>
-				<thead>
+				<Table.Thead>
 					{table.getHeaderGroups().map(({ id, headers }) => (
-						<tr key={id}>
+						<Table.Tr key={id}>
 							{headers.map((header) => (
-								<th key={header.id} colSpan={header.colSpan}>
+								<Table.Th key={header.id} colSpan={header.colSpan}>
 									{header.isPlaceholder ||
 										flexRender(
 											header.column.columnDef.header,
 											header.getContext(),
 										)}
-								</th>
+								</Table.Th>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</thead>
-				<tbody>
+				</Table.Thead>
+				<Table.Tbody>
 					{table.getRowModel().rows.map((row, rowIndex) => (
-						<tr key={row.id}>
+						<Table.Tr key={row.id}>
 							{row.getVisibleCells().map((cell, index) => (
-								<td key={cell.id}>
+								<Table.Td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)
 									) : (
@@ -1036,11 +1044,11 @@ export const ClickableTanstack: Story = {
 											{cell.getValue() as React.ReactNode}
 										</Button>
 									)}
-								</td>
+								</Table.Td>
 							))}
-						</tr>
+						</Table.Tr>
 					))}
-				</tbody>
+				</Table.Tbody>
 			</Table>
 		);
 	},

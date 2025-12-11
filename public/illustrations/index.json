@@ -55,11 +55,11 @@
 	"shrimp.svg": { "categories": ["Akvakultur"], "tags": ["reke", "scampi"] },
 	"water-plant.svg": {
 		"categories": ["Akvakultur"],
-		"tags": ["sjøgress", "alger", "tang", "tare"]
+		"tags": ["sjøgress", "alger", "tang", "tare", "vannplanter"]
 	},
 	"flask-perfume.svg": {
 		"categories": ["Kosmetikk"],
-		"tags": ["parfyme", "flaske", "flankong", "duft"]
+		"tags": ["parfyme", "flaske", "flankong", "duft", "parfymeflaske"]
 	},
 	"flask-pipette.svg": {
 		"categories": ["Kosmetikk"],
