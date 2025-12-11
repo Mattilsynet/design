@@ -1,8 +1,14 @@
-import { PersonArmsSpreadIcon, PlusIcon } from "@phosphor-icons/react";
+import {
+	FlipHorizontalIcon,
+	PersonArmsSpreadIcon,
+	PlusIcon,
+	TrashIcon,
+} from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import Moveable from "react-moveable";
 import { Button, Card, Flex, Grid, Popover } from "../../designsystem/react";
-import svg from "./index.svg?raw";
+import { isBrowser } from "../../designsystem/utils";
+import svg from "./illustrasjons-generator.svg?raw";
 
 // TODO: Flip
 // TODO: Config
@@ -10,6 +16,8 @@ import svg from "./index.svg?raw";
 // TODO: Persist
 // TODO: Remove
 // TODO: Hudtone, fargepalett, objekt bak
+
+type Item = { name: string; x: number; y: number; flip?: boolean };
 
 const OBJECTS = isBrowser()
 	? new Map(
@@ -19,19 +27,18 @@ const OBJECTS = isBrowser()
 		)
 	: null;
 
-export function IllustrationsGenerator() {
+export function IllustrasjonsGenerator() {
 	const moveableRef = useRef<Moveable>(null);
 	const objects = OBJECTS;
-	const [target, setTarget] = useState<HTMLElement | SVGElement>();
-	const [items, setItems] = useState<{ name: string; x: number; y: number }[]>(
-		[],
-	);
+	const [selected, setSelected] = useState<HTMLElement | SVGElement>();
+	const [items, setItems] = useState<Item[]>([]);
 
 	return (
 		<Grid>
 			<style>{`
 					.canvas { aspect-ratio: 17 / 6; position: relative; padding: 0 }
 					.canvas > figure { position: absolute; top: 0; left: 0; margin: 0 }
+					.canvas > figure[data-flip="true"] > svg { scale: -1 1 }
 					.thumbnail > svg { aspect-ratio: 1 / 1; width: var(--mtds-icon-size); height: auto }
 
 					@supports (pointer-events: visiblePainted) {
@@ -39,7 +46,7 @@ export function IllustrationsGenerator() {
 						.canvas > figure > svg > * { pointer-events: visiblePainted }
 					}
 				`}</style>
-			<Flex>
+			<Flex data-gap="8">
 				<Button popoverTarget="add" data-variant="primary">
 					<PlusIcon /> Legg til
 				</Button>
@@ -59,31 +66,54 @@ export function IllustrationsGenerator() {
 									className="thumbnail"
 									dangerouslySetInnerHTML={{ __html: svg }}
 								/>
-								{/* <svg viewBox={`${x} ${y} ${w} ${h}`}>
-										<use key={value} href={`#${value}`} />
-									</svg> */}
 								{name}
 							</Button>
 						</li>
 					))}
 				</Popover>
+				{selected && (
+					<Flex>
+						<Button
+							data-variant="secondary"
+							onClick={() => {
+								const index = Number(selected.getAttribute("data-item"));
+								const clone = items.slice();
+								clone.splice(index, 1);
+								setItems(clone);
+								setSelected(undefined);
+							}}
+						>
+							<TrashIcon /> Fjern
+						</Button>
+						<Button
+							data-variant="secondary"
+							onClick={() => {
+								const index = Number(selected.getAttribute("data-item"));
+								const clone = items.slice();
+								clone[index].flip = !clone[index].flip;
+								setItems(clone);
+							}}
+						>
+							<FlipHorizontalIcon /> Snu
+						</Button>
+					</Flex>
+				)}
 			</Flex>
 			<div hidden dangerouslySetInnerHTML={{ __html: svg }} />
 			<Card
 				className="canvas"
 				onPointerDown={({ target: el }) => {
-					if (moveableRef.current?.getControlBoxElement().contains(el as Node))
-						return;
-					const figure = (el as Element).closest?.("figure") || undefined;
-					if (target !== figure) setTarget(figure);
+					const movable = moveableRef.current?.getControlBoxElement();
+					const item = (el as Element)?.closest?.("[data-item]") || undefined;
+					if (selected !== item && !movable?.contains(el as Node))
+						setSelected(item as HTMLElement);
 				}}
-				// <svg key={`${id}-${index + 1}`} viewBox={`${x} ${y} ${w} ${h}`}>
-				// 	<use href={`#${id}`} />
-				// </svg>
 			>
-				{items.map(({ name }, index) => (
+				{items.map(({ name, flip }, index) => (
 					<figure
 						key={`${name}-${index + 1}`}
+						data-item={index}
+						data-flip={flip}
 						dangerouslySetInnerHTML={{ __html: objects?.get(name)?.svg || "" }}
 					/>
 				))}
@@ -97,13 +127,12 @@ export function IllustrationsGenerator() {
 					rotatable
 					scalable
 					snappable
-					target={target}
+					target={selected}
 					throttleRotate={5}
 					onDragEnd={console.log}
 					onRotateEnd={console.log}
 					onScaleEnd={console.log}
 					onRender={(e) => {
-						console.log(e);
 						e.target.style.cssText += e.cssText;
 					}}
 				/>
