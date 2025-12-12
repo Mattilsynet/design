@@ -1,6 +1,6 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
 import { SwatchesIcon } from "@phosphor-icons/react";
-import { Button, Details, Prose } from '../designsystem/react';
+import { Heading, Button, Details, Prose } from '../designsystem/react';
 
 <Meta title="Identitet/Farger" />
 
@@ -36,7 +36,9 @@ Fargepaletten er inkludert i Mattilsynets PPT-mal.
 </Prose>
 </Details>
 
-<Button href="?path=/docs/designsystem-tokens--docs" data-arrow data-variant="secondary">Se også farger til digitale produkter</Button>
+<Heading as="h2">Design for digitale produkter?</Heading>
+
+<Button href="?path=/docs/designsystem-tokens--docs" data-arrow data-variant="secondary">Bruk farge-tokens</Button>
 
 ## Hovedpalett
  
@@ -92,6 +94,7 @@ Fargene under brukes som hovedregel i Mattilsynets illustrasjoner.
 ## Bakgrunner
 
 Blå, gul og rosa finnes i lysere varianter enn de som inngår i hovedpaletten. Disse brukes i hovedsak som bakgrunnsfarger.
+
 <ColorPalette>
   <ColorItem colors={['#DFEEF6']} title="Bakgrunnsblå" />
   <ColorItem colors={['#FCF0D2']} title="Bakgrunnsgul" />
@@ -110,7 +113,7 @@ Fargene under brukes i tillegg til hoved, bakgrunn- og illustrasjonspalett på d
   <ColorItem colors={['#F1BE3C']} title="Infogul" />
 </ColorPalette> */}
 
-## Skalaer
+{/* ## Skalaer
 
 Fargene under brukes i tillegg til hoved-, bakgrunn- og illustrasjonspalett.
 
@@ -136,4 +139,4 @@ Fargene under brukes i tillegg til hoved-, bakgrunn- og illustrasjonspalett.
   <ColorItem colors={['#153F7B']} title="Blå 700" subtitle="Fjord" />
   <ColorItem colors={['#103160']} title="Blå 800" />
   <ColorItem colors={['#07162C']} title="Blå 900" />
-</ColorPalette>
+</ColorPalette> */}

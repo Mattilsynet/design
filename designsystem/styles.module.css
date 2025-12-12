@@ -96,44 +96,24 @@
 		--mtds-font-size-muted: max(0.888888em, 0.75rem);
 
 		/* DigDir overwrites */
-		--ds-font-family: "Mattilsynet Sans"; /* Fix inncorrect generated token */
 		--ds-color-focus-inner: var(--ds-color-surface-default);
 		--ds-color-focus-outer: var(--ds-color-text-default);
 		--ds-border-width-focus: 2px;
 		--dsc-focus-boxShadow: 0 0 0 var(--ds-border-width-focus)
-			var(--ds-color-focus-inner);
+		var(--ds-color-focus-inner);
 		
 		--ds-box-shadow-sm: 0 3px 5px rgba(0, 0, 0, 0.1);
 		--ds-box-shadow-md: 0 3px 5px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
 		--ds-box-shadow-lg: 0 3px 15px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.2);
-
-		/* Add missing DigDir props */
-		--ds-line-height-sm: 1.3;
-		--ds-line-height-md: 1.5;
-		--ds-line-height-lg: 1.7;
-		--ds-font-weight-medium: 500;
-		--ds-font-weight-bold: 700;
-		--ds-font-weight-regular: 400;
-		--ds-heading-2xl-font-weight: 700;
-		--ds-heading-2xl-line-height: 1.3;
+		
+		/* Fix inncorrect generated token */
+		--ds-font-family: "Mattilsynet Sans";
 		--ds-heading-2xl-letter-spacing: -1%;
-		--ds-heading-xl-font-weight: 700;
-		--ds-heading-xl-line-height: 1.3;
 		--ds-heading-xl-letter-spacing: -1%;
-		--ds-heading-lg-font-weight: 700;
-		--ds-heading-lg-line-height: 1.3;
 		--ds-heading-lg-letter-spacing: -0.5%;
-		--ds-heading-md-font-weight: 700;
-		--ds-heading-md-line-height: 1.3;
 		--ds-heading-md-letter-spacing: -0.25%;
-		--ds-heading-sm-font-weight: 700;
-		--ds-heading-sm-line-height: 1.3;
-		--ds-heading-sm-letter-spacing: 0%;
-		--ds-heading-xs-font-weight: 700;
-		--ds-heading-xs-line-height: 1.3;
 		--ds-heading-xs-letter-spacing: 0.15%;
-		--ds-heading-2xs-font-weight: 700;
-		--ds-heading-2xs-line-height: 1.3;
+		--ds-heading-sm-letter-spacing: 0%;
 		--ds-heading-2xs-letter-spacing: 0.15%;
 	}
 
