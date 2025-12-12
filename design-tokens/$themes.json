@@ -92,9 +92,9 @@
   },
   {
     "id": "593774a74235b661fff40693ca7bda160aadfb74",
-    "name": "main",
+    "name": "primary",
     "selectedTokenSets": {
-      "semantic/modes/main-color/main": "enabled"
+      "semantic/modes/main-color/primary": "enabled"
     },
     "group": "Main color"
   },
@@ -102,8 +102,8 @@
     "id": "119c2c050aab9d09ee88bdc008d64d7c3f9dce5a",
     "name": "inverted",
     "selectedTokenSets": {
-      "semantic/modes/support-colors/inverted": "enabled"
+      "semantic/modes/support-color/inverted": "enabled"
     },
-    "group": "Support Colors"
+    "group": "Support color"
   }
 ]

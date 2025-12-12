@@ -14,6 +14,7 @@ export const cssPropsRename: Plugin = {
 		code: code
 			.replace(`@charset "UTF-8";`, "") // Remove unused charset declaration
 			.replace(/::details-content/g, "::part(details-content)") // Fix for LightningCSS missing support in TurboPack
+			.replace(/\[data-color="primary"\]/g, '[data-color="main"]') // Rename data-color values
 			.replace(/--ds-color-primary-/g, "--ds-color-main-")
 			.replace(/--ds-size-/g, "--mtds-")
 			.replace(/--ds(c?)-/g, "--mtds$1-")

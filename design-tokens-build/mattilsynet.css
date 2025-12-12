@@ -769,23 +769,23 @@ design-tokens: v1.8.0
 }
 
 @layer ds.theme.color {
-:root, [data-color-scheme], [data-color="main"] {
-  --ds-color-background-default: var(--ds-color-primary-background-default);
-  --ds-color-background-tinted: var(--ds-color-primary-background-tinted);
-  --ds-color-surface-default: var(--ds-color-primary-surface-default);
-  --ds-color-surface-tinted: var(--ds-color-primary-surface-tinted);
-  --ds-color-surface-hover: var(--ds-color-primary-surface-hover);
-  --ds-color-surface-active: var(--ds-color-primary-surface-active);
-  --ds-color-border-subtle: var(--ds-color-primary-border-subtle);
-  --ds-color-border-default: var(--ds-color-primary-border-default);
-  --ds-color-border-strong: var(--ds-color-primary-border-strong);
-  --ds-color-text-subtle: var(--ds-color-primary-text-subtle);
-  --ds-color-text-default: var(--ds-color-primary-text-default);
-  --ds-color-base-default: var(--ds-color-primary-base-default);
-  --ds-color-base-hover: var(--ds-color-primary-base-hover);
-  --ds-color-base-active: var(--ds-color-primary-base-active);
-  --ds-color-base-contrast-subtle: var(--ds-color-primary-base-contrast-subtle);
-  --ds-color-base-contrast-default: var(--ds-color-primary-base-contrast-default);
+[data-color="inverted"], [data-color-scheme][data-color="inverted"] {
+  --ds-color-background-default: var(--ds-color-inverted-background-default);
+  --ds-color-background-tinted: var(--ds-color-inverted-background-tinted);
+  --ds-color-surface-default: var(--ds-color-inverted-surface-default);
+  --ds-color-surface-tinted: var(--ds-color-inverted-surface-tinted);
+  --ds-color-surface-hover: var(--ds-color-inverted-surface-hover);
+  --ds-color-surface-active: var(--ds-color-inverted-surface-active);
+  --ds-color-border-subtle: var(--ds-color-inverted-border-subtle);
+  --ds-color-border-default: var(--ds-color-inverted-border-default);
+  --ds-color-border-strong: var(--ds-color-inverted-border-strong);
+  --ds-color-text-subtle: var(--ds-color-inverted-text-subtle);
+  --ds-color-text-default: var(--ds-color-inverted-text-default);
+  --ds-color-base-default: var(--ds-color-inverted-base-default);
+  --ds-color-base-hover: var(--ds-color-inverted-base-hover);
+  --ds-color-base-active: var(--ds-color-inverted-base-active);
+  --ds-color-base-contrast-subtle: var(--ds-color-inverted-base-contrast-subtle);
+  --ds-color-base-contrast-default: var(--ds-color-inverted-base-contrast-default);
 }
 
 }
@@ -808,6 +808,28 @@ design-tokens: v1.8.0
   --ds-color-base-active: var(--ds-color-neutral-base-active);
   --ds-color-base-contrast-subtle: var(--ds-color-neutral-base-contrast-subtle);
   --ds-color-base-contrast-default: var(--ds-color-neutral-base-contrast-default);
+}
+
+}
+
+@layer ds.theme.color {
+:root, [data-color-scheme], [data-color="primary"] {
+  --ds-color-background-default: var(--ds-color-primary-background-default);
+  --ds-color-background-tinted: var(--ds-color-primary-background-tinted);
+  --ds-color-surface-default: var(--ds-color-primary-surface-default);
+  --ds-color-surface-tinted: var(--ds-color-primary-surface-tinted);
+  --ds-color-surface-hover: var(--ds-color-primary-surface-hover);
+  --ds-color-surface-active: var(--ds-color-primary-surface-active);
+  --ds-color-border-subtle: var(--ds-color-primary-border-subtle);
+  --ds-color-border-default: var(--ds-color-primary-border-default);
+  --ds-color-border-strong: var(--ds-color-primary-border-strong);
+  --ds-color-text-subtle: var(--ds-color-primary-text-subtle);
+  --ds-color-text-default: var(--ds-color-primary-text-default);
+  --ds-color-base-default: var(--ds-color-primary-base-default);
+  --ds-color-base-hover: var(--ds-color-primary-base-hover);
+  --ds-color-base-active: var(--ds-color-primary-base-active);
+  --ds-color-base-contrast-subtle: var(--ds-color-primary-base-contrast-subtle);
+  --ds-color-base-contrast-default: var(--ds-color-primary-base-contrast-default);
 }
 
 }

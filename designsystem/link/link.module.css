@@ -44,7 +44,7 @@
 	:is(a, .link) > svg {
 		display: inline-block; /* Fix Tailwind default */
 		vertical-align: middle; /* Align img or svg icon with text */
-		height: 1em;
-		width: 1em;
+		height: var(--mtds-icon-size-sm);
+		width: var(--mtds-icon-size-sm);
 	}
 }
