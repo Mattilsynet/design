@@ -747,7 +747,7 @@
     "name": "primary",
     "group": "Main color",
     "selectedTokenSets": {
-      "semantic/modes/main-color/primary": "enabled"
+      "semantic/modes/main-color/main": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:40350:32139",
     "$figmaModeId": "44797:1",
