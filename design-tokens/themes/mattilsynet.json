@@ -1,6 +1,6 @@
 {
   "color": {
-    "primary": {
+    "main": {
       "1": {
         "$type": "color",
         "$value": "{mattilsynet.primary.1}"
