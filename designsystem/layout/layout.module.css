@@ -11,6 +11,11 @@
 		margin: 0;
 		padding: 0;
 	}
+	:where(.grid > *, .flex > *) {
+		box-sizing: border-box;
+		margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
+		min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
+	}
 
 	/**
 	 * Shared
@@ -22,11 +27,6 @@
 		gap: var(--ds-size-3);
 
 		& > svg { flex-shrink: 0 } /* Never shrink svgs */
-		& > * {
-			box-sizing: border-box;
-			margin-block: 0; /* Disable margin on lists, headings, paragraphs etc. */
-			min-width: 0; /* https://css-tricks.com/preventing-a-grid-blowout/ */
-		}
 
 		&[data-center="sm"],
 		&[data-center="md"],

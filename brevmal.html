@@ -11,111 +11,158 @@
         font-weight: 100 900;
         src: url('./public/docs/font/variable/MattilsynetSansVariableVF.woff2');
       }
-      :root {
-        --page-width: 210mm;
-        --page-height: 297mm;
-        --margin-inline: 25mm;
-        --margin-block: 15mm;
-        --line-height: 1.5;
-        --font-family: 'Mattilsynet Sans', sans-serif;
-        --font-sm: 8.5pt;
-        --font-md: 11pt;
-        --font-lg: 14pt;
-      }
-      * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        box-sizing: border-box;
-      }
       html, body {
-        min-height: 100%;
         margin: 0;
       }
-      body {
-        font-family: var(--font-family);
-        font-size: var(--font-md);
-        line-height: var(--line-height);
+      :root {
+        --mtdsc-print-first: #fff;
+        --mtdsc-print-bottom: 15mm;
+        --mtdsc-print-font-family: 'Mattilsynet Sans', sans-serif;
+        --mtdsc-print-font-sm: 8.5pt;
+        --mtdsc-print-font-md: 11pt;
+        --mtdsc-print-font-lg: 14pt;
+        --mtdsc-print-font-xl: 30pt;
+        --mtdsc-print-height: 297mm;
+        --mtdsc-print-inner-height: calc(var(--mtdsc-print-height) - var(--mtdsc-print-top) - var(--mtdsc-print-bottom));
+        --mtdsc-print-inner-width: calc(var(--mtdsc-print-width) - var(--mtdsc-print-left) - var(--mtdsc-print-right));
+        --mtdsc-print-left: 25mm;
+        --mtdsc-print-line-height: 1.5;
+        --mtdsc-print-right: 25mm;
+        --mtdsc-print-top: 15mm;
+        --mtdsc-print-width: 210mm;
       }
-      #logo {
+      :root:has(.print + .print) {
+        --mtdsc-print-first: #E2F1DF;
+      }
+      .print :first-child { margin-top: 0 }
+      .print :last-child { margin-bottom: 0 }
+      .print {
+        font-family: var(--mtdsc-print-font-family);
+        font-size: var(--mtdsc-print-font-md);
+        line-height: var(--mtdsc-print-line-height);
+      }
+      .print::before {
+        float: left;
+        content: url("data:image/svg+xml,%3Csvg role='img' aria-label='Mattilsynet' xmlns='http://www.w3.org/2000/svg' width='52mm' height='42mm' viewBox='0 0 4595 800' preserveAspectRatio='xMinYMin meet' fill='%23054449'%3E%3Cpath d='m2251.97 582.65 2.06-.41v71.12l-1.05.47c-6.93 2.95-22.82 7.91-51.18 7.91-65.17 0-105.6-39.93-105.6-104.23V379.09h-64.04v-67.78h19.52c32.8 0 51.63-18.97 51.63-51.99v-54.9h78.16v105.29h71.85v69.34h-71.85v164.97c0 28.98 12.68 41.35 42.37 41.35 11.69 0 25.16-2.19 28.13-2.78v.06Zm265.43-.03h-.01v-.03c-2.96.59-16.49 2.78-28.14 2.78-29.69 0-42.34-12.38-42.34-41.35V379.05h71.85v-69.34h-71.85V204.42h-78.15v54.9c0 33.01-18.84 51.99-51.64 51.99h-19.51v67.78h64.04v178.42c0 64.3 40.43 104.23 105.61 104.23 28.34 0 44.23-4.97 51.17-7.91l1.07-.47v-71.12l-2.1.41v-.03Zm-529.19 71.84.41 2.1h-80l-.41-1.22c-.76-2.12-3.24-14.55-3.62-38.65-12.89 18.26-44.23 50.48-104.8 50.48-34.76 0-64.77-11.04-86.89-31.99-20.57-19.52-31.93-45.67-31.93-73.61 0-56.61 39.56-96.07 105.79-105.61l88.7-13.45c21.55-3.03 24.05-14.56 24.05-23 0-31.66-25.38-50.56-63.6-50.56s-64.44 22.52-68.97 58.81l-78.64-17.72c6.96-54.23 55.44-111.71 146.94-111.71 134.15 0 148.64 91.16 148.64 130.35v170.99c0 33.35 4.03 53.92 4.2 54.79h.13Zm-88.69-155.98h-.05l-88.14 13.16c-16.66 2.77-44.64 12.25-44.64 44.9 0 20.61 15.23 42.79 48.65 42.79 38.38 0 84.15-15.14 84.15-87.29h.03v-13.57.01Zm696.18 159.14h85.76V309.21h-85.76v348.41ZM400.01 236.99c72.4 0 152 51.01 162.7 148.77 72.05-35.09 153.01-49.95 233.24-42.9C768.25 149.02 601.57 0 400.09 0 210.65 0 51.99 131.74 10.68 308.61a445.05 445.05 0 0 1 228.93 61.44c18.58-89.32 92.94-133.07 160.39-133.07l.01.01ZM1.99 361.84c-20.4 201.27 118.42 386.08 308.91 428v-2.24a444.14 444.14 0 0 1 53.07-211.24C297.36 443.08 151.25 355.8 1.99 361.84Zm1322.76 170.79-162.34-378.91-.47-1.03H1045v504.93h86.84V296.65l152.26 358.66h78.43l153.68-360.1v362.42h88.27V152.72h-119.04l-160.69 379.91ZM364.54 798.28C596.78 820.02 801.24 633.39 800 399.93c0-1.14 0-2.26-.02-3.38-234.54-27.38-443.96 165.76-435.44 401.73Zm3979.84-319.46c0 22-2.16 27.88-2.16 27.88h-253.34c2.89 49.34 42.55 86.28 92.83 86.28 37.12 0 63.43-14.59 78.49-43.24v.05h81.71a198.72 198.72 0 0 1-17.1 40.97c-24.42 41.01-70.86 76.39-143.14 76.39-48.02 0-92.49-17.41-125.07-49-35.25-34.14-53.91-81.6-53.91-137.16 0-51.5 18.47-98.56 52.07-132.51 31.45-31.87 74.64-50.15 118.41-50.15 105.62 0 171.21 69.02 171.21 180.51v-.02Zm-86.87-35.69c-2.86-53.72-46.72-72.85-83.61-72.85s-78.12 25.54-82.81 72.85h166.42Zm-440.7-143.46c-42.48 0-79.66 19.15-100.83 51.47v-41.59h-83.9v348.02h86.03V457.04c0-48.37 27.56-79.59 70.19-79.59 60.45 0 69.48 46.78 69.48 74.65v205.5h86.04V437.95c0-85.31-48.66-138.28-127.01-138.29v.01Zm-406.67 224.46-98.17-213.91-.48-1.03h-97.32l149.18 304.64-82.02 177.12v.04h92.17l220.45-481.79h-91.52l-92.29 214.93Zm1182.83 58.51v-.05c-3.03.59-16.52 2.78-28.14 2.78-29.74 0-42.43-12.38-42.43-41.35V379.05h71.91v-69.34h-71.91V204.42h-78.13v54.9c0 33.01-18.87 51.99-51.64 51.99h-19.52v67.78h64v178.42c0 64.3 40.51 104.23 105.64 104.23 29.42 0 45.63-5.51 51.19-7.91l1.06-.47v-71.12l-2.03.4ZM2643.01 135a55.32 55.32 0 0 0-55.49 55.48c0 30.59 24.01 54.76 55.49 54.76s56.14-24.04 56.14-54.76-25.2-55.48-56.14-55.48Zm135.82 522.63h85.77V141.81h-85.77v515.82Zm325.89-208.77h-.08l.08.02v-.02Zm-.17 0h.09l-52.61-10.58c-20.98-4.15-33.49-17.01-33.49-34.32 0-21.23 21.13-37.86 48.08-37.86 52.47 0 61.13 41.72 62.38 50.1l.29 1.94 73.16-20.75-.25-1.53c-1.82-10.68-8.62-38.16-33.24-61.72-24.8-23.75-59.27-35.81-102.34-35.81-71.24 0-129.2 50.54-129.2 112.67 0 50.89 35.36 89.08 94.6 102.02l51.32 11.32c25.65 5.22 39.19 17.82 39.19 36.44 0 18.62-15.54 37.86-50.26 37.86-46.91 0-66.35-30.76-68.79-57.07l-.18-2.1-75.37 20.75.13 1.47c2.6 23.77 16.07 49.02 36.04 67.62 26.61 24.71 64.24 37.86 108.8 37.86 87.16 0 132.74-56.32 132.74-112s-36.82-92.46-101.09-106.3v-.01Z'/%3E%3C/svg%3E");
+      }
+      .print + .print::before {
+        display: none;
+      }
+      .print > :first-child {
+        clear: both;
+      }
+      .print:has(+ .print) {
         color: #054449;
-        fill: currentColor;
-        min-height: 42mm;
-        width: 52mm;
+        background: var(--mtdsc-print-first);
+        height: var(--page-height);
+        page-break-after: always;
+        break-after: page;
       }
-      #classification {
+      .print:has(+ .print) h1 {
+        font-size: var(--mtdsc-print-font-xl);
+      }
+      .print:has(+ .print) img {
+        display: block;
+        height: auto;
+        margin: auto;
+        width: calc(var(--mtdsc-print-inner-width) * .8);
+      }
+      .print .print-classification {
+        clear: none;
         float: right;
         text-align: right;
-        font-size:  var(--font-sm);
+        font-size:  var(--mtdsc-print-font-sm);
       }
-      #footer {
+      .print .print-classification + * {
+        clear: both;
+      }
+      .print-footer {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        font-size:  var(--font-sm);
+        font-size:  var(--mtdsc-print-font-sm);
       }
-      table {
+      .print small {
+        font-size:  var(--mtdsc-print-font-sm);
+      }
+      .print table {
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
         table-layout: fixed;
       }
-      th, td {
+      .print th,
+      .print td {
         text-align: inherit;
         vertical-align: top;
       }
-      h1 {
-        font-size: var(--font-lg);
+      .print h1 {
+        font-size: var(--mtdsc-print-font-lg);
         font-weight: 700;
         margin-block: 1rem;
       }
-      h2 {
+      .print h2 {
         font: inherit;
         margin-block: 1em 0;
         page-break-after: avoid;
         break-after: avoid-page;
       }
-      h2 + * {
+      .print h2 + * {
         margin-top: 0;
         page-break-before: avoid;
         break-before: avoid-page;
       }
-      :not(ul) ul {
+      .print :not(ul) ul {
         padding-left: 4mm;
         list-style: inside;
       }
-      section {
-        page-break-after: always;
-        break-after: page;
-      }
 
       @media screen {
-        body {
-          background: #fff linear-gradient(to bottom, transparent calc(var(--page-height) - 1px), rgba(0,0,0,.2) calc(var(--page-height) - 1px)) 0 0/100% var(--page-height);
+        html { margin: 0; background: #e0e0e0 }
+        .print {
+          --bleed-bottom: transparent;
+          --bleed-top: transparent;
+          --content: transparent;
+          --divider: blue;
+          --line: red;
+          background: #fff  0 -1px/100% var(--mtdsc-print-height);
+          background-image:
+            linear-gradient(to bottom,
+              var(--divider) 1px,
+              var(--bleed-top) 1px,
+              var(--bleed-top) var(--mtdsc-print-top),
+              var(--line) var(--mtdsc-print-top),
+              var(--line) calc(var(--mtdsc-print-top) + 1px),
+              var(--content) calc(var(--mtdsc-print-top) + 1px),
+              var(--content) calc(var(--mtdsc-print-height) - var(--mtdsc-print-bottom)),
+              var(--line) calc(var(--mtdsc-print-height) - var(--mtdsc-print-bottom)),
+              var(--line) calc(var(--mtdsc-print-height) - var(--mtdsc-print-bottom) + 1px),
+              var(--bleed-bottom) calc(var(--mtdsc-print-height) - var(--mtdsc-print-bottom) + 1px)
+            );
           box-shadow: 0 0 10px rgba(0,0,0,0.1);
-          margin: 40px auto;
-          max-width: var(--page-width);
-          padding: var(--margin-block) var(--margin-inline);
-        }
-        html {
-          background: #e0e0e0;
-        }
-        section {
           box-sizing: border-box;
-          height: var(--page-height);
-          background: #E2F1DF;
-          margin: calc(var(--margin-block) * -1) calc(var(--margin-inline) * -1);
-          margin-bottom: 0;
-          padding: inherit;
-        }
-        section::before {
-          content: url("data:image/svg+xml,%3Csvg role='img' aria-label='Mattilsynet' xmlns='http://www.w3.org/2000/svg' width='52mm' height='9mm' viewBox='0 0 4595 800' preserveAspectRatio='xMinYMin meet' fill='%23054449'%3E%3Cpath d='m2251.97 582.65 2.06-.41v71.12l-1.05.47c-6.93 2.95-22.82 7.91-51.18 7.91-65.17 0-105.6-39.93-105.6-104.23V379.09h-64.04v-67.78h19.52c32.8 0 51.63-18.97 51.63-51.99v-54.9h78.16v105.29h71.85v69.34h-71.85v164.97c0 28.98 12.68 41.35 42.37 41.35 11.69 0 25.16-2.19 28.13-2.78v.06Zm265.43-.03h-.01v-.03c-2.96.59-16.49 2.78-28.14 2.78-29.69 0-42.34-12.38-42.34-41.35V379.05h71.85v-69.34h-71.85V204.42h-78.15v54.9c0 33.01-18.84 51.99-51.64 51.99h-19.51v67.78h64.04v178.42c0 64.3 40.43 104.23 105.61 104.23 28.34 0 44.23-4.97 51.17-7.91l1.07-.47v-71.12l-2.1.41v-.03Zm-529.19 71.84.41 2.1h-80l-.41-1.22c-.76-2.12-3.24-14.55-3.62-38.65-12.89 18.26-44.23 50.48-104.8 50.48-34.76 0-64.77-11.04-86.89-31.99-20.57-19.52-31.93-45.67-31.93-73.61 0-56.61 39.56-96.07 105.79-105.61l88.7-13.45c21.55-3.03 24.05-14.56 24.05-23 0-31.66-25.38-50.56-63.6-50.56s-64.44 22.52-68.97 58.81l-78.64-17.72c6.96-54.23 55.44-111.71 146.94-111.71 134.15 0 148.64 91.16 148.64 130.35v170.99c0 33.35 4.03 53.92 4.2 54.79h.13Zm-88.69-155.98h-.05l-88.14 13.16c-16.66 2.77-44.64 12.25-44.64 44.9 0 20.61 15.23 42.79 48.65 42.79 38.38 0 84.15-15.14 84.15-87.29h.03v-13.57.01Zm696.18 159.14h85.76V309.21h-85.76v348.41ZM400.01 236.99c72.4 0 152 51.01 162.7 148.77 72.05-35.09 153.01-49.95 233.24-42.9C768.25 149.02 601.57 0 400.09 0 210.65 0 51.99 131.74 10.68 308.61a445.05 445.05 0 0 1 228.93 61.44c18.58-89.32 92.94-133.07 160.39-133.07l.01.01ZM1.99 361.84c-20.4 201.27 118.42 386.08 308.91 428v-2.24a444.14 444.14 0 0 1 53.07-211.24C297.36 443.08 151.25 355.8 1.99 361.84Zm1322.76 170.79-162.34-378.91-.47-1.03H1045v504.93h86.84V296.65l152.26 358.66h78.43l153.68-360.1v362.42h88.27V152.72h-119.04l-160.69 379.91ZM364.54 798.28C596.78 820.02 801.24 633.39 800 399.93c0-1.14 0-2.26-.02-3.38-234.54-27.38-443.96 165.76-435.44 401.73Zm3979.84-319.46c0 22-2.16 27.88-2.16 27.88h-253.34c2.89 49.34 42.55 86.28 92.83 86.28 37.12 0 63.43-14.59 78.49-43.24v.05h81.71a198.72 198.72 0 0 1-17.1 40.97c-24.42 41.01-70.86 76.39-143.14 76.39-48.02 0-92.49-17.41-125.07-49-35.25-34.14-53.91-81.6-53.91-137.16 0-51.5 18.47-98.56 52.07-132.51 31.45-31.87 74.64-50.15 118.41-50.15 105.62 0 171.21 69.02 171.21 180.51v-.02Zm-86.87-35.69c-2.86-53.72-46.72-72.85-83.61-72.85s-78.12 25.54-82.81 72.85h166.42Zm-440.7-143.46c-42.48 0-79.66 19.15-100.83 51.47v-41.59h-83.9v348.02h86.03V457.04c0-48.37 27.56-79.59 70.19-79.59 60.45 0 69.48 46.78 69.48 74.65v205.5h86.04V437.95c0-85.31-48.66-138.28-127.01-138.29v.01Zm-406.67 224.46-98.17-213.91-.48-1.03h-97.32l149.18 304.64-82.02 177.12v.04h92.17l220.45-481.79h-91.52l-92.29 214.93Zm1182.83 58.51v-.05c-3.03.59-16.52 2.78-28.14 2.78-29.74 0-42.43-12.38-42.43-41.35V379.05h71.91v-69.34h-71.91V204.42h-78.13v54.9c0 33.01-18.87 51.99-51.64 51.99h-19.52v67.78h64v178.42c0 64.3 40.51 104.23 105.64 104.23 29.42 0 45.63-5.51 51.19-7.91l1.06-.47v-71.12l-2.03.4ZM2643.01 135a55.32 55.32 0 0 0-55.49 55.48c0 30.59 24.01 54.76 55.49 54.76s56.14-24.04 56.14-54.76-25.2-55.48-56.14-55.48Zm135.82 522.63h85.77V141.81h-85.77v515.82Zm325.89-208.77h-.08l.08.02v-.02Zm-.17 0h.09l-52.61-10.58c-20.98-4.15-33.49-17.01-33.49-34.32 0-21.23 21.13-37.86 48.08-37.86 52.47 0 61.13 41.72 62.38 50.1l.29 1.94 73.16-20.75-.25-1.53c-1.82-10.68-8.62-38.16-33.24-61.72-24.8-23.75-59.27-35.81-102.34-35.81-71.24 0-129.2 50.54-129.2 112.67 0 50.89 35.36 89.08 94.6 102.02l51.32 11.32c25.65 5.22 39.19 17.82 39.19 36.44 0 18.62-15.54 37.86-50.26 37.86-46.91 0-66.35-30.76-68.79-57.07l-.18-2.1-75.37 20.75.13 1.47c2.6 23.77 16.07 49.02 36.04 67.62 26.61 24.71 64.24 37.86 108.8 37.86 87.16 0 132.74-56.32 132.74-112s-36.82-92.46-101.09-106.3v-.01Z'/%3E%3C/svg%3E");
+          margin: 40px auto;
+          width: var(--mtdsc-print-width);
+          min-height: var(--mtdsc-print-height);
+          padding-bottom: var(--mtdsc-print-bottom);
+          padding-left: var(--mtdsc-print-left);
+          padding-right: var(--mtdsc-print-right);
+          padding-top: var(--mtdsc-print-top);
         }
       }
 
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact; /* Preserve colors */
+        }
+      }
       @page {
         size: A4 portrait;
-        margin-block: 30mm; 
-        margin-inline: var(--margin-inline);
         counter-increment: page;
+        margin-bottom: var(--mtdsc-print-bottom);
+        margin-left: var(--mtdsc-print-left);
+        margin-right: var(--mtdsc-print-right);
+        margin-top: var(--mtdsc-print-top);
 
         @bottom-right {
           content: "Side " counter(page) " av " counter(pages);
@@ -129,151 +176,97 @@
         }
       }
       @page :first {
-        background: #E2F1DF;
-        margin-block: 42mm;
+        background-color: var(--mtdsc-print-first);
 
-        @top-left {
-          content: url("data:image/svg+xml,%3Csvg role='img' aria-label='Mattilsynet' xmlns='http://www.w3.org/2000/svg' width='52mm' height='9mm' viewBox='0 0 4595 800' preserveAspectRatio='xMinYMin meet' fill='%23054449'%3E%3Cpath d='m2251.97 582.65 2.06-.41v71.12l-1.05.47c-6.93 2.95-22.82 7.91-51.18 7.91-65.17 0-105.6-39.93-105.6-104.23V379.09h-64.04v-67.78h19.52c32.8 0 51.63-18.97 51.63-51.99v-54.9h78.16v105.29h71.85v69.34h-71.85v164.97c0 28.98 12.68 41.35 42.37 41.35 11.69 0 25.16-2.19 28.13-2.78v.06Zm265.43-.03h-.01v-.03c-2.96.59-16.49 2.78-28.14 2.78-29.69 0-42.34-12.38-42.34-41.35V379.05h71.85v-69.34h-71.85V204.42h-78.15v54.9c0 33.01-18.84 51.99-51.64 51.99h-19.51v67.78h64.04v178.42c0 64.3 40.43 104.23 105.61 104.23 28.34 0 44.23-4.97 51.17-7.91l1.07-.47v-71.12l-2.1.41v-.03Zm-529.19 71.84.41 2.1h-80l-.41-1.22c-.76-2.12-3.24-14.55-3.62-38.65-12.89 18.26-44.23 50.48-104.8 50.48-34.76 0-64.77-11.04-86.89-31.99-20.57-19.52-31.93-45.67-31.93-73.61 0-56.61 39.56-96.07 105.79-105.61l88.7-13.45c21.55-3.03 24.05-14.56 24.05-23 0-31.66-25.38-50.56-63.6-50.56s-64.44 22.52-68.97 58.81l-78.64-17.72c6.96-54.23 55.44-111.71 146.94-111.71 134.15 0 148.64 91.16 148.64 130.35v170.99c0 33.35 4.03 53.92 4.2 54.79h.13Zm-88.69-155.98h-.05l-88.14 13.16c-16.66 2.77-44.64 12.25-44.64 44.9 0 20.61 15.23 42.79 48.65 42.79 38.38 0 84.15-15.14 84.15-87.29h.03v-13.57.01Zm696.18 159.14h85.76V309.21h-85.76v348.41ZM400.01 236.99c72.4 0 152 51.01 162.7 148.77 72.05-35.09 153.01-49.95 233.24-42.9C768.25 149.02 601.57 0 400.09 0 210.65 0 51.99 131.74 10.68 308.61a445.05 445.05 0 0 1 228.93 61.44c18.58-89.32 92.94-133.07 160.39-133.07l.01.01ZM1.99 361.84c-20.4 201.27 118.42 386.08 308.91 428v-2.24a444.14 444.14 0 0 1 53.07-211.24C297.36 443.08 151.25 355.8 1.99 361.84Zm1322.76 170.79-162.34-378.91-.47-1.03H1045v504.93h86.84V296.65l152.26 358.66h78.43l153.68-360.1v362.42h88.27V152.72h-119.04l-160.69 379.91ZM364.54 798.28C596.78 820.02 801.24 633.39 800 399.93c0-1.14 0-2.26-.02-3.38-234.54-27.38-443.96 165.76-435.44 401.73Zm3979.84-319.46c0 22-2.16 27.88-2.16 27.88h-253.34c2.89 49.34 42.55 86.28 92.83 86.28 37.12 0 63.43-14.59 78.49-43.24v.05h81.71a198.72 198.72 0 0 1-17.1 40.97c-24.42 41.01-70.86 76.39-143.14 76.39-48.02 0-92.49-17.41-125.07-49-35.25-34.14-53.91-81.6-53.91-137.16 0-51.5 18.47-98.56 52.07-132.51 31.45-31.87 74.64-50.15 118.41-50.15 105.62 0 171.21 69.02 171.21 180.51v-.02Zm-86.87-35.69c-2.86-53.72-46.72-72.85-83.61-72.85s-78.12 25.54-82.81 72.85h166.42Zm-440.7-143.46c-42.48 0-79.66 19.15-100.83 51.47v-41.59h-83.9v348.02h86.03V457.04c0-48.37 27.56-79.59 70.19-79.59 60.45 0 69.48 46.78 69.48 74.65v205.5h86.04V437.95c0-85.31-48.66-138.28-127.01-138.29v.01Zm-406.67 224.46-98.17-213.91-.48-1.03h-97.32l149.18 304.64-82.02 177.12v.04h92.17l220.45-481.79h-91.52l-92.29 214.93Zm1182.83 58.51v-.05c-3.03.59-16.52 2.78-28.14 2.78-29.74 0-42.43-12.38-42.43-41.35V379.05h71.91v-69.34h-71.91V204.42h-78.13v54.9c0 33.01-18.87 51.99-51.64 51.99h-19.52v67.78h64v178.42c0 64.3 40.51 104.23 105.64 104.23 29.42 0 45.63-5.51 51.19-7.91l1.06-.47v-71.12l-2.03.4ZM2643.01 135a55.32 55.32 0 0 0-55.49 55.48c0 30.59 24.01 54.76 55.49 54.76s56.14-24.04 56.14-54.76-25.2-55.48-56.14-55.48Zm135.82 522.63h85.77V141.81h-85.77v515.82Zm325.89-208.77h-.08l.08.02v-.02Zm-.17 0h.09l-52.61-10.58c-20.98-4.15-33.49-17.01-33.49-34.32 0-21.23 21.13-37.86 48.08-37.86 52.47 0 61.13 41.72 62.38 50.1l.29 1.94 73.16-20.75-.25-1.53c-1.82-10.68-8.62-38.16-33.24-61.72-24.8-23.75-59.27-35.81-102.34-35.81-71.24 0-129.2 50.54-129.2 112.67 0 50.89 35.36 89.08 94.6 102.02l51.32 11.32c25.65 5.22 39.19 17.82 39.19 36.44 0 18.62-15.54 37.86-50.26 37.86-46.91 0-66.35-30.76-68.79-57.07l-.18-2.1-75.37 20.75.13 1.47c2.6 23.77 16.07 49.02 36.04 67.62 26.61 24.71 64.24 37.86 108.8 37.86 87.16 0 132.74-56.32 132.74-112s-36.82-92.46-101.09-106.3v-.01Z'/%3E%3C/svg%3E");
-          padding-top: var(--margin-block);
-          text-align: left;
-          vertical-align: top;
-        }
-        @top-right {
-          content: "Unntatt offentlighet\00000aOffl. § 13 første ledd jf fvl. § 13 første ledd";
-          font-family: var(--font-family);
-          font-size: var(--font-sm);
-          line-height: var(--line-height);
-          padding-top: var(--margin-block);
-          text-align: right;
-          vertical-align: top;
-          white-space: pre-wrap;
-        }
         @bottom-left {
-          content: "MaXttilsynet\00000ahovedkontoret\00000aavdeling brukerdialog og\00000akommunikasjon";
-          font-family: var(--font-family);
-          font-size: var(--font-sm);
-          line-height: var(--line-height);
+          content: "Mattilsynet\00000ahovedkontoret\00000aavdeling brukerdialog og\00000akommunikasjon";
+          font-family: var(--mtdsc-print-font-family);
+          font-size: var(--mtdsc-print-font-sm);
+          line-height: var(--mtdsc-print-line-height);
           padding-top: 5mm;
           text-align: left;
           vertical-align: top;
           white-space: pre-wrap;
-          width: 53mm;
+          width: calc(var(--mtdsc-print-inner-width) / 3);
         }
         @bottom-center {
           content: "Postadresse: Felles postmottak\00000aPostboks 383\00000a2381 BRUMUNDDAL";
-          font-family: var(--font-family);
-          font-size: var(--font-sm);
-          line-height: var(--line-height);
+          font-family: var(--mtdsc-print-font-family);
+          font-size: var(--mtdsc-print-font-sm);
+          line-height: var(--mtdsc-print-line-height);
           padding-top: 5mm;
           text-align: left;
           vertical-align: top;
           white-space: pre-wrap;
-          width: 53mm;
+          width: calc(var(--mtdsc-print-inner-width) / 3);
         }
         @bottom-right {
           content: "Tlf: 22 40 00 00\00000aE-post: postmottak@mattilsynet.no\00000aOrg.nr: 985399077";
-          font-family: var(--font-family);
-          font-size: var(--font-sm);
-          line-height: var(--line-height);
+          font-family: var(--mtdsc-print-font-family);
+          font-size: var(--mtdsc-print-font-sm);
+          line-height: var(--mtdsc-print-line-height);
           padding-top: 5mm;
           text-align: left;
           vertical-align: top;
           white-space: pre-wrap;
-          width: 53mm;
+          width: calc(var(--mtdsc-print-inner-width) / 3);
         }
       }
     </style>
   </head>
   <body>
-    <section>
-      first-page content  
-    </section>
-    <table>
-      <tbody>
-        <!--<tr>
-          <th>
-            <svg id="logo" role="img" aria-label="Mattilsynet" viewBox="0 0 4595 800" preserveAspectRatio="xMinYMin meet">
-              <path d="m2251.97 582.65 2.06-.41v71.12l-1.05.47c-6.93 2.95-22.82 7.91-51.18 7.91-65.17 0-105.6-39.93-105.6-104.23V379.09h-64.04v-67.78h19.52c32.8 0 51.63-18.97 51.63-51.99v-54.9h78.16v105.29h71.85v69.34h-71.85v164.97c0 28.98 12.68 41.35 42.37 41.35 11.69 0 25.16-2.19 28.13-2.78v.06Zm265.43-.03h-.01v-.03c-2.96.59-16.49 2.78-28.14 2.78-29.69 0-42.34-12.38-42.34-41.35V379.05h71.85v-69.34h-71.85V204.42h-78.15v54.9c0 33.01-18.84 51.99-51.64 51.99h-19.51v67.78h64.04v178.42c0 64.3 40.43 104.23 105.61 104.23 28.34 0 44.23-4.97 51.17-7.91l1.07-.47v-71.12l-2.1.41v-.03Zm-529.19 71.84.41 2.1h-80l-.41-1.22c-.76-2.12-3.24-14.55-3.62-38.65-12.89 18.26-44.23 50.48-104.8 50.48-34.76 0-64.77-11.04-86.89-31.99-20.57-19.52-31.93-45.67-31.93-73.61 0-56.61 39.56-96.07 105.79-105.61l88.7-13.45c21.55-3.03 24.05-14.56 24.05-23 0-31.66-25.38-50.56-63.6-50.56s-64.44 22.52-68.97 58.81l-78.64-17.72c6.96-54.23 55.44-111.71 146.94-111.71 134.15 0 148.64 91.16 148.64 130.35v170.99c0 33.35 4.03 53.92 4.2 54.79h.13Zm-88.69-155.98h-.05l-88.14 13.16c-16.66 2.77-44.64 12.25-44.64 44.9 0 20.61 15.23 42.79 48.65 42.79 38.38 0 84.15-15.14 84.15-87.29h.03v-13.57.01Zm696.18 159.14h85.76V309.21h-85.76v348.41ZM400.01 236.99c72.4 0 152 51.01 162.7 148.77 72.05-35.09 153.01-49.95 233.24-42.9C768.25 149.02 601.57 0 400.09 0 210.65 0 51.99 131.74 10.68 308.61a445.05 445.05 0 0 1 228.93 61.44c18.58-89.32 92.94-133.07 160.39-133.07l.01.01ZM1.99 361.84c-20.4 201.27 118.42 386.08 308.91 428v-2.24a444.14 444.14 0 0 1 53.07-211.24C297.36 443.08 151.25 355.8 1.99 361.84Zm1322.76 170.79-162.34-378.91-.47-1.03H1045v504.93h86.84V296.65l152.26 358.66h78.43l153.68-360.1v362.42h88.27V152.72h-119.04l-160.69 379.91ZM364.54 798.28C596.78 820.02 801.24 633.39 800 399.93c0-1.14 0-2.26-.02-3.38-234.54-27.38-443.96 165.76-435.44 401.73Zm3979.84-319.46c0 22-2.16 27.88-2.16 27.88h-253.34c2.89 49.34 42.55 86.28 92.83 86.28 37.12 0 63.43-14.59 78.49-43.24v.05h81.71a198.72 198.72 0 0 1-17.1 40.97c-24.42 41.01-70.86 76.39-143.14 76.39-48.02 0-92.49-17.41-125.07-49-35.25-34.14-53.91-81.6-53.91-137.16 0-51.5 18.47-98.56 52.07-132.51 31.45-31.87 74.64-50.15 118.41-50.15 105.62 0 171.21 69.02 171.21 180.51v-.02Zm-86.87-35.69c-2.86-53.72-46.72-72.85-83.61-72.85s-78.12 25.54-82.81 72.85h166.42Zm-440.7-143.46c-42.48 0-79.66 19.15-100.83 51.47v-41.59h-83.9v348.02h86.03V457.04c0-48.37 27.56-79.59 70.19-79.59 60.45 0 69.48 46.78 69.48 74.65v205.5h86.04V437.95c0-85.31-48.66-138.28-127.01-138.29v.01Zm-406.67 224.46-98.17-213.91-.48-1.03h-97.32l149.18 304.64-82.02 177.12v.04h92.17l220.45-481.79h-91.52l-92.29 214.93Zm1182.83 58.51v-.05c-3.03.59-16.52 2.78-28.14 2.78-29.74 0-42.43-12.38-42.43-41.35V379.05h71.91v-69.34h-71.91V204.42h-78.13v54.9c0 33.01-18.87 51.99-51.64 51.99h-19.52v67.78h64v178.42c0 64.3 40.51 104.23 105.64 104.23 29.42 0 45.63-5.51 51.19-7.91l1.06-.47v-71.12l-2.03.4ZM2643.01 135a55.32 55.32 0 0 0-55.49 55.48c0 30.59 24.01 54.76 55.49 54.76s56.14-24.04 56.14-54.76-25.2-55.48-56.14-55.48Zm135.82 522.63h85.77V141.81h-85.77v515.82Zm325.89-208.77h-.08l.08.02v-.02Zm-.17 0h.09l-52.61-10.58c-20.98-4.15-33.49-17.01-33.49-34.32 0-21.23 21.13-37.86 48.08-37.86 52.47 0 61.13 41.72 62.38 50.1l.29 1.94 73.16-20.75-.25-1.53c-1.82-10.68-8.62-38.16-33.24-61.72-24.8-23.75-59.27-35.81-102.34-35.81-71.24 0-129.2 50.54-129.2 112.67 0 50.89 35.36 89.08 94.6 102.02l51.32 11.32c25.65 5.22 39.19 17.82 39.19 36.44 0 18.62-15.54 37.86-50.26 37.86-46.91 0-66.35-30.76-68.79-57.07l-.18-2.1-75.37 20.75.13 1.47c2.6 23.77 16.07 49.02 36.04 67.62 26.61 24.71 64.24 37.86 108.8 37.86 87.16 0 132.74-56.32 132.74-112s-36.82-92.46-101.09-106.3v-.01Z"/>
-            </svg>
-          </th>
-          <td><div id="classification">Unntatt offentlighet<br />Offl. § 13 første ledd jf fvl. § 13 første ledd</div></td>
-        </tr>-->
-        <tr>
-          <td>
-            <div style="font-size: 11pt; min-height: 42mm">
+      <section class="print">
+        <h1>Her kommer brevtittel</h1>
+        <img src="https://design.mattilsynet.no/illustrations/person-fish-seaweed.svg" />
+      </section>
+      <section class="print" data-classified>
+        <!-- <svg class="print-logo" role="img" aria-label="Mattilsynet" viewBox="0 0 4595 800" preserveAspectRatio="xMinYMin meet">
+          <path d="m2251.97 582.65 2.06-.41v71.12l-1.05.47c-6.93 2.95-22.82 7.91-51.18 7.91-65.17 0-105.6-39.93-105.6-104.23V379.09h-64.04v-67.78h19.52c32.8 0 51.63-18.97 51.63-51.99v-54.9h78.16v105.29h71.85v69.34h-71.85v164.97c0 28.98 12.68 41.35 42.37 41.35 11.69 0 25.16-2.19 28.13-2.78v.06Zm265.43-.03h-.01v-.03c-2.96.59-16.49 2.78-28.14 2.78-29.69 0-42.34-12.38-42.34-41.35V379.05h71.85v-69.34h-71.85V204.42h-78.15v54.9c0 33.01-18.84 51.99-51.64 51.99h-19.51v67.78h64.04v178.42c0 64.3 40.43 104.23 105.61 104.23 28.34 0 44.23-4.97 51.17-7.91l1.07-.47v-71.12l-2.1.41v-.03Zm-529.19 71.84.41 2.1h-80l-.41-1.22c-.76-2.12-3.24-14.55-3.62-38.65-12.89 18.26-44.23 50.48-104.8 50.48-34.76 0-64.77-11.04-86.89-31.99-20.57-19.52-31.93-45.67-31.93-73.61 0-56.61 39.56-96.07 105.79-105.61l88.7-13.45c21.55-3.03 24.05-14.56 24.05-23 0-31.66-25.38-50.56-63.6-50.56s-64.44 22.52-68.97 58.81l-78.64-17.72c6.96-54.23 55.44-111.71 146.94-111.71 134.15 0 148.64 91.16 148.64 130.35v170.99c0 33.35 4.03 53.92 4.2 54.79h.13Zm-88.69-155.98h-.05l-88.14 13.16c-16.66 2.77-44.64 12.25-44.64 44.9 0 20.61 15.23 42.79 48.65 42.79 38.38 0 84.15-15.14 84.15-87.29h.03v-13.57.01Zm696.18 159.14h85.76V309.21h-85.76v348.41ZM400.01 236.99c72.4 0 152 51.01 162.7 148.77 72.05-35.09 153.01-49.95 233.24-42.9C768.25 149.02 601.57 0 400.09 0 210.65 0 51.99 131.74 10.68 308.61a445.05 445.05 0 0 1 228.93 61.44c18.58-89.32 92.94-133.07 160.39-133.07l.01.01ZM1.99 361.84c-20.4 201.27 118.42 386.08 308.91 428v-2.24a444.14 444.14 0 0 1 53.07-211.24C297.36 443.08 151.25 355.8 1.99 361.84Zm1322.76 170.79-162.34-378.91-.47-1.03H1045v504.93h86.84V296.65l152.26 358.66h78.43l153.68-360.1v362.42h88.27V152.72h-119.04l-160.69 379.91ZM364.54 798.28C596.78 820.02 801.24 633.39 800 399.93c0-1.14 0-2.26-.02-3.38-234.54-27.38-443.96 165.76-435.44 401.73Zm3979.84-319.46c0 22-2.16 27.88-2.16 27.88h-253.34c2.89 49.34 42.55 86.28 92.83 86.28 37.12 0 63.43-14.59 78.49-43.24v.05h81.71a198.72 198.72 0 0 1-17.1 40.97c-24.42 41.01-70.86 76.39-143.14 76.39-48.02 0-92.49-17.41-125.07-49-35.25-34.14-53.91-81.6-53.91-137.16 0-51.5 18.47-98.56 52.07-132.51 31.45-31.87 74.64-50.15 118.41-50.15 105.62 0 171.21 69.02 171.21 180.51v-.02Zm-86.87-35.69c-2.86-53.72-46.72-72.85-83.61-72.85s-78.12 25.54-82.81 72.85h166.42Zm-440.7-143.46c-42.48 0-79.66 19.15-100.83 51.47v-41.59h-83.9v348.02h86.03V457.04c0-48.37 27.56-79.59 70.19-79.59 60.45 0 69.48 46.78 69.48 74.65v205.5h86.04V437.95c0-85.31-48.66-138.28-127.01-138.29v.01Zm-406.67 224.46-98.17-213.91-.48-1.03h-97.32l149.18 304.64-82.02 177.12v.04h92.17l220.45-481.79h-91.52l-92.29 214.93Zm1182.83 58.51v-.05c-3.03.59-16.52 2.78-28.14 2.78-29.74 0-42.43-12.38-42.43-41.35V379.05h71.91v-69.34h-71.91V204.42h-78.13v54.9c0 33.01-18.87 51.99-51.64 51.99h-19.52v67.78h64v178.42c0 64.3 40.51 104.23 105.64 104.23 29.42 0 45.63-5.51 51.19-7.91l1.06-.47v-71.12l-2.03.4ZM2643.01 135a55.32 55.32 0 0 0-55.49 55.48c0 30.59 24.01 54.76 55.49 54.76s56.14-24.04 56.14-54.76-25.2-55.48-56.14-55.48Zm135.82 522.63h85.77V141.81h-85.77v515.82Zm325.89-208.77h-.08l.08.02v-.02Zm-.17 0h.09l-52.61-10.58c-20.98-4.15-33.49-17.01-33.49-34.32 0-21.23 21.13-37.86 48.08-37.86 52.47 0 61.13 41.72 62.38 50.1l.29 1.94 73.16-20.75-.25-1.53c-1.82-10.68-8.62-38.16-33.24-61.72-24.8-23.75-59.27-35.81-102.34-35.81-71.24 0-129.2 50.54-129.2 112.67 0 50.89 35.36 89.08 94.6 102.02l51.32 11.32c25.65 5.22 39.19 17.82 39.19 36.44 0 18.62-15.54 37.86-50.26 37.86-46.91 0-66.35-30.76-68.79-57.07l-.18-2.1-75.37 20.75.13 1.47c2.6 23.77 16.07 49.02 36.04 67.62 26.61 24.71 64.24 37.86 108.8 37.86 87.16 0 132.74-56.32 132.74-112s-36.82-92.46-101.09-106.3v-.01Z"/>
+        </svg> -->
+        <div class="print-classification">Unntatt offentlighet<br />Offl. § 13 første ledd jf fvl. § 13 første ledd</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr">
+          <div style="min-height: 42mm">
               Hjørnet matbutikk
               <br />Gateveien 1
               <br />0123 Oslo
-            </div>
-          </td>
-          <td style="font-size: 8.5pt;">
-            <small>
-              Deres ref: 123-xyz
-              <br />Vår ref: 2024/221471
-              <br />Dato: 28.10.2024
-            </small>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <h1>Her kommer brevtittel</h1>
-            <p> Takk for at dere har meldt i fra til oss. Melding om meldepliktig hendelse rapportert 06.03.2024 (saksnummer: 2024/32629) vil bli vurdert av Mattilsynet. En av våre inspektører vil ta kontakt for videre oppfølging av hendelsen. </p>
-            <h2>Dokumentasjon</h2>
-            <p>Vi ber om at dere gjør klar følgende dokumentasjon:</p>
-            <ul>
-              <li>Punkt 1</li>
-              <li>Punkt 2</li>
-            </ul>
-            <p> Med hilsen <br />Mattilsynet, hovedkontoret </p>
-            <div> Fornavn Etternavn <br />tittel </div>
-            <div> Fornavn Etternavn <br />tittel </div>
-            <h2>Vedlegg:</h2>
-            <ol>
-              <li>Punkt 1</li>
-              <li>Punkt 2</li>
-            </ol>
-            <h2>Kopi til:</h2>
-            <ul>
-              <li>Fornavn Etternavn</li>
-              <li>Fornavn Etternavn</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
-            <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
-            <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
-            <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
-            <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
-            <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
-            <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
-            <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
-            <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
-          </td>
-        </tr>
-        <!--<tr>
-          <td colspan="2">
-            <div id="footer">
-              <div>
-                Mattilsynet
-                <br />hovedkontoret
-                <br />avdeling brukerdialog og
-                <br />kommunikasjon
-              </div>
-              <div>
-                Postadresse: Felles postmottak
-                <br />Postboks 383
-                <br />2381 BRUMUNDDAL
-              </div>
-              <div>
-                Tlf: 22 40 00 00
-                <br />E-post: postmottak@mattilsynet.no
-                <br />Org.nr: 985399077
-              </div>
-            </div>
-          </td>  
-        </tr>-->
-      </tbody>
-    </table>
+          </div>
+          <small>
+            Deres ref: 123-xyz
+            <br />Vår ref: 2024/221471
+            <br />Dato: 28.10.2024
+          </small>
+        </div>
+        <h1>Her kommer brevtittel</h1>
+        <p>Takk for at dere har meldt i fra til oss. Melding om meldepliktig hendelse rapportert 06.03.2024 (saksnummer: 2024/32629) vil bli vurdert av Mattilsynet. En av våre inspektører vil ta kontakt for videre oppfølging av hendelsen. </p>
+        <h2>Dokumentasjon</h2>
+        <p>Vi ber om at dere gjør klar følgende dokumentasjon:</p>
+        <ul>
+          <li>Punkt 1</li>
+          <li>Punkt 2</li>
+        </ul>
+        <p> Med hilsen <br />Mattilsynet, hovedkontoret </p>
+        <div> Fornavn Etternavn <br />tittel </div>
+        <div> Fornavn Etternavn <br />tittel </div>
+        <h2>Vedlegg:</h2>
+        <ol>
+          <li>Punkt 1</li>
+          <li>Punkt 2</li>
+        </ol>
+        <h2>Kopi til:</h2>
+        <ul>
+          <li>Fornavn Etternavn</li>
+          <li>Fornavn Etternavn</li>
+        </ul>
+        <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
+        <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
+        <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
+        <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
+        <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
+        <p>Nullam sapien risus, mattis ut eros aliquet, ultrices maximus elit. In vitae ante leo. Etiam eleifend, leo sit amet sagittis luctus, nunc libero fermentum ex, eu tincidunt augue tortor quis felis. Nunc pulvinar lectus vitae turpis semper pulvinar. Duis non mi in lectus ullamcorper tincidunt. Aenean posuere, ex tempor consequat finibus, felis eros auctor turpis, malesuada dictum nunc velit ac odio. Aliquam tristique nunc nisi, in imperdiet velit maximus vel. Aenean in ex ipsum. Integer enim est, luctus et metus id, finibus ornare orci. Curabitur id dignissim tortor, nec posuere est. Aenean laoreet enim nec purus consectetur porttitor at fringilla metus. Aliquam vel lacus vehicula turpis volutpat feugiat. In suscipit, leo ac rutrum pulvinar, eros mauris placerat orci, quis viverra ligula ante consectetur magna. Sed a consequat ligula. Maecenas rutrum viverra porttitor.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum faucibus gravida. Ut magna nibh, finibus ac posuere in, pellentesque nec leo. Praesent ante sapien, dignissim vel augue et, auctor consequat erat. Donec bibendum, erat malesuada tristique ornare, eros sapien luctus augue, quis viverra felis urna imperdiet magna. Donec mi mi, venenatis sit amet dignissim at, eleifend eu elit. Nullam pretium varius justo at maximus. Morbi hendrerit consequat mauris, ut vestibulum mauris condimentum in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse gravida libero et velit aliquam, ac sodales velit tristique. Nam egestas nibh eget lorem elementum hendrerit.</p>
+        <p>Mauris efficitur neque et pharetra dapibus. In a dictum dolor, sit amet fringilla ex. Donec ullamcorper nisl ac fermentum luctus. Proin non auctor nibh. Nunc non nibh diam. Nam arcu turpis, volutpat in mollis id, euismod sed ipsum. Etiam tincidunt nisi urna, ut accumsan massa elementum eget. Nullam convallis velit vitae condimentum sollicitudin. Nunc non dolor et ligula lobortis viverra. Proin sed velit magna. Pellentesque laoreet, risus ut pellentesque dictum, enim felis luctus justo, eu elementum nulla sapien id augue. Curabitur efficitur tortor at ante posuere, at luctus nisi mattis. Integer et dui enim. Vestibulum ac orci tristique, sagittis diam nec, dapibus neque. Nam tincidunt gravida purus facilisis venenatis.</p>
+      </section>
   </body>
 </html>

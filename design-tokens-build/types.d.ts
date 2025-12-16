@@ -6,6 +6,11 @@ declare module '@digdir/designsystemet-types' {
   export interface ColorDefinitions {
     primary: never;
     inverted: never;
+    inverted: never;
+    success: never;
+    danger: never;
+    info: never;
+    warning: never;
     neutral: never;
   }
   export interface SeverityColorDefinitions {
