@@ -238,3 +238,25 @@
 		}
 	}
 }
+
+/* Needed since we add custom colors to our palette, and renames "primary" to "main" */
+@layer ds.theme.color {
+	:root, [data-color-scheme], [data-color="main"] {
+		--ds-color-background-default: var(--ds-color-main-background-default);
+		--ds-color-background-tinted: var(--ds-color-main-background-tinted);
+		--ds-color-surface-default: var(--ds-color-main-surface-default);
+		--ds-color-surface-tinted: var(--ds-color-main-surface-tinted);
+		--ds-color-surface-hover: var(--ds-color-main-surface-hover);
+		--ds-color-surface-active: var(--ds-color-main-surface-active);
+		--ds-color-border-subtle: var(--ds-color-main-border-subtle);
+		--ds-color-border-default: var(--ds-color-main-border-default);
+		--ds-color-border-strong: var(--ds-color-main-border-strong);
+		--ds-color-text-subtle: var(--ds-color-main-text-subtle);
+		--ds-color-text-default: var(--ds-color-main-text-default);
+		--ds-color-base-default: var(--ds-color-main-base-default);
+		--ds-color-base-hover: var(--ds-color-main-base-hover);
+		--ds-color-base-active: var(--ds-color-main-base-active);
+		--ds-color-base-contrast-subtle: var(--ds-color-main-base-contrast-subtle);
+		--ds-color-base-contrast-default: var(--ds-color-main-base-contrast-default);
+	}
+}
