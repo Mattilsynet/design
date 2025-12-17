@@ -1,12 +1,19 @@
-/* NOTE: Using --mtds- not --mtds- since we're inside shadow dom */
+/**
+ * NOTE:
+ * - Dark mode styles are in styles.module.css to leverage data-color-scheme attribute
+ * - This file is using --mtds- not --mtds- since we're inside shadow dom
+ */	
+ 
 :host {
 	--mtdsc-atlas-border: 1px solid var(--mtds-color-border-subtle);
 	--mtdsc-atlas-cluster-border: 1px solid;
 	--mtdsc-atlas-marker-background: var(--mtds-color-base-default);
-	--mtdsc-atlas-marker-border: 1px solid;
+	--mtdsc-atlas-marker-border: none;
 	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
 	--mtdsc-atlas-marker-inset: 3px;
-	--mtdsc-atlas-marker-shadow: rgba(0,0,0,.2);
+	--mtdsc-atlas-marker-shadow-blur: 4px;
+	--mtdsc-atlas-marker-shadow-color: var(--mtds-color-neutral-text-default);
+	--mtdsc-atlas-marker-shadow-offset: 2px;
 	--mtdsc-atlas-marker-size: var(--mtds-6);
 	--mtdsc-atlas-tile-background: #f7fcfc;
 	--mtdsc-atlas-tile-filter: grayscale(.8) contrast(0.75) brightness(1.15); /* Also in styles.module.css */
@@ -77,7 +84,7 @@
 }
 .leaflet-marker-generated-icon::after,
 ::slotted(mtds-atlas-marker)::after {
-	box-shadow: 2px 2px 2px var(--mtdsc-atlas-marker-shadow);
+	box-shadow: var(--mtdsc-atlas-marker-shadow-offset) var(--mtdsc-atlas-marker-shadow-offset) var(--mtdsc-atlas-marker-shadow-blur) var(--mtdsc-atlas-marker-shadow-color);
 	aspect-ratio: 1;
 	background: var(--mtdsc-atlas-marker-color);
 	color: var(--mtdsc-atlas-marker-background);
@@ -102,7 +109,7 @@
 .leaflet-marker-icon slot { display: block; position: absolute; left: 0; top: 0; translate: -50% -100% }
 .leaflet-marker-icon { background: none; border: 0 }
 .leaflet-cluster-icon {
-	box-shadow: 0 3px 3px var(--mtdsc-atlas-marker-shadow);
+	box-shadow: 0 var(--mtdsc-atlas-marker-shadow-offset) var(--mtdsc-atlas-marker-shadow-blur) var(--mtdsc-atlas-marker-shadow-color);
 	background-color: var(--mtds-color-base-default);
 	border-radius: 100%;
 	border: var(--mtdsc-atlas-cluster-border);
