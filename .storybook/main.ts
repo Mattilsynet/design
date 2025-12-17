@@ -77,6 +77,11 @@ export default {
 	core: {
 		disableTelemetry: true,
 	},
+	features: {
+		actions: false,
+		controls: false,
+		interactions: false,
+	},
 	framework: {
 		name: "@storybook/react-vite",
 		options: {},

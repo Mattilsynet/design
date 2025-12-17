@@ -28,7 +28,7 @@
 
 	.button[aria-pressed="true"],
 	.button[aria-current]:not([aria-current="false"]) {
-		--dsc-button-background: var(--ds-color-surface-tinted);
+		--dsc-button-background: var(--ds-color-surface-hover);
 		font-weight: 700;
 	}
 	.button[data-justify="start"],

@@ -8,12 +8,13 @@ const { version } = JSON.parse(
 );
 
 export const cssPropsRename: Plugin = {
-	name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations",
+	name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Designsystemet installations",
 	transform: (code) => ({
 		map: null,
 		code: code
 			.replace(`@charset "UTF-8";`, "") // Remove unused charset declaration
 			.replace(/::details-content/g, "::part(details-content)") // Fix for LightningCSS missing support in TurboPack
+			.replace(/\[data-color="primary"\]/g, '[data-color="main"]') // Rename data-color values
 			.replace(/--ds-color-primary-/g, "--ds-color-main-")
 			.replace(/--ds-size-/g, "--mtds-")
 			.replace(/--ds(c?)-/g, "--mtds$1-")

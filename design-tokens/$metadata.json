@@ -8,19 +8,18 @@
     "primitives/modes/typography/size/small",
     "primitives/modes/typography/size/medium",
     "primitives/modes/typography/size/large",
-    "primitives/modes/color-scheme/dark/global",
+    "primitives/modes/typography/primary/mattilsynet",
     "primitives/modes/color-scheme/dark/mattilsynet",
-    "primitives/modes/color-scheme/light/global",
     "primitives/modes/color-scheme/light/mattilsynet",
     "themes/mattilsynet",
     "semantic/color",
-    "semantic/modes/colors/main",
-    "semantic/modes/colors/inverted",
-    "semantic/modes/colors/success",
-    "semantic/modes/colors/danger",
-    "semantic/modes/colors/info",
-    "semantic/modes/colors/warning",
-    "semantic/modes/colors/neutral",
-    "semantic/style"
+    "semantic/modes/main-color/primary",
+    "semantic/modes/main-color/inverted",
+    "semantic/modes/main-color/success",
+    "semantic/modes/main-color/danger",
+    "semantic/modes/main-color/info",
+    "semantic/modes/main-color/warning",
+    "semantic/style",
+    "primitives/modes/typography/secondary/mattilsynet"
   ]
 }

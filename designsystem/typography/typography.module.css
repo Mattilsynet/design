@@ -40,7 +40,7 @@
 	 */
 	.info {
 		--mtdsc-info-gap: var(--ds-size-2);
-		--mtdsc-info-icon-size: 1em;
+		--mtdsc-info-icon-size: var(--mtds-icon-size-sm);
 		--mtdsc-info-circle-gap: var(--ds-size-3);
 		--mtdsc-info-circle-size: var(--ds-size-10);
 		--mtdsc-info-line-height: var(--ds-line-height-sm);

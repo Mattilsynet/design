@@ -141,7 +141,7 @@
 		u-combobox[data-multiple]:not([data-multiple="false"])
 		> data:not([hidden]) {
 		align-items: center;
-		background: var(--ds-color-surface-tinted);
+		background: var(--ds-color-surface-hover);
 		border-radius: var(--ds-border-radius-full);
 		border: var(--ds-border-width-default) solid var(--ds-color-border-subtle);
 		box-sizing: border-box;

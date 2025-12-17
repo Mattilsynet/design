@@ -1,4 +1,4 @@
-@layer mt.desgin {
+@layer mt.design {
 	mtds-chart {
 		--mtdsc-chart-aspect: 16 / 9;
 		--mtdsc-chart-axis-border: var(--ds-border-width-default) solid

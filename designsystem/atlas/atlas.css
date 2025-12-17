@@ -8,8 +8,8 @@
 	--mtdsc-atlas-marker-inset: 3px;
 	--mtdsc-atlas-marker-shadow: rgba(0,0,0,.2);
 	--mtdsc-atlas-marker-size: var(--mtds-6);
-	--mtdsc-atlas-tile-background: #fbfbfb;
-	--mtdsc-atlas-tile-filter: grayscale(1) contrast(0.75) brightness(1.15);
+	--mtdsc-atlas-tile-background: #f7fcfc;
+	--mtdsc-atlas-tile-filter: grayscale(.8) contrast(0.75) brightness(1.15); /* Also in styles.module.css */
 
 	border-radius: var(--mtds-border-radius-md);
 	aspect-ratio: 2;
@@ -121,3 +121,4 @@
 .leaflet-popup:has(slot) .leaflet-popup-close-button { display: none } /* Popup closes on clicking marker anyway */
 .leaflet-popup:has(slot) .leaflet-popup-content-wrapper { display: contents } /* No need for styling this element */
 .leaflet-popup:has(slot) .leaflet-popup-content { margin: 0; font: inherit }
+

@@ -197,11 +197,281 @@
         "$type": "color",
         "$value": "{mattilsynet.inverted.16}"
       }
+    },
+    "info": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.info.16}"
+      }
+    },
+    "success": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.success.16}"
+      }
+    },
+    "warning": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.warning.16}"
+      }
+    },
+    "danger": {
+      "1": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.13}"
+      },
+      "14": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.14}"
+      },
+      "15": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{mattilsynet.danger.16}"
+      }
+    },
+    "link": {
+      "visited": {
+        "$type": "color",
+        "$value": "{mattilsynet.link.visited}"
+      }
     }
   },
   "font-family": {
     "$type": "fontFamilies",
-    "$value": "Mattilsynet Sans Variable"
+    "$value": "{mattilsynet.font-family}"
   },
   "font-weight": {
     "medium": {

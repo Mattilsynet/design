@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.9/schema.json",
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"formatter": {
 		"enabled": true,
@@ -13,6 +13,7 @@
 			"!**/law.module.css",
 			"!**/layout.module.css",
 			"!**/link.module.css",
+			"!**/print.css",
 			"!**/styles.module.css"
 		]
 	},
