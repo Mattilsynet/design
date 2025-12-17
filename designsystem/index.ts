@@ -7,6 +7,13 @@ export {
 	UHTMLTabsElement,
 } from "@u-elements/u-tabs";
 
+import printcssraw from "./print/print.css?raw"; // Expose print CSS
+
+export const printcss = String(printcssraw)
+	.replace(/\/\*[^!][^*]*\*\//gs, "") // Strip comments
+	.replace(/(\n|\t)/g, "") // Strip newlines and tabs
+	.replace(/\s+/g, " "); // Strip multiple spaces
+
 // Expose API
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export * from "./analytics/analytics";

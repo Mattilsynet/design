@@ -8,7 +8,7 @@ const { version } = JSON.parse(
 );
 
 export const cssPropsRename: Plugin = {
-	name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Desginsystemet installations",
+	name: "Rename Desigynsystemet CSS variables and layers to avoid conflicts with existing Designsystemet installations",
 	transform: (code) => ({
 		map: null,
 		code: code
