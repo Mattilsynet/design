@@ -182,7 +182,7 @@ export const WithStickyFooter: Story = {
 					</div>
 					<footer className={styles.flex}>
 						<button
-							type="button"
+							type="submit"
 							className={styles.button}
 							data-variant="primary"
 						>
@@ -284,24 +284,30 @@ export const VariantDrawerWithoutBackdrop: Story = {
 					onClose={() => setOpen(false)}
 					open={open}
 				>
-					<Button data-command="close" />
-					<Prose>
-						<Heading>
-							<FunnelIcon /> Filtrer
-						</Heading>
-						<Field as={Field.Combobox} label="Filter 1" options={options} />
-						<Field as={Field.Combobox} label="Filter 2" options={options} />
-						<Field as={Field.Combobox} label="Filter 3" options={options} />
-						<Field as={Field.Combobox} label="Filter 4" options={options} />
-						<Field as={Field.Combobox} label="Filter 5" options={options} />
-						<Field as={Field.Combobox} label="Filter 6" options={options} />
-						<Field as={Field.Combobox} label="Filter 7" options={options} />
-						<Field as={Field.Combobox} label="Filter 8" options={options} />
-						<Field as={Field.Combobox} label="Filter 9" options={options} />
-					</Prose>
+					<form action="#">
+						<Button data-command="close" />
+						<Prose>
+							<Heading>
+								<FunnelIcon /> Filtrer
+							</Heading>
+							<Field as={Field.Combobox} label="Filter 1" options={options} />
+							<Field as={Field.Combobox} label="Filter 2" options={options} />
+							<Field as={Field.Combobox} label="Filter 3" options={options} />
+							<Field as={Field.Combobox} label="Filter 4" options={options} />
+							<Field as={Field.Combobox} label="Filter 5" options={options} />
+							<Field as={Field.Combobox} label="Filter 6" options={options} />
+							<Field as={Field.Combobox} label="Filter 7" options={options} />
+							<Field as={Field.Combobox} label="Filter 8" options={options} />
+							<Field as={Field.Combobox} label="Filter 9" options={options} />
+						</Prose>
+					</form>
 					<Flex as="footer">
-						<Button data-variant="primary">Bruk</Button>
-						<Button>Tøm filter</Button>
+						<Button data-variant="primary" type="submit" form="my-filter-form">
+							Bruk
+						</Button>
+						<Button type="reset" form="my-filter-form">
+							Tøm filter
+						</Button>
 					</Flex>
 				</Dialog>
 			</>
