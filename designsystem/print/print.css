@@ -96,7 +96,6 @@
   counter-increment: page;
 
   @bottom-right {
-    color: var(--mtdsc-print-first-color);
     content: "Side " counter(page) " av " counter(pages);
     font-family: var(--mtdsc-print-font-family);
     font-size: var(--mtdsc-print-font-sm);
@@ -111,6 +110,7 @@
   margin-bottom: var(--mtdsc-print-footer-height);
 
   @bottom-left {
+    border-top: 0.3pt solid #68B096;
     color: var(--mtdsc-print-first-color);
     content: var(--mtdsc-print-bottom-left);
     font-family: var(--mtdsc-print-font-family);
@@ -120,9 +120,10 @@
     text-align: left;
     vertical-align: top;
     white-space: pre-wrap;
-    width: calc(var(--mtdsc-print-inner-width) / 3);
+    width: calc(var(--mtdsc-print-inner-width) / 3 + 1mm);
   }
   @bottom-center {
+    border-top: 0.3pt solid #68B096;
     color: var(--mtdsc-print-first-color);
     content: var(--mtdsc-print-bottom-center);
     font-family: var(--mtdsc-print-font-family);
@@ -132,9 +133,10 @@
     text-align: left;
     vertical-align: top;
     white-space: pre-wrap;
-    width: calc(var(--mtdsc-print-inner-width) / 3);
+    width: calc(var(--mtdsc-print-inner-width) / 3 + 1mm);
   }
   @bottom-right {
+    border-top: 0.3pt solid #68B096;
     color: var(--mtdsc-print-first-color);
     content: var(--mtdsc-print-bottom-right);
     font-family: var(--mtdsc-print-font-family);

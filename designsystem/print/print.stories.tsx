@@ -173,7 +173,7 @@ export const Rapportmal: Story = {
 				<img
 					alt=""
 					src="https://design.mattilsynet.no/illustrations/person-fish-seaweed.svg"
-					style={{ width: "80%" }}
+					style={{ width: "90%" }}
 				/>
 			</section>
 			<section className="print">
