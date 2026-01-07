@@ -1,24 +1,31 @@
+/*
+ * IMPORTANT: [data-closedby] and [data-variant="drawer"] and [data-commant] is deprecated but kept for backward compatibility.
+ * Please use [closeby] and [data-placement] and [command] instead.
+ */
+
 @layer mt.design {
 	.dialog {
 		composes: ds-dialog from "@digdir/designsystemet-css";
 		--dsc-dialog-background: var(--ds-color-surface-default);
 		--dsc-dialog-color: var(--ds-color-text-default);
 		--dsc-dialog-border-width: 0px;
-		--dsc-dialog-max-width--drawer: 25rem;
 		--dsc-dialog-max-height: 90vh;
 		--mtdsc-dialog-box-shadow: var(--ds-box-shadow-lg);
 
 		box-shadow: var(--mtdsc-dialog-box-shadow);
-		outline: none; /* Prevent Chrome outline */
+		outline: none; /* Prevent Chrome outline (TODO DigDir) */
 	}
 	.dialog:not(:modal) {
 		z-index: 1000; /* Needed as non-modal does not use #top-layer */
 	}
+	.dialog[closedby="any"]::backdrop,
 	.dialog[data-closedby="any"]::backdrop {
 		cursor: pointer;
 	}
 
 	/* Close button */
+	.dialog [command="close"]:empty,
+	.dialog [command="request-close"]:empty,
 	.dialog [data-command="close"]:empty,
 	.dialog > form[method="dialog"]:first-child > button:only-child {
 		all: unset;
@@ -78,13 +85,14 @@
 		position: sticky;
 	}
 
+	/* Deprecated */
 	.dialog[data-variant="drawer"] {
 		animation: _drawer 0.2s forwards;
 		border-radius: 0;
 		height: auto;
 		inset: 0 0 0 auto;
 		max-height: none;
-		max-width: var(--dsc-dialog-max-width--drawer);
+		max-width: 25rem;
 		transform: none;
 	}
 	@keyframes _drawer {

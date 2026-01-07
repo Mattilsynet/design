@@ -1,6 +1,11 @@
 import styles from "../styles.module.css";
 import { attr, isBrowser, on, onLoaded, QUICK_EVENT, tag } from "../utils";
 
+/*
+ * IMPORTANT: [data-command="toggle-app-expanded"] is deprecated but kept for backward compatibility.
+ * Please use [command="show-modal"] instead.
+ */
+const CSS_APP_TOGGLE = `[data-command="toggle-app-expanded"],.${styles.app.split(" ")[0]} > [command="show-modal"]`;
 const CSS_BREADCRUMBS = `.${styles.breadcrumbs.split(" ")[0]}`;
 const CSS_CARD = `.${styles.card.split(" ")[0]}`;
 const CSS_CHIP = `.${styles.chip.split(" ")[0]}`;
@@ -208,7 +213,7 @@ function processTrack({ type, target }: Event) {
 		if (!(el.parentElement as HTMLDetailsElement).open) return; // Skip if not open
 		category = "Details";
 		action = "open";
-	} else if (attr(el, "data-command") === "toggle-app-expanded") {
+	} else if (el.matches(CSS_APP_TOGGLE)) {
 		const open = style(el, "--mtds-tooltip-position") === "none";
 		category = "Sidebar";
 		action = open ? "expand" : "minimize";

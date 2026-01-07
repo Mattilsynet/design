@@ -154,6 +154,9 @@
 		:root, [data-size] {
 			--ds-size-base: 20.25;
 		}
+		[data-size="lg"] {
+			--ds-size-base: 21; /* Since the jump from lg to md is larger, we need a larger --ds-size-base to get correct mobile sizes */
+		}
 	}
 
 	/* Change language */

@@ -12,8 +12,13 @@ type ButtonBaseProps<Href> = {
 	"data-justify"?: "start" | "center" | "end" | "right" | "left";
 	"data-nowrap"?: boolean;
 	"data-variant"?: "primary" | "secondary" | "tertiary";
-	"data-command"?: string;
 	"data-self"?: FlexProps["data-items"];
+	/**
+	 * @deprecated Use 'command' and 'commandfor' instead
+	 */
+	"data-command"?: string;
+	command?: string;
+	commandfor?: string;
 	href?: Href;
 	popovertarget?: string;
 	popovertargetaction?: string;

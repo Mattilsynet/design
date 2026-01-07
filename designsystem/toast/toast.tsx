@@ -38,7 +38,7 @@ export function toast(content: React.ReactNode, opt: ToastOptions = {}) {
 		<dialog
 			aria-busy={opt.busy}
 			className={clsx(styles.toast, opt.className)}
-			data-closedby={opt.closedby}
+			closedby={opt.closedby}
 			data-color={opt.color}
 			data-timeout={opt.timeout}
 			id={id}

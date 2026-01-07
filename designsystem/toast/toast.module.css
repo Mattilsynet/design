@@ -53,7 +53,7 @@
 	/**
 	 * Close button
 	 */
-	.toast:not([data-closedby="none"], [aria-busy="true"])::after {
+	.toast:not([closedby="none"], [aria-busy="true"])::after {
 		background: currentcolor;
 		content: var(--mtds-text-close);
 		cursor: pointer;

@@ -7,6 +7,8 @@ export {
 	UHTMLTabsElement,
 } from "@u-elements/u-tabs";
 
+import "invokers-polyfill";
+import "dialog-closedby-polyfill";
 import printcssraw from "./print/print.css?raw"; // Expose print CSS
 
 export const printcss = String(printcssraw)

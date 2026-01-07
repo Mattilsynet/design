@@ -25,6 +25,16 @@ export function debounce<T extends unknown[]>(
 	};
 }
 
+export const deprecate = (
+	from: string,
+	to: string,
+	...rest: Parameters<Console["warn"]>
+) =>
+	console.warn(
+		`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m \x1B[103m${from}\x1B[m is deprecated, please use \x1B[103m${to}\x1B[m instead`,
+		...rest,
+	);
+
 /**
  * attr
  * @description Utility to quickly get, set and remove attributes

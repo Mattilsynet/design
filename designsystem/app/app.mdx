@@ -21,7 +21,7 @@ import { Button, Popover } from '../react';
 </div>
 
 ## Ekspander og minimer sideområde
-- Legg en `<button>` med klassen `button` og `data-command="toggle-app-expand"` før `<dialog role="navigation">` for å få automatisk ekspandering/minimering av sideområde
+- Legg en `<button>` med klassen `button` og `command="show-modal" commandfor="mtds-sidebar"` før `<dialog role="navigation" id="mtds-sidebar">` for å få automatisk ekspandering/minimering av sideområde
 - Bruk `data-app-expanded="true | false"` på elementer for å vises/skjules basert på ekspandert/minimert sideområde
 - Visning huskes automatisk mellom sidevisninger ved bruk av `localStorage`
 - **React?** Bruk `App.Toggle`
