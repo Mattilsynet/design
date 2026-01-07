@@ -12,18 +12,18 @@ import * as stories from './dialog.stories';
 
 ## Kode
 - Legg klassen `dialog` på `<dialog>`
-- Åpnes enten med `open` attribute eller `.show()` metoden
+- Åpnes enten med `open` attribute, button med `command="show-modal | show" commandfor="DIALOG-ID"` eller `.showModal() | .show()` metodene
 - **Merk:** Dialog sentreres med `transform`, så skal du plassere den et annet sted, sett `transform: none`
 <Canvas of={stories.Default} />
 
 ## Lukke knapp
-- Legg `data-command="close"` på en button inni for lukke-knapp
+- Legg `command="close" commandfor="DIALOG-ID"` på en button inni for lukke-knapp
 - Første tomme knapp i `<dialog>` vil automatisk styles som lukke-knapp
 - Legg evt. til flere knapper for lukking
 <Canvas of={stories.WithClose} />
 
 ## Klikk utenfor dialog for å lukke
-- Legg `data-closedby="any"` på `<dialog>`
+- Legg `closedby="any"` på `<dialog>`
 <Canvas of={stories.WithBackdropClose} />
 
 ## Ikke-modal

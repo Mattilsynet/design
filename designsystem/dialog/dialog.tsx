@@ -3,9 +3,19 @@ import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
 export type DialogProps = React.ComponentPropsWithoutRef<"dialog"> & {
+	"data-placement"?: "center" | "top" | "bottom" | "left" | "right";
+	/**
+	 * @deprecated Use 'closedby' instead
+	 */
 	"data-closedby"?: "any" | "closerequest";
+	/**
+	 * @deprecated Use '<button command="show-modal" commandfor="DIALOG-ID">' instead
+	 */
 	"data-modal"?: boolean | "true" | "false";
-	modal?: boolean; // Ketp for backwards compatibility
+	/**
+	 * @deprecated Use '<button command="show-modal" commandfor="DIALOG-ID">' instead
+	 */
+	modal?: boolean;
 };
 
 export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(

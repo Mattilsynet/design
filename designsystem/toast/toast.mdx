@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { Example, CssVariables } from '../../.storybook/blocks';
-import { Flex } from '../react';
+import { Alert, Flex } from '../react';
 import styles from '../styles.module.css';
 import * as stories from './toast.stories';
 
@@ -11,6 +11,8 @@ import * as stories from './toast.stories';
 > Toasts gir korte oppdateringer om status.
 De skal ikke forstyrre brukeropplevelsen og kan forsvinne automatisk
 eller krysses ut.
+
+<Alert data-color="warning">Unngå bruk av toast da dette kan skape tilgjengelighetsproblemer<br />[Lær mer om hvorfor og alternativer til toast &rarr;](https://primer.style/accessibility/patterns/accessible-notifications-and-messages/#toasts)</Alert>
 
 ## Kode
 - **Javascript:** Kall `toast(content: string, options)` fra `@mattilsynet/design`
@@ -52,8 +54,8 @@ eller krysses ut.
 
 ## Lukkekryss
 - Lukkekryss tegnes automatisk
-- Bruk `toast(content, { closedby: 'none' })` eller `data-closedby="none"` i HTML for å skjule
-- Bruk `data-command="close"` en button inni for egendefinert lukke-knapp
+- Bruk `toast(content, { closedby: 'none' })` eller `closedby="none"` i HTML for å skjule
+- Bruk `command="close" commandfor="TOAST-ID"` en button inni for egendefinert lukke-knapp
 <Canvas of={stories.WithCustomClose} />
 
 ## Farger

@@ -7,12 +7,14 @@
 :host {
 	--mtdsc-atlas-border: 1px solid var(--mtds-color-border-subtle);
 	--mtdsc-atlas-cluster-border: 1px solid;
-	--mtdsc-atlas-marker-background: var(--mtds-color-base-default);
+	--mtdsc-atlas-marker-background: #116e6b;
+	--mtdsc-atlas-cluster-background: var(--mtdsc-atlas-marker-background);
+	--mtdsc-atlas-cluster-color: var(--mtdsc-atlas-marker-color);
 	--mtdsc-atlas-marker-border: none;
-	--mtdsc-atlas-marker-color: var(--mtds-color-base-contrast-default);
+	--mtdsc-atlas-marker-color: #fff;
 	--mtdsc-atlas-marker-inset: 3px;
 	--mtdsc-atlas-marker-shadow-blur: 4px;
-	--mtdsc-atlas-marker-shadow-color: var(--mtds-color-neutral-text-default);
+	--mtdsc-atlas-marker-shadow-color: rgba(0  0 0 / 0.5);
 	--mtdsc-atlas-marker-shadow-offset: 2px;
 	--mtdsc-atlas-marker-size: var(--mtds-6);
 	--mtdsc-atlas-tile-background: #f7fcfc;
@@ -110,12 +112,12 @@
 .leaflet-marker-icon { background: none; border: 0 }
 .leaflet-cluster-icon {
 	box-shadow: 0 var(--mtdsc-atlas-marker-shadow-offset) var(--mtdsc-atlas-marker-shadow-blur) var(--mtdsc-atlas-marker-shadow-color);
-	background-color: var(--mtds-color-base-default);
+	background-color: var(--mtdsc-atlas-cluster-background);
 	border-radius: 100%;
 	border: var(--mtdsc-atlas-cluster-border);
 	box-sizing: border-box;
-	outline: 1px solid var(--mtds-color-base-default);
-	color: var(--mtds-color-base-contrast-default);
+	outline: 1px solid var(--mtdsc-atlas-cluster-background);
+	color: var(--mtdsc-atlas-cluster-color);
 	display: flex;
 	font-size: var(--mtds-body-xs-font-size);
 	font-weight: var(--mtds-font-weight-bold);

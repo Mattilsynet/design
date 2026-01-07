@@ -103,12 +103,13 @@ export const Default: Story = {
 			<button
 				type="button"
 				className={styles.button}
-				data-command="toggle-app-expanded"
+				command="show-modal"
+				commandfor="mtds-sidebar"
 				data-tooltip="Vis meny"
 			>
 				Skjul meny
 			</button>
-			<dialog role="navigation">
+			<dialog role="navigation" id="mtds-sidebar">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -247,12 +248,13 @@ export const WithFooter: Story = {
 			<button
 				type="button"
 				className={styles.button}
-				data-command="toggle-app-expanded"
+				command="show-modal"
+				commandfor="mtds-sidebar"
 				data-tooltip="Vis meny"
 			>
 				Skjul meny
 			</button>
-			<dialog role="navigation">
+			<dialog role="navigation" id="mtds-sidebar">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -332,12 +334,13 @@ export const WithComplexContent: Story = {
 			<button
 				type="button"
 				className={styles.button}
-				data-command="toggle-app-expanded"
+				command="show-modal"
+				commandfor="mtds-sidebar"
 				data-tooltip="Vis meny"
 			>
 				Skjul meny
 			</button>
-			<dialog role="navigation">
+			<dialog role="navigation" id="mtds-sidebar">
 				<div className={styles.sticky}>
 					<div className={styles.prose}>
 						<h2
@@ -527,11 +530,12 @@ export const WithCustomToggle: Story = {
 			<button
 				type="button"
 				className={styles.button}
-				data-command="toggle-app-expanded"
+				command="show-modal"
+				commandfor="mtds-sidebar"
 				data-app-expanded="mobile"
 				data-tooltip="Meny"
 			></button>
-			<dialog role="navigation">
+			<dialog role="navigation" id="mtds-sidebar">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -651,12 +655,13 @@ export const WithMobileBar: Story = {
 			<button
 				type="button"
 				className={styles.button}
-				data-command="toggle-app-expanded"
+				command="show-modal"
+				commandfor="mtds-sidebar"
 				data-tooltip="Vis meny"
 			>
 				Skjul meny
 			</button>
-			{/* <dialog role="navigation">
+			{/* <dialog role="navigation" id="mtds-sidebar">
 				<menu className={styles.sticky}>
 					<li>
 						<a
@@ -680,7 +685,7 @@ export const WithMobileBar: Story = {
 					</li>
 				</menu>
 			</dialog> */}
-			<dialog role="navigation">
+			<dialog role="navigation" id="mtds-sidebar">
 				<div className={styles.sticky}>
 					<div className={styles.prose}>
 						<h2
@@ -806,6 +811,87 @@ export const WithMobileBar: Story = {
 			<footer style={{ height: 300 }} hidden>
 				<a href="/" className={styles.logo}></a>
 			</footer>
+		</div>
+	),
+};
+
+// Used to test deprecated data-command="toggle-app-expanded"
+export const DeprecatedDefault: Story = {
+	tags: ["!dev"],
+	render: () => (
+		<div className={styles.app}>
+			<header>
+				<a href="/" className={styles.logo}>
+					<PlantIcon weight="fill" />
+					Digiplant
+				</a>
+				<button type="button" className={styles.button}>
+					<BellIcon />
+				</button>
+				<button
+					aria-label="Meny"
+					className={styles.button}
+					popoverTarget="menu"
+					type="button"
+				>
+					<span className={styles.avatar} data-size="xs"></span>
+				</button>
+				<menu className={styles.popover} popover="auto" id="menu">
+					<li>
+						<a className={styles.button} href="/">
+							<UserIcon />
+							Profil
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/">
+							<GearIcon />
+							Innstillinger
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/">
+							<SignOutIcon />
+							Logg ut
+						</a>
+					</li>
+				</menu>
+			</header>
+			<Button
+				type="button"
+				className={styles.button}
+				data-command="toggle-app-expanded"
+				data-tooltip="Vis meny"
+			>
+				Skjul meny
+			</Button>
+			<dialog role="navigation">
+				<menu className={styles.sticky}>
+					<li>
+						<a
+							className={styles.button}
+							href="/"
+							aria-current="page"
+							data-tooltip="Søknader"
+						>
+							<SignatureIcon />
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/" data-tooltip="Behandling">
+							<ListChecksIcon />
+						</a>
+					</li>
+					<li>
+						<a className={styles.button} href="/" data-tooltip="Søk">
+							<MagnifyingGlassIcon />
+						</a>
+					</li>
+				</menu>
+			</dialog>
+			<main>
+				<div className={styles.card}>{Image}</div>
+			</main>
 		</div>
 	),
 };

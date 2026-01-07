@@ -168,12 +168,13 @@ function getCssVars(component: string, source = css) {
 	// We assume later declarations are part of a sub-selector.
 	// Return the original inline string from the value, if it was removed earlier
 	for (const delc of clean.matchAll(regex)) {
-		const [key, val] = delc[0].split(":");
+		const [key, val] = delc[0].split(":").map((s) => s.trim());
+		const uri = val.startsWith("url(") && decodeURIComponent(val);
 		const isMTDS = delc.index > mtdsIndex; // Is a token set by us a not Designsystemet
 		const isDSC = styles[component]?.includes(" "); // Is composed by from Designsystemet
 
 		if (isMTDS ? !res[key]?.mtds : isDSC && !res[key])
-			res[key] = { val: decodeURIComponent(val.trim()), mtds: isMTDS };
+			res[key] = { val: uri || val, mtds: isMTDS };
 	}
 
 	return res;
