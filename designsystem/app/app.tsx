@@ -52,7 +52,7 @@ export const App = Object.assign(AppComp, {
 		function AppToggle({ children, ...rest }: ButtonProps<"button">, ref) {
 			return (
 				<Button
-					command="toggle-app-expanded"
+					command="show-modal"
 					commandfor="mtds-sidebar"
 					data-tooltip="Vis meny"
 					ref={ref as React.Ref<HTMLAnchorElement>}

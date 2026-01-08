@@ -1,5 +1,7 @@
 @layer mt.design {
 	.logo {
+		--mtdsc-logo-size: 1.2em;
+		--mtdsc-logo-size--app: var(--ds-heading-sm-font-size);
 		--_mtdsc-logo-solid: linear-gradient(currentcolor, currentcolor);
 		--_mtdsc-logo-indent: var(--_mtdsc-logo-icon-size);
 		--_mtdsc-logo-center: calc(
@@ -17,7 +19,7 @@
 		border-radius: var(--ds-border-radius-sm);
 		box-sizing: border-box;
 		display: block;
-		font-size: 1.2em;
+		font-size: var(--mtdsc-logo-size);
 		font-weight: 700;
 		height: var(--_mtdsc-logo-icon-size);
 		/* Align environment with logo */
@@ -104,7 +106,7 @@
 	 */
 	.logo:has(svg) {
 		--_mtdsc-logo-icon-size: 1.5em;
-		font-size: var(--ds-heading-sm-font-size);
+		font-size: var(--mtdsc-logo-size--app);
 		line-height: var(--_mtdsc-logo-icon-size);
 
 		&:before {
