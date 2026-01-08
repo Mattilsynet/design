@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -94,7 +94,7 @@
 		"@u-elements/u-tabs": "^0.0.12",
 		"clsx": "^2.1.1",
 		"dialog-closedby-polyfill": "^1.1.0",
-		"invokers-polyfill": "^0.5.7"
+		"invokers-polyfill": "0.6.1"
 	},
 	"overrides": {
 		"ansi-regex": "^6.2.2",

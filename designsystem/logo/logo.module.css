@@ -1,5 +1,6 @@
 @layer mt.design {
 	.logo {
+		--mtdsc-logo-size: 1.2em;
 		--_mtdsc-logo-solid: linear-gradient(currentcolor, currentcolor);
 		--_mtdsc-logo-indent: var(--_mtdsc-logo-icon-size);
 		--_mtdsc-logo-center: calc(
@@ -17,7 +18,7 @@
 		border-radius: var(--ds-border-radius-sm);
 		box-sizing: border-box;
 		display: block;
-		font-size: 1.2em;
+		font-size: var(--mtdsc-logo-size);
 		font-weight: 700;
 		height: var(--_mtdsc-logo-icon-size);
 		/* Align environment with logo */
