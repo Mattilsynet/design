@@ -4,7 +4,7 @@ import "./app-toggle";
 
 const CSS_APP = styles.app.split(" ")[0];
 const CSS_STICKY = styles.sticky.split(" ")[0];
-const CSS_TOGGLE = '[data-command="toggle-app-expanded"]';
+const CSS_TOGGLE = `[data-command="toggle-app-expanded"],.${CSS_APP} > [command="show-modal"]`;
 const CSS_SIDEBAR = `.${CSS_APP} > dialog,.${CSS_APP} dialog ~ main`;
 const STICKIES = isBrowser() ? document.getElementsByClassName(CSS_STICKY) : [];
 
@@ -17,7 +17,8 @@ export const toggleAppExpanded = (force?: boolean) =>
 	// @ts-expect-error window.mtdsAppToggle comes from app-toggle.js
 	useTransition(() => window.mtdsToggleAppExpanded?.(force));
 
-function handleAppToggleClick({ target: el, defaultPrevented: stop }: Event) {
+function handleAppToggleClick(event: Event) {
+	const { target: el, defaultPrevented: stop } = event;
 	const link = (el as Element)?.closest?.("a");
 	if (link?.closest("dialog") && link?.closest(CSS_SIDEBAR))
 		return closeSidebar(); // Close sidebar if link is clicked inside sidebar
@@ -25,12 +26,13 @@ function handleAppToggleClick({ target: el, defaultPrevented: stop }: Event) {
 	if (stop || !(el instanceof HTMLButtonElement) || !el.matches(CSS_TOGGLE))
 		return;
 	const isDesktop = getComputedStyle(el).position === "sticky";
+	event.preventDefault(); // Prevent default Invoker Command action so we can animate
 
 	if (isDesktop) toggleAppExpanded();
 	else
 		useTransition(() => {
 			const sidebar = document.querySelector<HTMLDialogElement>(CSS_SIDEBAR);
-			sidebar?.setAttribute("data-closedby", "any"); // Allow closing by clicking outside
+			sidebar?.setAttribute("closedby", "any"); // Allow closing by clicking outside
 			sidebar?.showModal();
 		});
 }
@@ -87,7 +89,7 @@ function handleAppScroll() {
 }
 
 onLoaded(() => [
-	on(document, "click", handleAppToggleClick, QUICK_EVENT),
+	on(document, "click", handleAppToggleClick, true), // Use capture to run before other click handlers
 	on(window, "resize", debounce(closeSidebar, 100), QUICK_EVENT),
 	on(window, "scroll", handleAppScroll, QUICK_EVENT),
 ]);

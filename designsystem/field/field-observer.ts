@@ -46,7 +46,6 @@ function handleFieldMutation() {
 				for (const label of labels) label.htmlFor = useId(input);
 				renderCombobox(combobox);
 				renderCounter(input);
-				renderTextareaSize(input);
 				attr(input, "aria-describedby", descriptions.map(useId).join(" "));
 				attr(input, "aria-invalid", `${!valid}`);
 			}
@@ -54,13 +53,10 @@ function handleFieldMutation() {
 }
 
 // iOS does not support field-sizing: content, so we need to manually resize
-function renderTextareaSize(textarea: Element) {
-	if (textarea instanceof HTMLTextAreaElement) {
-		textarea.style.setProperty("--mtds-textarea-height", "auto");
-		textarea.style.setProperty(
-			"--mtds-textarea-height",
-			`${textarea.scrollHeight}px`,
-		);
+function handleTextareaFieldSizingIOS({ target: el }: Event) {
+	if (el instanceof HTMLTextAreaElement) {
+		el.style.setProperty("--_mtds-field-sizing", "auto");
+		el.style.setProperty("--_mtds-field-sizing", `${el.scrollHeight}px`);
 	}
 }
 
@@ -110,7 +106,10 @@ function renderCounter(input: HTMLInputElement) {
 	}
 }
 
-function handleFieldToggle({ target: el, newState }: Partial<ToggleEvent>) {
+function handleFieldComboboxToggle({
+	target: el,
+	newState,
+}: Partial<ToggleEvent>) {
 	if (el instanceof UHTMLDataListElement) {
 		const root = el.getRootNode() as ShadowRoot | null;
 		const anchor = root?.querySelector<HTMLElement>(
@@ -129,20 +128,12 @@ function handleFieldToggle({ target: el, newState }: Partial<ToggleEvent>) {
 }
 // Update when typing
 function handleFieldInput(event: Event) {
-	if (isInputLike(event.target)) {
-		renderCounter(event.target);
-		renderTextareaSize(event.target);
-	}
-}
-
-function handleFieldValdiation(event: Event) {
-	if ((event.target as Element)?.closest?.(`.${CSS_FIELD}`))
-		event.preventDefault(); // Prevent browsers from showing default validation bubbles
+	if (isInputLike(event.target)) renderCounter(event.target);
 }
 
 onLoaded(() => [
-	onMutation(() => handleFieldMutation(), "class"),
+	onMutation(handleFieldMutation, "class"),
 	on(document, "input", handleFieldInput, QUICK_EVENT),
-	on(document, "toggle", handleFieldToggle, QUICK_EVENT), // Use capture since toggle does not bubble
-	on(document, "invalid", handleFieldValdiation, true), // Use capture as invalid and submit does not bubble
+	on(document, "toggle", handleFieldComboboxToggle, QUICK_EVENT), // Use capture since toggle does not bubble
+	on(document, "input", handleTextareaFieldSizingIOS, QUICK_EVENT),
 ]);

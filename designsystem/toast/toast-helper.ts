@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import styles from "../styles.module.css";
-import { attr, tag } from "../utils";
+import { attr, on, tag } from "../utils";
 
 export type ToastOptions = {
 	className?: string;
@@ -18,7 +18,7 @@ export function toast(content: string, opt: ToastOptions = {}) {
 
 	attr(dialog, "aria-busy", opt.busy ? "true" : null);
 	attr(dialog, "class", clsx(styles.toast, opt.className));
-	attr(dialog, "data-closedby", opt.closedby || null);
+	attr(dialog, "closedby", opt.closedby || null);
 	attr(dialog, "data-color", opt.color || null);
 	attr(dialog, "data-icon", `${opt.icon ?? ""}` || null);
 	attr(dialog, "data-timeout", `${opt.timeout ?? ""}` || null);
@@ -26,7 +26,7 @@ export function toast(content: string, opt: ToastOptions = {}) {
 	attr(dialog, "open", opt.open === false ? null : "");
 
 	dialog.innerHTML = content;
-	dialog.addEventListener("animationend", handleToastClose, { once: true });
+	on(dialog, "animationend", handleToastClose, { once: true });
 	document.body.appendChild(dialog);
 	return dialog.id;
 }

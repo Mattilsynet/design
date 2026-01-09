@@ -173,14 +173,15 @@ export const WithCustomClose: Story = {
 							<p>Pellentesque scelerisque urna orci in placerat.</p>
 							<button
 								className={styles.button}
-								data-command="close"
+								commandfor="my-toast"
+								command="close"
 								data-variant="primary"
 								type="button"
 							>
 								Ok
 							</button>
 						</div>,
-						{ closedby: "none", timeout: false },
+						{ closedby: "none", timeout: false, id: "my-toast" },
 					)
 				}
 				type="button"

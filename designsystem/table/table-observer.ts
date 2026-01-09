@@ -27,5 +27,5 @@ function handleTableClick({ target: el }: Event) {
 
 onLoaded(() => [
 	on(document, "click", handleTableClick),
-	onMutation(handleTableMutation, "class"),
+	onMutation(handleTableMutation, "data-mobile"),
 ]);

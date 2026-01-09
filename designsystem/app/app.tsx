@@ -44,7 +44,7 @@ export const App = Object.assign(AppComp, {
 	),
 	Sidebar: forwardRef<HTMLDialogElement, AppSidebarProps>(
 		function AppSidebar(rest, ref) {
-			return <dialog role="navigation" ref={ref} {...rest} />;
+			return <dialog role="navigation" id="mtds-sidebar" ref={ref} {...rest} />;
 		},
 	),
 	Sticky: AppSticky,
@@ -52,7 +52,8 @@ export const App = Object.assign(AppComp, {
 		function AppToggle({ children, ...rest }: ButtonProps<"button">, ref) {
 			return (
 				<Button
-					data-command="toggle-app-expanded"
+					command="show-modal"
+					commandfor="mtds-sidebar"
 					data-tooltip="Vis meny"
 					ref={ref as React.Ref<HTMLAnchorElement>}
 					{...rest}

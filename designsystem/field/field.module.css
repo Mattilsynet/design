@@ -19,7 +19,7 @@
 	}
 	/* Set height through CSS custom property instead of directly in JS for easier overwrite */
 	.field textarea {
-		height: var(--mtds-textarea-height);
+		height: var(--_mtds-field-sizing);
 	}
 
 	/**

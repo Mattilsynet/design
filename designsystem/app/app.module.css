@@ -1,3 +1,8 @@
+/*
+ * IMPORTANT: [data-command="toggle-app-expanded"] is deprecated but kept for backward compatibility.
+ * Please use [command="show-modal"] instead.
+ */
+
 @layer mt.design {
 	/**
 	 * App layout
@@ -49,6 +54,7 @@
 	}
 
 	/* Double selector to increase specificity */
+	.app.app > [command="show-modal"],
 	.app.app [data-command="toggle-app-expanded"] {
 		--dsc-button-background: var(--ds-color-background-default);
 		--dsc-button-border-color: transparent; /* var(--ds-color-border-subtle) */
@@ -71,9 +77,11 @@
 		z-index: 3;
 		view-transition-name: mtds-app--toggle;
 	}
+	.app.app > [command="show-modal"]:empty,
 	.app.app [data-command="toggle-app-expanded"]:empty {
 		--mtds-tooltip-position: top;
 	}
+	.app.app > [command="show-modal"]::before,
 	.app.app [data-command="toggle-app-expanded"]::before {
 		content: "";
 		height: 100%; /* Make sure to hide text when wrapped */
@@ -219,6 +227,7 @@
 			--mtds-app-expanded--true: initial;
 			--mtds-app-expanded--false: ;
 		}
+		.app:not([data-variant="mobilebar"]):has(> [command="show-modal"]),
 		.app:not([data-variant="mobilebar"]):has(
 				[data-command="toggle-app-expanded"]
 			) {
@@ -245,6 +254,7 @@
 				visibility: hidden;
 			}
 		}
+		.app.app > [command="show-modal"],
 		.app.app [data-command="toggle-app-expanded"] {
 			--dsc-button-background: transparent;
 			--dsc-button-border-color: transparent;
@@ -256,6 +266,7 @@
 				auto;
 			position: absolute;
 		}
+		.app.app > [command="show-modal"]::before,
 		.app.app [data-command="toggle-app-expanded"]::before {
 			mask-image: var(--mtds-icon-burger);
 		}
@@ -273,6 +284,7 @@
 		.app[data-variant="mobilebar"] {
 			padding-bottom: 200px;
 		}
+		.app[data-variant="mobilebar"] > [command="show-modal"],
 		.app[data-variant="mobilebar"] [data-command="toggle-app-expanded"] {
 			display: none;
 		}
