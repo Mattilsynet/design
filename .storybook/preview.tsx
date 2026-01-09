@@ -123,16 +123,23 @@ export default {
 						table.classList.add(...CSS_TABLE);
 
 					document.addEventListener("click", (e) => {
-						const base = (window.top || window).location.href.split("?")[0];
+						const topUrl = (window.top || window).location.href;
 						const link = e.target instanceof Element && e.target.closest("a");
+						const heading = e.target instanceof Element && e.target.closest("h2, h3, h4, h5, h6");
+
 						const sameDomain = link && link.hostname === location.hostname;
 						const samePage = sameDomain && link.pathname === location.pathname;
+
+						if(heading && heading.id){
+							const anchor = `${topUrl.split('#')[0]}#${heading.id}`;
+							navigator.clipboard.writeText(anchor)
+						}
 
 						if (!sameDomain && link) link.target = "_blank"; // Open external links in new tab
 
 						// Prefix all internal links with window.top url to fix storybook iframe url issues
 						if (sameDomain && link.search.startsWith("?path="))
-							link.href = base + link.search;
+							link.href = topUrl.split("?")[0] + link.search;
 
 						// Use smooth scrolling on internal anchors
 						if (samePage && link.hash) {
