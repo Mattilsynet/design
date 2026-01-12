@@ -22,7 +22,7 @@ function handleTableClick({ target: el }: Event) {
 	if (!(el instanceof Element)) return;
 	const row = el.closest("tr");
 	const action = row?.querySelector<HTMLInputElement>('[data-command="row"]');
-	if (action && !el.closest(INTERACTIVE)) action.click?.(); // Forward click to data-command="row" element // TODO: convert to clickdelegatefor=""
+	if (action && !el.closest(INTERACTIVE)) action.click?.(); // Forward click to data-command="row" element
 }
 
 onLoaded(() => [
