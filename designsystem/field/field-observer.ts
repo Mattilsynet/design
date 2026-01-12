@@ -37,7 +37,10 @@ function handleFieldMutation() {
 					valid = attr(el, "data-color") === "success" || !el.clientHeight; // Only set invalid if Validation is visible
 					validationMsg.push(el);
 					descriptions.unshift(el);
-				} else if (el instanceof HTMLParagraphElement)
+				} else if (
+					el instanceof HTMLParagraphElement &&
+					!el.closest("[popover]")
+				)
 					descriptions.some((desc) => desc.contains(el)) ||
 						descriptions.push(el); // Only add if not already inside description
 			}

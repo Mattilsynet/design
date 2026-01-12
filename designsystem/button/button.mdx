@@ -17,6 +17,7 @@ import { Alert } from '../react';
 - Husk `type="button"` hvis en `<button>` gjør noe annet enn å sende skjema
 - Bruk `data-variant="primary | secondary | tertiary"`
 - **Merk:** `data-variant="tertiary"` er default siden dette benyttes mest, men for å sikre god universell utforming må knappen da inneholde enten ikon og tekst, eller plasseres ved andre knapper.
+- **Next.js og lenke?** Bruk `<Button as={Link} to={url}>` for å hvor `Link` hentes fra Next.js.
 <Alert data-color="warning">
 **Viktig:** Dersom en knapp innholder personopplysninger, for eksempel navn, må du sette `data-analytics-name=""` for å unngå personopplysninger i analyse-logger
 </Alert>

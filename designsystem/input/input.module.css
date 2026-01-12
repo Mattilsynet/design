@@ -21,6 +21,10 @@
 			transparent 35%
 		);
 	}
+	/* Ensure minimum 16px input font size on mobile - TODO DigDir */
+	[data-size="sm"] .input {
+		font-size: max(1rem, var(--ds-body-sm-font-size));
+	}
 
 	/* Allow inputs to have both readonly and disabled since browser does not prevent readonly on checkobx/radio */
 	.input[readonly]:disabled {

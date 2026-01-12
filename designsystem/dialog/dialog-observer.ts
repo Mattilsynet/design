@@ -62,11 +62,19 @@ function handleCommandDepreactions() {
 		if (deprecations.has(el)) return;
 		const command = attr(el, "data-command");
 		deprecations.add(el);
-		deprecate(
-			`<button data-command="${command}">`,
-			`<button command="${command?.replace("toggle-app-expanded", "show-modal")}" commandfor="TARGET-ID">`,
-			el,
-		);
+
+		if (command === "row")
+			deprecate(
+				`<${el.nodeName.toLowerCase()} data-command="${command}">`,
+				`<tr data-clickdelegatefor="${el.nodeName}-ID">`,
+				el,
+			);
+		else
+			deprecate(
+				`<button data-command="${command}">`,
+				`<button command="${command?.replace("toggle-app-expanded", "show-modal")}" commandfor="TARGET-ID">`,
+				el,
+			);
 	});
 }
 

@@ -64,11 +64,12 @@ export class MTDSChartElement extends MTDSElement {
 		this.#unmutate = this.#unresize = undefined;
 	}
 	attributeChangedCallback() {
-		Array.from(this.shadowRoot?.children || []).map((el) => el.remove()); // Clear shadowRoot
+		const data = toData(this.querySelector("table"));
+		if (!data[0]) return; // We require at least one row
 
+		Array.from(this.shadowRoot?.children || []).map((el) => el.remove()); // Clear shadowRoot
 		const [variant, type] = (attr(this, "data-variant") || "column").split("-");
 		const aspect = attr(this, "data-aspect") || undefined;
-		const data = toData(this.querySelector("table"));
 		const style = tag("style", {}, css);
 		const legend = tag("div", {
 			"aria-hidden": "hidden",
