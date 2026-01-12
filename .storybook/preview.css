@@ -50,6 +50,31 @@ u-tabpanel > pre > .docblock-source {
 	vertical-align: -0.15em;
 }
 
+.sbdocs-content > :is(h2, h3, h4, h5, h6):active {
+	user-select: none;
+}
+.sbdocs-content > :is(h2, h3, h4, h5, h6)::before {
+	transition: 0.2s;
+	opacity: 0;
+	width: var(--mtds-icon-size);
+	height: var(--mtds-icon-size);
+	background: currentcolor;
+	mask: center / contain no-repeat;
+	overflow: clip;
+	white-space: nowrap;
+	content: "";
+	order: 1;
+	cursor: pointer;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23000000' viewBox='0 0 256 256'%3E%3Cpath d='M165.66,90.34a8,8,0,0,1,0,11.32l-64,64a8,8,0,0,1-11.32-11.32l64-64A8,8,0,0,1,165.66,90.34ZM215.6,40.4a56,56,0,0,0-79.2,0L106.34,70.45a8,8,0,0,0,11.32,11.32l30.06-30a40,40,0,0,1,56.57,56.56l-30.07,30.06a8,8,0,0,0,11.31,11.32L215.6,119.6a56,56,0,0,0,0-79.2ZM138.34,174.22l-30.06,30.06a40,40,0,1,1-56.56-56.57l30.05-30.05a8,8,0,0,0-11.32-11.32L40.4,136.4a56,56,0,0,0,79.2,79.2l30.06-30.07a8,8,0,0,0-11.32-11.31Z'%3E%3C/path%3E%3C/svg%3E");
+}
+.sbdocs-content > :is(h2, h3, h4, h5, h6):hover::before {
+	opacity: 1;
+}
+.sbdocs-content > :is(h2, h3, h4, h5, h6):active::before {
+	scale: .75;
+}
+
+
 .sbdocs-content blockquote {
 	margin-inline: 0;
 }
