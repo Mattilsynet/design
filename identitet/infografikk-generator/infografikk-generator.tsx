@@ -260,12 +260,15 @@ const handleExport = async () => {
 	const height = chart.offsetHeight + extend; // Extra space for number in axis
 
 	// Convert shadow DOM to light DOM with all styles inlined
-	const html = `<div${chart.outerHTML.match(/<mtds-chart([^>]*)/)?.[1] || ""} class="${styles.body} chart" style="box-sizing:border-box;width:${width}px;height:${height}px;padding:${extend}px"><style>${css.replace(/mtds-chart/g, ".chart")}.${styles.body}{background:none}</style>${chart?.shadowRoot?.innerHTML.replace(/:host\(([^)]+)\)/g, ".chart$1")}</div>`;
+	const style = `${css.replace(/\bmtds-chart\b/g, ".chart")}.${styles.body}{background:none}`; // replace(/\bmtds-chart\b/g, ".chart").
+	const html = `<div${chart.outerHTML.match(/<mtds-chart([^>]*)/)?.[1] || ""} style="box-sizing:border-box;width:${width}px;height:${height}px;padding:${extend}px">${chart?.shadowRoot?.innerHTML.replace(/:host\(([^)]+)\)/g, ".chart$1")}</div>`;
 
 	// Convert HTML to SVG url using <foreignObject>
 	const div = tag("div");
-	div.innerHTML = `<svg width="${width}" height="${height}"><foreignObject x="0" y="0" width="${width}" height="${height}">${html.replace(/[\n\t]/g, "")}</foreignObject></svg>`;
+	div.innerHTML = `<svg width="${width}" height="${height}"><foreignObject x="0" y="0" width="${width}" height="${height}">${html}</foreignObject></svg>`;
 	const svg = div.firstElementChild as SVGSVGElement;
+	svg.querySelector("div")?.classList.add(styles.body, "chart");
+	svg.querySelector("div")?.prepend(tag("style", null, style));
 
 	navigator.clipboard.write([
 		new ClipboardItem({

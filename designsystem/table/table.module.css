@@ -172,6 +172,7 @@
 	/**
 	 * data-command="row"
 	 */
+	.table > tbody > tr[data-clickdelegatefor] > :is(td, th) > button:only-child,
 	.table > tbody > tr > :is(td, th) > button[data-command="row"] {
 		all: unset;
 		cursor: pointer;
@@ -183,12 +184,23 @@
 			outline-offset: var(--ds-border-width-focus);
 		}
 	}
+	.table > tbody > tr[data-clickdelegatefor],
 	.table > tbody > tr:has([data-command="row"]) > :is(td, th) {
 		transition: 0.2s background-color;
 		cursor: pointer;
 	}
 
-	/* Hover a row, that has [data-command="row"], but not hovering non-data-command-row-button/link */
+	.table
+		> tbody
+		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)) {
+		background: var(--dsc-table-background--hover);
+	}
+	.table
+		> tbody
+		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)):active {
+		background: var(--dsc-table-background--active);
+	}
+	/* Deprecated: Hover a row, that has [data-command="row"], but not hovering non-data-command-row-button/link */
 	.table > tbody:not(:has(:is(a, button):not([data-command="row"]):hover)) {
 		& > tr:has([data-command="row"]):hover > :is(td, th) {
 			background: var(--dsc-table-background--hover);

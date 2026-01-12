@@ -862,8 +862,11 @@ export const CheckableSimple: Story = {
 					</tr>
 				</thead>
 				<tbody>
-					{mockDataSmall.map((row) => (
-						<tr key={`${row.firstName}-${row.lastName}`}>
+					{mockDataSmall.map((row, i) => (
+						<tr
+							key={`${row.firstName}-${row.lastName}`}
+							data-clickdelegatefor={`check-${i}`}
+						>
 							{columns.map(({ key, numeric }, cellIndex) => (
 								<td key={key} data-numeric={numeric}>
 									{cellIndex ? (
@@ -873,7 +876,7 @@ export const CheckableSimple: Story = {
 											<input
 												className={styles.input}
 												type="checkbox"
-												data-command="row"
+												id={`check-${i}`}
 											/>
 											<label>{row[key]}</label>
 										</div>
@@ -915,13 +918,14 @@ export const CheckableTanstack: Story = {
 				</Table.Thead>
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
-						<Table.Tr key={row.id}>
+						<Table.Tr key={row.id} data-clickdelegatefor={`check-${row.id}`}>
 							{row.getVisibleCells().map((cell, index) => (
 								<Table.Td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)
 									) : (
 										<Field
+											id={`check-${row.id}`}
 											as="input"
 											type="checkbox"
 											checked={row.getIsSelected()}
@@ -955,10 +959,10 @@ export const ClickableSimple: Story = {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr data-clickdelegatefor="button-1">
 					<td>
 						<button
-							data-command="row"
+							id="button-1"
 							type="button"
 							onClick={() => alert("clicked row 1")}
 						>
@@ -971,10 +975,10 @@ export const ClickableSimple: Story = {
 						<a href="#none">128</a>
 					</td>
 				</tr>
-				<tr>
+				<tr data-clickdelegatefor="button-2">
 					<td>
 						<button
-							data-command="row"
+							id="button-2"
 							type="button"
 							onClick={() => alert("clicked row 2")}
 						>
@@ -985,10 +989,10 @@ export const ClickableSimple: Story = {
 					<td>22</td>
 					<td>194</td>
 				</tr>
-				<tr>
+				<tr data-clickdelegatefor="button-3">
 					<td>
 						<button
-							data-command="row"
+							id="button-3"
 							type="button"
 							onClick={() => alert("clicked row 3")}
 						>
@@ -1038,6 +1042,7 @@ export const ClickableTanstack: Story = {
 										(cell.getValue() as React.ReactNode)
 									) : (
 										<Button
+											id={`button-${rowIndex}`}
 											data-command="row"
 											onClick={() => alert(`clicked row ${rowIndex + 1}`)}
 										>
