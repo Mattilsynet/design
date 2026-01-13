@@ -6,12 +6,15 @@
 (def illustrations-dir "illustrations")
 (def icons-dir "icons")
 
-(defmacro ^:export classes [& classes]
+(defmacro ^:export c [& classes]
   (->> classes
        (mapcat
         (fn [class]
           (get class-idx (if (keyword? class) (name class) class) [class])))
        (cons 'list)))
+
+(defmacro ^:export classes [& classes]
+  `(c ~@classes))
 
 (defn ^:export load-svg
   "Loads an SVG from the design system"
