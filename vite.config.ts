@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) =>
 				build: {
 					emptyOutDir: !mode.includes("-"), // IIFE build without dash is the first to build
 					outDir: dist,
+					minify: true,
 					lib: {
 						entry: path.resolve(root, `${mode.split("-")[1] || "index"}.ts`),
 						cssFileName: "iife",

@@ -7,8 +7,12 @@ export {
 	UHTMLTabsElement,
 } from "@u-elements/u-tabs";
 
-import "invokers-polyfill";
-import "dialog-closedby-polyfill";
+// Ensure polyfills are loaded in browser environment only
+if (isBrowser()) {
+	import("invokers-polyfill");
+	import("dialog-closedby-polyfill");
+}
+
 import printcssraw from "./print/print.css?raw"; // Expose print CSS
 
 export const printcss = String(printcssraw)
@@ -44,6 +48,7 @@ import "@u-elements/u-datalist";
 import "@u-elements/u-details"; // Polyfill for <details> element
 import "@u-elements/u-progress";
 import "@u-elements/u-tabs";
+import { isBrowser } from "./utils";
 
 // Expose types
 export type Size = "sm" | "md" | "lg";
