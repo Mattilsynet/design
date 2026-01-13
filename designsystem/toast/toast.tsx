@@ -45,6 +45,7 @@ export function toast(content: React.ReactNode, opt: ToastOptions = {}) {
 			key={id}
 			onAnimationEnd={window._mtdsReactToasts.delete}
 			open={opt.open ?? true}
+			suppressHydrationWarning // Needed due to closedby polyfill
 		>
 			{content}
 		</dialog>,
