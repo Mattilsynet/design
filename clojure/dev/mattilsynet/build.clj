@@ -66,7 +66,7 @@
   (->> (json/read-str json-str)
        (map
         (fn [[k classes]]
-          [(keyword k) (str/split classes #" ")]))
+          [k (str/split classes #" ")]))
        (into (sorted-map ))))
 
 (defn export-css-modules [file class->classes]
