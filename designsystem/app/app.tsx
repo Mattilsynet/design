@@ -44,7 +44,15 @@ export const App = Object.assign(AppComp, {
 	),
 	Sidebar: forwardRef<HTMLDialogElement, AppSidebarProps>(
 		function AppSidebar(rest, ref) {
-			return <dialog role="navigation" id="mtds-sidebar" ref={ref} {...rest} />;
+			return (
+				<dialog
+					role="navigation"
+					id="mtds-sidebar"
+					suppressHydrationWarning // Needed due to closedby polyfill
+					ref={ref}
+					{...rest}
+				/>
+			);
 		},
 	),
 	Sticky: AppSticky,
