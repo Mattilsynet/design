@@ -58,7 +58,7 @@ function handleDialogCloseClick({ target: el }: Event) {
 
 const deprecations = new WeakSet();
 function handleCommandDepreactions() {
-	document.querySelectorAll("[data-command").forEach((el) => {
+	document.querySelectorAll("[data-command]").forEach((el) => {
 		if (deprecations.has(el)) return;
 		const command = attr(el, "data-command");
 		deprecations.add(el);
