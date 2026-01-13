@@ -10,7 +10,7 @@
   (->> classes
        (mapcat
         (fn [class]
-          (get class-idx class [class])))
+          (get class-idx (if (keyword? class) (name class) class) [class])))
        (cons 'list)))
 
 (defn ^:export load-svg
