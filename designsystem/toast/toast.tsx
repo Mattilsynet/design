@@ -16,13 +16,16 @@ declare global {
 
 // Ensure only a single toast master is created
 if (isBrowser() && !window._mtdsReactToasts) {
-	const root = createRoot(document.body.appendChild(tag("div")));
+	let root: ReturnType<typeof createRoot>; // Create root on first toast to avoid hydration issues
 	const toasts = new Map<string, React.ReactNode>();
-	const render = () => root.render(Array.from(toasts.values() || []));
+	const render = () => root?.render(Array.from(toasts.values() || []));
 
 	// Expose methods to add/remove toasts from the root container
 	window._mtdsReactToasts = {
-		set: (id, jsx) => toasts.set(id, jsx) && render(),
+		set: (id, jsx) => {
+			if (!root) root = createRoot(document.body.appendChild(tag("div")));
+			if (toasts.set(id, jsx)) render();
+		},
 		delete: ({ animationName, currentTarget }) => {
 			if (animationName !== styles._toastClose) return;
 			toasts.delete(currentTarget.id);

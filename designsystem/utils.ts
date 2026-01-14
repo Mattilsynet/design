@@ -199,14 +199,17 @@ export function onMutation(
 		}
 	};
 
-	observer.observe(opt?.root || document.documentElement, {
-		attributeFilter: ([] as string[]).concat(opt.attr),
-		attributes: true,
-		childList: true,
-		subtree: true,
-	});
+	const root = opt?.root || document;
+	if (root instanceof Node) {
+		observer.observe(root, {
+			attributeFilter: ([] as string[]).concat(opt.attr),
+			attributes: true,
+			childList: true,
+			subtree: true,
+		});
+		requestAnimationFrame(() => callback(observer)); // Initial run
+	}
 
-	callback(observer); // Initial run
 	return cleanup;
 }
 

@@ -101,7 +101,7 @@
 	.field u-combobox > input {
 		flex: 1 0 100%;
 	}
-	.field u-combobox > input[list]:has(~ del) {
+	.field u-combobox:has(> del) > input[list] {
 		padding-right: 3.75em;
 	}
 
@@ -123,10 +123,10 @@
 		mask: center / 50% no-repeat var(--mtds-icon-close);
 		width: 100%;
 	}
-	.field u-combobox > input[type="search"]:has(~ del) {
+	.field u-combobox:has(> del) > input[type="search"] {
 		padding-right: 2.75em;
 	}
-	.field u-combobox > input[type="search"] + del {
+	.field u-combobox:has(input[type="search"]) > del {
 		margin-left: -2.75em;
 	}
 
