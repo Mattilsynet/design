@@ -8,10 +8,7 @@ export {
 } from "@u-elements/u-tabs";
 
 // Ensure polyfills are loaded in browser environment only
-if (isBrowser()) {
-	import("invokers-polyfill");
-	import("dialog-closedby-polyfill");
-}
+if (isBrowser()) import("invokers-polyfill");
 
 import printcssraw from "./print/print.css?raw"; // Expose print CSS
 

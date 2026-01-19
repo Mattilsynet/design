@@ -14,7 +14,7 @@ import type {
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
-import { toCustomElementProps } from "../utils";
+import { deprecate, toCustomElementProps } from "../utils";
 import { Validation } from "../validation/validation";
 
 type FieldBaseProps = {
@@ -224,15 +224,11 @@ const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
 		// Deprecated props
 		if (onAfterChange) {
 			onAfterSelect = onAfterChange;
-			console.warn(
-				`Combobox onAfterChange is deprecated, use onAfterSelect instead.`,
-			);
+			deprecate("onAfterChange", "onAfterSelect");
 		}
 		if (onBeforeChange) {
 			onBeforeSelect = onBeforeChange;
-			console.warn(
-				`Combobox onBeforeChange is deprecated, use onBeforeSelect instead.`,
-			);
+			deprecate("onBeforeChange", "onBeforeSelect");
 		}
 
 		// Using useEffect for React 18 and lower compatibility

@@ -16,6 +16,7 @@ import * as stories from './card.stories';
 
 ## Padding
 - Både `card` og `group` støtter `data-pad="0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 18 | 22 | 26 | 30"` for endring av padding (`5` er default)
+- Du kan også sette padding fra en gitt skjermstørrelse og oppover med:<br />`data-pad-sm` (over `640px`), `data-pad-md` (over `768px`),<br />`data-pad-lg` (over `1024px`), `data-pad-xl` (over `1280px`) og<br />`data-pad-2xl` (over `1536px`)
 <div className="sbdocs-canvas-thumbnail">
   <Button data-arrow data-variant="primary" href="?path=/story/designsystem-card--padding">Se paddings i egen visning</Button>
   <Canvas of={stories.Padding} />
