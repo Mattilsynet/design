@@ -94,6 +94,7 @@
 	.table > thead > tr > th[aria-sort] > button:not([data-justify]) {
 		text-align: inherit;
 		justify-content: start;
+		flex-wrap: nowrap; /* Ensure sort icon is on same line as text  */ /* TODO DigDir */
 	}
 	.table:not([data-border]) > thead > tr > th[aria-sort]:first-child > button {
 		padding-left: 0;

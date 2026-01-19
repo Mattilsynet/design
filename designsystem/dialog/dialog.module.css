@@ -13,6 +13,7 @@
 		--mtdsc-dialog-box-shadow: var(--ds-box-shadow-lg);
 
 		box-shadow: var(--mtdsc-dialog-box-shadow);
+		align-self: center; /* TODO Digdir: Center also when in display: flex */
 		outline: none; /* Prevent Chrome outline (TODO DigDir) */
 	}
 	.dialog:not(:modal) {

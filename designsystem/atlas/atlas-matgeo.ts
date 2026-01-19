@@ -69,7 +69,7 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 
 			if (!collection)
 				this.atlas?.getCollections().then((collections) => {
-					const message = `mtds-atlas-matgeo: Please set a vaild \x1B[103mdata-collection="${Object.keys(collections).join(" | ")}"\x1B[m`;
+					const message = `mtds-atlas-matgeo: Please set a vaild data-collection="${Object.keys(collections).join(" | ")}"`;
 					console.warn(message);
 				});
 			else
