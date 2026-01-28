@@ -1,17 +1,12 @@
-import type { Placement, SizeOptions } from "@floating-ui/dom";
-import {
-	autoUpdate,
-	computePosition,
-	flip,
-	shift,
-	size,
-} from "@floating-ui/dom";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
 export const QUICK_EVENT = { capture: true, passive: true };
 export const isBrowser = () =>
 	typeof window !== "undefined" && typeof document !== "undefined"; // Using function to play nice with Vitest where DOM can come and go
+
+export const getByCSSModule = (key: string) =>
+	isBrowser() ? document.getElementsByClassName(styles[key].split(" ")[0]) : [];
 
 export function debounce<T extends unknown[]>(
 	callback: (...args: T) => void,
@@ -24,16 +19,6 @@ export function debounce<T extends unknown[]>(
 		timer = setTimeout(() => callback.apply(this, args), delay);
 	};
 }
-
-export const deprecate = (
-	from: string,
-	to: string,
-	...rest: Parameters<Console["warn"]>
-) =>
-	console.warn(
-		`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m ${from} is deprecated, please use ${to} instead`,
-		...rest,
-	);
 
 /**
  * attr
@@ -54,181 +39,84 @@ export function attr(
 }
 
 /**
- * useId
- * @return A generated unique ID
- */
-let id = 0;
-const UUID = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
-export function useId(el: Element) {
-	if (!el.id) el.id = `${UUID}${++id}`;
-	return el.id;
-}
-
-// Internal helper for on / off
-const events = (
-	action: "add" | "remove",
-	element: Node | Window | ShadowRoot,
-	[...rest]: Parameters<typeof Element.prototype.addEventListener>, // Spreat to make a copy of the array
-): void => {
-	for (const type of rest[0].split(",")) {
-		rest[0] = type;
-		element[`${action}EventListener`](...rest);
-	}
-};
-
-/**
  * on
- * @param element The Element to use as EventTarget
- * @param types A comma separated string of event types
+ * @param el The Element to use as EventTarget
+ * @param types A space separated string of event types
  * @param listener An event listener function or listener object
  */
 export const on = (
-	element: Node | Window | ShadowRoot,
+	el: Node | Window | ShadowRoot,
 	...rest: Parameters<typeof Element.prototype.addEventListener>
 ): (() => void) => {
-	events("add", element, rest);
-	return () => off(element, ...rest);
+	const [types, ...options] = rest;
+	for (const type of types.split(" ")) el.addEventListener(type, ...options);
+	return () => off(el, ...rest);
 };
 
 /**
  * off
- * @param element The Element to use as EventTarget
- * @param types A comma separated string of event types
+ * @param el The Element to use as EventTarget
+ * @param types A space separated string of event types
  * @param listener An event listener function or listener object
  */
 export const off = (
-	element: Node | Window | ShadowRoot,
+	el: Node | Window | ShadowRoot,
 	...rest: Parameters<typeof Element.prototype.removeEventListener>
-): void => events("remove", element, rest);
+): void => {
+	const [types, ...options] = rest;
+	for (const type of types.split(" ")) el.removeEventListener(type, ...options);
+};
 
 declare global {
 	interface Window {
-		_mtdsCleanups?: Map<string, Array<() => void>>;
+		_mtdsHotReloadCleanup?: Map<string, Array<() => void>>;
 	}
 }
 
 /**
- * onLoaded
- * @description Runs a callback when window is loaded in browser, and ensures events are unbound if hot reloading
+ * onHotReload
+ * @description Runs a callback when window is loaded in browser, and ensures cleanup when hot-reloading
+ * @param key The key to identify setup and corresponding cleanup
  * @param callback The callback to run when the page is ready
  */
-export const onLoaded = (setup: () => Array<() => void>) => {
-	if (!isBrowser() || !window.requestAnimationFrame) return; // Skip if not in browser environment
-	if (!window._mtdsCleanups) window._mtdsCleanups = new Map();
+export const onHotReload = (key: string, setup: () => Array<() => void>) => {
+	if (!isBrowser()) return; // Skip if not in modern browser environment, but on each call as Vitest might have unloaded jsdom between tests
+	if (!window._mtdsHotReloadCleanup) window._mtdsHotReloadCleanup = new Map(); // Hot reload cleanup support supporting all build tools
 
-	const run = () =>
-		requestAnimationFrame(() => {
-			const key = String(setup).replace(/(\n|\s)/g, ""); // Create a key based on setup function body
-			window._mtdsCleanups?.get(key)?.map((cleanup) => cleanup()); // Run cleanups
-			window._mtdsCleanups?.set(key, setup()); // Rum setup and store cleanups
-		});
+	const run = () => {
+		window._mtdsHotReloadCleanup?.get(key)?.map((cleanup) => cleanup()); // Run previous cleanup
+		window._mtdsHotReloadCleanup?.set(key, setup()); // Store new cleanup
+	};
 
-	if (document.readyState === "complete") run();
-	else on(window, "load", run);
+	if (document.readyState !== "complete") on(window, "load", run);
+	else document.fonts?.ready?.then(run) || setTimeout(run, 0); // Prefer fonts ready promise if available, but fallback to setTimeout
 };
-
-type AnchorOptions = Parameters<typeof computePosition>[2] & {
-	contain?: SizeOptions["apply"] | false;
-};
-const ANCHORED = new WeakMap<Element, ReturnType<typeof autoUpdate>>();
-const DIALOG = `.${styles.dialog.split(" ")[0]}`;
-export function anchorPosition(
-	target: HTMLElement,
-	anchor: false | Element,
-	{ contain, middleware, placement, ...options }: AnchorOptions = {},
-) {
-	ANCHORED.get(target)?.(); // Unbind previous anchor position
-	ANCHORED.delete(target);
-
-	if (anchor) {
-		const footer = target.closest(DIALOG)?.querySelector(":scope > footer");
-		const inset = Number(attr(target, "data-inset")) || 20;
-		const bottom = (footer?.clientHeight || 0) + inset;
-		const padding = { bottom, left: inset, right: inset, top: inset };
-		const position = (attr(target, "data-position") ?? "bottom") as Placement;
-
-		ANCHORED.set(
-			target,
-			autoUpdate(anchor, target, () => {
-				if (!target.isConnected || !anchor.isConnected || target.hidden)
-					return anchorPosition(target, false);
-				computePosition(anchor, target, {
-					...options,
-					placement: placement || position,
-					middleware: [
-						flip({ padding }),
-						shift(),
-						...(contain ? [size({ padding, apply: contain })] : []),
-						...(middleware || []),
-					],
-				}).then(({ x, y }) => {
-					target.style.left = `${x}px`;
-					target.style.top = `${y}px`;
-				});
-			}),
-		);
-	}
-}
 
 /**
  * Speed up MutationObserver by debouncing and only running when page is visible
  * @return new MutaionObserver
  */
-type Attr = string | string[];
-export function onMutation(
+export const onMutation = (
+	el: Node,
 	callback: (observer: MutationObserver) => void,
-	attr: Attr | { attr: Attr; root?: HTMLElement; delay?: number },
-) {
+	options: MutationObserverInit,
+) => {
 	let queue = 0;
-	const opt = Array.isArray(attr) || typeof attr === "string" ? { attr } : attr;
-	const onFrame = () => setTimeout(onTimer, opt?.delay ?? 200); // Use both requestAnimationFrame and setTimeout to debounce and only run when visible
-	const onTimer = () => {
+	const onFrame = () => {
 		if (!isBrowser()) return cleanup(); // If using JSDOM, the document might have been removed
 		callback(observer);
-		observer.takeRecords(); // Clear records to avoid running callback multiple times
+		observer.takeRecords(); // Clear records to avoid multiple triggers
 		queue = 0;
 	};
+	const cleanup = () => observer?.disconnect?.();
 	const observer = new MutationObserver(() => {
-		if (!queue) queue = requestAnimationFrame(onFrame);
+		if (!queue) queue = requestAnimationFrame(onFrame); // requestAnimationFrame only runs when page is not visible
 	});
-	const cleanup = () => {
-		try {
-			observer.disconnect();
-		} catch (_) {
-			// No more observer
-		}
-	};
 
-	const root = opt?.root || document;
-	if (root instanceof Node) {
-		observer.observe(root, {
-			attributeFilter: ([] as string[]).concat(opt.attr),
-			attributes: true,
-			childList: true,
-			subtree: true,
-		});
-		requestAnimationFrame(() => callback(observer)); // Initial run
-	}
-
+	observer.observe(el, options);
+	onFrame(); // Initial run
 	return cleanup;
-}
-
-export function onResize(callback: ResizeObserverCallback, element: Element) {
-	const resize = new ResizeObserver(callback);
-	resize.observe(element);
-	return () => resize.disconnect();
-}
-
-/**
- * isInputLike
- * @description Check if element is an input like element
- * @param el The element to check
- * @returns True if the element is an input like element
- */
-export const isInputLike = (el: unknown): el is HTMLInputElement =>
-	el instanceof HTMLElement &&
-	"validity" in el &&
-	!(el instanceof HTMLButtonElement);
+};
 
 /**
  * toCustomElementProps

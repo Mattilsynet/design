@@ -23,7 +23,7 @@
 	:where(.card:not(tr, [hidden])) {
 		display: block;
 	}
-	.card:is(label, button:enabled, button:not([aria-disabled="true"], [role="button"])) {
+	.card:is(label, button:enabled, button:not([aria-disabled="true"], [role="button"], [data-clickdelegatefor])) {
 		cursor: pointer;
 	}
 	.card:is(label, button, [role="button"], :any-link):hover {

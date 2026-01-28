@@ -66,6 +66,17 @@
 		outline-offset: var(--ds-border-width-focus);
 	}
 
+	/* Use animationend event to react on logo updates */
+	.logo,
+	.logo > * {
+		animation: _logo 0ms forwards;
+	}
+	@keyframes _logo {
+		from {
+			opacity: 0;
+		}
+	}
+
 	/**
 	 * Main logo
 	 */

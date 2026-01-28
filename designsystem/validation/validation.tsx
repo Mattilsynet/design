@@ -10,6 +10,7 @@ export const Validation = forwardRef<HTMLDivElement, ValidationProps>(
 			<div
 				suppressHydrationWarning // Prevent hydration mismatch for SSR due to field-observer.ts
 				className={clsx(styles.validation, className)}
+				data-field="validation"
 				ref={ref}
 				{...rest}
 			/>

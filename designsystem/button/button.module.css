@@ -1,6 +1,7 @@
 @layer mt.design {
 	.button {
 		composes: ds-button from "@digdir/designsystemet-css";
+		/* TODO Digdir: add --dsc-button-border-radius */
 
 		flex-shrink: 0; /* If placed in flex */
 		max-width: 100%;
@@ -75,17 +76,11 @@
 	/* Prepare for icon */
 	.button::before {
 		background: currentcolor;
-		mask: center / contain no-repeat;
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: contain;
 		overflow: clip;
 		white-space: nowrap;
-	}
-
-	/**
-	 * Paint ellipsis when empty
-	 */
-	.button:empty::before {
-		content: "";
-		mask-image: var(--mtds-icon-ellipsis);
 	}
 
 	/**
@@ -159,5 +154,15 @@
 		justify-content: start;
 		text-align: start;
 		width: 100%;
+	}
+}
+
+/**
+ * Paint ellipsis when empty, but let Digdir overwrite it
+ */
+@layer ds.base {
+	.button:empty::before {
+		content: "";
+		mask-image: var(--mtds-icon-ellipsis);
 	}
 }

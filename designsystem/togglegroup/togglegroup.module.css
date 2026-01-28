@@ -1,57 +1,10 @@
 @layer mt.design {
 	.togglegroup {
-		--mtdsc-togglegroup-spacing: var(--ds-size-1);
-		--mtdsc-togglegroup-padding: 0 var(--ds-size-4);
-		--mtdsc-togglegroup-border-color: var(--ds-color-border-subtle);
-		--mtdsc-togglegroup-border-width: var(--ds-border-width-default);
-
-		background: var(--ds-color-background-tinted);
-		border-radius: var(--ds-border-radius-md);
-		border: 0;
-		box-shadow: inset 0 0 0 var(--mtdsc-togglegroup-border-width)
-			var(--mtdsc-togglegroup-border-color);
-		box-sizing: border-box;
-		flex-wrap: wrap;
-		gap: var(--mtdsc-togglegroup-spacing);
-		margin: 0;
-		min-width: 0;
-		padding: var(--mtdsc-togglegroup-spacing);
-		width: fit-content;
-	}
-	.togglegroup:not([hidden]) {
-		display: flex;
-	}
-	.togglegroup input {
-		position: absolute;
-		opacity: 0;
+		composes: ds-toggle-group from "@digdir/designsystemet-css";
+		--dsc-togglegroup-background: var(--ds-color-background-tinted);
+		--dsc-togglegroup-border-color: var(--ds-color-border-subtle);
 	}
 	.togglegroup label {
-		box-sizing: border-box;
-		border-radius: var(--ds-border-radius-sm);
-		cursor: pointer;
-		flex-shrink: 0;
 		font-weight: var(--ds-font-weight-medium);
-		gap: var(--ds-size-2);
-		height: var(--ds-size-10);
-		padding: var(--mtdsc-togglegroup-padding);
-		place-items: center;
-		transition-duration: 0.2s;
-		transition-property: background, border, color, scale;
-	}
-	.togglegroup label:not([hidden]) {
-		display: flex;
-	}
-	.togglegroup label:has(input:focus-visible) {
-		box-shadow: var(--dsc-focus-boxShadow);
-		outline: var(--dsc-focus-outline);
-		outline-offset: var(--ds-border-width-focus);
-	}
-	.togglegroup label:hover,
-	.togglegroup label:has(input:checked) {
-		background: var(--ds-color-base-default);
-		color: var(--ds-color-base-contrast-default);
-	}
-	.togglegroup label:active {
-		scale: 0.95;
 	}
 }

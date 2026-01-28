@@ -27,7 +27,7 @@
 	/* Close button */
 	.dialog [command="close"]:empty,
 	.dialog [command="request-close"]:empty,
-	.dialog [data-command="close"]:empty,
+	.dialog [data-command="close"]:empty /* Backwards compatibility */,
 	.dialog > form[method="dialog"]:first-child > button:only-child {
 		all: unset;
 		border-radius: var(--ds-border-radius-md);

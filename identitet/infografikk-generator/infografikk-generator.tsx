@@ -98,6 +98,8 @@ export const InfografikkGenerator = () => {
 		}, 300);
 	}, []);
 
+	const data = chart.slice(0, -1).map((row) => row.slice(0, -1));
+
 	return (
 		<Flex className="chart-generator">
 			{/* Must be outside Chart so it doesn't get exported */}
@@ -106,7 +108,7 @@ export const InfografikkGenerator = () => {
 					<Chart
 						data-variant={type}
 						data-aspect={ratio.replace(":", "/")}
-						data={chart.slice(0, -1).map((row) => row.slice(0, -1))}
+						data={data}
 					/>
 				</div>
 			</Card>
@@ -123,7 +125,7 @@ export const InfografikkGenerator = () => {
 					</Button>
 					<Popover
 						id="type-pop"
-						data-position="bottom-start"
+						data-placement="bottom-start"
 						style={{ width: 500 }}
 					>
 						<Grid data-items="200">

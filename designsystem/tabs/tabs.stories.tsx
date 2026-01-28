@@ -29,28 +29,28 @@ export const Default: Story = {
 		layout: "padded",
 	},
 	render: () => (
-		<u-tabs class={styles.tabs}>
-			<u-tablist>
-				<u-tab aria-selected="true">Tab 1</u-tab>
-				<u-tab>Tab 2</u-tab>
-				<u-tab>
+		<ds-tabs class={styles.tabs}>
+			<ds-tablist>
+				<ds-tab aria-selected="true">Tab 1</ds-tab>
+				<ds-tab>Tab 2</ds-tab>
+				<ds-tab>
 					<PencilSimpleIcon />
 					Tab 3
-				</u-tab>
-				<u-tab>Tab with very long content</u-tab>
-				<u-tab>Tab with very long content</u-tab>
-				<u-tab>Tab with very long content</u-tab>
-			</u-tablist>
-			<u-tabpanel>
+				</ds-tab>
+				<ds-tab>Tab with very long content</ds-tab>
+				<ds-tab>Tab with very long content</ds-tab>
+				<ds-tab>Tab with very long content</ds-tab>
+			</ds-tablist>
+			<ds-tabpanel>
 				Panel 1 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel>
+			</ds-tabpanel>
+			<ds-tabpanel>
 				Panel 2 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel>
+			</ds-tabpanel>
+			<ds-tabpanel>
 				Panel 3 with <a href="#none">link</a>
-			</u-tabpanel>
-		</u-tabs>
+			</ds-tabpanel>
+		</ds-tabs>
 	),
 };
 
@@ -77,62 +77,62 @@ export const React: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<u-tabs class={styles.tabs} data-size="sm">
-			<u-tablist>
-				<u-tab aria-selected="true">Tab 1</u-tab>
-				<u-tab>Tab 2</u-tab>
-				<u-tab>Tab 3</u-tab>
-			</u-tablist>
-			<u-tabpanel>
+		<ds-tabs class={styles.tabs} data-size="sm">
+			<ds-tablist>
+				<ds-tab aria-selected="true">Tab 1</ds-tab>
+				<ds-tab>Tab 2</ds-tab>
+				<ds-tab>Tab 3</ds-tab>
+			</ds-tablist>
+			<ds-tabpanel>
 				Panel 1 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel>
+			</ds-tabpanel>
+			<ds-tabpanel>
 				Panel 2 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel>
+			</ds-tabpanel>
+			<ds-tabpanel>
 				Panel 3 with <a href="#none">link</a>
-			</u-tabpanel>
-		</u-tabs>
+			</ds-tabpanel>
+		</ds-tabs>
 	),
 };
 
 export const WithReusePanel: Story = {
 	decorators,
 	render: () => (
-		<u-tabs class={styles.tabs}>
-			<u-tablist>
-				<u-tab aria-controls="my-panel" aria-selected="true">
+		<ds-tabs class={styles.tabs}>
+			<ds-tablist>
+				<ds-tab aria-controls="my-panel" aria-selected="true">
 					Tab 1
-				</u-tab>
-				<u-tab aria-controls="my-panel">Tab 2</u-tab>
-				<u-tab aria-controls="my-panel">Tab 3</u-tab>
-			</u-tablist>
-			<u-tabpanel id="my-panel" className={styles.card}>
+				</ds-tab>
+				<ds-tab aria-controls="my-panel">Tab 2</ds-tab>
+				<ds-tab aria-controls="my-panel">Tab 3</ds-tab>
+			</ds-tablist>
+			<ds-tabpanel id="my-panel" className={styles.card}>
 				My panel is used for all tabs!
-			</u-tabpanel>
-		</u-tabs>
+			</ds-tabpanel>
+		</ds-tabs>
 	),
 };
 
 export const WithCardPanels: Story = {
 	decorators,
 	render: () => (
-		<u-tabs class={styles.tabs}>
-			<u-tablist>
-				<u-tab aria-selected="true">Tab 1</u-tab>
-				<u-tab>Tab 2</u-tab>
-				<u-tab>Tab 3</u-tab>
-			</u-tablist>
-			<u-tabpanel className={styles.card}>
+		<ds-tabs class={styles.tabs}>
+			<ds-tablist>
+				<ds-tab aria-selected="true">Tab 1</ds-tab>
+				<ds-tab>Tab 2</ds-tab>
+				<ds-tab>Tab 3</ds-tab>
+			</ds-tablist>
+			<ds-tabpanel className={styles.card}>
 				Panel 1 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel className={styles.card}>
+			</ds-tabpanel>
+			<ds-tabpanel className={styles.card}>
 				Panel 2 with <a href="#none">link</a>
-			</u-tabpanel>
-			<u-tabpanel className={styles.card}>
+			</ds-tabpanel>
+			<ds-tabpanel className={styles.card}>
 				Panel 3 with <a href="#none">link</a>
-			</u-tabpanel>
-		</u-tabs>
+			</ds-tabpanel>
+		</ds-tabs>
 	),
 };
 

@@ -1,11 +1,9 @@
 import styles from "../styles.module.css";
-import { isBrowser, onLoaded, onMutation, tag } from "../utils";
+import { debounce, on, onHotReload, tag } from "../utils";
 
-const CSS_LOGO = styles.logo.split(" ")[0];
-const LOGOS = isBrowser() ? document.getElementsByClassName(CSS_LOGO) : [];
-
-function handleLogoMutation() {
-	const logo = LOGOS[0];
+const handleFavicon = debounce((e: Partial<AnimationEvent>) => {
+	if (e.animationName !== styles._logo) return;
+	const logo = (e.target as Element).closest?.(`.${styles.logo.split(" ")[0]}`);
 	const svg = logo?.firstElementChild;
 
 	if (svg instanceof SVGSVGElement) {
@@ -28,6 +26,6 @@ function handleLogoMutation() {
 			}),
 		);
 	}
-}
+}, 200);
 
-onLoaded(() => [onMutation(handleLogoMutation, "class")]);
+onHotReload("logo", () => [on(document, "animationend", handleFavicon)]);

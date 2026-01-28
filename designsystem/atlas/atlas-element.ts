@@ -97,7 +97,7 @@ export class MTDSAtlasElement extends MTDSElement {
 			zoomSnap: 0.2,
 		});
 
-		on(this, "pointerup,click", this.#skipClick); // Prevent clicks from bubbling up unless sent from Leaflet
+		on(this, "pointerup click", this.#skipClick); // Prevent clicks from bubbling up unless sent from Leaflet
 		this.map.addControl(new L.Control.Attribution({ prefix: "" }));
 		this.map.addControl(new L.Control.Zoom({ position: "bottomright" }));
 		this.map.on("popupopen popupclose", this.#handlePopup, this);
@@ -139,7 +139,7 @@ export class MTDSAtlasElement extends MTDSElement {
 		return this.map?.pointerEventToLatLng({ clientX: x, clientY: y });
 	}
 	disconnectedCallback() {
-		off(this, "pointerup,click", this.#skipClick);
+		off(this, "pointerup click", this.#skipClick);
 		this.map?.remove();
 		this.map = this.cluster = undefined;
 	}

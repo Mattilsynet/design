@@ -1,11 +1,13 @@
-import clsx from "clsx";
+import type { DSPaginationElement } from "@digdir/designsystemet-web";
+import { pagination } from "@digdir/designsystemet-web";
 import { forwardRef } from "react";
 import { Button } from "../button/button";
+import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";
-import { pagination } from "./pagination-helper";
+import { toCustomElementProps } from "../utils";
 
 export type PaginationProps = Omit<
-	React.ComponentPropsWithoutRef<"nav">,
+	CustomReactElementProps<DSPaginationElement>,
 	"children"
 > &
 	(
@@ -28,19 +30,17 @@ export type PaginationProps = Omit<
 		  }
 	);
 
-export const Pagination = forwardRef<HTMLElement, PaginationProps>(
+export const Pagination = forwardRef<DSPaginationElement, PaginationProps>(
 	function Pagination(
-		{ children, className, current, total, show = 7, props, ...rest },
+		{ children, current, total, show = 7, props, ...rest },
 		ref,
 	) {
 		const { pages, next, prev } = pagination({ current, total, show });
 
 		return (
-			<nav
-				aria-label={rest["aria-label"] || "Pagination"}
-				className={clsx(styles.pagination, className)}
+			<ds-pagination
 				ref={ref}
-				{...rest}
+				{...toCustomElementProps(rest, styles.pagination)}
 			>
 				{children || (
 					<ul>
@@ -69,7 +69,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						</li>
 					</ul>
 				)}
-			</nav>
+			</ds-pagination>
 		);
 	},
 );

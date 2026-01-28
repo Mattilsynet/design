@@ -25,10 +25,12 @@ const meta = {
 				return () => document.removeEventListener("click", handleClick);
 			});
 
+			const klass = styles.errorsummary.split(" ")[0];
+
 			// Disable autofocus in storybook
 			return (
 				<>
-					<style>{`.${styles.errorsummary.split(" ")[0]}{animation:none}`}</style>
+					<style>{`.${klass},.${klass}::after{animation:none}`}</style>
 					<Story />
 				</>
 			);
@@ -41,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<div className={styles.errorsummary} role="alert">
+		<ds-error-summary className={styles.errorsummary}>
 			<h2 tabIndex={-1}>For å gå videre må du rette opp følgende feil:</h2>
 			<ul>
 				<li>
@@ -54,7 +56,7 @@ export const Default: Story = {
 					<a href="#my-input-3">E-post må være gyldig</a>
 				</li>
 			</ul>
-		</div>
+		</ds-error-summary>
 	),
 };
 
@@ -95,9 +97,8 @@ export const WithForm: Story = {
 
 		return (
 			<form className={styles.grid} data-gap="4" onSubmit={handleSubmit}>
-				<div
+				<ds-error-summary
 					className={styles.errorsummary}
-					role="alert"
 					hidden={!showErrorSummary}
 				>
 					<h2 tabIndex={-1} ref={errorTitle}>
@@ -108,8 +109,8 @@ export const WithForm: Story = {
 							<a href="#my-input">Du må skrive teksten "jeg tester"</a>
 						</li>
 					</ul>
-				</div>
-				<div className={styles.field}>
+				</ds-error-summary>
+				<ds-field className={styles.field}>
 					<label>
 						Skriv teksten <code className={styles.tag}>jeg tester</code>:
 					</label>
@@ -119,7 +120,7 @@ export const WithForm: Story = {
 						onChange={({ target }) => setValue(target.value)}
 						value={value}
 					/>
-				</div>
+				</ds-field>
 				<div className={styles.flex} data-justify="end">
 					<button
 						type="submit"

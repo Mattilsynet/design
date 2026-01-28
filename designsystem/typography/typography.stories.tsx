@@ -300,46 +300,46 @@ export const Prose: Story = {
 				Transportør
 			</h2>
 			<div className={styles.grid} data-gap="9">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Ledetekst</label>
-					<p>Beskrivelse</p>
+					<p data-field="desciption">Beskrivelse</p>
 					<input type="text" className={styles.input} required />
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<label>Ledetekst</label>
-					<p>Beskrivelse</p>
+					<p data-field="desciption">Beskrivelse</p>
 					<input type="text" className={styles.input} required />
-				</div>
+				</ds-field>
 			</div>
 			<h2 className={styles.heading} data-size="md">
 				Mottaker
 			</h2>
 			<div className={styles.grid} data-gap="9">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Beskriv bekymringen din</label>
-					<p>
+					<p data-field="desciption">
 						Skriv gjerne hva som har skjedd, hvor det skjedde, grunnen til
 						problemet og hvorfor du mener at dyrene ikke har det bra.
 					</p>
 					<textarea className={styles.input} required />
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<label>Antall dyr</label>
 					<input type="text" className={styles.input} />
-				</div>
+				</ds-field>
 			</div>
 			<h2 className={styles.heading} data-size="lg">
 				Helsesertifikat for sjømat
 			</h2>
 			<div className={styles.grid} data-gap="9">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Velg dyr</label>
 					<input type="text" className={styles.input} required />
-				</div>
+				</ds-field>
 				<fieldset className={styles.fieldset}>
 					<legend>Hovedårsak til bekymring</legend>
-					<p>Fellesbeskrivelse</p>
-					<div className={styles.field}>
+					<p data-field="desciption">Fellesbeskrivelse</p>
+					<ds-field className={styles.field}>
 						<input
 							type="radio"
 							className={styles.input}
@@ -348,9 +348,9 @@ export const Prose: Story = {
 							defaultChecked
 						/>
 						<label>Alternativ 1</label>
-						<p>Beskrivelse</p>
-					</div>
-					<div className={styles.field}>
+						<p data-field="desciption">Beskrivelse</p>
+					</ds-field>
+					<ds-field className={styles.field}>
 						<input
 							type="radio"
 							className={styles.input}
@@ -358,8 +358,8 @@ export const Prose: Story = {
 							required
 						/>
 						<label>Alternativ 2</label>
-						<p>Beskrivelse</p>
-					</div>
+						<p data-field="desciption">Beskrivelse</p>
+					</ds-field>
 				</fieldset>
 			</div>
 			<h2 className={styles.heading} data-size="md">
@@ -517,8 +517,8 @@ export const Prose: Story = {
 				Helsesertifikater
 			</h3>
 			<div>
-				<u-details class={styles.details}>
-					<u-summary>Hva sier regelverket om lakserogn?</u-summary>
+				<details className={styles.details}>
+					<summary>Hva sier regelverket om lakserogn?</summary>
 					<div className={styles.prose}>
 						<p>
 							Sertifikatet kan utstedes for varmebehandlet rogn fra laksefisk,
@@ -530,9 +530,9 @@ export const Prose: Story = {
 							Norge.
 						</p>
 					</div>
-				</u-details>
-				<u-details class={styles.details}>
-					<u-summary>Hva sier regelverket om lakserogn?</u-summary>
+				</details>
+				<details className={styles.details}>
+					<summary>Hva sier regelverket om lakserogn?</summary>
 					<div className={styles.prose}>
 						<p>
 							Sertifikatet kan utstedes for varmebehandlet rogn fra laksefisk,
@@ -544,7 +544,7 @@ export const Prose: Story = {
 							Norge.
 						</p>
 					</div>
-				</u-details>
+				</details>
 			</div>
 			<h3 className={styles.heading} data-size="sm">
 				Overskrift

@@ -1,67 +1,20 @@
 @layer mt.design {
 	.popover {
-		--mtdsc-popover-background: var(--ds-color-surface-default);
-		--mtdsc-popover-border-color: var(--ds-color-border-subtle);
-		--mtdsc-popover-border-radius: var(--ds-border-radius-md);
-		--mtdsc-popover-border-style: solid;
-		--mtdsc-popover-border-width: var(--ds-border-width-default);
-		--mtdsc-popover-box-shadow: var(--ds-shadow-md);
-		--mtdsc-popover-color: var(--ds-color-text-default);
-		--mtdsc-popover-padding: var(--ds-size-5);
+		composes: ds-popover from "@digdir/designsystemet-css";
+		--dsc-popover-border-color: var(--ds-color-border-subtle);
+		--dsc-popover-padding: var(--ds-size-5);
+		--dsc-popover-arrow-size: 0;
+		--_ds-floating: bottom;
 
-		background: var(--mtdsc-popover-background);
-		border-radius: var(--mtdsc-popover-border-radius);
-		border: var(--mtdsc-popover-border-width) var(--mtdsc-popover-border-solid)
-			var(--mtdsc-popover-border-color);
-		box-shadow: var(--mtdsc-popover-box-shadow);
-		box-sizing: border-box;
-		color: var(--mtdsc-popover-color); /* Needed to overwrite browser default */
-		display: block;
-		inset: 0 auto auto 0;
-		list-style: none;
-		margin: 0;
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
-		overflow: visible; /* Ensure content can render outside */
-		padding: var(--mtdsc-popover-padding);
-		position: absolute;
-		transition-behavior: allow-discrete;
-		transition-duration: 0.2s;
-		transition-property: display, opacity, margin-top, visibility;
-		width: max-content;
-		z-index: 9999;
-
-		@starting-style {
-			opacity: 0;
-			margin-top: -2px;
-			visibility: hidden;
-		}
 	}
 	.popover[slot] {
-		position: static; /* Let slot handle positioning */
+		position: static; /* Let slot handle positioning - used in Atlas */
 		max-width: 100%;
 	}
-	.popover[hidden],
-	.popover[popover]:not(:popover-open) {
-		display: none;
-		opacity: 0;
-		margin-top: -2px;
-		visibility: hidden;
-	}
-	.popover:is(menu),
-	.popover:has(> menu:only-child) {
-		--mtdsc-popover-padding: var(--ds-size-2);
-	}
-	.popover:is(menu) > li > hr {
-		margin-block: var(--ds-size-2);
-	}
-
-	.popover[data-overscroll="contain"] {
-		overflow: auto;
-		overscroll-behavior: contain;
-	}
-
-	[data-popover="inline"] {
-		border-radius: var(--ds-border-radius-sm);
+	.popover:is(menu) {
+		--dsc-popover-padding: var(--ds-size-2);
+		padding: var(--dsc-popover-padding);
 	}
 	[data-popover="inline"] + .popover {
 		max-width: 35ch;

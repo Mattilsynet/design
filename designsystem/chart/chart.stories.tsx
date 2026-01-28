@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Chart, Grid } from "../react";
+import { Chart, Grid, Table } from "../react";
 
 const meta = {
 	title: "Designsystem/Chart",
@@ -101,28 +101,28 @@ export const React: Story = {
 	render: () => (
 		<Grid data-items="300">
 			<Chart>
-				<table>
-					<thead>
-						<tr>
-							<th>Risikofordeling</th>
-							<th>Q1</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th>Large</th>
-							<td>50</td>
-						</tr>
-						<tr>
-							<th>Medium</th>
-							<td>25</td>
-						</tr>
-						<tr>
-							<th>Small</th>
-							<td>15</td>
-						</tr>
-					</tbody>
-				</table>
+				<Table>
+					<Table.Thead>
+						<Table.Tr>
+							<Table.Th>Risikofordeling</Table.Th>
+							<Table.Th>Q1</Table.Th>
+						</Table.Tr>
+					</Table.Thead>
+					<Table.Tbody>
+						<Table.Tr>
+							<Table.Th>Large</Table.Th>
+							<Table.Td>50</Table.Td>
+						</Table.Tr>
+						<Table.Tr>
+							<Table.Th>Medium</Table.Th>
+							<Table.Td>25</Table.Td>
+						</Table.Tr>
+						<Table.Tr>
+							<Table.Th>Small</Table.Th>
+							<Table.Td>15</Table.Td>
+						</Table.Tr>
+					</Table.Tbody>
+				</Table>
 			</Chart>
 			<Chart
 				data-variant="doughnut"

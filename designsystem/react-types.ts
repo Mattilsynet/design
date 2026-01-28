@@ -66,10 +66,10 @@ export type Sizes =
 
 declare global {
 	namespace React {
-		/* biome-ignore lint/correctness/noUnusedVariables: The <T> is required to replicate React implementation */
 		interface HTMLAttributes<T> {
 			popover?: React.HTMLAttributes<HTMLElement>["popover"];
 			popovertarget?: string;
+			popovertargetaction?: string;
 			"data-validation"?: "form";
 			"data-color"?:
 				| "main"
@@ -81,12 +81,10 @@ declare global {
 				| "inverted";
 			"data-size"?: "sm" | "md" | "lg" | (string & {});
 			"data-tooltip"?: string;
-			popovertargetaction?: string;
 		}
 		interface ButtonHTMLAttributes<T> extends React.HTMLAttributes<T> {
 			command?: string;
 			commandfor?: string;
-			commandFor?: string;
 		}
 	}
 	namespace React.JSX {

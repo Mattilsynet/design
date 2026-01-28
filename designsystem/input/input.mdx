@@ -23,48 +23,48 @@ import styles from '../styles.module.css';
   {/* Viser tekstfelt som ligger over hverandre */}
   <Example data-color="success" data-variant="false" text="Plasser tekstfelt over hverandre, slik at det er lettere å navigere mellom komponentene og skanne innholdet." zoom="100%">
     <div className={styles.prose} data-items="auto"> 
-        <div className={styles.field}>
+        <ds-field className={styles.field}>
             <label>Fornavn</label>
             <input className={styles.input} />
-        </div>
+        </ds-field>
 
-        <div className={styles.field}>
+        <ds-field className={styles.field}>
             <label>Etternavn</label>
             <input className={styles.input} />
-        </div>
+        </ds-field>
 
-        <div className={styles.field}>
+        <ds-field className={styles.field}>
             <label>E-post</label>
             <input className={styles.input} />
-        </div>
+        </ds-field>
 
-        <div className={styles.field}>
+        <ds-field className={styles.field}>
             <label>Telefon</label>
             <input className={styles.input} />
-        </div>
+        </ds-field>
     </div> 
 
   </Example>
   <Example data-color="danger" data-variant="false" text="Unngå plassering av tekstfelt ved siden av hverandre. Skannbarheten blir dårligere." zoom="100%">
         <div className={styles.grid} data-items="150" data-gap="6"> 
-            <div className={styles.field}>
+            <ds-field className={styles.field}>
                 <label>Fornavn</label>
                 <input className={styles.input} type="number" />
-            </div>
+            </ds-field>
 
-            <div className={styles.field}>
+            <ds-field className={styles.field}>
                 <label>Etternavn</label>
                 <input className={styles.input} type="text" inputMode="numeric" />
-            </div>
-             <div className={styles.field}>
+            </ds-field>
+             <ds-field className={styles.field}>
                 <label>E-post</label>
                 <input className={styles.input} type="number" />
-            </div>
+            </ds-field>
 
-            <div className={styles.field}>
+            <ds-field className={styles.field}>
                 <label>Telefon</label>
                 <input className={styles.input} type="text" inputMode="numeric" />
-            </div>           
+            </ds-field>           
         </div>
   </Example>
 </Flex>
@@ -73,16 +73,16 @@ import styles from '../styles.module.css';
 <Flex data-items="350">
   {/* Viser tekstfelt som ligger over hverandre */}
   <Example data-color="success" data-variant="false" text="Bruk tydelig og beskrivende labeltekst. Status vises i selve komponenten." zoom="100%">
-    <div className={styles.field}>
+    <ds-field className={styles.field}>
         <label>Varsle via e-post</label>
         <input type="checkbox" role="switch" className={styles.input} />
-    </div>
+    </ds-field>
   </Example>
   <Example data-color="danger" data-variant="false" text="Unngå beskrivelse av status i labelteksten, da dette kan forvirre brukeren." zoom="100%">
-    <div className={styles.field}>
+    <ds-field className={styles.field}>
         <label>Slå på e-postvarsling</label>
         <input type="checkbox" role="switch" className={styles.input} />
-    </div>
+    </ds-field>
   </Example>
 </Flex>
 
@@ -91,55 +91,55 @@ import styles from '../styles.module.css';
     <Example data-color="success" data-variant="false" text="Det er anbefalt å bruke radio hvis du har færre enn 5-7 alternativer." zoom="100%">
     <fieldset className={styles.fieldset}>
         <legend>Skal du reise med hund?</legend>
-                <div className={styles.field}>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="do-radio"/>
                     <label>Ja</label>
-                </div>
-                <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="do-radio"/>
                     <label>Nei</label>
-                </div>
+                </ds-field>
     </fieldset>
   </Example>
   <Example data-color="danger" data-variant="false" text="Bruk av radio med mange alternativer gjør det mer tungvindt for bruker å ta et raskt valg." zoom="100%">
     <fieldset className={styles.fieldset}>
         <legend>Hvilken hunderase skal du reise med?</legend>
-                <div className={styles.field}>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Golden retriever</label>
-                </div>
-                <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Fuglehund</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Cocker spaniel</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Terrier</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Beagle</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Chihuahua</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Puddel</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Setter</label>
-                </div>
-                    <div className={styles.field}>
+                </ds-field>
+                <ds-field className={styles.field}>
                     <input type="radio" className={styles.input} name="dont-radio"/>
                     <label>Spisshund</label>
-                </div>
+                </ds-field>
     </fieldset>
   </Example>
 </Flex>
@@ -147,7 +147,7 @@ import styles from '../styles.module.css';
 ### Select
 <Flex data-items="350">
     <Example data-color="success" data-variant="false" text="Bruk select når det er mange alternativer." zoom="100%">
-            <div className={styles.field}>
+            <ds-field className={styles.field}>
                 <label>Hvor skal du reise med hund?</label>
                 <select className={styles.input}>
                     <option>Albania</option>
@@ -164,16 +164,16 @@ import styles from '../styles.module.css';
                     <option>Latvia</option>
                     <option>Maldivene</option>
                 </select>
-            </div>
+            </ds-field>
   </Example>
   <Example data-color="danger" data-variant="false" text="Ikke bruk select når det er få alternativer." zoom="100%">
-            <div className={styles.field}>
+            <ds-field className={styles.field}>
                 <label>Har hunden noen kjente sykdommer?</label>
                 <select className={styles.input}>
                     <option>Ja</option>
                     <option>Nei</option>
                 </select>
-            </div>
+            </ds-field>
   </Example>
 </Flex>
 

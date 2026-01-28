@@ -154,7 +154,7 @@ export const Position: Story = {
 			</button>
 			<div
 				className={styles.popover}
-				data-position="top"
+				data-placement="top"
 				id="pop-2"
 				popover="auto"
 			>
@@ -224,7 +224,7 @@ export const WithTextInline: Story = {
 			</div>
 			<br />
 			<br />
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>
 					Et{" "}
 					<button popoverTarget="pop-label" type="button" data-popover="inline">
@@ -237,7 +237,7 @@ export const WithTextInline: Story = {
 					oppnå semantisk riktig HTML
 				</div>
 				<input className={styles.input} />
-			</div>
+			</ds-field>
 		</>
 	),
 };

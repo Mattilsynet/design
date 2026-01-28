@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { pagination } from "../";
-import { Pagination } from "../react";
+import { Button, Pagination } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
@@ -43,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 
 export const WithLinks: Story = {
 	render: () => (
-		<nav aria-label="Sidenavigering" className={styles.pagination}>
+		<ds-pagination aria-label="Sidenavigering" className={styles.pagination}>
 			<ul>
 				<li>
 					<a href="?p=1" className={styles.button} aria-disabled="true">
@@ -82,7 +82,7 @@ export const WithLinks: Story = {
 					</a>
 				</li>
 			</ul>
-		</nav>
+		</ds-pagination>
 	),
 };
 
@@ -100,40 +100,30 @@ export const React: Story = {
 				<Pagination>
 					<ul>
 						<li>
-							<a href="?p=1" className={styles.button} aria-disabled="true">
+							<Button href="?p=1" aria-disabled="true">
 								Forrige
-							</a>
+							</Button>
 						</li>
 						<li>
-							<a href="?p=1" className={styles.button} aria-current="page">
+							<Button href="?p=1" aria-current="page">
 								1
-							</a>
+							</Button>
 						</li>
 						<li>
-							<a href="?p=2" className={styles.button}>
-								2
-							</a>
+							<Button href="?p=2">2</Button>
 						</li>
 						<li>
-							<a href="?p=3" className={styles.button}>
-								3
-							</a>
+							<Button href="?p=3">3</Button>
 						</li>
 						<li>
-							<a href="?p=4" className={styles.button}>
-								4
-							</a>
+							<Button href="?p=4">4</Button>
 						</li>
 						<li></li>
 						<li>
-							<a href="?p=10" className={styles.button}>
-								10
-							</a>
+							<Button href="?p=10">10</Button>
 						</li>
 						<li>
-							<a href="?p=2" className={styles.button}>
-								Neste
-							</a>
+							<Button href="?p=2">Neste</Button>
 						</li>
 					</ul>
 				</Pagination>
@@ -142,35 +132,29 @@ export const React: Story = {
 				<Pagination>
 					<ul>
 						<li>
-							<a
+							<Button
 								aria-disabled={!prev}
-								className={styles.button}
 								href={prev ? `?p=${prev}` : undefined}
 							>
 								Forrige
-							</a>
+							</Button>
 						</li>
 						{pages.map(({ current, key, page }) => (
 							<li key={key}>
 								{!!page && (
-									<a
-										aria-current={current}
-										className={styles.button}
-										href={`?p=${page}`}
-									>
+									<Button aria-current={current} href={`?p=${page}`}>
 										{page}
-									</a>
+									</Button>
 								)}
 							</li>
 						))}
 						<li>
-							<a
+							<Button
 								aria-disabled={!next}
-								className={styles.button}
 								href={next ? `?p=${next}` : undefined}
 							>
 								Neste
-							</a>
+							</Button>
 						</li>
 					</ul>
 				</Pagination>
@@ -197,7 +181,7 @@ export const React: Story = {
 
 export const WithButtons: Story = {
 	render: () => (
-		<nav aria-label="Sidenavigering" className={styles.pagination}>
+		<ds-pagination className={styles.pagination}>
 			<ul>
 				<li>
 					<button type="button" className={styles.button} disabled>
@@ -236,17 +220,13 @@ export const WithButtons: Story = {
 					</button>
 				</li>
 			</ul>
-		</nav>
+		</ds-pagination>
 	),
 };
 
 export const Sizes: Story = {
 	render: () => (
-		<nav
-			data-size="sm"
-			aria-label="Sidenavigering"
-			className={styles.pagination}
-		>
+		<ds-pagination data-size="sm" className={styles.pagination}>
 			<ul>
 				<li>
 					<button type="button" className={styles.button} disabled></button>
@@ -281,7 +261,7 @@ export const Sizes: Story = {
 					<button type="button" className={styles.button}></button>
 				</li>
 			</ul>
-		</nav>
+		</ds-pagination>
 	),
 };
 
@@ -297,35 +277,29 @@ export const WithHelper: Story = {
 			<Pagination>
 				<ul>
 					<li>
-						<a
+						<Button
 							aria-disabled={!prev}
-							className={styles.button}
 							href={prev ? `?p=${prev}` : undefined}
 						>
 							Forrige
-						</a>
+						</Button>
 					</li>
 					{pages.map(({ current, key, page }) => (
 						<li key={key}>
 							{!!page && (
-								<a
-									aria-current={current}
-									className={styles.button}
-									href={`?p=${page}`}
-								>
+								<Button aria-current={current} href={`?p=${page}`}>
 									{page}
-								</a>
+								</Button>
 							)}
 						</li>
 					))}
 					<li>
-						<a
+						<Button
 							aria-disabled={!next}
-							className={styles.button}
 							href={next ? `?p=${next}` : undefined}
 						>
 							Neste
-						</a>
+						</Button>
 					</li>
 				</ul>
 			</Pagination>

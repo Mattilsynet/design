@@ -153,9 +153,6 @@
 	 * Grid
 	 */
 	.grid[data-justify="center"] { justify-items: center }
-	.grid[data-justify="end"] { justify-items: end}
-	.grid[data-justify="start"] { justify-items: start }
-	.grid[data-justify="stretch"] { justify-items: stretch }
 	.grid[data-items] {
 		--mtds-grid-size: 0px; /* Set default layout width */
 		--mtds-grid-grow: auto-fit; /* Allows columns to grow to fit container */

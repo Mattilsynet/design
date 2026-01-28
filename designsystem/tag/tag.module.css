@@ -9,12 +9,10 @@
 		--mtdsc-tag-min-height: var(--ds-size-7);
 
 		border-radius: var(--mtdsc-tag-border-radius);
-		border: var(--mtdsc-tag-border-width) var(--mtdsc-tag-border-solid)
-			var(--ds-color-border-subtle);
 		font-size: var(--ds-body-sm-font-size);
-		font-weight: normal;
-		flex-shrink: 0; /* If placed in display: flex */
-		font-variant-numeric: tabular-nums;
+		font-weight: normal; /* TODO Digdir: Ensure no inheritance of font-weight */
+		flex-shrink: 0; /* TODO Digdir: if placed in display: flex */
+		font-variant-numeric: tabular-nums; /* Numeric numbers in tags is nice */
 		gap: var(--mtdsc-tag-gap);
 	}
 
@@ -22,17 +20,17 @@
 	 * Icon
 	 */
 	.tag > svg {
-		flex-shrink: 0; /* Never shrkink icon */
+		flex-shrink: 0; /* TODO Digdir: Never shrkink icon */
 	}
 	.tag:not([data-icon="none"], [data-icon="false"], :has(svg))::before {
 		background: currentcolor;
 		content: "";
 		flex-shrink: 0;
 		height: 1em;
+		width: 1em;
 		mask:
 			center / contain no-repeat
 			var(--dsc-tag-icon-url, var(--mtds-icon-success)) content-box;
-		width: 1em;
 	}
 	.tag[data-color="info"] {
 		--dsc-tag-icon-url: var(--mtds-icon-info);

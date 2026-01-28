@@ -1,8 +1,8 @@
 import { PintGlassIcon, WindIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useRef, useState } from "react";
-import type { UHTMLComboboxElement } from "../";
-import type { FieldComboboxSelected } from "../react";
+import type { DSSuggestionElement } from "../";
+import type { FieldSuggestionSelected } from "../react";
 import { Field, Flex, Input } from "../react";
 import styles from "../styles.module.css";
 
@@ -59,7 +59,7 @@ const meta = {
 			},
 		},
 		options: {
-			description: 'If `as="select"` or `as={Field.Combobox}`',
+			description: 'If `as="select"` or `as={Field.Suggestion}`',
 			table: {
 				type: {
 					summary:
@@ -92,13 +92,13 @@ const meta = {
 			},
 		},
 		"data-nofilter": {
-			description: "If `as={Field.Combobox}`",
+			description: "If `as={Field.Suggestion}`",
 			table: {
 				type: { summary: "boolean" },
 			},
 		},
 		selected: {
-			description: "If `as={Field.Combobox}`",
+			description: "If `as={Field.Suggestion}`",
 			table: {
 				type: {
 					summary:
@@ -107,7 +107,7 @@ const meta = {
 			},
 		},
 		onSelectedChange: {
-			description: "If `as={Field.Combobox}`",
+			description: "If `as={Field.Suggestion}`",
 			table: {
 				type: { summary: "(selected) => void" },
 			},
@@ -127,11 +127,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Ledetekst</label>
-			<p>Beskrivelse</p>
+			<p data-field="description">Beskrivelse</p>
 			<input type="text" className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
@@ -192,11 +192,11 @@ export const React: Story = {
 export const Required: Story = {
 	parameters: { showInOverview: true },
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Ledetekst</label>
-			<p>Beskrivelse</p>
+			<p data-field="description">Beskrivelse</p>
 			<input type="text" required className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
@@ -216,7 +216,7 @@ export const Indeterminate: Story = {
 		return (
 			<fieldset className={styles.fieldset}>
 				<legend>Velg alternativer</legend>
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Velg alle</label>
 					<input
 						type="checkbox"
@@ -227,10 +227,10 @@ export const Indeterminate: Story = {
 							if (el) el.indeterminate = !isAll && !!checked.length;
 						}}
 					/>
-				</div>
+				</ds-field>
 				<div className={styles.grid} style={{ paddingLeft: "var(--mtds-8)" }}>
 					{all.map((value) => (
-						<div className={styles.field} key={value}>
+						<ds-field className={styles.field} key={value}>
 							<label>Alternativ 1</label>
 							<input
 								checked={checked.includes(value)}
@@ -239,7 +239,7 @@ export const Indeterminate: Story = {
 								type="checkbox"
 								value={value}
 							/>
-						</div>
+						</ds-field>
 					))}
 				</div>
 			</fieldset>
@@ -251,7 +251,7 @@ export const Toggles: Story = {
 	render: () => (
 		<>
 			<fieldset className={styles.fieldset} aria-label="Velg alternativ">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Radio 1</label>
 					<input
 						type="radio"
@@ -259,21 +259,21 @@ export const Toggles: Story = {
 						name="my-radio"
 						defaultChecked
 					/>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<label>Radio 2</label>
-					<p>Beskrivelse</p>
+					<p data-field="description">Beskrivelse</p>
 					<input type="radio" className={styles.input} name="my-radio" />
-				</div>
+				</ds-field>
 			</fieldset>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Check</label>
 				<input type="checkbox" className={styles.input} />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Switch</label>
 				<input type="checkbox" className={styles.input} role="switch" />
-			</div>
+			</ds-field>
 		</>
 	),
 };
@@ -281,14 +281,14 @@ export const Toggles: Story = {
 export const WithValidation: Story = {
 	parameters: { showInOverview: true },
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<input type="text" className={styles.input} />
-				<div className={styles.validation}>Validation</div>
+		<ds-field className={styles.field}>
+			<label>Ledetekst</label>
+			<p data-field="description">Beskrivelse</p>
+			<input type="text" className={styles.input} />
+			<div className={styles.validation} data-field="validation">
+				Validation
 			</div>
-		</>
+		</ds-field>
 	),
 };
 
@@ -296,27 +296,29 @@ export const WithValidationForm: Story = {
 	parameters: { layout: "padded" },
 	name: "With Validation Form",
 	render: () => {
-		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([]);
 
 		return (
 			<form action="#" className={styles.prose} data-validation="form">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>E-post</label>
-					<p>Beskrivelse</p>
+					<p data-field="description">Beskrivelse</p>
 					<input type="email" className={styles.input} required />
-					<div className={styles.validation}>
+					<div className={styles.validation} data-field="validation">
 						Må inneholde en gyldig e-postadresse
 					</div>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<label>Tekst</label>
-					<p>Beskrivelse</p>
+					<p data-field="description">Beskrivelse</p>
 					<input type="text" className={styles.input} required />
-					<div className={styles.validation}>Må fylles ut</div>
-				</div>
-				<div className={styles.field}>
-					<label>Combobox</label>
-					<u-combobox>
+					<div className={styles.validation} data-field="validation">
+						Må fylles ut
+					</div>
+				</ds-field>
+				<ds-field className={styles.field}>
+					<label>Suggestion</label>
+					<ds-suggestion className={styles.suggestion}>
 						<input type="text" className={styles.input} aria-required="true" />
 						<del role="img" aria-label="Fjern tekst"></del>
 						<u-datalist>
@@ -328,9 +330,11 @@ export const WithValidationForm: Story = {
 							<u-option value="Bergen">Bergen</u-option>
 							<u-option value="Lillestrøm">Lillestrøm</u-option>
 						</u-datalist>
-					</u-combobox>
-					<div className={styles.validation}>Må fylles ut</div>
-				</div>
+					</ds-suggestion>
+					<div className={styles.validation} data-field="validation">
+						Må fylles ut
+					</div>
+				</ds-field>
 				<Field
 					as="input"
 					validation="Må fylles ut"
@@ -339,8 +343,8 @@ export const WithValidationForm: Story = {
 				/>
 				<Field
 					aria-required="true"
-					as={Field.Combobox}
-					label="React combobox"
+					as={Field.Suggestion}
+					label="React Suggestion"
 					onSelectedChange={setSelected}
 					selected={selected}
 					validation="Må fylles ut"
@@ -363,16 +367,14 @@ export const WithAffixes: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Pris i NOK per måned</label>
-				<div className={styles.affixes}>
-					<span>NOK</span>
-					<input type="text" className={styles.input} />
-					<span>pr. mnd.</span>
-				</div>
+		<ds-field className={styles.field}>
+			<label>Pris i NOK per måned</label>
+			<div className={styles.affixes}>
+				<span>NOK</span>
+				<input type="text" className={styles.input} />
+				<span>pr. mnd.</span>
 			</div>
-		</>
+		</ds-field>
 	),
 };
 
@@ -382,44 +384,40 @@ export const WithCharacterCount: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<p>Beskrivelse</p>
-				<textarea className={styles.input} defaultValue="Noe innhold" />
-				<p data-count="20" />
-			</div>
-		</>
+		<ds-field className={styles.field}>
+			<label>Ledetekst</label>
+			<p data-field="description">Beskrivelse</p>
+			<textarea className={styles.input} defaultValue="Noe innhold" />
+			<p data-field="counter" data-limit="20" />
+		</ds-field>
 	),
 };
 
 export const WithCustomDescriptionTag: Story = {
 	parameters: { layout: "padded" },
 	render: () => (
-		<>
-			<div className={styles.field}>
-				<label>Ledetekst</label>
-				<div data-description className={styles.prose}>
-					<p>
-						Beskrivelse i en <code>data-description</code> som virker med og
-						uten <code>&lt;p&gt;</code>
-					</p>
-				</div>
-				<textarea className={styles.input} defaultValue="Noe innhold" />
-				<p data-count="20" />
+		<ds-field className={styles.field}>
+			<label>Ledetekst</label>
+			<div data-field="description" className={styles.prose}>
+				<p data-field="description">
+					Beskrivelse i en <code>data-field="description"</code> som virker med
+					og uten <code>&lt;p&gt;</code>
+				</p>
 			</div>
-		</>
+			<textarea className={styles.input} defaultValue="Noe innhold" />
+			<p className={styles.validation} data-field="counter" data-limit="20" />
+		</ds-field>
 	),
 };
 
-export const WithCombobox: Story = {
+export const WithSuggestion: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Med forslag</label>
-			<u-combobox>
+			<ds-suggestion className={styles.suggestion}>
 				<input type="text" className={styles.input} />
 				<del role="img" aria-label="Fjern tekst"></del>
 				<u-datalist>
@@ -431,20 +429,20 @@ export const WithCombobox: Story = {
 					<u-option value="Bergen">Bergen</u-option>
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
-			</u-combobox>
+			</ds-suggestion>
 			<select name="form-data" hidden></select>
-		</div>
+		</ds-field>
 	),
 };
 
-export const WithComboboxMultiple: Story = {
+export const WithSuggestionMultiple: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Med forslag flervalg</label>
-			<u-combobox data-multiple>
+			<ds-suggestion className={styles.suggestion} data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input type="text" className={styles.input} />
 				<del role="img" aria-label="Fjern tekst"></del>
@@ -457,19 +455,19 @@ export const WithComboboxMultiple: Story = {
 					<u-option value="Bergen">Bergen</u-option>
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
-			</u-combobox>
-		</div>
+			</ds-suggestion>
+		</ds-field>
 	),
 };
 
-export const WithComboboxCreatable: Story = {
+export const WithSuggestionCreatable: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Skriv noe som ikke finnes i listen og trykk Enter:</label>
-			<u-combobox data-multiple data-creatable>
+			<ds-suggestion className={styles.suggestion} data-multiple data-creatable>
 				<data value="Sogndal">Sogndal</data>
 				<input type="text" className={styles.input} />
 				<del role="img" aria-label="Fjern tekst"></del>
@@ -482,12 +480,12 @@ export const WithComboboxCreatable: Story = {
 					<u-option value="Bergen">Bergen</u-option>
 					<u-option value="Lillestrøm">Lillestrøm</u-option>
 				</u-datalist>
-			</u-combobox>
-		</div>
+			</ds-suggestion>
+		</ds-field>
 	),
 };
 
-export const WithComboboxAPI: Story = {
+export const WithSuggestionAPI: Story = {
 	parameters: {
 		layout: "padded",
 	},
@@ -516,9 +514,9 @@ export const WithComboboxAPI: Story = {
 		};
 
 		return (
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Med henting av resultater fra API</label>
-				<u-combobox>
+				<ds-suggestion className={styles.suggestion}>
 					<input
 						type="search"
 						className={styles.input}
@@ -534,18 +532,18 @@ export const WithComboboxAPI: Story = {
 							<u-option value="">{options}</u-option>
 						)}
 					</u-datalist>
-				</u-combobox>
-			</div>
+				</ds-suggestion>
+			</ds-field>
 		);
 	},
 };
 
-export const WithComboboxCustomFilter: Story = {
+export const WithSuggestionCustomFilter: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: () => {
-		const ref = useRef<UHTMLComboboxElement>(null);
+		const ref = useRef<DSSuggestionElement>(null);
 		const [value, setValue] = useState("");
 		const options = [
 			"Sogndal",
@@ -558,9 +556,9 @@ export const WithComboboxCustomFilter: Story = {
 		];
 
 		return (
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Eget filter - gir kun treff fra starten av ordet</label>
-				<u-combobox ref={ref}>
+				<ds-suggestion className={styles.suggestion} ref={ref}>
 					<input
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
@@ -577,27 +575,27 @@ export const WithComboboxCustomFilter: Story = {
 								</u-option>
 							))}
 					</u-datalist>
-				</u-combobox>
-			</div>
+				</ds-suggestion>
+			</ds-field>
 		);
 	},
 };
 
-export const ReactWithCombobox: Story = {
+export const ReactWithSuggestion: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: function Render() {
 		// IMPORTANT:
-		// Using Field.Combobox requires
+		// Using Field.Suggestion requires
 		// "use client" if doing server-side rendering
-		const [selected, setSelected] = useState<FieldComboboxSelected>([
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([
 			{ value: "saft", label: "Saft" },
 		]);
 
 		return (
 			<Field
-				as={Field.Combobox}
+				as={Field.Suggestion}
 				label="React med forslag"
 				description="Beskrivelse"
 				selected={selected}
@@ -619,21 +617,21 @@ export const ReactWithCombobox: Story = {
 	},
 };
 
-export const ReactWithComboboxWithChildren: Story = {
+export const ReactWithSuggestionWithChildren: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: function Render() {
 		const multiple = true;
-		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([]);
 
 		return (
 			<Field>
-				<Field.Label>React med Field.Combobox med barn</Field.Label>
+				<Field.Label>React med Field.Suggestion med barn</Field.Label>
 				<Field.Description>
-					Hvis Field.Combobox har barn, tegner den ikke input selv.
+					Hvis Field.Suggestion har barn, tegner den ikke input selv.
 				</Field.Description>
-				<Field.Combobox
+				<Field.Suggestion
 					data-multiple={multiple}
 					selected={selected}
 					onSelectedChange={setSelected}
@@ -652,27 +650,27 @@ export const ReactWithComboboxWithChildren: Story = {
 							</Flex>
 						</Field.Option>
 					</Field.Datalist>
-				</Field.Combobox>
+				</Field.Suggestion>
 			</Field>
 		);
 	},
 };
 
-export const ReactWithComboboxMultiple: Story = {
+export const ReactWithSuggestionMultiple: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: function Render() {
 		// IMPORTANT:
-		// Using Field.Combobox requires
+		// Using Field.Suggestion requires
 		// "use client" if doing server-side rendering
-		const [selected, setSelected] = useState<FieldComboboxSelected>([
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([
 			{ value: "saft", label: "Saft" },
 		]);
 
 		return (
 			<Field
-				as={Field.Combobox}
+				as={Field.Suggestion}
 				data-multiple
 				label="React med forslag flervalg"
 				selected={selected}
@@ -686,21 +684,21 @@ export const ReactWithComboboxMultiple: Story = {
 	},
 };
 
-export const ReactWithComboboxCreatable: Story = {
+export const ReactWithSuggestionCreatable: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: function Render() {
 		// IMPORTANT:
-		// Using Field.Combobox requires
+		// Using Field.Suggestion requires
 		// "use client" if doing server-side rendering
-		const [selected, setSelected] = useState<FieldComboboxSelected>([
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([
 			{ value: "saft", label: "Saft" },
 		]);
 
 		return (
 			<Field
-				as={Field.Combobox}
+				as={Field.Suggestion}
 				data-multiple
 				data-creatable
 				label="React med forslag flervalg"
@@ -715,15 +713,15 @@ export const ReactWithComboboxCreatable: Story = {
 	},
 };
 
-export const ReactWithComboboxLong: Story = {
+export const ReactWithSuggestionLong: Story = {
 	parameters: {
 		layout: "padded",
 	},
 	render: () => {
 		// IMPORTANT:
-		// Using Field.Combobox requires
+		// Using Field.Suggestion requires
 		// "use client" if doing server-side rendering
-		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([]);
 
 		return (
 			<>
@@ -731,10 +729,10 @@ export const ReactWithComboboxLong: Story = {
 				<Field>
 					<Field.Label>React med lange og mange</Field.Label>
 					<Field.Description>Beskrivelse</Field.Description>
-					<Field.Combobox selected={selected} onSelectedChange={setSelected}>
+					<Field.Suggestion selected={selected} onSelectedChange={setSelected}>
 						<Input />
 						<del role="img" aria-label="Fjern tekst"></del>
-						<Field.Datalist data-nofilter data-position="top">
+						<Field.Datalist data-nofilter data-placement="top">
 							<Field.Option>
 								Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
 								Thunder Thunder Thunder Thunder Thunder
@@ -759,7 +757,7 @@ export const ReactWithComboboxLong: Story = {
 							<Field.Option>Canvas</Field.Option>
 							<Field.Option>Zenith</Field.Option>
 						</Field.Datalist>
-					</Field.Combobox>
+					</Field.Suggestion>
 				</Field>
 				<div style={{ height: 800 }} />
 			</>
@@ -773,7 +771,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 	},
 	render: function Render() {
 		const [value, setValue] = useState("");
-		const [selected, setSelected] = useState<FieldComboboxSelected>([]);
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([]);
 		const options = [
 			"Sogndal",
 			"Oslo",
@@ -787,7 +785,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 		return (
 			<Field>
 				<Field.Label>Filterer på starten av ordet</Field.Label>
-				<Field.Combobox
+				<Field.Suggestion
 					data-nofilter
 					data-multiple
 					selected={selected}
@@ -801,7 +799,7 @@ export const ReactWithCombobxCustomFilter: Story = {
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
 					<del role="img" aria-label="Fjern tekst"></del>
-				</Field.Combobox>
+				</Field.Suggestion>
 			</Field>
 		);
 	},

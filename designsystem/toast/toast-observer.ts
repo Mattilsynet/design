@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { attr, on, onLoaded } from "../utils";
+import { attr, on, onHotReload } from "../utils";
 
 const CSS_TOAST = styles.toast.split(" ")[0];
 const ATTR_SORT = "data-sort";
@@ -42,7 +42,7 @@ function handleToastClick({ target, clientX: x, clientY: y }: MouseEvent) {
 	}
 }
 
-onLoaded(() => [
+onHotReload("toast", () => [
 	on(document, "animationstart", handleToastState),
 	on(document, "click", handleToastClick as EventListener),
 ]);

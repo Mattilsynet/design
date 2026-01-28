@@ -1,20 +1,18 @@
 "use client";
+import type { DSSuggestionElement } from "@digdir/designsystemet-web";
 import type { Placement } from "@floating-ui/dom";
-import type {
-	ReactUcombobox,
-	UHTMLComboboxElement,
-} from "@u-elements/u-combobox";
 import clsx from "clsx";
 import type { JSX } from "react";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { HelpText } from "../helptext/helptext";
 import { Input, type InputProps } from "../input/input";
 import type {
+	CustomReactElementProps,
 	PolymorphicComponentPropWithRef,
 	PolymorphicRef,
 } from "../react-types";
 import styles from "../styles.module.css";
-import { deprecate, toCustomElementProps } from "../utils";
+import { toCustomElementProps } from "../utils";
 import { Validation } from "../validation/validation";
 
 type FieldBaseProps = {
@@ -24,7 +22,7 @@ type FieldBaseProps = {
 	helpText?: React.ReactNode;
 	helpTextLabel?: string;
 	label?: React.ReactNode;
-	options?: string[] | FieldComboboxSelected;
+	options?: string[] | FieldSuggestionSelected;
 	prefix?: string;
 	readOnly?: boolean; // Allow readoOnly also on <select>
 	suffix?: string;
@@ -39,8 +37,8 @@ type FieldComponent = <As extends React.ElementType = "div">(
 ) => JSX.Element;
 
 const toOption = (
-	o: FieldComboboxSelected[number] | string,
-): FieldComboboxSelected[number] =>
+	o: FieldSuggestionSelected[number] | string,
+): FieldSuggestionSelected[number] =>
 	typeof o === "string" ? { label: o, value: o } : o;
 
 export const FieldComp: FieldComponent = forwardRef<null>(function Field<
@@ -65,13 +63,14 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	}: FieldProps<As>,
 	ref?: PolymorphicRef<As>,
 ) {
-	const Tag = as || "div";
+	const Tag = as || "ds-field";
 	const affixes = !!suffix || !!prefix;
 	const validation = validationContent || error; // error kept for backwards compatibility
 	const shared = {
 		"data-size": size,
 		"data-validation": dataValidation,
-		className: clsx(styles.field, className),
+		class: clsx(styles.field, className),
+		suppressHydrationWarning: true,
 		style,
 	};
 
@@ -94,7 +93,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 
 	// Using suppressHydrationWarning to avoid Next.js vs field-observer.ts hydration conflict
 	return as ? (
-		<div {...shared}>
+		<ds-field {...shared}>
 			{!!label && <FieldLabel>{label}</FieldLabel>}
 			{!!helpText && <HelpText aria-label={helpTextLabel}>{helpText}</HelpText>}
 			{!!description && <FieldDescription>{description}</FieldDescription>}
@@ -102,7 +101,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 				<FieldAffixes>
 					{!!prefix && <span>{prefix}</span>}
 					<Tag
-						className={styles.input}
+						className={typeof as === "string" ? styles.input : undefined}
 						suppressHydrationWarning
 						ref={ref}
 						{...rest}
@@ -118,10 +117,10 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 				/>
 			)}
 			{!!validation && <Validation>{validation}</Validation>}
-			{!!count && <FieldCount data-count={count} />}
-		</div>
+			{!!count && <FieldCount data-limit={count} />}
+		</ds-field>
 	) : (
-		<div ref={ref} {...shared} {...rest} />
+		<ds-field ref={ref} {...shared} {...rest} />
 	);
 }) as FieldComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
@@ -136,13 +135,21 @@ const FieldAffixes = forwardRef<HTMLDivElement, FieldAffixProps>(
 
 export type FieldDatalistProps = React.ComponentPropsWithoutRef<"datalist"> & {
 	"data-nofilter"?: boolean;
+	/**
+	 * @deprecated Use `data-placement` instead.
+	 */
 	"data-position"?: Placement;
+	"data-placement"?: Placement;
 };
 
 const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
-	function FieldDatalist({ "data-nofilter": filter, ...rest }, ref) {
+	function FieldDatalist(
+		{ "data-position": placement, "data-nofilter": filter, ...rest },
+		ref,
+	) {
 		return (
 			<u-datalist
+				data-placement={placement} // Backward compatibility
 				data-nofilter={!!filter || undefined} // Ensure data-nofilter is set correctly
 				ref={ref}
 				{...toCustomElementProps(rest)}
@@ -158,25 +165,28 @@ const FieldOption = forwardRef<HTMLOptionElement, FieldOptionProps>(
 	},
 );
 
-export type FieldComboboxSelected = {
+export type FieldComboboxSelected = FieldSuggestionSelected; // Backwards compatibility
+export type FieldComboboxProps = FieldSuggestionProps; // Backwards compatibility
+
+export type FieldSuggestionSelected = {
 	label: string;
 	value: string;
 	children?: React.ReactNode;
 }[];
-export type FieldComboboxProps = Omit<
-	ReactUcombobox,
+export type FieldSuggestionProps = Omit<
+	CustomReactElementProps<DSSuggestionElement>,
 	"onChange" | "onInput"
 > & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
-	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
+	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Backwards compatibility
 	onAfterSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
-	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // deprecated
+	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Backwards compatibility
 	onBeforeMatch?: (e: CustomEvent<HTMLOptionElement>) => void; // Custom event to handle before change
 	onBeforeSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
-	onSelectedChange?: (selected: FieldComboboxSelected) => void; // Allow onChange to be a function that returns void
-	options?: FieldComboboxSelected;
-	selected?: FieldComboboxSelected; // Allow value to be a string or an array of strings for multiple select
+	onSelectedChange?: (selected: FieldSuggestionSelected) => void; // Allow onChange to be a function that returns void
+	options?: FieldSuggestionSelected;
+	selected?: FieldSuggestionSelected; // Allow value to be a string or an array of strings for multiple select
 } & Pick<
 		InputProps,
 		| "disabled"
@@ -188,115 +198,133 @@ export type FieldComboboxProps = Omit<
 		| "type"
 		| "value"
 	> & // Allow input props to be passed down
-	Pick<FieldDatalistProps, "data-position" | "data-nofilter">; // Allow datalist props to be passed down
+	Pick<
+		FieldDatalistProps,
+		"data-position" | "data-placement" | "data-nofilter"
+	>; // Allow datalist props to be passed down
 
-const FieldCombobox = forwardRef<UHTMLComboboxElement, FieldComboboxProps>(
-	function FieldCombobox(
-		{
-			"aria-required": required,
-			"data-position": position,
-			"data-nofilter": nofilter,
-			"data-multiple": multiple,
-			onAfterChange,
-			onAfterSelect,
-			onBeforeChange,
-			onBeforeMatch,
-			onBeforeSelect,
-			onSelectedChange,
-			onInput,
-			onChange,
-			children,
-			disabled,
-			name,
-			options,
-			placeholder,
-			readOnly,
-			selected,
-			type,
-			...props
-		},
-		ref,
-	) {
-		const innerRef = useRef<UHTMLComboboxElement>(null);
-		const onSelected = useRef(onSelectedChange);
-		onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
+const FieldSuggestion = forwardRef<
+	DSSuggestionElement,
+	FieldSuggestionProps | FieldSuggestionProps
+>(function FieldSuggestion(
+	{
+		"aria-required": required,
+		"data-position": position,
+		"data-placement": placement,
+		"data-nofilter": nofilter,
+		"data-multiple": multiple,
+		onAfterChange, // Backwards compatibility
+		onAfterSelect,
+		onBeforeChange, // Backwards compatibility
+		onBeforeMatch,
+		onBeforeSelect,
+		onSelectedChange,
+		onInput,
+		onChange,
+		children,
+		disabled,
+		name,
+		options,
+		placeholder,
+		readOnly,
+		selected,
+		type,
+		...props
+	},
+	ref,
+) {
+	const innerRef = useRef<DSSuggestionElement>(null);
+	const onSelected = useRef(onSelectedChange);
+	onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
 
-		// Deprecated props
-		if (onAfterChange) {
-			onAfterSelect = onAfterChange;
-			deprecate("onAfterChange", "onAfterSelect");
-		}
-		if (onBeforeChange) {
-			onBeforeSelect = onBeforeChange;
-			deprecate("onBeforeChange", "onBeforeSelect");
-		}
+	// Deprecated props
+	if (onAfterChange) {
+		onAfterSelect = onAfterChange;
+		window.dsWarnings === false ||
+			console.warn(
+				`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onAfterChange is deprecated, please use onAfterSelect instead`,
+			);
+	}
 
-		// Using useEffect for React 18 and lower compatibility
-		useImperativeHandle(ref, () => innerRef.current as UHTMLComboboxElement); // Forward innerRef
-		useEffect(() => {
-			const self = innerRef.current;
-			const handleChange = (event: CustomEvent<HTMLDataElement>) => {
-				const handleSelected = onSelected.current;
-				if (!onSelected) return; // No onSelectedChange function provided, let u-combobox handle it
-				event.preventDefault();
-				const { isConnected: remove, textContent, value } = event.detail;
-				const label = textContent?.trim() || "";
-				const prev = selected || [];
+	if (onBeforeChange) {
+		onBeforeSelect = onBeforeChange;
+		window.dsWarnings === false ||
+			console.warn(
+				`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onBeforeChange is deprecated, please use onBeforeSelect instead`,
+			);
+	}
 
-				if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
-				else if (multiple) handleSelected?.([...prev, { value, label }]);
-				else handleSelected?.([{ value, label }]);
-			};
+	// Using useEffect for React 18 and lower compatibility
+	useImperativeHandle(ref, () => innerRef.current as DSSuggestionElement); // Forward innerRef
+	useEffect(() => {
+		const self = innerRef.current;
+		const handleChange = (event: CustomEvent<HTMLDataElement>) => {
+			const handleSelected = onSelected.current;
+			if (!onSelected) return; // No onSelectedChange function provided, let ds-suggestion handle it
+			event.preventDefault();
+			const { isConnected: remove, textContent, value } = event.detail;
+			const label = textContent?.trim() || "";
+			const prev = selected || [];
 
-			self?.addEventListener("comboboxbeforeselect", handleChange);
-			return () =>
-				self?.removeEventListener("comboboxbeforeselect", handleChange);
-		}, [multiple, selected]);
+			if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
+			else if (multiple) handleSelected?.([...prev, { value, label }]);
+			else handleSelected?.([{ value, label }]);
+		};
 
-		return (
-			<u-combobox
-				data-multiple={multiple || undefined}
-				{...toCustomElementProps({
+		self?.addEventListener("comboboxbeforeselect", handleChange);
+		return () =>
+			self?.removeEventListener("comboboxbeforeselect", handleChange);
+	}, [multiple, selected]);
+
+	return (
+		<ds-suggestion
+			data-multiple={multiple || undefined}
+			{...toCustomElementProps(
+				{
 					oncomboboxbeforeselect: onBeforeSelect,
 					oncomboboxbeforematch: onBeforeMatch,
 					oncomboboxafterselect: onAfterSelect,
 					ref: innerRef,
 					...props,
-				})}
-			>
-				{selected?.map(({ children, label, value }) => (
-					<data key={value} value={value} suppressHydrationWarning>
-						{children ?? label}
-					</data>
-				))}
-				{children || (
-					<>
-						<Input
-							aria-required={required}
-							disabled={disabled}
-							name={name}
-							onInput={onInput}
-							onChange={onChange}
-							placeholder={placeholder}
-							readOnly={readOnly}
-							type={type}
-						/>
-						<del aria-label="Fjern tekst" suppressHydrationWarning />
-					</>
-				)}
-				{!!options && (
-					<FieldDatalist data-nofilter={nofilter} data-position={position}>
-						{options.map(toOption).map(({ children, label, value }) => (
-							<FieldOption key={value} value={value} label={label}>
-								{children ?? label}
-							</FieldOption>
-						))}
-					</FieldDatalist>
-				)}
-			</u-combobox>
-		);
-	},
-);
+				},
+				styles.suggestion,
+			)}
+		>
+			{selected?.map(({ children, label, value }) => (
+				<data key={value} value={value} suppressHydrationWarning>
+					{children ?? label}
+				</data>
+			))}
+			{children || (
+				<>
+					<Input
+						aria-required={required}
+						disabled={disabled}
+						name={name}
+						onInput={onInput}
+						onChange={onChange}
+						placeholder={placeholder}
+						readOnly={readOnly}
+						type={type}
+					/>
+					<del aria-label="Fjern tekst" suppressHydrationWarning />
+				</>
+			)}
+			{!!options && (
+				<FieldDatalist
+					data-nofilter={nofilter}
+					data-placement={placement || position}
+				>
+					{options.map(toOption).map(({ children, label, value }) => (
+						<FieldOption key={value} value={value} label={label}>
+							{children ?? label}
+						</FieldOption>
+					))}
+				</FieldDatalist>
+			)}
+		</ds-suggestion>
+	);
+});
 
 export type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
 const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
@@ -310,21 +338,41 @@ const FieldDescription = forwardRef<
 	HTMLParagraphElement,
 	FieldDescriptionProps
 >(function FieldDescription(rest, ref) {
-	return <p suppressHydrationWarning ref={ref} {...rest} />;
+	return (
+		<div
+			suppressHydrationWarning
+			data-field="description"
+			ref={ref}
+			{...rest}
+		/>
+	);
 });
 
 export type FieldCountProps = React.ComponentPropsWithoutRef<"p"> & {
-	"data-count": number;
+	/**
+	 * @deprecated Use "data-limit" instead
+	 */
+	"data-count"?: number;
+	"data-limit": number;
 };
 const FieldCount = forwardRef<HTMLParagraphElement, FieldCountProps>(
-	function FieldCount(rest, ref) {
-		return <p suppressHydrationWarning ref={ref} {...rest} />;
+	function FieldCount(
+		{ "data-count": count, "data-limit": limit, ...rest },
+		ref,
+	) {
+		return (
+			<Validation data-field="counter" data-limit={count} ref={ref} {...rest} />
+		);
 	},
 );
 
 export const Field = Object.assign(FieldComp, {
 	Affixes: FieldAffixes,
-	Combobox: FieldCombobox,
+	/**
+	 * @deprecated Use Field.Suggestion instead
+	 */
+	Combobox: FieldSuggestion, // Backwards compatibility
+	Suggestion: FieldSuggestion,
 	Datalist: FieldDatalist,
 	Option: FieldOption,
 	Description: FieldDescription,

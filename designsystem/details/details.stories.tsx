@@ -16,30 +16,30 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: () => (
 		<>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			</details>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			</details>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			</details>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			</details>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details}>
-				<u-summary>Åpne/lukk</u-summary>
+			</details>
+			<details className={styles.details}>
+				<summary>Åpne/lukk</summary>
 				Innhold
-			</u-details>
+			</details>
 		</>
 	),
 };
@@ -55,37 +55,37 @@ export const React: Story = {
 
 export const DefaultOpen: Story = {
 	render: () => (
-		<u-details class={styles.details} open>
-			<u-summary>Default open</u-summary>
+		<details className={styles.details} open>
+			<summary>Default open</summary>
 			Innhold
-		</u-details>
+		</details>
 	),
 };
 
 export const VariantCard: Story = {
 	render: () => (
 		<div className={styles.grid}>
-			<u-details class={styles.details} data-variant="card">
-				<u-summary>Details with data-variant="card"</u-summary>
+			<details className={styles.details} data-variant="card">
+				<summary>Details with data-variant="card"</summary>
 				Innhold
-			</u-details>
-			<u-details class={styles.details} data-variant="card">
-				<u-summary>
+			</details>
+			<details className={styles.details} data-variant="card">
+				<summary>
 					<ShrimpIcon /> Details with data-variant="card" and icon
-				</u-summary>
+				</summary>
 				Innhold
-			</u-details>
-			<u-details
-				class={styles.details}
+			</details>
+			<details
+				className={styles.details}
 				data-variant="card"
 				data-color="neutral"
 			>
-				<u-summary>
+				<summary>
 					<ShrimpIcon /> Details with data-variant="card" and icon and
 					data-color="neutral"
-				</u-summary>
+				</summary>
 				Innhold
-			</u-details>
+			</details>
 		</div>
 	),
 };

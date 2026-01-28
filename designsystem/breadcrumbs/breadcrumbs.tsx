@@ -1,32 +1,23 @@
-import clsx from "clsx";
-import { forwardRef, type JSX } from "react";
-import type {
-	PolymorphicComponentPropWithRef,
-	PolymorphicRef,
-} from "../react-types";
+import type { DSBreadcrumbsElement } from "@digdir/designsystemet-web";
+import { forwardRef } from "react";
+import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";
+import { toCustomElementProps } from "../utils";
 
-export type BreadcrumbsProps<As extends React.ElementType = "nav"> =
-	PolymorphicComponentPropWithRef<As, { "aria-label"?: string }>;
+export type BreadcrumbsProps = CustomReactElementProps<DSBreadcrumbsElement> & {
+	/**
+	 * @deprecated `as` prop is no longer supported.
+	 */
+	as?: never; // Remove `as` prop support
+};
 
-type BreadcrumbsComponent = <As extends React.ElementType = "nav">(
-	props: BreadcrumbsProps<As>,
-) => JSX.Element;
-
-export const Breadcrumbs: BreadcrumbsComponent = forwardRef<null>(
-	function Breadcrumbs<As extends React.ElementType = "nav">(
-		{ as, className, ...rest }: BreadcrumbsProps<As>,
-		ref?: PolymorphicRef<As>,
-	) {
-		const Tag = as || "nav";
-
+export const Breadcrumbs = forwardRef<DSBreadcrumbsElement, BreadcrumbsProps>(
+	function Breadcrumbs(rest, ref) {
 		return (
-			<Tag
-				aria-label={rest["aria-label"] || "Du er her:"}
-				className={clsx(styles.breadcrumbs, className)}
+			<ds-breadcrumbs
 				ref={ref}
-				{...rest}
+				{...toCustomElementProps(rest, styles.breadcrumbs)}
 			/>
 		);
 	},
-) as BreadcrumbsComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
+);

@@ -79,14 +79,14 @@ export const WithBadge: Story = {
 				</div>
 			</div>
 			<div className={styles.badge}>
-				<div className={styles.avatar} data-size="md">
+				<a className={styles.avatar} data-size="md" href="#none">
 					<img src={avatar} alt="Navn Navnesen" />
-				</div>
+				</a>
 			</div>
 			<div className={styles.badge}>
-				<div className={styles.avatar} data-size="lg">
+				<button type="button" className={styles.avatar} data-size="lg">
 					<img src={avatar} alt="Navn Navnesen" />
-				</div>
+				</button>
 			</div>
 		</>
 	),

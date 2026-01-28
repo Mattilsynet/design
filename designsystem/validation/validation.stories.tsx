@@ -11,12 +11,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Ledetekst</label>
-			<p>Beskrivelse</p>
+			<p data-field="desciption">Beskrivelse</p>
 			<input type="text" className={styles.input} />
-			<div className={styles.validation}>Feilmelding</div>
-		</div>
+			<div className={styles.validation} data-field="validation">
+				Feilmelding
+			</div>
+		</ds-field>
 	),
 };
 
