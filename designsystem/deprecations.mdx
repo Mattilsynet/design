@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { getPkgVersion, Wide } from '../.storybook/blocks';
+import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
 import { ArrowUpRightIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
-import { Alert, Badge, Card, Details, Divider, Flex, Grid, Group, Heading, Button, Tabs, Table, Prose } from './react'
+import { Table } from './react'
 import { styles } from './';
 import colors from './assets/colors.png';
 import library from './assets/library.png';
@@ -13,7 +13,28 @@ import modes from './assets/modes.mp4?url';
 
 # <ArrowUpRightIcon /> Migrering til versjon 2
 
-> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/), men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser for alle.
+> Mattilsynets har lenge hatt rammeverk-uavhengige komponenter.
+> Nå som [Designsystemet](https://www.designsystemet.no/) også tilbyr dette,
+> kan vi migrere til å benytte deres løsninger. 
+
+<JumpTo />
+
+## Konsoll-varsler
+
+`@mattilsynet/design` gir automatisk advarser om bruk av utdaterte klasser og elementer i konsoll.
+Dersom du ønsker å skru av konsoll-varsler for eksempel i produksjon, kan du legge til følgende kode:
+
+
+```js
+if (typeof window !== 'undefined') window.dsWarnings = false; // Should be before import 
+import '@mattilsynet/design';
+```
+
+<br />
+## Endringer ikke-React
+
+Som ikke-React bruker, er det dessverre noe flere endringer, da vi kan gjøre flere migeringer under panseret automatisk på React-komponentene.
+`@mattilsynet/design` inneholder polyfills som automatisk gir deg for bakoverkompatbilitet, men du burde over tid gjøre oppdateringer uansett:
 
 <Wide>
 <Table data-size="sm">
@@ -76,9 +97,53 @@ import modes from './assets/modes.mp4?url';
       <Table.Td>➡️ `<ds-suggestion class="styles.suggestion">` Element og klasse</Table.Td>
     </Table.Tr>
     <Table.Tr>
+      <Table.Th>Details</Table.Th>
+      <Table.Td>❌ `<u-details>` Element</Table.Td>
+      <Table.Td>➡️ `<details>` Element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
       <Table.Th>Tabs</Table.Th>
       <Table.Td>❌ `<u-tab*>` Elementer</Table.Td>
       <Table.Td>➡️ `<ds-tab*>` Elementer</Table.Td>
+    </Table.Tr>
+  </Table.Tbody>
+</Table>
+</Wide>
+
+<br />
+## Endringer for React
+
+Som React bruker får du flere migeringer under panseret automatisk på React-komponentene, men noe må du oppdatere selv:
+
+<Wide>
+<Table data-size="sm">
+  <Table.Thead>
+    <Table.Tr>
+      <Table.Th>Komponent</Table.Th>
+      <Table.Th>❌ V1</Table.Th>
+      <Table.Th>✅ V2</Table.Th>
+    </Table.Tr>
+  </Table.Thead>
+  <Table.Tbody>
+    <Table.Tr>
+      <Table.Th>Counter</Table.Th>
+      <Table.Td>❌ `data-count="20"` Attributt</Table.Td>
+      <Table.Td>➡️ `data-limit="20"` Attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Breadcrumbs</Table.Th>
+      <Table.Td>❌ `as={}` Funksjonalitet</Table.Td>
+      <Table.Td>➡️ `as` er ikke støttet lengre</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Popover</Table.Th>
+      <Table.Td>❌ `data-position` Attributt</Table.Td>
+      <Table.Td>➡️ `data-placement` Ny attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Field.Combobox</Table.Th>
+      <Table.Td>❌ `<Field.Combobox>` Element</Table.Td>
+      <Table.Td>➡️ `<Field.Suggestion>` Element og klasse</Table.Td>
     </Table.Tr>
   </Table.Tbody>
 </Table>
