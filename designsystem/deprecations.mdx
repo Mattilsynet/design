@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
 import { ArrowUpRightIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
-import { Table } from './react'
+import { Alert, Table } from './react'
 import { styles } from './';
 import colors from './assets/colors.png';
 import library from './assets/library.png';
@@ -24,6 +24,7 @@ import modes from './assets/modes.mp4?url';
 `@mattilsynet/design` gir automatisk advarser om bruk av utdaterte klasser og elementer i konsoll.
 Dersom du ønsker å skru av konsoll-varsler for eksempel i produksjon, kan du legge til følgende kode:
 
+<Alert>**Merk:** Du kan få en advarsel `"Fields should only have one input element. Use <fieldset> to group multiple fields"` på Suggestion. Denne er bare å overse, og vil forsvinne ved neste versjon av Designsystemet.</Alert>
 
 ```js
 if (typeof window !== 'undefined') window.dsWarnings = false; // Should be before import 

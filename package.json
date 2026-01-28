@@ -55,8 +55,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.12",
-		"@digdir/designsystemet-css": "0.0.0-fix-designsystemet-web-20260128130007",
-		"@digdir/designsystemet-types": "0.0.0-fix-designsystemet-web-20260128130007",
+		"@digdir/designsystemet-css": "^0.0.0-fix-designsystemet-web-20260128130007",
+		"@digdir/designsystemet-types": "^0.0.0-fix-designsystemet-web-20260128130007",
 		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
@@ -86,9 +86,9 @@
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
-		"@digdir/designsystemet-web": "0.0.0-fix-designsystemet-web-20260126133306",
+		"@digdir/designsystemet-web": "^0.0.0-fix-designsystemet-web-20260128130007",
 		"@floating-ui/dom": "^1.7.4",
-		"@u-elements/u-combobox": "^1.0.6",
+		"@u-elements/u-combobox": "^1.0.7",
 		"@u-elements/u-datalist": "^1.1.0",
 		"@u-elements/u-details": "^0.2.2",
 		"@u-elements/u-progress": "^0.0.7",
