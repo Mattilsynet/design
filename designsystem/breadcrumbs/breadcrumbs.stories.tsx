@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<nav className={styles.breadcrumbs} aria-label="Du er her:">
+		<ds-breadcrumbs className={styles.breadcrumbs} aria-label="Du er her:">
 			<a href="#none" aria-label="Tilbake til Nivå 3">
 				Nivå 3
 			</a>
@@ -36,13 +36,13 @@ export const Default: Story = {
 					<a href="#none">Nivå 4</a>
 				</li>
 			</ol>
-		</nav>
+		</ds-breadcrumbs>
 	),
 };
 
 export const React: Story = {
 	render: () => (
-		<Breadcrumbs>
+		<Breadcrumbs aria-label="Du er her:">
 			<a href="#none" aria-label="Tilbake til Nivå 3">
 				Nivå 3
 			</a>
@@ -68,14 +68,14 @@ export const WithBackbutton: Story = {
 	render: () => (
 		<>
 			Tilbakeknapp på både mobil og desktop:
-			<nav className={styles.breadcrumbs} aria-label="Du er her:">
+			<ds-breadcrumbs className={styles.breadcrumbs} aria-label="Du er her:">
 				<a href="#none" aria-label="Tilbake til Nivå 3">
 					Nivå 3
 				</a>
-			</nav>
+			</ds-breadcrumbs>
 			<br />
 			Tilbakeknapp på kun mobil:
-			<nav className={styles.breadcrumbs} aria-label="Du er her:">
+			<ds-breadcrumbs className={styles.breadcrumbs} aria-label="Du er her:">
 				<a href="#none" aria-label="Tilbake til Nivå 3">
 					Nivå 3
 				</a>
@@ -93,10 +93,10 @@ export const WithBackbutton: Story = {
 						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
-			</nav>
+			</ds-breadcrumbs>
 			<br />
 			Ingen tilbakeknapp:
-			<nav className={styles.breadcrumbs} aria-label="Du er her:">
+			<ds-breadcrumbs className={styles.breadcrumbs} aria-label="Du er her:">
 				<ol>
 					<li>
 						<a href="#none">Nivå 1</a>
@@ -113,7 +113,7 @@ export const WithBackbutton: Story = {
 						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
-			</nav>
+			</ds-breadcrumbs>
 		</>
 	),
 };
@@ -121,11 +121,7 @@ export const WithBackbutton: Story = {
 export const Sizes: Story = {
 	render: () => (
 		<>
-			<nav
-				className={styles.breadcrumbs}
-				aria-label="Du er her:"
-				data-size="sm"
-			>
+			<ds-breadcrumbs className={styles.breadcrumbs} data-size="sm">
 				<a href="#none" aria-label="Tilbake til Nivå 3">
 					Nivå 3
 				</a>
@@ -143,28 +139,20 @@ export const Sizes: Story = {
 						<a href="#none">Nivå 4</a>
 					</li>
 				</ol>
-			</nav>
+			</ds-breadcrumbs>
 		</>
 	),
 };
 
 export const WithoutLinks: Story = {
 	render: () => (
-		<section className={styles.breadcrumbs} aria-label="Sidens plassering:">
+		<ds-breadcrumbs className={styles.breadcrumbs} aria-label="Du er her:">
 			<ol>
-				<li>
-					<span>Nivå 1</span>
-				</li>
-				<li>
-					<span>Nivå 2</span>
-				</li>
-				<li>
-					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
-				</li>
-				<li>
-					<span>Nivå 4</span>
-				</li>
+				<li>Nivå 1</li>
+				<li>Nivå 2</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+				<li>Nivå 4</li>
 			</ol>
-		</section>
+		</ds-breadcrumbs>
 	),
 };

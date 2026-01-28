@@ -1,8 +1,4 @@
 @layer mt.design {
-	:root {
-		--mtds-tooltip-position: top;
-	}
-
 	/* Ensure :hover, even when disabled */
 	[data-tooltip]:disabled,
 	[data-tooltip][aria-disabled="true"] {
@@ -16,41 +12,19 @@
 	}
 
 	._tooltip {
-		--margin: 5px;
+		composes: ds-tooltip from "@digdir/designsystemet-css";
+		--dsc-tooltip-background: var(--ds-color-base-active);
 		-webkit-font-smoothing: subpixel-antialiased;
-		background-clip: padding-box; /* Enable using transparent border as "margin", to allow mouse to enter tooltip */
-		background-color: var(--ds-color-base-active);
-		/* Add margin to allow transparent background-clip  */
-		border-radius: calc(var(--ds-border-radius-md) + var(--margin));
-		border: var(--margin) solid transparent;
-		color: var(--ds-color-base-contrast-default);
-		display: block;
 		font-size: var(--ds-body-xs-font-size);
-		inset: auto;
-		line-height: var(--ds-line-height-sm);
-		max-width: 25em;
-		opacity: 0;
-		padding: var(--ds-size-1) var(--ds-size-2);
-		position: fixed;
-		scale: 0.9;
-		transition-duration: 0.15s;
-		transition-property: opacity, visibility, scale;
-		view-transition-name: mtds-tooltip;
-		visibility: hidden;
-		z-index: 99999;
 	}
+
 	/* Used by charts */
 	._tooltip:not([popover]) {
 		pointer-events: none;
 		position: fixed;
-		top: var(--ds-size-1);
-		left: var(--ds-size-1);
-		scale: 1;
-	}
-	._tooltip:not([popover]):not([hidden]),
-	._tooltip:popover-open {
-		opacity: 1;
-		scale: 1;
-		visibility: visible;
+		top: 0;
+		left: 0;
+		z-index: 99999;
+		translate: -50% calc(-100% - var(--dsc-tooltip-arrow-size));
 	}
 }

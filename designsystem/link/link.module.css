@@ -1,51 +1,9 @@
 /* Using ds.base as layer to allow mt.ds layer to overwrite <a> styling */
-@layer ds.base {
-	a,
-	.link {
-		--mtdsc-link-text-decoration-thickness--hover: 0.125em;
-		--mtdsc-link-text-decoration-thickness: 0.0625em; /* 1px ish */
-		--mtdsc-link-text-decoration-offset: 0.27em; /* 5px ish */
-
-		/* In case used on <button> */
-		background: none;
-		border: 0;
-		color: inherit;
-		cursor: pointer;
-		font-family: inherit;
-		font-weight: inherit;
-		line-height: inherit;
-		margin: 0;
-		outline-offset: 2px;
-		outline: 2px none currentcolor;
-		padding: 0;
-		text-decoration: underline;
-		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness);
-		text-underline-offset: var(--mtdsc-link-text-decoration-offset);
-
-		&:where(:not([hidden])) {
-			display: inline;
-		}
-
-		&:not([data-size]) {
-			font-size: inherit; /* Needed if <button> */
-		}
-
-		&:hover {
-			text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness--hover); /* 2px ish */
-		}
-
-		&:focus-visible {
-			outline-style: solid;
-		}
+@layer ds.components {
+	a, .link{
+		--dsc-link-color: currentcolor;
 	}
-}
-
-@layer mt.design {
-	/* Using where to let .button overwrite */
-	:where(a, .link) > svg {
-		display: inline-block; /* Fix Tailwind default */
-		vertical-align: middle; /* Align img or svg icon with text */
-		height: var(--mtds-icon-size-sm);
-		width: var(--mtds-icon-size-sm);
+	.link {
+		composes: ds-link from "@digdir/designsystemet-css";
 	}
 }

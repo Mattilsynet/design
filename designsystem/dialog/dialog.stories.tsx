@@ -296,15 +296,15 @@ export const VariantDrawerWithoutBackdrop: Story = {
 							<Heading>
 								<FunnelIcon /> Filtrer
 							</Heading>
-							<Field as={Field.Combobox} label="Filter 1" options={options} />
-							<Field as={Field.Combobox} label="Filter 2" options={options} />
-							<Field as={Field.Combobox} label="Filter 3" options={options} />
-							<Field as={Field.Combobox} label="Filter 4" options={options} />
-							<Field as={Field.Combobox} label="Filter 5" options={options} />
-							<Field as={Field.Combobox} label="Filter 6" options={options} />
-							<Field as={Field.Combobox} label="Filter 7" options={options} />
-							<Field as={Field.Combobox} label="Filter 8" options={options} />
-							<Field as={Field.Combobox} label="Filter 9" options={options} />
+							<Field as={Field.Suggestion} label="Filter 1" options={options} />
+							<Field as={Field.Suggestion} label="Filter 2" options={options} />
+							<Field as={Field.Suggestion} label="Filter 3" options={options} />
+							<Field as={Field.Suggestion} label="Filter 4" options={options} />
+							<Field as={Field.Suggestion} label="Filter 5" options={options} />
+							<Field as={Field.Suggestion} label="Filter 6" options={options} />
+							<Field as={Field.Suggestion} label="Filter 7" options={options} />
+							<Field as={Field.Suggestion} label="Filter 8" options={options} />
+							<Field as={Field.Suggestion} label="Filter 9" options={options} />
 						</Prose>
 					</form>
 					<Flex as="footer">

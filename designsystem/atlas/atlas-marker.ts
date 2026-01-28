@@ -29,7 +29,7 @@ export class MTDSAtlasMarkerElement extends MTDSElement {
 			this.marker.bindPopup(() => `#${attr(this, "popovertarget")}`);
 			this.marker.on("dragend", this.#handleDragEnd);
 
-			on(this, "click,keydown", this); // Listen for clicks to toggle popup
+			on(this, "click keydown", this); // Listen for clicks to toggle popup
 			attr(this, "slot", `${SLOT}`); // Link slot to marker icon
 			attr(this, "role", "button");
 			attr(this, "tabindex", "0");
@@ -50,7 +50,7 @@ export class MTDSAtlasMarkerElement extends MTDSElement {
 			cluster[this.hidden ? "removeLayer" : "addLayer"](mark);
 	}
 	disconnectedCallback() {
-		off(this, "click,keydown", this);
+		off(this, "click keydown", this);
 		this.marker?.unbindPopup().off("dragend", this.#handleDragEnd).remove();
 		this.marker = this.atlas = undefined;
 	}

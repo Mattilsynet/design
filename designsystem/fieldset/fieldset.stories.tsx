@@ -41,8 +41,8 @@ export const Radios: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hva foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
-			<div className={styles.field}>
+			<p data-field="description">Fellesbeskrivelse</p>
+			<ds-field className={styles.field}>
 				<input
 					type="radio"
 					className={styles.input}
@@ -51,13 +51,13 @@ export const Radios: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
-				<p>Beskrivelse</p>
-			</div>
-			<div className={styles.field}>
+				<p data-field="description">Beskrivelse</p>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<input type="radio" className={styles.input} name="my-radio" required />
 				<label>Alternativ 2</label>
-				<p>Beskrivelse</p>
-			</div>
+				<p data-field="description">Beskrivelse</p>
+			</ds-field>
 		</fieldset>
 	),
 };
@@ -69,8 +69,8 @@ export const Checkboxes: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
-			<div className={styles.field}>
+			<p data-field="description">Fellesbeskrivelse</p>
+			<ds-field className={styles.field}>
 				<input
 					type="checkbox"
 					className={styles.input}
@@ -78,11 +78,11 @@ export const Checkboxes: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<input type="checkbox" className={styles.input} name="my-check" />
 				<label>Alternativ 2</label>
-			</div>
+			</ds-field>
 		</fieldset>
 	),
 };
@@ -91,8 +91,8 @@ export const Disabled: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset} disabled>
 			<legend>Hvilke foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
-			<div className={styles.field}>
+			<p data-field="description">Fellesbeskrivelse</p>
+			<ds-field className={styles.field}>
 				<input
 					type="checkbox"
 					className={styles.input}
@@ -100,11 +100,11 @@ export const Disabled: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<input type="checkbox" className={styles.input} name="my-check" />
 				<label>Alternativ 2</label>
-			</div>
+			</ds-field>
 		</fieldset>
 	),
 };
@@ -113,8 +113,8 @@ export const ReadOnly: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
-			<div className={styles.field}>
+			<p data-field="description">Fellesbeskrivelse</p>
+			<ds-field className={styles.field}>
 				<input
 					type="checkbox"
 					className={styles.input}
@@ -124,8 +124,8 @@ export const ReadOnly: Story = {
 					disabled
 				/>
 				<label>Alternativ 1</label>
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<input
 					type="checkbox"
 					className={styles.input}
@@ -134,7 +134,7 @@ export const ReadOnly: Story = {
 					disabled
 				/>
 				<label>Alternativ 2</label>
-			</div>
+			</ds-field>
 		</fieldset>
 	),
 };
@@ -143,9 +143,9 @@ export const Horizontal: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
+			<p data-field="description">Fellesbeskrivelse</p>
 			<div className={styles.flex} data-gap="9">
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<input
 						type="checkbox"
 						className={styles.input}
@@ -153,11 +153,11 @@ export const Horizontal: Story = {
 						defaultChecked
 					/>
 					<label>Alternativ 1</label>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<input type="checkbox" className={styles.input} name="my-check" />
 					<label>Alternativ 2</label>
-				</div>
+				</ds-field>
 			</div>
 		</fieldset>
 	),
@@ -170,8 +170,8 @@ export const WithValidation: Story = {
 	render: () => (
 		<fieldset className={styles.fieldset}>
 			<legend>Hvilke foretrekker du?</legend>
-			<p>Fellesbeskrivelse</p>
-			<div className={styles.field}>
+			<p data-field="description">Fellesbeskrivelse</p>
+			<ds-field className={styles.field}>
 				<input
 					type="checkbox"
 					className={styles.input}
@@ -179,13 +179,15 @@ export const WithValidation: Story = {
 					defaultChecked
 				/>
 				<label>Alternativ 1</label>
-				<p>Beskrivelse</p>
-			</div>
-			<div className={styles.field}>
+				<p data-field="description">Beskrivelse</p>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<input type="checkbox" className={styles.input} name="my-check" />
 				<label>Alternativ 2</label>
+			</ds-field>
+			<div className={styles.validation} data-field="validation">
+				Feilmelding
 			</div>
-			<div className={styles.validation}>Feilmelding</div>
 		</fieldset>
 	),
 };
@@ -198,7 +200,7 @@ export const WithValidationForm: Story = {
 		<form action="#" className={styles.prose} data-validation="form">
 			<fieldset className={styles.fieldset}>
 				<legend>Hvilke foretrekker du?</legend>
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<input
 						type="checkbox"
 						className={styles.input}
@@ -206,8 +208,8 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Checkbox 1</label>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<input
 						type="checkbox"
 						className={styles.input}
@@ -215,14 +217,14 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Checkbox 2</label>
-				</div>
-				<div className={styles.validation} hidden>
+				</ds-field>
+				<div className={styles.validation} data-field="validation" hidden>
 					Feilmelding
 				</div>
 			</fieldset>
 			<fieldset className={styles.fieldset}>
 				<legend>Hvilke foretrekker du?</legend>
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<input
 						type="radio"
 						className={styles.input}
@@ -230,11 +232,11 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Radio 1</label>
-					<div className={styles.validation} hidden>
+					<div className={styles.validation} data-field="validation" hidden>
 						Feilmelding 1
 					</div>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<input
 						type="radio"
 						className={styles.input}
@@ -242,11 +244,11 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Radio 2</label>
-					<div className={styles.validation} hidden>
+					<div className={styles.validation} data-field="validation" hidden>
 						Feilmelding 2
 					</div>
-				</div>
-				<div className={styles.validation} hidden>
+				</ds-field>
+				<div className={styles.validation} data-field="validation" hidden>
 					Feilmelding
 				</div>
 			</fieldset>
@@ -266,7 +268,7 @@ export const WithTexts: Story = {
 		<fieldset className={styles.fieldset}>
 			<legend>Hva heter du?</legend>
 			<div className={styles.grid} data-items="200" data-fixed>
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<input
 						aria-label="Fornavn"
 						placeholder="Fornavn"
@@ -274,8 +276,8 @@ export const WithTexts: Story = {
 						name="fornavn"
 						type="text"
 					/>
-				</div>
-				<div className={styles.field}>
+				</ds-field>
+				<ds-field className={styles.field}>
 					<input
 						aria-label="Etternavn"
 						placeholder="Etternavn"
@@ -283,7 +285,7 @@ export const WithTexts: Story = {
 						name="etternavn"
 						type="text"
 					/>
-				</div>
+				</ds-field>
 			</div>
 		</fieldset>
 	),

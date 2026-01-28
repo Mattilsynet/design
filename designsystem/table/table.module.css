@@ -23,13 +23,13 @@
 		table-layout: fixed;
 	}
 	.table > :is(thead, tbody, tfoot) {
-		vertical-align: inherit;
+		vertical-align: inherit; /* TODO Digdir */
 	}
 	.table[data-align="center"] {
 		vertical-align: middle;
 	}
 	.table th {
-		font-weight: 500;
+		font-weight: var(--ds-font-weight-medium);
 	}
 
 	/**
@@ -216,7 +216,7 @@
 	 */
 	figure > .table {
 		box-sizing: border-box;
-		width: auto;
+		width: max-content;
 		min-width: 100%;
 	}
 	figure:has(> .table) {

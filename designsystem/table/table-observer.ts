@@ -1,12 +1,8 @@
-import styles from "../styles.module.css";
-import { attr, isBrowser, on, onLoaded, onMutation } from "../utils";
+import { attr, debounce, isBrowser, onHotReload, onMutation } from "../utils";
 
-const CSS_TABLE = styles.table.split(" ")[0];
-const INTERACTIVE = 'a,button,label,input,select,textarea,[role="button"]';
-const TABLES = isBrowser() ? document.getElementsByClassName(CSS_TABLE) : [];
-
-function handleTableMutation() {
-	for (const table of TABLES as HTMLCollectionOf<HTMLTableElement>) {
+const TABLES = isBrowser() ? document.getElementsByTagName("table") : [];
+const handleTableMobile = () => {
+	for (const table of TABLES) {
 		const ths = Array.from(table.tHead?.rows[0]?.cells || [], (th) =>
 			th.innerText.trim(),
 		);
@@ -16,63 +12,13 @@ function handleTableMutation() {
 				for (const cell of row.cells)
 					attr(cell, "data-th", ths[cell.cellIndex] || ":empty");
 	}
-}
-
-function handleTableClick({ target: el }: Event) {
-	if (!(el instanceof Element)) return;
-	const row = el.closest("tr");
-	const action = row?.querySelector<HTMLInputElement>('[data-command="row"]');
-	if (action && !el.closest(INTERACTIVE)) action.click?.(); // Forward click to data-command="row" element
-}
-
-onLoaded(() => [
-	on(document, "click", handleTableClick),
-	onMutation(handleTableMutation, "data-mobile"),
-]);
-
-// Adding support for click deletagtion, following
-// https://open-ui.org/components/link-area-delegation-explainer/
-// and https://github.com/openui/open-ui/issues/1104#issuecomment-3151387080
-const ATTR_CLICKDELEGATEFOR = "data-clickdelegatefor";
-const CSS_CLICKDELEGATEFOR = `[${ATTR_CLICKDELEGATEFOR}]`;
-const SKIP =
-	'a,button,label,input,select,textarea,dialog,[role="button"],[popover],[contenteditable]';
-
-export const handleClickDelegateFor = (event: MouseEvent) => {
-	const isNewTab = event.button === 1 || event.metaKey || event.ctrlKey;
-	const isUserLeftOrMiddleClick = event.isTrusted && event.button < 2;
-	const delegateTarget = isUserLeftOrMiddleClick && getDelegateTarget(event);
-
-	if (delegateTarget instanceof HTMLAnchorElement && isNewTab)
-		window.open(delegateTarget.href, undefined, delegateTarget.rel); // If middle click or cmd/ctrl click on link, open in new tab
-	else if (
-		delegateTarget instanceof HTMLElement &&
-		!delegateTarget.contains(event.target as Node) // Only proxy event if delegated target isn't the original target
-	) {
-		event.stopImmediatePropagation(); // We'll trigger a new click event anyway, so prevent actions on this one
-		delegateTarget.click(); // Forward click to the clickable element
-	}
 };
 
-let HOVER: Element | undefined;
-const handleDelegateMouseOver = (event: Event) => {
-	const delegateTarget = getDelegateTarget(event);
-	if (HOVER === delegateTarget) return; // No change
-	if (HOVER) HOVER.classList.remove(":click-delegate-hover");
-	if (delegateTarget) delegateTarget.classList.add(":click-delegate-hover");
-	HOVER = delegateTarget;
-};
-
-const getDelegateTarget = ({ target: el }: Event) => {
-	const scope = el instanceof Element ? el.closest(CSS_CLICKDELEGATEFOR) : null;
-	const id = scope?.getAttribute(ATTR_CLICKDELEGATEFOR);
-	const target = document.getElementById(id || "");
-	const skip = target && (el as Element).closest(SKIP); // Ignore if interactive
-
-	return ((!skip || skip === target) && target) || undefined;
-};
-
-onLoaded(() => [
-	on(window, "click,auxclick", handleClickDelegateFor as EventListener, true), // Use capture to ensure we run before other click listeners
-	on(document, "mouseover", handleDelegateMouseOver, { passive: true }), // Use passive for better performance
+onHotReload("table", () => [
+	onMutation(document, debounce(handleTableMobile, 200), {
+		attributeFilter: ["data-mobile"],
+		attributes: true,
+		childList: true,
+		subtree: true,
+	}),
 ]);

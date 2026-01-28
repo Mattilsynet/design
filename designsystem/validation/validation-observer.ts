@@ -1,56 +1,64 @@
 import styles from "../styles.module.css";
-import { attr, debounce, on, onLoaded, QUICK_EVENT } from "../utils";
+import {
+	attr,
+	debounce,
+	on,
+	onHotReload,
+	onMutation,
+	QUICK_EVENT,
+} from "../utils";
 
-const CSS_INPUTS = '[data-validation="form"] :is(input,textarea,select)';
-const CSS_VALIDATION = `:scope > .${styles.validation.split(" ")[0]}`;
 const CSS_FIELD = `.${styles.field.split(" ")[0]}`;
+const CSS_INPUTS = ":is(input,textarea,select)" as "input";
+const CSS_SUGGESTION = "ds-suggestion,u-combobox" as "ds-suggestion"; // u-combobox kept for backward compatibility
+const CSS_VALIDATION = styles.validation.split(" ")[0];
+const CSS_FORM = `[data-validation="form"]`;
 
-// Need to run both on invalid and submit to both invalid and valid form submits
-function handleValidationForm(event: Event) {
-	const form = (event.target as Element).closest?.("form");
-	if (!form) return; // Only handle if inside form validation container
-	if (event.type === "invalid") {
-		event.preventDefault(); // Prevent browsers from showing default validation bubbles
-		handleValidationDebounced(form);
-	}
-	if (event.type === "submit" && handleValidation(form)) event.preventDefault(); // Prevent actual form submit
-}
+const handleValidations = (event?: Event) => {
+	const isTyping = event?.type === "input";
+	const isChecking = !isTyping && event;
 
-const handleValidationDebounced = debounce(handleValidation, 10); // Used to group all invalid events
-function handleValidation(form: HTMLFormElement, focus = true) {
-	let firstInvalid: HTMLInputElement | null = null;
-	for (const input of form.querySelectorAll<HTMLInputElement>(CSS_INPUTS)) {
-		if (!input.clientHeight) continue; // Skip hidden inputs
-		const group = input.closest("fieldset") || input.closest(CSS_FIELD) || form;
-		const combobox = input.closest("u-combobox");
-		const valid = combobox
-			? input?.getAttribute("aria-required") === "true" &&
-				!!combobox?.items.length
-			: input.validity.valid;
+	for (const form of document.forms)
+		if (form.getAttribute("data-validation") === "form") {
+			let firstInvalid: HTMLInputElement | undefined;
+			for (const input of form.querySelectorAll(CSS_INPUTS)) {
+				if (!input.clientHeight) continue; // Skip hidden inputs
+				const scope =
+					input.closest("fieldset") || input.closest(CSS_FIELD) || form;
+				const suggestion = input.closest(CSS_SUGGESTION);
+				const isValid = suggestion
+					? attr(input, "aria-required") === "true" &&
+						!!suggestion?.items.length
+					: input.validity.valid;
 
-		if (!firstInvalid && !valid) firstInvalid = input;
-		for (const input of group.querySelectorAll(CSS_INPUTS))
-			attr(input, "aria-invalid", `${!valid}`);
-		for (const validation of group.querySelectorAll(CSS_VALIDATION)) {
-			attr(validation, "data-validation", valid ? "valid" : "invalid");
-			attr(validation, "hidden", valid ? "" : null);
+				if (!firstInvalid && !isValid) firstInvalid = input;
+				if (!isTyping || event.target === input)
+					for (const el of scope.getElementsByClassName(CSS_VALIDATION)) {
+						const isNested =
+							scope.nodeName === "FIELDSET" && el.parentElement !== scope;
+						attr(el, "hidden", isNested || !isChecking || isValid ? "" : null);
+					}
+			}
+			if (firstInvalid && isChecking && form.contains(event?.target as Node)) {
+				event.preventDefault(); // Prevent submit if focusable invalid element found
+				firstInvalid.focus(); // Only move focus to first invalid field if validate was true
+			}
 		}
-	}
-	if (focus) firstInvalid?.focus(); // Only move focus to first invalid field if validate was true
-	return firstInvalid;
-}
+};
 
-function handleInput({ target }: Event) {
-	const input = target instanceof HTMLElement ? target : null;
-	const form =
-		input?.getAttribute("aria-invalid") === "true" &&
-		input?.matches?.(CSS_INPUTS) &&
-		input?.closest?.("form");
+const handleInvalid = (e: Event) =>
+	(e.target as Element)?.closest?.(CSS_FORM) && e?.preventDefault(); // Prevent default browser invalid popup
 
-	if (form) handleValidationDebounced(form, false);
-}
-
-onLoaded(() => [
-	on(document, "invalid,submit", handleValidationForm, true), // Use capture as invalid and submit does not bubble
-	on(document, "input", handleInput, QUICK_EVENT),
+onHotReload("validations", () => [
+	on(document, "submit", handleValidations, true), // Use capture as submit does not bubble
+	on(document, "invalid", handleInvalid, true), // Use capture as invalid does not bubble
+	on(document, "invalid input", debounce(handleValidations, 10), QUICK_EVENT), // Debounced to group invalid events
+	onMutation(
+		document,
+		debounce(() => handleValidations(), 10),
+		{
+			childList: true,
+			subtree: true,
+		},
+	),
 ]);

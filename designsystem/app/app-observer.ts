@@ -1,12 +1,17 @@
 import styles from "../styles.module.css";
-import { debounce, isBrowser, on, onLoaded, QUICK_EVENT } from "../utils";
+import {
+	debounce,
+	getByCSSModule,
+	on,
+	onHotReload,
+	QUICK_EVENT,
+} from "../utils";
 import "./app-toggle";
 
 const CSS_APP = styles.app.split(" ")[0];
-const CSS_STICKY = styles.sticky.split(" ")[0];
 const CSS_TOGGLE = `[data-command="toggle-app-expanded"],.${CSS_APP} > [command="show-modal"]`;
 const CSS_SIDEBAR = `.${CSS_APP} > dialog,.${CSS_APP} dialog ~ main`;
-const STICKIES = isBrowser() ? document.getElementsByClassName(CSS_STICKY) : [];
+const STICKIES = getByCSSModule("sticky");
 
 const useTransition = (callback: () => void) => {
 	if (!document.startViewTransition) callback();
@@ -88,7 +93,7 @@ function handleAppScroll() {
 	}
 }
 
-onLoaded(() => [
+onHotReload("app", () => [
 	on(document, "click", handleAppToggleClick, true), // Use capture to run before other click handlers
 	on(window, "resize", debounce(closeSidebar, 100), QUICK_EVENT),
 	on(window, "scroll", handleAppScroll, QUICK_EVENT),

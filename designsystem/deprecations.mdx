@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getPkgVersion, Wide } from '../.storybook/blocks';
+import { ArrowUpRightIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { Alert, Badge, Card, Details, Divider, Flex, Grid, Group, Heading, Button, Tabs, Table, Prose } from './react'
+import { styles } from './';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
+
+<Meta title="Designsystem/Migrering" />
+
+# <ArrowUpRightIcon /> Migrering til versjon 2
+
+> Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsystemet.no/), men utvider med egenart, visuelle identitet og interne behov. Designsystemet fungerer som et felles språk mellom team og fagfelt, slik at vi lettere kan skape gode og gjenkjennbare brukeropplevelser for alle.
+
+<Wide>
+<Table data-size="sm">
+  <Table.Thead>
+    <Table.Tr>
+      <Table.Th>Komponent</Table.Th>
+      <Table.Th>❌ V1</Table.Th>
+      <Table.Th>✅ V2</Table.Th>
+    </Table.Tr>
+  </Table.Thead>
+  <Table.Tbody>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Td>❌ `class="styles.field"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-field class="styles.field">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Field Description</Table.Th>
+      <Table.Td>❌ `<p>` Kun element</Table.Td>
+      <Table.Td>➡️ `<p data-field="description">` Attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Validation</Table.Th>
+      <Table.Td>❌ `class="styles.validation"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `class="styles.validation" data-field="description"` Klasse og attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Counter</Table.Th>
+      <Table.Td>❌ `data-count="20"` Kun attributt</Table.Td>
+      <Table.Td>➡️ `class="styles.validation" data-field="counter" data-limit="20"` Klasse og attributter</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Breadcrumbs</Table.Th>
+      <Table.Td>❌ `class="styles.breadcrumbs"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-breadcrumbs class="styles.breadcrumbs">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Errorsummary</Table.Th>
+      <Table.Td>❌ `class="styles.errorsummary"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-error-summary class="styles.errorsummary">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Pagination</Table.Th>
+      <Table.Td>❌ `class="styles.pagination"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-pagination class="styles.pagination">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Popover</Table.Th>
+      <Table.Td>❌ `data-position` Attributt</Table.Td>
+      <Table.Td>➡️ `data-placement` Ny attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Togglegroup</Table.Th>
+      <Table.Td>❌ `class="styles.togglegroup"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `class="styles.togglegroup" data-toggle-group="LABEL"` Klasse og attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Combobox / Suggestion</Table.Th>
+      <Table.Td>❌ `<u-combobox>` Element</Table.Td>
+      <Table.Td>➡️ `<ds-suggestion class="styles.suggestion">` Element og klasse</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Tabs</Table.Th>
+      <Table.Td>❌ `<u-tab*>` Elementer</Table.Td>
+      <Table.Td>➡️ `<ds-tab*>` Elementer</Table.Td>
+    </Table.Tr>
+  </Table.Tbody>
+</Table>
+</Wide>

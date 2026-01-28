@@ -1,23 +1,27 @@
+import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
-import { toCustomElementProps } from "../utils";
 
 export type DetailsProps = React.ComponentPropsWithoutRef<"details"> & {
 	"data-align"?: "start" | "center";
 	"data-variant"?: "default" | "card";
 };
 const DetailsComp = forwardRef<HTMLDetailsElement, DetailsProps>(
-	function Details(props, ref) {
+	function Details({ className, ...rest }, ref) {
 		return (
-			<u-details ref={ref} {...toCustomElementProps(props, styles.details)} />
+			<details
+				ref={ref}
+				className={clsx(styles.details, className)}
+				{...rest}
+			/>
 		);
 	},
 );
 
 export type SummaryProps = React.ComponentPropsWithoutRef<"summary">;
 const DetailsSummary = forwardRef<HTMLElement, SummaryProps>(
-	function DetailsSummary(props, ref) {
-		return <u-summary ref={ref} {...toCustomElementProps(props)} />;
+	function DetailsSummary(rest, ref) {
+		return <summary ref={ref} suppressHydrationWarning {...rest} />;
 	},
 );
 
