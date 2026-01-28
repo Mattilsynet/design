@@ -27,6 +27,7 @@ const TOGGLEGROUPS = getByCSSModule("togglegroup");
 const deprecateToggleGroup = () => {
 	for (const el of TOGGLEGROUPS)
 		if (deprecate(el) && !el.hasAttribute("data-toggle-group")) {
+			attr(el, "data-toggle-group", "Valgknapper");
 			warn(
 				'Only setting class="styles.togglegroup"',
 				'data-toggle-group="LABEL-HERE" attribute also for better accessibility',
@@ -188,16 +189,12 @@ const deprecateField = () => {
 					el,
 				);
 			if (!FIELD_UNBIND.has(el) && FIELD_UNBIND.add(el)) {
-				// @ts-expect-error Polyfill for DSFieldElement methods
-				el.handleEvent = DSFieldElement.prototype.handleEvent?.bind(this);
 				DSFieldElement.prototype.connectedCallback.call(el as DSFieldElement);
 			}
 		}
 };
 const unbindFields = () => {
 	for (const el of FIELD_UNBIND) {
-		// @ts-expect-error Polyfill for DSFieldElement methods
-		el.handleEvent = undefined;
 		DSFieldElement.prototype.disconnectedCallback.call(el as DSFieldElement);
 		FIELD_UNBIND.delete(el);
 	}

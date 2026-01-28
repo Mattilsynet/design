@@ -55,8 +55,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.12",
-		"@digdir/designsystemet-css": "0.0.0-fix-designsystemet-web-20260126133306",
-		"@digdir/designsystemet-types": "0.0.0-fix-designsystemet-web-20260126133306",
+		"@digdir/designsystemet-css": "0.0.0-fix-designsystemet-web-20260128130007",
+		"@digdir/designsystemet-types": "0.0.0-fix-designsystemet-web-20260128130007",
 		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
