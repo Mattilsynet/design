@@ -132,7 +132,7 @@ export default {
 						const sameDomain = link && link.hostname === location.hostname;
 						const samePage = sameDomain && link.pathname === location.pathname;
 
-						if (heading && heading.id) {
+						if (!!heading && heading.id) {
 							const anchor = `${topUrl.split("#")[0]}#${heading.id}`;
 							navigator.clipboard.writeText(anchor);
 						}
