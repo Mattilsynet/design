@@ -61,6 +61,7 @@ export const WithPreviewImage: Story = {
 					},
 				]);
 			if (file) reader.readAsDataURL(file);
+			event.target.value = ""; // Reset file input value to allow re-uploading the same file
 		};
 
 		const handleRemove = (index: number) =>
@@ -87,7 +88,7 @@ export const WithPreviewImage: Story = {
 				</Fileupload>
 				<Grid data-items="300" data-fixed>
 					{images.map((file, index) => (
-						<Card as={Grid} key={file.title}>
+						<Card as={Grid} key={`${file.title}-${index}`}>
 							<img alt="" width="100%" src={file.src} />
 							<Flex data-align="center" data-nowrap>
 								<strong>{file.title}</strong>

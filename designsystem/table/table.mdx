@@ -45,7 +45,7 @@ import styles from '../styles.module.css';
 
 ## Sortering
 - Bruk `<th aria-sort="none | ascending | descending | other">`
-- Bruk `<button type="button">`eller `<a>` i `<th>` for client/server sorting
+- Bruk `<button type="button">` i `<th>` for sorting
 - Bruk [TanStack Table](https://tanstack.com/table/latest) eller annen valgfri kode for å utføre sorteringen
 - **React?** Bruk `<Table.ThSortable aria-sort={} onClick={}>` for automisk knapp og støtte for flere verdier i `aria-sort` : `"acending" | "asc" | "desc" | "descending" | "down" | "false" | "none" | "up" | false | null`. Dersom **onClick er undefined**, vil en vanlig `<th>` uten sortering rendres.
 - Se også [låste bredder](#laste-bredder)

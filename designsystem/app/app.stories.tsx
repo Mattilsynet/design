@@ -403,82 +403,82 @@ export const WithComplexContent: Story = {
 							<hr className={styles.divider} />
 							<fieldset className={styles.fieldset}>
 								<legend>Velg type iskrem</legend>
-								<div className={styles.field}>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Sjokolade</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kokkos</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Jordbær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Pistasj</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Banan</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Sitron</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Hasselnøtt</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Vanilje</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Karamell</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Bringebær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Mango</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Krokan</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kaffe</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Lakris</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Appelsin</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kirsebær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Pære</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kanel</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Mint</label>
-								</div>
+								</ds-field>
 							</fieldset>
 						</form>
 					</div>
@@ -724,82 +724,82 @@ export const WithMobileBar: Story = {
 							<hr className={styles.divider} />
 							<fieldset className={styles.fieldset}>
 								<legend>Velg type iskrem</legend>
-								<div className={styles.field}>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Sjokolade</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kokkos</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Jordbær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Pistasj</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Banan</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Sitron</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Hasselnøtt</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Vanilje</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Karamell</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Bringebær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Mango</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Krokan</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kaffe</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Lakris</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Appelsin</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kirsebær</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Pære</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Kanel</label>
-								</div>
-								<div className={styles.field}>
+								</ds-field>
+								<ds-field className={styles.field}>
 									<input type="checkbox" className={styles.input} />
 									<label>Mint</label>
-								</div>
+								</ds-field>
 							</fieldset>
 						</form>
 					</div>

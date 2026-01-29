@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { toCustomElementProps } from "../utils";
 import "./chart-element";
+import { Table } from "../react";
 import type { CustomReactElementProps } from "../react-types";
 import type { MTDSChartElement } from "./chart-element";
 
@@ -35,30 +36,32 @@ export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 	return (
 		<mtds-chart ref={ref} {...toCustomElementProps(rest)}>
 			{data ? (
-				<table key={`table_${++RENDER}`}>
-					<thead>
+				<Table key={`table_${++RENDER}`}>
+					<Table.Thead>
 						{data.slice(0, 1).map((tr, row) => (
-							<tr key={`${row}_${RENDER}`}>
+							<Table.Tr key={`${row}_${RENDER}`}>
 								{tr.map((td, i) => (
-									<th key={`${i}_${RENDER}`}>{td}</th>
+									<Table.Th suppressHydrationWarning key={`${i}_${RENDER}`}>
+										{td}
+									</Table.Th>
 								))}
-							</tr>
+							</Table.Tr>
 						))}
-					</thead>
-					<tbody>
+					</Table.Thead>
+					<Table.Tbody>
 						{data.slice(1).map((tr, row) => (
-							<tr key={`${row}_${RENDER}`}>
+							<Table.Tr key={`${row}_${RENDER}`}>
 								{tr.map((td, i) =>
 									i ? (
-										<td key={`${i}_${RENDER}`}>{td}</td>
+										<Table.Td key={`${i}_${RENDER}`}>{td}</Table.Td>
 									) : (
-										<th key={`${i}_${RENDER}`}>{td}</th>
+										<Table.Th key={`${i}_${RENDER}`}>{td}</Table.Th>
 									),
 								)}
-							</tr>
+							</Table.Tr>
 						))}
-					</tbody>
-				</table>
+					</Table.Tbody>
+				</Table>
 			) : (
 				children
 			)}

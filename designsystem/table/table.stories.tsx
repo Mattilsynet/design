@@ -633,7 +633,7 @@ export const SearchableSimple: Story = {
 
 		return (
 			<>
-				<div className={styles.field}>
+				<ds-field className={styles.field}>
 					<label>Search</label>
 					<input
 						className={styles.input}
@@ -641,7 +641,7 @@ export const SearchableSimple: Story = {
 						onChange={({ target }) => setSearch(target.value)}
 						value={search}
 					/>
-				</div>
+				</ds-field>
 				<table
 					className={styles.table}
 					aria-label="Searchable table"
@@ -872,14 +872,14 @@ export const CheckableSimple: Story = {
 									{cellIndex ? (
 										row[key]
 									) : (
-										<div className={styles.field}>
+										<ds-field className={styles.field}>
 											<input
 												className={styles.input}
 												type="checkbox"
 												id={`check-${i}`}
 											/>
 											<label>{row[key]}</label>
-										</div>
+										</ds-field>
 									)}
 								</td>
 							))}
@@ -1035,7 +1035,7 @@ export const ClickableTanstack: Story = {
 				</Table.Thead>
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row, rowIndex) => (
-						<Table.Tr key={row.id}>
+						<Table.Tr key={row.id} data-clickdelegatefor={`button-${rowIndex}`}>
 							{row.getVisibleCells().map((cell, index) => (
 								<Table.Td key={cell.id}>
 									{index ? (
@@ -1043,7 +1043,6 @@ export const ClickableTanstack: Story = {
 									) : (
 										<Button
 											id={`button-${rowIndex}`}
-											data-command="row"
 											onClick={() => alert(`clicked row ${rowIndex + 1}`)}
 										>
 											{cell.getValue() as React.ReactNode}

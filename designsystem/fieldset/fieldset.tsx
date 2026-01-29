@@ -8,6 +8,7 @@ export const FieldsetComp = forwardRef<HTMLFieldSetElement, FieldsetProps>(
 	function Fieldset({ className, ...rest }, ref) {
 		return (
 			<fieldset
+				suppressHydrationWarning // Since we will get aria-labelledby
 				className={clsx(styles.fieldset, className)}
 				ref={ref}
 				{...rest}
@@ -28,7 +29,9 @@ const FieldsetDescription = forwardRef<
 	HTMLParagraphElement,
 	FieldsetDescriptionProps
 >(function FieldsetDescription(rest, ref) {
-	return <p suppressHydrationWarning ref={ref} {...rest} />;
+	return (
+		<p suppressHydrationWarning data-field="description" ref={ref} {...rest} />
+	);
 });
 
 export const Fieldset = Object.assign(FieldsetComp, {

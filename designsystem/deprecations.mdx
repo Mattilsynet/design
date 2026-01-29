@@ -1,0 +1,151 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
+import { ArrowUpRightIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { Alert, Table } from './react'
+import { styles } from './';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
+
+<Meta title="Designsystem/Migrering" />
+
+# <ArrowUpRightIcon /> Migrering til versjon 3
+
+> [Designsystemet](https://www.designsystemet.no/) tilbyr nå [rammeverkuavhengige komponenter](https://designsystemet.no/no/blog/designsystemet-web-pre2).
+> Mattilsynet faser derfor ut egen kode til fordel for ut-av-boksen-løsninger.
+> Det er ingen breaking changes, men heller anbefalte oppdateringer du kan gjøre etterhvert som de dukker opp i nettleserens konsoll.
+
+<JumpTo />
+
+## Konsoll-varsler
+
+`@mattilsynet/design` gir automatisk advarser om bruk av utdaterte klasser og elementer.
+Du kan skru av konsoll-varsler, for eksempel i produksjon eller test-miljø:
+
+```js
+if (typeof window !== 'undefined') window.dsWarnings = false; // Should be before import 
+import '@mattilsynet/design';
+```
+
+<Alert>**Merk:** Du kan få en advarsel `"Fields should only have one input element. Use <fieldset> to group multiple fields"` på Suggestion. Denne er bare å overse, og vil forsvinne ved neste versjon av Designsystemet.</Alert>
+
+<br />
+## Endringer ikke-React
+
+`@mattilsynet/design` inneholder kode for automatisk bakoverkompatbilitet, men du burde over tid oppdatere følgende:
+
+<Wide>
+<Table data-size="sm">
+  <Table.Thead>
+    <Table.Tr>
+      <Table.Th>Komponent</Table.Th>
+      <Table.Th>❌ V2</Table.Th>
+      <Table.Th>✅ V3</Table.Th>
+    </Table.Tr>
+  </Table.Thead>
+  <Table.Tbody>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Td>❌ `class="styles.field"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-field class="styles.field">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Field Description</Table.Th>
+      <Table.Td>❌ `<p>` Kun element</Table.Td>
+      <Table.Td>➡️ `<p data-field="description">` Attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Validation</Table.Th>
+      <Table.Td>❌ `class="styles.validation"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `class="styles.validation" data-field="validation"` Klasse og attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Counter</Table.Th>
+      <Table.Td>❌ `data-count="20"` Kun attributt</Table.Td>
+      <Table.Td>➡️ `class="styles.validation" data-field="counter" data-limit="20"` Klasse og attributter</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Breadcrumbs</Table.Th>
+      <Table.Td>❌ `class="styles.breadcrumbs"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-breadcrumbs class="styles.breadcrumbs">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Errorsummary</Table.Th>
+      <Table.Td>❌ `class="styles.errorsummary"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-error-summary class="styles.errorsummary">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Pagination</Table.Th>
+      <Table.Td>❌ `class="styles.pagination"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `<ds-pagination class="styles.pagination">` Klasse og element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Popover</Table.Th>
+      <Table.Td>❌ `data-position` Attributt</Table.Td>
+      <Table.Td>➡️ `data-placement` Ny attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Togglegroup</Table.Th>
+      <Table.Td>❌ `class="styles.togglegroup"` Kun klasse</Table.Td>
+      <Table.Td>➡️ `class="styles.togglegroup" data-toggle-group="LABEL"` Klasse og attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Combobox / Suggestion</Table.Th>
+      <Table.Td>❌ `<u-combobox>` Element</Table.Td>
+      <Table.Td>➡️ `<ds-suggestion class="styles.suggestion">` Element og klasse</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Details</Table.Th>
+      <Table.Td>❌ `<u-details>` Element</Table.Td>
+      <Table.Td>➡️ `<details>` Element</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Tabs</Table.Th>
+      <Table.Td>❌ `<u-tab*>` Elementer</Table.Td>
+      <Table.Td>➡️ `<ds-tab*>` Elementer</Table.Td>
+    </Table.Tr>
+  </Table.Tbody>
+</Table>
+</Wide>
+
+<br />
+## Endringer for React
+
+Som React bruker får du flere migeringer under panseret automatisk av React-komponentene.
+`@mattilsynet/design` inneholder kode for automatisk bakoverkompatbilitet, men du burde over tid oppdatere følgende:
+
+<Wide>
+<Table data-size="sm">
+  <Table.Thead>
+    <Table.Tr>
+      <Table.Th>Komponent</Table.Th>
+      <Table.Th>❌ V1</Table.Th>
+      <Table.Th>✅ V2</Table.Th>
+    </Table.Tr>
+  </Table.Thead>
+  <Table.Tbody>
+    <Table.Tr>
+      <Table.Th>Counter</Table.Th>
+      <Table.Td>❌ `data-count="20"` Attributt</Table.Td>
+      <Table.Td>➡️ `data-limit="20"` Attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Breadcrumbs</Table.Th>
+      <Table.Td>❌ `as={}` Funksjonalitet</Table.Td>
+      <Table.Td>➡️ `as` er ikke støttet lengre</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Popover</Table.Th>
+      <Table.Td>❌ `data-position` Attributt</Table.Td>
+      <Table.Td>➡️ `data-placement` Ny attributt</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Th>Field.Combobox</Table.Th>
+      <Table.Td>❌ `<Field.Combobox>` Element</Table.Td>
+      <Table.Td>➡️ `<Field.Suggestion>` Element og klasse</Table.Td>
+    </Table.Tr>
+  </Table.Tbody>
+</Table>
+</Wide>

@@ -1,19 +1,11 @@
 @layer mt.design {
 	.breadcrumbs {
 		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
+		--dsc-breadcrumbs-icon-size: 1em;
+		--dsc-breadcrumbs-icon-url: var(--mtds-icon-chevron--right);
+		--dsc-breadcrumbs-color: currentColor;
 	}
-	.breadcrumbs > :is(ol, ul) > li:where(:not([hidden])) {
-		align-items: center;
-		display: flex;
-		max-width: 100%;
-	}
-	.breadcrumbs > :is(ol, ul) > li > * {
-		min-width: 0;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	.breadcrumbs > :is(ol, ul) > li:last-child > a {
-		text-decoration: none;
+	.breadcrumbs li::after {
+		vertical-align: -0.15em;
 	}
 }

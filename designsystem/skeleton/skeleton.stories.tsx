@@ -18,7 +18,7 @@ export const Default: Story = {
 					className={styles.skeleton}
 					data-variant="circle"
 					style={{ width: 40 }}
-				></div>
+				/>
 				<h2>
 					<div className={styles.skeleton} data-variant="text">
 						En medium tittel
@@ -46,13 +46,13 @@ export const React: Story = {
 					<Skeleton data-variant="text">En medium tittel</Skeleton>
 				</Heading>
 			</Flex>
-			<p>
+			<div>
 				<Skeleton data-variant="text">
 					Cras vulputate et dolor vel aliquet. Aliquam convallis, dolor id
 					rhoncus lobortis, quam quam cursus nisl, consectetur accumsan ligula
 					velit eu nulla.
 				</Skeleton>
-			</p>
+			</div>
 		</Grid>
 	),
 };
@@ -69,7 +69,7 @@ export const Circle: Story = {
 
 export const Text: Story = {
 	render: () => (
-		<p>
+		<div>
 			<span className={styles.skeleton} data-variant="text">
 				Cras vulputate et dolor vel aliquet. Aliquam convallis, dolor id rhoncus
 				lobortis, quam quam cursus nisl, consectetur accumsan ligula velit eu
@@ -77,7 +77,7 @@ export const Text: Story = {
 				rhoncus lobortis, quam quam cursus nisl, consectetur accumsan ligula
 				velit eu nulla.
 			</span>
-		</p>
+		</div>
 	),
 };
 

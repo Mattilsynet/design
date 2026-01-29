@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: () => (
 		<div className={styles.grid}>
-			<fieldset className={styles.togglegroup} aria-label="Mappe">
+			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
 				<label>
 					<input type="radio" name="my-toggles" value="innboks" />
 					Innboks
@@ -36,7 +36,7 @@ export const Default: Story = {
 					Sendt
 				</label>
 			</fieldset>
-			<fieldset className={styles.togglegroup} aria-label="Mappe">
+			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
 				<label>
 					<input type="radio" name="my-icon-toggle" value="left" />
 					<TextAlignLeftIcon />
@@ -65,7 +65,7 @@ export const React: Story = {
 		const [value, setValue] = useState(items[1]);
 
 		return (
-			<Togglegroup aria-label="Mappe">
+			<Togglegroup data-toggle-group="Mappe">
 				{items.map((item) => (
 					<Togglegroup.Item
 						checked={value === item}

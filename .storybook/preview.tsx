@@ -125,14 +125,16 @@ export default {
 					document.addEventListener("click", (e) => {
 						const topUrl = (window.top || window).location.href;
 						const link = e.target instanceof Element && e.target.closest("a");
-						const heading = e.target instanceof Element && e.target.closest("h2, h3, h4, h5, h6");
+						const heading =
+							e.target instanceof Element &&
+							e.target.closest("h2, h3, h4, h5, h6");
 
 						const sameDomain = link && link.hostname === location.hostname;
 						const samePage = sameDomain && link.pathname === location.pathname;
 
-						if(heading && heading.id){
-							const anchor = `${topUrl.split('#')[0]}#${heading.id}`;
-							navigator.clipboard.writeText(anchor)
+						if (!!heading && heading.id) {
+							const anchor = `${topUrl.split("#")[0]}#${heading.id}`;
+							navigator.clipboard.writeText(anchor);
 						}
 
 						if (!sameDomain && link) link.target = "_blank"; // Open external links in new tab
@@ -202,7 +204,15 @@ export default {
 						"*",
 					],
 					"Designsystem",
-					["Introduksjon", "Komponenter", "Tokens", "Analyse", "Debug", "*"],
+					[
+						"Introduksjon",
+						"Migrering",
+						"Komponenter",
+						"Tokens",
+						"Analyse",
+						"Debug",
+						"*",
+					],
 					"Profilering",
 					["Introduksjon", "*"],
 				],
