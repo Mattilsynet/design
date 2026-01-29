@@ -14,7 +14,10 @@
 	._tooltip {
 		composes: ds-tooltip from "@digdir/designsystemet-css";
 		--dsc-tooltip-background: var(--ds-color-base-active);
+		--dsc-tooltip-color: var(--ds-color-base-contrast-default);
 		-webkit-font-smoothing: subpixel-antialiased;
+		background: var(--dsc-tooltip-background);
+		color: var(--dsc-tooltip-color);
 		font-size: var(--ds-body-xs-font-size);
 	}
 
