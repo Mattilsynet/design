@@ -13,29 +13,28 @@ import modes from './assets/modes.mp4?url';
 
 # <ArrowUpRightIcon /> Migrering til versjon 2
 
-> Mattilsynets har lenge hatt rammeverk-uavhengige komponenter.
-> Nå som [Designsystemet](https://www.designsystemet.no/) også tilbyr dette,
-> kan vi migrere til å benytte deres løsninger. 
+> [Designsystemet](https://www.designsystemet.no/) tilbyr nå [rammeverkuavhengige komponenter](https://designsystemet.no/no/blog/designsystemet-web-pre2).
+> Mattilsynet faser derfor ut egen kode til fordel for ut-av-boksen-løsninger.
+> Det er ingen breaking changes, men heller anbefalte oppdateringer du kan gjøre etterhvert som de dukker opp i nettleserens konsoll.
 
 <JumpTo />
 
 ## Konsoll-varsler
 
-`@mattilsynet/design` gir automatisk advarser om bruk av utdaterte klasser og elementer i konsoll.
-Dersom du ønsker å skru av konsoll-varsler for eksempel i produksjon, kan du legge til følgende kode:
-
-<Alert>**Merk:** Du kan få en advarsel `"Fields should only have one input element. Use <fieldset> to group multiple fields"` på Suggestion. Denne er bare å overse, og vil forsvinne ved neste versjon av Designsystemet.</Alert>
+`@mattilsynet/design` gir automatisk advarser om bruk av utdaterte klasser og elementer.
+Du kan skru av konsoll-varsler, for eksempel i produksjon eller test-miljø:
 
 ```js
 if (typeof window !== 'undefined') window.dsWarnings = false; // Should be before import 
 import '@mattilsynet/design';
 ```
 
+<Alert>**Merk:** Du kan få en advarsel `"Fields should only have one input element. Use <fieldset> to group multiple fields"` på Suggestion. Denne er bare å overse, og vil forsvinne ved neste versjon av Designsystemet.</Alert>
+
 <br />
 ## Endringer ikke-React
 
-Som ikke-React bruker, er det dessverre noe flere endringer, da vi kan gjøre flere migeringer under panseret automatisk på React-komponentene.
-`@mattilsynet/design` inneholder polyfills som automatisk gir deg for bakoverkompatbilitet, men du burde over tid gjøre oppdateringer uansett:
+`@mattilsynet/design` inneholder kode for automatisk bakoverkompatbilitet, men du burde over tid oppdatere følgende:
 
 <Wide>
 <Table data-size="sm">
@@ -114,7 +113,8 @@ Som ikke-React bruker, er det dessverre noe flere endringer, da vi kan gjøre fl
 <br />
 ## Endringer for React
 
-Som React bruker får du flere migeringer under panseret automatisk på React-komponentene, men noe må du oppdatere selv:
+Som React bruker får du flere migeringer under panseret automatisk av React-komponentene.
+`@mattilsynet/design` inneholder kode for automatisk bakoverkompatbilitet, men du burde over tid oppdatere følgende:
 
 <Wide>
 <Table data-size="sm">
