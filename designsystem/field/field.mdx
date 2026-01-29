@@ -11,8 +11,8 @@ import { Details } from '../react';
 <JumpTo />
 
 ## Kode
-- Legg klassen `field` på typisk en `<div>` rundt ledetekst og skjemafelt
-- Field beriker indre skjemaelementer med f.eks automatisk sammenkobling av `<label>` og `<input>`, beskrivelser (`<p>`) og valideringer `validation`, samt `textarea` skalering, `textarea` antall tegn, `datalist` posisjonering etc.
+- Legg klassen `field` på `<ds-field>` rundt ledetekst og skjemafelt
+- Field beriker indre skjemaelementer med f.eks automatisk sammenkobling av `<label>` og `<input>`, beskrivelser (`<p data-field="validation">`) og valideringer `validation data-field="validation"`, samt `textarea` skalering, tegn teller, `suggestion` posisjonering etc.
 - **Flere inputs for én label?** Field skal kun inneholde ét skjemaelementet, men du kan knytte flere sammen (f.eks fornavn + etternavn osv.) med [Fieldset](/?path=/story/designsystem-fieldset--with-texts)
 - **Mønster:** [Se mønster for merking av obligatoriske felter](https://www.designsystemet.no/no/patterns/required-and-optional-fields)
 
@@ -34,7 +34,7 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
 <Canvas of={stories.Required} />
 
 ## Radio / Check / Switch
-- Ved bruk av `<input type="checkbox | radio"` vil `<label>`, `<p>` og `class="styles.validation"` legge seg etter input
+- Ved bruk av `<input type="checkbox | radio"` vil `<label>`, `<p data-field="description">` og `class="styles.validation" data-field="validation"` legge seg etter input
 <Canvas of={stories.Toggles} />
 
 ## Delvis valgt checkbox
@@ -48,45 +48,39 @@ I React kan du velge å bruke `<Field>` med `<label>`, `<Input>` osv. for full k
 ## Innebygget skjemavalidering
 - Nettleserens innebyggede valideringsmeldinger skjules pga. begrenset styling og universell utforming
 - Du kan allikevel få [nettleserens innebygge skjemavalidering](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation#using_built-in_form_validation) til å automatisk skjule og vise [validation-komponentet](?path=/docs/designsystem-validation--docs) ved å legge `data-validation="form"` på `form` 
-- **Merk:** `u-combobox` krever `input aria-required="true"` (ikke `input required`) siden combobox ikke er et native skjemaelement
+- **Merk:** `ds-suggestion` krever `input aria-required="true"` (ikke `input required`) siden suggestion ikke er et native skjemaelement
 <Canvas of={stories.WithValidationForm} />
 
 ## Prefiks og suffiks
 - Legg klassen `affixes` på en `<div>` rundt `input`
 - Legg elementer før eller etter `input` for å legge til ikon eller tekst
-- **Merk:** for god tilgjengelighet, beskriv ønsket innhold i `<p>` eller `<label>`, f.eks.: "Pris i NOK per måned"
+- **Merk:** for god tilgjengelighet, beskriv ønsket innhold i `<p data-field="description">` eller `<label>`, f.eks.: "Pris i NOK per måned"
 <Canvas of={stories.WithAffixes} />
 
-## Beskrivelse siktekst
-- Ved bruk av CMS kan vi ikke være sikker på at beskrivelse tegnes med én `<p>`
-- Bruk da heller `<div>` med attributt `data-description` og klassen `prose`
-<Canvas of={stories.WithCustomDescriptionTag} />
-
 ## Antall tegn
-- Legg `data-count="number"` på `<p>` etter `input`
-- Teksten oversettes automatisk til engelsk dersom du setter `<html lang="en">`. Du kan også selv endre tekst med CSS custom property, hvor `%d` er antall tegn. Eksempel:
-  `--mtds-text-count-under: "%d characters remaining";`
-  `--mtds-text-count-over: "%d characters too many";`
+- Legg klassen `validation` og attributt `data-field="counter"` på typisk en `<p>` etter `input`
+- Du kan endre teksten med `data-over="%d characters too many"` og `data-under="%d characters remaining"`
 <Canvas of={stories.WithCharacterCount} />
 
-## Med combobox
-- Bruk `<u-combobox>` rundt `<input>` og `<datalist>` med `<option>`s for å lage forslag
-- Legg en `<select hidden name="NAME-HERE">` i `<u-combobox>` for å få med verdien i skjemaet
+## Med suggestion (Combobox)
+- Legg klassen `suggestion` på `<ds-suggestion>` rundt `<input>` og `<datalist>` med `<option>`s for å lage forslag
+- Legg en `<select hidden name="NAME-HERE">` i `<ds-suggestion>` for å få med verdien i skjemaet
 - Legg en `<del hidden aria-label=""></del>` etter input for å få en tøm-knapp
 - Bruk `data-nofilter` på `<u-datalist>` for å skru av filtrering
-- **Merk:** Combobox må alltid ha en tilknyttet `<label>`, men denne kan skjules med `hidden`
-- **React?** Bruk `<Field.Combobox>`, `<Field.Datalist>` og `<Field.Option>` eller<br />`<Field as={Field.Combobox}>` ([se eksempel](?path=/story/designsystem-field--react-with-combobox))
+- Trenger du egne hjelpetekster for skjemleser? Se attributter [for ds-suggestion](https://u-elements.github.io/u-elements/elements/u-combobox#attributes-and-props) og for [for u-datalist]https://u-elements.github.io/u-elements/elements/u-datalist#attributes-and-props)
+- **Merk:** Suggestion må alltid ha en tilknyttet `<label>`, men denne kan skjules med `hidden`
+- **React?** Bruk `<Field.Suggestion>`, `<Field.Datalist>` og `<Field.Option>` eller<br />`<Field as={Field.Suggestion}>` ([se eksempel](?path=/story/designsystem-field--react-with-suggestion))
 <Details>
-<Details.Summary>Hva er `u-combobox`?</Details.Summary>
+<Details.Summary>Hva er `ds-suggestion`?</Details.Summary>
 
-[u-combobox](https://u-elements.github.io/u-elements/elements/u-combobox) er en del av prosjektet [u-elements](https://u-elements.github.io/u-elements)
+ds-suggestion bygger på [u-combobox](https://u-elements.github.io/u-elements/elements/u-combobox),
 som sikrer universell utforming. Dette lastes automatisk når du bruker `@mattilsynet/design`.
 Du kan også hente inn tilhørende HTMLElement interface ved behov:
 ```
-import { UHTMLComboboxElement } from '@mattilsynet/design'
+import { DSSuggestionElement } from '@mattilsynet/design'
 ```
 </Details>
 
-<Canvas of={stories.WithCombobox} />
+<Canvas of={stories.WithSuggestion} />
 
 <CssVariables component="field" />

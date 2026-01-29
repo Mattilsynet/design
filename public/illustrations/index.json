@@ -49,7 +49,7 @@
 		"tags": ["musling", "blåskjell", "person", "menneske"]
 	},
 	"seaweed.svg": {
-		"categories": ["Planter", "Akvakultur"],
+		"categories": ["Natur", "Akvakultur"],
 		"tags": ["sjøgress", "alger", "tang", "tare"]
 	},
 	"shrimp.svg": { "categories": ["Akvakultur"], "tags": ["reke", "scampi"] },
@@ -326,23 +326,23 @@
 		]
 	},
 	"flower-seeds.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["blomst", "plante", "frø", "rosa", "rød", "prikker", "natur"]
 	},
 	"flower.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["blomst", "plante", "gul", "natur"]
 	},
 	"grass-bush.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["gress", "plante", "busk", "grønn", "blader", "natur"]
 	},
 	"oak-leaf.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["plante", "busk", "grønn", "blader", "eik", "tre", "natur"]
 	},
 	"plant-round-leaves.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": [
 			"plante",
 			"busk",
@@ -354,7 +354,7 @@
 		]
 	},
 	"plant.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": [
 			"gress",
 			"plante",
@@ -569,7 +569,7 @@
 		]
 	},
 	"plant-dog-fish.svg": {
-		"categories": ["Dyr", "Planter"],
+		"categories": ["Dyr", "Natur"],
 		"tags": ["plante", "hund", "fisk"]
 	},
 	"dog.svg": {
@@ -630,15 +630,15 @@
 		"tags": ["stjerner", "visjon", "premium", "best", "lykkes"]
 	},
 	"tre-1.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["tre"]
 	},
 	"tre-2.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["tre"]
 	},
 	"tre-3.svg": {
-		"categories": ["Planter"],
+		"categories": ["Natur"],
 		"tags": ["tre"]
 	},
 	"byggning-1-gronn.svg": {
@@ -767,5 +767,98 @@
 	"system.svg": {
 		"categories": ["Utstyr"],
 		"tags": ["system"]
+	},
+	"car-logo.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["Personbil", "Mattilsynet", "Logo"]
+	},
+	"car.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["Personbil"]
+	},
+	"cheese.svg": {
+		"categories": ["Mat"],
+		"tags": ["ost"]
+	},
+	"cloud-1.svg": {
+		"categories": ["Natur"],
+		"tags": ["skyer", "vær"]
+	},
+	"cloud-2.svg": {
+		"categories": ["Natur"],
+		"tags": ["skyer", "vær"]
+	},
+	"cloud-sun.svg": {
+		"categories": ["Natur"],
+		"tags": ["skyer", "sol", "vær"]
+	},
+	"cloud-sunshine.svg": {
+		"categories": ["Natur"],
+		"tags": ["skyer", "solskinn"]
+	},
+	"egg-boat.svg": {
+		"categories": ["Mat"],
+		"tags": ["eggebåt", "delt egg"]
+	},
+	"egg-half.svg": {
+		"categories": ["Mat"],
+		"tags": ["halvt egg", "delt egg"]
+	},
+	"foodtruck-logo.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["matbil"]
+	},
+	"foodtruck.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["matbil"]
+	},
+	"house.svg": {
+		"categories": ["Bygg"],
+		"tags": ["hus"]
+	},
+	"paragraph.svg": {
+		"categories": ["Visjon"],
+		"tags": ["lovtegn", "paragraf"]
+	},
+	"person-child-puppy.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "menneske", "barn", "valp", "hund"]
+	},
+	"person-family-house.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"familie",
+			"person",
+			"menneske",
+			"barn",
+			"hund",
+			"valp",
+			"hus",
+			"hjem"
+		]
+	},
+	"person-family.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["familie", "person", "menneske", "barn", "hund", "valp"]
+	},
+	"person-paragraph.svg": {
+		"categories": ["Visjon", "Mennesker"],
+		"tags": ["lovtegn", "paragraf", "person", "menneske", "jurist", "advokat"]
+	},
+	"plane-solo.svg": {
+		"categories": ["Eksport"],
+		"tags": ["fly"]
+	},
+	"sunshine.svg": {
+		"categories": ["Natur"],
+		"tags": ["solskinn", "vær"]
+	},
+	"tractor.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["traktror", "gårdsdrift", "bondegård"]
+	},
+	"wind.svg": {
+		"categories": ["Natur"],
+		"tags": ["vind", "vær"]
 	}
 }

@@ -1,36 +1,17 @@
 @layer mt.design {
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
-		--dsc-pagination-icon-url: var(--mtds-icon-chevron);
+		--dsc-pagination-icon-url: var(--mtds-icon-chevron--right);
 	}
 	.pagination :is(a, button) {
 		border-radius: var(--ds-border-radius-full);
 	}
-	.pagination :is(a, button)::after {
-		content: none; /* Hide DigiDir chevron */
+	.pagination li:first-child > :is(a, button):empty::after {
+		position: absolute;
+		content: "" / var(--mtds-text-previous);
 	}
-
-	/* Chevrons  */
-	.pagination li:first-child > :is(a, button)::before,
-	.pagination li:last-child > :is(a, button)::before {
-		background: currentcolor;
-		content: "";
-		height: var(--mtds-icon-size);
-		mask: center / contain no-repeat var(--dsc-pagination-icon-url);
-		order: 1;
-		overflow: clip;
-		rotate: -90deg;
-		white-space: nowrap;
-		width: var(--mtds-icon-size);
-	}
-	.pagination li:first-child > :is(a, button)::before {
-		order: 0;
-		rotate: 90deg;
-	}
-	.pagination li:first-child:empty > :is(a, button)::before {
-		content: var(--mtds-text-previous);
-	}
-	.pagination li:last-child:empty > :is(a, button)::before {
-		content: var(--mtds-text-next);
+	.pagination li:last-child > :is(a, button):empty::after {
+		position: absolute;
+		content: "" / var(--mtds-text-next);
 	}
 }

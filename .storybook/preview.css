@@ -11,8 +11,8 @@ html {
 	}
 }
 
-u-tabpanel > pre,
-u-tabpanel > pre > .docblock-source {
+ds-tabpanel > pre,
+ds-tabpanel > pre > .docblock-source {
 	margin-block: 0;
 }
 

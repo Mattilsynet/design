@@ -38,13 +38,13 @@ import { EnvelopeIcon } from '@phosphor-icons/react';
 
   {/* Badge brukes i en kontekst: */}
   <Example data-color="success" text="Bruk badge i en kontekst." zoom="100%">
-    <u-tabs class={styles.tabs} data-size="sm">
-      <u-tablist>
-        <u-tab role="tab" aria-selected="true"><div className={styles.flex} data-gap="2">Kjøtt <span className={styles.badge} data-badge="2"></span></div></u-tab>
-        <u-tab>Fisk</u-tab>
-        <u-tab>Grønnsaker</u-tab>
-      </u-tablist>
-    </u-tabs>
+    <ds-tabs class={styles.tabs} data-size="sm">
+      <ds-tablist>
+        <ds-tab role="tab" aria-selected="true"><div className={styles.flex} data-gap="2">Kjøtt <span className={styles.badge} data-badge="2"></span></div></ds-tab>
+        <ds-tab>Fisk</ds-tab>
+        <ds-tab>Grønnsaker</ds-tab>
+      </ds-tablist>
+    </ds-tabs>
   </Example>
   <Example data-color="danger" text="Badge skal aldri stå alene." zoom="100%">
     <span className={styles.badge} data-badge="Firehundreogfemtito"></span>

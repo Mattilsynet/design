@@ -1,5 +1,5 @@
 import styles from "../styles.module.css";
-import { attr, isBrowser, on, onLoaded, QUICK_EVENT, tag } from "../utils";
+import { attr, isBrowser, on, onHotReload, QUICK_EVENT, tag } from "../utils";
 
 /*
  * IMPORTANT: [data-command="toggle-app-expanded"] is deprecated but kept for backward compatibility.
@@ -12,7 +12,6 @@ const CSS_CHIP = `.${styles.chip.split(" ")[0]}`;
 const CSS_HELPTEXT = `.${styles.helptext.split(" ")[0]}`;
 const CSS_PAGINATION = `.${styles.pagination.split(" ")[0]}`;
 const CLICKS = `summary,u-summary,a,button,[role="tab"],[role="button"]`;
-const EVENTS = "click,toggle,submit,change";
 const MATOMO = "mattilsynet.matomo.cloud";
 const MATOMO_STRINGS = ["setCustomUrl", "setDocumentTitle", "setReferrerUrl"];
 const BANNER = "mtds-analytics-banner"; // Dialog to show Matomo script loading
@@ -222,7 +221,7 @@ function processTrack({ type, target }: Event) {
 		category = "Breadcrumbs";
 		action = "navigate";
 	} else if (el.closest(CSS_PAGINATION)) {
-		category = "Pagintation";
+		category = "Pagination";
 		action = "navigate";
 	} else if (el.closest(CSS_CARD)) {
 		category = "Card";
@@ -269,4 +268,6 @@ const heading = (el: Element) => {
 	return (body.startsWith(head) && head) || body.slice(0, 100).trim(); // Limit to 100 characters
 };
 
-onLoaded(() => [on(document, EVENTS, handleAnalyticsTrack, QUICK_EVENT)]);
+onHotReload("analytics", () => [
+	on(document, "click toggle submit change", handleAnalyticsTrack, QUICK_EVENT),
+]);

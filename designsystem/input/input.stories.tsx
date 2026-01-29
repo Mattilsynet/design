@@ -18,10 +18,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Ledetekst</label>
 			<input className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
@@ -37,12 +37,12 @@ export const React: Story = {
 export const Types: Story = {
 	render: () => (
 		<>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Text</label>
 				<input type="text" className={styles.input} />
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Select</label>
 				<select className={styles.input}>
 					<option>Option 1</option>
@@ -51,14 +51,14 @@ export const Types: Story = {
 					<option>Option 4</option>
 					<option>Option 5</option>
 				</select>
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Checkbox</label>
 				<input type="checkbox" className={styles.input} />
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Radio 1</label>
 				<input
 					type="radio"
@@ -66,22 +66,22 @@ export const Types: Story = {
 					name="my-radio"
 					defaultChecked
 				/>
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Radio 2</label>
 				<input type="radio" className={styles.input} name="my-radio" />
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Switch</label>
 				<input type="checkbox" role="switch" className={styles.input} />
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Textarea</label>
 				<textarea className={styles.input} />
-			</div>
+			</ds-field>
 		</>
 	),
 };
@@ -91,7 +91,7 @@ export const Select: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Select</label>
 			<select className={styles.input}>
 				<option>Option 1</option>
@@ -100,7 +100,7 @@ export const Select: Story = {
 				<option>Option 4</option>
 				<option>Option 5</option>
 			</select>
-		</div>
+		</ds-field>
 	),
 };
 
@@ -109,28 +109,28 @@ export const Textarea: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Textarea</label>
 			<textarea className={styles.input}></textarea>
-		</div>
+		</ds-field>
 	),
 };
 
 export const Checkbox: Story = {
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Checkbox</label>
 			<input type="checkbox" className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
 export const Radio: Story = {
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Radio</label>
 			<input type="radio" className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
@@ -139,10 +139,10 @@ export const Switch: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Switch</label>
 			<input type="checkbox" role="switch" className={styles.input} />
-		</div>
+		</ds-field>
 	),
 };
 
@@ -180,19 +180,19 @@ export const Sizes: Story = {
 export const ReadOnly: Story = {
 	render: () => (
 		<>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Read only text</label>
 				<input className={styles.input} readOnly value="Value" />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Read only checkbox</label>
 				<input type="checkbox" className={styles.input} readOnly disabled />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Read only radio</label>
 				<input type="radio" className={styles.input} readOnly disabled />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Read only switch</label>
 				<input
 					type="checkbox"
@@ -201,7 +201,7 @@ export const ReadOnly: Story = {
 					readOnly
 					disabled
 				/>
-			</div>
+			</ds-field>
 		</>
 	),
 };
@@ -209,19 +209,19 @@ export const ReadOnly: Story = {
 export const Disabled: Story = {
 	render: () => (
 		<>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Disabled text</label>
 				<input className={styles.input} disabled />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Disabled checkbox</label>
 				<input type="checkbox" className={styles.input} disabled />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Disabled radio</label>
 				<input type="radio" className={styles.input} disabled />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Disabled switch</label>
 				<input
 					type="checkbox"
@@ -229,7 +229,7 @@ export const Disabled: Story = {
 					className={styles.input}
 					disabled
 				/>
-			</div>
+			</ds-field>
 		</>
 	),
 };
@@ -240,18 +240,18 @@ export const TypeSearch: Story = {
 	},
 	render: () => (
 		<>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Søkefelt</label>
 				<input
 					className={styles.input}
 					type="search"
 					placeholder="Skriv for å søke"
 				/>
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Søkefelt data-icon="none"</label>
 				<input className={styles.input} type="search" data-icon="none" />
-			</div>
+			</ds-field>
 		</>
 	),
 };
@@ -261,24 +261,24 @@ export const TypeDate: Story = {
 		showInOverview: true,
 	},
 	render: () => (
-		<div className={styles.field}>
+		<ds-field className={styles.field}>
 			<label>Datovelger</label>
 			<input className={styles.input} type="date" />
-		</div>
+		</ds-field>
 	),
 };
 
 export const TypeNumber: Story = {
 	render: () => (
 		<div className={styles.grid} data-items="auto">
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Antall dyr</label>
 				<input className={styles.input} type="number" />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Referansenummer</label>
 				<input className={styles.input} type="text" inputMode="numeric" />
-			</div>
+			</ds-field>
 		</div>
 	),
 };
@@ -287,7 +287,7 @@ export const VariantInline: Story = {
 	name: "Variant Inline (Eksperimentell)",
 	render: () => (
 		<>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Text</label>
 				<input
 					type="text"
@@ -295,9 +295,9 @@ export const VariantInline: Story = {
 					className={styles.input}
 					data-variant="inline"
 				/>
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Select</label>
 				<select
 					className={styles.input}
@@ -310,16 +310,16 @@ export const VariantInline: Story = {
 					<option>Option 4</option>
 					<option>Option 5</option>
 				</select>
-			</div>
+			</ds-field>
 
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Textarea</label>
 				<textarea
 					className={styles.input}
 					data-variant="inline"
 					defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod dui lacus, eget lacinia metus ullamcorper a. Nam id erat eu odio dignissim ornare ac eu erat. Maecenas bibendum cursus risus, sed tincidunt ipsum auctor id. Aliquam erat volutpat. Pellentesque mi sapien, ornare a iaculis ac, blandit in lectus. "
 				/>
-			</div>
+			</ds-field>
 		</>
 	),
 };

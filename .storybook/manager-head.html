@@ -11,6 +11,9 @@
   #root div:has(+ .sidebar-container)::after { opacity: 0 !important }
 
   #root .sb-bar { box-shadow: none !important }
+  #storybook-preview-iframe { outline: 1px solid rgb(0 0 0 / .2);
+}
+
 
   /**
    * Hide stuff
@@ -23,7 +26,8 @@
   .sidebar-container.sidebar-container button[data-action="expand-all"], /* Hide expand <button> */
   .sidebar-container.sidebar-container button[title="Tag filters"], /* Hide filter tags <button> */
   .sidebar-container.sidebar-container [data-displayed], /* Hide "Open in edtior" context menu in sidebar */
-  .sb-bar.sb-bar button[title="Open in editor"] /* Hide "Open in edtior" */
+  .sb-bar.sb-bar button[aria-label="Open in editor"], /* Hide "Open in edtior" (new markup) */
+  .sb-bar.sb-bar button[title="Open in editor"] /* Hide "Open in edtior" (old markup) */
     { display: none !important }
 
   /**

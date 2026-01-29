@@ -58,8 +58,6 @@
 	.app.app [data-command="toggle-app-expanded"] {
 		--dsc-button-background: var(--ds-color-background-default);
 		--dsc-button-border-color: transparent; /* var(--ds-color-border-subtle) */
-		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
-			var(--mtds-app-expanded--false, top);
 
 		bottom: var(--mtdsc-app-spacing);
 		box-shadow: var(--ds-box-shadow-md);
@@ -80,6 +78,7 @@
 	.app.app > [command="show-modal"]:empty,
 	.app.app [data-command="toggle-app-expanded"]:empty {
 		--mtds-tooltip-position: top;
+		--_ds-floating: top;
 	}
 	.app.app > [command="show-modal"]::before,
 	.app.app [data-command="toggle-app-expanded"]::before {
@@ -118,6 +117,20 @@
 	/**
 	 * Left side
 	 */
+	body:has(
+		:is(
+				.app dialog:has(~ main),
+				.app > dialog,
+				.app > [command="show-modal"],
+				.app > [data-command="toggle-app-expanded"]
+			):not(:empty):hover
+	)
+	:global(.ds-tooltip) {
+		--_ds-floating: right; /* Place tooltip right when over sidebar */
+		visibility: var(--mtds-app-expanded--true, hidden)
+			var(--mtds-app-expanded--false, visible); /* Hide tooltip when expanded sidebar */
+	}
+
 	.app > dialog,
 	.app dialog:has(~ main) {
 		all: unset; /* Undo dialog styling */
@@ -130,8 +143,6 @@
 		padding: var(--ds-size-5) calc(var(--mtdsc-app-spacing) * 2);
 		width: var(--mtds-app-expanded--true, var(--mtdsc-app-sidebar-width));
 		view-transition-name: mtds-app--sidebar;
-		--mtds-tooltip-position: var(--mtds-app-expanded--true, none)
-			var(--mtds-app-expanded--false, right);
 
 		/* Minus margin on li instead of menu to allow menu to be .sticky */
 		& menu > li {
@@ -258,7 +269,6 @@
 		.app.app [data-command="toggle-app-expanded"] {
 			--dsc-button-background: transparent;
 			--dsc-button-border-color: transparent;
-			--mtds-tooltip-position: none;
 			--mtds-app-expanded--false: initial; /* Minimize button */
 
 			box-shadow: none;

@@ -1,13 +1,13 @@
 import styles from "../styles.module.css";
 import {
 	attr,
+	debounce,
 	defineElement,
 	isBrowser,
 	MTDSElement,
 	off,
 	on,
 	onMutation,
-	onResize,
 	tag,
 } from "../utils";
 import css from "./chart.css?raw";
@@ -24,7 +24,7 @@ declare global {
 	}
 }
 
-const EVENTS = "click,keydown,mousemove,mouseout";
+const EVENTS = "click keydown mousemove mouseout";
 const TOOLTIP_ID = "mtds-chart-tooltip";
 const TOOLTIP = isBrowser()
 	? document.getElementById(TOOLTIP_ID) ||
@@ -48,12 +48,18 @@ export class MTDSChartElement extends MTDSElement {
 		this.attachShadow({ mode: "open" });
 	}
 	connectedCallback() {
-		this.#unresize = onResize(() => this.handleResize(), this);
-		this.#unmutate = onMutation(() => this.attributeChangedCallback(), {
-			attr: "data-tooltip",
-			root: this,
+		const render = debounce(() => this.attributeChangedCallback(), 100);
+		const resize = new ResizeObserver(() => this.handleResize());
+		resize.observe(this);
+		this.#unresize = () => resize.disconnect();
+		this.#unmutate = onMutation(this, render, {
+			attributeFilter: ["data-tooltip"],
+			attributes: true,
+			characterData: true,
+			childList: true,
+			subtree: true,
 		});
-		this.attributeChangedCallback(); // Initial setup
+		requestAnimationFrame(() => this.attributeChangedCallback()); // Initial setup when children is mounted
 		on(this, EVENTS, this);
 	}
 	disconnectedCallback() {
@@ -122,7 +128,7 @@ function onMoveTooltip(event: MouseEvent) {
 	const tip = (el instanceof Element && el.getAttribute("aria-label")) || "";
 
 	if (tip)
-		TOOLTIP.style.transform = `translate(${Math.min(event.clientX, window.innerWidth - TOOLTIP.clientWidth - 10)}px, ${event.clientY}px)`;
+		TOOLTIP.style.transform = `translate(${Math.min(event.clientX, window.innerWidth)}px, ${event.clientY}px)`;
 	if (tip !== TOOLTIP_TEXT) {
 		if (tip) TOOLTIP.textContent = tip;
 		TOOLTIP_TEXT = tip;
@@ -137,6 +143,7 @@ const toData = (table?: HTMLTableElement | null) =>
 			const rowHeading = text(row.cells[0]);
 			const colHeading = text(table?.rows[0].cells[cellIndex]);
 			const tooltip = `${rowHeading}: ${text(cell)}${colHeading ? ` (${colHeading})` : ""}`;
+			attr(cell, "tabindex", "-1");
 
 			return {
 				number: (cellIndex && rowIndex && Number.parseFloat(text(cell))) || 0, // First row and column is not a number

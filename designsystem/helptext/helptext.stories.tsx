@@ -28,7 +28,7 @@ export const Default: Story = {
 export const InField: Story = {
 	render: () => (
 		<div className={styles.grid}>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Ledetekst</label>
 				<button
 					type="button"
@@ -39,10 +39,10 @@ export const InField: Story = {
 				<div className={styles.popover} id="my-helptext-field" popover="auto">
 					Tekst som forklarer hva som menes med mottaker
 				</div>
-				<p>Beskrivelse</p>
+				<p data-field="desciption">Beskrivelse</p>
 				<input type="text" className={styles.input} />
-			</div>
-			<div className={styles.field}>
+			</ds-field>
+			<ds-field className={styles.field}>
 				<label>Ledetekst</label>
 				<button
 					type="button"
@@ -53,9 +53,9 @@ export const InField: Story = {
 				<div className={styles.popover} id="my-helptext-field" popover="auto">
 					Tekst som forklarer hva som menes med mottaker
 				</div>
-				<p>Beskrivelse</p>
+				<p data-field="desciption">Beskrivelse</p>
 				<input type="text" className={styles.input} readOnly disabled />
-			</div>
+			</ds-field>
 		</div>
 	),
 };
@@ -73,10 +73,10 @@ export const InFieldset: Story = {
 			<div className={styles.popover} id="my-helptext-fieldset" popover="auto">
 				Tekst som forklarer hva som menes med mottaker
 			</div>
-			<div className={styles.field}>
+			<ds-field className={styles.field}>
 				<label>Labeltekst</label>
 				<input type="checkbox" className={styles.input} />
-			</div>
+			</ds-field>
 		</fieldset>
 	),
 };

@@ -12,7 +12,7 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
 > ToggleGroup lar brukeren ta valg som påvirker innholdet på siden. Komponenten består av en gruppe knapper som henger sammen og bare én knapp kan være valgt om gangen.
 
 ## Kode
-- Bruk klassen `togglegroup` på `<fieldset>` med `aria-label`
+- Bruk klassen `togglegroup` på `<fieldset>` med `data-toggle-group="LABEL-PÅ-GRUPPEN"`
 - Legg `<label><input type="radio">` elementer inni med samme `name` og `checked` på valgt verdier
 <Canvas of={stories.Default} />
 
@@ -30,7 +30,7 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
   {/* Togglegroup med ikon */}
   <Example data-color="success" text="ToggleGroup med bare ikoner bør kun brukes i ekspertløsninger. Bruk tooltip sammen med ikon." zoom="100%">
   <div className={styles.grid}>
-      <fieldset className={styles.togglegroup} aria-label="Mappe">
+      <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
         <label data-tooltip="Venstrejustert">
           <input type="radio" name="my-icon-toggle" value="left" />
           <TextAlignLeftIcon />
@@ -49,7 +49,7 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
 
   <Example data-color="danger" text="ToggleGroup med bare ikoner bør ha tooltip." zoom="100%">
     <div className={styles.grid}>
-      <fieldset className={styles.togglegroup} aria-label="Mappe">
+      <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
         <label>
           <input type="radio" name="my-icon-toggle" value="left" />
           <TextAlignLeftIcon />
