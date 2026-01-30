@@ -765,7 +765,7 @@ export const ReactWithSuggestionLong: Story = {
 	},
 };
 
-export const ReactWithCombobxCustomFilter: Story = {
+export const ReactWithSuggestionCustomFilter: Story = {
 	parameters: {
 		layout: "padded",
 	},

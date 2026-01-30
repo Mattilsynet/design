@@ -1,11 +1,6 @@
 @layer mt.design {
 	.breadcrumbs {
 		composes: ds-breadcrumbs from "@digdir/designsystemet-css";
-		--dsc-breadcrumbs-icon-size: 1em;
-		--dsc-breadcrumbs-icon-url: var(--mtds-icon-chevron--right);
 		--dsc-breadcrumbs-color: currentColor;
-	}
-	.breadcrumbs li::after {
-		vertical-align: -0.15em;
 	}
 }
