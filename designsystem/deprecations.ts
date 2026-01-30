@@ -24,8 +24,9 @@ const warn = (from: string, to: string, el: Element) =>
 
 // Deprecate togglegroup without data-toggle-group attribute
 const TOGGLEGROUPS = getByCSSModule("togglegroup");
+const CSS_BUTTON = styles.button.split(" ");
 const deprecateToggleGroup = () => {
-	for (const el of TOGGLEGROUPS)
+	for (const el of TOGGLEGROUPS) {
 		if (deprecate(el) && !el.hasAttribute("data-toggle-group")) {
 			attr(el, "data-toggle-group", "Valgknapper");
 			warn(
@@ -34,6 +35,17 @@ const deprecateToggleGroup = () => {
 				el,
 			);
 		}
+		for (const label of el.getElementsByTagName("label")) {
+			if (deprecate(label) && !label.classList.contains(CSS_BUTTON[0])) {
+				label.classList.add(...CSS_BUTTON);
+				warn(
+					'Only setting class="styles.button"',
+					`<label class="styles.button">`,
+					label,
+				);
+			}
+		}
+	}
 };
 
 // Deprecate errorsummary without ds-error-summary element

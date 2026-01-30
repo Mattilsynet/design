@@ -14,8 +14,8 @@
 		width: 100%;
 	}
 
-	/* Overwrite to same as tertiary from Designsystemet  */
-	.button:not([data-variant="primary"]) {
+	/* Overwrite to same as tertiary from Designsystemet, but not if label which is styled by toggle-group  */
+	.button:where(:not([data-variant="primary"]):not(label)) {
 		--dsc-button-background: transparent;
 		--dsc-button-background--active: var(--ds-color-surface-active);
 		--dsc-button-background--hover: var(--ds-color-surface-hover);
