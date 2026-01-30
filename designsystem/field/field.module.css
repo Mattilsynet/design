@@ -89,8 +89,17 @@
 	.suggestion {
 		composes: ds-suggestion from "@digdir/designsystemet-css";
 		--dsc-suggestion-border-color: var(--ds-color-border-subtle);
+		--dsc-suggestion-chip-background--hover: var(--ds-color-surface-hover);
+		--dsc-suggestion-chip-background: var(--ds-color-surface-tinted);
+		--dsc-suggestion-chip-border-color: var(--ds-color-border-subtle);
+		--dsc-suggestion-chip-color: var(--ds-color-text-subtle);
+		--dsc-suggestion-list-background: var(--ds-color-surface-default);
+		--dsc-suggestion-list-color: var(--ds-color-text-default);
 		--dsc-suggestion-option-checkmark-url: var(--mtds-icon-check);
-		--dsc-suggestion-color: var(--ds-color-text-default);
+		--dsc-suggestion-clear-padding: 0;
+	}
+	.suggestion:is(u-datalist):not(:defined) {
+		display: none;
 	}
 	.suggestion u-option::before {
 		scale: 0.75;
