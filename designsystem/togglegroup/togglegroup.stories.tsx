@@ -19,29 +19,29 @@ export const Default: Story = {
 	render: () => (
 		<div className={styles.grid}>
 			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-toggles" value="innboks" />
 					Innboks
 				</label>
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-toggles" value="utkast" defaultChecked />
 					Utkast
 				</label>
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-toggles" value="arkiv" />
 					Arkiv
 				</label>
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-toggles" value="sendt" />
 					Sendt
 				</label>
 			</fieldset>
 			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-icon-toggle" value="left" />
 					<TextAlignLeftIcon />
 				</label>
-				<label>
+				<label className={styles.button}>
 					<input
 						type="radio"
 						name="my-icon-toggle"
@@ -50,7 +50,7 @@ export const Default: Story = {
 					/>
 					<TextAlignCenterIcon />
 				</label>
-				<label>
+				<label className={styles.button}>
 					<input type="radio" name="my-icon-toggle" value="right" />
 					<TextAlignRightIcon />
 				</label>

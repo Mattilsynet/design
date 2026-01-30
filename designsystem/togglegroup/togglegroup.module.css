@@ -4,6 +4,10 @@
 		--dsc-togglegroup-background: var(--ds-color-background-tinted);
 		--dsc-togglegroup-border-color: var(--ds-color-border-subtle);
 	}
+	/* TODO: Digdir */
+	.togglegroup:not([hidden]) {
+		display: flex;
+	}
 	.togglegroup label {
 		font-weight: var(--ds-font-weight-medium);
 	}

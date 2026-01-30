@@ -505,8 +505,8 @@ export const WithSuggestionAPI: Story = {
 			);
 		};
 
-		const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-			const value = encodeURIComponent(event.target.value.trim());
+		const handleInput = (event: React.InputEvent<HTMLInputElement>) => {
+			const value = encodeURIComponent(event.currentTarget.value.trim());
 
 			setOptions(value ? "Loading..." : "Name a country");
 			clearTimeout(timer.current);
