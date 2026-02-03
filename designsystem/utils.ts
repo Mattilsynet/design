@@ -23,20 +23,20 @@ export function debounce<T extends unknown[]>(
 /**
  * attr
  * @description Utility to quickly get, set and remove attributes
- * @param el The Element to use as EventTarget
+ * @param el The Element to read/write attributes from
  * @param name The attribute name to get, set or remove, or a object to set multiple attributes
  * @param value A valid attribute value or null to remove attribute
  */
-export function attr(
+export const attr = (
 	el: Element,
 	name: string,
 	value?: string | null,
-): string | null {
+): string | null => {
 	if (value === undefined) return el.getAttribute(name) ?? null; // Fallback to null only if el is undefined
 	if (value === null) el.removeAttribute(name);
 	else if (el.getAttribute(name) !== value) el.setAttribute(name, value);
 	return null;
-}
+};
 
 /**
  * on
@@ -103,14 +103,14 @@ export const onMutation = (
 ) => {
 	let queue = 0;
 	const onFrame = () => {
-		if (!isBrowser()) return cleanup(); // If using JSDOM, the document might have been removed
+		if (!el.isConnected) return cleanup(); // Disconnect if element is removed from DOM
 		callback(observer);
 		observer.takeRecords(); // Clear records to avoid multiple triggers
 		queue = 0;
 	};
 	const cleanup = () => observer?.disconnect?.();
 	const observer = new MutationObserver(() => {
-		if (!queue) queue = requestAnimationFrame(onFrame); // requestAnimationFrame only runs when page is not visible
+		if (!queue) queue = requestAnimationFrame(onFrame); // requestAnimationFrame only runs when page is visible
 	});
 
 	observer.observe(el, options);

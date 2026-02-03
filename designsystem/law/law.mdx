@@ -1,7 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { HeartIcon } from '@phosphor-icons/react';
 import * as stories from './law.stories';
-import { Alert, Table, Popover } from '../react';
+import { Alert, Table, Prose, Popover } from '../react';
 
 
 <Meta of={stories} />
@@ -19,7 +19,14 @@ import { Alert, Table, Popover } from '../react';
 - Legg klassen `law` på en `<div>` og fyll med HTML generert av `fixLawHtml()`
 - Bruk `data-variant="view"` eller `data-variant="readonly"` dersom du ikke ønsker valg-knapper
 - Du må selv hente [HTML via Lovdatas API](https://api.lovdata.no/), mens valg og parsing løses av hjelpefunksjonene `fixLawHtml`, `parseLawIds`, `setLawChecked`, `getLawChecked` og `toggleLawChecked` (støtter strukturer fra både Lovdatas betalte og gratis API). <button data-popover="inline" popoverTarget='pop-filenameHTML'>Vær obs på feil i feltet filenameHTML</button>
-<Popover id='pop-filenameHTML' style={{ maxWidth: 500 }}>Lovdatas felt `filenameHTML` slutter noen ganger på `.html`, og noen ganger ikke. Sørg for at kall til `https://api.lovdata.no/v1/structuredRules/get/` alltid slutter på `.html`</Popover>
+<Popover id='pop-filenameHTML' style={{ maxWidth: 700 }}><Prose>
+Lovdatas felt `filenameHTML` slutter noen ganger på `.html`, og noen ganger ikke. Sørg for at kall til `https://api.lovdata.no/v1/structuredRules/get/` alltid slutter på `.html`. Eksempel:
+```js
+const fix = `${filenameHTML.replace('.html', '')}.html`;
+const url = `https://api.lovdata.no/v1/structuredRules/get/${fix}`;
+```
+<style>{`[popover] .docblock-source { margin: 0 }`}</style>
+</Prose></Popover>
 
 
 <Table data-fixed>
@@ -51,18 +58,18 @@ import { Alert, Table, Popover } from '../react';
       // Returns:
       {
         id: string;        // Element ID
-        label: string;     // Juridisk henvisning
-        html: string;      // Outer HTML
-        url: string;       // Closest lovdata url
         className: string; // From Lovdata
+        html: string;      // Outer HTML
+        label: string;     // Juridisk henvisning
         path: [];          // Parent elements
+        url: string;       // Closest lovdata url
+        guideUrl: string;  // URL for mattilsynet.no-veiledning
       }
       ```
     </td>
     <td>
       - Parser en liste med IDer til et strukturert objekt, som blant annet inneholder juridisk henvisningstekst til bruk i vedtaksbrev osv.
       - **Kan kjøre på:** Server og nettleser
-      - **Merk:** Send inn ferdig renset HTML (fra `fixLawHtml`) for å unngå dobbel parsing.
     </td>
   </tr>
   <tr>
@@ -75,6 +82,32 @@ import { Alert, Table, Popover } from '../react';
     </td>
     <td>
       - Markerer valgte deler av regelverk i et `Law` element.
+      - **Kan kjøre på:** Kun nettleser
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ```ts
+      getLawChecked(element: HTMLElement)
+      // Returns:
+      string[]
+      ```
+    </td>
+    <td>
+      - Hente valgte IDer.
+      - **Kan kjøre på:** Kun nettleser
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ```ts
+      toggleLawChecked(ids: string[], element: HTMLElement)
+      // Returns:
+      string[]
+      ```
+    </td>
+    <td>
+      - Hente valgte IDer.
       - **Kan kjøre på:** Kun nettleser
     </td>
   </tr>

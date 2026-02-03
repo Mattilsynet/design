@@ -3,8 +3,13 @@
 		composes: ds-toggle-group from "@digdir/designsystemet-css";
 		--dsc-togglegroup-background: var(--ds-color-background-tinted);
 		--dsc-togglegroup-border-color: var(--ds-color-border-subtle);
+		--dsc-togglegroup-border-radius: calc(
+			var(--ds-border-radius-sm) +
+			var(--dsc-togglegroup-border-width)
+		); /* TODO Digdir: minus spacing and have a minimum radius */
+		--dsc-togglegroup-spacing: var(--ds-size-1);
 	}
-	/* TODO: Digdir */
+	/* TODO Digdir: */
 	.togglegroup:not([hidden]) {
 		display: flex;
 	}
