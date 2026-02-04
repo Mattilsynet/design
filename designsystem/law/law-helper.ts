@@ -4,7 +4,7 @@ import { attr } from "../utils";
 const REGEX_ID = /<[^>]+\bid="([^"]+)[^>]+>/gi;
 const REGEX_FORORDNING = /\([^)]{1,4}\).{1,9}\d+\/\d+/i; // Match (EU) 2016/2031, (EF) nr. 2020/1054, (EFF) ..., etc.
 const REGEX_HEADING = /<(h\d|[^>]+role="heading")[^>]*>(.*?)<\/?(h\d|br|div)/i; // Can be both <h1>-<h6> and or <div> with role="heading" if level 7+
-const REGEX_KAPITTEL_LEDD = /kapittel-\d+-ledd-\d+/;
+const REGEX_KAPITTEL_LEDD = /kapittel-\d+-ledd-\d+/; // If ledd is direct child of kapittel, and not has a paragraph in between
 const REGEX_STRIP_BUTTONS = /<button[^>]+>.*?<\/button>/g;
 const REGEX_STRIP_POINTER = /►m\d+/i;
 const REGEX_STRIP_TAGS = /<[^>]+>/g;
@@ -20,13 +20,16 @@ const REGEX_FIX_NUMBEREDLEGALP =
 	/(<[^>]+class="[^"]*\bnumberedLegalP\b[^>]+>\s*)(\d+\.)(.*?)(?=<\/?(ul|ol|div)|$)/gis;
 
 const BASE_URL = "https://lovdata.no/";
+const GUIDE_URL = "https://www.mattilsynet.no/regelveiledning/?regelverk=";
 const META_DEFAULT: Record<
 	"legacyid" | "title" | "titleshort" | "url" | (string & {}), // Ensure title and titleShort are always present
 	{ label: string; value: string }
 > = {
+	dokid: { label: "DokumentID", value: "" },
 	legacyid: { label: "Datokode", value: "" },
-	titleshort: { label: "Korttittel", value: "" },
+	refid: { label: "RefID", value: "" },
 	title: { label: "Tittel", value: "" },
+	titleshort: { label: "Korttittel", value: "" },
 	url: { label: "Url", value: "" },
 };
 
@@ -106,16 +109,19 @@ const parseLawId = (id: string, html: string) => {
 		.filter((unit) => !!unit);
 
 	if (!path.length) return null;
-	const url = path.filter(({ url }) => url).pop()?.url || ""; // The closest units item might not have an URL, so we provide the last found URL
-	const forordninger = path.filter(
-		(u) => u.className === "section" && REGEX_FORORDNING.test(u.label),
-	);
+	const guideUrl = path.filter(({ guideUrl }) => guideUrl).pop()?.guideUrl; // The closest units item might not have an guideUrl
+	const closestWithUrl = path.filter(({ url }) => url).pop(); // The closest units item might not have an URL, so we provide the last found URL
+	const closestForordning = path
+		.filter((u) => u.className === "section" && REGEX_FORORDNING.test(u.label))
+		.pop();
+
+	const url = closestWithUrl ? `${BASE_URL}${closestWithUrl.url}` : "";
 	const label = path
-		.slice(path.indexOf(forordninger.pop() || path[0]))
-		.map((u) => u.label)
+		.slice(path.indexOf(closestForordning || path[0]))
+		.map(({ label }) => label)
 		.join(", ");
 
-	return { ...path.slice(-1)[0], path, label, url };
+	return { ...path.slice(-1)[0], path, label, url, guideUrl };
 };
 
 const parseLawItem = (id: string, html: string, isKapitellLedd: boolean) => {
@@ -124,12 +130,15 @@ const parseLawItem = (id: string, html: string, isKapitellLedd: boolean) => {
 	const className = getAttr("class", tag);
 	const url = getAttr("data-lovdata-url", tag);
 	const label = getLabel(tag, id, idx, html);
+	const [_, type, key] = url.match(/(lov|forskrift)\/([^/]+)/) || [];
+	const legacyId = `${GUIDE_URL}${type?.slice(0, 3).toUpperCase()}-${key}`; // Recreate legacyId format from lovdata.no
 
 	return {
 		id,
 		className,
+		guideUrl: url && `${GUIDE_URL}${legacyId}_${id}`, // Recreate "chapterOrParagraphs" format stored in in mattilsynet.no Veiledning
 		html: getOuterHTML(id, html),
-		url: url ? `${BASE_URL}${url}` : "",
+		url,
 		label:
 			(!isKapitellLedd &&
 				className === "section" &&

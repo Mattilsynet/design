@@ -144,7 +144,7 @@ export function CssVariables({
 								!excludes.some((exclude) => name.includes(exclude)) && (
 									<tr key={name}>
 										<td>{name}</td>
-										<td>{val}</td>
+										<td>{decodeURIComponent(val)}</td>
 									</tr>
 								),
 						)}

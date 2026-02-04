@@ -249,7 +249,7 @@ export const ItemFixed: Story = {
 				<div>d</div>
 			</div>
 			<span>
-				Grid <code>data-items="100"</code> without <code>data-fixed</code>
+				Grid <code>data-items="100"</code> without <code>data-fixed</code>{" "}
 				(fills grid with actual columns):
 			</span>
 			<div className={styles.grid} data-items="100">

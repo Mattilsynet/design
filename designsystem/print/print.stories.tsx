@@ -18,7 +18,7 @@ const meta = {
 				<style>{`
 					#example-buttons { position: fixed; top: 1rem; left: 1rem; z-index: 1000 }
 					body:has(.sbdocs-content) #example-buttons { display: none }
-					@media print { #example-buttons { display: none } }
+					@media print { :not(.print, .print *):not(:has(.print)) { display: none } } /* Hide non-print-elements */
 				`}</style>
 				<Grid id="example-buttons" data-size="sm" data-gap="2">
 					<Button
@@ -168,7 +168,7 @@ export const Rapportmal: Story = {
 					--mtdsc-print-department: 'avdeling brukerdialog og kommunikasjon';
         }`}
 			</style>
-			<section className="print">
+			<section className="print" data-variant="front">
 				<h1>Foreløpig revisjonsrapport etter systemrevisjon av xxxxxxx</h1>
 				<img
 					alt=""
@@ -244,6 +244,22 @@ export const Rapportmal: Story = {
 				<ul>
 					<li>Regelverk og rettigheter</li>
 				</ul>
+			</section>
+			<section className="print" data-variant="back">
+				{/* Sammen trygger vi framtiden
+				<br />
+				for mennesker, dyr og natur
+				<br />
+				<br />
+				Mattilsynet
+				<br />
+				Felles postmottak
+				<br />
+				Postboks 383
+				<br />
+				2381 Brumunddal
+				<br />
+				mattilsynet.no */}
 			</section>
 		</div>
 	),
