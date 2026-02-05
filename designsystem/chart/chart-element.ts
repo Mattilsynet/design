@@ -138,18 +138,22 @@ function onMoveTooltip(event: MouseEvent) {
 
 const text = (el?: Element | null) => el?.textContent?.trim() || ""; // Helper to get trimmed text
 const toData = (table?: HTMLTableElement | null) =>
-	Array.from(table?.rows || [], (row, rowIndex) =>
+	Array.from(table?.rows || []).map((row, rowIndex, { length }) =>
 		Array.from(row.cells, (cell, cellIndex) => {
 			const rowHeading = text(row.cells[0]);
 			const colHeading = text(table?.rows[0].cells[cellIndex]);
-			const tooltip = `${rowHeading}: ${text(cell)}${colHeading ? ` (${colHeading})` : ""}`;
+			const value = text(cell);
+			const tooltip =
+				length === 2 // If only header and one row, use simple tooltip only showing value
+					? `${colHeading}: ${value}`
+					: `${rowHeading}: ${value}${colHeading ? ` (${colHeading})` : ""}`;
 			attr(cell, "tabindex", "-1");
 
 			return {
-				number: (cellIndex && rowIndex && Number.parseFloat(text(cell))) || 0, // First row and column is not a number
+				number: (cellIndex && rowIndex && Number.parseFloat(value)) || 0, // First row and column is not a number
 				event: cell.querySelector("a,button") && `${rowIndex}-${cellIndex}`, // Reference to proxy events
 				style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base))`,
-				value: text(cell),
+				value,
 				tooltip: attr(cell, "data-tooltip") || tooltip,
 			};
 		}),
