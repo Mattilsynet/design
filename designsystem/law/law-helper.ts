@@ -131,7 +131,7 @@ const parseLawItem = (id: string, html: string, isKapitellLedd: boolean) => {
 	const url = getAttr("data-lovdata-url", tag);
 	const label = getLabel(tag, id, idx, html);
 	const [_, type, key] = url.match(/(lov|forskrift)\/([^/]+)/) || [];
-	const legacyId = `${GUIDE_URL}${type?.slice(0, 3).toUpperCase()}-${key}`; // Recreate legacyId format from lovdata.no
+	const legacyId = `${type?.slice(0, 3).toUpperCase()}-${key}`; // Recreate legacyId format from lovdata.no
 
 	return {
 		id,
