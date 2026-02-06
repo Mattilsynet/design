@@ -361,7 +361,12 @@ const FieldCount = forwardRef<HTMLParagraphElement, FieldCountProps>(
 		ref,
 	) {
 		return (
-			<Validation data-field="counter" data-limit={count} ref={ref} {...rest} />
+			<Validation
+				data-field="counter"
+				data-limit={limit || count}
+				ref={ref}
+				{...rest}
+			/>
 		);
 	},
 );
