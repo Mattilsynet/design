@@ -90,9 +90,9 @@
 	.dialog[data-variant="drawer"] {
 		animation: _drawer 0.2s forwards;
 		border-radius: 0;
-		height: auto;
+		height: 100vh;
 		inset: 0 0 0 auto;
-		max-height: none;
+		max-height: 100vh;
 		max-width: 25rem;
 		transform: none;
 	}
