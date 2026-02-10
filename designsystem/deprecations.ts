@@ -79,15 +79,7 @@ const deprecateErrorSummary = () => {
 const DIALOGS = getByCSSModule("dialog") as HTMLCollectionOf<HTMLDialogElement>;
 const deprecateDialog = () => {
 	for (const el of DIALOGS) {
-		if (!deprecate(el)) continue;
-		if (el.hasAttribute("data-variant")) {
-			warn(
-				'<dialog data-variant="drawer">',
-				'<dialog data-placement="center|left|right|top|bottom">',
-				el,
-			);
-		}
-		if (el.isConnected && el.showModal && el.close) {
+		if (deprecate(el)) {
 			const closedby = attr(el, "data-closedby");
 			if (closedby) {
 				attr(el, "closedby", closedby);
@@ -97,7 +89,18 @@ const deprecateDialog = () => {
 					el,
 				);
 			}
-			if (el.matches('[open]:not([data-modal="false"]):not(:modal)')) {
+			if (el.hasAttribute("data-variant")) {
+				warn(
+					'<dialog data-variant="drawer">',
+					'<dialog data-placement="center|left|right|top|bottom">',
+					el,
+				);
+			}
+		}
+		if (el.isConnected && el.showModal && el.close) {
+			if (
+				el.matches('[open][data-modal]:not([data-modal="false"]):not(:modal)')
+			) {
 				warn(
 					'<dialog data-modal="true">',
 					'.showModal() or <button command="show-modal" commandfor="DIALOG-ID"></button>',
@@ -266,6 +269,7 @@ const handleDeprecations = debounce(() => {
 onHotReload("deprecations", () => [
 	unbindFields, // Return as cleanup function
 	on(document, "click", handleCommandClick, QUICK_EVENT),
+	on(document, "toggle", deprecateDialog, true),
 	onMutation(document, handleDeprecations, {
 		attributeFilter: [
 			"class",

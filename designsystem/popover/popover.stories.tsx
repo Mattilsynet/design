@@ -141,7 +141,7 @@ export const Dropdown: Story = {
 	},
 };
 
-export const Position: Story = {
+export const Placement: Story = {
 	render: () => (
 		<>
 			<button
