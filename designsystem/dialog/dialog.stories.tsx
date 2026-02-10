@@ -1,6 +1,6 @@
 import { FunnelIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Dialog, Field, Flex, Heading, Prose } from "../react";
 import styles from "../styles.module.css";
 
@@ -63,21 +63,44 @@ export const Default: Story = {
 
 export const React: Story = {
 	render: function Render() {
-		const [_open, setOpen] = useState(false);
-
 		return (
 			<>
 				<Button command="show-modal" commandfor="my-react-dialog">
 					Open
 				</Button>
-				<Dialog
-					id="my-react-dialog"
-					onToggle={(e) => setOpen(e.newState === "open")}
-				>
+				<Dialog id="my-react-dialog">
 					<Button
 						aria-label="Lukk"
 						command="close"
 						commandfor="my-react-dialog"
+					/>
+					<Prose>
+						<Heading>Eksempeldialog</Heading>
+						{LOREM_IPSUM}
+					</Prose>
+				</Dialog>
+			</>
+		);
+	},
+};
+
+export const ReactWithState: Story = {
+	render: function Render() {
+		const dialogRef = useRef<HTMLDialogElement>(null);
+		const [open, setOpen] = useState(false);
+
+		useEffect(() => {
+			dialogRef.current?.[open ? "showModal" : "close"]();
+		}, [open]);
+
+		return (
+			<>
+				<Button onClick={() => setOpen(true)}>Open</Button>
+				<Dialog ref={dialogRef} onClose={() => setOpen(false)}>
+					<Button
+						aria-label="Lukk"
+						command="close"
+						onClick={() => setOpen(false)}
 					/>
 					<Prose>
 						<Heading>Eksempeldialog</Heading>
@@ -210,8 +233,7 @@ export const WithoutBackdrop: Story = {
 				</button>
 				<dialog
 					className={styles.dialog}
-					data-modal="false"
-					onToggle={(e) => setOpen(e.newState === "open")}
+					onClose={() => setOpen(false)}
 					id="my-nonmodal-dialog"
 					open={open}
 				>
@@ -233,14 +255,13 @@ export const WithoutBackdrop: Story = {
 
 export const VariantDrawer: Story = {
 	render: function Render() {
-		const [open, setOpen] = useState(false);
-
 		return (
 			<>
 				<button
 					className={styles.button}
 					type="button"
-					onClick={() => setOpen(true)}
+					command="show-modal"
+					commandfor="my-drawer"
 				>
 					Open
 				</button>
@@ -249,8 +270,6 @@ export const VariantDrawer: Story = {
 					data-placement="right"
 					id="my-drawer"
 					closedby="any"
-					onClose={() => setOpen(false)}
-					open={open}
 				>
 					<button
 						type="button"
@@ -279,16 +298,15 @@ export const VariantDrawerWithoutBackdrop: Story = {
 
 		return (
 			<>
-				<Button data-variant="secondary" onClick={() => setOpen(!open)}>
+				<Button data-variant="secondary" onClick={() => setOpen(true)}>
 					<FunnelIcon />
 					Filtrer
 				</Button>
 				<Dialog
 					id="my-filter-drawer"
 					data-placement="right"
-					data-modal="false"
-					onToggle={(e) => setOpen(e.newState === "open")}
 					open={open}
+					onClose={() => setOpen(false)}
 				>
 					<Button command="close" commandfor="my-filter-drawer" />
 					<form action="#">

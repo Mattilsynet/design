@@ -144,7 +144,11 @@ export function CssVariables({
 								!excludes.some((exclude) => name.includes(exclude)) && (
 									<tr key={name}>
 										<td>{name}</td>
-										<td>{decodeURIComponent(val)}</td>
+										<td>
+											{val.startsWith("%22") // Val is a inline string in double quotes
+												? decodeURIComponent(val)
+												: val}
+										</td>
 									</tr>
 								),
 						)}
