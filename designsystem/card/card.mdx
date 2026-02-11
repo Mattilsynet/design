@@ -22,6 +22,10 @@ import * as stories from './card.stories';
   <Canvas of={stories.Padding} />
 </div>
 
+## Border radius
+- Både `card` og `group` støtter `data-radius="sm | md | lg | lg"` for endring av padding (`lg` er default for card, og `xl` er default for group)
+<Canvas of={stories.Radius} />
+
 ## Interaktiv
 - Når `card` er klikkbart, får hele kortet `hover` og `active`-effekter
 - **Merk:** Klikkbare `card` kan ikke inneholde andre klikkbare elementer

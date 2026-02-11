@@ -4,7 +4,12 @@ import { Card, Table } from "./react";
 const toUpper = (str: string) => str.replace(/\b./g, (m) => m.toUpperCase());
 const toUnique = <T,>(arr: T[]): T[] => [...new Set(arr)];
 
-const RADIUS = ["sm", "md", "lg", "full"] as const;
+const RADIUS_SKIP = ["base", "scale", "default"]; // Part of digdir CSS custom properties but not actual radius tokens
+const RADIUS = toUnique(
+	Array.from(css.matchAll(/--mtds-border-radius-([^):]+)/g))
+		.map(([, r]) => r)
+		.filter((r) => !RADIUS_SKIP.includes(r)),
+);
 const SIZES = toUnique(
 	Array.from(css.matchAll(/--mtds-(\d+)/g), ([, d]) => Number(d)),
 );

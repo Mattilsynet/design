@@ -62,6 +62,11 @@
 		&[data-pad="22"] { padding: var(--ds-size-22) } /* 72px */
 		&[data-pad="26"] { padding: var(--ds-size-26) } /* 104px */
 		&[data-pad="30"] { padding: var(--ds-size-30) } /* 120px */
+
+		&[data-radius="sm"] { border-radius: var(--ds-border-radius-sm) }
+		&[data-radius="md"] { border-radius: var(--ds-border-radius-md) }
+		&[data-radius="lg"] { border-radius: var(--ds-border-radius-lg) }
+		&[data-radius="xl"] { border-radius: var(--ds-border-radius-xl) }
 	}
 
 	.group {
