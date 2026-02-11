@@ -266,8 +266,6 @@ export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 								.replace(/([a-z])([A-Z])/g, "$1-$2")
 								.toLowerCase(); // Split on camelcase and hyphenate
 							const href = `${baseUrl}-${file}--${variant === "Default" ? "docs" : variantPath}`;
-							if (href.includes("card"))
-								console.log({ href, baseUrl, file, variantPath, stories });
 
 							return (
 								<Grid
