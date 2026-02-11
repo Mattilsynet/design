@@ -192,6 +192,7 @@ type OverviewProps = {
 		{
 			title: string;
 			tags?: string[];
+			id?: string;
 			parameters: { tag?: string; showInOverview: boolean };
 		}
 	>[];
@@ -243,7 +244,10 @@ export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 				{items
 					.filter((s) => !filter || s.default?.parameters?.tag === filter)
 					.map((stories, key) => {
-						const name = stories.default.title.split("/").pop() || "";
+						const name =
+							stories.default.id?.split("-").pop() ||
+							stories.default.title.split("/").pop() ||
+							"";
 						const file = name.toLowerCase().replace(/[^a-z]+/g, "-"); // Convert to safe url like storybook does
 						const exports = (stories.__namedExportsOrder ||
 							Object.keys(stories)) as unknown as string[];
