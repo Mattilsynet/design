@@ -713,6 +713,35 @@ export const ReactWithSuggestionMultiple: Story = {
 	},
 };
 
+export const ReactWithSuggestionMultipleInside: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field.Suggestion requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([
+			{ value: "saft", label: "Saft" },
+		]);
+
+		return (
+			<Field
+				as={Field.Suggestion}
+				data-multiple
+				data-variant="inside"
+				label="React med forslag flervalg"
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={[
+					{ value: "saft", label: "Saft" },
+					{ value: "suse", label: "Suse" },
+				]}
+			/>
+		);
+	},
+};
+
 export const ReactWithSuggestionCreatable: Story = {
 	parameters: {
 		layout: "padded",

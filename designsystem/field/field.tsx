@@ -179,6 +179,7 @@ export type FieldSuggestionProps = Omit<
 > & {
 	"data-creatable"?: boolean;
 	"data-multiple"?: boolean;
+	"data-variant"?: "inside";
 	onAfterChange?: (e: CustomEvent<HTMLDataElement>) => void; // Backwards compatibility
 	onAfterSelect?: (e: CustomEvent<HTMLDataElement>) => void; // Custom event to handle before change
 	onBeforeChange?: (e: CustomEvent<HTMLDataElement>) => void; // Backwards compatibility
@@ -203,128 +204,127 @@ export type FieldSuggestionProps = Omit<
 		"data-position" | "data-placement" | "data-nofilter"
 	>; // Allow datalist props to be passed down
 
-const FieldSuggestion = forwardRef<
-	DSSuggestionElement,
-	FieldSuggestionProps | FieldSuggestionProps
->(function FieldSuggestion(
-	{
-		"aria-required": required,
-		"data-position": position,
-		"data-placement": placement,
-		"data-nofilter": nofilter,
-		"data-multiple": multiple,
-		onAfterChange, // Backwards compatibility
-		onAfterSelect,
-		onBeforeChange, // Backwards compatibility
-		onBeforeMatch,
-		onBeforeSelect,
-		onSelectedChange,
-		onInput,
-		onChange,
-		children,
-		disabled,
-		name,
-		options,
-		placeholder,
-		readOnly,
-		selected,
-		type,
-		...props
+const FieldSuggestion = forwardRef<DSSuggestionElement, FieldSuggestionProps>(
+	function FieldSuggestion(
+		{
+			"aria-required": required,
+			"data-position": position,
+			"data-placement": placement,
+			"data-nofilter": nofilter,
+			"data-multiple": multiple,
+			onAfterChange, // Backwards compatibility
+			onAfterSelect,
+			onBeforeChange, // Backwards compatibility
+			onBeforeMatch,
+			onBeforeSelect,
+			onSelectedChange,
+			onInput,
+			onChange,
+			children,
+			disabled,
+			name,
+			options,
+			placeholder,
+			readOnly,
+			selected,
+			type,
+			...props
+		},
+		ref,
+	) {
+		const innerRef = useRef<DSSuggestionElement>(null);
+		const onSelected = useRef(onSelectedChange);
+		onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
+
+		// Deprecated props
+		if (onAfterChange) {
+			onAfterSelect = onAfterChange;
+			window.dsWarnings === false ||
+				console.warn(
+					`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onAfterChange is deprecated, please use onAfterSelect instead`,
+				);
+		}
+
+		if (onBeforeChange) {
+			onBeforeSelect = onBeforeChange;
+			window.dsWarnings === false ||
+				console.warn(
+					`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onBeforeChange is deprecated, please use onBeforeSelect instead`,
+				);
+		}
+
+		// Using useEffect for React 18 and lower compatibility
+		useImperativeHandle(ref, () => innerRef.current as DSSuggestionElement); // Forward innerRef
+		useEffect(() => {
+			const self = innerRef.current;
+			const handleChange = (event: CustomEvent<HTMLDataElement>) => {
+				const handleSelected = onSelected.current;
+				if (!onSelected) return; // No onSelectedChange function provided, let ds-suggestion handle it
+				event.preventDefault();
+				const { isConnected: remove, textContent, value } = event.detail;
+				const label = textContent?.trim() || "";
+				const prev = selected || [];
+
+				if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
+				else if (multiple) handleSelected?.([...prev, { value, label }]);
+				else handleSelected?.([{ value, label }]);
+			};
+
+			self?.addEventListener("comboboxbeforeselect", handleChange);
+			return () =>
+				self?.removeEventListener("comboboxbeforeselect", handleChange);
+		}, [multiple, selected]);
+
+		return (
+			<ds-suggestion
+				data-multiple={multiple || undefined}
+				{...toCustomElementProps(
+					{
+						oncomboboxbeforeselect: onBeforeSelect,
+						oncomboboxbeforematch: onBeforeMatch,
+						oncomboboxafterselect: onAfterSelect,
+						ref: innerRef,
+						...props,
+					},
+					styles.suggestion,
+				)}
+			>
+				{selected?.map(({ children, label, value }) => (
+					<data key={value} value={value} suppressHydrationWarning>
+						{children ?? label}
+					</data>
+				))}
+				{children || (
+					<>
+						<Input
+							aria-required={required}
+							disabled={disabled}
+							name={name}
+							onInput={onInput}
+							onChange={onChange}
+							placeholder={placeholder}
+							readOnly={readOnly}
+							type={type}
+						/>
+						<del aria-label="Fjern tekst" suppressHydrationWarning />
+					</>
+				)}
+				{!!options && (
+					<FieldDatalist
+						data-nofilter={nofilter}
+						data-placement={placement || position}
+					>
+						{options.map(toOption).map(({ children, label, value }) => (
+							<FieldOption key={value} value={value} label={label}>
+								{children ?? label}
+							</FieldOption>
+						))}
+					</FieldDatalist>
+				)}
+			</ds-suggestion>
+		);
 	},
-	ref,
-) {
-	const innerRef = useRef<DSSuggestionElement>(null);
-	const onSelected = useRef(onSelectedChange);
-	onSelected.current = onSelectedChange; // Sync the latest onSelectedChange function
-
-	// Deprecated props
-	if (onAfterChange) {
-		onAfterSelect = onAfterChange;
-		window.dsWarnings === false ||
-			console.warn(
-				`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onAfterChange is deprecated, please use onAfterSelect instead`,
-			);
-	}
-
-	if (onBeforeChange) {
-		onBeforeSelect = onBeforeChange;
-		window.dsWarnings === false ||
-			console.warn(
-				`\x1B[1m@mattilsynet/design - deprecation warning:\x1B[m onBeforeChange is deprecated, please use onBeforeSelect instead`,
-			);
-	}
-
-	// Using useEffect for React 18 and lower compatibility
-	useImperativeHandle(ref, () => innerRef.current as DSSuggestionElement); // Forward innerRef
-	useEffect(() => {
-		const self = innerRef.current;
-		const handleChange = (event: CustomEvent<HTMLDataElement>) => {
-			const handleSelected = onSelected.current;
-			if (!onSelected) return; // No onSelectedChange function provided, let ds-suggestion handle it
-			event.preventDefault();
-			const { isConnected: remove, textContent, value } = event.detail;
-			const label = textContent?.trim() || "";
-			const prev = selected || [];
-
-			if (remove) handleSelected?.(prev.filter((i) => i.value !== value));
-			else if (multiple) handleSelected?.([...prev, { value, label }]);
-			else handleSelected?.([{ value, label }]);
-		};
-
-		self?.addEventListener("comboboxbeforeselect", handleChange);
-		return () =>
-			self?.removeEventListener("comboboxbeforeselect", handleChange);
-	}, [multiple, selected]);
-
-	return (
-		<ds-suggestion
-			data-multiple={multiple || undefined}
-			{...toCustomElementProps(
-				{
-					oncomboboxbeforeselect: onBeforeSelect,
-					oncomboboxbeforematch: onBeforeMatch,
-					oncomboboxafterselect: onAfterSelect,
-					ref: innerRef,
-					...props,
-				},
-				styles.suggestion,
-			)}
-		>
-			{selected?.map(({ children, label, value }) => (
-				<data key={value} value={value} suppressHydrationWarning>
-					{children ?? label}
-				</data>
-			))}
-			{children || (
-				<>
-					<Input
-						aria-required={required}
-						disabled={disabled}
-						name={name}
-						onInput={onInput}
-						onChange={onChange}
-						placeholder={placeholder}
-						readOnly={readOnly}
-						type={type}
-					/>
-					<del aria-label="Fjern tekst" suppressHydrationWarning />
-				</>
-			)}
-			{!!options && (
-				<FieldDatalist
-					data-nofilter={nofilter}
-					data-placement={placement || position}
-				>
-					{options.map(toOption).map(({ children, label, value }) => (
-						<FieldOption key={value} value={value} label={label}>
-							{children ?? label}
-						</FieldOption>
-					))}
-				</FieldDatalist>
-			)}
-		</ds-suggestion>
-	);
-});
+);
 
 export type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
 const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
