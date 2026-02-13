@@ -13,6 +13,7 @@
 		--dsc-table-header-background--hover: transparent;
 		--dsc-table-header-background--sorted: transparent;
 		--dsc-table-header-background: transparent;
+		--dsc-table-padding: var(--mtds-2) var(--mtds-3);
 		--mtdsc-table-divided: 50; /* Need to be unitless */
 
 		background: var(--dsc-table-background);
