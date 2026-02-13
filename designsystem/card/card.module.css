@@ -28,6 +28,7 @@
 	}
 	.card:is(label, button, [role="button"], :any-link):hover,
 	.card[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)) {
+		cursor: pointer;
 		border-color: var(--mtdsc-card-border-color--hover);
 	}
 	.card:is(button) {

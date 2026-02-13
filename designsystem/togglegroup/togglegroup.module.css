@@ -16,4 +16,11 @@
 	.togglegroup label {
 		font-weight: var(--ds-font-weight-medium);
 	}
+	.togglegroup label:not(:has(:checked)) {
+		--dsc-button-background--active: var(--ds-color-background-tinted);
+		--dsc-button-background--hover: var(--ds-color-background-tinted);
+		--dsc-button-background: transparent;
+		--dsc-button-color--hover: inherit;
+		--dsc-button-color: inherit;
+	}
 }

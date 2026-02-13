@@ -34,7 +34,12 @@ const TogglegroupItem = forwardRef<HTMLLabelElement, TogglegroupItemProps>(
 		ref,
 	) {
 		return (
-			<label ref={ref} {...rest} className={styles.button}>
+			<label
+				className={styles.button}
+				data-variant="teriary"
+				ref={ref}
+				{...rest}
+			>
 				<input
 					{...{ type: "radio", checked, defaultChecked, value, name, onChange }}
 				/>

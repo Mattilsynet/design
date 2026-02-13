@@ -30,7 +30,8 @@
 			font-size: inherit; /* Needed if <button> */
 		}
 
-		&:hover {
+		&:hover,
+		&:global(.\:click-delegate-hover) {
 			text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness--hover); /* 2px ish */
 		}
 
