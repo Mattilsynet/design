@@ -26,11 +26,17 @@
 	.card:is(label, button:enabled, button:not([aria-disabled="true"], [role="button"], [data-clickdelegatefor])) {
 		cursor: pointer;
 	}
-	.card:is(label, button, [role="button"], :any-link):hover {
+	.card:is(label, button, [role="button"], :any-link):hover,
+	.card[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)) {
 		border-color: var(--mtdsc-card-border-color--hover);
 	}
 	.card:is(button) {
 		width: 100%;
+	}
+	.card:focus-visible {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
 	}
 	label.card:has(input:checked) {
 		background-color: var(--ds-color-surface-hover);

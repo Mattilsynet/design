@@ -110,6 +110,16 @@ export const Interactive: Story = {
 			<button type="button" className={styles.card}>
 				As button
 			</button>
+			<div data-clickdelegatefor="my-link" className={styles.card}>
+				<div className={styles.prose}>
+					<a id="my-link" href="#anchor">
+						With data-clickdelegatefor targeting link
+					</a>
+					<button type="button" className={styles.button}>
+						Inner button with other function
+					</button>
+				</div>
+			</div>
 		</>
 	),
 };
