@@ -25,7 +25,7 @@ function toPhone(value = "") {
 
 export function Epost() {
 	const [data, setData] = useState<Data>({});
-	const onInput = (event: React.KeyboardEvent<HTMLFormElement>) => {
+	const onInput = (event: React.InputEvent<HTMLFormElement>) => {
 		const form = event.currentTarget;
 		const data = Object.fromEntries(new FormData(form).entries()) as Data;
 		setData(data);

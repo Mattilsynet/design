@@ -125,6 +125,15 @@
 		&[data-justify="space-around"] { justify-content: space-around }
 		&[data-justify="space-between"] { justify-content: space-between }
 		&[data-justify="space-evenly"] { justify-content: space-evenly }
+
+		& > [data-align-self="center"] { align-self: center }
+		& > [data-align-self="end"] { align-self: end}
+		& > [data-align-self="start"] { align-self: start }
+		& > [data-align-self="stretch"] { align-self: stretch }
+		& > [data-justify-self="start"] { justify-self: start }
+		& > [data-justify-self="center"] { justify-self: center }
+		& > [data-justify-self="end"] { justify-self: end }
+		& > [data-justify-self="stretch"] { justify-self: stretch }
 	}
 
 	/**

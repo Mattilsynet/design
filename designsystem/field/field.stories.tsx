@@ -460,6 +460,35 @@ export const WithSuggestionMultiple: Story = {
 	),
 };
 
+export const WithSuggestionMultipleInside: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<ds-field className={styles.field}>
+			<label>Med forslag flervalg inni</label>
+			<ds-suggestion
+				className={styles.suggestion}
+				data-multiple
+				data-variant="inside"
+			>
+				<data value="Sogndal">Sogndal</data>
+				<input type="text" className={styles.input} />
+				<del role="img" aria-label="Fjern tekst"></del>
+				<u-datalist>
+					<u-option value="Sogndal">Sogndal</u-option>
+					<u-option value="Oslo">Oslo</u-option>
+					<u-option value="Brønnøysund">Brønnøysund</u-option>
+					<u-option value="Stavanger">Stavanger</u-option>
+					<u-option value="Trondheim">Trondheim</u-option>
+					<u-option value="Bergen">Bergen</u-option>
+					<u-option value="Lillestrøm">Lillestrøm</u-option>
+				</u-datalist>
+			</ds-suggestion>
+		</ds-field>
+	),
+};
+
 export const WithSuggestionCreatable: Story = {
 	parameters: {
 		layout: "padded",
@@ -672,6 +701,35 @@ export const ReactWithSuggestionMultiple: Story = {
 			<Field
 				as={Field.Suggestion}
 				data-multiple
+				label="React med forslag flervalg"
+				selected={selected}
+				onSelectedChange={setSelected}
+				options={[
+					{ value: "saft", label: "Saft" },
+					{ value: "suse", label: "Suse" },
+				]}
+			/>
+		);
+	},
+};
+
+export const ReactWithSuggestionMultipleInside: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: function Render() {
+		// IMPORTANT:
+		// Using Field.Suggestion requires
+		// "use client" if doing server-side rendering
+		const [selected, setSelected] = useState<FieldSuggestionSelected>([
+			{ value: "saft", label: "Saft" },
+		]);
+
+		return (
+			<Field
+				as={Field.Suggestion}
+				data-multiple
+				data-variant="inside"
 				label="React med forslag flervalg"
 				selected={selected}
 				onSelectedChange={setSelected}
