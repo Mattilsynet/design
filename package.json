@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "3.0.7",
+	"version": "3.0.8",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -54,9 +54,9 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.14",
-		"@digdir/designsystemet-css": "^0.0.0-fix-designsystemet-web-20260128130007",
-		"@digdir/designsystemet-types": "^0.0.0-fix-designsystemet-web-20260128130007",
+		"@biomejs/biome": "2.3.15",
+		"@digdir/designsystemet-css": "^0.0.0-fix-designsystemet-web-20260213102609",
+		"@digdir/designsystemet-types": "^0.0.0-fix-designsystemet-web-20260213102609",
 		"@handsontable/react-wrapper": "^16.2.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
@@ -86,7 +86,7 @@
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
-		"@digdir/designsystemet-web": "^0.0.0-fix-designsystemet-web-20260128130007",
+		"@digdir/designsystemet-web": "^0.0.0-fix-designsystemet-web-20260213102609",
 		"@u-elements/u-datalist": "^1.1.0",
 		"@u-elements/u-details": "^0.2.2",
 		"@u-elements/u-progress": "^0.0.7",
