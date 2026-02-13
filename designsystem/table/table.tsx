@@ -62,11 +62,14 @@ export const Table = Object.assign(TableComp, {
 			return <th suppressHydrationWarning ref={ref} {...props} />;
 		},
 	),
-	Tr: forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<"tr">>(
-		function Tr(props, ref) {
-			return <tr suppressHydrationWarning ref={ref} {...props} />;
-		},
-	),
+	Tr: forwardRef<
+		HTMLTableRowElement,
+		React.ComponentPropsWithoutRef<"tr"> & {
+			"data-clickdelegatefor"?: string;
+		}
+	>(function Tr(props, ref) {
+		return <tr suppressHydrationWarning ref={ref} {...props} />;
+	}),
 	Thead: forwardRef<
 		HTMLTableSectionElement,
 		React.ComponentPropsWithoutRef<"tbody">

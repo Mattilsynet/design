@@ -10,6 +10,7 @@ import styles from "../styles.module.css";
 type CardBaseProps<Href> = {
 	"data-pad"?: Sizes;
 	"data-radius"?: "sm" | "md" | "lg" | "xl";
+	"data-clickdelegatefor"?: string;
 	href?: Href;
 };
 
