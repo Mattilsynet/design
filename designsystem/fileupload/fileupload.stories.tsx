@@ -46,6 +46,22 @@ export const React: Story = {
 	),
 };
 
+export const Invalid: Story = {
+	render: () => (
+		<Fileupload aria-invalid="true">
+			<UploadIcon />
+			<strong>Last opp filer</strong>
+			Dra over eller <u>last opp fil</u>
+			<small>
+				Støttede formater: PDF, JPEG, SVG
+				<br />
+				Filstørrelse under 10 MB
+			</small>
+			<input type="file" accept="image/*,.pdf" title="Last opp filer" />
+		</Fileupload>
+	),
+};
+
 export const WithPreviewImage: Story = {
 	render: function Render() {
 		const [images, setImages] = useState<{ title: string; src: string }[]>([]);
