@@ -1,5 +1,6 @@
 @layer mt.design {
 	.fileupload {
+		--mtdsc-fileupload-border-color: currentColor;
 		--mtdsc-fileupload-background--hover: var(--ds-color-background-tinted);
 		--mtdsc-fileupload-padding: var(--ds-size-9) var(--ds-size-5)
 			var(--ds-size-13);
@@ -18,7 +19,7 @@
 		transition: 0.2s background;
 	}
 	.fileupload::before {
-		background: currentColor;
+		background: var(--mtdsc-fileupload-border-color);
 		content: "";
 		height: 100%;
 		inset: 0;
@@ -32,6 +33,9 @@
 	}
 	:not([hidden]):is(.fileupload, .fileupload strong, .fileupload small) {
 		display: block;
+	}
+	.fileupload[aria-invalid="true"] {
+		--mtdsc-fileupload-border-color: var(--ds-color-danger-border-default);
 	}
 	.fileupload > svg {
 		display: inline-block; /* Fix Tailwind default */
