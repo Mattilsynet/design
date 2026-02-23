@@ -76,6 +76,7 @@
 	.steps > li mark > svg,
 	.steps > li mark:empty::before {
 		display: block;
+		fill: currentColor; /* In case using non-Phosphor icons */
 		width: 75%;
 		height: 75%;
 	}

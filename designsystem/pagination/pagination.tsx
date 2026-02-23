@@ -9,8 +9,9 @@ import { toCustomElementProps } from "../utils";
 export type PaginationProps = Omit<
 	CustomReactElementProps<DSPaginationElement>,
 	"children"
-> &
-	(
+> & {
+	"data-variant"?: "primary" | "secondary";
+} & (
 		| {
 				children?: never;
 				current: number;

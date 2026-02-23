@@ -20,7 +20,12 @@
 	 * Icon
 	 */
 	.tag > svg {
+		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		fill: currentColor; /* In case using non-Phosphor icons */
 		flex-shrink: 0; /* TODO Digdir: Never shrkink icon */
+		font-size: 1em;
+		height: 1em;
+		width: 1em;
 	}
 	.tag:not([data-icon="none"], [data-icon="false"], :has(svg))::before {
 		background: currentcolor;

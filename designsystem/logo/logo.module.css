@@ -120,7 +120,7 @@
 		font-size: var(--mtdsc-logo-size--app);
 		line-height: var(--_mtdsc-logo-icon-size);
 
-		&:before {
+		&::before {
 			background: var(--mtdsc-logo-background);
 			border-radius: var(--ds-border-radius-full);
 			content: "";

@@ -105,7 +105,9 @@
 	.details[data-variant="card"]
 		> :is(summary, u-summary)
 		> :is(img, svg):first-child {
+		fill: currentColor; /* In case using non-Phosphor icons */
 		flex: 0 0 auto; /* ..but prevent icon from shrinking or growing */
+		font-size: 1em;
 		height: 1lh; /* Align with first line if using `data-align="start"` */
 		width: var(--mtds-icon-size);
 	}

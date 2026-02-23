@@ -49,7 +49,7 @@
 		--mtdsc-badge-offset: 15%;
 	}
 	.badge > svg {
-		fill: currentColor;
+		fill: currentColor; /* In case using non-Phosphor icons */
 		flex-shrink: 0;
 		font-size: 1em;
 		height: var(--mtds-icon-size);

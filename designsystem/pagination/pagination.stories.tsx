@@ -36,6 +36,13 @@ const meta = {
 			},
 		},
 	},
+	decorators: [
+		(Story) => (
+			<div className={styles.grid} data-justify="center">
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta;
 
 export default meta;
@@ -226,42 +233,131 @@ export const WithButtons: Story = {
 
 export const Sizes: Story = {
 	render: () => (
-		<ds-pagination data-size="sm" className={styles.pagination}>
-			<ul>
-				<li>
-					<button type="button" className={styles.button} disabled></button>
-				</li>
-				<li>
-					<button type="button" className={styles.button} aria-current="page">
-						1
-					</button>
-				</li>
-				<li>
-					<button type="button" className={styles.button}>
-						2
-					</button>
-				</li>
-				<li>
-					<button type="button" className={styles.button}>
-						3
-					</button>
-				</li>
-				<li>
-					<button type="button" className={styles.button}>
-						4
-					</button>
-				</li>
-				<li></li>
-				<li>
-					<button type="button" className={styles.button}>
-						10
-					</button>
-				</li>
-				<li>
-					<button type="button" className={styles.button}></button>
-				</li>
-			</ul>
-		</ds-pagination>
+		<>
+			<ds-pagination data-size="sm" className={styles.pagination}>
+				<ul>
+					<li>
+						<button type="button" className={styles.button} disabled></button>
+					</li>
+					<li>
+						<button type="button" className={styles.button} aria-current="page">
+							1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							3
+						</button>
+					</li>
+				</ul>
+			</ds-pagination>
+			<ds-pagination data-size="md" className={styles.pagination}>
+				<ul>
+					<li>
+						<button type="button" className={styles.button} disabled></button>
+					</li>
+					<li>
+						<button type="button" className={styles.button} aria-current="page">
+							1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							3
+						</button>
+					</li>
+				</ul>
+			</ds-pagination>
+			<ds-pagination data-size="lg" className={styles.pagination}>
+				<ul>
+					<li>
+						<button type="button" className={styles.button} disabled></button>
+					</li>
+					<li>
+						<button type="button" className={styles.button} aria-current="page">
+							1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							3
+						</button>
+					</li>
+				</ul>
+			</ds-pagination>
+		</>
+	),
+};
+
+export const Variants: Story = {
+	render: () => (
+		<>
+			<ds-pagination data-variant="secondary" className={styles.pagination}>
+				<ul>
+					<li>
+						<button type="button" className={styles.button} disabled></button>
+					</li>
+					<li>
+						<button type="button" className={styles.button} aria-current="page">
+							1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}></button>
+					</li>
+				</ul>
+			</ds-pagination>
+			<ds-pagination data-variant="primary" className={styles.pagination}>
+				<ul>
+					<li>
+						<button type="button" className={styles.button} disabled></button>
+					</li>
+					<li>
+						<button type="button" className={styles.button} aria-current="page">
+							1
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							2
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}>
+							3
+						</button>
+					</li>
+					<li>
+						<button type="button" className={styles.button}></button>
+					</li>
+				</ul>
+			</ds-pagination>
+		</>
 	),
 };
 

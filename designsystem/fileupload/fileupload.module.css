@@ -38,9 +38,11 @@
 		--mtdsc-fileupload-border-color: var(--ds-color-danger-border-default);
 	}
 	.fileupload > svg {
-		display: inline-block; /* Fix Tailwind default */
-		vertical-align: middle;
+		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		fill: currentColor; /* In case using non-Phosphor icons */
+		font-size: 1em;
 		height: var(--mtds-icon-size);
+		vertical-align: middle;
 		width: var(--mtds-icon-size);
 	}
 	.fileupload u {

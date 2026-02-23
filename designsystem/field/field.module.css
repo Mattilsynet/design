@@ -28,8 +28,12 @@
 		margin-top: 0; /* Remove space if label is hidden */
 	}
 	.field label svg {
-		display: inline-block; /* Fix Tailwind default */
+		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		fill: currentColor; /* In case using non-Phosphor icons */
+		font-size: 1em;
+		height: 1em;
 		vertical-align: -0.15em;
+		width: 1em;
 	}
 	.field:has(:required, [aria-required="true"]) label::after {
 		box-sizing: border-box;
@@ -54,7 +58,7 @@
 	.field [data-count]::after /* Backwards compatibility */,
 	.field [data-field="counter"]::after {
 		font-size: var(--mtds-font-size-muted);
-		content: attr(aria-label);
+		content: attr(data-label);
 	}
 
 	/**
