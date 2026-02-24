@@ -32,7 +32,7 @@ const handleValidations = (event?: Event) => {
 					: input.validity.valid;
 
 				if (!firstInvalid && !isValid) firstInvalid = input;
-				if (!isTyping || event.target === input)
+				if (!isTyping || event?.target === input)
 					for (const el of scope.getElementsByClassName(CSS_VALIDATION)) {
 						const isNested =
 							scope.nodeName === "FIELDSET" && el.parentElement !== scope;
@@ -55,7 +55,7 @@ onHotReload("validations", () => [
 	on(document, "invalid input", debounce(handleValidations, 10), QUICK_EVENT), // Debounced to group invalid events
 	onMutation(
 		document,
-		debounce(() => handleValidations(), 10),
+		debounce(() => handleValidations, 0), // Debounced to merge mutations
 		{
 			childList: true,
 			subtree: true,

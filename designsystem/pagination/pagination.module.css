@@ -1,7 +1,9 @@
 @layer mt.design {
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
-		--dsc-pagination-icon-url: var(--mtds-icon-chevron--right);
+		--dsc-pagination-icon-url: var(
+			--mtds-icon-chevron--right
+		); /* TODO Digdir: dsc-pagination-button-background--active etc */
 	}
 	.pagination :is(a, button) {
 		border-radius: var(--ds-border-radius-full);
@@ -13,5 +15,9 @@
 	.pagination li:last-child > :is(a, button):empty::after {
 		position: absolute;
 		content: "" / var(--mtds-text-next);
+	}
+	.pagination[data-variant="primary"] [aria-current="page"]:is(a, button) {
+		--dsc-button-background: var(--ds-color-base-default);
+		--dsc-button-color: var(--ds-color-base-contrast-default);
 	}
 }

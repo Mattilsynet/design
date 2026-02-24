@@ -947,6 +947,7 @@ export const ClickableSimple: Story = {
 	render: () => (
 		<table
 			className={styles.table}
+			data-border="true"
 			data-fixed
 			aria-label="Table with clickable rows"
 		>

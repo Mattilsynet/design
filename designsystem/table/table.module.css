@@ -56,7 +56,8 @@
 		border-bottom-color: var(--dsc-table-divider-border-color);
 		vertical-align: bottom;
 	}
-	.table[data-border]:not([data-border="false"]) {
+	/* Using :where to let data-clickdelegatefor activate hover */
+	:where(.table[data-border]:not([data-border="false"])) {
 		--dsc-table-background: var(--ds-color-surface-default);
 
 		& > thead > tr > :is(th, td) {

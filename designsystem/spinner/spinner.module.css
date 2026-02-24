@@ -22,7 +22,7 @@
 		white-space: nowrap;
 		width: 1em;
 	}
-	.spinner:empty:before {
+	.spinner:empty::before {
 		content: var(--mtds-text-loading); /* Ensure content for screen readers */
 	}
 	.spinner[data-size="xs"]::before {

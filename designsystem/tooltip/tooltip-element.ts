@@ -6,5 +6,9 @@ import { isBrowser, tag } from "../utils";
 if (isBrowser())
 	setTooltipElement(
 		document.getElementById("mtds-tooltip") ||
-			tag("div", { class: styles._tooltip, id: "mtds-tooltip" }), // This id is also used by app.module.css
+			tag("div", {
+				class: styles._tooltip,
+				id: "mtds-tooltip",
+				popover: "manual",
+			}), // This id is also used by app.module.css
 	);

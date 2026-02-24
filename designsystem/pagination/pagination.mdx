@@ -1,5 +1,5 @@
 import { ArgTypes, Meta, Canvas } from '@storybook/addon-docs/blocks';
-import { Example, CssVariables } from '../../.storybook/blocks';
+import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
 import { Flex } from '../react';
 import * as stories from './pagination.stories';
 import { Details } from '../react';
@@ -10,6 +10,8 @@ import styles from '../styles.module.css';
 # Pagination
 
 > Pagination er en liste med knapper som brukes for å navigere mellom ulike sider med innhold, for eksempel søkeresultater eller tabeller.
+
+<JumpTo />
 
 ## Kode
 - Bruk klassen `pagination` på `<ds-pagination>`
@@ -97,6 +99,11 @@ I React kan du velge å bruke `<Pagination>` med props for automatisk oppsett av
 ## Størrelser
 - Bruk `data-size="sm | md | lg"`
 <Canvas of={stories.Sizes} />
+
+## Varianter/farger
+- Bruk `data-variant="secondary | primary"`, hvor `secondary` er default
+- `data-variant="primary"` er nyttig når paginering ligger på grå bakgrunn
+<Canvas of={stories.Variants} />
 
 
 ## Javascript-hjelper

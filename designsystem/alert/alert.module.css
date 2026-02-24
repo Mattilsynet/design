@@ -25,7 +25,9 @@
 		--ds-color-text-subtle: var(--ds-color-info-text-subtle);
 		--ds-color-text-default: var(--ds-color-info-text-default);
 		--ds-color-base-contrast-subtle: var(--ds-color-info-base-contrast-subtle);
-		--ds-color-base-contrast-default: var(--ds-color-info-base-contrast-default);
+		--ds-color-base-contrast-default: var(
+			--ds-color-info-base-contrast-default
+		);
 	}
 
 	.alert:where(:not([hidden])) {

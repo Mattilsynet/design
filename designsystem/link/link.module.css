@@ -44,9 +44,11 @@
 @layer mt.design {
 	/* Using where to let .button overwrite */
 	:where(a, .link) > svg {
-		display: inline-block; /* Fix Tailwind default */
-		vertical-align: middle; /* Align img or svg icon with text */
+		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		fill: currentColor; /* In case using non-Phosphor icons */
+		font-size: 1em;
 		height: var(--mtds-icon-size-sm);
+		vertical-align: middle; /* Align img or svg icon with text */
 		width: var(--mtds-icon-size-sm);
 	}
 }
