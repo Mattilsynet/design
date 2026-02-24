@@ -13,8 +13,11 @@
 		--mtdsc-dialog-box-shadow: var(--ds-box-shadow-lg);
 
 		box-shadow: var(--mtdsc-dialog-box-shadow);
-		align-self: center; /* TODO Digdir: Center also when in display: flex */
 		outline: none; /* Prevent Chrome outline (TODO DigDir) */
+	}
+	.dialog[data-placement="center"],
+	.dialog:not([data-placement]) {
+		align-self: center; /* TODO Digdir: Center also when in display: flex */
 	}
 	.dialog:not(:modal) {
 		z-index: 1000; /* Needed as non-modal does not use #top-layer */

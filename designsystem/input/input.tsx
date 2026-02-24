@@ -2,14 +2,17 @@ import clsx from "clsx";
 import { forwardRef } from "react";
 import styles from "../styles.module.css";
 
-export type InputProps = React.ComponentPropsWithoutRef<"input">;
+export type InputProps = React.ComponentPropsWithoutRef<"input"> & {
+	"data-indeterminate"?: boolean;
+};
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-	{ className, type = "text", ...rest },
+	{ "data-indeterminate": indeterminate, className, type = "text", ...rest },
 	ref,
 ) {
 	return (
 		<input
 			className={clsx(styles.input, className)}
+			data-indeterminate={!!indeterminate || undefined} // Remove attribute if false
 			suppressHydrationWarning // Prevent hydration mismatch for SSR caused by field-observer.ts
 			type={type}
 			ref={ref}
