@@ -16,6 +16,7 @@ import { toCustomElementProps } from "../utils";
 import { Validation } from "../validation/validation";
 
 type FieldBaseProps = {
+	"data-required"?: "hidden";
 	count?: number;
 	description?: React.ReactNode;
 	error?: React.ReactNode; // Kept for backwards compatibility
@@ -47,6 +48,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	{
 		"data-size": size,
 		"data-validation": dataValidation,
+		"data-required": dataRequired,
 		as,
 		className,
 		count,
@@ -69,6 +71,7 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	const shared = {
 		"data-size": size,
 		"data-validation": dataValidation,
+		"data-required": dataRequired,
 		class: clsx(styles.field, className),
 		suppressHydrationWarning: true,
 		style,

@@ -21,9 +21,10 @@ export * as styles from "./styles.module.css";
 export * from "./toast/toast-helper";
 
 // Load behaviors
-import "./deprecations";
 import "./chart/chart-element";
+import "./deprecations";
 import "./logo/logo-observer";
+import "./popover/popover-observer";
 import "./table/table-observer";
 import "./toast/toast-observer";
 import "./tooltip/tooltip-element";
