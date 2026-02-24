@@ -14,7 +14,12 @@ export type AppStickyProps = React.ComponentPropsWithoutRef<"div">;
 export type AppMainProps = React.ComponentPropsWithoutRef<"main">;
 export type AppFooterProps = React.ComponentPropsWithoutRef<"footer">;
 export type AppProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{
+			"data-variant"?: "mobilebar";
+		}
+	>;
 
 type AppComponent = <As extends React.ElementType = "div">(
 	props: AppProps<As>,

@@ -69,15 +69,13 @@
 		}
 	}
 	.info:has(> :is(svg, i)) {
-		display: inline-block; /* TODO Digdir: Fix Tailwind default */
-		fill: currentColor; /* In case using non-Phosphor icons */
-		font-size: 1em;
-		height: 1em;
 		padding-left: var(--_mtdsc-info-x);
-		width: 1em;
 	}
 	.info > :is(svg, i) {
 		box-sizing: border-box;
+		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		fill: currentColor; /* In case using non-Phosphor icons */
+		font-size: 1em;
 		height: var(--_mtdsc-info-lh);
 		margin-left: calc(var(--_mtdsc-info-x) * -1);
 		position: absolute;
