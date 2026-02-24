@@ -219,13 +219,11 @@ export const Indeterminate: Story = {
 				<ds-field className={styles.field}>
 					<label>Velg alle</label>
 					<input
-						type="checkbox"
-						className={styles.input}
 						checked={isAll}
+						className={styles.input}
+						data-indeterminate={!isAll && !!checked.length}
 						onChange={() => setChecked(isAll ? [] : all)}
-						ref={(el) => {
-							if (el) el.indeterminate = !isAll && !!checked.length;
-						}}
+						type="checkbox"
 					/>
 				</ds-field>
 				<div className={styles.grid} style={{ paddingLeft: "var(--mtds-8)" }}>

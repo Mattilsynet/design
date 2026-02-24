@@ -234,6 +234,17 @@ export const Disabled: Story = {
 	),
 };
 
+export const Indeterminate: Story = {
+	render: () => (
+		<>
+			<ds-field className={styles.field}>
+				<label>Disabled text</label>
+				<input className={styles.input} type="checkbox" data-indeterminate />
+			</ds-field>
+		</>
+	),
+};
+
 export const TypeSearch: Story = {
 	parameters: {
 		showInOverview: true,
