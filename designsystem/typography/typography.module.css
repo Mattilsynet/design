@@ -58,6 +58,10 @@
 	:where(.info:not([hidden]), .info strong:not([hidden])) {
 		display: block; /* Using where to make it easy to use other display values */
 	}
+	/* Ensure height if only icon is present */
+	.info:not(:empty) {
+		min-height: var(--_mtdsc-info-lh);
+	}
 	.info > span[data-nowrap] {
 		overflow: clip;
 		text-overflow: ellipsis;
