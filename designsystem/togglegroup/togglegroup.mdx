@@ -26,20 +26,19 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
 </Grid>
 
 <Flex data-items="350">
-
   {/* Togglegroup med ikon */}
   <Example data-color="success" text="ToggleGroup med bare ikoner bør kun brukes i ekspertløsninger. Bruk tooltip sammen med ikon." zoom="100%">
   <div className={styles.grid}>
       <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
-        <label data-tooltip="Venstrejustert">
+        <label className={styles.button} data-tooltip="Venstrejustert">
           <input type="radio" name="my-icon-example-1" value="left" />
           <TextAlignLeftIcon />
         </label>
-        <label data-tooltip="Sentrert">
+        <label className={styles.button} data-tooltip="Sentrert">
           <input type="radio" name="my-icon-example-1" value="center" defaultChecked />
           <TextAlignCenterIcon />
         </label>
-        <label data-tooltip="Høyrejustert">
+        <label className={styles.button} data-tooltip="Høyrejustert">
           <input type="radio" name="my-icon-example-1" value="right" />
           <TextAlignRightIcon />
         </label>
@@ -50,22 +49,27 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
   <Example data-color="danger" text="ToggleGroup med bare ikoner bør ha tooltip." zoom="100%">
     <div className={styles.grid}>
       <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
-        <label>
+        <label className={styles.button}>
           <input type="radio" name="my-icon-example-2" value="left" />
           <TextAlignLeftIcon />
         </label>
-        <label>
+        <label className={styles.button}>
           <input type="radio" name="my-icon-example-2" value="center" defaultChecked />
           <TextAlignCenterIcon />
         </label>
-        <label>
+        <label className={styles.button}>
           <input type="radio" name="my-icon-example-2" value="right" />
           <TextAlignRightIcon />
         </label>
       </fieldset>
     </div>
   </Example>
-
 </Flex>
+
+## Med lenker
+
+- Hvis du ønsker lenker istedenfor radio-knapper: Bruk `<nav>`, ikke `<fieldset>`
+- Bruk `aria-current="true"` på den aktive lenken
+<Canvas of={stories.AsLinks} />
 
 <CssVariables component="togglegroup" />

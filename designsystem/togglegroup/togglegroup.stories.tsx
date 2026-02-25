@@ -84,18 +84,13 @@ export const React: Story = {
 
 export const AsLinks: Story = {
 	render: () => (
-		<fieldset
-			data-size="sm"
-			className={styles.togglegroup}
-			data-toggle-group="Valgknapper"
-			aria-label="Valgknapper"
-		>
+		<nav className={styles.togglegroup} data-toggle-group="Valgknapper">
 			<a href="#liste" className={styles.button} aria-current="true">
 				Liste
 			</a>
 			<a href="#tidslinje" className={styles.button}>
 				Tidslinje
 			</a>
-		</fieldset>
+		</nav>
 	),
 };
