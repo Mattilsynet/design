@@ -56,8 +56,7 @@
 		border-bottom-color: var(--dsc-table-divider-border-color);
 		vertical-align: bottom;
 	}
-	/* Using :where to let data-clickdelegatefor activate hover */
-	:where(.table[data-border]:not([data-border="false"])) {
+	.table[data-border]:not([data-border="false"]) {
 		--dsc-table-background: var(--ds-color-surface-default);
 
 		& > thead > tr > :is(th, td) {
@@ -195,12 +194,14 @@
 
 	.table
 		> tbody
-		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)) {
+		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover))
+		> :is(td, th) {
 		background: var(--dsc-table-background--hover);
 	}
 	.table
 		> tbody
-		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)):active {
+		> tr[data-clickdelegatefor]:has(:global(.\:click-delegate-hover)):active
+		> :is(td, th) {
 		background: var(--dsc-table-background--active);
 	}
 	/* Deprecated: Hover a row, that has [data-command="row"], but not hovering non-data-command-row-button/link */
