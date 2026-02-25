@@ -46,4 +46,7 @@
 	.tag[data-color="danger"] {
 		--dsc-tag-icon-url: var(--mtds-icon-danger);
 	}
+	.tag[data-color="neurtal"] {
+		--dsc-tag-icon-url: var(--mtds-icon-question);
+	}
 }

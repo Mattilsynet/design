@@ -124,7 +124,7 @@
 				.app > [command="show-modal"],
 				.app
 					> [data-command="toggle-app-expanded"] /* Backwards compatibility */
-			):not(:empty):hover
+			):not(:empty):is(:hover, :focus-within)
 	)
 	:global(#mtds-tooltip) {
 		--_ds-floating: right; /* Place tooltip right when over sidebar */
