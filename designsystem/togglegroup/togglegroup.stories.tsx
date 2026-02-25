@@ -81,3 +81,16 @@ export const React: Story = {
 		);
 	},
 };
+
+export const AsLinks: Story = {
+	render: () => (
+		<nav className={styles.togglegroup} data-toggle-group="Valgknapper">
+			<a href="#liste" className={styles.button} aria-current="true">
+				Liste
+			</a>
+			<a href="#tidslinje" className={styles.button}>
+				Tidslinje
+			</a>
+		</nav>
+	),
+};

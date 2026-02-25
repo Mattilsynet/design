@@ -23,4 +23,21 @@
 		--dsc-button-color--hover: inherit;
 		--dsc-button-color: inherit;
 	}
+	/* TODO Digdir: */
+	.togglegroup a {
+		isolation: isolate; /*creates a new stacking context so button shows above the parent's overlapping outline*/
+		border-radius: calc(
+			var(--dsc-togglegroup-border-radius) -
+			var(--dsc-togglegroup-border-width)
+		);
+		height: 100%;
+		min-height: unset;
+		white-space: nowrap;
+		min-width: fit-content;
+	}
+	/* Double selector to increase specificity */
+	.togglegroup.togglegroup a[aria-current="true"] {
+		--dsc-button-background: var(--ds-color-base-default);
+		--dsc-button-color: var(--ds-color-base-contrast-default);
+	}
 }
