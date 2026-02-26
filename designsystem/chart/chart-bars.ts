@@ -11,18 +11,18 @@ export function toBars(data: ChartData) {
 		data
 			.slice(1)
 			.map((values) => values[index + 1])
-			.map(({ tooltip, style, number }) =>
-				content.appendChild(
-					tag("div", {
-						"aria-label": tooltip,
-						"data-event": event,
-						class: "bar",
-						role: "img",
-						style: `${style}; --value: ${number}`,
-						tabindex: "0",
-					}),
-				),
-			);
+			.map(({ tooltip, color, number }) => {
+				const el = tag("div", {
+					"aria-label": tooltip,
+					"data-event": event,
+					class: "bar",
+					role: "img",
+					tabindex: "0",
+				});
+				el.style.setProperty("--color", color);
+				el.style.setProperty("--value", `${number}`);
+				return content.appendChild(el);
+			});
 		return group;
 	});
 }

@@ -14,7 +14,7 @@ export function toPies(data: ChartData, { aspect, variant }: Options) {
 	const inner = variant === "doughnut" ? 25 : 0;
 	const total = data.slice(1).reduce((tot, [, td]) => tot + td.number, 0);
 
-	data.slice(1).forEach(([, { tooltip, number, event, style }]) => {
+	data.slice(1).forEach(([, { tooltip, number, event, color }]) => {
 		if (!number) return; // Skip empty
 		const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 		const start = offset / total;
@@ -29,9 +29,9 @@ export function toPies(data: ChartData, { aspect, variant }: Options) {
 		const y1 = Math.sin(a1);
 		const d = `M ${radius + inner * x0} ${radius + inner * y0} L ${radius + radius * x0} ${radius + radius * y0} A ${radius} ${radius} 0 ${largeArc} 1 ${radius + radius * x1} ${radius + radius * y1} L ${radius + inner * x1} ${radius + inner * y1} A ${inner} ${inner} 0 ${largeArc} 0 ${radius + inner * x0} ${radius + inner * y0}`;
 
+		path.style.setProperty("--color", color);
 		attr(path, "aria-label", tooltip);
 		attr(path, "data-event", event);
-		attr(path, "style", style);
 		attr(path, "d", d);
 		attr(path, "role", "img");
 		attr(path, "tabindex", "0");

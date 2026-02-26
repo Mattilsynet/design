@@ -11,11 +11,8 @@ export function toLines(data: ChartData, { total, type, variant }: Config) {
 	const smoothing = Number.parseFloat(type || "0") || 0;
 	const group = tag("div", { class: "axisGroup" });
 	data.slice(1).forEach(([, ...values]) => {
-		const lineContainer = tag("div", {
-			class: `lineContainer`,
-			role: "list",
-			style: values[0].style,
-		});
+		const lineContainer = tag("div", { class: `lineContainer`, role: "list" });
+		lineContainer.style.setProperty("--color", values[0].color); // Use color of first column as default for line
 
 		const pathDefintion = toPath(
 			values.map(({ number }, index, { length }) => [
@@ -45,16 +42,16 @@ export function toLines(data: ChartData, { total, type, variant }: Config) {
 
 		values.forEach(({ number, tooltip, event }) => {
 			const col = tag("div", { role: "listitem" });
-			col.appendChild(
-				tag("div", {
-					"aria-label": tooltip,
-					"data-event": event,
-					tabindex: "0",
-					class: "linePoint",
-					role: "img",
-					style: `--value: ${number}`,
-				}),
-			);
+			const point = tag("div", {
+				"aria-label": tooltip,
+				"data-event": event,
+				tabindex: "0",
+				class: "linePoint",
+				role: "img",
+			});
+
+			point.style.setProperty("--value", `${number}`); // Use color of first column as default for point
+			col.appendChild(point);
 			lineContainer.append(col);
 		});
 
