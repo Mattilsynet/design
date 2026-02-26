@@ -1,5 +1,6 @@
 import styles from "../styles.module.css";
 import {
+	attachStyle,
 	attr,
 	debounce,
 	defineElement,
@@ -76,14 +77,14 @@ export class MTDSChartElement extends MTDSElement {
 		Array.from(this.shadowRoot?.children || []).map((el) => el.remove()); // Clear shadowRoot
 		const [variant, type] = (attr(this, "data-variant") || "column").split("-");
 		const aspect = attr(this, "data-aspect") || undefined;
-		const style = tag("style", {}, css);
 		const legend = tag("div", {
 			"aria-hidden": "hidden",
 			class: "legends",
 			role: "group",
 		});
-		data.slice(1).forEach(([{ value, style }]) => {
-			legend.appendChild(tag("div", { class: "legend", style }, value));
+		data.slice(1).forEach(([{ value, color }]) => {
+			const el = tag("div", { class: "legend" }, value);
+			legend.appendChild(el).style.setProperty("--color", color);
 		});
 
 		const { axis, groups, total } = toAxis(data, { aspect, type });
@@ -94,7 +95,8 @@ export class MTDSChartElement extends MTDSElement {
 		if (variant === "doughnut" || variant === "pie")
 			this.shadowRoot?.append(toPies(data, { aspect, variant }));
 
-		this.shadowRoot?.append(axis, legend, style); // Axis must be first
+		this.shadowRoot?.append(axis, legend); // Axis must be first
+		attachStyle(this, css);
 	}
 	handleEvent(e: Event) {
 		if (e.type === "click" || e.type === "keydown") onClick(e, this);
@@ -152,7 +154,7 @@ const toData = (table?: HTMLTableElement | null) =>
 			return {
 				number: (cellIndex && rowIndex && Number.parseFloat(value)) || 0, // First row and column is not a number
 				event: cell.querySelector("a,button") && `${rowIndex}-${cellIndex}`, // Reference to proxy events
-				style: `--color: var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base))`,
+				color: `var(--mtdsc-chart-color-${rowIndex}-${cellIndex}, var(--mtdsc-chart-color-${rowIndex}, var(--mtdsc-chart-color-base)))`,
 				value,
 				tooltip: attr(cell, "data-tooltip") || tooltip,
 			};

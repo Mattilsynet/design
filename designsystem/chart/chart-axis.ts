@@ -23,8 +23,11 @@ export function toAxis(data: ChartData, { aspect, type }: Config) {
 		"aria-label": data[0][0].value || null,
 		class: "axis",
 		role: "figure",
-		style: `${aspect ? `--mtdsc-chart-aspect: ${aspect};` : ""} --bars: ${data[0]?.length - 1}; --groups: ${data.length - 1}; --total: ${total}`,
 	});
+	if (aspect) axis.style.setProperty("--mtdsc-chart-aspect", aspect);
+	axis.style.setProperty("--bars", `${data[0]?.length - 1}`);
+	axis.style.setProperty("--groups", `${data.length - 1}`);
+	axis.style.setProperty("--total", `${total}`);
 	const steps = axis.appendChild(tag("div", { class: "axisSteps" }));
 	const groups = axis.appendChild(tag("div", { class: "axisGroups" }));
 

@@ -184,6 +184,66 @@ export const ColumnSingleDataset: Story = {
 	),
 };
 
+export const ColorsSingleDataset: Story = {
+	render: () => (
+		<mtds-chart
+			data-variant="column"
+			style={
+				{
+					"--mtdsc-chart-color-1-1": "var(--mtds-color-charts-chart-e)",
+					"--mtdsc-chart-color-1-2": "var(--mtds-color-charts-chart-b)",
+					"--mtdsc-chart-color-1-3": "var(--mtds-color-charts-chart-c)",
+					"--mtdsc-chart-color-1-4": "var(--mtds-color-charts-chart-d)",
+					"--mtdsc-chart-color-1-5": "var(--mtds-color-charts-chart-e)",
+					"--mtdsc-chart-color-1-6": "var(--mtds-color-charts-chart-e)",
+					"--mtdsc-chart-color-1-7": "var(--mtds-color-charts-chart-e)",
+					"--mtdsc-chart-color-1-8": "var(--mtds-color-charts-chart-d)",
+					"--mtdsc-chart-color-1-9": "var(--mtds-color-charts-chart-d)",
+					"--mtdsc-chart-color-1-10": "var(--mtds-color-charts-chart-c)",
+					"--mtdsc-chart-color-1-11": "var(--mtds-color-charts-chart-b)",
+				} as React.CSSProperties
+			}
+		>
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Janaur</th>
+						<th>Februar</th>
+						<th>Mars</th>
+						<th>April</th>
+						<th>Mai</th>
+						<th>Juni</th>
+						<th>Juli</th>
+						<th>August</th>
+						<th>September</th>
+						<th>Oktober</th>
+						<th>November</th>
+						<th>Desember</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Slakt av laks</th>
+						<td data-tooltip="Januar: 10">10</td>
+						<td data-tooltip="Februar: 15">15</td>
+						<td data-tooltip="Mars: 25">25</td>
+						<td data-tooltip="April: 40">40</td>
+						<td data-tooltip="Mai: 10">10</td>
+						<td data-tooltip="Juni: 5">5</td>
+						<td data-tooltip="Juli: 15">15</td>
+						<td data-tooltip="August: 30">30</td>
+						<td data-tooltip="September: 20">20</td>
+						<td data-tooltip="Oktober: 25">25</td>
+						<td data-tooltip="November: 35">35</td>
+						<td data-tooltip="Desember: 55">55</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};
+
 export const ColumnStacked: Story = {
 	render: () => <mtds-chart data-variant="column-stacked">{table}</mtds-chart>,
 };

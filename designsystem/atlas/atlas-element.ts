@@ -3,6 +3,7 @@ import LeafletCSS from "leaflet/dist/leaflet.css?raw";
 import type {} from "leaflet.markercluster"; // Extend L namespace
 import "./cluster.js";
 import {
+	attachStyle,
 	attr,
 	defineElement,
 	isBrowser,
@@ -71,14 +72,8 @@ export class MTDSAtlasElement extends MTDSElement {
 	}
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" }).append(
-			tag(
-				"style",
-				null,
-				`@layer leaflet{${LeafletCSS}}\n@layer mt.design{${css}`,
-			),
-			tag("figure"),
-		);
+		this.attachShadow({ mode: "open" }).append(tag("figure"));
+		attachStyle(this, `@layer leaflet{${LeafletCSS}}\n@layer mt.design{${css}`);
 	}
 	connectedCallback() {
 		const container = this.shadowRoot?.lastElementChild as HTMLElement;

@@ -176,3 +176,22 @@ export const defineElement = (
 	!isBrowser() ||
 	window.customElements.get(name) ||
 	window.customElements.define(name, instance);
+
+/**
+ * attachStyle
+ * @param el The Element to scope styles for
+ * @param css The css to inject
+ */
+export const SUPPORTS_CONSTRUCTED_CSS =
+	typeof window !== "undefined" &&
+	window.CSSStyleSheet &&
+	document.adoptedStyleSheets;
+
+export const attachStyle = (el: Element, css: string) => {
+	if (!SUPPORTS_CONSTRUCTED_CSS) return;
+	if (!el.shadowRoot) el.attachShadow({ mode: "open" }).append(tag("slot"));
+
+	const sheet = new CSSStyleSheet();
+	sheet.replaceSync(css);
+	(el.shadowRoot as ShadowRoot).adoptedStyleSheets = [sheet];
+};
