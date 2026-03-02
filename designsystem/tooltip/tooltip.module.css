@@ -30,4 +30,7 @@
 		z-index: 99999;
 		translate: -50% calc(-100% - var(--dsc-tooltip-arrow-size));
 	}
+	._tooltip:not([popover]):not([hidden]) {
+		display: block;
+	}
 }
