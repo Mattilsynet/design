@@ -79,13 +79,20 @@ export const React: Story = {
 
 export const Padding: Story = {
 	render: () => (
-		<>
+		<Grid>
+			<strong>Padding:</strong>
 			{paddings.map((pad) => (
 				<div key={pad} className={styles.card} data-pad={pad}>
 					data-pad="{pad}"
 				</div>
 			))}
-		</>
+			<strong>Fluid padding (try resizing screen):</strong>
+			{paddings.map((pad) => (
+				<div key={pad} className={styles.card} data-pad={`2-${pad}`}>
+					data-pad="2-{pad}"
+				</div>
+			))}
+		</Grid>
 	),
 };
 

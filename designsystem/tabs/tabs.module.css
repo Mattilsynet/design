@@ -6,7 +6,7 @@
 		--dsc-tabs-tab-color--selected: var(--ds-color-text-default);
 		--dsc-tabs-tab-background--selected: transparent;
 		--dsc-tabs-list-border-color: var(--ds-color-border-default);
-		--dsc-tabs-content-padding: var(--ds-size-8) 0 0;
+		--dsc-tabs-content-padding: var(--ds-size-6) 0 0;
 		--dsc-tabs-gap: var(--ds-size-2);
 	}
 	.tabs [role="tablist"]:not([hidden]) {
@@ -38,12 +38,14 @@
 		pointer-events: none;
 	}
 	.tabs [role="tab"] {
+		flex-shrink: 0; /* TODO Digdir: prevent shrinking tabs */
+		background: var(--ds-color-background-tinted);
 		border-color: var(--dsc-tabs-list-border-color);
 		border-radius: var(--ds-border-radius-md) var(--ds-border-radius-md) 0 0;
-		background: var(--ds-color-background-tinted);
+		gap: var(--ds-size-2);
+		position: relative;
 		transition-duration: 0.2s;
 		transition-property: background-color, color, border-color;
-		position: relative;
 	}
 	.tabs [role="tab"][aria-disabled="true"] {
 		cursor: default;
