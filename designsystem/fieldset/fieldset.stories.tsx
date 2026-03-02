@@ -208,6 +208,9 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Checkbox 1</label>
+					<div className={styles.validation} data-field="validation" hidden>
+						Feilmelding 1
+					</div>
 				</ds-field>
 				<ds-field className={styles.field}>
 					<input
@@ -217,6 +220,9 @@ export const WithValidationForm: Story = {
 						required
 					/>
 					<label>Checkbox 2</label>
+					<div className={styles.validation} data-field="validation" hidden>
+						Feilmelding 2
+					</div>
 				</ds-field>
 				<div className={styles.validation} data-field="validation" hidden>
 					Feilmelding
