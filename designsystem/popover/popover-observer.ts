@@ -4,12 +4,13 @@ import { attr, on, onHotReload } from "../utils";
 // and automatically assume popovertarget is the closest parent popover
 // but respect the popovertarget and popovertargetaction attribute
 function handlePopoverClick({ target }: Event) {
-	const a = (target as Element)?.closest?.("a");
-	const id = a && attr(a, "popovertarget");
-	const pop = id ? document.getElementById(id) : a?.closest("[popover]");
+	const trigger = (target as Element)?.closest?.(`a,button,[role="button"]`);
+	const id = trigger && attr(trigger, "popovertarget");
+	const pop = id ? document.getElementById(id) : trigger?.closest("[popover]");
 
-	if (a && pop instanceof HTMLElement && pop.popover) {
-		const action = attr(a, "popovertargetaction");
+	if (id && trigger instanceof HTMLButtonElement) return; // Native support for buttons with popovertarget, only polyfill for <a> or missing popovertarget
+	if (trigger && pop instanceof HTMLElement && pop.popover) {
+		const action = attr(trigger, "popovertargetaction");
 		const open = action === "show" || (action === "hide" ? false : undefined);
 		pop.togglePopover(open);
 	}
