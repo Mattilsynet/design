@@ -317,6 +317,7 @@ export const WithValidationForm: Story = {
 				<ds-field className={styles.field}>
 					<label>Suggestion</label>
 					<ds-suggestion className={styles.suggestion}>
+						<select hidden></select>
 						<input type="text" className={styles.input} aria-required="true" />
 						<del role="img" aria-label="Fjern tekst"></del>
 						<u-datalist>
