@@ -33,13 +33,13 @@
   --mtdsc-print-front-color: #054449;
   --mtdsc-print-back-background: #e2f1df;
   --mtdsc-print-back-color: #054449;
+  --mtdsc-print-office: "hovedkontoret";
+  --mtdsc-print-department: "";
   --mtdsc-print-back-tagline: "Sammen trygger vi framtiden\00000afor mennesker, dyr og natur";
-  --mtdsc-print-back-footer: "Mattilsynet\00000a" var(--mtdsc-print-bottom-center);;
+  --mtdsc-print-back-footer: "Mattilsynet\00000a" var(--mtdsc-print-bottom-center);
   --mtdsc-print-bottom-left: "Mattilsynet\00000a" var(--mtdsc-print-office) "\00000a" var(--mtdsc-print-department);
   --mtdsc-print-bottom-center: "Felles postmottak\00000aPostboks 383\00000a2381 BRUMUNDDAL";
   --mtdsc-print-bottom-right: "Tlf: 22 40 00 00\00000aE-post: postmottak@mattilsynet.no\00000aOrg.nr: 985399077";
-  --mtdsc-print-office: "hovedkontoret";
-  --mtdsc-print-deparment: "";
   --mtdsc-print-classification: "Unntatt offentlighet\00000affl. § 13 første ledd jf fvl. § 13 første ledd";
 
   --_mtdsc-print-footer-demo: "Footer added when printing\00000aor when generating PDF";
