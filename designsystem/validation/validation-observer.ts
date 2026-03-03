@@ -24,11 +24,15 @@ const getInputs = (el?: Element | Document | null) =>
 const getValidations = (el?: Element | Document | null) =>
 	el?.getElementsByClassName(CSS_VALIDATION) || [];
 
-const getValidity = (input: Element) => {
-	if (!input.clientHeight) return true; // Skip hidden inputs
+const getInvalid = (input: HTMLInputElement) => {
+	const skip =
+		!input.clientHeight ||
+		input.disabled ||
+		attr(input, "aria-disabled") === "true";
 	const suggestion = input.closest(CSS_SUGGESTION)?.items;
-	if (!suggestion) return input.matches(":user-valid");
-	return attr(input, "aria-required") === "true" && !!suggestion.length;
+	const ok = attr(input, "aria-required") !== "true" || !!suggestion?.length;
+	if (suggestion) input.setCustomValidity(skip || ok ? "" : "Required"); // "Fake" native validity for suggestions
+	return skip ? false : input.matches(":user-invalid");
 };
 
 // Hide or show validations on submit or invalid event
@@ -38,18 +42,19 @@ const handleValidations = (event: Event) => {
 	if (!isValidationForm(form)) return;
 
 	// Toggle validitiy of fields
-	for (const input of getInputs(form)) {
-		const isValid = getValidity(input);
-		if (!invalid && !isValid) invalid = input;
-		for (const el of getValidations(getField(input)))
-			attr(el, "hidden", isValid ? "" : null);
+	for (const field of form.querySelectorAll(CSS_FIELD)) {
+		const isInvalid = [...getInputs(field)].find(getInvalid);
+
+		if (!invalid && isInvalid) invalid = isInvalid;
+		for (const el of getValidations(field))
+			attr(el, "hidden", isInvalid ? null : "");
 	}
 
 	// Toggle validitiy of fieldset
 	for (const fieldset of form.querySelectorAll("fieldset")) {
-		const isValid = [...getInputs(fieldset)].every(getValidity);
+		const isInvalid = [...getInputs(fieldset)].some(getInvalid);
 		for (const el of getValidations(fieldset))
-			if (!getField(el)) attr(el, "hidden", isValid ? "" : null); // Only toggle fieldset validations if they are not also in a field
+			if (!getField(el)) attr(el, "hidden", isInvalid ? null : ""); // Only toggle fieldset validations if they are not also in a field
 	}
 
 	if (!invalid) return;
@@ -70,19 +75,18 @@ const handleInvalid = (e: Event) =>
 	isValidationForm((e.target as HTMLInputElement).form) && e?.preventDefault();
 
 // Hide validations when added to the DOM
-const VALIDATIONS_ADDED = new WeakSet<Element>();
 const VALIDATIONS = isBrowser() ? getValidations(document) : [];
 const handleMutation = () => {
-	for (const valid of VALIDATIONS) {
-		if (VALIDATIONS_ADDED.has(valid)) continue;
-		VALIDATIONS_ADDED.add(valid);
-		const input = getInputs(getField(valid))[0];
-		if (isValidationForm(input?.form)) attr(valid, "hidden", "");
-	}
+	for (const valid of VALIDATIONS)
+		if (!valid.hasAttribute("data-validation")) {
+			const input = getInputs(getField(valid))[0];
+			attr(valid, "data-validation", "form"); // Mark as handled to avoid hiding again if moved in the DOM
+			if (isValidationForm(input?.form)) attr(valid, "hidden", "");
+		}
 };
 
 onHotReload("validations", () => [
-	on(document, "input", handleInput, true), // Hide validation when typing
+	on(document, "input comboboxbeforeselect", handleInput, true), // Hide validation when typing
 	on(document, "invalid", handleInvalid, true), // Prevent default browser invalid popup
 	on(document, "invalid", debounce(handleValidations, 10), QUICK_EVENT), // Debounced to group invalid events
 	on(document, "submit", handleValidations, true), // Use capture as submit does not bubble

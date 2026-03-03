@@ -47,7 +47,6 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 >(
 	{
 		"data-size": size,
-		"data-validation": dataValidation,
 		"data-required": dataRequired,
 		as,
 		className,
@@ -70,7 +69,6 @@ export const FieldComp: FieldComponent = forwardRef<null>(function Field<
 	const validation = validationContent || error; // error kept for backwards compatibility
 	const shared = {
 		"data-size": size,
-		"data-validation": dataValidation,
 		"data-required": dataRequired,
 		class: clsx(styles.field, className),
 		suppressHydrationWarning: true,

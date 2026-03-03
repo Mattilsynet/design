@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "3.1.13",
+	"version": "3.1.14",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -54,7 +54,7 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.4",
+		"@biomejs/biome": "2.4.5",
 		"@digdir/designsystemet-css": "^1.12.1",
 		"@digdir/designsystemet-types": "^1.12.1",
 		"@handsontable/react-wrapper": "^16.2.0",
@@ -75,7 +75,7 @@
 		"fast-glob": "^3.3.3",
 		"handsontable": "^16.2.0",
 		"leaflet": "^2.0.0-alpha.1",
-		"postcss": "^8.5.6",
+		"postcss": "^8.5.8",
 		"postcss-nesting": "^14.0.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
@@ -90,8 +90,7 @@
 		"@u-elements/u-datalist": "^1.1.0",
 		"@u-elements/u-details": "^0.2.2",
 		"@u-elements/u-progress": "^0.0.7",
-		"clsx": "^2.1.1",
-		"invokers-polyfill": "^0.6.1"
+		"clsx": "^2.1.1"
 	},
 	"overrides": {
 		"ajv": "^8.18.0",
