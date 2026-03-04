@@ -28,6 +28,8 @@ const getInvalid = (input: HTMLInputElement) => {
 	const skip =
 		!input.clientHeight ||
 		input.disabled ||
+		input.readOnly ||
+		attr(input, "aria-readonly") === "true" ||
 		attr(input, "aria-disabled") === "true";
 	const suggestion = input.closest(CSS_SUGGESTION)?.items;
 	const ok = attr(input, "aria-required") !== "true" || !!suggestion?.length;

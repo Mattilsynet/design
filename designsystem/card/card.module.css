@@ -1,3 +1,16 @@
+/* See https://css-tip.com/length-to-integer/ */
+@property --mtds-pad {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0; 
+}
+@property --mtds-pad-max {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0; 
+}
+
+
 @layer mt.design {
 	.card {
 		--mtdsc-card-background: var(--ds-color-surface-default);
@@ -124,7 +137,7 @@
 	@media(min-width: 40rem) { /* 640px */
 		.card,
 		.group {
-			&[data-pad-sm="0"] { --mtds-pa: 0px }
+			&[data-pad-sm="0"] { --mtds-pad: 0px }
 			&[data-pad-sm="1"] { --mtds-pad: var(--ds-size-1) }
 			&[data-pad-sm="2"] { --mtds-pad: var(--ds-size-2) }
 			&[data-pad-sm="3"] { --mtds-pad: var(--ds-size-3) }
@@ -149,7 +162,7 @@
 	@media(min-width: 48rem) { /* 768px */
 		.card,
 		.group {
-			&[data-pad-md="0"] { --mtds-pa: 0px }
+			&[data-pad-md="0"] { --mtds-pad: 0px }
 			&[data-pad-md="1"] { --mtds-pad: var(--ds-size-1) }
 			&[data-pad-md="2"] { --mtds-pad: var(--ds-size-2) }
 			&[data-pad-md="3"] { --mtds-pad: var(--ds-size-3) }
@@ -174,7 +187,7 @@
 	@media(min-width: 64rem) { /* 1024px */
 		.card,
 		.group {
-			&[data-pad-lg="0"] { --mtds-pa: 0px }
+			&[data-pad-lg="0"] { --mtds-pad: 0px }
 			&[data-pad-lg="1"] { --mtds-pad: var(--ds-size-1) }
 			&[data-pad-lg="2"] { --mtds-pad: var(--ds-size-2) }
 			&[data-pad-lg="3"] { --mtds-pad: var(--ds-size-3) }
@@ -199,7 +212,7 @@
 	@media(min-width: 80rem) { /* 1280px */
 		.card,
 		.group {
-			&[data-pad-xl="0"] { --mtds-pa: 0px }
+			&[data-pad-xl="0"] { --mtds-pad: 0px }
 			&[data-pad-xl="1"] { --mtds-pad: var(--ds-size-1) }
 			&[data-pad-xl="2"] { --mtds-pad: var(--ds-size-2) }
 			&[data-pad-xl="3"] { --mtds-pad: var(--ds-size-3) }
