@@ -83,6 +83,13 @@
 			var(--dsc-tabs-list-border-bottom-width) 0;
 		inset: 0;
 	}
+	.tabs [role="tab"] > svg {
+		fill: currentColor; /* In case using non-Phosphor icons */
+		flex-shrink: 0;
+		font-size: 1em;
+		height: var(--mtds-icon-size);
+		width: var(--mtds-icon-size);
+	}
 
 	@keyframes _scrollMask {
 		from {

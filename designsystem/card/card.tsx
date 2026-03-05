@@ -7,17 +7,18 @@ import type {
 } from "../react-types";
 import styles from "../styles.module.css";
 
-type CardBaseProps<Href> = {
-	"data-pad"?: Sizes;
-	"data-radius"?: "sm" | "md" | "lg" | "xl";
-	"data-clickdelegatefor"?: string;
-	href?: Href;
-};
-
 export type CardProps<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "div",
-> = PolymorphicComponentPropWithRef<As, CardBaseProps<Href>>;
+> = PolymorphicComponentPropWithRef<
+	As,
+	{
+		"data-pad"?: Sizes | `${Sizes}-${Sizes}`;
+		"data-radius"?: "sm" | "md" | "lg" | "xl";
+		"data-clickdelegatefor"?: string;
+		href?: Href;
+	}
+>;
 
 type CardComponent = <
 	Href,
@@ -36,7 +37,13 @@ export const Card: CardComponent = forwardRef<null>(function Card<
 }) as CardComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
 
 export type GroupProps<As extends React.ElementType = "div"> =
-	PolymorphicComponentPropWithRef<As, { "data-pad"?: Sizes }>;
+	PolymorphicComponentPropWithRef<
+		As,
+		{
+			"data-pad"?: Sizes | `${Sizes}-${Sizes}`;
+			"data-radius"?: "sm" | "md" | "lg" | "xl";
+		}
+	>;
 
 type GroupComponent = <As extends React.ElementType = "div">(
 	props: GroupProps<As>,
