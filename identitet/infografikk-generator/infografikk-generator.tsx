@@ -3,6 +3,7 @@ import type { ChangeSource } from "handsontable/common";
 import { nbNO, registerLanguageDictionary } from "handsontable/i18n";
 import { registerAllModules } from "handsontable/registry";
 import { useCallback, useRef, useState } from "react";
+import chartCSS from "../../designsystem/chart/chart.css?inline";
 import {
 	Button,
 	Card,
@@ -13,7 +14,7 @@ import {
 	Popover,
 } from "../../designsystem/react";
 import styles from "../../designsystem/styles.module.css";
-import css from "../../designsystem/styles.module.css?inline";
+import stylesCSS from "../../designsystem/styles.module.css?inline";
 import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
 import "./infografikk-generator.css";
@@ -262,15 +263,16 @@ const handleExport = async () => {
 	const height = chart.offsetHeight + extend; // Extra space for number in axis
 
 	// Convert shadow DOM to light DOM with all styles inlined
-	const style = `${css.replace(/\bmtds-chart\b/g, ".chart")}.${styles.body}{background:none}`; // replace(/\bmtds-chart\b/g, ".chart").
-	const html = `<div${chart.outerHTML.match(/<mtds-chart([^>]*)/)?.[1] || ""} style="box-sizing:border-box;width:${width}px;height:${height}px;padding:${extend}px">${chart?.shadowRoot?.innerHTML.replace(/:host\(([^)]+)\)/g, ".chart$1")}</div>`;
+	const style = `${stylesCSS.replace(/\bmtds-chart\b/g, ".chart")}.${styles.body}{background:none}${chartCSS.replace(/:host\(([^)]+)\)/g, ".chart$1")}`;
+	const html = `<div${chart.outerHTML.match(/<mtds-chart([^>]*)/)?.[1] || ""}style="box-sizing:border-box;width:${width}px;height:${height}px;padding:${extend}px">${chart?.shadowRoot?.innerHTML}</div>`;
 
 	// Convert HTML to SVG url using <foreignObject>
-	const div = tag("div");
-	div.innerHTML = `<svg width="${width}" height="${height}"><foreignObject x="0" y="0" width="${width}" height="${height}">${html}</foreignObject></svg>`;
-	const svg = div.firstElementChild as SVGSVGElement;
-	svg.querySelector("div")?.classList.add(styles.body, "chart");
-	svg.querySelector("div")?.prepend(tag("style", null, style));
+	const render = tag("div");
+	render.innerHTML = `<svg width="${width}" height="${height}"><foreignObject x="0" y="0" width="${width}" height="${height}">${html}</foreignObject></svg>`;
+	const svg = render.firstElementChild as SVGSVGElement;
+	const root = svg.querySelector("div");
+	root?.classList.add(styles.body, "chart");
+	root?.prepend(tag("style", null, style));
 
 	navigator.clipboard.write([
 		new ClipboardItem({

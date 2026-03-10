@@ -24,8 +24,19 @@ type TagComponent = <
 export const Tag: TagComponent = forwardRef<null>(function Tag<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
->({ as, className, ...rest }: TagProps<Href, As>, ref?: PolymorphicRef<As>) {
+>(
+	{ as, className, "data-tooltip": dataTooltip, ...rest }: TagProps<Href, As>,
+	ref?: PolymorphicRef<As>,
+) {
 	const Tag = as || (rest.href ? "a" : "span");
 
-	return <Tag className={clsx(styles.tag, className)} ref={ref} {...rest} />;
+	return (
+		<Tag
+			className={clsx(styles.tag, className)}
+			data-tooltip={dataTooltip}
+			tabIndex={dataTooltip ? 0 : undefined} // TODO DigDir to automatically make the tag focusable if it has a tooltip
+			ref={ref}
+			{...rest}
+		/>
+	);
 }) as TagComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element
