@@ -38,10 +38,10 @@ export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 			{data ? (
 				<Table key={`table_${++RENDER}`}>
 					<Table.Thead>
-						{data.slice(0, 1).map((tr, row) => (
-							<Table.Tr key={`${row}_${RENDER}`}>
-								{tr.map((td, i) => (
-									<Table.Th suppressHydrationWarning key={`${i}_${RENDER}`}>
+						{data.slice(0, 1).map((tr) => (
+							<Table.Tr key={`${++RENDER}`}>
+								{tr.map((td) => (
+									<Table.Th suppressHydrationWarning key={`${++RENDER}`}>
 										{td}
 									</Table.Th>
 								))}
@@ -49,13 +49,13 @@ export const Chart = forwardRef<MTDSChartElement, ChartProps>(function Chart(
 						))}
 					</Table.Thead>
 					<Table.Tbody>
-						{data.slice(1).map((tr, row) => (
-							<Table.Tr key={`${row}_${RENDER}`}>
+						{data.slice(1).map((tr) => (
+							<Table.Tr key={`${++RENDER}`}>
 								{tr.map((td, i) =>
 									i ? (
-										<Table.Td key={`${i}_${RENDER}`}>{td}</Table.Td>
+										<Table.Td key={`${++RENDER}`}>{td}</Table.Td>
 									) : (
-										<Table.Th key={`${i}_${RENDER}`}>{td}</Table.Th>
+										<Table.Th key={`${++RENDER}`}>{td}</Table.Th>
 									),
 								)}
 							</Table.Tr>

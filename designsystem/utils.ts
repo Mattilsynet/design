@@ -135,7 +135,7 @@ export const toCustomElementProps = <T extends Record<string, unknown>>(
 			rest[SELECTED] === undefined
 				? undefined
 				: (`${(rest[SELECTED] || "false") !== "false"}` as unknown as boolean), // Ensure aria-selected boolean is string
-		class: clsx(klass, rest.className as string), // Use class instead of className
+		class: clsx(klass, rest.className as string) || undefined, // Use class instead of className
 		hidden: !!rest.hidden, // Ensure boolean prop behaviour
 		open: !!rest.open, // Ensure boolean prop behaviour
 	});
