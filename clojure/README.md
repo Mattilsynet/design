@@ -15,9 +15,9 @@ Finn siste versjon [på Clojars](https://clojars.org/io.mattilsynet/design).
 For å bruke klasser fra designsystemet:
 
 ```clj
-(require '[mattilsynet.design :as mtds])
+(require '[mattilsynet.design :as m])
 
-[:a {:class (mtds/classes :logo)}
+[:a {:class (m/c :logo)}
   "Klikk her, a!"]
 ```
 
@@ -26,9 +26,9 @@ utenfor designsystemet. De som er i designsystemet blir bytta ut med riktige
 klasser, mens de øvrige forblir urørt:
 
 ```clj
-(require '[mattilsynet.design :as mtds])
+(require '[mattilsynet.design :as m])
 
-(mtds/classes :mt-4 :button :yolo)
+(m/c :mt-4 :button :yolo)
 
 ;;=>
 ;; (:mt-4 "_button_1tlt5_12" "_ds-button_141tn_1" :yolo)
@@ -50,13 +50,13 @@ Ikoner og illustrasjoner kan rendres som hiccup. Fra Clojure er det bare å bruk
 `mattilsynet.design/render-icon`:
 
 ```clj
-(require '[mattilsynet.design :as mtds])
+(require '[mattilsynet.design :as m])
 
-(mtds/render-svg :icon/cow)
+(m/render-svg :icon/cow)
 ;;=>
 ;; [:svg ,,, ]
 
-(mtds/render-svg :illustration/animals.bird)
+(m/render-svg :illustration/animals.bird)
 ;;=>
 ;; [:svg ,,, ]
 ```
@@ -65,9 +65,9 @@ Fra ClojureScript må du sørge for å laste SVG-en inn i bygget ditt først med
 `mattilsynet.design/svg`:
 
 ```clj
-(require '[mattilsynet.design :as mtds])
+(require '[mattilsynet.design :as m])
 
-(mtds/render-svg (mtds/svg :icon/cow))
+(m/render-svg (m/svg :icon/cow))
 ;;=>
 ;; [:svg ,,, ]
 ```
@@ -75,12 +75,12 @@ Fra ClojureScript må du sørge for å laste SVG-en inn i bygget ditt først med
 For en liste med tilgjengelige ikoner og/eller illustrasjoner:
 
 ```clj
-(require '[mattilsynet.design :as mtds])
+(require '[mattilsynet.design :as m])
 
-(mtds/get-icon-ids)
+(m/get-icon-ids)
 [:icon/cow :icon/fish ,,,]
 
-(mtds/get-illustration-ids)
+(m/get-illustration-ids)
 [:illustration/animals.bird :illustration/animals.pig ,,,]
 ```
 
