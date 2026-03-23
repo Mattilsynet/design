@@ -104,7 +104,7 @@ export const WithPreviewImage: Story = {
 				</Fileupload>
 				<Grid data-items="300" data-fixed>
 					{images.map((file, index) => (
-						<Card as={Grid} key={`${file.title}-${index}`}>
+						<Card as={Grid} key={index.toString()}>
 							<img alt="" width="100%" src={file.src} />
 							<Flex data-align="center" data-nowrap>
 								<strong>{file.title}</strong>

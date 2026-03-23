@@ -171,7 +171,7 @@ export const WithClustering: Story = {
 			{getRandomCoordinates().map((latlng, index) => (
 				<Atlas.Marker
 					aria-label={`Markør ${index + 1}`}
-					key={`${index + 1}`}
+					key={index.toString()}
 					data-latlng={latlng}
 					popoverTarget="my-cluster-popover"
 				/>
@@ -222,7 +222,7 @@ export const WithPopoverDynamic: Story = {
 					<Atlas.Marker
 						aria-label={`Markør ${index + 1}`}
 						data-latlng={marker.latlng}
-						key={`${index + 1}`}
+						key={index.toString()}
 						onClick={() => setOpen(index)}
 						popoverTarget="my-popover"
 					/>
@@ -359,7 +359,7 @@ export const WithClickToAddMarker: Story = {
 				>
 					{markers.map((latlng, index) => (
 						<Atlas.Marker
-							key={`${index + 1}`}
+							key={index.toString()}
 							data-latlng={latlng}
 							aria-label={`Markør ${index + 1}`}
 							draggable

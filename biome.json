@@ -32,7 +32,9 @@
 			"!**/dist",
 			"!**/mtds",
 			"!**/preview.css",
-			"!**/storybook-static"
+			"!**/storybook-static",
+			"!**/vinforskriften-new.ts",
+			"!**/vinforskriften-old.ts"
 		]
 	},
 	"linter": {
