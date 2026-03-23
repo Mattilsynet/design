@@ -1,0 +1,154 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Wide, JumpTo } from '../.storybook/blocks.tsx';
+import { UsersThreeIcon, MagicWandIcon, CompassIcon, HandHeartIcon, CursorClickIcon, CodeIcon, HeartIcon, UserCheckIcon } from '@phosphor-icons/react'
+import { Card, Button, Heading, Details, Group, Flex, Grid, Prose } from '../designsystem/react.tsx';
+
+<Meta title="Identitet/Rollebeskrivelser" />
+
+# <UsersThreeIcon /> Rollebeskrivelser
+
+<JumpTo />
+
+<Grid as={Wide} data-gap="6">
+---
+
+<Heading data-size="md"><HeartIcon /> Felles på tvers av team</Heading>
+<Grid data-items="300" data-gap="8">
+<Prose>
+<Heading as="h3" data-size="2xs">Strategisk plassering og retning</Heading>
+- Sikrer at produkter/tjenester passer inn i organisasjonen og er tilgjengelig i brukerens økosystem (interne og eksterne)
+- Tar eierskap til, har oversikt over og håndterer risiko - inklusiv hendelseshåndtering
+- Sikkerhet og ROS
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Kultur og arbeidsmiljø</Heading>
+- Skaper et trygt og hyggelig psykososialt miljø, med trivsel og samarbeid
+- Gjør hverandre gode og sikrer at man er samkjørte
+- Kommuniserer fag, utfordringer og suksesshistorier på en inkluderende og forståelig måte for teamet og andre
+- Diskuterer problemstillinger og dele erfaringer i fagfora
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Skape gode rammer for leveranser</Heading>
+- Sikrer fart og flyt til det kvalitetsnivået teamet sikter på til enhver tid
+- Legger til rette for at man gjør bærekraftige valg som står seg over tid
+- Hindrer og håndterer støy i teamet
+</Prose>
+</Grid>
+
+---
+
+<Heading data-size="md"><UserCheckIcon /> Rolle PM/teamleder</Heading>
+<Grid data-items="300" data-gap="8">
+<Prose>
+<Heading as="h3" data-size="2xs">Strategisk plassering og retning</Heading>
+- Setter visjon for domenet sammen med hovedinteressenter
+- Setter strategisk retning for produkter/tjenester
+- Leder teamet og er teamets overordnede beslutningstager
+- Primæreier av interessentdialogen (interne og eksterne)
+- Sikrer dialog med brukere (interne og eksterne) og andre produktledere
+- Ser helhet i teamets valg på tvers av relevante team
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Leveranseansvar</Heading>
+- Sikrer at teamet leverer på sitt oppdrag og mål
+- Bryter opp oppdraget til mer kortsiktige mål/OKRs, og prioritere leveransene til teamet
+- Overordnet kvalitet på de produktene/tjenestene teamet leverer og drifter
+- Formell rapportering oppover i organisasjonen
+- Løfte rammegap (økonomi, kompetanse, bemanning, juridiske krav, forventninger mv.) videre i organisasjonen og/eller mot sponsorgruppe
+- Bestemmer teamets arbeidsprosess/arbeidsmetodikk og rytme
+- Sikrer kommunikasjonslinjer ut i organisasjonen
+- Ansvarlig for at teamet utfører ROS analyse
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Teknologi</Heading>
+- Forstår, kommuniserer og utfordrer techlead på teknologisk retning
+
+<Heading as="h3" data-size="2xs">Kultur og arbeidsmiljø</Heading>
+- Tilrettelegger for en positiv og delende kultur i teamet og på tvers av team
+- Legger til rette for utvikling av team-medlemmer, i dialog med seksjonssjef
+- Ansvar bygging av teamet kontinuerlig gjennom hele teamets levetid for å at teamet skal ha psykologisk trygghet og trivsel
+</Prose>
+</Grid>
+
+---
+
+<Heading data-size="md"><MagicWandIcon /> Rolle Designer</Heading>
+<Grid data-items="300" data-gap="8">
+<Prose>
+<Heading as="h3" data-size="2xs">Strategisk plassering og retning</Heading>
+- Ansvarlig for brukeropplevelse
+- Sikrer at design er en integrert del av teamets tverrfaglige samarbeid og metode
+- Bidra med metodikk, innsikt og rådgiving for å understøtte og drive frem strategisk plassering og retning
+- Ser helhet i designvalg på tvers av relevante team og løfter problemstillinger i teamet og relevante fora
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Leveranseansvar</Heading>
+- Designmetodikk og innsiktsarbeid (kvalitativt og kvantitativt)
+- Holder teamet oppdatert på brukerinnsikt
+- Leverer i henhold til spisskompetanse (UI, UX tjenestedesign, innholdsdesign)
+- Ansvarlig for at produkt og tjenester følger UU designkrav
+- Ansvarlig for at språk følger regelverkskrav og Mattilsynets stil og tone
+- Skal kunne gjennomføre WS-ledelse i hht spisskompetanse
+- Følger produktet/tjenesten hele syklusen, fra strategisk mål til utvikling, implementering og læring
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Teknologi</Heading>
+- Har kjennskap til teamets teknologiske veikart og hvordan design passer inn i dette
+- Samarbeider med utviklere, skaper realistiske design, og forstår begrensningene og mulighetene ved forskjellige teknologier.
+
+<Heading as="h3" data-size="2xs">Kultur og arbeidsmiljø</Heading>
+- Bygger relasjoner med designere på tvers av team
+- Deler og bygger opp designkompetanse internt i teamet og på tvers av team
+</Prose>
+</Grid>
+
+---
+
+<Heading data-size="md"><CompassIcon /> Rolle TechLead</Heading>
+<Grid data-items="300" data-gap="8">
+<Prose>
+<Heading as="h3" data-size="2xs">Strategisk plassering og retning</Heading>
+- Ansvarlig for teamets arkitektur, teknologivalg, teknisk kvalitet og teknologisk retning
+- Ser helhet i arkitektur- og teknologivalg på tvers av relevante team og løfter problemstillinger i teamet og relevante fora
+- Ansvarlig for at teknologiske beslutninger og konsekvensene av dem blir dokumentert
+- Løfte strategiske muligheter som data og teknologi gir.
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Leveranseansvar</Heading>
+- Ansvar for at teamet diskuterer og har sine prinsipper for kodekvalitet, skalerbarhet, vedlikeholdbarhet, brukervennlighet og sikkerhet.
+- Ansvar for infrastruktuer,  kostnadseffektivitet og overvåkbarhet.
+- Sikrer at utviklingsteamet forstår og følger opp tekniske mål og prioriteringer
+- Ivareta samarbeidet med designere og andre funksjonelle ressurser, og forstår begrensningene og mulighetene som teknologien til teamet må svare opp til
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Kultur og arbeidsmiljø</Heading>
+- Bygger relasjoner og samarbeidskultur mellom utviklere og techleads på tvers av team
+- Legger til rette for utvikling av relevant teknisk kompetanse i teamet, og løfter evt kompetansegap til seksjonsledere.
+- Sikrer at utviklerne i teamet jobber sammen og drar i samme retning.
+</Prose>
+</Grid>
+
+---
+
+<Heading data-size="md"><CodeIcon /> Rolle Utvikler</Heading>
+<Grid data-items="300" data-gap="8">
+<Prose>
+<Heading as="h3" data-size="2xs">Strategisk plassering og retning</Heading>
+- Sette seg inn i og bidra til utforming av teamets arkitektur, teknologivalg, teknisk kvalitet og teknologisk retning
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Leveranseansvar</Heading>
+- Skrive og vedlikeholde kode som følger teamets avtalte prinsipper for kodekvalitet, skalerbarhet, vedlikeholdbarhet, brukervennlighet og sikkerhet.
+- Bidra til at løsningene oppfyller teamets føringer for infrastruktur, kostnadseffektivitet og overvåkbarhet.
+- Bygge forståelse for domenet og brukerbehov.
+</Prose>
+<Prose>
+<Heading as="h3" data-size="2xs">Kultur og arbeidsmiljø</Heading>
+- Bygger relasjoner mellom utviklere på tvers av teamene
+- Diskutere problemstillinger og dele erfaringer i fagfora
+- Erfaringsdeling internt og eksternt
+- Bidra til mentoring / opplæring av andre utviklere på teamet
+</Prose>
+</Grid>
+
+</Grid>
