@@ -192,7 +192,7 @@ export default {
 					"Introduksjon",
 					"Identitet",
 					[
-						"Kompasset og roller",
+						"Kompass og samfunnsansvar",
 						"Logo",
 						"Farger",
 						"Typografi",
@@ -202,6 +202,7 @@ export default {
 						"Bilder",
 						"Slik skriver vi",
 						"*",
+						"Rollebeskrivelser",
 					],
 					"Designsystem",
 					[

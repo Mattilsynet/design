@@ -56,7 +56,7 @@
   
 
 /* Typography */
-.print :first-child { margin-top: 0 }
+.print :first-child { margin-top: 0 } /* TODO EIRIK: Bruk heller Prose */
 .print :last-child { margin-bottom: 0 }
 .print small { font-size:  var(--mtdsc-print-font-sm) }
 .print h1 { font-size: var(--mtdsc-print-font-lg); font-weight: 700; margin-block: 0 1rem }
