@@ -21,7 +21,11 @@ import styles from '../styles.module.css';
 <Details.Summary>Opplever at logoen bare blir en firkant i Next.js eller Tailwind?</Details.Summary>
 
 Noen versjoner av [Autoprefixer](https://github.com/postcss/autoprefixer) er vell ivrig på å prefixe `mask`.
-Det er dessverre lite å gjøre med i `@mattilsynet/design`, men du kan sette `"browserlist": ["defaults and >5%"]` i din `package.json` for å unngå dette.
+Det er dessverre lite å gjøre med i `@mattilsynet/design`, men du kan fikse dette igjen ved å sette:
+```html
+style="-webkit-mask-box-image: none"
+```
+
 
 </Details>
 

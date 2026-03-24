@@ -18,6 +18,9 @@
 
 		background: var(--dsc-table-background);
 		vertical-align: top;
+
+		page-break-inside: avoid; /* TODO Digdir */
+		break-inside: avoid; /* TODO Digdir */
 	}
 
 	.table[data-fixed] {

@@ -3,7 +3,6 @@ import { Example, CssVariables, JumpTo } from '../../.storybook/blocks';
 import * as stories from './print.stories';
 import { Button } from '../react';
 import styles from '../styles.module.css';
-import printCSS from './print.css?raw';
 
 <Meta of={stories} />
 
@@ -21,11 +20,20 @@ import printCSS from './print.css?raw';
   - All CSS og fonter må også inlines, dette hjelper designsystemet med slik:
 
 ```
-import { printcss } from '@mattilsynet/design';
+// Import CSS as text if using Vite
+import css from '@mattilsynet/design/styles.css?raw';
+
+// ...or import css with pure Node:
+import path from "node:path";
+import fs from "node:fs";
+
+const cssPath = path.resolve(process.cwd(), 'node_modules/@mattilsynet/design/mtds/styles.css');
+const css = fs.readFileSync(cssPath, 'utf8');
+
 
 <div id="my-print">
   <style>
-    {printcss}
+    {css}
     :root {
       --mtdsc-print-office: 'ditt kontor'; /* Required */
       --mtdsc-print-department: 'din avdeling'; /* Required */
@@ -74,4 +82,4 @@ import { printcss } from '@mattilsynet/design';
   <Canvas of={stories.Rapportmal} />
 </div>
 
-<CssVariables component='print' css={printCSS} />
+<CssVariables component='print' />

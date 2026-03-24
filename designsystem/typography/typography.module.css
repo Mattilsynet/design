@@ -9,6 +9,12 @@
 		gap: var(--mtdsc-heading-gap);
 		scroll-margin-block: 4em; /* Ensure scrolling to headings still have some comfortable spacing above */
 		text-wrap: pretty;
+		page-break-after: avoid; /* TODO Digdir */
+		break-after: avoid-page; /* TODO Digdir */
+	}
+	.heading + * {
+		page-break-before: avoid; /* TODO Digdir */
+		break-before: avoid-page; /* TODO Digdir */
 	}
 	.heading[data-justify="start"] {
 		justify-content: start;
@@ -145,6 +151,8 @@
 	}
 	.prose > :where(ul, ol):not([class]) {
 		padding-left: 1em;
+		page-break-inside: avoid; /* TODO Digdir */
+		break-inside: avoid; /* TODO Digdir */
 	}
 	.prose > :where(ul, ol):not([class]) > li:not(:first-child) {
 		margin-top: var(--ds-size-1);
@@ -167,6 +175,8 @@
 		display: grid;
 		gap: var(--ds-size-3);
 		margin: var(--ds-size-8) 0;
+		page-break-inside: avoid; /* TODO Digdir */
+		break-inside: avoid; /* TODO Digdir */
 	}
 	.prose > figure > figcaption {
 		font-size: var(--ds-font-size-minus-1);

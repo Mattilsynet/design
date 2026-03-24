@@ -13,7 +13,6 @@
 			"!**/law.module.css",
 			"!**/layout.module.css",
 			"!**/link.module.css",
-			"!**/print.css",
 			"!**/styles.module.css"
 		]
 	},

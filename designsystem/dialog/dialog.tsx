@@ -24,7 +24,6 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(
 			<dialog
 				className={clsx(styles.dialog, className)}
 				data-modal={rest["data-modal"] ?? modal}
-				suppressHydrationWarning // Needed due to closedby polyfill
 				ref={ref}
 				{...rest}
 			/>
