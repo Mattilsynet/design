@@ -61,7 +61,7 @@
 		--_mtdsc-info-x: calc(var(--mtdsc-info-icon-size) + var(--mtdsc-info-gap));
 		line-height: var(--mtdsc-info-line-height);
 	}
-	:where(.info:not([hidden]), .info strong:not([hidden])) {
+	:where(.info:not([hidden]), .info > strong:not([hidden])) {
 		display: block; /* Using where to make it easy to use other display values */
 	}
 	/* Ensure height if only icon is present */
