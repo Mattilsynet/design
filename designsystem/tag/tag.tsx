@@ -34,7 +34,7 @@ export const Tag: TagComponent = forwardRef<null>(function Tag<
 		<Tag
 			className={clsx(styles.tag, className)}
 			data-tooltip={dataTooltip}
-			tabIndex={dataTooltip ? 0 : undefined} // TODO DigDir to automatically make the tag focusable if it has a tooltip
+			tabIndex={dataTooltip ? 0 : undefined}
 			ref={ref}
 			{...rest}
 		/>

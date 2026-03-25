@@ -243,7 +243,7 @@ export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 			<Grid data-align="stretch" data-items="200" data-gap="10">
 				{items
 					.filter((s) => !filter || s.default?.parameters?.tag === filter)
-					.map((stories, key) => {
+					.map((stories, index) => {
 						const name =
 							stories.default.id?.split("-").pop() ||
 							stories.default.title.split("/").pop() ||
@@ -271,7 +271,7 @@ export const Overview = ({ items, scale = 0.5 }: OverviewProps) => {
 								<Grid
 									className="component"
 									data-gap="2"
-									key={key + variant + ts}
+									key={index.toString() + variant + ts}
 								>
 									<Card>
 										<div>

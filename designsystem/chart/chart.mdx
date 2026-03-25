@@ -24,27 +24,27 @@ import * as stories from './chart.stories';
 ## Stående stolpediagram
 - Bruk `data-variant="column"` for stående søylediagram
 - Bruk `data-variant="column-stacked"` for stablet gruppering
-<Grid data-items="300"><Canvas of={stories.Column} /><Canvas of={stories.ColumnStacked} /></Grid>
+<Grid data-items="300"><Canvas sourceState='none' of={stories.Column} /><Canvas sourceState='none' of={stories.ColumnStacked} /></Grid>
 
 ## Liggende stolpediagram
 - Bruk `data-variant="bar"` for liggende søylediagram
 - Bruk `data-variant="bar-stacked"` for stablet gruppering
-<Grid data-items="300"><Canvas of={stories.Bar} /><Canvas of={stories.BarStacked} /></Grid>
+<Grid data-items="300"><Canvas sourceState='none' of={stories.Bar} /><Canvas sourceState='none' of={stories.BarStacked} /></Grid>
 
 ## Linjediagram
 - Bruk `data-variant="line"` for linjediagram eller  `data-variant="area"` for fylt linjediagram
-<Grid data-items="300"><Canvas of={stories.Line} /><Canvas of={stories.Area} /></Grid>
+<Grid data-items="300"><Canvas sourceState='none' of={stories.Line} /><Canvas sourceState='none' of={stories.Area} /></Grid>
 
 ## Kakediagram
 - Bruk `data-variant="pie"` eller `data-variant="doughnut"` for Kakediagram
-<Grid data-items="300"><Canvas of={stories.Pie} /><Canvas of={stories.Doughnut} /></Grid>
+<Grid data-items="300"><Canvas sourceState='none' of={stories.Pie} /><Canvas sourceState='none' of={stories.Doughnut} /></Grid>
 
 ## Skjule elementer
 - Bruk `data-legend="false"` for å skjule legend
 - Bruk `data-dots="false"` for å skjule dotter i `data-variant="line | area"`
 - Bruk `data-steps="false"` for å skjule steg-tekster
 - Bruk `data-labels="false"` for å skjule grupperings-lekster
-<Grid data-items="300"><Canvas of={stories.WithLegendDisabled} /><Canvas of={stories.WithDotsDisabled} /></Grid>
+<Grid data-items="300"><Canvas sourceState='none' of={stories.WithLegendDisabled} /><Canvas sourceState='none' of={stories.WithDotsDisabled} /></Grid>
 
 <CssVariables component='chart' />
 

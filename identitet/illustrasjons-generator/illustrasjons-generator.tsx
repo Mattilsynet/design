@@ -111,7 +111,7 @@ export function IllustrasjonsGenerator() {
 			>
 				{items.map(({ name, flip }, index) => (
 					<figure
-						key={`${name}-${index + 1}`}
+						key={index.toString()}
 						data-item={index}
 						data-flip={flip}
 						dangerouslySetInnerHTML={{ __html: objects?.get(name)?.svg || "" }}

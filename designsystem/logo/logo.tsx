@@ -27,8 +27,18 @@ type LogoComponent = <
 export const Logo: LogoComponent = forwardRef<null>(function Logo<
 	Href,
 	As extends React.ElementType = Href extends string ? "a" : "span",
->({ as, className, ...rest }: LogoProps<Href, As>, ref?: PolymorphicRef<As>) {
+>(
+	{ as, className, style, ...rest }: LogoProps<Href, As>,
+	ref?: PolymorphicRef<As>,
+) {
 	const Tag = as || (rest.href ? "a" : "span");
 
-	return <Tag className={clsx(styles.logo, className)} ref={ref} {...rest} />;
+	return (
+		<Tag
+			className={clsx(styles.logo, className)}
+			style={{ "-webkit-mask-box-image": "none", ...style }} // Overwrite Autoprefixer
+			ref={ref}
+			{...rest}
+		/>
+	);
 }) as LogoComponent; // Needed to tell Typescript this does not return ReactNode but acutally JSX.Element

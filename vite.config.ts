@@ -5,11 +5,7 @@ import postcssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import pkg from "./package.json";
-import {
-	cssPropsRename,
-	cssToTailwind,
-	preserveUseClient,
-} from "./vite.plugins";
+import { cssPropsRename, cssToTailwind } from "./vite.plugins";
 
 const root = path.resolve(__dirname, "designsystem");
 const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
@@ -96,7 +92,6 @@ export default defineConfig(({ mode }) =>
 						formats: ["es"],
 					},
 					rollupOptions: {
-						plugins: [preserveUseClient],
 						// Externalize React
 						external: [
 							"react",

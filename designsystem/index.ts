@@ -3,14 +3,6 @@ export * from "@u-elements/u-combobox";
 export * from "@u-elements/u-tabs";
 import "@u-elements/u-details";
 
-import printcssraw from "./print/print.css?raw"; // Expose print CSS
-
-// Minify print CSS
-export const printcss = String(printcssraw)
-	.replace(/\/\*[^!][^*]*\*\//gs, "") // Strip comments
-	.replace(/(\n|\t)/g, "") // Strip newlines and tabs
-	.replace(/\s+/g, " "); // Strip multiple spaces
-
 // Expose API
 export * from "@digdir/designsystemet-web"; // Import and expose Digdir web functionality
 export { version } from "../package.json"; // Expose version to make it easier to debug

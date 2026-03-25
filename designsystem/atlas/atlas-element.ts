@@ -13,10 +13,11 @@ import {
 	tag,
 } from "../utils";
 import css from "./atlas.css?raw";
-export { L };
+
 export { MTDSAtlasMarkerElement } from "./atlas-marker";
 export { MTDSAtlasMatgeoElement } from "./atlas-matgeo";
 export { MTDSAtlasWMSElement } from "./atlas-wms";
+export { L };
 
 // TODO: Add minimum zoom level for adding markers (minimum 17 som standard?)
 // TODO: Add search helper (https://ws.geonorge.no/adresser/v1/openapi.json + https://ws.geonorge.no/adresser/v1/#/default/get_sok)
@@ -56,12 +57,6 @@ const BOUNDS_NORWAY: L.LatLngBoundsLiteral = [
 	[57.5, 4.73],
 	[71.5, 31.44],
 ];
-
-if (isBrowser() && !window._matgeoCollections)
-	window._matgeoCollections = fetch(MATGEO_URL)
-		.then((res) => res.json())
-		.then((d) => d.collections.map((c: MTDSAtlasCollection) => [c.id, c]))
-		.then(Object.fromEntries);
 
 export class MTDSAtlasElement extends MTDSElement {
 	cluster?: L.MarkerClusterGroup;
@@ -139,9 +134,12 @@ export class MTDSAtlasElement extends MTDSElement {
 		this.map = this.cluster = undefined;
 	}
 	async getCollections() {
-		return (
-			window._matgeoCollections || Promise.resolve({} as MTDSAtlasCollections)
-		);
+		if (!window._matgeoCollections)
+			window._matgeoCollections = fetch(MATGEO_URL)
+				.then((res) => res.json())
+				.then((d) => d.collections.map((c: MTDSAtlasCollection) => [c.id, c]))
+				.then(Object.fromEntries);
+		return window._matgeoCollections;
 	}
 	#handlePopup({ type, popup }: { type: string; popup: L.Popup }) {
 		const open = type === "popupopen";

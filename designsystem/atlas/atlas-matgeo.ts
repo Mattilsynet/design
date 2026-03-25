@@ -39,7 +39,7 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 			this.atlas = this.closest<MTDSAtlasElement>("mtds-atlas") || undefined;
 			this.atlas?.map?.on(EVENTS, this.refresh, this);
 			this.geojson = new L.GeoJSON(null, {
-				style: this.#getStyle(),
+				style: getStyle(this),
 				onEachFeature: (_, layer) => layer.on("click", this.handleEvent, this),
 			}).bindPopup(() => `#${attr(this, "popovertarget")}`);
 			this.refresh();
@@ -50,7 +50,7 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 		const geojson = this.geojson;
 		const map = this.atlas?.map;
 		if (name === "popovertarget") geojson?.getPopup()?.update();
-		if (name === "data-color") geojson?.setStyle(this.#getStyle());
+		if (name === "data-color") geojson?.setStyle(getStyle(this));
 		if (name === "data-collection") this.refresh();
 		if (name === "hidden" && geojson && map)
 			map[this.hidden ? "removeLayer" : "addLayer"](geojson);
@@ -104,11 +104,9 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 			?.getCollections()
 			.then((cols) => cols?.[attr(this, "data-collection") || ""]);
 	}
-	#getStyle() {
-		return {
-			color: `var(--mtds-color-${attr(this, "data-color") || "main"}-base-default)`,
-		};
-	}
 }
+const getStyle = (self: MTDSAtlasMatgeoElement) => ({
+	color: `var(--mtds-color-${attr(self, "data-color") || "main"}-base-default)`,
+});
 
 defineElement("mtds-atlas-matgeo", MTDSAtlasMatgeoElement);
