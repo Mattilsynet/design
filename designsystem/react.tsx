@@ -22,6 +22,7 @@ export * from "./link/link";
 export * from "./logo/logo";
 export * from "./pagination/pagination";
 export * from "./popover/popover";
+export * from "./print/print";
 export * from "./progress/progress";
 export * from "./skeleton/skeleton";
 export * from "./spinner/spinner";

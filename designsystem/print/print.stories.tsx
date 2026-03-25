@@ -1,6 +1,6 @@
 import { CodeIcon, PrinterIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Grid } from "../react";
+import { Button, Grid, Heading, Print, Prose, Table } from "../react";
 import styles from "../styles.module.css";
 import css from "../styles.module.css?raw";
 
@@ -101,9 +101,7 @@ export const Brevmal: Story = {
 					Pellentesque tempus facilisis libero, at viverra lacus interdum at.
 					Cras ac odio et lacus eleifend commodo ut elementum neque.
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Mattilsynet kontrollerte:
-				</h2>
+				<h2 className={styles.heading}>Mattilsynet kontrollerte:</h2>
 				<table className={styles.table}>
 					<thead>
 						<tr>
@@ -129,9 +127,7 @@ export const Brevmal: Story = {
 					</tfoot>
 				</table>
 				<p>Vi fant ikke avvik under denne kontrollen.</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Bilder:
-				</h2>
+				<h2 className={styles.heading}>Bilder:</h2>
 				<p>
 					<img alt="" src={base64imgSrc} />
 				</p>
@@ -139,9 +135,7 @@ export const Brevmal: Story = {
 					Vedlagt er et skriv med mer informasjon om regelverket og dine
 					rettigheter.
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Fastsettelse av gebyr:
-				</h2>
+				<h2 className={styles.heading}>Fastsettelse av gebyr:</h2>
 				<p>
 					Praesent ultricies ipsum a odio ultricies, in scelerisque neque
 					luctus. Nulla facilisi. Mauris consequat lacus a lacus dictum, non
@@ -162,9 +156,7 @@ export const Brevmal: Story = {
 						Dokumenter som må ha signatur, blir i tillegg sendt i papirversjon.
 					</em>
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Vedlegg:
-				</h2>
+				<h2 className={styles.heading}>Vedlegg:</h2>
 				<ul>
 					<li>Regelverk og rettigheter</li>
 				</ul>
@@ -205,9 +197,7 @@ export const Rapportmal: Story = {
 					Pellentesque tempus facilisis libero, at viverra lacus interdum at.
 					Cras ac odio et lacus eleifend commodo ut elementum neque.
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Mattilsynet kontrollerte:
-				</h2>
+				<h2 className={styles.heading}>Mattilsynet kontrollerte:</h2>
 				<table className={styles.table}>
 					<thead>
 						<tr>
@@ -233,9 +223,7 @@ export const Rapportmal: Story = {
 					</tfoot>
 				</table>
 				<p>Vi fant ikke avvik under denne kontrollen.</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Bilder:
-				</h2>
+				<h2 className={styles.heading}>Bilder:</h2>
 				<p>
 					<img alt="" src={base64imgSrc} />
 				</p>
@@ -243,9 +231,7 @@ export const Rapportmal: Story = {
 					Vedlagt er et skriv med mer informasjon om regelverket og dine
 					rettigheter.
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Fastsettelse av gebyr:
-				</h2>
+				<h2 className={styles.heading}>Fastsettelse av gebyr:</h2>
 				<p>
 					Praesent ultricies ipsum a odio ultricies, in scelerisque neque
 					luctus. Nulla facilisi. Mauris consequat lacus a lacus dictum, non
@@ -266,14 +252,213 @@ export const Rapportmal: Story = {
 						Dokumenter som må ha signatur, blir i tillegg sendt i papirversjon.
 					</em>
 				</p>
-				<h2 className={styles.heading} data-size="2xs">
-					Vedlegg:
-				</h2>
+				<h2 className={styles.heading}>Vedlegg:</h2>
 				<ul>
 					<li>Regelverk og rettigheter</li>
 				</ul>
 			</section>
 			<section className={styles.print} data-variant="back"></section>
+		</div>
+	),
+};
+
+export const BrevmalReact: Story = {
+	render: () => (
+		<div id="my-print">
+			<style>
+				{`${css}:root {
+					--mtdsc-print-office: 'hovedkontoret';
+					--mtdsc-print-department: 'avdeling brukerdialog og kommunikasjon';
+        }`}
+			</style>
+			<Print as={Prose}>
+				<div>
+					<address>
+						Eksempelstedet AS
+						<br />
+						Uendeligveien 999
+						<br />
+						0000 Sted
+					</address>
+					<dl>
+						<dt>Vår ref:</dt>
+						<dd>2004/12345</dd>
+						<dt>Dato:</dt>
+						<dd>01.01.2024</dd>
+						<dt>Org.nr:</dt>
+						<dd>123456789</dd>
+					</dl>
+				</div>
+				<br />
+				<Heading as="h1">Rapport etter kontroll av viltkjøtt</Heading>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
+					vestibulum erat, eu condimentum quam. Nullam mattis eget lectus vitae
+					volutpat.
+				</p>
+				<p>
+					Ut ut lectus fermentum, consequat neque vel, vestibulum elit. Quisque
+					vel sodales erat. Nunc nec posuere nulla, a tincidunt augue.
+					Pellentesque tempus facilisis libero, at viverra lacus interdum at.
+					Cras ac odio et lacus eleifend commodo ut elementum neque.
+				</p>
+				<Heading>Mattilsynet kontrollerte:</Heading>
+				<Table>
+					<thead>
+						<tr>
+							<th>Art</th>
+							<th>Antall</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Flygesau</td>
+							<td>34</td>
+						</tr>
+						<tr>
+							<td>Flygesau</td>
+							<td>34</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>Totalt 1 arter</td>
+							<td>Totalt 34 dyr</td>
+						</tr>
+					</tfoot>
+				</Table>
+				<p>Vi fant ikke avvik under denne kontrollen.</p>
+				<Heading>Bilder:</Heading>
+				<p>
+					<img alt="" src={base64imgSrc} />
+				</p>
+				<p>
+					Vedlagt er et skriv med mer informasjon om regelverket og dine
+					rettigheter.
+				</p>
+				<Heading>Fastsettelse av gebyr:</Heading>
+				<p>
+					Praesent ultricies ipsum a odio ultricies, in scelerisque neque
+					luctus. Nulla facilisi. Mauris consequat lacus a lacus dictum, non
+					scelerisque orci rhoncus. Suspendisse at neque tempor tortor volutpat
+					malesuada.
+				</p>
+				<p>
+					Med hilsen
+					<br />
+					Navn Navnesen
+					<br />
+					seniorrådgiver
+				</p>
+				<p>
+					<em>
+						Dette dokumentet er elektronisk godkjent, og sendes uten signatur.
+						<br />
+						Dokumenter som må ha signatur, blir i tillegg sendt i papirversjon.
+					</em>
+				</p>
+				<Heading>Vedlegg:</Heading>
+				<ul>
+					<li>Regelverk og rettigheter</li>
+				</ul>
+			</Print>
+		</div>
+	),
+};
+
+export const RapportmalReact: Story = {
+	render: () => (
+		<div id="my-print">
+			<style>
+				{`${css}:root {
+					--mtdsc-print-office: 'hovedkontoret';
+					--mtdsc-print-department: 'avdeling brukerdialog og kommunikasjon';
+        }`}
+			</style>
+			<Print data-variant="front">
+				<Heading as="h1">
+					Foreløpig revisjonsrapport etter systemrevisjon av xxxxxxx
+				</Heading>
+				<img
+					alt=""
+					src="https://design.mattilsynet.no/illustrations/person-fish-seaweed.svg"
+					style={{ width: "90%" }}
+				/>
+			</Print>
+			<Print as={Prose}>
+				<Heading as="h1">Rapport etter kontroll av viltkjøtt</Heading>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
+					vestibulum erat, eu condimentum quam. Nullam mattis eget lectus vitae
+					volutpat.
+				</p>
+				<p>
+					Ut ut lectus fermentum, consequat neque vel, vestibulum elit. Quisque
+					vel sodales erat. Nunc nec posuere nulla, a tincidunt augue.
+					Pellentesque tempus facilisis libero, at viverra lacus interdum at.
+					Cras ac odio et lacus eleifend commodo ut elementum neque.
+				</p>
+				<Heading>Mattilsynet kontrollerte:</Heading>
+				<Table>
+					<thead>
+						<tr>
+							<th>Art</th>
+							<th>Antall</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Flygesau</td>
+							<td>34</td>
+						</tr>
+						<tr>
+							<td>Flygesau</td>
+							<td>34</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>Totalt 1 arter</td>
+							<td>Totalt 34 dyr</td>
+						</tr>
+					</tfoot>
+				</Table>
+				<p>Vi fant ikke avvik under denne kontrollen.</p>
+				<Heading>Bilder:</Heading>
+				<p>
+					<img alt="" src={base64imgSrc} />
+				</p>
+				<p>
+					Vedlagt er et skriv med mer informasjon om regelverket og dine
+					rettigheter.
+				</p>
+				<Heading>Fastsettelse av gebyr:</Heading>
+				<p>
+					Praesent ultricies ipsum a odio ultricies, in scelerisque neque
+					luctus. Nulla facilisi. Mauris consequat lacus a lacus dictum, non
+					scelerisque orci rhoncus. Suspendisse at neque tempor tortor volutpat
+					malesuada.
+				</p>
+				<p>
+					Med hilsen
+					<br />
+					Navn Navnesen
+					<br />
+					seniorrådgiver
+				</p>
+				<p>
+					<em>
+						Dette dokumentet er elektronisk godkjent, og sendes uten signatur.
+						<br />
+						Dokumenter som må ha signatur, blir i tillegg sendt i papirversjon.
+					</em>
+				</p>
+				<Heading>Vedlegg:</Heading>
+				<ul>
+					<li>Regelverk og rettigheter</li>
+				</ul>
+			</Print>
+			<Print data-variant="back"></Print>
 		</div>
 	),
 };
