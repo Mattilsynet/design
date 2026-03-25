@@ -42,7 +42,7 @@ export class MTDSAtlasMatgeoElement extends MTDSElement {
 				style: getStyle(this),
 				onEachFeature: (_, layer) => layer.on("click", this.handleEvent, this),
 			}).bindPopup(() => `#${attr(this, "popovertarget")}`);
-			this.refresh(); // TODO EIRIK: Check if this is needed
+			this.refresh();
 			this.attributeChangedCallback("hidden"); // Maybe add to map
 		}); // Let the atlas parent initialize first
 	}
