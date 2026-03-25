@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "3.1.16",
+	"version": "3.1.17",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -57,7 +57,7 @@
 		"@biomejs/biome": "2.4.8",
 		"@digdir/designsystemet-css": "^1.13.0",
 		"@digdir/designsystemet-types": "^1.13.0",
-		"@handsontable/react-wrapper": "^17.0.0",
+		"@handsontable/react-wrapper": "17.0.1",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
 		"@storybook/addon-docs": "^10.3.3",
@@ -73,7 +73,7 @@
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^6.0.1",
 		"fast-glob": "^3.3.3",
-		"handsontable": "^17.0.0",
+		"handsontable": "17.0.1",
 		"leaflet": "^2.0.0-alpha.1",
 		"postcss": "^8.5.8",
 		"postcss-nesting": "^14.0.0",
