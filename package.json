@@ -71,7 +71,7 @@
 		"@types/node": "^25.5.0",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
-		"@vitejs/plugin-react": "^6.0.1",
+		"@vitejs/plugin-react": "^5.2.0",
 		"fast-glob": "^3.3.3",
 		"handsontable": "17.0.1",
 		"leaflet": "^2.0.0-alpha.1",
@@ -82,7 +82,7 @@
 		"react-moveable": "^0.56.0",
 		"storybook": "^10.3.3",
 		"typescript": "^6.0.2",
-		"vite": "^8.0.2",
+		"vite": "^7.3.1",
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
