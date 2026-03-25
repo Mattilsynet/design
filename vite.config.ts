@@ -92,7 +92,6 @@ export default defineConfig(({ mode }) =>
 						formats: ["es"],
 					},
 					rollupOptions: {
-						// plugins: [preserveUseClient], // TODO EIRIK
 						// Externalize React
 						external: [
 							"react",
