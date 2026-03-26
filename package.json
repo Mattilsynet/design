@@ -54,9 +54,9 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.8",
-		"@digdir/designsystemet-css": "^1.13.0",
-		"@digdir/designsystemet-types": "^1.13.0",
+		"@biomejs/biome": "2.4.9",
+		"@digdir/designsystemet-css": "^1.13.1",
+		"@digdir/designsystemet-types": "^1.13.1",
 		"@handsontable/react-wrapper": "17.0.1",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
@@ -86,7 +86,7 @@
 		"vite-plugin-dts": "^4.5.4"
 	},
 	"dependencies": {
-		"@digdir/designsystemet-web": "^1.13.0",
+		"@digdir/designsystemet-web": "^1.13.1",
 		"@u-elements/u-combobox": "^1.0.7",
 		"@u-elements/u-datalist": "^1.1.0",
 		"@u-elements/u-details": "^0.2.2",
