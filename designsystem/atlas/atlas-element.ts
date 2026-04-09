@@ -100,7 +100,7 @@ export class MTDSAtlasElement extends MTDSElement {
 				new L.DivIcon({
 					html: `${cluster.getChildCount()}`,
 					className: "leaflet-cluster-icon",
-					iconSize: [30, 30],
+					iconSize: [40, 40],
 				}),
 		}).addTo(this.map);
 
