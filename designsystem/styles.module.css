@@ -197,6 +197,12 @@
 /* Used as background input, so need to swap */
 /* Altas dark-mode added here to leverage data-color-scheme attribute */
 @layer mt.design {
+	mtds-atlas-marker > svg {
+		fill: currentColor;
+		height: 1em;
+		vertical-align: middle;
+		width: 1em;
+	}
 	[data-color-scheme="dark"] {
 		--ds-shadow-md: inset 0 0 0 1px rgba(255,255,255,.03), 0 7px 14px rgba(0,0,0,.4);
 		--mtds-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='white' d='M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16ZM72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160v112Z'/%3E%3C/svg%3E");

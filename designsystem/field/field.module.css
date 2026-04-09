@@ -81,9 +81,9 @@
 		& label {
 			font-weight: normal;
 		}
-		& :is(p, [data-description]) {
+		& :is(p, [data-field="description"]) {
 			font-size: var(--ds-font-size-minus-1);
-			padding-inline-start: 0; /* Reset DigDir */
+			padding-inline-start: 0; /* TODO Digdir: Reset */
 		}
 		&:has([readonly]:disabled) label {
 			cursor: default; /* Stiling when both readonly and disabled since browser does not prevent readonly on checkobx/radio */
@@ -110,8 +110,10 @@
 	.suggestion[data-variant="inside"] {
 		--dsc-suggestion-chip-padding: 0 var(--mtds-2);
 		--dsc-suggestion-chip-height: var(--mtds-7);
+		--mtdsc-suggestion-background: var(--ds-color-surface-default);
 		--mtdsc-suggestion-clear-size: var(--mtds-7);
 
+		background: var(--dsc-suggestion-background);
 		align-items: center;
 		border-radius: var(--ds-border-radius-md);
 		border: 1px solid var(--ds-color-border-default);
@@ -125,6 +127,7 @@
 		margin: 0;
 	}
 	.suggestion[data-variant="inside"] > input {
+		background-color: none;
 		border: none;
 		flex: 1 1 auto;
 		width: auto;

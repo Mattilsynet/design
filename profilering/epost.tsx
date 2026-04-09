@@ -131,7 +131,7 @@ export function Epost() {
 					}
 					description={
 						<a
-							href="https://www.mattilsynet.no/kontakt-oss/finn-kontorsted"
+							href="https://www.mattilsynet.no/om-mattilsynet/finn-kontorsted"
 							target="_blank"
 							rel="noreferrer"
 						>

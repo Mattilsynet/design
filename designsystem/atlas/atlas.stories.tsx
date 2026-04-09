@@ -120,6 +120,7 @@ export const WithMarker: Story = {
 		<Atlas data-view="60.722, 10.989, 16">
 			<Atlas.Marker data-latlng="60.7223, 10.9861" aria-label="Min markør" />
 			<Atlas.Marker
+				data-color="info"
 				data-latlng="60.72235, 10.9837"
 				aria-label="Min markør med stjerne"
 			>
@@ -153,6 +154,8 @@ export const WithMarkerStyling: Story = {
 						"--mtdsc-atlas-marker-border": "2px solid",
 						"--mtdsc-atlas-marker-background":
 							"var(--mtds-color-info-base-contrast-default)",
+						"--mtdsc-atlas-marker-background-outer":
+							"var(--mtds-color-info-base-default)",
 					} as React.CSSProperties
 				}
 			/>
