@@ -860,5 +860,171 @@
 	"wind.svg": {
 		"categories": ["Natur"],
 		"tags": ["vind", "vær"]
+	},
+	"barn-water.svg": {
+		"categories": ["Bygg", "Drikkevann"],
+		"tags": ["låve", "fjøs", "gård", "vann", "drikkevann"]
+	},
+	"barn.svg": {
+		"categories": ["Bygg"],
+		"tags": ["låve", "fjøs", "gård", "bondegård"]
+	},
+	"bowl-food-stacked.svg": {
+		"categories": ["Mat"],
+		"tags": ["mat", "bolle", "skål", "måltid", "servering"]
+	},
+	"bowl.svg": {
+		"categories": ["Mat"],
+		"tags": ["bolle", "skål", "servering"]
+	},
+	"fertilizer.svg": {
+		"categories": ["Utstyr", "Natur"],
+		"tags": ["gjødsel", "jord", "dyrking", "vekst", "landbruk"]
+	},
+	"flagg-eu.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "EU", "Europa"]
+	},
+	"flask-lab.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["laboratorium", "kolbe", "flaske", "kjemi", "analyse"]
+	},
+	"flowerpot.svg": {
+		"categories": ["Natur"],
+		"tags": ["blomsterpotte", "blomst", "plante", "potte", "natur"]
+	},
+	"fork-sausage.svg": {
+		"categories": ["Mat"],
+		"tags": ["gaffel", "pølse", "mat", "måltid"]
+	},
+	"glas.svg": {
+		"categories": ["Mat"],
+		"tags": ["glass", "drikke", "vann"]
+	},
+	"leaf.svg": {
+		"categories": ["Natur"],
+		"tags": ["blad", "plante", "natur", "vekst"]
+	},
+	"parasite.svg": {
+		"categories": ["Dyr"],
+		"tags": ["parasitt", "smitte", "sykdom", "dyr"]
+	},
+	"person-inspect-border.svg": {
+		"categories": ["Mennesker"],
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"grensekontroll",
+			"tilsyn",
+			"inspeksjon"
+		]
+	},
+	"person-inspect-kitchen.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"kjøkken",
+			"tilsyn",
+			"inspeksjon",
+			"mat"
+		]
+	},
+	"person-inspect-meat.svg": {
+		"categories": ["Mennesker", "Mat"],
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"kjøtt",
+			"tilsyn",
+			"inspeksjon",
+			"mat"
+		]
+	},
+	"person-inspect-plants.svg": {
+		"categories": ["Mennesker", "Natur"],
+		"tags": [
+			"person",
+			"menneske",
+			"inspektør",
+			"plante",
+			"vekst",
+			"tilsyn",
+			"inspeksjon"
+		]
+	},
+	"person-lab-clipboard.svg": {
+		"categories": ["Mennesker", "Utstyr"],
+		"tags": [
+			"person",
+			"menneske",
+			"laboratorium",
+			"utklippstavle",
+			"prøve",
+			"tilsyn"
+		]
+	},
+	"person-lab-greet.svg": {
+		"categories": ["Mennesker", "Utstyr"],
+		"tags": ["person", "menneske", "laboratorium", "hilsen", "prøve", "analyse"]
+	},
+	"pitchfork-soil.svg": {
+		"categories": ["Utstyr", "Natur"],
+		"tags": ["høygaffel", "jord", "dyrking", "gårdsdrift", "landbruk"]
+	},
+	"plant-pot.svg": {
+		"categories": ["Natur"],
+		"tags": ["plante", "potte", "blomst", "vekst", "natur"]
+	},
+	"sailboat-people.svg": {
+		"categories": ["Mennesker", "Eksport"],
+		"tags": ["seilbåt", "båt", "person", "menneske", "transport", "sjø"]
+	},
+	"salami.svg": {
+		"categories": ["Mat"],
+		"tags": ["salami", "kjøtt", "pålegg"]
+	},
+	"sausage.svg": {
+		"categories": ["Mat"],
+		"tags": ["pølse", "kjøtt", "mat"]
+	},
+	"seed-group.svg": {
+		"categories": ["Natur"],
+		"tags": ["frø", "vekst", "natur"]
+	},
+	"seed.svg": {
+		"categories": ["Natur"],
+		"tags": ["frø", "natur"]
+	},
+	"shopping-basket.svg": {
+		"categories": ["Mat"],
+		"tags": ["handlekurv", "innkjøp", "mat", "handel"]
+	},
+	"sprouts-soil.svg": {
+		"categories": ["Natur"],
+		"tags": ["spirer", "jord", "plante", "vekst", "dyrking"]
+	},
+	"stove.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["komfyr", "kjøkken", "matlaging", "varme"]
+	},
+	"test-tube-wide.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["reagensrør", "laboratorium", "prøve", "analyse"]
+	},
+	"test-tube.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["reagensrør", "laboratorium", "prøve", "analyse"]
+	},
+	"tractor-pesticides.svg": {
+		"categories": ["Utstyr", "Natur"],
+		"tags": ["traktor", "plantevern", "sprøyting", "gårdsdrift", "landbruk"]
+	},
+	"virus.svg": {
+		"categories": ["Beredskap"],
+		"tags": ["virus", "smitte", "sykdom", "beredskap"]
 	}
 }

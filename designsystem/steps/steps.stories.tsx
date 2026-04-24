@@ -438,6 +438,67 @@ export const WithColors: Story = {
 	),
 };
 
+export const WithVariantFilled: Story = {
+	render: () => (
+		<>
+			<ol className={styles.steps} data-variant="filled">
+				<li>
+					<mark />
+					<strong>Steg 1</strong>
+					<br />
+					<small>Beskrivelse</small>
+				</li>
+				<li aria-current="step">
+					<mark />
+					<strong>Steg 2</strong>
+					<br />
+					<small>Donec et odio</small>
+				</li>
+				<li>
+					<mark />
+					<strong>Steg 3</strong>
+				</li>
+			</ol>
+			<ol className={styles.steps} data-variant="filled" data-direction="down">
+				<li>
+					<mark />
+					<strong>Steg 1</strong>
+					<br />
+					<small>Beskrivelse</small>
+				</li>
+				<li data-color="danger" aria-current="step">
+					<mark />
+					<strong>Steg 2</strong>
+					<br />
+					<small>Donec et odio</small>
+				</li>
+				<li>
+					<mark />
+					<strong>Steg 3</strong>
+				</li>
+			</ol>
+			<ol className={styles.steps} data-variant="filled" data-direction="up">
+				<li>
+					<mark />
+					<strong>Steg 1</strong>
+					<br />
+					<small>Beskrivelse</small>
+				</li>
+				<li data-color="danger" aria-current="step">
+					<mark />
+					<strong>Steg 2</strong>
+					<br />
+					<small>Donec et odio</small>
+				</li>
+				<li data-color="danger">
+					<mark />
+					<strong>Steg 3</strong>
+				</li>
+			</ol>
+		</>
+	),
+};
+
 export const WithInteraction: Story = {
 	render: () => (
 		<ol className={styles.steps}>

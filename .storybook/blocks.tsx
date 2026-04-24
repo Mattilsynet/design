@@ -405,7 +405,13 @@ export const Graphics = ({
 				)}
 				{children}
 			</Flex>
-			<Grid className="graphics" data-items="250" data-fixed {...rest}>
+			<Grid
+				className="graphics"
+				data-items="250"
+				data-gap="2"
+				data-fixed
+				{...rest}
+			>
 				{graphics.map(({ file, categories, tags, name, svg, label, href }) => {
 					const show =
 						(!category || categories.some((cat) => category === cat)) &&
@@ -417,6 +423,8 @@ export const Graphics = ({
 
 					return (
 						<Card
+							style={{ background: "var(--mtds-color-background-tinted)" }}
+							data-radius="md"
 							data-color-scheme={mode || undefined}
 							data-tooltip={`Trykk for å kopiere "${name.replace(".svg", "")}"`}
 							download={name.replace(".", mode === "dark" ? "-dark." : ".")}
