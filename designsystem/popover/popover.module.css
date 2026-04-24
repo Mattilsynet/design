@@ -6,6 +6,7 @@
 		--dsc-popover-arrow-size: 0;
 		--_ds-floating: bottom;
 
+		font-weight: normal; /* TODO DigDir */
 		max-width: calc(100vw - 20px); /* Ensure not larger than window */
 	}
 	.popover[slot] {

@@ -14,6 +14,7 @@
 		--dsc-table-header-background--sorted: transparent;
 		--dsc-table-header-background: transparent;
 		--dsc-table-padding: var(--mtds-2) var(--mtds-3);
+		--mtdsc-table-expandable-icon-size: var(--mtds-icon-size-sm);
 		--mtdsc-table-divided: 50; /* Need to be unitless */
 
 		background: var(--dsc-table-background);
@@ -114,27 +115,16 @@
 			display: none;
 		}
 
-		@media (prefers-reduced-motion: no-preference) {
-			interpolate-size: allow-keywords;
-
-			&::part(details-content) {
-				block-size: 0;
-				overflow-y: clip;
-				transition:
-					content-visibility 400ms allow-discrete,
-					height 400ms;
-			}
-
-			&[open]::part(details-content) {
-				height: auto;
-			}
-		}
-
 		& > :is(td, th) > button[aria-expanded] {
 			all: unset;
+			border-radius: var(--ds-border-radius-sm);
 			box-sizing: border-box;
 			cursor: pointer;
-			border-radius: var(--ds-border-radius-sm);
+			position: relative;
+			padding-left: calc(
+				var(--mtdsc-table-expandable-icon-size) +
+				var(--ds-size-2)
+			);
 			width: 100%;
 
 			&:focus-visible {
@@ -143,16 +133,17 @@
 				outline-offset: var(--ds-border-width-focus);
 			}
 
+			/* TODO EIRIK: prevent wrap when long text */
 			&::before {
 				background: currentcolor;
 				content: "";
-				display: inline-block;
-				height: 1em;
+				height: 1lh;
+				left: 0;
 				margin-inline-end: var(--ds-size-2);
 				mask: center / contain no-repeat var(--mtds-icon-chevron);
+				position: absolute;
 				transition: rotate 0.2s;
-				vertical-align: -0.2em;
-				width: 1em;
+				width: var(--mtdsc-table-expandable-icon-size);
 			}
 
 			&[aria-expanded="true"]::before {

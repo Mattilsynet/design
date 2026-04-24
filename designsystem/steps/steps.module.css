@@ -2,6 +2,7 @@
 	.steps {
 		--mtdsc-steps-dot-size: var(--ds-size-7);
 		--mtdsc-steps-gap: var(--ds-size-4);
+		--mtdsc-steps-padding: 0px;
 		--mtdsc-steps-stroke-color: var(--ds-color-border-subtle);
 		--mtdsc-steps-stroke-size: 2px;
 
@@ -12,6 +13,7 @@
 	}
 	.steps:not([hidden]) {
 		display: flex;
+		gap: var(--mtdsc-steps-gap);
 	}
 	.steps > li {
 		--dot-after: var(--mtdsc-steps-stroke-color);
@@ -23,9 +25,10 @@
 		border-radius: var(--ds-border-radius-md);
 		box-sizing: border-box;
 		flex: 1;
+		padding: var(--mtdsc-steps-padding);
 		position: relative;
+		z-index: 2;
 		text-decoration: none;
-		padding-inline: var(--mtds-4);
 	}
 
 	/*
@@ -36,7 +39,7 @@
 		background: linear-gradient(to right, transparent, var(--dot-before));
 		content: "";
 		height: var(--mtdsc-steps-stroke-size);
-		inset: 0 50% auto -50%;
+		inset: var(--mtdsc-steps-padding) 50% auto -50%;
 		margin: calc(var(--mtdsc-steps-dot-size) / 2);
 		position: absolute;
 		translate: 0 -50%;
@@ -116,6 +119,9 @@
 	/*
 	 * States
 	 */
+	.steps:not([data-direction="up"]) > li[aria-current="step"] {
+		z-index: 1; /* Let lines from other steps enter the current one */
+	}
 	.steps:not([data-direction="up"]) > li[aria-current="step"],
 	.steps:not([data-direction="up"]) > li:has(~ li[aria-current="step"]),
 	.steps[data-direction="up"] > [aria-current="step"] ~ li,
@@ -152,6 +158,16 @@
 	}
 
 	/*
+	 * Filled variant
+	 */
+	.steps[data-variant="filled"] > li {
+		--mtdsc-steps-padding: var(--ds-size-4);
+	}
+	.steps[data-variant="filled"] > li[aria-current="step"] {
+		background: var(--ds-color-surface-tinted);
+	}
+
+	/*
 	 * Fade
 	 */
 	.steps:is(
@@ -181,15 +197,21 @@
 	.steps[data-direction]:not([data-direction="right"]) {
 		flex-wrap: wrap;
 		text-align: left;
+		gap: var(--mtdsc-steps-gap);
 	}
 	.steps[data-direction]:not([data-direction="right"]) > li {
 		flex: 1 0 100%;
 		min-height: calc(var(--mtdsc-steps-dot-size) * 2);
-		padding-block: 0 var(--mtdsc-steps-dot-size);
-		padding-inline: calc(var(--mtdsc-steps-dot-size) + var(--mtdsc-steps-gap)) 0;
+		padding-block: var(--mtdsc-steps-padding);
+		padding-inline: calc(
+				var(--mtdsc-steps-dot-size) +
+				var(--mtdsc-steps-gap) +
+				var(--mtdsc-steps-padding)
+			)
+			var(--mtdsc-steps-padding);
 	}
 	.steps[data-direction]:not([data-direction="right"]) > li mark {
-		inset: 0;
+		inset: var(--mtdsc-steps-padding);
 		margin: 0;
 		position: absolute;
 	}
@@ -199,17 +221,21 @@
 		height: auto;
 		margin-block: 0;
 		width: var(--mtdsc-steps-stroke-size);
-		inset: calc(var(--mtdsc-steps-dot-size) * -1) 0 100%;
-		translate: -50%;
+		inset: calc(var(--mtdsc-steps-dot-size) * -1) var(--mtdsc-steps-padding)
+			100%;
+		translate: -50% var(--mtdsc-steps-padding);
 	}
 	.steps[data-direction]:not([data-direction="right"]) > li::after {
-		inset-block: var(--mtdsc-steps-dot-size) 0;
+		inset-block: var(--mtdsc-steps-dot-size) calc(var(--mtdsc-steps-gap) * -1);
+
 		background: linear-gradient(
-			var(--dot-after),
-			var(--dot-after-end, var(--dot-after))
+			var(--dot-after)
+				calc(100% - var(--mtdsc-steps-padding) - var(--mtdsc-steps-gap)),
+			transparent
 		);
 	}
 	.steps[data-direction]:not([data-direction="right"]) > li:last-child::after {
-		--dot-after-end: transparent;
+		background: linear-gradient(var(--dot-after), transparent);
+		inset-block-end: 0;
 	}
 }

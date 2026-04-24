@@ -167,6 +167,10 @@
 		background: none; /* Reset Tailwind and avoid double background issues https://stackoverflow.com/a/76849201 */
 	}
 
+	svg[data-color] {
+		color: var(--ds-color-text-default); /* Allow svgs to inherit text color, but only if they have data-color attribute to avoid breaking existing icons that rely on currentColor */
+	}
+
 	:where(body, .body) {
 		cursor: default; /* Avoid text cursor on non-form elements */
 		font-family: "Mattilsynet Sans", sans-serif; /* Setting font-size on <body> to preserve default rem value and thus easier calulations and text scaling */
