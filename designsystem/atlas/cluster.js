@@ -639,7 +639,6 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		this._map.on("moveend", this._moveEnd, this);
 
 		if (this._spiderfierOnAdd) {
-			//TODO FIXME: Not sure how to have spiderfier add something on here nicely
 			this._spiderfierOnAdd();
 		}
 
@@ -665,7 +664,6 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		);
 
 		if (this._spiderfierOnRemove) {
-			//TODO FIXME: Not sure how to have spiderfier add something on here nicely
 			this._spiderfierOnRemove();
 		}
 
@@ -1341,7 +1339,6 @@ L.MarkerClusterGroup.include({
 					}
 
 					//Remove all markers that aren't visible any more
-					//TODO: Do we actually need to do this on the higher levels too?
 					for (i = markers.length - 1; i >= 0; i--) {
 						m = markers[i];
 						if (!bounds.contains(m._latlng)) {
@@ -1355,7 +1352,6 @@ L.MarkerClusterGroup.include({
 
 			//Update opacities
 			this._topClusterLevel._recursivelyBecomeVisible(bounds, newZoomLevel);
-			//TODO Maybe? Update markers in _recursivelyBecomeVisible
 			fg.eachLayer((n) => {
 				if (!(n instanceof L.MarkerCluster) && n._icon) {
 					n.clusterShow();
@@ -1468,7 +1464,6 @@ L.MarkerClusterGroup.include({
 		this._forceLayout();
 		cluster._recursivelyBecomeVisible(bounds, newZoomLevel);
 
-		//TODO: Maybe use the transition timing stuff to make this more reliable
 		//When the animations are done, tidy up
 		this._enqueue(function () {
 			//This cluster stopped being a cluster before the timeout fired
@@ -1783,7 +1778,6 @@ L.MarkerCluster = L.Marker.extend({
 				previousZoomLevel,
 			);
 
-			//TODO: depthToAnimateIn affects _isSingleParent, if there is a multizoom we may/may not be.
 			//As a hack we only do a animation free zoom on a single level zoom, if someone does multiple levels then we always animate
 			if (c._isSingleParent() && previousZoomLevel - 1 === newZoomLevel) {
 				c.clusterShow();
@@ -1791,7 +1785,7 @@ L.MarkerCluster = L.Marker.extend({
 					bounds,
 					mapMinZoom,
 					previousZoomLevel,
-				); //Immediately remove our children as we are replacing them. TODO previousBounds not bounds
+				); //Immediately remove our children as we are replacing them.
 			} else {
 				c.clusterHide();
 			}
@@ -2322,8 +2316,6 @@ L.MarkerCluster.include({
 
 		this._group._unspiderfy();
 		this._group._spiderfied = this;
-
-		//TODO Maybe: childMarkers order by distance to center
 
 		if (childMarkers.length >= this._circleSpiralSwitchover) {
 			positions = this._generatePointsSpiral(childMarkers.length, center);
