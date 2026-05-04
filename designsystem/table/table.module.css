@@ -133,7 +133,6 @@
 				outline-offset: var(--ds-border-width-focus);
 			}
 
-			/* TODO EIRIK: prevent wrap when long text */
 			&::before {
 				background: currentcolor;
 				content: "";
