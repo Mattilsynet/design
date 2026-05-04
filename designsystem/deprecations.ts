@@ -153,10 +153,10 @@ const deprecateDataCommand = () => {
 };
 
 // Deprecate u-tabs
-const TABS = isBrowser() ? document.getElementsByTagName("u-tabs") : [];
-const deprecateUTabs = () => {
-	for (const el of TABS) if (deprecate(el)) warn("u-tabs", "ds-tabs", el);
-};
+// const TABS = isBrowser() ? document.getElementsByTagName("u-tabs") : [];
+// const deprecateUTabs = () => {
+// 	for (const el of TABS) if (deprecate(el)) warn("u-tabs", "ds-tabs", el);
+// };
 
 // Deprecate u-combobox and add class to ds-suggestion
 const CSS_SUGGESTION = styles.suggestion.split(" ");
@@ -263,7 +263,7 @@ const handleDeprecations = debounce(() => {
 	deprecateField(); // Should run after other field deprecations to access correct data-attributes
 	deprecateToggleGroup();
 	deprecateUCombobox();
-	deprecateUTabs();
+	// deprecateUTabs();
 }, 200);
 
 onHotReload("deprecations", () => [
