@@ -18,6 +18,7 @@
 		outline-offset: 2px;
 		outline: 2px none currentcolor;
 		padding: 0;
+		text-align: inherit;
 		text-decoration: underline;
 		text-decoration-thickness: var(--mtdsc-link-text-decoration-thickness);
 		text-underline-offset: var(--mtdsc-link-text-decoration-offset);
