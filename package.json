@@ -75,7 +75,7 @@
 		"fast-glob": "^3.3.3",
 		"handsontable": "17.0.1",
 		"leaflet": "^2.0.0-alpha.1",
-		"postcss": "^8.5.13",
+		"postcss": "^8.5.14",
 		"postcss-nesting": "^14.0.0",
 		"react": "^19.2.5",
 		"react-dom": "^19.2.5",
