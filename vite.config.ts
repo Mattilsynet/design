@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import pkg from "./package.json";
 import { cssPropsRename, cssToTailwind } from "./vite.plugins";
 
@@ -74,6 +75,15 @@ export default defineConfig(({ mode }) =>
 					},
 					cssToTailwind,
 					cssPropsRename,
+					viteStaticCopy({
+						targets: [
+							{
+								src: ["designsystem/*/*.mdx", "designsystem/*/*.stories.tsx"],
+								dest: "ai",
+								rename: { stripBase: 2 },
+							},
+						],
+					}),
 				],
 				build: {
 					emptyOutDir: false, // This runs after IIFE build, so we don't want to clear the dist folder

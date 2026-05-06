@@ -83,7 +83,8 @@
 		"storybook": "^10.3.6",
 		"typescript": "^6.0.3",
 		"vite": "^7.3.2",
-		"vite-plugin-dts": "^4.5.4"
+		"vite-plugin-dts": "^4.5.4",
+		"vite-plugin-static-copy": "^4.1.0"
 	},
 	"dependencies": {
 		"@digdir/designsystemet-web": "^1.13.3",
