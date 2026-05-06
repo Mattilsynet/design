@@ -12,7 +12,7 @@ export type HeadingProps<As extends React.ElementType = "h2"> =
 		As,
 		{
 			"data-size"?: HeadingSizes;
-			"data-justify"?: "start" | "center";
+			"data-justify"?: "start" | "center" | "end";
 		}
 	>;
 

@@ -34,6 +34,7 @@
 		},
 		"./*.svg": "./mtds/*.svg",
 		"./*.ico": "./mtds/*.ico",
+		"./ai/*": "./mtds/ai/*",
 		"./icons/*": "./mtds/icons/*",
 		"./illustrations/*": "./mtds/illustrations/*",
 		"./index.iife.js": "./mtds/index.iife.js",
