@@ -401,7 +401,7 @@ When the input is a Figma frame/sketch, treat the design as a binding spec for *
 3. If you genuinely believe a deviation is required (e.g. the component cannot express the intended behavior), **STOP**. Explain the deviation and the alternative you propose **before** writing code, and wait for explicit approval.
 
 ### 9.2 Specific mapping rules
-
+- **Auto-layout** if child compeonents of a Figma auto-layout has equal width, of width "fill", use `<Grid>`
 - **Metadata in lists / cards** (icon + value, or label + value): **MUST** use `<Info>` whenever Figma uses an `Info` instance, **or** whenever the content shape is icon + value or label + value. Custom `<span>`/`<div>` structures for metadata are **not allowed** unless the user explicitly approves the deviation.
 - **Headings:** any Figma text styled as a heading → `<Heading as="hN" data-size="…">`, never raw `<h1>`–`<h6>` or styled `<div>`.
 - **Lead/intro text** → `<Ingress>`. **Secondary/meta text** → `<Muted>`.
