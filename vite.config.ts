@@ -78,6 +78,11 @@ export default defineConfig(({ mode }) =>
 					viteStaticCopy({
 						targets: [
 							{
+								src: ["designsystem/mtds.md"],
+								dest: "ai",
+								rename: { stripBase: 1 },
+							},
+							{
 								src: ["designsystem/*/*.mdx", "designsystem/*/*.stories.tsx"],
 								dest: "ai",
 								rename: { stripBase: 2 },
