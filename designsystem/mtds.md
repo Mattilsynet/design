@@ -33,7 +33,7 @@ The package ships React components, web components, and class names. In React pr
 7. **SHOULD** read `@mattilsynet/design/mtds/ai/<name>.mdx` (and `<name>.stories.tsx`) before using a component you have not used in this session.
 8. **SHOULD**, for genuinely custom CSS, use a regular CSS file or CSS Module that references `--mtds-*` tokens — never inline `style`.
 
-Verify all requirements with the **§10 checklist** before returning code.
+Verify all requirements with the **§11 checklist** before returning code.
 
 ---
 
@@ -85,7 +85,7 @@ Verify all requirements with the **§10 checklist** before returning code.
 | Switch density for a region | `data-size="sm│md│lg"` on a layout container |
 | Add a tooltip | `data-tooltip="…"` on the element |
 
-For anything else, find the right component in the **§11 index**.
+For anything else, find the right component in the **§12 index**.
 
 ---
 
@@ -211,9 +211,183 @@ Each component exposes scoped custom properties. Discover the available ones for
 
 ---
 
-## 6. Layout primitives
+## 6. App layout (page shell)
 
-### 6.1 When to use which
+Every Mattilsynet web application/page **MUST** be built inside the `App` shell. It is the outermost layout that all other content lives within. The shell provides:
+
+- `<App>` — the outer wrapping component
+- `<App.Header>` — top header with logo and global actions (notifications, user menu)
+- `<App.Toggle>` — must be placed before `<App.Sidebar>` to enable sidebar collapsing
+- `<App.Sidebar>` — collapsible left sidebar (modal on mobile, persistent rail on desktop)
+- `<App.Sticky>` — scroll-direction-aware sticky wrapper, used as a direct child of `<App.Sidebar>` to wrap its contents
+- `<App.Main>` — the main content area
+- `<App.Footer>` — optional footer (rarely used)
+- The outer `<App>` accepts `data-variant="mobilebar"` for a mobile bottom-bar variant
+
+### 6.1 Composition (canonical)
+
+```tsx
+import { App, Logo, Button, Popover, Avatar, Card } from '@mattilsynet/design/react';
+import { BellIcon, UserIcon, SignOutIcon, GearIcon, SignatureIcon, ListChecksIcon, MagnifyingGlassIcon, PlantIcon } from '@phosphor-icons/react/ssr';
+
+<App>
+  <App.Header>
+    <Logo href="/">
+      <PlantIcon weight="fill" />
+      Digiplant
+    </Logo>
+    <Button><BellIcon /></Button>
+    <Button aria-label="Meny" popoverTarget="user-menu">
+      <Avatar data-size="sm" />
+    </Button>
+    <Popover as="menu" popover="auto" id="user-menu">
+      <li><Button href="/profil"><UserIcon />Profil</Button></li>
+      <li><Button href="/innstillinger"><GearIcon />Innstillinger</Button></li>
+      <li><Button href="/logout"><SignOutIcon />Logg ut</Button></li>
+    </Popover>
+  </App.Header>
+
+  <App.Toggle />
+
+  <App.Sidebar>
+    <App.Sticky as="menu">
+      <li><Button href="/soknader" aria-current="page" data-tooltip="Søknader"><SignatureIcon /></Button></li>
+      <li><Button href="/behandling" data-tooltip="Behandling"><ListChecksIcon /></Button></li>
+      <li><Button href="/sok" data-tooltip="Søk"><MagnifyingGlassIcon /></Button></li>
+    </App.Sticky>
+  </App.Sidebar>
+
+  <App.Main>
+    <Card>{/* page content here — see §6.4 */}</Card>
+  </App.Main>
+
+  <App.Footer>
+    <Logo href="/" />
+  </App.Footer>
+</App>
+```
+
+The required source order is **`App.Header` → `App.Toggle` → `App.Sidebar` → `App.Main` → `App.Footer`**.
+
+### 6.2 Sub-component reference
+
+| Component | Renders | Purpose |
+|---|---|---|
+| `App` | `<div class="app">` | The shell. Supports `data-variant="mobilebar"` (see §6.7) |
+| `App.Header` | `<header>` | Logo + global actions. `<Logo>` **MUST** be the first child |
+| `App.Toggle` | `<button>` | Expand/minimize sidebar (also opens it as a modal on mobile) |
+| `App.Sidebar` | `<dialog role="navigation" id="mtds-sidebar">` | Primary navigation. Modal on mobile, rail/expanded on desktop |
+| `App.Sticky` | `<div>` (polymorphic via `as`) | Scroll-direction-aware sticky wrapper inside `App.Sidebar` |
+| `App.Main` | `<main>` | Page content. Every leaf content node **MUST** sit inside a `<Card>` or `<Group>` (see §6.4) |
+| `App.Footer` | `<footer>` | Optional footer |
+| `App.Script` | inline `<script>` | SSR/Next.js only. Render in `<head>` to prevent FOUC (see §6.8) |
+
+### 6.3 Sidebar buttons MUST be icon-only
+
+Every interactive child of `<App.Sidebar>` (button or link) **MUST** contain **only an icon** as visible content. The textual label **MUST** be supplied via `data-tooltip="…"` (and `aria-label` where the icon alone is not self-descriptive).
+
+This is required because the design system manages how labels appear: when the sidebar is minimized the tooltip is shown on hover; when expanded the design system reveals the label inline automatically. Hard-coding text inside the button breaks both states.
+
+`<Button>` elements inside `<App.Sidebar>` are most commonly wrapped in a `<menu>` → `<li>` structure (often via `<App.Sticky as="menu">`) for vertical stacking and good accessibility.
+
+```tsx
+// Do — icon-only, label via data-tooltip
+<Button href="/soknader" aria-current="page" data-tooltip="Søknader">
+  <SignatureIcon />
+</Button>
+
+// Don't — visible text inside a sidebar button
+<Button href="/soknader">
+  <SignatureIcon />
+  Søknader
+</Button>
+```
+
+### 6.4 `App.Main` content have direct child `Group` or `Card`, or `Flex` or `Grid` with `Card` or `Group` inside
+
+`<App.Main>` is a layout region, not a content surface. You **MUST NOT** place bare text, headings, paragraphs, or raw elements as **leaf** content directly inside it. Every leaf node **MUST** be inside at least one `<Card>` or `<Group>`.
+You **MUST NOT** use `data-center` on a direct child of `<App.Main>` - if you need to center content, you **MUST** do so within a `<Group>` or `<Card>`
+
+Layout primitives (`<Flex>`, `<Grid>`) **MAY** sit between `<App.Main>` and the `<Card>`/`<Group>` — typically to apply `data-center` and `data-gap`.
+
+- Use `<Card>` for a single related content unit on a solid surface (e.g. one inspection, one entity detail page).
+- Use `<Group>` for a collection of cards or meta-UI on a tinted surface.
+
+```tsx
+// Do
+<App.Main>
+  <Flex data-center="2xl" data-gap="6">
+    <Card>
+      <Heading as="h1" data-size="xl">Tilsyn 12345</Heading>
+      <p>…</p>
+    </Card>
+    <Group>
+      <Card>…</Card>
+      <Card>…</Card>
+    </Group>
+  </Flex>
+</App.Main>
+
+// Don't — bare content directly in App.Main
+<App.Main>
+  <Heading as="h1" data-size="xl">Tilsyn 12345</Heading>
+  <p>…</p>
+</App.Main>
+```
+
+Page-level centering (`data-center="2xl"`) **MUST** be applied **inside** `<App.Main>` (typically on a `<Flex>` or `<Grid>` that holds the cards), never on `<App>` itself.
+
+### 6.5 Expand / minimize sidebar
+
+- `<App.Toggle>` renders the standard expand/minimize button.
+- You **SHOULD NOT** manage sidebar visibility with custom React state — always use `<App.Toggle>` (or `toggleAppExpanded()`).
+
+### 6.6 Sticky sidebar content
+
+Wrap the contents of `<App.Sidebar>` in `<App.Sticky>` to get scroll-direction-aware sticky behavior (the sidebar stays visible when scrolling up and slides away when scrolling down). `<App.Sticky>` is for sidebar contents — do not use it elsewhere in the layout.
+
+### 6.7 Mobile bottom bar variant
+
+```tsx
+<App data-variant="mobilebar">…</App>
+```
+
+- Converts the sidebar into a mobile bottom navigation bar.
+- **SHOULD** only be used when there are 5 or fewer top-level navigation items.
+- Headings, dividers, and elements with `data-app-expanded="false"` are auto-hidden in this variant.
+
+### 6.8 SSR / Next.js
+
+To prevent flash of unstyled content (FOUC) when the persisted expanded/minimized state is restored, render `<App.Script />` inside `<head>`:
+
+```tsx
+// app/layout.tsx (Next.js)
+<html>
+  <head>
+    <App.Script />
+  </head>
+  <body>{children}</body>
+</html>
+```
+
+### 6.9 Rules summary
+
+- You **MUST** use `<App>` as the outermost layout for any new Mattilsynet application page.
+- You **MUST** use `<App.Sidebar>` for primary navigation — never a plain `<aside>` or `<nav>`.
+- You **MUST** place `<App.Toggle>` before `<App.Sidebar>` in source order.
+- You **MUST** make every interactive child of `<App.Sidebar>` icon-only and provide its label via `data-tooltip` (see §6.3).
+- You **MUST** keep every leaf content node inside `<App.Main>` wrapped in at least one `<Card>` or `<Group>` (see §6.4).
+- You **MUST** use `<Logo>` as the first child of `<App.Header>`.
+- You **MUST NOT** wrap `<App>` in `<Flex>`, `<Grid>`, or any layout primitive — the shell sets its own grid.
+- You **MUST NOT** apply `data-center` to `<App>` itself — apply it inside `<App.Main>` instead.
+- You **SHOULD** use `<App.Toggle>` or `toggleAppExpanded()` for sidebar state — never custom React state.
+- (Next.js / SSR) You **SHOULD** render `<App.Script />` inside `<head>` to prevent FOUC.
+
+---
+
+## 7. Layout primitives
+
+### 7.1 When to use which
 
 | Component | Use when | Surface |
 |---|---|---|
@@ -224,7 +398,7 @@ Each component exposes scoped custom properties. Discover the available ones for
 
 `Card` MAY be nested inside `Group`. Avoid `Card` inside `Card`.
 
-### 6.2 Shared attributes — `Flex` and `Grid`
+### 7.2 Shared attributes — `Flex` and `Grid`
 
 | Attribute | Values | Notes |
 |---|---|---|
@@ -237,7 +411,7 @@ Each component exposes scoped custom properties. Discover the available ones for
 | `data-nowrap` | boolean | Prevent wrapping |
 | `data-fixed`  | boolean | Children don't grow (Flex) / `auto-fill` (Grid) |
 
-### 6.3 Flex child attributes
+### 7.3 Flex child attributes
 
 | Attribute | Values | Notes |
 |---|---|---|
@@ -245,7 +419,7 @@ Each component exposes scoped custom properties. Discover the available ones for
 | `data-align-self` | `start`, `center`, `end`, `stretch` | |
 | `data-justify-self` | `start`, `center`, `end` | |
 
-### 6.4 `Card` and `Group`
+### 7.4 `Card` and `Group`
 
 | Attribute | Values | Notes |
 |---|---|---|
@@ -259,7 +433,7 @@ Each component exposes scoped custom properties. Discover the available ones for
 | `href` | string | Renders Card as `<a>` (whole card becomes a link) |
 | `data-clickdelegatefor` | CSS selector | Click anywhere on the card triggers the matching descendant (e.g. `"#details-link"`) |
 
-### 6.5 Quick reference
+### 7.5 Quick reference
 
 ```tsx
 // Page container, centered, max-width 2xl
@@ -283,9 +457,9 @@ Each component exposes scoped custom properties. Discover the available ones for
 
 ---
 
-## 7. Typography components
+## 8. Typography components
 
-### 7.1 `Heading`
+### 8.1 `Heading`
 
 | Attribute | Values | Notes |
 |---|---|---|
@@ -299,7 +473,7 @@ Each component exposes scoped custom properties. Discover the available ones for
 <Heading as="h2" data-size="sm"><CheckIcon /> Approved</Heading>
 ```
 
-### 7.2 `Prose`
+### 8.2 `Prose`
 
 Wraps body/editorial text and applies typographic margins to **all direct children**. Tuned for `<p>`, `<ul>`, `<ol>`, `<h1>`–`<h6>`, `<figure>`, and `<Heading>`.
 
@@ -314,14 +488,14 @@ Wraps body/editorial text and applies typographic margins to **all direct childr
 </Prose>
 ```
 
-### 7.3 `Ingress` and `Muted`
+### 8.3 `Ingress` and `Muted`
 
 ```tsx
 <Ingress>Lead paragraph introducing the topic.</Ingress>
 <Muted>Last updated 06.05.2026</Muted>
 ```
 
-### 7.4 `Info`
+### 8.4 `Info`
 
 Responsive label + value layout. Use for metadata, key/value pairs, or a value next to an indicator icon. Wrap the label in `<strong>`.
 
@@ -346,7 +520,7 @@ To color the circle, set `data-color` on an ancestor (e.g. wrap the `Info` in a 
 
 ---
 
-## 8. Worked example
+## 9. Worked example
 
 ```tsx
 import { Flex, Grid, Card, Heading, Prose, Muted, Button, Tag } from '@mattilsynet/design/react';
@@ -390,26 +564,26 @@ export function InspectionsPage() {
 
 ---
 
-## 9. Figma → code
+## 10. Figma → code
 
 When the input is a Figma frame/sketch, treat the design as a binding spec for *which design system components to use*, not just a pixel target.
 
-### 9.1 Component mapping is mandatory
+### 10.1 Component mapping is mandatory
 
 1. **MUST** map every visible Figma component instance in the area to its corresponding component from `@mattilsynet/design/react` is possible. Do **not** substitute custom HTML/CSS to gain layout control.
 2. **MUST NOT** reach for raw `<div>`/`<span>` + CSS when a design system component covers the case — even if the component feels harder to make responsive. First try the component plus a wrapper (`Flex`, `Grid`, `Card`) and/or token-based CSS.
 3. If you genuinely believe a deviation is required (e.g. the component cannot express the intended behavior), **STOP**. Explain the deviation and the alternative you propose **before** writing code, and wait for explicit approval.
 
-### 9.2 Specific mapping rules
+### 10.2 Specific mapping rules
 - **Auto-layout** if child compeonents of a Figma auto-layout has equal width, of width "fill", prefer `<Grid>` over `<Flex>`
 - **Metadata in lists / cards** (icon + value, or label + value): **MUST** use `<Info>` whenever Figma uses an `Info` instance, **or** whenever the content shape is icon + value or label + value. Custom `<span>`/`<div>` structures for metadata are **not allowed** unless the user explicitly approves the deviation.
 - **Headings:** any Figma text styled as a heading → `<Heading as="hN" data-size="…">`, never raw `<h1>`–`<h6>` or styled `<div>`.
 - **Lead/intro text** → `<Ingress>`. **Secondary/meta text** → `<Muted>`.
 - **Surface containers:** Figma "Card" → `<Card>`; Figma tinted region grouping cards → `<Group>`.
-- **Buttons, Tags, Chips, Alerts, Tabs, Steps, Dialog, Popover, Table, Field/Fieldset, ErrorSummary** → use the matching component from the §11 index. Do not reimplement.
+- **Buttons, Tags, Chips, Alerts, Tabs, Steps, Dialog, Popover, Table, Field/Fieldset, ErrorSummary** → use the matching component from the §12 index. Do not reimplement.
 - **Color regions:** when a Figma frame is in a semantic color (danger/warning/success/info/inverted), set `data-color="…"` on a parent rather than picking palette-prefixed tokens.
 
-### 9.3 Verification before returning code
+### 10.3 Verification before returning code
 
 Before sending the final response after a design-to-code task, perform a mapping audit:
 
@@ -417,11 +591,11 @@ Before sending the final response after a design-to-code task, perform a mapping
 2. For each one, name the design system component used in the generated code.
 3. If any Figma instance is **not** mapped to its design system equivalent, list it as an explicit deviation with a reason — or fix the code.
 
-This audit is in addition to the §10 checklist; both must pass.
+This audit is in addition to the §11 checklist; both must pass.
 
 ---
 
-## 10. Pre-return checklist
+## 11. Pre-return checklist
 
 - [ ] No raw `px`/`rem` for spacing — only `data-gap`, `data-pad`, or `var(--mtds-{n})` from the §5.1 scale.
 - [ ] No hex/rgb/named colors — only `var(--mtds-color-*)` (palette-agnostic) under the right `data-color` parent.
@@ -438,7 +612,7 @@ This audit is in addition to the §10 checklist; both must pass.
 
 ---
 
-## 11. Component index
+## 12. Component index
 
 Each component has full docs at `@mattilsynet/design/mtds/ai/<name>.mdx` and examples in `@mattilsynet/design/mtds/ai/<name>.stories.tsx`. **Read the relevant doc before using a component you have not used in this session.**
 
