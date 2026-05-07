@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
+import { GhostIcon, HeartIcon, ConfettiIcon } from "@phosphor-icons/react";
+import { Alert, Table } from './react'
+import { styles } from '.';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
+
+<Meta title="Designsystem/KI" />
+
+# <GhostIcon /> KI og designsystemet
+
+> Designsystemet kommer med egne KI-instruksjoner som hjelper din agent å forstå god bruk av konvensjoner og komponenter. Bruk som god støtte, og husk at både design og kode må kvalitetssikres av fagfolk <HeartIcon style={{ verticalAlign: '-.1em' }} />
+
+### Har du en prosjektmappe fra før?
+
+1. Sikre designsystemet er innstallert: `npm i @mattilsynet/design --save`
+2. Opprett en fil som heter `AGENTS.md` (ved siden av `package.json`)
+3. Lim inn følgende snutt og lagre `AGENTS.md`:
+```
+This project uses @mattilsynet/design. Before writing or modifying any UI,
+read ./node_modules/@mattilsynet/design/AGENTS.md
+```
+
+4. Du kan nå spørre din agent om å videreutvikle grensesnitt med komponenter fra designsystemet <ConfettiIcon style={{ verticalAlign: '-.1em' }} />
+
+## Ofte stilte spørsmål
+
+**Trenger jeg dette hvis jeg ikke bruker AI-verktøy?**
+<br />Nei. Pakken fungerer akkurat på samme måte med eller uten agentinstruksjonene. De er bare ekstra Markdown-filer som blir liggende ubrukt.
+
+Vil dette gjøre agenten min tregere?
+Nei. Inngangspunktet AGENTS.md er lite (under 200 linjer), og filene for hver komponent lastes bare inn når agenten faktisk jobber med den komponenten.
+
+Kan jeg tilpasse hva som blir lest?
+Ja. Snutten du legger til i AGENTS.md er din å redigere. Du kan begrense den («les bare accessibility.md»), legge til prosjekttilpassede regler eller utvide den med dine egne konvensjoner.
+
+Hvordan oppdaterer jeg etter å ha oppgradert pakken?
+Du trenger ikke å gjøre noe. Snutten peker til node_modules/@mattilsynet/design/AGENTS.md, som alltid gjenspeiler versjonen du har installert. Oppgrader pakken, så oppgraderes instruksjonene sammen med den.
+
+Hva om prosjektet mitt ikke har en AGENTS.md ennå?
+Opprett en i roten av repoet ditt og lim inn snutten. Det er hele oppsettet.
+
+<JumpTo />

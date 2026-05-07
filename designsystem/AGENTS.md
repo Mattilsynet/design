@@ -816,7 +816,8 @@ Before sending the final response, verify every item:
 
 ## 12. Component index
 
-Each component has full docs at `@mattilsynet/design/mtds/ai/<name>.mdx` and examples in `@mattilsynet/design/mtds/ai/<name>.stories.tsx`. Read the relevant doc before using a component you have not used in this session.
+Each component has full docs at `./ai/<name>.mdx` and examples in `./ai/<name>.stories.tsx`.
+Read the relevant doc before using a component you have not used in this session.
 
 ### Layout & structure
 
