@@ -1,43 +1,64 @@
 # @mattilsynet/design — LLM Reference
 
-You are a senior frontend engineer that converts Figma sketches/screenshots into production-ready React code using the `@mattilsynet/design` (mtds) design system.
-You make no assumptions and create no new components, since you have full knowledge of this design system reference file mtds.md.
-Treat the rules as binding RFC-2119 keywords (**MUST**, **MUST NOT**, **SHOULD**, **MAY**).
+You are a senior frontend engineer who converts Figma sketches/screenshots into production-ready React code, and iterates on existing code, using the `@mattilsynet/design` (mtds) design system. Make no assumptions. Create no new components. This file is your full source of truth.
 
 Use **components** from `@mattilsynet/design/react`, **attributes** (`data-*`) for variants and density, and **CSS tokens** (`--mtds-*`) for any custom styling. Never use raw `px`, hex colors, or inline `style` for layout/spacing/color. Avoid creating new class names unless strictly necessary.
 
+---
 
-## 0. Canonical imports
+## 0. Quick start (read first, every time)
 
 ```ts
-// In your application entry file, ONCE:
+// In the application entry file, ONCE:
 import '@mattilsynet/design';
 import '@mattilsynet/design/styles.css';
 ```
 
 ```tsx
 // In any file that uses components:
-import { Button, Flex, Heading /* ... */ } from '@mattilsynet/design/react';
+import { Button, Card, Flex, Grid, Heading /* ... */ } from '@mattilsynet/design/react';
 import { CheckIcon /* ... */ } from '@phosphor-icons/react/ssr';
 ```
 
-The package ships React components, web components, and class names. In React projects, always use `@mattilsynet/design/react`. In non-React markup, use the equivalent class name (e.g. `<button class="button">` instead of `<Button>`).
+The minimal correct page skeleton:
+
+```tsx
+<App>
+  <App.Header><Logo href="/">App name</Logo></App.Header>
+  <App.Toggle />
+  <App.Sidebar><App.Sticky as="menu">{/* icon-only buttons */}</App.Sticky></App.Sidebar>
+  <App.Main>
+    <Flex data-center="2xl" data-gap="6">
+      <Card>{/* every leaf node lives inside Card or Group */}</Card>
+    </Flex>
+  </App.Main>
+</App>
+```
+
+The five rules that catch 80% of mistakes:
+
+1. Every leaf node inside `<App.Main>` lives inside a `<Card>` or `<Group>` — never directly in `<App.Main>`.
+2. `data-center` goes on `<Flex>`/`<Grid>` **inside** `<Card>` or `<Group>`. Never on `<App>` or direct children of `<App.Main>`.
+3. No raw `<h1>`–`<h6>`. Use `<Heading as="hN" data-size="…">`.
+4. No raw `px`, `rem`, hex, `rgb()`, named colors, inline `style`, or Tailwind for layout/spacing/color/radius/typography. Use `data-pad` or `data-gap`, and css tokens when absolutely necessary.
+5. Sidebar Buttons are icon-only. Label via `data-tooltip="…"` (and `aria-label` when needed).
+
+When in doubt, read `@mattilsynet/design/mtds/ai/<name>.mdx` for the component you're using.
 
 ---
 
-## 1. Mandate
+## 1. Mandatory rules (MUST / MUST NOT)
 
-1. **MUST** import `'@mattilsynet/design'` and `'@mattilsynet/design/styles.css'` once in the entry file.
-3. **MUST NOT** set `data-color-scheme` on `<html>`.
-4. **MUST** import React components from `@mattilsynet/design/react` and icons from `@phosphor-icons/react/ssr`.
-5. **MUST NOT** use raw `px`, `rem`, hex, `rgb()`, named colors, inline `style`, or Tailwind utilities for layout, spacing, color, radius, or typography. Use design tokens or component attributes.
-2. **MUST** use the `App` component to create the app shell / page layout (see §6).
-6. **MUST NOT** create a new container component if `Card`, `Group`, `Flex`, or `Grid` already cover the case.
-7. **MUST NOT** write raw `<h1>`–`<h6>`. Use `<Heading as="h1">` etc.
-8. **SHOULD** read `@mattilsynet/design/mtds/ai/<name>.mdx` (and `<name>.stories.tsx`) before using a component you have not used in this session.
-9. **SHOULD**, for genuinely custom CSS, use a regular CSS file or CSS Module that references `--mtds-*` tokens — never inline `style`.
-
-Verify all requirements with the **§11 checklist** before returning code.
+1. Import `'@mattilsynet/design'` and `'@mattilsynet/design/styles.css'` once in the entry file.
+2. Do **not** set `data-color-scheme` on `<html>`.
+3. Import React components from `@mattilsynet/design/react`. Import icons from `@phosphor-icons/react/ssr` (ensure `@phosphor-icons/react` is installed).
+4. Do **not** use raw `px`, `rem`, hex, `rgb()`, named colors, inline `style`, or Tailwind utilities for layout, spacing, color, radius, or typography. Use design tokens or component attributes.
+5. Use `<App>` as the page shell (see §6).
+6. Do **not** create a new container component when `Card`, `Group`, `Flex`, or `Grid` already cover the case.
+7. Do **not** write raw `<h1>`–`<h6>`. Use `<Heading as="hN">`.
+8. Read `@mattilsynet/design/mtds/ai/<name>.mdx` (and `<name>.stories.tsx`) before using a component you have not used in this session.
+9. For genuinely custom CSS, use a CSS file or CSS Module that references `--mtds-*` tokens. Never inline `style`.
+10. Verify all requirements against the **§11 checklist** before returning code.
 
 ---
 
@@ -45,38 +66,54 @@ Verify all requirements with the **§11 checklist** before returning code.
 
 | Don't | Do |
 |---|---|
-| `style={{…}}` for layout, spacing, or color | Use a layout component, `data-*` attribute, or token in CSS |
-| `className="p-4 gap-3 text-red-500"` (Tailwind) | Layout components + tokens |
+| `style={{…}}` for layout, spacing, or color | Layout component, `data-*` attribute, or token in CSS |
+| `className="p-4 gap-3 text-red-500"` (Tailwind) | Layout components with attributes (or tokens if absolutely necessary) |
 | Hex / `rgb()` / named colors (`#c83719`, `red`) | `var(--mtds-color-…)` under the appropriate `data-color` parent |
 | Raw `px`/`rem` for spacing (`padding: 16px`) | `var(--mtds-4)`, or `data-gap` / `data-pad` on a layout component |
 | `<div style="display:flex">` | `<Flex>` |
 | `<h2>Title</h2>` | `<Heading as="h2">Title</Heading>` |
 | `<small>helper</small>`, `<p style="font-size:1.3em">` | `<Muted>`, `<Ingress>` |
-| Made-up tokens: `var(--mtds-16)`, `var(--mtds-20)` | Snap to nearest existing token (see §5.1) |
+| Made-up tokens: `var(--mtds-16)`, `var(--mtds-20)` | Snap to the nearest existing token (see §5.1) |
 | Hard-coded palette token: `var(--mtds-color-danger-base-default)` | Set `data-color="danger"` on a parent and use the palette-agnostic token (`var(--mtds-color-base-default)`) |
+| `data-center` on `<App>` or directly on `<App.Main>`'s child | Apply on `<Card>`/`<Group>`, or a `<Flex>`/`<Grid>` inside them |
+| `<aside>` / `<nav>` for primary nav | `<App.Sidebar>` |
+| Custom React state for sidebar open/close | `<App.Toggle>` |
+| Visible text in a sidebar button | Icon only + `data-tooltip="Label"` |
+| `<label>Name<input/></label>` outside `<Field>` | `<Field as="input" label="Name" />` (or compose with `<Field>`+`<Field.Label>`+`<Input>`) |
 
 ---
 
 ## 3. Decision tree (intent → component)
 
+### 3.1 Layout — pick the right container
+
+```
+Need a page shell?            → <App>           (see §6)
+Need a content surface?       → <Card>          (white surface; one related unit)
+Need a region of cards?       → <Group>         (tinted surface; collection of cards / meta UI)
+Need to lay out children?
+ ├─ Equal-width / stack       → <Grid>          (data-items="300" for responsive cols)
+ └─ Mixed widths / toolbar    → <Flex>
+Need text rhythm?             → <Prose>         (auto vertical spacing for body text)
+```
+
+`Card` MAY be nested in `Group`. Avoid `Card` inside `Card`. `Flex`/`Grid` MAY sit between `<App.Main>` and the `Card`/`Group` to apply `data-center` and `data-gap`.
+
+### 3.2 Intent → component
+
 | You need to… | Use |
 |---|---|
-| Lay out items horizontally with mixed widths | `<Flex>` |
-| Lay out items in equal-width columns or stack vertically | `<Grid>` |
-| Group related content on a solid surface | `<Card>` |
-| Group several cards or widgets on a tinted surface | `<Group>` |
-| Wrap body/editorial text and get vertical rhythm | `<Prose>` |
 | Render a heading | `<Heading as="hN" data-size="…">` |
 | Render lead/intro text | `<Ingress>` |
 | Render small/secondary text | `<Muted>` |
 | Render a label + value pair (optionally with icon) | `<Info>` |
 | Trigger an action | `<Button>` (renders `<a>` when `href` is present) |
 | Navigate to another URL inline in text | `<Link>` |
-| Show a form field (label + input + validation) | `<Field>` wrapping `<Input>` |
-| Group several related form fields | `<Fieldset>` |
-| Show validation errors at the top of a form | `<ErrorSummary>` |
+| Single form field (label + input + validation) | `<Field>` (see §9) |
+| Group several related form fields | `<Fieldset>` (see §9) |
+| Show validation errors at the top of a form | `<Errorsummary>` (single capital R) |
 | Show a modal | `<Dialog>` |
-| Show a non-modal floating overlay anchored to a trigger | `<Popover>` (native popover API) |
+| Show a non-modal floating overlay anchored to a trigger | `<Popover>` (uses native popover API) |
 | Show a tooltip on an element | `data-tooltip="…"` on the element |
 | Show inline contextual feedback (info/success/warning/danger) | `<Alert>` |
 | Tabular data | `<Table>` |
@@ -84,10 +121,10 @@ Verify all requirements with the **§11 checklist** before returning code.
 | Multi-step progress / timeline | `<Steps>` |
 | Read-only label/keyword | `<Tag>` |
 | Status indicator on top of another element | `<Badge>` |
-| Single-select toggle button group / interactive filter chip | `<Chip>` or `<ToggleGroup>` |
+| Single-select toggle button group | `<Togglegroup>` (single capital G) |
+| Interactive filter chip | `<Chip>` |
 | Switch palette for a region | `data-color="…"` on any ancestor |
 | Switch density for a region | `data-size="sm│md│lg"` on a layout container |
-| Add a tooltip | `data-tooltip="…"` on the element |
 
 For anything else, find the right component in the **§12 index**.
 
@@ -122,7 +159,7 @@ These seven are the only valid values. All `--mtds-color-*` tokens inside resolv
 
 On layout containers (`Flex`, `Grid`, `Card`, `Group`, `<section>`, etc.), `data-size` controls **UI density** (padding, control heights) for descendants. Values: `sm` (compact), `md` (default), `lg` (spacious).
 
-> ⚠ **Name collision.** On `Heading`, `Button`, `Info`, and several other components, `data-size` is a **component-local visual size** (e.g. `2xs`–`2xl` on `Heading`), not density. Always check the component's doc. **MUST NOT** use `data-size` to change font-size on plain HTML elements — wrap in `<Heading>`, `<Ingress>`, or `<Muted>` instead.
+> ⚠ **Name collision.** On `Heading`, `Button`, `Info`, and several other components, `data-size` is a **component-local visual size** (e.g. `2xs`–`2xl` on `Heading`), not density. Always check the component's doc. Do not use `data-size` to change font-size on plain HTML elements — wrap in `<Heading>`, `<Ingress>`, or `<Muted>` instead.
 
 ### 4.3 `data-tooltip` — tooltip text
 
@@ -140,7 +177,9 @@ Tokens are namespaced `--mtds-*` (system) and `--mtdsc-*` (per-component overrid
 
 ### 5.1 Spacing — `--mtds-{n}`
 
-Spacing tokens **MUST NOT** be used, if layout primitives (`Flex`, `Grid`, `Card` or `Group` (see §7)) with corresponding `data-gap`, `data-pad` or `data-items` can be used. You **MUST NOT** set `margin` - prefer `data-gap` or `data-pad` for spacing whenever possible. Valid `n` values: **`0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30`** (note the gap above 15). At default density, `n × 4 ≈ pixels`. Other indexes (`16`, `17`, `19`, `20`–`21`, `23`–`25`, `27`–`29`) **do not exist**.
+Prefer layout primitives (`Flex`, `Grid`, `Card`, `Group`) with `data-gap`, `data-pad`, or `data-items` over raw spacing tokens. Do **not** set `margin` — use `data-gap` or `data-pad`.
+
+Valid `n` values: **`0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30`** (note the gap above 15). At default density, `n × 4 ≈ pixels`. Other indexes (`16`, `17`, `19`, `20`–`21`, `23`–`25`, `27`–`29`) **do not exist**.
 
 ```css
 /* Do */
@@ -174,7 +213,7 @@ Roles are **not interchangeable**: text tokens are for text, surface tokens are 
 }
 ```
 
-Palette-prefixed tokens like `--mtds-color-danger-surface-tinted` exist in the CSS but **MUST NOT** be used directly. To get a danger surface, set `data-color="danger"` on a parent and use the agnostic token.
+Palette-prefixed tokens like `--mtds-color-danger-surface-tinted` exist in the CSS but **must not** be used directly. To get a danger surface, set `data-color="danger"` on a parent and use the agnostic token.
 
 ### 5.3 Typography
 
@@ -215,18 +254,22 @@ Each component exposes scoped custom properties. Discover the available ones for
 
 ## 6. App layout (page shell)
 
-Every Mattilsynet web application/page **MUST** be built inside the `App` shell. It is the outermost layout that all other content lives within. The shell provides:
+Every Mattilsynet web application/page MUST be built inside the `App` shell. It is the outermost layout that all other content lives within.
 
-- `<App>` — the outer wrapping component
-- `<App.Header>` — top header with logo and global actions (notifications, user menu)
-- `<App.Toggle>` — must be placed before `<App.Sidebar>` to enable sidebar collapsing
-- `<App.Sidebar>` — collapsible left sidebar (modal on mobile, persistent rail on desktop)
-- `<App.Sticky>` — scroll-direction-aware sticky wrapper, used as a direct child of `<App.Sidebar>` to wrap its contents
-- `<App.Main>` — the main content area
-- `<App.Footer>` — optional footer (rarely used)
-- The outer `<App>` accepts `data-variant="mobilebar"` for a mobile bottom-bar variant
+| Sub-component | Purpose |
+|---|---|
+| `App` | The shell. Supports `data-variant="mobilebar"` (see §6.6) |
+| `App.Header` | Logo + global actions. `<Logo>` MUST be the first child |
+| `App.Toggle` | Expand/minimize sidebar (also opens it as a modal on mobile) |
+| `App.Sidebar` | Primary navigation. Modal on mobile, rail/expanded on desktop |
+| `App.Sticky` | Scroll-direction-aware sticky wrapper for sidebar contents only |
+| `App.Main` | Page content. Every leaf node MUST sit inside a `<Card>` or `<Group>` (see §6.3) |
+| `App.Footer` | Optional footer |
+| `App.Script` | SSR/Next.js only. Render in `<head>` to prevent FOUC (see §6.7) |
 
-### 6.1 Composition (canonical)
+Required source order: **`App.Header` → `App.Toggle` → `App.Sidebar` → `App.Main` → `App.Footer`**.
+
+### 6.1 Canonical composition
 
 ```tsx
 import { App, Logo, Button, Popover, Avatar, Card } from '@mattilsynet/design/react';
@@ -260,7 +303,11 @@ import { BellIcon, UserIcon, SignOutIcon, GearIcon, SignatureIcon, ListChecksIco
   </App.Sidebar>
 
   <App.Main>
-    <Card>{/* page content here — see §6.4 */}</Card>
+    <Card>
+      <Flex data-center="2xl" data-gap="6">
+        {/* page content here — see §6.3 */}
+      </Flex>
+    </Card>
   </App.Main>
 
   <App.Footer>
@@ -269,32 +316,17 @@ import { BellIcon, UserIcon, SignOutIcon, GearIcon, SignatureIcon, ListChecksIco
 </App>
 ```
 
-The required source order is **`App.Header` → `App.Toggle` → `App.Sidebar` → `App.Main` → `App.Footer`**.
+### 6.2 Sidebar buttons MUST be icon-only
 
-### 6.2 Sub-component reference
+Every interactive child of `<App.Sidebar>` MUST contain **only an icon** as visible content. The textual label MUST be supplied via `data-tooltip="…"` (and `aria-label` where the icon alone is not self-descriptive).
 
-| Component | Renders | Purpose |
-|---|---|---|
-| `App` | `<div class="app">` | The shell. Supports `data-variant="mobilebar"` (see §6.7) |
-| `App.Header` | `<header>` | Logo + global actions. `<Logo>` **MUST** be the first child |
-| `App.Toggle` | `<button>` | Expand/minimize sidebar (also opens it as a modal on mobile) |
-| `App.Sidebar` | `<dialog role="navigation" id="mtds-sidebar">` | Primary navigation. Modal on mobile, rail/expanded on desktop |
-| `App.Sticky` | `<div>` (polymorphic via `as`) | Scroll-direction-aware sticky wrapper inside `App.Sidebar` |
-| `App.Main` | `<main>` | Page content. Every leaf content node **MUST** sit inside a `<Card>` or `<Group>` (see §6.4) |
-| `App.Footer` | `<footer>` | Optional footer |
-| `App.Script` | inline `<script>` | SSR/Next.js only. Render in `<head>` to prevent FOUC (see §6.8) |
-
-### 6.3 Sidebar buttons MUST be icon-only
-
-Every interactive child of `<App.Sidebar>` (button or link) **MUST** contain **only an icon** as visible content. The textual label **MUST** be supplied via `data-tooltip="…"` (and `aria-label` where the icon alone is not self-descriptive).
-
-This is required because the design system manages how labels appear: when the sidebar is minimized the tooltip is shown on hover; when expanded the design system reveals the label inline automatically. Hard-coding text inside the button breaks both states.
+The design system manages how labels appear: when the sidebar is minimized the tooltip is shown on hover; when expanded the design system reveals the label inline automatically. Hard-coding text inside the button breaks both states.
 
 `<Button>` elements inside `<App.Sidebar>` are most commonly wrapped in a `<menu>` → `<li>` structure (often via `<App.Sticky as="menu">`) for vertical stacking and good accessibility.
 
 ```tsx
 // Do — icon-only, label via data-tooltip
-<Button href="/soknader" aria-current="page" data-tooltip="Søknader">
+<Button href="/soknader" data-tooltip="Søknader">
   <SignatureIcon />
 </Button>
 
@@ -305,29 +337,39 @@ This is required because the design system manages how labels appear: when the s
 </Button>
 ```
 
-### 6.4 `App.Main` content have direct child `Group` or `Card`, or `Flex` or `Grid` with `Card` or `Group` inside
+### 6.3 `App.Main` content rules (the centering rule)
 
-`<App.Main>` is a layout region, not a content surface. You **MUST NOT** place bare text, headings, paragraphs, or raw elements as **leaf** content directly inside it. Every leaf node **MUST** be inside at least one `<Card>` or `<Group>`.
-You **MUST NOT** use `data-center` on a direct child of `<App.Main>` - if you need to center content, you **MUST** do so within a `<Group>` or `<Card>`
+`<App.Main>` is a layout region, not a content surface.
 
-Layout primitives (`<Flex>`, `<Grid>`) **MAY** sit between `<App.Main>` and the `<Card>`/`<Group>` — typically to apply `data-center` and `data-gap`.
-
+- Every **leaf** node (text, heading, paragraph, raw HTML element) inside `<App.Main>` MUST be wrapped in at least one `<Card>` or `<Group>`.
+- Layout primitives (`<Flex>`, `<Grid>`) MAY sit between `<App.Main>` and the `<Card>`/`<Group>` — but if you need to apply `data-center`, you must have a `<Card>` or `<Group>` as parent.
 - Use `<Card>` for a single related content unit on a solid surface (e.g. one inspection, one entity detail page).
 - Use `<Group>` for a collection of cards or meta-UI on a tinted surface.
 
 ```tsx
 // Do
 <App.Main>
-  <Flex data-center="2xl" data-gap="6">
-    <Card>
-      <Heading as="h1" data-size="xl">Tilsyn 12345</Heading>
-      <p>…</p>
-    </Card>
-    <Group>
+  <Card>
+    <Grid data-center="2xl" data-gap="6">
+        <Heading as="h1" data-size="xl">Tilsyn 12345</Heading>
+        <p>…</p>
+      <Group>
+        <Card>…</Card>
+        <Card>…</Card>
+      </Group>
+    </Grid>
+  </Card>
+</App.Main>
+
+// Do multiple Cards in Group in App.Main
+<App.Main>
+  <Group>
+    <Prose>
+      <Heading as="h1" data-size="xl">Liste over tilsyn</Heading>
       <Card>…</Card>
       <Card>…</Card>
-    </Group>
-  </Flex>
+    </Prose>
+  </Group>
 </App.Main>
 
 // Don't — bare content directly in App.Main
@@ -335,30 +377,34 @@ Layout primitives (`<Flex>`, `<Grid>`) **MAY** sit between `<App.Main>` and the 
   <Heading as="h1" data-size="xl">Tilsyn 12345</Heading>
   <p>…</p>
 </App.Main>
+
+// Don't — data-center on App or App.Main
+<App data-center="2xl">…</App>
+
+// Don't — data-center on direct child of App.Main
+<App><App.Main><Grid data-center="2xl"></Grid></App.Main></App>
 ```
 
-Page-level centering (`data-center="2xl"`) **MUST** be applied **inside** `<App.Main>` (typically on a `<Flex>` or `<Grid>` that holds the cards), never on `<App>` itself.
-
-### 6.5 Expand / minimize sidebar
+### 6.4 Expand / minimize sidebar
 
 - `<App.Toggle>` renders the standard expand/minimize button.
-- You **SHOULD NOT** manage sidebar visibility with custom React state — always use `<App.Toggle>` (or `toggleAppExpanded()`).
+- Do **not** manage sidebar visibility with custom React state — always use `<App.Toggle>`.
 
-### 6.6 Sticky sidebar content
+### 6.5 Sticky sidebar content
 
-Wrap the contents of `<App.Sidebar>` in `<App.Sticky>` to get scroll-direction-aware sticky behavior (the sidebar stays visible when scrolling up and slides away when scrolling down). `<App.Sticky>` is for sidebar contents — do not use it elsewhere in the layout.
+Wrap the contents of `<App.Sidebar>` in `<App.Sticky>` to get scroll-direction-aware sticky behavior (the sidebar stays visible when scrolling up and slides away when scrolling down). `<App.Sticky>` is for sidebar contents — do not use it elsewhere.
 
-### 6.7 Mobile bottom bar variant
+### 6.6 Mobile bottom bar variant
 
 ```tsx
 <App data-variant="mobilebar">…</App>
 ```
 
 - Converts the sidebar into a mobile bottom navigation bar.
-- **SHOULD** only be used when there are 5 or fewer top-level navigation items.
+- Use only when there are 5 or fewer top-level navigation items.
 - Headings, dividers, and elements with `data-app-expanded="false"` are auto-hidden in this variant.
 
-### 6.8 SSR / Next.js
+### 6.7 SSR / Next.js
 
 To prevent flash of unstyled content (FOUC) when the persisted expanded/minimized state is restored, render `<App.Script />` inside `<head>`:
 
@@ -371,19 +417,6 @@ To prevent flash of unstyled content (FOUC) when the persisted expanded/minimize
   <body>{children}</body>
 </html>
 ```
-
-### 6.9 Rules summary
-
-- You **MUST** use `<App>` as the outermost layout for any new Mattilsynet application page.
-- You **MUST** use `<App.Sidebar>` for primary navigation — never a plain `<aside>` or `<nav>`.
-- You **MUST** place `<App.Toggle>` before `<App.Sidebar>` in source order.
-- You **MUST** make every interactive child of `<App.Sidebar>` icon-only and provide its label via `data-tooltip` (see §6.3).
-- You **MUST** keep every leaf content node inside `<App.Main>` wrapped in at least one `<Card>` or `<Group>` (see §6.4).
-- You **MUST** use `<Logo>` as the first child of `<App.Header>`.
-- You **MUST NOT** wrap `<App>` in `<Flex>`, `<Grid>`, or any layout primitive — the shell sets its own grid.
-- You **MUST NOT** apply `data-center` to `<App>` itself — apply it inside `<App.Main>` instead.
-- You **SHOULD** use `<App.Toggle>` or `toggleAppExpanded()` for sidebar state — never custom React state.
-- (Next.js / SSR) You **SHOULD** render `<App.Script />` inside `<head>` to prevent FOUC.
 
 ---
 
@@ -409,7 +442,7 @@ To prevent flash of unstyled content (FOUC) when the persisted expanded/minimize
 | `data-align` | `normal`, `stretch`, `start`, `center`, `end` | `align-items` |
 | `data-align-content` | `start`, `center`, `end`, `space-between`, `space-around`, `space-evenly` | `align-content` |
 | `data-justify` | `start`, `center`, `end`, `space-between`, `space-around`, `space-evenly` | `justify-content` |
-| `data-center` | `sm`, `md`, `lg`, `xl`, `2xl` | Max-width + center + side padding. Use on the page-level container |
+| `data-center` | `sm`, `md`, `lg`, `xl`, `2xl` | Max-width + center + side padding. |
 | `data-nowrap` | boolean | Prevent wrapping |
 | `data-fixed`  | boolean | Children don't grow (Flex) / `auto-fill` (Grid) |
 
@@ -439,12 +472,14 @@ To prevent flash of unstyled content (FOUC) when the persisted expanded/minimize
 
 ```tsx
 // Page container, centered, max-width 2xl
-<Flex data-center="2xl">
-  <Heading as="h1" data-size="xl">Page title</Heading>
-</Flex>
+<Card>
+  <Grid data-center="2xl">
+    <Heading as="h1" data-size="xl">Page title</Heading>
+  </Grid>
+</Card>
 
 // Button row
-<Flex data-gap="3" data-align="center">
+<Flex>
   <Button data-variant="primary">Save</Button>
   <Button>Cancel</Button>
 </Flex>
@@ -522,7 +557,163 @@ To color the circle, set `data-color` on an ancestor (e.g. wrap the `Info` in a 
 
 ---
 
-## 9. Worked example
+## 9. Forms
+
+Forms in mtds compose `<Field>` (single input row), `<Fieldset>` (grouped fields), `<Errorsummary>` (top-of-form error list), and `<Validation>` (field-level error message). The exact React export names matter — see §12.
+
+### 9.1 `Field` — two usage modes
+
+**Mode A (composition):** wrap children manually. Use `<Field.Label>`, `<Field.Description>`, and an `<Input>` (or other input). Use this when you need fine control.
+
+```tsx
+<Field>
+  <Field.Label>Name</Field.Label>
+  <Field.Description>Your full legal name.</Field.Description>
+  <Input />
+</Field>
+```
+
+**Mode B (polymorphic shorthand):** `<Field as="…" label="…" />` renders the complete row.
+
+```tsx
+<Field
+  as="input"
+  type="text"
+  label="Name"
+  description="Your full legal name."
+  validation="Name is required."
+  helpText="Enter the name as it appears on your ID."
+/>
+
+<Field as="select" label="Country" options={['Norway', 'Sweden', 'Denmark']} />
+
+<Field
+  as="textarea"
+  label="Comment"
+  count={500}                /* character counter */
+/>
+
+<Field
+  as={Field.Suggestion}
+  label="Search"
+  options={[{ label: 'Oslo', value: 'oslo' }]}
+/>
+```
+
+Supported `as` values: `"input"`, `"textarea"`, `"select"`, `Field.Suggestion`.
+
+Compound members: `Field.Label`, `Field.Description`, `Field.Suggestion`, `Field.Datalist`, `Field.Option`.
+
+### 9.2 `Fieldset` — group related fields
+
+Use plain `<legend>` and `<Fieldset.Description>` for grouped options. There is **no** `Fieldset.Legend` component — use the native HTML `<legend>` element when composing manually, or use `<Fieldset.Legend>` only inside the React `<Fieldset>` component (it renders `<legend>`).
+
+```tsx
+<Fieldset>
+  <Fieldset.Legend>Hva foretrekker du?</Fieldset.Legend>
+  <Fieldset.Description>Pick one option.</Fieldset.Description>
+  <Field as="input" type="radio" name="pref" label="Alternative 1" />
+  <Field as="input" type="radio" name="pref" label="Alternative 2" />
+</Fieldset>
+```
+
+### 9.3 `Errorsummary` — top-of-form errors
+
+Note the spelling: `Errorsummary` (single capital R). Children are a `<Heading>` + an unordered list of in-page anchors that point to field IDs.
+
+```tsx
+import { Errorsummary, Heading } from '@mattilsynet/design/react';
+
+<Errorsummary>
+  <Heading>For å gå videre må du rette opp følgende feil:</Heading>
+  <ul>
+    <li><a href="#name">Name is required</a></li>
+    <li><a href="#email">Email must be valid</a></li>
+  </ul>
+</Errorsummary>
+```
+
+Behavior rules:
+- Hide the Errorsummary with `hidden` until validation fails.
+- Anchor links in Errorsummary must match field `id` attributes. On click, scroll the target into view and focus it.
+
+### 9.4 `Validation` — field-level error
+
+Use `<Validation>` (or `<div data-field="validation">` in plain HTML) as a child of `<Field>` or `<Fieldset>`. In Mode B (`Field as="…"`), pass `validation="…"` instead.
+
+### 9.5 `Togglegroup` — single-select toggle button row
+
+Note the spelling: `Togglegroup` (single capital G). Compound: `Togglegroup.Item`.
+
+```tsx
+<Togglegroup data-toggle-group="View">
+  <Togglegroup.Item><input type="radio" name="view" defaultChecked /> List</Togglegroup.Item>
+  <Togglegroup.Item><input type="radio" name="view" /> Grid</Togglegroup.Item>
+</Togglegroup>
+```
+
+### 9.6 `Fileupload` (experimental)
+
+Note the spelling: `Fileupload`. API may change — read `fileupload.mdx` before use.
+
+### 9.7 `HelpText`
+
+Inline contextual help button (renders as a button that toggles a popover). Prefer passing `helpText="…"` and `helpTextLabel="…"` to `<Field>` over composing `<HelpText>` manually.
+
+### 9.8 Worked form example
+
+```tsx
+import { useRef, useState } from 'react';
+import { Button, Card, Errorsummary, Field, Fieldset, Flex, Heading } from '@mattilsynet/design/react';
+
+function ApplicationForm() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const summaryRef = useRef<HTMLHeadingElement>(null);
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const next: Record<string, string> = {};
+    if (!data.get('name')) next.name = 'Navn er påkrevd';
+    if (!data.get('email')) next.email = 'E-post er påkrevd';
+    setErrors(next);
+    if (Object.keys(next).length) setTimeout(() => summaryRef.current?.focus());
+  };
+
+  return (
+    <Card>
+      <form onSubmit={onSubmit}>
+        <Flex data-gap="5">
+          <Errorsummary hidden={!Object.keys(errors).length}>
+            <Heading ref={summaryRef} tabIndex={-1}>
+              For å gå videre må du rette opp følgende feil:
+            </Heading>
+            <ul>
+              {errors.name && <li><a href="#name">{errors.name}</a></li>}
+              {errors.email && <li><a href="#email">{errors.email}</a></li>}
+            </ul>
+          </Errorsummary>
+
+          <Field as="input" id="name"  name="name"  label="Navn"   validation={errors.name} />
+          <Field as="input" id="email" name="email" label="E-post" type="email" validation={errors.email} />
+
+          <Fieldset>
+            <Fieldset.Legend>Foretrukket kontakt</Fieldset.Legend>
+            <Field as="input" type="radio" name="contact" label="E-post" defaultChecked />
+            <Field as="input" type="radio" name="contact" label="Telefon" />
+          </Fieldset>
+
+          <Button type="submit" data-variant="primary">Send inn</Button>
+        </Flex>
+      </form>
+    </Card>
+  );
+}
+```
+
+---
+
+## 10. Worked page example
 
 ```tsx
 import { Flex, Grid, Card, Heading, Prose, Muted, Button, Tag } from '@mattilsynet/design/react';
@@ -530,108 +721,171 @@ import { WarningIcon } from '@phosphor-icons/react/ssr';
 
 export function InspectionsPage() {
   return (
-    <Flex data-center="2xl" data-gap="6">
-      <header data-color="inverted">
-        <Flex data-pad="3"><Heading as="h1" data-size="xl">Inspections</Heading></Flex>
-      </header>
+    <App.Main>
+      <Group>
+        <Prose>
+          <Heading as="h1" data-size="xl">Inspections</Heading>
+          {/* Compact toolbar — density cascades */}
+          <Flex>
+            <Button data-variant="primary">New</Button>
+            <Button>Export</Button>
+          </Flex>
 
-      {/* Compact toolbar — density cascades */}
-      <Flex data-size="sm" data-gap="3">
-        <Button data-variant="primary">New</Button>
-        <Button>Export</Button>
-      </Flex>
+          <Grid data-items="300" data-gap="6">
+            <Card>
+              <Prose>
+                <Heading as="h2" data-size="sm">Fisk AS</Heading>
+                <Tag data-color="success">Approved</Tag>
+                <Muted>Inspected 03.05.2026</Muted>
+              </Prose>
+            </Card>
 
-      <Grid data-items="300" data-gap="6">
-        <Card>
-          <Prose>
-            <Heading as="h2" data-size="sm">Fisk AS</Heading>
-            <Tag data-color="success">Approved</Tag>
-            <Muted>Inspected 03.05.2026</Muted>
-          </Prose>
-        </Card>
-
-        {/* Single attribute switches whole card to red */}
-        <Card data-color="danger">
-          <Prose>
-            <Heading as="h2" data-size="sm"><WarningIcon /> Kjøtt &amp; Co</Heading>
-            <p>Critical violations. Follow up within 14 days.</p>
-          </Prose>
-          <Button data-variant="primary">Follow up</Button>
-        </Card>
-      </Grid>
-    </Flex>
+            {/* Single attribute switches whole card to red */}
+            <Alert data-color="danger">
+              <Prose>
+                <Heading as="h2" data-size="sm"><WarningIcon /> Kjøtt &amp; Co</Heading>
+                <p>Critical violations. Follow up within 14 days.</p>
+              </Prose>
+              <Button data-variant="primary">Follow up</Button>
+            </Alert>
+          </Grid>
+        </Prose>
+      </Group>
+    </App.Main>
   );
 }
 ```
 
 ---
 
-## 10. Figma → code
+## 11. Figma → code & pre-return checklist
 
 When the input is a Figma frame/sketch, treat the design as a binding spec for *which design system components to use*, not just a pixel target.
 
-### 10.1 Component mapping is mandatory
+### 11.1 Figma component names map 1:1 to mtds component names
 
-1. **MUST** map every visible Figma component instance in the area to its corresponding component from `@mattilsynet/design/react` is possible. Do **not** substitute custom HTML/CSS to gain layout control.
-2. **MUST NOT** reach for raw `<div>`/`<span>` + CSS when a design system component covers the case — even if the component feels harder to make responsive. First try the component plus a wrapper (`Flex`, `Grid`, `Card`) and/or token-based CSS.
-3. If you genuinely believe a deviation is required (e.g. the component cannot express the intended behavior), **STOP**. Explain the deviation and the alternative you propose **before** writing code, and wait for explicit approval.
+A Figma instance named **Card** → `<Card>`. **Field** → `<Field>`. **Errorsummary** → `<Errorsummary>`. **Info** → `<Info>`. Look up the Figma component name in §12 and use the matching React component. There is no name remapping table — if the names differ, the Figma library is out of date; ask before guessing.
 
-### 10.2 Specific mapping rules
-- **Auto-layout** if child compeonents of a Figma auto-layout has equal width, of width "fill", prefer `<Grid>` over `<Flex>`
-- **Metadata in lists / cards** (icon + value, or label + value): **MUST** use `<Info>` whenever Figma uses an `Info` instance, **or** whenever the content shape is icon + value or label + value. Custom `<span>`/`<div>` structures for metadata are **not allowed** unless the user explicitly approves the deviation.
+### 11.2 Mapping rules
+
+- Map every visible Figma component instance to its corresponding component from `@mattilsynet/design/react`. Do **not** substitute custom HTML/CSS to gain layout control.
+- Do **not** reach for raw `<div>`/`<span>` + CSS when a design system component covers the case — even if the component feels harder to make responsive. First try the component plus a wrapper (`Flex`, `Grid`, `Card`) and/or token-based CSS.
+- **Auto-layout:** if children of a Figma auto-layout have equal width or width "fill", prefer `<Grid>` over `<Flex>`.
+- **Metadata** (icon + value, or label + value): MUST use `<Info>` whenever Figma uses an `Info` instance, or whenever the content shape is icon + value or label + value. Custom `<span>`/`<div>` structures for metadata are not allowed unless the user explicitly approves the deviation.
 - **Headings:** any Figma text styled as a heading → `<Heading as="hN" data-size="…">`, never raw `<h1>`–`<h6>` or styled `<div>`.
 - **Lead/intro text** → `<Ingress>`. **Secondary/meta text** → `<Muted>`.
 - **Surface containers:** Figma "Card" → `<Card>`; Figma tinted region grouping cards → `<Group>`.
-- **Buttons, Tags, Chips, Alerts, Tabs, Steps, Dialog, Popover, Table, Field/Fieldset, ErrorSummary** → use the matching component from the §12 index. Do not reimplement.
+- **Buttons, Tags, Chips, Alerts, Tabs, Steps, Dialog, Popover, Table, Field/Fieldset, Errorsummary** → use the matching component from §12. Do not reimplement.
 - **Color regions:** when a Figma frame is in a semantic color (danger/warning/success/info/inverted), set `data-color="…"` on a parent rather than picking palette-prefixed tokens.
+- If you genuinely believe a deviation is required (e.g. the component cannot express the intended behavior), **STOP**. Explain the deviation and the proposed alternative **before** writing code, and wait for explicit approval.
+- If the sketch is unclear (text unreadable, intent unknown, missing state), list assumptions explicitly at the top of your final answer.
 
-### 10.3 Verification before returning code
+### 11.3 Pre-return checklist
 
-Before sending the final response after a design-to-code task, perform a mapping audit:
+Before sending the final response, verify every item:
 
-1. List every visible component instance from the Figma context.
-2. For each one, name the design system component used in the generated code.
-3. If any Figma instance is **not** mapped to its design system equivalent, list it as an explicit deviation with a reason — or fix the code.
+**Imports & setup**
+- [ ] React components imported from `@mattilsynet/design/react`; icons from `@phosphor-icons/react/ssr`.
+- [ ] Entry file imports `'@mattilsynet/design'` and `'@mattilsynet/design/styles.css'`.
+- [ ] Exact export names spelled correctly: `Errorsummary`, `Togglegroup`, `Fileupload`, `HelpText`.
 
-This audit is in addition to the §11 checklist; both must pass.
-
-If the sketch is unclear (text unreadable, intent unknown, missing state), list assumptions explicitly at the top of your final answer.
-
----
-
-## 11. Pre-return checklist
-
+**Spacing, color, sizing**
 - [ ] No raw `px`/`rem` for spacing — only `data-gap`, `data-pad`, or `var(--mtds-{n})` from the §5.1 scale.
 - [ ] No hex/rgb/named colors — only `var(--mtds-color-*)` (palette-agnostic) under the right `data-color` parent.
 - [ ] No inline `style={{…}}` for layout/color/spacing.
 - [ ] No Tailwind utility classes.
+- [ ] All spacing-token indexes used exist (`0`–`15`, `18`, `22`, `26`, `30`).
+- [ ] `data-size` collisions accounted for (density on containers vs. local size on `Heading`/`Button`/`Info`).
+
+**Markup**
 - [ ] No raw `<h1>`–`<h6>` — every heading is `<Heading as="hN">`.
 - [ ] No raw `<div style="display:flex">` — use `<Flex>` or `<Grid>`.
-- [ ] All spacing-token indexes used exist (`0`–`15`, `18`, `22`, `26`, `30`).
-- [ ] React components imported from `@mattilsynet/design/react`; icons from `@phosphor-icons/react/ssr`.
-- [ ] Entry file imports `'@mattilsynet/design'` and `'@mattilsynet/design/styles.css'`.
-- [ ] `data-size` collisions accounted for (density on containers vs local size on `Heading`/`Button`/`Info`).
-- [ ] Every visible Figma component instance is mapped to its `@mattilsynet/design/react` counterpart, or listed as an explicit, approved deviation.
 - [ ] Metadata pairs (icon + value / label + value) use `<Info>`, not custom `<span>`/`<div>`.
+
+**App shell**
+- [ ] `<App>` wraps the page; source order `Header → Toggle → Sidebar → Main → Footer`.
+- [ ] Every leaf node inside `<App.Main>` is wrapped in `<Card>` or `<Group>`.
+- [ ] `<Logo>` is the first child of `<App.Header>`.
+- [ ] Sidebar buttons are icon-only with `data-tooltip="Label"`.
+- [ ] Sidebar state uses `<App.Toggle>` and `<App.Sidebar>`
+
+**Figma audit (when converting from a sketch)**
+- [ ] Every visible Figma component instance is mapped to its `@mattilsynet/design/react` counterpart, or listed as an explicit, approved deviation.
 
 ---
 
 ## 12. Component index
 
-Each component has full docs at `@mattilsynet/design/mtds/ai/<name>.mdx` and examples in `@mattilsynet/design/mtds/ai/<name>.stories.tsx`. **Read the relevant doc before using a component you have not used in this session.**
+Each component has full docs at `@mattilsynet/design/mtds/ai/<name>.mdx` and examples in `@mattilsynet/design/mtds/ai/<name>.stories.tsx`. Read the relevant doc before using a component you have not used in this session.
 
-**Layout & structure:** `app`, `card` (Card, Group), `divider`, `layout` (Flex, Grid), `print`
+### Layout & structure
 
-**Typography:** `typography` (Heading, Prose, Ingress, Muted, Info), `link`
+- **`App`** — page shell with `Header`, `Toggle`, `Sidebar`, `Sticky`, `Main`, `Footer`, `Script`. See §6.
+- **`Card`** — solid white surface for one related content unit. `data-pad`, `data-radius`, `href`, `data-clickdelegatefor`. See §7.4.
+- **`Group`** — tinted surface for a region of cards or meta-UI. Same attrs as `Card`. See §7.4.
+- **`Flex`** — flex container for mixed-width children (toolbars, button rows). See §7.2.
+- **`Grid`** — grid container for equal-width columns or vertical stacks. Use `data-items="300"` for responsive. See §7.2.
+- **`Divider`** — visual separator (`<hr>` styling).
 
-**Forms:** `field`, `fieldset`, `input`, `fileupload`, `helptext`, `togglegroup`, `validation`, `errorsummary`
+### Typography
 
-**Actions:** `button`, `chip`
+- **`Heading`** — `as="h1".."h6"` for semantics, `data-size="2xs".."2xl"` for visual size. See §8.1.
+- **`Prose`** — apply vertical typographic rhythm to direct children (body text, lists, headings). See §8.2.
+- **`Ingress`** — lead/intro paragraph. See §8.3.
+- **`Muted`** — small/secondary text. See §8.3.
+- **`Info`** — label + value pair, optionally with icon. `data-variant="regular│circle"`. See §8.4.
+- **`Link`** — inline anchor styled to mtds.
 
-**Feedback & status:** `alert`, `badge`, `progress`, `skeleton`, `spinner`, `tag`, `toast`
+### Forms (see §9)
 
-**Navigation:** `breadcrumbs`, `pagination`, `steps`, `tabs`
+- **`Field`** — single field row. Two modes: composition (`<Field.Label>`+`<Input>`) or polymorphic (`<Field as="input" label="…" />`). Compound: `Label`, `Description`, `Suggestion`, `Datalist`, `Option`.
+- **`Fieldset`** — group related fields. Compound: `Legend`, `Description`.
+- **`Input`** — form control primitive (`<input>`, used inside `<Field>`).
+- **`Validation`** — field-level validation message. Pass via `validation="…"` on `<Field as="…">`, or render directly inside `<Field>`.
+- **`Errorsummary`** — top-of-form error list (note: single capital R). Children: `<Heading>` + `<ul><li><a href="#fieldId">`. See §9.3.
+- **`Togglegroup`** — single-select toggle button row (single capital G). Compound: `Item`. See §9.5.
+- **`Fileupload`** — file upload (experimental). See §9.6.
+- **`HelpText`** — popover-style help button. Prefer `<Field helpText="…" />`. See §9.7.
 
-**Display:** `avatar`, `chart`, `details`, `dialog`, `popover`, `table`, `tooltip`
+### Actions
 
-**Domain & branding:** `law`, `logo`
+- **`Button`** — primary action element. Renders `<a>` when `href` is set. Variants: `data-variant="primary│secondary│tertiary"`. Sizes via `data-size` on the button or its container.
+- **`Chip`** — interactive filter chip / single-select toggle.
+
+### Feedback & status
+
+- **`Alert`** — inline contextual feedback. Color via ancestor `data-color="info│success│warning│danger"`.
+- **`Badge`** — small status indicator overlay (count, dot) on top of another element.
+- **`Progress`** — progress bar.
+- **`Skeleton`** — loading placeholder block.
+- **`Spinner`** — loading spinner.
+- **`Tag`** — read-only label/keyword. Color via `data-color`.
+- **`Toast`** — transient notification (managed via toast helpers).
+
+### Navigation
+
+- **`Breadcrumbs`** — breadcrumb trail.
+- **`Pagination`** — paged result navigation.
+- **`Steps`** — multi-step progress / timeline. Children are `<li>` with `<mark>`, `<strong>`, optional `<small>`. Set `aria-current="step"` on the active `<li>`. State via `data-state="complete"` on the `<ol>`/`<Steps>`.
+- **`Tabs`** — tabbed content panels. Compound: `List`, `Tab`, `Panel`.
+
+### Display
+
+- **`Avatar`** — round user avatar.
+- **`Chart`** — chart wrapper.
+- **`Details`** — disclosure widget. Compound: `Summary`.
+- **`Dialog`** — modal dialog using native `<dialog>`. Open with `command="show-modal"` + `commandfor="id"`; close with `command="request-close"`.
+- **`Popover`** — non-modal floating overlay using native popover API. Polymorphic via `as` (commonly `as="menu"`). Anchor with `popoverTarget="id"` on the trigger.
+- **`Table`** — data table. Compound: `Thead`, `Tbody`, `Tr`, `Th`, `Td`, `ThSortable`.
+- **`Tooltip`** — prefer `data-tooltip="…"` on any element instead of a component.
+
+### Domain & branding
+
+- **`Law`** — Mattilsynet legal-text formatting.
+- **`Logo`** — Mattilsynet (or sub-app) logo. Required as the first child of `<App.Header>`.
+- **`Print`** — print-only utilities and breaks.
+
+### Map and Charts
+
+- **`Atlas`** — interactive map.
+- **`Chart`** — chart primitives.

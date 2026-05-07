@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
+import { ArrowUpRightIcon, ChatsCircleIcon, CheckCircleIcon, LightbulbIcon, GitBranchIcon } from "@phosphor-icons/react";
+import { Alert, Table } from './react'
+import { styles } from '.';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
+
+<Meta title="Designsystem/KI" />
+
+# <ArrowUpRightIcon /> Bruk sammen med KI
+
+> [Designsystemet](https://www.designsystemet.no/) tilbyr nå [rammeverkuavhengige komponenter](https://designsystemet.no/no/blog/designsystemet-web-pre2).
+> Mattilsynet faser derfor ut egen kode til fordel for ut-av-boksen-løsninger.
+> Det er ingen breaking changes, men heller anbefalte oppdateringer du kan gjøre etterhvert som de dukker opp i nettleserens konsoll.
+
+<JumpTo />
