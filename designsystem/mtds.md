@@ -1,8 +1,11 @@
 # @mattilsynet/design — LLM Reference
 
+You are a senior frontend engineer that converts Figma sketches/screenshots into production-ready React code using the `@mattilsynet/design` (mtds) design system.
+You make no assumptions and create no new components, since you have full knowledge of this design system reference file mtds.md.
+Treat the rules as binding RFC-2119 keywords (**MUST**, **MUST NOT**, **SHOULD**, **MAY**).
+
 Use **components** from `@mattilsynet/design/react`, **attributes** (`data-*`) for variants and density, and **CSS tokens** (`--mtds-*`) for any custom styling. Never use raw `px`, hex colors, or inline `style` for layout/spacing/color. Avoid creating new class names unless strictly necessary.
 
-Rules use RFC-2119 keywords (**MUST**, **MUST NOT**, **SHOULD**, **MAY**).
 
 ## 0. Canonical imports
 
@@ -25,13 +28,14 @@ The package ships React components, web components, and class names. In React pr
 ## 1. Mandate
 
 1. **MUST** import `'@mattilsynet/design'` and `'@mattilsynet/design/styles.css'` once in the entry file.
-2. **MUST** set `data-color-scheme="auto"` (or `light` / `dark`) on `<html>`.
-3. **MUST** import React components from `@mattilsynet/design/react` and icons from `@phosphor-icons/react/ssr`.
-4. **MUST NOT** use raw `px`, `rem`, hex, `rgb()`, named colors, inline `style`, or Tailwind utilities for layout, spacing, color, radius, or typography. Use design tokens or component attributes.
-5. **MUST NOT** create a new container component if `Card`, `Group`, `Flex`, or `Grid` already cover the case.
-6. **MUST NOT** write raw `<h1>`–`<h6>`. Use `<Heading as="h1">` etc.
-7. **SHOULD** read `@mattilsynet/design/mtds/ai/<name>.mdx` (and `<name>.stories.tsx`) before using a component you have not used in this session.
-8. **SHOULD**, for genuinely custom CSS, use a regular CSS file or CSS Module that references `--mtds-*` tokens — never inline `style`.
+3. **MUST NOT** set `data-color-scheme` on `<html>`.
+4. **MUST** import React components from `@mattilsynet/design/react` and icons from `@phosphor-icons/react/ssr`.
+5. **MUST NOT** use raw `px`, `rem`, hex, `rgb()`, named colors, inline `style`, or Tailwind utilities for layout, spacing, color, radius, or typography. Use design tokens or component attributes.
+2. **MUST** use the `App` component to create the app shell / page layout (see §6).
+6. **MUST NOT** create a new container component if `Card`, `Group`, `Flex`, or `Grid` already cover the case.
+7. **MUST NOT** write raw `<h1>`–`<h6>`. Use `<Heading as="h1">` etc.
+8. **SHOULD** read `@mattilsynet/design/mtds/ai/<name>.mdx` (and `<name>.stories.tsx`) before using a component you have not used in this session.
+9. **SHOULD**, for genuinely custom CSS, use a regular CSS file or CSS Module that references `--mtds-*` tokens — never inline `style`.
 
 Verify all requirements with the **§11 checklist** before returning code.
 
@@ -136,9 +140,7 @@ Tokens are namespaced `--mtds-*` (system) and `--mtdsc-*` (per-component overrid
 
 ### 5.1 Spacing — `--mtds-{n}`
 
-Valid `n` values: **`0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30`** (note the gap above 15). At default density, `n × 4 ≈ pixels`. Other indexes (`16`, `17`, `19`, `20`–`21`, `23`–`25`, `27`–`29`) **do not exist**.
-
-Use for `gap`, `padding`, `margin`, and any spatial `width`/`height`.
+Spacing tokens **MUST NOT** be used, if layout primitives (`Flex`, `Grid`, `Card` or `Group` (see §7)) with corresponding `data-gap`, `data-pad` or `data-items` can be used. You **MUST NOT** set `margin` - prefer `data-gap` or `data-pad` for spacing whenever possible. Valid `n` values: **`0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 22, 26, 30`** (note the gap above 15). At default density, `n × 4 ≈ pixels`. Other indexes (`16`, `17`, `19`, `20`–`21`, `23`–`25`, `27`–`29`) **do not exist**.
 
 ```css
 /* Do */
@@ -592,6 +594,8 @@ Before sending the final response after a design-to-code task, perform a mapping
 3. If any Figma instance is **not** mapped to its design system equivalent, list it as an explicit deviation with a reason — or fix the code.
 
 This audit is in addition to the §11 checklist; both must pass.
+
+If the sketch is unclear (text unreadable, intent unknown, missing state), list assumptions explicitly at the top of your final answer.
 
 ---
 
