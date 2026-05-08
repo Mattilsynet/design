@@ -3,7 +3,7 @@
 		composes: ds-heading from "@digdir/designsystemet-css";
 		--mtdsc-heading-gap: var(--ds-size-2);
 
-		display: flex;
+		display: flex; /* TODO Digdir? */
 		align-items: center;
 		flex-wrap: wrap;
 		gap: var(--mtdsc-heading-gap);
@@ -31,6 +31,7 @@
 	.heading svg {
 		display: inline-block; /* TODO Digdir: Fix Tailwind default */
 		fill: currentColor; /* In case using non-Phosphor icons */
+		flex-shrink: 0; /* Prevent icons from shrinking if heading wraps */
 		font-size: 1em;
 		height: 1em;
 		vertical-align: -0.15em;
