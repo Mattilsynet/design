@@ -423,7 +423,7 @@ export const Graphics = ({
 
 					return (
 						<Card
-							style={{ background: "var(--mtds-color-background-tinted)" }}
+							style={{  background: `var(--mtds-color-background-${mode === 'dark' ? 'default' : 'tinted'})` }}
 							data-radius="md"
 							data-color-scheme={mode || undefined}
 							data-tooltip={`Trykk for å kopiere "${name.replace(".svg", "")}"`}
