@@ -12,7 +12,8 @@
 		display: contents;
 	}
 	.fieldset > legend,
-	.fieldset > legend + p {
+	.fieldset > legend + p, /* Backawards compatibility */
+	.fieldset > legend + [data-field="description"] {
 		color: inherit;
 		margin: 0;
 		opacity: 1;
