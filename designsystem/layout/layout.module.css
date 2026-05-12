@@ -147,14 +147,26 @@
 	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
 	.flex[data-items="75"] > :not([data-self]), .flex > [data-self="75"] { flex-basis: calc(1rem / 16 * 75) } /* Convert to rem based pixels */
 	.flex[data-items="100"] > :not([data-self]), .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
+	.flex[data-items="125"] > :not([data-self]), .flex > [data-self="125"] { flex-basis: calc(1rem / 16 * 125) }
 	.flex[data-items="150"] > :not([data-self]), .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
+	.flex[data-items="175"] > :not([data-self]), .flex > [data-self="175"] { flex-basis: calc(1rem / 16 * 175) }
 	.flex[data-items="200"] > :not([data-self]), .flex > [data-self="200"] { flex-basis: calc(1rem / 16 * 200) }
+	.flex[data-items="225"] > :not([data-self]), .flex > [data-self="225"] { flex-basis: calc(1rem / 16 * 225) }
 	.flex[data-items="250"] > :not([data-self]), .flex > [data-self="250"] { flex-basis: calc(1rem / 16 * 250) }
+	.flex[data-items="275"] > :not([data-self]), .flex > [data-self="275"] { flex-basis: calc(1rem / 16 * 275) }
 	.flex[data-items="300"] > :not([data-self]), .flex > [data-self="300"] { flex-basis: calc(1rem / 16 * 300) }
+	.flex[data-items="325"] > :not([data-self]), .flex > [data-self="325"] { flex-basis: calc(1rem / 16 * 325) }
 	.flex[data-items="350"] > :not([data-self]), .flex > [data-self="350"] { flex-basis: calc(1rem / 16 * 350) }
+	.flex[data-items="375"] > :not([data-self]), .flex > [data-self="375"] { flex-basis: calc(1rem / 16 * 375) }
 	.flex[data-items="400"] > :not([data-self]), .flex > [data-self="400"] { flex-basis: calc(1rem / 16 * 400) }
+	.flex[data-items="425"] > :not([data-self]), .flex > [data-self="425"] { flex-basis: calc(1rem / 16 * 425) }
 	.flex[data-items="450"] > :not([data-self]), .flex > [data-self="450"] { flex-basis: calc(1rem / 16 * 450) }
+	.flex[data-items="475"] > :not([data-self]), .flex > [data-self="475"] { flex-basis: calc(1rem / 16 * 475) }
 	.flex[data-items="500"] > :not([data-self]), .flex > [data-self="500"] { flex-basis: calc(1rem / 16 * 500) }
+	.flex[data-items="525"] > :not([data-self]), .flex > [data-self="525"] { flex-basis: calc(1rem / 16 * 525) }
+	.flex[data-items="550"] > :not([data-self]), .flex > [data-self="550"] { flex-basis: calc(1rem / 16 * 550) }
+	.flex[data-items="575"] > :not([data-self]), .flex > [data-self="575"] { flex-basis: calc(1rem / 16 * 575) }
+	.flex[data-items="600"] > :not([data-self]), .flex > [data-self="600"] { flex-basis: calc(1rem / 16 * 600) }
 	.flex[data-items="full"] > :not([data-self]), .flex > [data-self="full"] { flex-basis: 100% } 
 	.flex > [data-self="auto"] { flex-basis: auto } /* Default */
 
