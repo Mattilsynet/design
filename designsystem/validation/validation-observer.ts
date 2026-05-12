@@ -64,10 +64,10 @@ const handleValidations = (event: Event) => {
 	invalid.focus(); // Only move focus to first invalid field if validate was true
 };
 
-// Hide related validations adain when typing
+// Hide related validations again when typing
 const handleInput = ({ target }: Event) => {
 	const input = target as HTMLInputElement;
-	if (isValidationForm(input.form)) return;
+	if (!isValidationForm(input.form)) return; // Skip if not in a validation form
 	for (const el of getValidations(input.closest("fieldset") || getField(input)))
 		attr(el, "hidden", "");
 };
