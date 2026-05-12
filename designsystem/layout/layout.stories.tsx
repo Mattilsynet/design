@@ -196,7 +196,34 @@ export const ItemSizes: Story = {
 			<h2 className={styles.heading}>
 				Minimumsstørrelser Grid og Flex data-items:
 			</h2>
-			{[25, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500].map((i) => (
+			{[
+				25,
+				50,
+				75,
+				100,
+				125,
+				150,
+				175,
+				200,
+				225,
+				250,
+				275,
+				300,
+				325,
+				350,
+				375,
+				400,
+				425,
+				450,
+				475,
+				500,
+				525,
+				550,
+				575,
+				600,
+				"auto",
+				"full",
+			].map((i) => (
 				<div key={i}>
 					<div className={styles.flex} key={i} data-gap="3" data-fixed>
 						<div
