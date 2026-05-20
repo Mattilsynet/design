@@ -744,6 +744,10 @@
 		"categories": ["Flagg"],
 		"tags": ["flagg", "Sverige"]
 	},
+	"flagg-uk.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "England", "Storbritannia", "UK", "Engelsk"]
+	},
 	"forstorrelsesglass.svg": {
 		"categories": ["Utstyr"],
 		"tags": ["forstørrelsesglass", "lupe"]

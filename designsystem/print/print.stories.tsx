@@ -462,3 +462,378 @@ export const RapportmalReact: Story = {
 		</div>
 	),
 };
+
+export const Vedtak: Story = {
+	render: () => (
+		<div id="my-print">
+			<style>
+				{`${css}:root {
+					--mtdsc-print-office: 'hovedkontoret';
+					--mtdsc-print-department: 'avdeling brukerdialog og kommunikasjon';
+        }`}
+			</style>
+			<section className={`${styles.print} ${styles.prose}`}>
+				<div>
+					<address>
+						Eksempelstedet AS
+						<br />
+						Uendeligveien 999
+						<br />
+						0000 Sted
+					</address>
+					<dl>
+						<dt>Vår ref:</dt>
+						<dd>2004/12345</dd>
+						<dt>Dato:</dt>
+						<dd>01.01.2024</dd>
+						<dt>Org.nr:</dt>
+						<dd>123456789</dd>
+					</dl>
+				</div>
+
+				<h1 className={styles.heading} data-size="md">
+					Vedtak om lufting og veterinærbehandling av hund
+				</h1>
+				<p>
+					Vi viser til inspeksjonen hos deg den 16. februar 2023 og vår
+					inspeksjonsrapport datert 16. februar 2023.
+				</p>
+				<h2 className={styles.heading} data-size="xs">
+					Inspeksjonen omfattet
+				</h2>
+				<ul>
+					<li>Kjæledyrhold</li>
+				</ul>
+				<p>Hunden din er en Chihuahua hannhund på 15 år.</p>
+				<h2 className={styles.heading} data-size="xs">
+					Uttalelse til varsel om vedtak
+				</h2>
+				<p>
+					I inspeksjonsrapporten ba vi om uttalelse til varsel om vedtak
+					vedrørende lufting og veterinærbehandling av hund.
+				</p>
+				<p>
+					Du har uttalt deg innen fristen, og vi har vurdert uttalelsen datert
+					17. februar 2023.
+				</p>
+				<p>
+					Når det gjelder varsel om vedtak om lufting av hunden, opplyser du at
+					du vil lufte hunden to ganger om dagen. Når det gjelder
+					veterinærbehandling, opplyser du at hunden virker mye friskere nå. Vi
+					mener at regelverkskravene fortsatt ikke er oppfylt, og fatter derfor
+					vedtak i samsvar med varselet.
+				</p>
+				<u>Oversikt over Mattilsynets kontrollpunkter med reaksjoner</u>
+
+				<ul>
+					<li>Dyrs levemiljø – Vedtak</li>
+					<li>Tilsyn og stell – Vedtak</li>
+				</ul>
+				<h3 className={styles.heading} data-size="2xs">
+					Din tilbakemelding når vedtak er etterkommet
+				</h3>
+				<p>
+					Det er viktig at du gir oss skriftlig tilbakemelding så snart du mener
+					at vedtakene er etterkommet.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Din rett til å klage på vedtak innen klagefristen
+				</h3>
+				<p>
+					Du kan klage på vedtakene innen tre uker etter at du har mottatt
+					brevet.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Vår rett til å føre tilsyn og fatte nødvendige vedtak
+				</h3>
+				<p>
+					Mattilsynets adgang til å føre tilsyn og fatte nødvendige vedtak
+					følger av dyrevelferdsloven § 30.
+				</p>
+				<h2 className={styles.heading} data-size="md">
+					Vedtak
+				</h2>
+				<h3 className={styles.heading} data-size="xs">
+					1. Vedtak om lufting av hund
+				</h3>
+				<p>
+					Du må sørge for at hunden luftes et tilstrekkelig antall ganger i
+					løpet av dagen, slik at den slipper å gjøre fra seg innendørs.
+				</p>
+				<p>
+					<strong>Frist for å etterkomme vedtaket:</strong>
+					<br />
+					24. februar 2023
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Vi har observert
+				</h3>
+				<p>
+					Du opplyste under inspeksjonen at du lufter hunden sjelden pga. at den
+					sover mye. Det hender derfor at hunden gjør fra seg inne. Under
+					inspeksjonen ble det observert to steder med hundeavføring og noen
+					steder med urin/flekker etter tørket urin på stuegulvet.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Kravene som gjelder for dyrs levemiljø
+				</h3>
+				<p>
+					Dyreholder skal sikre at dyr holdes i miljø som gir god velferd ut fra
+					artstypiske og individuelle behov.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Mattilsynet vurderer dette slik
+				</h3>
+				<p>
+					Hunden skal luftes minimum tre ganger daglig for å gjøre fra seg.
+					Under inspeksjonen vår hos deg så vi både urin og avføring på
+					stuegulvet, og at hunden gjorde fra seg med én gang den kom ut. Når du
+					ikke lufter hunden tilstrekkelig, så utgjør det et regelbrudd.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Hjemmel for dette vedtaket
+				</h3>
+				<p>
+					Vi fatter dette vedtaket fordi vi har funnet brudd på
+					dyrevelferdsloven § 23 første ledd.
+				</p>
+				<h3 className={styles.heading} data-size="xs">
+					2. Vedtak om veterinærbehandling
+				</h3>
+				<p>
+					Du må ta med hunden til veterinær for undersøkelse og oppfølging av
+					helsetilstanden.
+				</p>
+				<p>
+					<strong>Frist for å etterkomme vedtaket:</strong> 1. mars 2023
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Vi har observert
+				</h3>
+
+				<p>
+					Hunden klødde kraftig i ørene og på brystet. Det luktet vondt fra
+					munnen til hunden, og den hadde endel tannstein. Hunden var stiv i
+					bakparten.
+				</p>
+
+				<h3 className={styles.heading} data-size="2xs">
+					Kravene som gjelder for tilsyn og stell
+				</h3>
+
+				<p>Dyreholder skal sikre at dyr får godt tilsyn og stell.</p>
+
+				<h3 className={styles.heading} data-size="2xs">
+					Mattilsynet vurderer dette slik
+				</h3>
+
+				<p>
+					Godt tilsyn og stell skal fremme sunnhet og trivsel og generelt
+					motvirke sykdommer og skader. Flere forhold tydet på at hunden kunne
+					være alvorlig syk. Når du ikke har tatt med hunden til veterinær selv
+					om den kan være alvorlig syk, har du som dyreholder ikke sørget for at
+					hunden din får en forsvarlig behandling.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Hjemmel for dette vedtaket
+				</h3>
+
+				<p>
+					Vi fatter dette vedtaket fordi vi har funnet brudd på
+					dyrevelferdsloven § 24 første ledd bokstav b.
+				</p>
+				<p>
+					Med hilsen
+					<br />
+					Navn Navnesen
+					<br />
+					seniorrådgiver
+				</p>
+
+				<h2 className={styles.heading}>Vedlegg</h2>
+				<ul>
+					<li>Rettigheter og regelverk</li>
+					<li>Tilbakemeldingsskjema i forbindelse med vedtak</li>
+					<li>Melding om rett til å klage over forvaltningsvedtak</li>
+				</ul>
+			</section>
+			<section className={`${styles.print} ${styles.prose}`}>
+				<h2 className={styles.heading} data-size="xm">
+					Rett til å få veiledning om regelverket og saksbehandlingen
+				</h2>
+				<p>
+					Dere kan kreve å få vite hvilket regelverk som gjelder for dere og
+					deres virksomhet, hvor dere finner regelverket og hvordan dette
+					regelverket skal forstås. Dere har også rett til å få vite hvordan
+					saken deres blir behandlet, og hvilke rettigheter dere har i den
+					sammenheng. Veiledningsplikten vår følger av forvaltningsloven § 11.
+				</p>
+				<h3 className={styles.heading} data-size="xs">
+					Rett til å se saksdokumentene
+				</h3>
+				<p>Retten til partsinnsyn følger av forvaltningsloven §§ 18 - 21.</p>
+				<h3 className={styles.heading} data-size="xs">
+					Du har rett til å klage
+				</h3>
+				<p>
+					Du kan klage på enkeltvedtak. Du må begrunne klagen, skrive under og
+					sende den til oss innen tre uker etter at du har mottatt brevet om
+					vedtaket. Reglene om klage står i forvaltningsloven §§ 28-29. Du
+					finner mer informasjon om klageretten i vedlegget; Melding om rett til
+					å klage over forvaltningsvedtak.
+				</p>
+				<h3 className={styles.heading} data-size="xs">
+					Dere må betale gebyr hvis Mattilsynet må gjennomføre nytt tilsyn i
+					saken
+				</h3>
+				<p>
+					Vi krever at dere betaler et gebyr på 2550 kroner hvis vi må
+					gjennomføre nytt tilsyn i saken. Krav om gebyr er hjemlet i forskrift
+					om offentlig kontroll på matområdet av 03.03.2020 nr. 704 § 2, jf.
+					kontrollforordningen (EU) 2017/625 art. 79 nr. 2 bokstav c og
+					forskrift om gebyr i matforvaltningen av 28.01.2004 nr. 221 § 15a.
+				</p>
+				<h3 className={styles.heading} data-size="2xs">
+					Vi har vurdert aktiviteten etter dette regelverket
+				</h3>
+				<ul>
+					<li>Lov 19. jun. 2009 nr. 97 om dyrevelferd (dyrevelferdsloven)</li>
+				</ul>
+				<h3 className={styles.heading} data-size="2xs">
+					Vi har funnet brudd på disse bestemmelsene:
+				</h3>
+				<ul>
+					<li>Dyrevelferdsloven § 23</li>
+					<li>Dyrevelferdsloven § 24</li>
+				</ul>
+				<h3 className={styles.heading} data-size="2xs">
+					Elektronisk post til Mattilsynet
+				</h3>
+				<p>
+					Elektronisk post sendes til{" "}
+					<a href="mailto:postmottak@mattilsynet.no">
+						postmottak@mattilsynet.no
+					</a>
+					. Dersom innholdet i dokumentene er sensitivt/ taushetsbelagt,
+					anbefaler vi bruk av eDialog. Informasjon om dette finner du på
+					Mattilsynet.no under "Kontakt oss".
+				</p>
+			</section>
+			<section className={`${styles.print} ${styles.prose}`} data-size="sm">
+				<h1 className={styles.heading} data-size="md">
+					Melding om rett til å klage på vedtak
+				</h1>
+				<small>(Forvaltningsloven, kapittel VI om klage og omgjøring)</small>
+				<p>
+					<strong>Avsenter:</strong> Mattilsynet, Avdeling X, Adresse
+					<br />
+					<strong>Mottaker:</strong> Navn, Adresse
+					<br />
+					<strong>Klageinstans:</strong> Mattilsynet, hovedkontoret
+					<br />
+					<strong>Dato:</strong> 01.01.2024
+				</p>
+				<p>
+					<em>
+						Denne meldingen gir viktige opplysninger hvis dere ønsker å klage
+						over vedtak dere har fått underretning om.
+					</em>
+				</p>
+				<table className={styles.table} data-fixed>
+					<tbody>
+						<tr>
+							<th style={{ width: "100pt" }}>Klagerett</th>
+							<td>Dere har rett til å klage over vedtaket.</td>
+						</tr>
+						<tr>
+							<th>Hvem kan dere klage til</th>
+							<td>
+								Klagen sendes til den enheten i Mattilsynet som har fattet
+								vedtaket, enten med post, epost eller eDialog. Vi ber om at
+								dokumentene merkes med saksnummer 2023/132467. Hvis vi ikke tar
+								klagen til følge, sender vi den til klageinstansen for endelig
+								avgjørelse.
+							</td>
+						</tr>
+						<tr>
+							<th>Klagefrist</th>
+							<td>
+								Dette vedtaket sendes elektronisk og derfor gjelder
+								eForvaltningsforskriften. Klagefristen er tre uker og begynner å
+								løpe når dere har fått informasjon om at vedtaket er kommet i
+								digital postkasse (Altinn). For privatpersoner som har reservert
+								seg mot elektronisk kommunikasjon, begynner klagefristen å løpe
+								fra brevet er forventet levert i ordinær postgang. Dersom dere
+								klager så sent at det kan være uklart for oss om dere har klaget
+								i rett tid, ber vi dere oppgi den datoen dere mottok dette
+								brevet. Dere kan søke om å få forlenget klagefristen. Dere må da
+								begrunne behovet for forlenget frist.
+							</td>
+						</tr>
+						<tr>
+							<th>Rett til å kreve begrunnelse</th>
+							<td>
+								Dersom dere mener vi ikke har begrunnet vedtaket, kan dere kreve
+								å få begrunnelse. Dette kravet må i så fall sendes oss før
+								klagefristen utløper. Klagefristen blir da avbrutt, og ny frist
+								på tre uker begynner å løpe fra det tidspunktet dere mottar
+								begrunnelsen.
+							</td>
+						</tr>
+						<tr>
+							<th>Klagens innhold</th>
+							<td>
+								I klagen må dere nevne hvem klagen kommer fra, hvilket vedtak
+								dere klager på, den eller de endringene dere ønsker og eventuelt
+								andre opplysninger som kan ha betydning for vår vurdering av
+								klagen. Dere bør også begrunne klagen.
+							</td>
+						</tr>
+						<tr>
+							<th>Utsetting av vedtaket</th>
+							<td>
+								Vedtaket er ment å skulle gjennomføres innen den fastsatte
+								fristen. Dette gjelder selv om dere klager på vedtaket. Dere kan
+								søke om å få utsatt iverksettingen inntil klagefristen er ute
+								eller til klagen er avgjort.
+							</td>
+						</tr>
+						<tr>
+							<th>Rett til dokumentinnsyn og veiledning</th>
+							<td>
+								Dere har som hovedregel rett til å se dokumentene i saken (jf.
+								forvaltningsloven §§ 18-21). Dere må i så fall kontakte oss. Da
+								kan dere også få nærmere veiledning om klageretten, om
+								fremgangsmåten ved klage og om reglene for saksbehandlingen
+								ellers.
+							</td>
+						</tr>
+						<tr>
+							<th>Kostnader ved klagesaken</th>
+							<td>
+								Dere kan søke om å få dekket utgifter til nødvendig advokathjelp
+								etter reglene om fritt rettsråd. Vanligvis gjelder visse
+								inntekts- og formuegrenser. Statsforvalteren eller en advokat
+								kan gi nærmere veiledning om dette. Uavhengig av denne
+								ordningen, kan dere etter forvaltningsloven § 36 kreve dekning
+								for vesentlige kostnader som følge av klagen dersom Mattilsynet
+								omgjør vedtaket. Ved en omgjøring av vedtaket som følge av
+								klagen, vil vi orientere dere om denne rettigheten.
+							</td>
+						</tr>
+						<tr>
+							<th>Klage til Sivilombudet</th>
+							<td>
+								Hvis klagen ikke har ført frem og dere mener at Mattilsynet har
+								utsatt dere for urett, kan dere klage til Stortingets ombud for
+								kontroll med forvaltningen (Sivilombudet). Sivilombudet kan ikke
+								selv endre vedtaket, men kan gi sin vurdering av hvordan vi har
+								behandlet saken og om vi har begått feil eller forsømmelser.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</div>
+	),
+};

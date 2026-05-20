@@ -1,5 +1,6 @@
 import { MagnifyingGlassMinusIcon, StarIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import L from "leaflet";
 import { useEffect, useRef, useState } from "react";
 import type { MTDSAtlasCollection, MTDSAtlasElement } from "../atlas";
 import {
@@ -400,3 +401,25 @@ export const WithoutScrollZoom: Story = {
 		</Prose>
 	),
 };
+
+// export const WithGeoJSON: Story = {
+// 	render: () => {
+// 		const atlasRef = useRef<MTDSAtlasElement>(null);
+
+// 		useEffect(() => {
+// 			const map = atlasRef.current?.map;
+// 			const url =
+// 				"https://mattilsynet.avadaptive.dev/api/core/v1/ogc/features/collections/slammelding_spredeareal/items";
+
+// 			if (!map) return;
+// 			fetch(url)
+// 				.then((res) => res.json())
+// 				.then((data) => {
+// 					console.log(data);
+// 					L.geoJSON(data).addTo(map);
+// 				});
+// 		}, []);
+
+// 		return <Atlas ref={atlasRef} />;
+// 	},
+// };
