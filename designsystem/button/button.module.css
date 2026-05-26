@@ -14,8 +14,10 @@
 		width: 100%;
 	}
 
-	/* Overwrite to same as tertiary from Designsystemet, but not if label which is styled by toggle-group  */
-	.button:where(:not([data-variant="primary"]):not(label)) {
+	/* Overwrite to same as tertiary from Designsystemet, but not if label with input[type="radio"] which is styled by toggle-group  */
+	.button:where(
+		:not([data-variant="primary"]):not(label:has(input[type="radio"]))
+	) {
 		--dsc-button-background: transparent;
 		--dsc-button-background--active: var(--ds-color-surface-active);
 		--dsc-button-background--hover: var(--ds-color-surface-hover);

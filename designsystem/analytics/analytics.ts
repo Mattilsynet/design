@@ -247,6 +247,11 @@ function processTrack({ type, target }: Event) {
 		action = "open";
 	}
 
+	// If event is form event, inherit form category
+	if (type === "change" || type === "submit")
+		category =
+			el.closest("form")?.getAttribute("data-analytics-category") || category;
+
 	// Respect attributes and send
 	analytics("event", {
 		category: attr(el, "data-analytics-category") ?? category,
