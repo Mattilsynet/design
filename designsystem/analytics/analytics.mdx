@@ -98,6 +98,7 @@ analytics('event', {
 - Ved å benytte `analytics`, loggføres `submit`, `click` og `change` hendelser automatisk
 - Bruk `data-analytics="ignore"` på elementer (eller foreldre til elementer) for å deaktivere logging på et element
 - Bruk `data-analytics-category`,  `data-analytics-action` og/eller `data-analytics-name`  på elementer hvis du ønsker å overstyre standardverdier - <Button data-popover="inline" popoverTarget="example-data-attributes">se eksempler</Button>
+- **Merk:** `data-analytics-category` satt på `form` arves automatisk av alle skjema elementer, så du slipper å sette kategori på hvert enkelt input
 - **Merk:** `submit` vil kun fungere dersom du benytter standard `<form>` element
 
 <Popover id="example-data-attributes">
