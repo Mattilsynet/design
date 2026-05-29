@@ -1,8 +1,8 @@
-import { setTooltipElement } from "@digdir/designsystemet-web";
+import { setTooltipElement } from "..";
 import styles from "../styles.module.css";
 import { isBrowser, tag } from "../utils";
 
-// Set custom tooltip element for designsystemet-web
+// Set custom tooltip element
 if (isBrowser())
 	setTooltipElement(
 		document.getElementById("mtds-tooltip") ||

@@ -1,5 +1,5 @@
-import type * as DS from "@digdir/designsystemet-web";
 import { forwardRef } from "react";
+import type * as DS from "..";
 import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";

@@ -1,4 +1,4 @@
-import { DSFieldElement } from "@digdir/designsystemet-web";
+import { DSFieldElement } from ".";
 import styles from "./styles.module.css";
 import {
 	attr,
