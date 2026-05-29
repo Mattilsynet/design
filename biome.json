@@ -24,7 +24,9 @@
 	"files": {
 		"includes": [
 			"**",
+			"!.*",
 			"!**/.storybook/manager-head.html",
+			"!**/atlas/cluster.js",
 			"!**/debug.css",
 			"!**/design-tokens",
 			"!**/design-tokens-build",

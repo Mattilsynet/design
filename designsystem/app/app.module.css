@@ -155,7 +155,8 @@
 		}
 		/* Allow right aligned badge when maximized */
 		& menu [data-badge] {
-			--_mtdsc-badge-small: var(--mtds-app-expanded--true, ) var(--mtds-app-expanded--false, initial);
+			--_mtdsc-badge-small: var(--mtds-app-expanded--true,)
+				var(--mtds-app-expanded--false, initial);
 			display: var(--mtds-app-expanded--true, contents);
 		}
 		& menu [data-badge]::before {
