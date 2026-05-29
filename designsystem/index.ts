@@ -1,10 +1,9 @@
-// Import and expose custom elements not matching HTML elements for backward compatibility
-export * from "@u-elements/u-combobox";
-export * from "@u-elements/u-tabs";
-import "@u-elements/u-details";
+// Expose u-progress, which is not used in @digdir/designsystemet-web, but is used by Mattilsynet
+import "@u-elements/u-progress";
 
 // Expose API
 export * from "@digdir/designsystemet-web"; // Import and expose Digdir web functionality
+export * from "@u-elements/u-combobox"; // Kept for backward compatibility
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export * from "./analytics/analytics";
 export * from "./app/app-observer";
@@ -21,9 +20,21 @@ import "./table/table-observer";
 import "./toast/toast-observer";
 import "./tooltip/tooltip-element";
 import "./validation/validation-observer";
-import "@u-elements/u-datalist";
-import "@u-elements/u-progress";
+import { isBrowser, onHotReload, onMutation } from "./utils";
 
 // Expose types
 export type Size = "sm" | "md" | "lg";
 export type HeadingSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
+// Fix ds-suggestion while waiting for https://github.com/digdir/designsystemet/pull/4933
+const LISTS = isBrowser() ? document.getElementsByTagName("u-datalist") : [];
+const handleDatalistConnect = () => {
+	for (const list of LISTS) list.closest("ds-suggestion")?.connectedCallback();
+};
+
+onHotReload("deprecations", () => [
+	onMutation(document, handleDatalistConnect, {
+		childList: true,
+		subtree: true,
+	}),
+]);

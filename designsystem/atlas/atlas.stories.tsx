@@ -1,6 +1,5 @@
 import { MagnifyingGlassMinusIcon, StarIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import L from "leaflet";
 import { useEffect, useRef, useState } from "react";
 import type { MTDSAtlasCollection, MTDSAtlasElement } from "../atlas";
 import {

@@ -12,7 +12,7 @@
 		display: contents;
 	}
 	.fieldset > legend,
-	.fieldset > legend + p, /* Backawards compatibility */
+	.fieldset > legend + p /* Backawards compatibility */,
 	.fieldset > legend + [data-field="description"] {
 		color: inherit;
 		margin: 0;
@@ -21,11 +21,11 @@
 
 	/* Mark <legend> with "Required" if all inputs inside are required */
 	.fieldset:has(:required, [aria-required="true"]):not(
-			:has(
-					:optional:not(button):not([aria-required="true"]),
-					[aria-required="false"]
-				)
-		) {
+		:has(
+			:optional:not(button):not([aria-required="true"]),
+			[aria-required="false"]
+		)
+	) {
 		& > legend::after {
 			background: var(--mtds-field-required-background);
 			color: var(--ds-color-info-text-default);

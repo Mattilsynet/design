@@ -1,5 +1,5 @@
-import type { DSBreadcrumbsElement } from "@digdir/designsystemet-web";
 import { forwardRef } from "react";
+import type { DSBreadcrumbsElement } from "..";
 import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";

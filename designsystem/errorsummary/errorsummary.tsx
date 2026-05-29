@@ -1,5 +1,5 @@
-import type { DSErrorSummaryElement } from "@digdir/designsystemet-web";
 import { forwardRef } from "react";
+import type { DSErrorSummaryElement } from "../";
 import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";
 import { toCustomElementProps } from "../utils";

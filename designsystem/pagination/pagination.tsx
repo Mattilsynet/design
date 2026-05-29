@@ -1,6 +1,6 @@
-import type { DSPaginationElement } from "@digdir/designsystemet-web";
-import { pagination } from "@digdir/designsystemet-web";
 import { forwardRef } from "react";
+import { pagination } from "..";
+import type { DSPaginationElement } from "../";
 import { Button } from "../button/button";
 import type { CustomReactElementProps } from "../react-types";
 import styles from "../styles.module.css";

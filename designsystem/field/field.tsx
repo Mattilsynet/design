@@ -1,9 +1,9 @@
 "use client";
-import type { DSSuggestionElement } from "@digdir/designsystemet-web";
 import type { Placement } from "@floating-ui/dom";
 import clsx from "clsx";
 import type { JSX } from "react";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import type { DSSuggestionElement } from "..";
 import { HelpText } from "../helptext/helptext";
 import { Input, type InputProps } from "../input/input";
 import type {
