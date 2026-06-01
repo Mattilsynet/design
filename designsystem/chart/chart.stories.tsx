@@ -483,3 +483,37 @@ export const WithHiddeLabels: Story = {
 		</mtds-chart>
 	),
 };
+
+export const WithHiddeLabelsLine: Story = {
+	render: () => (
+		<mtds-chart data-variant="line" data-labels="false">
+			<table>
+				<thead>
+					<tr>
+						<th>Risikofordeling</th>
+						<th>Q1</th>
+						<th>Q2</th>
+						<th>Q3</th>
+						<th>Q4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Large</th>
+						<td>30</td>
+						<td>40</td>
+						<td>20</td>
+						<td>60</td>
+					</tr>
+					<tr>
+						<th>Medium</th>
+						<td>10</td>
+						<td>20</td>
+						<td>40</td>
+						<td>50</td>
+					</tr>
+				</tbody>
+			</table>
+		</mtds-chart>
+	),
+};

@@ -213,6 +213,7 @@ export default {
 						"Analyse",
 						"Debug",
 						"*",
+						"KI",
 					],
 					"Profilering",
 					["Introduksjon", "*"],

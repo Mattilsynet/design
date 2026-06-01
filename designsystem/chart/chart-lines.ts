@@ -40,7 +40,7 @@ export function toLines(data: ChartData, { total, type, variant }: Config) {
 			line.append(lineShade);
 		}
 
-		values.forEach(({ number, tooltip, event }) => {
+		values.forEach(({ number, tooltip, event }, index) => {
 			const col = tag("div", { role: "listitem" });
 			const point = tag("div", {
 				"aria-label": tooltip,
@@ -50,6 +50,7 @@ export function toLines(data: ChartData, { total, type, variant }: Config) {
 				role: "img",
 			});
 
+			attr(col, "data-label", data[0][index + 1]?.value);
 			point.style.setProperty("--value", `${number}`); // Use color of first column as default for point
 			col.appendChild(point);
 			lineContainer.append(col);
