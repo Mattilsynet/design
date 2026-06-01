@@ -1,6 +1,6 @@
-import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 import { SwatchesIcon } from "@phosphor-icons/react";
-import { Heading, Button, Details, Prose } from '../designsystem/react';
+import { Heading, Card, Group, Flex, Grid, Button, Details, Prose } from '../designsystem/react';
 
 <Meta title="Identitet/Farger" />
 
@@ -36,32 +36,176 @@ Fargepaletten er inkludert i Mattilsynets PPT-mal.
 </Prose>
 </Details>
 
-<Heading as="h2">Design for digitale produkter?</Heading>
-
+<Group as={Flex} data-radius='lg' data-justify="space-between">
+<Heading as="h2">Designer du for digitale produkter?</Heading>
 <Button href="?path=/docs/designsystem-tokens--docs" data-arrow data-variant="secondary">Bruk farge-tokens</Button>
+</Group>
 
 ## Hovedpalett
  
-<ColorPalette>
-  <ColorItem colors={["#054449"]} title="Granskog" />
-  <ColorItem colors={["#153F7B"]} title="Fjord" />
-  <ColorItem colors={["#DA573B"]} title="Rognebær" />
-  <ColorItem colors={["#F9CC76"]} title="Sommerdag" />
-  <ColorItem colors={["#68B096"]} title="Furu" />
-  <ColorItem colors={["#9ECCED"]} title="Himmel" />
-  <ColorItem colors={["#F9C4AA"]} title="Nype" />
-  <ColorItem colors={["#F8DE9C"]} title="Solstreif" />
-  <ColorItem colors={["#B4CEA0"]} title="Lind" />
-  <ColorItem colors={["#CDE5F2"]} title="Bekk" />
-  <ColorItem colors={["#F4ECE6"]} title="Sand" />
-  <ColorItem colors={["#FAF6F3"]} title="Gåsunge" />
-  <ColorItem colors={["#032C30"]} title="Mørk granskog" />
-  <ColorItem colors={["#9BCAB9"]} title="Lys furu" />
-  <ColorItem colors={["#E2F1DF"]} title="Lav" />
-  <ColorItem colors={["#ABE1CD"]} title="Brevann" />
-  <ColorItem colors={["#000000"]} title="Sort" />
-  <ColorItem colors={["#ffffff"]} title="Hvit" />
-</ColorPalette>
+
+<Grid data-items="300">
+  <Card>
+    <Prose>
+      <Card style={{background: "#E2F1DF", height: 100, borderRadius: 5}} />
+      **Lav**
+      <br />PMS: 621
+      <br />Hex: #E2F1DF
+      <br />RGB: 226, 241, 223
+      <br />CMYK: 11, 0, 14, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#054449", height: 100, borderRadius: 5 }} />
+      **Granskog**
+      <br />PMS: 316
+      <br />Hex: #054449
+      <br />RGB: 5, 68, 73
+      <br />CMYK: 100, 10, 29, 68
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#FAF7F4", height: 100, borderRadius: 5 }} />
+      **Gåsunge**
+      <br />PMS: —
+      <br />Hex: #FAF7F4
+      <br />RGB: 250, 246, 243
+      <br />CMYK: 1, 2, 3, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#F4ECE6", height: 100, borderRadius: 5}} />
+      **Sand**
+      <br />PMS: Warm Gray 1
+      <br />Hex: #F4ECE6
+      <br />RGB: 244, 236, 230
+      <br />CMYK: 9, 10, 11, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#9BCAB9", height: 100, borderRadius: 5 }} />
+      **Lys furu**
+      <br />PMS: 6141
+      <br />Hex: #9BCAB9
+      <br />RGB: 155, 202, 185
+      <br />CMYK: 47, 0, 27, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#68B096", height: 100, borderRadius: 5}} />
+      **Furu**
+      <br />PMS: 6143
+      <br />Hex: #68B096
+      <br />RGB: 104, 176, 150
+      <br />CMYK: 73, 0, 52, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#F8DE9C", height: 100, borderRadius: 5}} />
+      **Solstreif**
+      <br />PMS: 2004
+      <br />Hex: #F8DE9C
+      <br />RGB: 248, 222, 156
+      <br />CMYK: 0, 5, 59, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#F9CC76", height: 100, borderRadius: 5}} />
+      **Sommerdag**
+      <br />PMS: 2006
+      <br />Hex: #F9CC76
+      <br />RGB: 249, 204, 118
+      <br />CMYK: 1, 21, 76, 1
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#CDE5F2", height: 100, borderRadius: 5}} />
+      **Bekk**
+      <br />PMS: 277
+      <br />Hex: #CDE5F2
+      <br />RGB: 205, 229, 242
+      <br />CMYK: 31, 8, 0, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#9ECCED", height: 100, borderRadius: 5}} />
+      **Himmel**
+      <br />PMS: 2141
+      <br />Hex: #9ECCED
+      <br />RGB: 158, 204, 237
+      <br />CMYK: 44, 10, 0, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#DA573B", height: 100, borderRadius: 5}} />
+      **Rognebær**
+      <br />PMS: 179
+      <br />Hex: #DA573B
+      <br />RGB: 218, 87, 59
+      <br />CMYK: 0, 88, 85, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#F9C4AA", height: 100, borderRadius: 5}} />
+      **Nype**
+      <br />PMS: 487
+      <br />Hex: #F9C4AA
+      <br />RGB: 249, 196, 170
+      <br />CMYK: 0, 37, 31, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#153F7B", height: 100, borderRadius: 5}} />
+      **Fjord**
+      <br />PMS: 294
+      <br />Hex: #153F7B
+      <br />RGB: 21, 63, 123
+      <br />CMYK: 100, 79, 0, 37
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#032C30", height: 100, borderRadius: 5}} />
+      **Mørk granskog**
+      <br />PMS: ?
+      <br />Hex: #032C30
+      <br />RGB: 3, 44, 48
+      <br />CMYK: ?, ?, ?, ?
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#ABE1CD", height: 100, borderRadius: 5}} />
+      **Brevann**
+      <br />PMS: 7471
+      <br />Hex: #ABE1CD
+      <br />RGB: 171, 225, 205
+      <br />CMYK: —
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#116E6B", height: 100, borderRadius: 5}} />
+      **Havdyp**
+      <br />PMS: 329
+      <br />Hex: #116E6B
+      <br />RGB: 17, 110, 107
+      <br />CMYK: 100, 90, 47, 36
+    </Prose>
+  </Card>
+</Grid>
 
 {/* [GRAFIKK]
 
@@ -74,14 +218,78 @@ Under er noen eksempler på fargekombinasjoner som fungerer fint sammen.
 
 Fargene under brukes som hovedregel i Mattilsynets illustrasjoner.
 
-<ColorPalette>
-  <ColorItem colors={['#F8E0D8']} title="Hudtone, lysest" />
-  <ColorItem colors={['#C58F79']} title="Hudtone, mellom" />
-  <ColorItem colors={['#7F433B']} title="Hud og hår, mørk" />
-  <ColorItem colors={['#ED9A32']} title="Hår, gylden" />
-  <ColorItem colors={['#1E1A28']} title="Hår, mørk" />
-  <ColorItem colors={['#1D57AA']} title="Klær, mellomblå" subtitle="Brukes som alternativ til Fjord på mørke flater" />
-</ColorPalette>
+<Grid data-items="300">
+  <Card>
+    <Prose>
+      <Card style={{background: "#F8E0D8", height: 100, borderRadius: 5}} />
+      **Hud, lys**
+      <br />PMS: 7604
+      <br />Hex: #F8E0D8
+      <br />RGB: 248, 224, 216
+      <br />CMYK: 1, 11, 6, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#C58F79", height: 100, borderRadius: 5}} />
+      **Hud, mellom**
+      <br />PMS: 7521
+      <br />Hex: #C58F79
+      <br />RGB: 197, 143, 121
+      <br />CMYK: 12, 34, 38, 6
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#7F433B", height: 100, borderRadius: 5}} />
+      **Hud og hår, mørk**
+      <br />PMS: 3523
+      <br />Hex: #7F433B
+      <br />RGB: 127, 67, 59
+      <br />CMYK: 22, 83, 63, 50
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#ED9A32", height: 100, borderRadius: 5}} />
+      **Hår, gylden**
+      <br />PMS: 143
+      <br />Hex: #ED9A32
+      <br />RGB: 237, 154, 50
+      <br />CMYK: 0, 39, 98, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#1E1A28", height: 100, borderRadius: 5}} />
+      **Hår, mørk**
+      <br />PMS: Black 6
+      <br />Hex: #1E1A28
+      <br />RGB: 30, 26, 40
+      <br />CMYK: 79, 61, 24, 70
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#0C4FA1", height: 100, borderRadius: 5}} />
+      **Klær, mellomblå**
+      <br />PMS: 293
+      <br />Hex: #0C4FA1
+      <br />RGB: 12, 79, 161
+      <br />CMYK: 100, 69, 0, 6
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#B4CEA0", height: 100, borderRadius: 5}} />
+      **Lind**
+      <br />PMS: 578
+      <br />Hex: #B4CEA0
+      <br />RGB: 180, 206, 160
+      <br />CMYK: 32, 2, 52, 1
+    </Prose>
+  </Card>
+</Grid>
 {/*<Colors :values="[
   { hex: '#F8E0D8', name: 'Hudtone, lysest' },
   { hex: '#C58F79', name: 'Hudtone, mellom' },
@@ -95,11 +303,38 @@ Fargene under brukes som hovedregel i Mattilsynets illustrasjoner.
 
 Blå, gul og rosa finnes i lysere varianter enn de som inngår i hovedpaletten. Disse brukes i hovedsak som bakgrunnsfarger.
 
-<ColorPalette>
-  <ColorItem colors={['#DFEEF6']} title="Bakgrunnsblå" />
-  <ColorItem colors={['#FCF0D2']} title="Bakgrunnsgul" />
-  <ColorItem colors={['#FEE9DF']} title="Bakgrunnsrosa" />
-</ColorPalette>
+<Grid data-items="300">
+  <Card>
+    <Prose>
+      <Card style={{background: "#DFEEF6", height: 100, borderRadius: 5}} />
+      **Bakgrunnsblå**
+      <br />PMS: 2707
+      <br />Hex: #DFEEF6
+      <br />RGB: 223, 238, 246
+      <br />CMYK: 18, 5, 0, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#FCF0D2", height: 100, borderRadius: 5}} />
+      **Bakgrunnsgul**
+      <br />PMS: 7401
+      <br />Hex: #FCF0D2
+      <br />RGB: 252, 240, 210
+      <br />CMYK: 0, 3, 40, 0
+    </Prose>
+  </Card>
+  <Card>
+    <Prose>
+      <Card style={{background: "#FEE9DF", height: 100, borderRadius: 5}} />
+      **Bakgrunnsrosa**
+      <br />PMS: 691
+      <br />Hex: #FEE9DF
+      <br />RGB: 254, 233, 223
+      <br />CMYK: 0, 14, 4, 0
+    </Prose>
+  </Card>
+</Grid>
 
 {/* ## Digitale produkter
 

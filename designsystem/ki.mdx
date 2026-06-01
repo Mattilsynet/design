@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { getPkgVersion, JumpTo, Wide } from '../.storybook/blocks';
+import { GhostIcon, HeartIcon, ConfettiIcon } from "@phosphor-icons/react";
+import { Alert, Divider, Details, Prose, Table } from './react'
+import { styles } from '.';
+import colors from './assets/colors.png';
+import library from './assets/library.png';
+import sizes from './assets/sizes.png';
+import typography from './assets/typography.png';
+import modes from './assets/modes.mp4?url';
+
+<Meta title="Designsystem/KI" />
+
+# <GhostIcon /> KI og designsystemet
+
+> Designsystemet kommer med egne KI-instruksjoner som hjelper din agent å forstå konvensjoner og komponenter. Bruk som støtte, og husk at både design og kode alltid må kvalitetssikres av fagfolk <HeartIcon style={{ verticalAlign: '-.1em' }} />
+
+<JumpTo />
+
+## Kom i gang
+
+1. [Last ned og installer Open Code Desktop](https://opencode.ai/download) - brukes for å chatte med KI
+2. Sett opp et eksisterende kodeprosjekt, eller opprett et nytt, med `@mattilsynet/design` innstallert – spørr en utvikler på teamet ditt dersom du trenger bistand
+3. Opprett filen `AGENTS.md` i din prosjektmappe og lim inn:
+    ```
+    This project uses @mattilsynet/design. Before writing or modifying any UI,
+    read ./node_modules/@mattilsynet/design/AGENTS.md
+    ```
+4. Åpne Open Code &rsaquo; Trykk `+` (opp til høyre) &rsaquo; Velg prosjektmappen 
+   - **Tips:** GPT-5.5 er den "smarteste" modellen som har "vision" - altså kan se skisser
+5. Du kan nå spørre KI om å utvikle grensesnitt med komponenter fra designsystemet
+
+<hr />
+
+## Figma-til-kode
+
+1. Opprett filen `opencode.json` i din prosjektmappe og lim inn:
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "figma": {
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp"
+    }
+  }
+}
+```
+2. [Figma Desktop](https://www.figma.com/downloads/) må være åpen og kjørende samtidig som Open Code
+3. Åpne aktuell skisse &rsaquo; Aktiver **dev-mode** &rsaquo; Trykk **Setup Figma MCP** i høyemenyen
+4. Trykk **Done** i dialogen som åpner seg - trenger ikke velge noe
+5. Høyreklikk på framen til aktuell skisse &rsaquo; Velg **Copy link to selection**
+6. Lim inn i Open Code-chatten og be KI om å bygge grensesnittet i kode
+
+#### Tips:
+- Får du spørsmål om å koble komponenter via "Code Connect"? Bare svar "nei".
+- Bygg opp lag i Figma-skissene så nært slik det er tenkt at de skal fungere i kode.
+- Aktiver MCP for Chrome – da kan du få agenten til å sammenligne resultatet på localhost mot Figmaskissen.
+
+<hr />
+
+## Ofte stilte spørsmål
+
+**Trenger jeg dette hvis jeg ikke bruker KI-verktøy?**
+<br />Nei. `@mattilsynet/design` fungerer akkurat på samme måte med eller uten KI-instruksjonener. De er bare ekstra Markdown-filer som blir liggende ubrukt.
+
+**Vil dette gjøre min KI tregere?**
+<br />Nei. Inngangspunktet `AGENTS.md` er en liten fil, og filene for hver komponent lastes bare inn ved behov. Dette er optimalisert for å tvert i mot øke ytelsen ved å gi klare instruksjoner.
+
+**Hvordan oppdaterer jeg etter å ha oppgradert pakken?**
+<br />Du trenger ikke å gjøre noe. Snutten peker til `node_modules/@mattilsynet/design/AGENTS.md`, som alltid gjenspeiler versjonen du har installert. Oppgrader pakken, så oppgraderes instruksjonene sammen med den.

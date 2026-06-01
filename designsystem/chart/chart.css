@@ -18,6 +18,8 @@
 :host([data-variant="doughnut"]) .axis,
 :host([data-variant="pie"]) .axis { display: none }
 :host([data-labels="false"]) .axisGroup::before { position: absolute; pointer-events: none; opacity: 0 } /* Keep available for screen readers */
+:host([data-labels="false"]) .lineContainer > div::before,
+:host([data-labels="false"]) .lineContainer > div::after { display: none }
 
 .axis {
 	display: grid;
@@ -122,7 +124,20 @@
 .lineContainer { align-items: flex-start; display: flex; justify-content: space-between; pointer-events: none; grid-row: chart }
 .lineContainer > svg, .lineContainer { position: absolute; width: 100%; height: 100% }
 .lineContainer > svg { overflow: clip visible }
-.lineContainer > div[role="listitem"] { display: contents }
+.lineContainer > div { position: relative; height: 100% }
+.lineContainer > div + div::before {
+	border-left: var(--mtdsc-chart-axis-border);
+	content: '';
+	inset: 0 auto 0 0;
+	position: absolute;
+}
+
+.lineContainer > div::after {
+	content: attr(data-label) / '';
+	position: absolute;
+	top: 100%;
+	translate: -50%;
+}
 
 :host([data-variant|="line"]) .axisGroups,
 :host([data-variant|="area"]) .axisGroups { padding: 0 }
