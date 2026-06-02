@@ -102,6 +102,7 @@
 	.logo:not(:empty):not(:has(svg)) {
 		--_mtdsc-logo-indent: calc(var(--_mtdsc-logo-icon-size) + 0.94em);
 		height: auto;
+		padding-bottom: 1px; /* Fixes a 1px Safari text cutting when using mask with text */
 		line-height: 1.05;
 
 		&::before {
