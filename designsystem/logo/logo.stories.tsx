@@ -4,6 +4,9 @@ import { Logo } from "../react";
 import styles from "../styles.module.css";
 
 const meta = {
+	id: "designsystem-logo",
+	// TODO: Hide keywords-hack with wide spaces:
+	// "Designsystem/Logo \u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000}\u{3000} symbol ikon",
 	title: "Designsystem/Logo",
 	parameters: {
 		layout: "fullscreen",
@@ -57,9 +60,7 @@ export const React: Story = {
 			</Logo>
 			<Logo as="h1" />
 			<Logo href="/" data-env="test">
-				Helse
-				<wbr />
-				sertifikat
+				Servering
 			</Logo>
 			<Logo href="/" data-env="test">
 				<PlantIcon weight="fill" />
@@ -100,7 +101,7 @@ export const WithSubbrandEnglish: Story = {
 export const WithSubbrandEnvironment: Story = {
 	render: () => (
 		<a className={styles.logo} href="/" lang="en" data-env="test">
-			Sanitary certificate status
+			Servering
 		</a>
 	),
 };

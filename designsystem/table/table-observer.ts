@@ -2,9 +2,10 @@ import { attr, debounce, isBrowser, onHotReload, onMutation } from "../utils";
 
 const MOBILE = new WeakSet();
 const TABLES = isBrowser() ? document.getElementsByTagName("table") : [];
-const RESIZER = isBrowser()
-	? new ResizeObserver(debounce(handleResize, 200))
-	: null;
+const RESIZER =
+	isBrowser() && window.ResizeObserver // Check for ResizeObserver support, as it's not available in all environments (e.g., JSDOM)
+		? new ResizeObserver(debounce(handleResize, 200))
+		: null;
 
 function handleResize(
 	entries: Pick<ResizeObserverEntry, "target" | "contentRect">[],

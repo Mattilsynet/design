@@ -37,7 +37,7 @@
    */
   .sidebar-container { color: rgb(5, 68, 73) }
   .sidebar-container .sidebar-header a { font-size: 1.25rem } /* Larger title in sidebar */
-  .sidebar-container .sidebar-item :is(a, button) { align-items: center; font: inherit; font-weight: 400 }
+  .sidebar-container .sidebar-item :is(a, button) { align-items: center; font: inherit; font-weight: 400; white-space: pre }
   .sidebar-container .sidebar-item a { gap: 0 }
   .sidebar-container .sidebar-item:hover { background: #E2F1DF }
   .sidebar-container .sidebar-item,
@@ -48,8 +48,8 @@
     letter-spacing: 0;
     line-height: 1.5;
     text-transform: none;
- 
   }
+  .sidebar-container .search-result-item--label span { text-overflow: clip }
 
   .sidebar-container .search-result-item:is([data-id$="--default"], [data-id$="--docs"]) .search-result-item--label > :first-child { display: none }
   .sidebar-container .search-result-item:not([data-id$="--docs"], [data-id$="--default"]) .search-result-item--label > :first-child,
