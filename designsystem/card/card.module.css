@@ -21,7 +21,7 @@
 		--mtdsc-card-padding: var(--ds-size-5);
 
 		background: var(--mtdsc-card-background);
-		border-radius: var(--ds-border-radius-lg);
+		border-radius: var(--mtdsc-card-border-radius);
 		border: var(--ds-border-width-default) solid var(--mtdsc-card-border-color);
 		box-sizing: border-box;
 		color: var(--mtdsc-card-color);
