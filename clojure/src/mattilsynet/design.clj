@@ -25,6 +25,13 @@
 
 (defn get-svg-path [id]
   (case (namespace id)
+    "mattilsynet.logo"
+    (str base-path "/logo"
+         (if (= id :mattilsynet.logo/norsk)
+           ""
+           (str "-" (name id)))
+         ".edn")
+
     "icon"
     (str base-path "/" icons-dir "/" (name id) ".edn")
 
