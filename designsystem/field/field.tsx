@@ -152,6 +152,7 @@ const FieldDatalist = forwardRef<HTMLDataListElement, FieldDatalistProps>(
 			<u-datalist
 				data-placement={placement} // Backward compatibility
 				data-nofilter={!!filter || undefined} // Ensure data-nofilter is set correctly
+				role="listbox" // Fixes React instant rendering
 				ref={ref}
 				{...toCustomElementProps(rest)}
 			/>

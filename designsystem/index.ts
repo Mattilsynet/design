@@ -20,26 +20,7 @@ import "./table/table-observer";
 import "./toast/toast-observer";
 import "./tooltip/tooltip-element";
 import "./validation/validation-observer";
-import { isBrowser, onHotReload, onMutation } from "./utils";
 
 // Expose types
 export type Size = "sm" | "md" | "lg";
 export type HeadingSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-
-// Fix ds-suggestion while waiting for https://github.com/digdir/designsystemet/pull/4933
-const LISTS = isBrowser() ? document.getElementsByTagName("u-datalist") : [];
-const LISTED = new WeakSet();
-const handleDatalistConnect = () => {
-	for (const list of LISTS)
-		if (!LISTED.has(list)) {
-			list.closest("ds-suggestion")?.connectedCallback();
-			LISTED.add(list);
-		}
-};
-
-onHotReload("deprecations", () => [
-	onMutation(document, handleDatalistConnect, {
-		childList: true,
-		subtree: true,
-	}),
-]);
