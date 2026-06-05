@@ -4,6 +4,7 @@ import "@u-elements/u-progress";
 // Expose API
 export * from "@digdir/designsystemet-web"; // Import and expose Digdir web functionality
 export * from "@u-elements/u-combobox"; // Kept for backward compatibility
+export * from "@u-elements/u-details"; // Kept for backward compatibility
 export { version } from "../package.json"; // Expose version to make it easier to debug
 export * from "./analytics/analytics";
 export * from "./app/app-observer";
