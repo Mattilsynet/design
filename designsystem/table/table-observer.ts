@@ -26,7 +26,7 @@ function handleTableMobile() {
 	for (const target of TABLES)
 		if (target.hasAttribute("data-mobile")) {
 			const ths = Array.from(target.tHead?.rows[0]?.cells || [], (th) => {
-				return (th.innerText ?? th.textContent).trim(); // Fallback to textContent if innerText is not supported (e.g., in JSDOM)
+				return (th.innerText ?? th.textContent)?.trim() || ""; // Fallback to textContent if innerText is not supported (e.g., in JSDOM)
 			});
 
 			if (!MOBILE.has(target)) {
