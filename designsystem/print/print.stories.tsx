@@ -1,6 +1,15 @@
 import { CodeIcon, PrinterIcon } from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, Grid, Heading, Print, Prose, Table } from "../react";
+import {
+	Button,
+	Grid,
+	Heading,
+	Ingress,
+	Muted,
+	Print,
+	Prose,
+	Table,
+} from "../react";
 import styles from "../styles.module.css";
 import css from "../styles.module.css?inline";
 
@@ -834,6 +843,41 @@ export const Vedtak: Story = {
 					</tbody>
 				</table>
 			</section>
+		</div>
+	),
+};
+
+export const Overskrifter: Story = {
+	render: () => (
+		<div id="my-print">
+			<style>
+				{`${css}:root {
+					--mtdsc-print-office: 'hovedkontoret';
+					--mtdsc-print-department: 'avdeling brukerdialog og kommunikasjon';
+        }`}
+			</style>
+			<Print as={Prose}>
+				<Heading data-size="2xl">Heading data-size="2xl"</Heading>
+				<p>Text</p>
+				<Heading data-size="xl">Heading data-size="xl"</Heading>
+				<p>Text</p>
+				<Heading data-size="lg">Heading data-size="lg"</Heading>
+				<p>Text</p>
+				<Heading data-size="md">Heading data-size="md"</Heading>
+				<p>Text</p>
+				<Heading data-size="sm">Heading data-size="sm"</Heading>
+				<p>Text</p>
+				<Heading data-size="xs">Heading data-size="xs"</Heading>
+				<p>Text</p>
+				<Heading data-size="2xs">Heading data-size="2xs"</Heading>
+				<p>Text</p>
+				<p>
+					<Ingress>Ingress</Ingress>
+				</p>
+				<p>
+					<Muted>Muted</Muted>
+				</p>
+			</Print>
 		</div>
 	),
 };

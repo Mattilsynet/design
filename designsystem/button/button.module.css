@@ -3,7 +3,7 @@
 		composes: ds-button from "@digdir/designsystemet-css";
 		/* TODO Digdir: add --dsc-button-border-radius */
 
-		flex-shrink: 0; /* If placed in flex */
+		flex-shrink: 0; /* TODO Digdir: If placed in flex */
 		max-width: 100%;
 		text-align: center;
 		transition-duration: 0.2s;
