@@ -54,7 +54,8 @@
 	break-before: page;
 }
 .print[data-size="sm"],
-.print [data-size="sm"] {
+.print[data-size="xs"][class*="heading"],
+.print [data-size="sm"]:not([class*="heading"]) {
 	font-size: var(--mtdsc-print-font-sm);
 }
 
