@@ -6,6 +6,7 @@ Mattilsynets designsystem bygger oppå [designsystemet.no](https://www.designsys
 ## Kom i gang
 
 - Se [design.mattilsynet.no](https://design.mattilsynet.no/?path=/docs/designsystem-introduksjon--docs) for hvordan bruke `@mattilsynet/design`
+- Se [`kotlin/README.md`](kotlin/README.md) for hvordan utvikle, bygge og bruke Kotlin/HTMX-pakken
 
 ## Henvendelser
 

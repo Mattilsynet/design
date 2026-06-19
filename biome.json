@@ -30,6 +30,7 @@
 			"!**/debug.css",
 			"!**/design-tokens",
 			"!**/design-tokens-build",
+			"!**/build",
 			"!**/dist",
 			"!**/mtds",
 			"!**/preview.css",

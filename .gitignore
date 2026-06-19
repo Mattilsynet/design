@@ -3,6 +3,10 @@ storybook-static
 node_modules
 **/dist
 **/mtds
+**/build
+.gradle
+**/.gradle
+**/.kotlin
 clojure/resources/
 clojure/mattilsynet-design.jar
 

@@ -45,7 +45,9 @@
 		"./tailwind.css": "./mtds/tailwind.css"
 	},
 	"scripts": {
-		"build": "vite build --mode iife && vite build --mode iife-atlas && vite build && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
+		"build": "vite build --mode iife && vite build --mode iife-atlas && vite build && npm run build:metadata && rm -rf mtds/docs/ && rm -rf mtds/iife.css",
+		"build:metadata": "node scripts/generate-component-metadata.mjs",
+		"test:metadata": "node scripts/test-component-metadata-generator.mjs",
 		"build:tokens": "npx @digdir/designsystemet@latest tokens build --config designsystemet.config.json",
 		"format": "npx @biomejs/biome format",
 		"lint": "npx @biomejs/biome lint",
