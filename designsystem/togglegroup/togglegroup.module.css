@@ -6,12 +6,8 @@
 		--dsc-togglegroup-border-radius: calc(
 			var(--ds-border-radius-sm) +
 			var(--dsc-togglegroup-border-width)
-		); /* TODO Digdir: minus spacing and have a minimum radius */
+		);
 		--dsc-togglegroup-spacing: var(--ds-size-1);
-	}
-	/* TODO Digdir: */
-	.togglegroup:not([hidden]) {
-		display: flex;
 	}
 	.togglegroup label {
 		font-weight: var(--ds-font-weight-medium);

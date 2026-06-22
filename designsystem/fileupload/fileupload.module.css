@@ -6,6 +6,7 @@
 			var(--ds-size-13);
 		--_mtdsc-fileupload-dash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vector-effect='non-scaling-stroke'%3E%3Crect fill='none' stroke-dasharray='6, 6' stroke-dashoffset='0' stroke-width='2.25 ' stroke='black' rx='10' ry='10' x='0' y='0' width='100%25' height='100%25' %3E%3C/rect%3E%3C/svg%3E");
 		--_mtdsc-fileupload-dash--hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vector-effect='non-scaling-stroke'%3E%3Crect fill='none' stroke-dasharray='6, 6' stroke-dashoffset='0' stroke-width='3' stroke='black' rx='10' ry='10' x='0' y='0' width='100%25' height='100%25' %3E%3C/rect%3E%3C/svg%3E");
+		--mtds-text-required: none; /* Hide "Må fylles ut" inside Fileupload */
 
 		border-radius: var(--ds-border-radius-lg);
 		box-sizing: border-box;

@@ -513,6 +513,33 @@ export const WithSuggestionCreatable: Story = {
 	),
 };
 
+export const WithSuggestionNoResults: Story = {
+	parameters: {
+		layout: "padded",
+	},
+	render: () => (
+		<ds-field className={styles.field}>
+			<label>Med "ingen treff"</label>
+			<ds-suggestion className={styles.suggestion}>
+				<input type="text" className={styles.input} />
+				<del role="img" aria-label="Fjern tekst"></del>
+				<u-datalist>
+					<u-option role="none" value="">
+						Ingen treff
+					</u-option>
+					<u-option value="Sogndal">Sogndal</u-option>
+					<u-option value="Oslo">Oslo</u-option>
+					<u-option value="Brønnøysund">Brønnøysund</u-option>
+					<u-option value="Stavanger">Stavanger</u-option>
+					<u-option value="Trondheim">Trondheim</u-option>
+					<u-option value="Bergen">Bergen</u-option>
+					<u-option value="Lillestrøm">Lillestrøm</u-option>
+				</u-datalist>
+			</ds-suggestion>
+		</ds-field>
+	),
+};
+
 export const WithSuggestionAPI: Story = {
 	parameters: {
 		layout: "padded",
@@ -523,12 +550,12 @@ export const WithSuggestionAPI: Story = {
 
 		const getCountries = async (value: string) => {
 			if (!value) return setOptions("Name a country");
-			const api = `https://restcountries.com/v2/name/${value}?fields=name`;
-			const countries = await (await fetch(api)).json();
+			const api = `https://dummyjson.com/recipes/search?q=${value}`;
+			const data = await (await fetch(api)).json();
 
 			setOptions(
-				Array.isArray(countries)
-					? countries.map(({ name }) => name)
+				Array.isArray(data.recipes)
+					? data.recipes.map(({ name }: { name: string }) => name)
 					: "No results",
 			);
 		};
@@ -536,7 +563,7 @@ export const WithSuggestionAPI: Story = {
 		const handleInput = (event: React.InputEvent<HTMLInputElement>) => {
 			const value = encodeURIComponent(event.currentTarget.value.trim());
 
-			setOptions(value ? "Loading..." : "Name a country");
+			setOptions(value ? "Loading..." : "Find a recipe");
 			clearTimeout(timer.current);
 			timer.current = setTimeout(getCountries, 500, value); // Debounce API call
 		};

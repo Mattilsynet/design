@@ -36,7 +36,7 @@ export const Logo: LogoComponent = forwardRef<null>(function Logo<
 	return (
 		<Tag
 			className={clsx(styles.logo, className)}
-			style={{ "-webkit-mask-box-image": "none", ...style }} // Overwrite Autoprefixer
+			style={{ WebkitMaskBoxImage: "none", ...style }} // Overwrite Autoprefixer
 			ref={ref}
 			{...rest}
 		/>
