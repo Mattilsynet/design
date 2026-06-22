@@ -124,3 +124,27 @@ export const WithPreviewImage: Story = {
 		);
 	},
 };
+
+export const WithExternalLabel: Story = {
+	render: () => (
+		<ds-field className={styles.field}>
+			<label>Last opp filter</label>
+			<label className={styles.fileupload}>
+				<UploadIcon />
+				<br />
+				Dra over eller <u>last opp fil</u>
+				<small>
+					Støttede formater: PDF, JPEG, SVG
+					<br />
+					Filstørrelse under 10 MB
+				</small>
+				<input
+					type="file"
+					accept="image/*,.pdf"
+					title="Last opp filer"
+					required
+				/>
+			</label>
+		</ds-field>
+	),
+};

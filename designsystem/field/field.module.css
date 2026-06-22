@@ -107,6 +107,9 @@
 	.suggestion u-option::before {
 		scale: 0.75;
 	}
+	.suggestion u-datalist:has([aria-hidden="false"]) u-option[role="none"] {
+		display: none;
+	}
 	.suggestion[data-variant="inside"] {
 		--dsc-suggestion-chip-padding: 0 var(--mtds-2);
 		--dsc-suggestion-chip-height: var(--mtds-7);
