@@ -800,6 +800,10 @@
 		"categories": ["Natur"],
 		"tags": ["skyer", "solskinn"]
 	},
+	"cloud-white-sunshine.svg": {
+		"categories": ["Natur"],
+		"tags": ["skyer", "solskinn", "Hvit"]
+	},
 	"egg-boat.svg": {
 		"categories": ["Mat"],
 		"tags": ["eggebåt", "eggekajak", "eggekano", "eggekatamaran", "delt egg"]

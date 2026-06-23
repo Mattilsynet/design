@@ -142,14 +142,18 @@
 	.prose > :where(p, ul, ol, h1, h2, h3, h4, h5, h6) {
 		max-width: var(--mtdsc-prose-max-width);
 	}
-	.prose > ul:not([class]) {
-		list-style: disc; /* Restore styling potentially removed by Tailwind */
+	.prose > ul:not([class]),
+	.prose > ul:not([class]) ul {
+		padding-left: var(--mtds-4);
+		list-style: "\2022\2009\00A0"; /* Restore styling potentially removed by Tailwind */
+		break-inside: avoid;
+	}
+	.prose > ul:not([class]) ul {
+		padding-left: var(--mtds-6);
 	}
 	.prose > ol:not([class]) {
-		list-style: decimal; /* Restore styling potentially removed by Tailwind */
-	}
-	.prose > :where(ul, ol):not([class]) {
 		padding-left: 1em;
+		list-style: decimal; /* Restore styling potentially removed by Tailwind */
 		break-inside: avoid;
 	}
 	.prose > :where(ul, ol):not([class]) > li:not(:first-child) {
