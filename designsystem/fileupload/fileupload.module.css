@@ -28,6 +28,11 @@
 		position: absolute;
 		width: 100%;
 	}
+	.fileupload:has(input:focus-visible) {
+		box-shadow: var(--dsc-focus-boxShadow);
+		outline: var(--dsc-focus-outline);
+		outline-offset: var(--ds-border-width-focus);
+	}
 	.fileupload:hover {
 		--_mtdsc-fileupload-dash: var(--_mtdsc-fileupload-dash--hover);
 		background: var(--mtdsc-fileupload-background--hover);
