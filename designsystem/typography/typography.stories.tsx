@@ -182,11 +182,9 @@ const proseDecorator: Story["decorators"] = (Story) => {
 				  body:has(input[role="switch"]:checked) { --checked: "" }
 					body:has(input[role="switch"]:checked) .${CSS_PROSE} > :hover { --background: #88bbff4d }
 					body:not(:has(.sbdocs-content)) {
-						.${CSS_PROSE} { overflow: clip }
 						.${CSS_PROSE} > * {
 							position: relative;
-							background: var(--background, transparent);
-							box-shadow: 100px 0 var(--background, transparent), -100px 0 var(--background, transparent);
+							background: linear-gradient(to right, var(--background, transparent), transparent);
 						}
 						.${CSS_PROSE} > [data-before]::before,
 						.${CSS_PROSE} > [data-after]::after {

@@ -10,8 +10,6 @@
 
 		border-radius: var(--mtdsc-tag-border-radius);
 		font-size: var(--ds-body-sm-font-size);
-		font-weight: normal; /* TODO Digdir: Ensure no inheritance of font-weight */
-		flex-shrink: 0; /* TODO Digdir: if placed in display: flex */
 		font-variant-numeric: tabular-nums; /* Numeric numbers in tags is nice */
 		gap: var(--mtdsc-tag-gap);
 	}

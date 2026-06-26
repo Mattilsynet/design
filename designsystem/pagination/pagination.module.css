@@ -1,9 +1,7 @@
 @layer mt.design {
 	.pagination {
 		composes: ds-pagination from "@digdir/designsystemet-css";
-		--dsc-pagination-icon-url: var(
-			--mtds-icon-chevron--right
-		); /* TODO Digdir: dsc-pagination-button-background--active etc */
+		--dsc-pagination-icon-url: var(--mtds-icon-chevron--right);
 	}
 	.pagination :is(a, button) {
 		border-radius: var(--ds-border-radius-full);

@@ -44,7 +44,7 @@
 		--mtdsc-fileupload-border-color: var(--ds-color-danger-border-default);
 	}
 	.fileupload > svg {
-		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		display: inline-block;
 		fill: currentColor; /* In case using non-Phosphor icons */
 		font-size: 1em;
 		height: var(--mtds-icon-size);

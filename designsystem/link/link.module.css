@@ -45,7 +45,7 @@
 @layer mt.design {
 	/* Using where to let .button overwrite */
 	:where(a, .link) > svg {
-		display: inline-block; /* TODO Digdir: Fix Tailwind default */
+		display: inline-block;
 		fill: currentColor; /* In case using non-Phosphor icons */
 		font-size: 1em;
 		height: var(--mtds-icon-size-sm);

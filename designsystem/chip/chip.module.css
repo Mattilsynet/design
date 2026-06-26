@@ -10,9 +10,6 @@
 		transition-duration: 0.2s;
 		transition-property: background-color, color;
 	}
-	.chip::after {
-		flex-shrink: 0; /* TODO Digdir */
-	}
 	.chip [data-nowrap] {
 		overflow: clip;
 		text-overflow: ellipsis;
@@ -30,7 +27,6 @@
 		border-color: var(--dsc-chip-border-color);
 		color: var(--dsc-chip-color);
 		padding-right: var(--ds-size-1);
-		text-align: inherit; /* TODO Digdir: Fix button alignment */
 	}
 	.chip[data-removable]:hover::after {
 		mask-image: var(--mtds-icon-close--filled);
