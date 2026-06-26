@@ -550,7 +550,7 @@ export const WithSuggestionAPI: Story = {
 
 		const getCountries = async (value: string) => {
 			if (!value) return setOptions("Name a country");
-			const api = `https://dummyjson.com/recipes/search?q=${value}`;
+			const api = `https://dummyjson.com/recipes/search?q=${value}`; // TODO FIX
 			const data = await (await fetch(api)).json();
 
 			setOptions(

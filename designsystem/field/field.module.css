@@ -2,7 +2,6 @@
 	.field {
 		composes: ds-field from "@digdir/designsystemet-css";
 		position: relative; /* Support <u-datalist> positioning */
-		row-gap: var(--dsc-field-content-spacing);
 		text-wrap: pretty; /* Make required tag wrap pretty */
 	}
 	.field > * {
@@ -66,11 +65,6 @@
 	 */
 	.field:has(input:is([type="radio"], [type="checkbox"])) {
 		grid-template: "input content help" / auto 1fr auto; /* Make space for helpText as well */
-		gap: 0;
-
-		& > input {
-			margin-right: var(--mtdsc-field-content-spacing);
-		}
 
 		/* Helptext */
 		& > button[class*="helptext"] {
@@ -83,7 +77,6 @@
 		}
 		& :is(p, [data-field="description"]) {
 			font-size: var(--ds-font-size-minus-1);
-			padding-inline-start: 0; /* TODO Digdir: Reset */
 		}
 		&:has([readonly]:disabled) label {
 			cursor: default; /* Stiling when both readonly and disabled since browser does not prevent readonly on checkobx/radio */

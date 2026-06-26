@@ -22,7 +22,7 @@ function urlTheme() {
 	window.localStorage.setItem("theme", theme);
 
 	// If no theme is set in URL, but one is stored, update URL
-	if (!globals.get("theme") && theme !== store) {
+	if (globals.toString() && !globals.get("theme") && theme !== store) {
 		globals.set("theme", store);
 		url.searchParams.set(
 			"globals",

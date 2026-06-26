@@ -19,16 +19,10 @@
 
 		background: var(--dsc-table-background);
 		vertical-align: top;
-
-		page-break-inside: avoid; /* TODO Digdir */
-		break-inside: avoid; /* TODO Digdir */
 	}
 
 	.table[data-fixed] {
 		table-layout: fixed;
-	}
-	.table > :is(thead, tbody, tfoot) {
-		vertical-align: inherit; /* TODO Digdir */
 	}
 	.table[data-align="center"] {
 		vertical-align: middle;

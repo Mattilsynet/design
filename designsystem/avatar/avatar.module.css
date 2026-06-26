@@ -8,12 +8,6 @@
 		--mtdsc-avatar-size: var(--mtds-7);
 		--mtdsc-avatar-padding: var(--mtds-1);
 	}
-	/* TODO Digdir: Support button and link */
-	.avatar:is(button) {
-		cursor: pointer;
-		border: 0;
-		padding: 0;
-	}
 	.avatar:is(button, a):focus-visible {
 		box-shadow: var(--dsc-focus-boxShadow);
 		outline: var(--dsc-focus-outline);

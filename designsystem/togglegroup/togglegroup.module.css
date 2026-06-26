@@ -3,35 +3,15 @@
 		composes: ds-toggle-group from "@digdir/designsystemet-css";
 		--dsc-togglegroup-background: var(--ds-color-background-tinted);
 		--dsc-togglegroup-border-color: var(--ds-color-border-subtle);
+		--dsc-togglegroup-spacing: var(--ds-size-1);
 		--dsc-togglegroup-border-radius: calc(
 			var(--ds-border-radius-sm) +
 			var(--dsc-togglegroup-border-width)
 		);
-		--dsc-togglegroup-spacing: var(--ds-size-1);
 	}
 	.togglegroup label {
 		font-weight: var(--ds-font-weight-medium);
 	}
-	.togglegroup label:not(:has(:checked)) {
-		--dsc-button-background--active: var(--ds-color-background-tinted);
-		--dsc-button-background--hover: var(--ds-color-background-tinted);
-		--dsc-button-background: transparent;
-		--dsc-button-color--hover: inherit;
-		--dsc-button-color: inherit;
-	}
-	/* TODO Digdir: */
-	.togglegroup a {
-		isolation: isolate; /*creates a new stacking context so button shows above the parent's overlapping outline*/
-		border-radius: calc(
-			var(--dsc-togglegroup-border-radius) -
-			var(--dsc-togglegroup-border-width)
-		);
-		height: 100%;
-		min-height: unset;
-		white-space: nowrap;
-		min-width: fit-content;
-	}
-	/* Double selector to increase specificity */
 	.togglegroup.togglegroup a[aria-current="true"] {
 		--dsc-button-background: var(--ds-color-base-default);
 		--dsc-button-color: var(--ds-color-base-contrast-default);

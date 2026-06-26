@@ -38,7 +38,6 @@
 		pointer-events: none;
 	}
 	.tabs [role="tab"] {
-		flex-shrink: 0; /* TODO Digdir: prevent shrinking tabs */
 		background: var(--ds-color-background-tinted);
 		border-color: var(--dsc-tabs-list-border-color);
 		border-radius: var(--ds-border-radius-md) var(--ds-border-radius-md) 0 0;

@@ -3,7 +3,10 @@
 		"categories": ["Landdyr"],
 		"tags": ["dyr", "fugler", "pip-pipp", "due", "måke"]
 	},
-	"pig.svg": { "categories": ["Landdyr"], "tags": ["gris", "svin"] },
+	"pig.svg": {
+		"categories": ["Landdyr"],
+		"tags": ["gris", "svin"]
+	},
 	"fish.svg": {
 		"categories": ["Akvakultur"],
 		"tags": ["dyr", "fisk", "torsk", "laks", "ørret", "sild", "røye"]
@@ -28,7 +31,9 @@
 		"categories": ["Akvakultur"],
 		"tags": ["musling", "blåskjell"]
 	},
-	"person-fish-seaweed.svg": { "categories": ["Mennesker", "Akvakultur"] },
+	"person-fish-seaweed.svg": {
+		"categories": ["Mennesker", "Akvakultur"]
+	},
 	"person-fish.svg": {
 		"categories": ["Mennesker", "Akvakultur"],
 		"tags": [
@@ -52,7 +57,10 @@
 		"categories": ["Natur", "Akvakultur"],
 		"tags": ["sjøgress", "alger", "tang", "tare"]
 	},
-	"shrimp.svg": { "categories": ["Akvakultur"], "tags": ["reke", "scampi"] },
+	"shrimp.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["reke", "scampi"]
+	},
 	"water-plant.svg": {
 		"categories": ["Akvakultur"],
 		"tags": ["sjøgress", "alger", "tang", "tare", "vannplanter"]
@@ -142,8 +150,14 @@
 		"categories": ["Mat"],
 		"tags": ["eple", "kaffekopp", "te", "frukt", "drikke"]
 	},
-	"cup.svg": { "categories": ["Mat"], "tags": ["kaffekopp", "te", "drikke"] },
-	"apple.svg": { "categories": ["Mat"], "tags": ["eple", "frukt"] },
+	"cup.svg": {
+		"categories": ["Mat"],
+		"tags": ["kaffekopp", "te", "drikke"]
+	},
+	"apple.svg": {
+		"categories": ["Mat"],
+		"tags": ["eple", "frukt"]
+	},
 	"banana-apple-cup.svg": {
 		"categories": ["Mat"],
 		"tags": [
@@ -159,12 +173,18 @@
 			"pause"
 		]
 	},
-	"banana.svg": { "categories": ["Mat"], "tags": ["banan", "frukt"] },
+	"banana.svg": {
+		"categories": ["Mat"],
+		"tags": ["banan", "frukt"]
+	},
 	"farmer-turnip-plant.svg": {
 		"categories": ["Mat"],
 		"tags": ["mat", "nepe", "rotgrønnsak", "grønnsak"]
 	},
-	"pear.svg": { "categories": ["Mat"], "tags": ["pære", "frukt"] },
+	"pear.svg": {
+		"categories": ["Mat"],
+		"tags": ["pære", "frukt"]
+	},
 	"person-fork-bush.svg": {
 		"categories": ["Mennesker", "Mat"],
 		"tags": ["person", "menneske", "forkle", "mat", "busk", "gaffel", "sulten"]
@@ -1034,5 +1054,121 @@
 	"virus.svg": {
 		"categories": ["Beredskap"],
 		"tags": ["virus", "smitte", "sykdom", "beredskap"]
+	},
+	"pencil.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["blyant", "skriving", "tegne"]
+	},
+	"law-books.svg": {
+		"categories": ["Visjon"],
+		"tags": ["lov", "regelverk", "juridisk", "bøker"]
+	},
+	"books.svg": {
+		"categories": ["Visjon"],
+		"tags": ["bøker", "litteratur", "kunnskap"]
+	},
+	"letter-in-mailbox.svg": {
+		"categories": ["Kommunikasjon"],
+		"tags": ["brev", "postkasse", "post"]
+	},
+	"user-dialogue.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["dialog", "samtale", "kommunikasjon", "person"]
+	},
+	"user-interface.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["brukergrensesnitt", "ui", "skjerm", "digitalt"]
+	},
+	"eu-work-1.svg": {
+		"categories": ["Europa"],
+		"tags": ["eu", "eøs", "internasjonalt samarbeid"]
+	},
+	"eu-work-2.svg": {
+		"categories": ["Europa"],
+		"tags": ["eu", "eøs", "internasjonalt samarbeid"]
+	},
+	"eu-flag.svg": {
+		"categories": ["Flagg"],
+		"tags": ["flagg", "EU", "Europa"]
+	},
+	"fishing-boat-and-fish-health-biologist.svg": {
+		"categories": ["Akvakultur", "Mennesker"],
+		"tags": ["fiskebåt", "fiskehelse", "biolog", "akvakultur"]
+	},
+	"fishing-boat.svg": {
+		"categories": ["Akvakultur"],
+		"tags": ["fiskebåt", "båt", "fiske"]
+	},
+	"carrot.svg": {
+		"categories": ["Mat"],
+		"tags": ["gulrot", "grønnsak"]
+	},
+	"shopping-cart-large.svg": {
+		"categories": ["Mat"],
+		"tags": ["handlevogn", "handel", "innkjøp"]
+	},
+	"it-and-security.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["it", "sikkerhet", "cybersikkerhet"]
+	},
+	"law.svg": {
+		"categories": ["Visjon"],
+		"tags": ["lov", "regelverk", "juridisk"]
+	},
+	"lab-work.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["laboratorium", "analyse", "prøve"]
+	},
+	"man-with-magnifying-glass.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "lupe", "inspeksjon"]
+	},
+	"milk-carton.svg": {
+		"categories": ["Mat"],
+		"tags": ["melk", "melkekartong"]
+	},
+	"pen.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["penn", "skriving"]
+	},
+	"person-with-tie.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "slips"]
+	},
+	"person-and-infographic.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["person", "infografikk", "data"]
+	},
+	"collaboration-and-culture.svg": {
+		"categories": ["Mennesker"],
+		"tags": ["samarbeid", "kultur", "team"]
+	},
+	"screen-with-content.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["skjerm", "innhold", "digitalt"]
+	},
+	"telescope.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["teleskop", "observasjon"]
+	},
+	"norwegian-parliament.svg": {
+		"categories": ["Bygg"],
+		"tags": ["stortinget", "politikk", "bygg"]
+	},
+	"study.svg": {
+		"categories": ["Visjon"],
+		"tags": ["studie", "læring", "utdanning"]
+	},
+	"trailer.svg": {
+		"categories": ["Utstyr"],
+		"tags": ["tilhenger", "transport"]
+	},
+	"emergency-vehicle.svg": {
+		"categories": ["Beredskap"],
+		"tags": ["utrykningskjøretøy", "beredskap", "nødetat"]
+	},
+	"waterworks.svg": {
+		"categories": ["Drikkevann"],
+		"tags": ["vannverk", "drikkevann", "vannforsyning"]
 	}
 }

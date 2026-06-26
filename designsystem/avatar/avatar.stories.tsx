@@ -28,6 +28,9 @@ export const Default: Story = {
 			<div className={styles.avatar}>
 				<UserIcon aria-label="Navn Navnesen" />
 			</div>
+			<button type="button" className={styles.avatar}>
+				<UserIcon aria-label="Navn Navnesen" />
+			</button>
 		</>
 	),
 };
