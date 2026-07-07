@@ -72,7 +72,7 @@
 		"@types/node": "^26.1.0",
 		"@types/react": "^19.2.17",
 		"@types/react-dom": "^19.2.3",
-		"@vitejs/plugin-react": "^5.2.0",
+		"@vitejs/plugin-react": "^6.0.3",
 		"fast-glob": "^3.3.3",
 		"handsontable": "18.0.0",
 		"leaflet": "^2.0.0-alpha.1",
@@ -83,8 +83,8 @@
 		"react-moveable": "^0.56.0",
 		"storybook": "^10.4.6",
 		"typescript": "^6.0.3",
-		"vite": "^7.3.2",
-		"vite-plugin-dts": "^4.5.4",
+		"vite": "^8.1.3",
+		"vite-plugin-dts": "^5.0.3",
 		"vite-plugin-static-copy": "^4.1.1"
 	},
 	"dependencies": {
