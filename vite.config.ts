@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import react from "@vitejs/plugin-react";
 import postcssNesting from "postcss-nesting";
+import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import pkg from "./package.json";
 import { cssPropsRename, cssToTailwind } from "./vite.plugins";
@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) =>
 							),
 						}),
 						entryRoot: root,
-						outDir: dist,
+						outDirs: dist,
 					}),
 					{
 						name: "Generate CSS modules map to styles.json and add ensure correct order when loading with TailwindCSS",
