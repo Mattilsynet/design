@@ -171,10 +171,10 @@
 	.flex > [data-self="auto"] { flex-basis: auto } /* Default */
 
 	/* Using --mtds-break, so we can set this value on the container as well for easier changing breakpoint of many items */
-	.flex[data-break] { container: _mtds-break / inline-size; --modifier: calc(var(--mtds-break, 40rem) - 100cqw) } /* Can use cqw here even though it is on the container itself as CSS properties are evaluated when used, not at time of defintion */
+	.flex[data-break] { container: _mtds-break / inline-size; --modifier: calc(var(--mtds-break, 40rem) - 100cqw) } /* Can use cqw here even though it is on the container itself, as CSS properties are evaluated when used (not at time of definition) */
 	.flex[data-break] > :nth-child(1) { flex-grow: 0; order: -2 }
-	.flex[data-break] > :nth-child(2) { flex: 1 1 0px; min-width: clamp(0px, calc(var(--modifier) * 999), 100%) } /* Explaination https://www.miragecraft.com/blog/unholy-albatross */
-	.flex[data-break] > :nth-child(3) { flex-grow: 0; margin-left: auto; order: max(-1, calc(var(--modifier) / -1px)) } /* Note: This does not work in Firefox, yet. Too bad */
+	.flex[data-break] > :nth-child(2) { flex: 1 1 0px; min-width: clamp(0px, calc(var(--modifier) * 999), 100%) } /* Explanation https://www.miragecraft.com/blog/unholy-albatross */
+	.flex[data-break] > :nth-child(3) { flex-grow: 0; margin-left: auto; order: max(-1, calc(var(--modifier) / -1px)) } /* Note: This does not work in Firefox yet. */
 	.flex[data-break] > :nth-child(3):not([data-justify]) { justify-content: end } /* Default to justify-end */
 
 	/**

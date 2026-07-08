@@ -19,8 +19,8 @@ const meta = {
 		layout: "padded",
 	},
 	decorators: [
-		(Story, meta) =>
-			meta.name === "Break Card" ? (
+		(Story, context) =>
+			context.name === "Break Card" ? (
 				<Story />
 			) : (
 				<div className="mt-story">
