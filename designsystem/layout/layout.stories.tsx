@@ -1,3 +1,10 @@
+import {
+	CalendarDotsIcon,
+	ClockIcon,
+	DownloadSimpleIcon,
+	ListChecksIcon,
+	UploadSimpleIcon,
+} from "@phosphor-icons/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Fragment } from "react";
 import { Button, Flex, Grid } from "../react";
@@ -12,10 +19,13 @@ const meta = {
 		layout: "padded",
 	},
 	decorators: [
-		(Story) => (
-			<div className="mt-story">
+		(Story, meta) =>
+			meta.name === "Break Card" ? (
 				<Story />
-				<style>{`
+			) : (
+				<div className="mt-story">
+					<Story />
+					<style>{`
 					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
 						display: grid;
 						gap: 1rem;
@@ -27,8 +37,8 @@ const meta = {
 						& div[data-align-content] { height: 150px }
 					}
 				`}</style>
-			</div>
-		),
+				</div>
+			),
 	],
 } satisfies Meta;
 
@@ -439,5 +449,123 @@ export const AlignContent: Story = {
 				</div>
 			</article>
 		</section>
+	),
+};
+
+export const BreakCard: Story = {
+	render: () => (
+		<div
+			className={styles.grid}
+			style={{ "--mtds-break": "40em" } as React.CSSProperties}
+		>
+			<div className={styles.card}>
+				<div className={styles.flex} data-align="start" data-break>
+					<h2
+						data-card="start"
+						className={styles.heading}
+						data-size="2xs"
+						data-self="200"
+					>
+						123456789
+					</h2>
+					<div className={styles.flex} data-self="500" data-items="100">
+						<div className={styles.grid} data-items="100">
+							<div className={styles.info}>
+								<CalendarDotsIcon />
+								<span>06.12.2024</span>
+							</div>
+							<div className={styles.info}>
+								<ClockIcon />
+								19:37
+							</div>
+						</div>
+						<div className={styles.grid} data-items="100">
+							<div className={styles.info}>
+								<UploadSimpleIcon />
+								Groene Tuin
+							</div>
+							<div className={styles.info}>
+								<i>🇫🇷</i>
+								Frankrike
+							</div>
+						</div>
+						<div className={styles.grid} data-self="500" data-items="250">
+							<div className={styles.info}>
+								<DownloadSimpleIcon />
+								Blomquist Blomster AS
+							</div>
+							<div className={styles.info}>
+								<ListChecksIcon />
+								Daucus carota, Hydrangea paniculata, +4
+							</div>
+						</div>
+					</div>
+					<div className={styles.flex} data-self="150">
+						<button
+							className={styles.button}
+							type="button"
+							data-variant="secondary"
+							data-arrow
+						>
+							Action
+						</button>
+					</div>
+				</div>
+			</div>
+			<div className={styles.card}>
+				<div className={styles.flex} data-align="start" data-break>
+					<h2
+						data-card="start"
+						className={styles.heading}
+						data-size="2xs"
+						data-self="200"
+					>
+						123456789
+					</h2>
+					<div className={styles.flex} data-self="500" data-items="100">
+						<div className={styles.grid} data-items="100">
+							<div className={styles.info}>
+								<CalendarDotsIcon />
+								<span>06.12.2024</span>
+							</div>
+							<div className={styles.info}>
+								<ClockIcon />
+								19:37
+							</div>
+						</div>
+						<div className={styles.grid} data-items="100">
+							<div className={styles.info}>
+								<UploadSimpleIcon />
+								Groene Tuin
+							</div>
+							<div className={styles.info}>
+								<i>🇫🇷</i>
+								Frankrike
+							</div>
+						</div>
+						<div className={styles.grid} data-self="500" data-items="250">
+							<div className={styles.info}>
+								<DownloadSimpleIcon />
+								Blomquist Blomster AS
+							</div>
+							<div className={styles.info}>
+								<ListChecksIcon />
+								Daucus carota, Hydrangea paniculata, +4
+							</div>
+						</div>
+					</div>
+					<div className={styles.flex} data-self="150">
+						<button
+							className={styles.button}
+							type="button"
+							data-variant="secondary"
+							data-arrow
+						>
+							Action 1
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	),
 };

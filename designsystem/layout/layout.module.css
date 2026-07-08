@@ -144,8 +144,8 @@
 	.flex[data-nowrap] { flex-wrap: nowrap }
 	.flex > [data-nowrap]:not(.flex) { min-width: max-content } /* .flex[data-nowrap] is allready controlled by flex-wrap: nowrap */
 	.flex[data-items="25"] > :not([data-self]), .flex > [data-self="25"] { flex-basis: calc(1rem / 16 * 25) } /* Convert to rem based pixels */
-	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) } /* Convert to rem based pixels */
-	.flex[data-items="75"] > :not([data-self]), .flex > [data-self="75"] { flex-basis: calc(1rem / 16 * 75) } /* Convert to rem based pixels */
+	.flex[data-items="50"] > :not([data-self]), .flex > [data-self="50"] { flex-basis: calc(1rem / 16 * 50) }
+	.flex[data-items="75"] > :not([data-self]), .flex > [data-self="75"] { flex-basis: calc(1rem / 16 * 75) }
 	.flex[data-items="100"] > :not([data-self]), .flex > [data-self="100"] { flex-basis: calc(1rem / 16 * 100) }
 	.flex[data-items="125"] > :not([data-self]), .flex > [data-self="125"] { flex-basis: calc(1rem / 16 * 125) }
 	.flex[data-items="150"] > :not([data-self]), .flex > [data-self="150"] { flex-basis: calc(1rem / 16 * 150) }
@@ -169,6 +169,13 @@
 	.flex[data-items="600"] > :not([data-self]), .flex > [data-self="600"] { flex-basis: calc(1rem / 16 * 600) }
 	.flex[data-items="full"] > :not([data-self]), .flex > [data-self="full"] { flex-basis: 100% } 
 	.flex > [data-self="auto"] { flex-basis: auto } /* Default */
+
+	/* Using --mtds-break, so we can set this value on the container as well for easier changing breakpoint of many items */
+	.flex[data-break] { container: _mtds-break / inline-size; --modifier: calc(var(--mtds-break, 40rem) - 100cqw) } /* Can use cqw here even though it is on the container itself as CSS properties are evaluated when used, not at time of defintion */
+	.flex[data-break] > :nth-child(1) { flex-grow: 0; order: -2 }
+	.flex[data-break] > :nth-child(2) { flex: 1 1 0px; min-width: clamp(0px, calc(var(--modifier) * 999), 100%) } /* Explaination https://www.miragecraft.com/blog/unholy-albatross */
+	.flex[data-break] > :nth-child(3) { flex-grow: 0; margin-left: auto; order: max(-1, calc(var(--modifier) / -1px)) } /* Note: This does not work in Firefox, yet. Too bad */
+	.flex[data-break] > :nth-child(3):not([data-justify]) { justify-content: end } /* Default to justify-end */
 
 	/**
 	 * Grid

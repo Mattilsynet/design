@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { CssVariables, JumpTo } from '../../.storybook/blocks';
-import { Alert, Button, Details, Popover, Table } from '../react.tsx';
+import { Alert, Button, Details, Popover, Table, Flex } from '../react.tsx';
 import * as stories from './layout.stories';
 
 <Meta of={stories} />
@@ -100,6 +100,12 @@ samt noen superpowers for responsivitet via vår egen `data-items` attributt.
       <td>`normal`, `start`, `center`, `end`, `stretch`</td>
       <td>`normal`</td>
     </tr>
+    <tr>
+      <td>`data-break`</td>
+      <td>Kan *kun* settes `flex`. Forenkler responsive `Card`</td>
+      <td>ingen verdi</td>
+      <td>ingen verdi</td>
+    </tr>
   </tbody>
 </Table>
 
@@ -141,5 +147,34 @@ samt noen superpowers for responsivitet via vår egen `data-items` attributt.
 ## AlignContent
 - `data-align-content="start | center | end | space-between | space-around | space-evenly"` setter vertikal plassering over flere rader med [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content)
 <Canvas of={stories.AlignContent} />
+
+## Break Card
+- I rader av `Card` har vi ofte 1: tittel , 2: innhold og 3: valgfrie handlinger/tags
+- Tittel og handlinger ønsker vi skal ligge for seg selv - ikke blandes med innholdet
+- `Flex` støtter `data-break` for å forenkle et responsivit oppsett av `flex` med 3 barn
+- Du må da sette `data-self` på tittel (påkrevd) og (valgfri) handlinger
+- `Flex` vil brekke innholdet til egen rad når det er `40rem` bredt eller mindre, men du kan overstyre dette ved å sette f.eks. `style="--mtds-break: 50em"` på `Flex` eller hvilket som helst foreldre-element (f.eks. `Grid` som ligger rundt alle `Card` for å få likt brekkpunkt på alle rader).
+
+<Flex data-justify="space-between" data-align="end">
+<div>**Eksempel-kode:**</div>
+<Button data-variant='secondary' href="?path=/story/designsystem-layout--break-card" data-arrow>Se live-eksempel</Button>
+</Flex>
+```tsx
+<Card>
+  <Flex data-break> ⬅️ data-break aktiverer brekkpunkt
+    <h2 data-size="md" data-self="250"> ⬅️ data-self setter tittel-bredde
+      Bambus
+    </h2>
+    <Flex data-items="150">
+      Innholds-elementer her...
+    </Flex>
+  </Flex>
+  <Flex data-self="150"> ⬅️ data-self setter handlinger-bredde
+    <Button type="button" data-variant="primary" data-arrow>
+      Action 1
+    </Button>
+  </Flex>
+</Card>
+```
 
 <CssVariables component="layout" />
