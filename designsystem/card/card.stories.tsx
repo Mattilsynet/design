@@ -136,11 +136,11 @@ export const Responsive: Story = {
 		<>
 			Grupperte eksempler:
 			<a href="#anchor" className={styles.card}>
-				<div className={styles.flex}>
-					<h2 data-size="md" data-self="250" data-fixed>
+				<div className={styles.flex} data-break>
+					<h2 data-size="md" data-self="250">
 						123456789
 					</h2>
-					<div className={styles.flex} data-self="500" data-items="100">
+					<div className={styles.flex} data-items="100">
 						<div className={styles.grid} data-items="100">
 							<div className={styles.info}>
 								<CalendarDotsIcon />
@@ -175,44 +175,37 @@ export const Responsive: Story = {
 				</div>
 			</a>
 			<Card>
-				<Flex data-align="start">
-					<Info data-self="250" data-fixed>
+				<Flex data-align="start" data-break>
+					<Info data-self="250">
 						<small>Opprettet 01.01.1970</small>
 						<Heading data-size="2xs">KY.KELLI.815.493.00</Heading>
 					</Info>
-					<Flex data-self="500">
-						<Flex data-self="500" data-align="start">
-							<Grid data-self="200">
-								<Info>
-									<PaperPlaneRightIcon />
-									Firmanavn AS
-								</Info>
-								<Info>
-									<i>🇳🇱</i> Nederland
-								</Info>
-							</Grid>
-							<Info data-self="300">
-								<DownloadSimpleIcon />
-								Bomsterlandet importerer bomster AS, Rogaland
+					<Flex data-align="start">
+						<Grid data-self="200">
+							<Info>
+								<PaperPlaneRightIcon />
+								Firmanavn AS
 							</Info>
-						</Flex>
-						<Tag data-fixed data-color="info" data-icon="none">
-							Skal på tilsyn
-						</Tag>
+							<Info>
+								<i>🇳🇱</i> Nederland
+							</Info>
+						</Grid>
+						<Info data-self="300">
+							<DownloadSimpleIcon />
+							Bomsterlandet importerer bomster AS, Rogaland
+						</Info>
 					</Flex>
+					<Tag data-fixed data-color="info" data-icon="none">
+						Skal på tilsyn
+					</Tag>
 				</Flex>
 			</Card>
 			<div className={styles.card}>
-				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed>
+				<div className={styles.flex} data-align="center" data-break>
+					<h2 data-size="md" data-self="250">
 						Bambus
 					</h2>
-					<div
-						className={styles.flex}
-						data-self="500"
-						data-items="150"
-						data-align="center"
-					>
+					<div className={styles.flex} data-items="150" data-align="center">
 						<div className={styles.grid} data-items="150">
 							<div className={styles.info}>
 								<MapPinIcon />
@@ -233,30 +226,23 @@ export const Responsive: Story = {
 								107.02.2020
 							</div>
 						</div>
-						<button
-							type="button"
-							className={styles.button}
-							data-variant="secondary"
-							data-nowrap
-							data-fixed
-							data-arrow
-						>
-							Planlegg tur
-						</button>
 					</div>
+					<button
+						type="button"
+						className={styles.button}
+						data-variant="secondary"
+						data-arrow
+					>
+						Planlegg tur
+					</button>
 				</div>
 			</div>
 			<div className={styles.card}>
-				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed>
+				<div className={styles.flex} data-align="center" data-break>
+					<h2 data-size="md" data-self="250">
 						Burgern
 					</h2>
-					<div
-						className={styles.flex}
-						data-self="500"
-						data-items="150"
-						data-align="center"
-					>
+					<div className={styles.flex} data-items="150" data-align="center">
 						<div className={styles.grid} data-items="150">
 							<div className={styles.info}>
 								<MapPinIcon />
@@ -285,30 +271,23 @@ export const Responsive: Story = {
 								13.02.2023
 							</div>
 						</div>
-						<button
-							type="button"
-							className={styles.button}
-							data-variant="secondary"
-							data-nowrap
-							data-fixed
-							data-arrow
-						>
-							Planlegg tur
-						</button>
 					</div>
+					<button
+						type="button"
+						className={styles.button}
+						data-variant="secondary"
+						data-arrow
+					>
+						Planlegg tur
+					</button>
 				</div>
 			</div>
 			<div className={styles.card}>
-				<div className={styles.flex} data-align="center">
-					<h2 data-size="md" data-self="250" data-fixed>
+				<div className={styles.flex} data-align="center" data-break>
+					<h2 data-size="md" data-self="250">
 						Den lekke tomat
 					</h2>
-					<div
-						className={styles.flex}
-						data-self="500"
-						data-items="150"
-						data-align="center"
-					>
+					<div className={styles.flex} data-items="150" data-align="center">
 						<div className={styles.grid} data-items="150">
 							<div className={styles.info}>
 								<MapPinIcon />
@@ -329,17 +308,15 @@ export const Responsive: Story = {
 								23.03.2025
 							</div>
 						</div>
-						<button
-							type="button"
-							className={styles.button}
-							data-variant="secondary"
-							data-nowrap
-							data-fixed
-							data-arrow
-						>
-							Planlegg tur
-						</button>
 					</div>
+					<button
+						type="button"
+						className={styles.button}
+						data-variant="secondary"
+						data-arrow
+					>
+						Planlegg tur
+					</button>
 				</div>
 			</div>
 			Ikke gruppert eksempel:
