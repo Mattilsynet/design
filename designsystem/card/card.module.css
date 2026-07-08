@@ -26,6 +26,7 @@
 		box-sizing: border-box;
 		color: var(--mtdsc-card-color);
 		font-family: inherit;
+		font-weight: normal; /* In case card is <label> */
 		line-height: inherit;
 		margin: 0;
 		padding: var(--mtdsc-card-padding);
