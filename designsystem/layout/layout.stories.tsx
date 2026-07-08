@@ -19,14 +19,11 @@ const meta = {
 		layout: "padded",
 	},
 	decorators: [
-		(Story, context) =>
-			context.name === "Break Card" ? (
+		(Story) => (
+			<div className="mt-story">
 				<Story />
-			) : (
-				<div className="mt-story">
-					<Story />
-					<style>{`
-					.mt-story:not(:has(.${styles.body.split(" ")[0]})) {
+				<style>{`
+					.mt-story:not(:has(.${styles.body.split(" ")[0]}), :has([data-break])) {
 						display: grid;
 						gap: 1rem;
 						padding: 1px;
@@ -37,8 +34,8 @@ const meta = {
 						& div[data-align-content] { height: 150px }
 					}
 				`}</style>
-				</div>
-			),
+			</div>
+		),
 	],
 } satisfies Meta;
 
