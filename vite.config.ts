@@ -121,7 +121,7 @@ export default defineConfig(({ mode }) =>
 							preserveModulesRoot: root,
 							// See https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
 							entryFileNames: ({ name }) =>
-								`${name.includes("node_modules") ? name.replace(/node_modules/, "external") : "[name]"}.js`,
+								`${name.includes("node_modules") ? name.replace(/node_modules/, "external").replace("?raw", "") : "[name]"}.js`,
 						},
 					},
 				},
