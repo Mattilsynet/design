@@ -1,4 +1,4 @@
-import { setTooltipElement } from "..";
+import { setTooltipElement } from "@digdir/designsystemet-web";
 import styles from "../styles.module.css";
 import { isBrowser, tag } from "../utils";
 

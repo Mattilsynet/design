@@ -1,6 +1,6 @@
 {
 	"name": "@mattilsynet/design",
-	"version": "3.4.1",
+	"version": "3.4.2",
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -55,15 +55,15 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.3",
+		"@biomejs/biome": "2.5.4",
 		"@digdir/designsystemet-css": "^1.18.0",
 		"@digdir/designsystemet-types": "^1.18.0",
 		"@handsontable/react-wrapper": "18.0.0",
 		"@phosphor-icons/core": "^2.1.1",
 		"@phosphor-icons/react": "^2.1.10",
-		"@storybook/addon-docs": "^10.5.0",
-		"@storybook/addon-themes": "^10.5.0",
-		"@storybook/react-vite": "^10.5.0",
+		"@storybook/addon-docs": "^10.5.2",
+		"@storybook/addon-themes": "^10.5.2",
+		"@storybook/react-vite": "^10.5.2",
 		"@tanstack/react-table": "^8.21.3",
 		"@turf/boolean-point-in-polygon": "^7.3.5",
 		"@turf/helpers": "^7.3.5",
@@ -76,15 +76,15 @@
 		"fast-glob": "^3.3.3",
 		"handsontable": "18.0.0",
 		"leaflet": "^2.0.0-alpha.1",
-		"postcss": "^8.5.19",
+		"postcss": "^8.5.20",
 		"postcss-nesting": "^14.0.0",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
 		"react-moveable": "^0.56.0",
-		"storybook": "^10.5.0",
+		"storybook": "^10.5.2",
 		"typescript": "^7.0.2",
 		"unplugin-dts": "^1.0.3",
-		"vite": "^8.1.4",
+		"vite": "^8.1.5",
 		"vite-plugin-static-copy": "^4.1.1"
 	},
 	"dependencies": {
