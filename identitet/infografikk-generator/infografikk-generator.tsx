@@ -1,5 +1,4 @@
 import { HotTable, type HotTableRef } from "@handsontable/react-wrapper";
-import type { ChangeSource } from "handsontable/common";
 import { nbNO, registerLanguageDictionary } from "handsontable/i18n";
 import { registerAllModules } from "handsontable/registry";
 import { useCallback, useRef, useState } from "react";
@@ -19,6 +18,7 @@ import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
 import "./infografikk-generator.css";
 import { CopyIcon } from "@phosphor-icons/react";
+import type { ChangeSource } from "handsontable/base";
 import { toast } from "../../designsystem";
 import type { MTDSChartElement } from "../../designsystem/chart/chart-element";
 import { tag } from "../../designsystem/utils";
