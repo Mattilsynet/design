@@ -22,13 +22,13 @@
 		border-radius: var(--dsc-chip-border-radius--checkbox-input);
 	}
 
+	/* We want light version of removable chips, Digdir has a dark version */
 	.chip[data-removable] {
 		background: var(--dsc-chip-background);
 		border-color: var(--dsc-chip-border-color);
 		color: var(--dsc-chip-color);
-		padding-right: var(--ds-size-1);
 	}
 	.chip[data-removable]:hover::after {
-		mask-image: var(--mtds-icon-close--filled);
+		--dsc-chip-icon-url: var(--mtds-icon-close--filled);
 	}
 }
