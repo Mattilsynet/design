@@ -2,9 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Plugin } from "vite";
 
-const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
+const dist = path.resolve(import.meta.dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const { version } = JSON.parse(
-	fs.readFileSync(path.resolve(__dirname, "package.json"), "utf-8"), // Read version from package.json
+	fs.readFileSync(path.resolve(import.meta.dirname, "package.json"), "utf-8"), // Read version from package.json
 );
 
 export const cssPropsRename: Plugin = {

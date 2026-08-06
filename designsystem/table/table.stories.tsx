@@ -1,14 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
 	type ColumnDef,
+	columnFilteringFeature,
+	createExpandedRowModel,
+	createFilteredRowModel,
+	createPaginatedRowModel,
+	createSortedRowModel,
 	type ExpandedState,
 	flexRender,
-	getCoreRowModel,
-	getFilteredRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
+	globalFilteringFeature,
+	rowExpandingFeature,
+	rowPaginationFeature,
+	rowSelectionFeature,
+	rowSortingFeature,
 	type SortingState,
-	useReactTable,
+	tableFeatures,
+	useTable,
 } from "@tanstack/react-table";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { pagination } from "../";
@@ -158,8 +165,8 @@ export const React: Story = {
 export const DefaultTanstack: Story = {
 	render: function Render(args) {
 		const isNumeric = ["age", "visits"];
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
+		const table = useTable({
+			features: tableFeatures({}),
 			data: mockDataSmall,
 			columns: mockColumns,
 		});
@@ -187,7 +194,7 @@ export const DefaultTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Table.Tr key={row.id}>
-							{row.getVisibleCells().map((cell) => (
+							{row.getAllCells().map((cell) => (
 								<Table.Td
 									key={cell.id}
 									data-numeric={isNumeric.includes(cell.column.id)}
@@ -248,7 +255,9 @@ export const HeadingsSimple: Story = {
 
 export const HeadingsTanstack: Story = {
 	render: function Render(args) {
-		const columns: ColumnDef<RowType>[] = useMemo(
+		const features = tableFeatures({});
+
+		const columns: ColumnDef<typeof features, RowType>[] = useMemo(
 			() => [
 				{
 					header: "Name",
@@ -286,10 +295,10 @@ export const HeadingsTanstack: Story = {
 			[],
 		);
 
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
+		const table = useTable({
 			data: mockDataSmall,
 			columns,
+			features,
 		});
 
 		return (
@@ -312,7 +321,7 @@ export const HeadingsTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Table.Tr key={row.id}>
-							{row.getVisibleCells().map((cell) => (
+							{row.getAllCells().map((cell) => (
 								<Table.Td key={cell.id}>
 									{cell.getValue() as React.ReactNode}
 								</Table.Td>
@@ -401,9 +410,11 @@ export const SortableSimple: Story = {
 export const SortableTanstack: Story = {
 	render: function Render(args) {
 		const [sorting, setSorting] = useState<SortingState>([]);
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
-			getSortedRowModel: getSortedRowModel(),
+		const table = useTable({
+			features: tableFeatures({
+				sortedRowModel: createSortedRowModel(),
+				rowSortingFeature,
+			}),
 			onSortingChange: setSorting,
 			state: { sorting },
 			data: mockData,
@@ -434,7 +445,7 @@ export const SortableTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Table.Tr key={row.id}>
-							{row.getVisibleCells().map((cell) => (
+							{row.getAllCells().map((cell) => (
 								<Table.Td key={cell.id}>
 									{cell.getValue() as React.ReactNode}
 								</Table.Td>
@@ -538,15 +549,17 @@ export const PaginatableSimple: Story = {
 
 export const PaginatableTanstack: Story = {
 	render: function Render(args) {
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
-			getPaginationRowModel: getPaginationRowModel(),
+		const table = useTable({
+			features: tableFeatures({
+				paginatedRowModel: createPaginatedRowModel(),
+				rowPaginationFeature,
+			}),
 			data: mockData,
 			columns: mockColumns,
 		});
 
 		const { pages, next, prev } = pagination({
-			current: table.getState().pagination.pageIndex + 1,
+			current: table.state.pagination.pageIndex + 1,
 			total: table.getPageCount(),
 			show: 7,
 		});
@@ -571,7 +584,7 @@ export const PaginatableTanstack: Story = {
 					<Table.Tbody>
 						{table.getRowModel().rows.map((row) => (
 							<Table.Tr key={row.id}>
-								{row.getVisibleCells().map((cell) => (
+								{row.getAllCells().map((cell) => (
 									<Table.Td key={cell.id}>
 										{cell.getValue() as React.ReactNode}
 									</Table.Td>
@@ -677,9 +690,12 @@ export const SearchableSimple: Story = {
 export const SearchableTanstack: Story = {
 	render: function Render(args) {
 		const [search, setSearch] = useState("");
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
-			getFilteredRowModel: getFilteredRowModel(),
+		const table = useTable({
+			features: tableFeatures({
+				filteredRowModel: createFilteredRowModel(),
+				columnFilteringFeature,
+				globalFilteringFeature,
+			}),
 			onGlobalFilterChange: setSearch,
 			data: mockData,
 			state: { globalFilter: search },
@@ -713,7 +729,7 @@ export const SearchableTanstack: Story = {
 					<Table.Tbody>
 						{table.getRowModel().rows.map((row) => (
 							<Table.Tr key={row.id}>
-								{row.getVisibleCells().map((cell) => (
+								{row.getAllCells().map((cell) => (
 									<Table.Td key={cell.id}>
 										{cell.getValue() as React.ReactNode}
 									</Table.Td>
@@ -785,12 +801,16 @@ export const ExpandableSimple: Story = {
 export const ExpandableTanstack: Story = {
 	render: function Render(args) {
 		const [expanded, setExpanded] = useState<ExpandedState>({});
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
+		const table = useTable({
+			features: tableFeatures({
+				expandedRowModel: createExpandedRowModel(),
+				rowExpandingFeature,
+			}),
 			onExpandedChange: setExpanded,
 			state: { expanded },
 			data: mockExpand,
 			columns: mockColumns,
+			getRowCanExpand: () => true,
 		});
 
 		return (
@@ -812,11 +832,12 @@ export const ExpandableTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Fragment key={row.id}>
-							<Table.Tr>
-								{row.getVisibleCells().map((cell, cellIndex) => (
+							<Table.Tr data-clickdelegatefor={`expand-${row.id}`}>
+								{row.getAllCells().map((cell, cellIndex) => (
 									<Table.Td key={cell.id}>
 										{cellIndex === 0 ? (
 											<Button
+												id={`expand-${row.id}`}
 												aria-expanded={row.getIsExpanded()}
 												onClick={() => row.toggleExpanded()}
 											>
@@ -829,7 +850,7 @@ export const ExpandableTanstack: Story = {
 								))}
 							</Table.Tr>
 							<Table.Tr hidden={!row.getIsExpanded()}>
-								<Table.Td colSpan={row.getVisibleCells().length}>
+								<Table.Td colSpan={row.getAllCells().length}>
 									{row.original.expand}
 								</Table.Td>
 							</Table.Tr>
@@ -893,8 +914,10 @@ export const CheckableSimple: Story = {
 
 export const CheckableTanstack: Story = {
 	render: function Render(args) {
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
+		const table = useTable({
+			features: tableFeatures({
+				rowSelectionFeature,
+			}),
 			data: mockData,
 			columns: mockColumns,
 		});
@@ -919,7 +942,7 @@ export const CheckableTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row) => (
 						<Table.Tr key={row.id} data-clickdelegatefor={`check-${row.id}`}>
-							{row.getVisibleCells().map((cell, index) => (
+							{row.getAllCells().map((cell, index) => (
 								<Table.Td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)
@@ -1011,8 +1034,8 @@ export const ClickableSimple: Story = {
 
 export const ClickableTanstack: Story = {
 	render: function Render(args) {
-		const table = useReactTable({
-			getCoreRowModel: getCoreRowModel(),
+		const table = useTable({
+			features: tableFeatures({}),
 			data: mockData,
 			columns: mockColumns,
 		});
@@ -1037,7 +1060,7 @@ export const ClickableTanstack: Story = {
 				<Table.Tbody>
 					{table.getRowModel().rows.map((row, rowIndex) => (
 						<Table.Tr key={row.id} data-clickdelegatefor={`button-${rowIndex}`}>
-							{row.getVisibleCells().map((cell, index) => (
+							{row.getAllCells().map((cell, index) => (
 								<Table.Td key={cell.id}>
 									{index ? (
 										(cell.getValue() as React.ReactNode)

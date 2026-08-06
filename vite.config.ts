@@ -5,11 +5,11 @@ import postcssNesting from "postcss-nesting";
 import dts from "unplugin-dts/vite";
 import { defineConfig } from "vite";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import pkg from "./package.json";
-import { cssPropsRename, cssToTailwind } from "./vite.plugins";
+import pkg from "./package.json" with { type: "json" };
+import { cssPropsRename, cssToTailwind } from "./vite.plugins.ts";
 
-const root = path.resolve(__dirname, "designsystem");
-const dist = path.resolve(__dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
+const root = path.resolve(import.meta.dirname, "designsystem");
+const dist = path.resolve(import.meta.dirname, "mtds"); // Using mtds as dist name for readable clojurescript imports: (io/resource "mtds/logo.svg")
 const cssModulesMap: Record<string, string> = {}; // Used to create a map of all CSS modules classes
 
 export default defineConfig(({ mode }) =>
