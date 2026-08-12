@@ -1,0 +1,50 @@
+name: Publish Maven
+
+on:
+  workflow_dispatch:
+    inputs:
+      npm_version:
+        description: 'npm version to publish'
+        required: true
+  repository_dispatch:
+    types: [npm_publish_done]
+
+jobs:
+  publish-maven:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Build npm assets
+        run: npm run build
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Gradle build
+        working-directory: design/kotlin
+        run: ./gradlew --no-daemon prepareResources generateKotlinSources build
+
+      - name: Publish to Maven Central
+        working-directory: design/kotlin
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          SIGNING_SECRET_KEY: ${{ secrets.SIGNING_SECRET_KEY }}
+        run: ./gradlew --no-daemon publish
