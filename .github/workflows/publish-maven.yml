@@ -18,6 +18,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # gradle-wrapper.jar er en committet binærfil. Denne verifiserer den mot
+      # Gradles publiserte checksummer, så et manipulert wrapper-jar ikke kan
+      # kjøre vilkårlig kode i byggejobben.
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -36,14 +42,22 @@ jobs:
           java-version: 21
 
       - name: Gradle build
-        working-directory: design/kotlin
-        run: ./gradlew --no-daemon prepareResources generateKotlinSources build
+        working-directory: kotlin
+        run: ./gradlew --no-daemon build
 
+      # TODO: Publisering fungerer ikke ennå. Tre ting gjenstår:
+      #   1. s01.oss.sonatype.org er nedlagt (OSSRH sunset juni 2025) -> Central Portal.
+      #   2. Gradle leser sonatypeUsername/sonatypePassword, ikke OSSRH_*. Bruk
+      #      ORG_GRADLE_PROJECT_sonatypeUsername / ORG_GRADLE_PROJECT_sonatypePassword.
+      #   3. signing {} må bruke useInMemoryPgpKeys, og publikasjonen mangler
+      #      sourcesJar/javadocJar/developers/scm som Maven Central krever.
+      # Se TODO i kotlin/build.gradle.kts.
       - name: Publish to Maven Central
-        working-directory: design/kotlin
+        if: false
+        working-directory: kotlin
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_PASSWORD }}
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
           SIGNING_SECRET_KEY: ${{ secrets.SIGNING_SECRET_KEY }}
