@@ -21,7 +21,8 @@ const TogglegroupComp = forwardRef<HTMLFieldSetElement, TogglegroupProps>(
 		return (
 			<fieldset
 				className={clsx(styles.togglegroup, className)}
-				data-toggle-group={label || "Valgknapper"}
+				aria-label={label || "Valgknapper"}
+				focusgroup="radiogroup"
 				ref={ref}
 				{...rest}
 			/>

@@ -29,7 +29,7 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
   {/* Togglegroup med ikon */}
   <Example data-color="success" text="ToggleGroup med bare ikoner bør kun brukes i ekspertløsninger. Bruk tooltip sammen med ikon." zoom="100%">
   <div className={styles.grid}>
-      <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
+      <fieldset className={styles.togglegroup} aria-label="Mappe" focusgroup="radiogroup">
         <label className={styles.button} data-tooltip="Venstrejustert">
           <input type="radio" name="my-icon-example-1" value="left" />
           <TextAlignLeftIcon />
@@ -48,7 +48,7 @@ import { TextAlignCenterIcon, TextAlignLeftIcon, TextAlignRightIcon } from '@pho
 
   <Example data-color="danger" text="ToggleGroup med bare ikoner bør ha tooltip." zoom="100%">
     <div className={styles.grid}>
-      <fieldset className={styles.togglegroup} data-toggle-group="Mappe">
+      <fieldset className={styles.togglegroup} aria-label="Mappe" focusgroup="radiogroup">
         <label className={styles.button}>
           <input type="radio" name="my-icon-example-2" value="left" />
           <TextAlignLeftIcon />
