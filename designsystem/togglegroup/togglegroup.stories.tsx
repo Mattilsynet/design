@@ -21,6 +21,7 @@ export const Default: Story = {
 			<fieldset
 				className={styles.togglegroup}
 				aria-label="Mappe"
+				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
 				focusgroup="radiogroup"
 			>
 				<label className={styles.button}>
@@ -43,6 +44,7 @@ export const Default: Story = {
 			<fieldset
 				className={styles.togglegroup}
 				aria-label="Mappe"
+				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
 				focusgroup="radiogroup"
 			>
 				<label className={styles.button}>
@@ -92,7 +94,12 @@ export const React: Story = {
 
 export const AsLinks: Story = {
 	render: () => (
-		<nav className={styles.togglegroup} data-toggle-group="Valgknapper">
+		<nav
+			className={styles.togglegroup}
+			aria-label="Valgknapper"
+			// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
+			focusgroup="radiogroup"
+		>
 			<a href="#liste" className={styles.button} aria-current="true">
 				Liste
 			</a>

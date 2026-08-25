@@ -22,6 +22,7 @@ const TogglegroupComp = forwardRef<HTMLFieldSetElement, TogglegroupProps>(
 			<fieldset
 				className={clsx(styles.togglegroup, className)}
 				aria-label={label || "Valgknapper"}
+				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
 				focusgroup="radiogroup"
 				ref={ref}
 				{...rest}
