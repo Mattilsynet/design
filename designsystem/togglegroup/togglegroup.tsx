@@ -5,6 +5,7 @@ import styles from "../styles.module.css";
 
 export type TogglegroupProps = React.ComponentPropsWithoutRef<"fieldset"> & {
 	"data-toggle-group"?: string;
+	"aria-label"?: string;
 };
 export type TogglegroupItemProps = Omit<
 	React.ComponentPropsWithoutRef<"label">,
@@ -15,13 +16,18 @@ export type TogglegroupItemProps = Omit<
 
 const TogglegroupComp = forwardRef<HTMLFieldSetElement, TogglegroupProps>(
 	function Togglegroup(
-		{ "data-toggle-group": label, className, ...rest },
+		{
+			"aria-label": label,
+			"data-toggle-group": toggleGroupLabel,
+			className,
+			...rest
+		},
 		ref,
 	) {
 		return (
 			<fieldset
 				className={clsx(styles.togglegroup, className)}
-				aria-label={label || "Valgknapper"}
+				aria-label={label || toggleGroupLabel || "Valgknapper"}
 				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
 				focusgroup="radiogroup"
 				ref={ref}

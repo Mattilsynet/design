@@ -75,7 +75,7 @@ export const React: Story = {
 		const [value, setValue] = useState(items[1]);
 
 		return (
-			<Togglegroup data-toggle-group="Mappe">
+			<Togglegroup aria-label="Mappe">
 				{items.map((item) => (
 					<Togglegroup.Item
 						checked={value === item}
