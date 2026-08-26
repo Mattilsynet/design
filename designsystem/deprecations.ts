@@ -22,16 +22,22 @@ const warn = (from: string, to: string, el: Element) =>
 		el,
 	);
 
-// Deprecate togglegroup without data-toggle-group attribute
+// Deprecate togglegroup without aria-label and focusgroup attribute
 const TOGGLEGROUPS = getByCSSModule("togglegroup");
 const CSS_BUTTON = styles.button.split(" ");
 const deprecateToggleGroup = () => {
 	for (const el of TOGGLEGROUPS) {
-		if (deprecate(el) && !el.hasAttribute("data-toggle-group")) {
-			attr(el, "data-toggle-group", "Valgknapper");
+		if (
+			deprecate(el) &&
+			(!el.hasAttribute("aria-label") ||
+				el.getAttribute("focusgroup") !== "radiogroup")
+		) {
+			const label = attr(el, "data-toggle-group");
+			attr(el, "aria-label", label || "Valgknapper");
+			attr(el, "focusgroup", "radiogroup");
 			warn(
-				'Only setting class="styles.togglegroup"',
-				'data-toggle-group="LABEL-HERE" attribute also for better accessibility',
+				label ? "data-toggle-group" : 'Only setting class="styles.togglegroup"',
+				'aria-label="LABEL-HERE" focusgroup="radiogroup"',
 				el,
 			);
 		}
