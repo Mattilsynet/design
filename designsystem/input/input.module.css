@@ -84,6 +84,12 @@
 			opacity: 0;
 			width: var(--ds-size-6);
 		}
+
+		@supports not selector(::-webkit-calendar-picker-indicator) {
+            .input[type="date"] {
+                background-image: none;
+            }
+		}
 	}
 
 	.input[data-variant="inline"]:not([type="radio"], [type="checkbox"]) {

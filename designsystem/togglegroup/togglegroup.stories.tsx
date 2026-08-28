@@ -18,7 +18,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: () => (
 		<div className={styles.grid}>
-			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
+			<fieldset
+				className={styles.togglegroup}
+				aria-label="Mappe"
+				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
+				focusgroup="radiogroup"
+			>
 				<label className={styles.button}>
 					<input type="radio" name="my-toggles" value="innboks" />
 					Innboks
@@ -36,7 +41,12 @@ export const Default: Story = {
 					Sendt
 				</label>
 			</fieldset>
-			<fieldset className={styles.togglegroup} data-toggle-group="Mappe">
+			<fieldset
+				className={styles.togglegroup}
+				aria-label="Mappe"
+				// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
+				focusgroup="radiogroup"
+			>
 				<label className={styles.button}>
 					<input type="radio" name="my-icon-toggle" value="left" />
 					<TextAlignLeftIcon />
@@ -65,7 +75,7 @@ export const React: Story = {
 		const [value, setValue] = useState(items[1]);
 
 		return (
-			<Togglegroup data-toggle-group="Mappe">
+			<Togglegroup aria-label="Mappe">
 				{items.map((item) => (
 					<Togglegroup.Item
 						checked={value === item}
@@ -84,7 +94,12 @@ export const React: Story = {
 
 export const AsLinks: Story = {
 	render: () => (
-		<nav className={styles.togglegroup} data-toggle-group="Valgknapper">
+		<nav
+			className={styles.togglegroup}
+			aria-label="Valgknapper"
+			// @ts-expect-error focusgroup is not yet recognized by React type definitions for HTML elements.
+			focusgroup="radiogroup"
+		>
 			<a href="#liste" className={styles.button} aria-current="true">
 				Liste
 			</a>
