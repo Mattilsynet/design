@@ -3,13 +3,16 @@ import groovy.json.JsonSlurper
 plugins {
     kotlin("jvm") version "2.2.21"
     `maven-publish`
-    signing
 }
 
 group = "io.mattilsynet"
 
 kotlin {
     jvmToolchain(21)
+}
+
+java {
+    withSourcesJar()
 }
 
 repositories {
@@ -21,16 +24,10 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
-// --- Kilder fra monorepoet ------------------------------------------------
-//
-// Begge produseres av `npm run build` i repo-rota. Vi leser dem direkte fra
-// filsystemet -- ingen nedlasting fra CDN ved bygg.
-
 val designRoot = layout.projectDirectory.dir("..")
 val packageJsonFile = designRoot.file("package.json")
 val stylesJsonFile = designRoot.file("mtds/styles.json")
 
-// package.json er committet og alltid til stede -- trygt å lese under konfigurering.
 val designNpmVersion: String = run {
     val f = packageJsonFile.asFile
     require(f.isFile) { "Fant ikke ${f.path}. Er kotlin/ flyttet ut av monorepoet?" }
@@ -38,12 +35,8 @@ val designNpmVersion: String = run {
     json["version"] as? String ?: error("Mangler 'version' i ${f.path}")
 }
 
-// Artefaktversjon = npm-versjon + antall commits, slik at hver publisering er unik.
-// Selve designsystem-versjonen (npm) eksponeres separat som Mtds.NPM_VERSION,
-// siden CDN-URL-er må bruke den og ikke artefaktversjonen.
-//
-// Faller tilbake til "0" både utenfor et git-repo og når git-binæren mangler,
-// så bygget virker i tarball-checkouts og slanke containere.
+// Clojars-releaser er immutable, så commit-count gjør hver publisering unik.
+// CDN-URL-er må bruke npm-versjonen alene, som derfor eksponeres via Mtds.NPM_VERSION.
 val gitCommitCount: String = runCatching {
     providers.exec {
         commandLine("git", "rev-list", "--count", "HEAD")
@@ -51,9 +44,10 @@ val gitCommitCount: String = runCatching {
     }.standardOutput.asText.map { it.trim() }.orNull
 }.getOrNull()?.takeIf { it.isNotEmpty() } ?: "0"
 
-version = "$designNpmVersion.$gitCommitCount"
+// SNAPSHOTs kan redeployes, i motsetning til releaser, og lar oss teste publiseringen.
+val isSnapshot = providers.gradleProperty("snapshot").isPresent
 
-// --- Kodegenerering -------------------------------------------------------
+version = "$designNpmVersion.$gitCommitCount" + if (isSnapshot) "-SNAPSHOT" else ""
 
 abstract class GenerateMtds : DefaultTask() {
 
@@ -75,7 +69,6 @@ abstract class GenerateMtds : DefaultTask() {
         )
     }
 
-    /** styles.json-nøkler er frie strenger; gjør dem til gyldige Kotlin-identifikatorer. */
     private fun sanitize(key: String): String {
         val cleaned = key.replace(Regex("[^A-Za-z0-9_]"), "_")
         val safe = if (cleaned.firstOrNull()?.isDigit() == true) "_$cleaned" else cleaned
@@ -135,8 +128,8 @@ abstract class GenerateMtds : DefaultTask() {
             |    /** Versjonen av npm-pakken disse klassene ble generert fra. */
             |    public val NPM_VERSION: String = "${escape(npmVersion.get())}"
             |
-            |    /** Base-URL for å laste assets fra unpkg for samme versjon. */
-            |    public val UNPKG_BASE: String = "https://unpkg.com/@mattilsynet/design@${'$'}NPM_VERSION/mtds"
+            |    /** Base-URL for å laste assets fra CDN for samme versjon. */
+            |    public val CDN_BASE: String = "https://cdn.jsdelivr.net/npm/@mattilsynet/design@${'$'}NPM_VERSION/mtds"
             |
             |$consts
             |}
@@ -151,8 +144,6 @@ abstract class GenerateMtds : DefaultTask() {
 val generateMtds by tasks.registering(GenerateMtds::class) {
     group = "build"
     description = "Genererer Mtds-klassekonstanter fra designsystemets styles.json."
-    // mtds/styles.json er byggeoutput fra `npm run build`, så sjekken må være lat:
-    // ellers ville `./gradlew clean` feilet i et rent checkout.
     stylesJson.fileProvider(
         providers.provider {
             stylesJsonFile.asFile.also {
@@ -170,23 +161,16 @@ kotlin.sourceSets.named("main") {
     kotlin.srcDir(generateMtds)
 }
 
-// IntelliJ kjører denne under Gradle-sync. Uten koblingen finnes ikke Mtds.kt før
-// noen har kjørt et bygg manuelt, og hele io.mattilsynet.design vises som uresolvert
-// i editoren selv om kommandolinjebygget er grønt.
+// Uten denne kjører ikke genereringen under IDE-sync, og io.mattilsynet.design
+// vises som uresolvert i IntelliJ til noen har kjørt et bygg manuelt.
 tasks.named("prepareKotlinBuildScriptModel") {
     dependsOn(generateMtds)
 }
 
-// --- Test -----------------------------------------------------------------
-
 tasks.test {
     useJUnitPlatform()
-    // Røyktest: hele modulen er generert, så vi verifiserer at genereringen faktisk kjørte
-    // og at versjonen stemmer med monorepoets package.json.
     systemProperty("mtds.expectedNpmVersion", designNpmVersion)
 }
-
-// --- Publisering ----------------------------------------------------------
 
 publishing {
     publications {
@@ -197,32 +181,35 @@ publishing {
             pom {
                 name.set("Mattilsynet designsystem - Kotlin")
                 description.set("Typesikre CSS-klassekonstanter for Mattilsynets designsystem")
-                url.set("https://github.com/Mattilsynet/design")
+                url.set("https://github.com/Mattilsynet/design/tree/main/kotlin")
                 licenses {
+                    // Clojars avviser deploys uten lisens.
                     license {
                         name.set("MIT")
+                        url.set("https://opensource.org/licenses/MIT")
                     }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/mattilsynet/design.git")
+                    developerConnection.set("scm:git:ssh://git@github.com/mattilsynet/design.git")
+                    url.set("https://github.com/Mattilsynet/design/tree/main/kotlin")
                 }
             }
         }
     }
     repositories {
-        // TODO: s01.oss.sonatype.org er nedlagt (OSSRH sunset juni 2025) -- må flyttes til
-        // Central Portal. Merk også at .github/workflows/publish-maven.yml setter
-        // OSSRH_USERNAME/OSSRH_PASSWORD, mens dette repoet krever sonatypeUsername/
-        // sonatypePassword. POM mangler dessuten developers og scm, og det finnes ingen
-        // sourcesJar/javadocJar. `publish` fungerer derfor ikke ennå.
         maven {
-            name = "sonatype"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials(PasswordCredentials::class)
+            name = "clojars"
+            url = uri("https://clojars.org/repo")
+            credentials {
+                username = System.getenv("CLOJARS_USERNAME")
+                password = System.getenv("CLOJARS_PASSWORD")
+            }
         }
     }
 }
 
-signing {
-    // Signering krever nøkler som bare finnes i publiseringsjobben. Uten dette ville
-    // `./gradlew build` feilet lokalt.
-    setRequired { gradle.taskGraph.hasTask("publish") }
-    sign(publishing.publications["mavenJava"])
+// Clojars er et rent Maven-repo, og ingen konsument bruker Gradle-variantmetadata.
+tasks.withType<GenerateModuleMetadata>().configureEach {
+    enabled = false
 }

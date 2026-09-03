@@ -5,11 +5,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/**
- * Røyktest for kodegenereringen. Hele modulen er generert fra designsystemets
- * `styles.json`, så disse testene er den eneste reelle verifikasjonen av at
- * `:generateMtds` kjørte og produserte noe fornuftig.
- */
 class MtdsTest {
 
     @Test
@@ -20,14 +15,16 @@ class MtdsTest {
     }
 
     @Test
-    fun `unpkg-base peker paa samme versjon`() {
-        assertEquals("https://unpkg.com/@mattilsynet/design@${Mtds.NPM_VERSION}/mtds", Mtds.UNPKG_BASE)
+    fun `cdn-base peker paa samme versjon`() {
+        assertEquals(
+            "https://cdn.jsdelivr.net/npm/@mattilsynet/design@${Mtds.NPM_VERSION}/mtds",
+            Mtds.CDN_BASE,
+        )
     }
 
     @Test
     fun `kjente komponentklasser er generert og hashet`() {
-        // Verdiene er hashede CSS-moduler, f.eks. "_button_14zqc_1 _ds-button_1s2lo_1".
-        // Vi låser ikke hashen -- den endres hver utgivelse -- men formen skal holde.
+        // Hashen endres hver utgivelse, så vi låser formen og ikke verdien.
         listOf(Mtds.button, Mtds.card, Mtds.heading, Mtds.table, Mtds.input).forEach { value ->
             assertTrue(value.isNotBlank(), "Klassekonstant var tom")
             assertTrue(value.startsWith("_"), "Forventet hashet CSS-modulklasse, fikk '$value'")
