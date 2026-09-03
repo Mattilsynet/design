@@ -58,8 +58,7 @@ link(rel = "icon", href = "${Mtds.UNPKG_BASE}/favicon.svg", type = "image/svg+xm
 av CDN-en).
 
 > `@mattilsynet/design/react` er React-komponenter og kan ikke brukes i server-rendret
-> kotlinx.html — bruk CSS- og web-components-laget. Den gamle Svelte-pakken
-> `@mattilsynet/designsystem` er deprecated.
+> kotlinx.html — bruk CSS- og web-components-laget.
 
 ### Finne riktig markup
 
