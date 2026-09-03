@@ -5,6 +5,9 @@ node_modules
 **/mtds
 clojure/resources/
 clojure/mattilsynet-design.jar
+kotlin/build/
+kotlin/.gradle/
+kotlin/.kotlin/
 
 # Logs
 **/logs
