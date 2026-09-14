@@ -1,55 +1,112 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { BookIcon } from '@phosphor-icons/react';
+import {  Grid } from '../designsystem/react';
+
+import rapportomslagKatt from './rapportomslag/rapportomslag-katt.png';
+import rapportomslagAkva from './rapportomslag/rapportomslag-akva.png';
+import rapportomslagSau from './rapportomslag/rapportomslag-sau.png';
+import rapportomslagIllustrasjonLysBeige from './rapportomslag/rapportomslag-illustrasjon-lys-beige.png';
+import rapportomslagIllustrasjonLysegronn from './rapportomslag/rapportomslag-illustrasjon-lysegronn.png';
+import rapportomslagIllustrasjonLysebla from './rapportomslag/rapportomslag-illustrasjon-lysebla.png';
+import rapportomslagIllustrasjonMorkegronn from './rapportomslag/rapportomslag-illustrasjon-morkegronn.png';
+import rapportomslagTypografiLysegronn from './rapportomslag/rapportomslag-typografi-lysegronn.png';
+import rapportomslagTypografiBla from './rapportomslag/rapportomslag-typografi-bla.png';
+import rapportomslagTypografiRosa from './rapportomslag/rapportomslag-typografi-rosa.png';
+import rapportomslagTypografiGul from './rapportomslag/rapportomslag-typografi-gul.png';
+import baksidemalLysBeige from './rapportomslag/baksidemal-lys-beige.png';
+import baksidemalLysegronn from './rapportomslag/baksidemal-lysegronn.png';
+import baksidemalLysebla from './rapportomslag/baksidemal-lysebla.png';
+import baksidemalMorkegronn from './rapportomslag/baksidemal-morkegronn.png';
+import forsidemalSamarbeidBilde from './rapportomslag/forsidemal-samarbeid-bilde.png';
+import forsidemalSamarbeidIllustrasjon from './rapportomslag/forsidemal-samarbeid-illustrasjon.png';
+import forsidemalSamarbeidTypografi from './rapportomslag/forsidemal-samarbeid-typografi.png';
+import baksidemalSamarbeid from './rapportomslag/baksidemal-samarbeid.png';
+
 
 <Meta title="Profilering/Rapportomslag" />
 
 # <BookIcon /> Rapportomslag
 
-Mattilsynets rapporter har tre ulike forsidemaler: én for foto, én for illustrasjon og én for typografi.
+>Mattilsynet har tre ulike maler for rapportforsider: en med foto, en med illustrasjon og en med kun bruk av typografi
 
-I tillegg finnes en egen mal for rapporter som gjøres i samarbeid med andre aktører. Disse har oppsett for flere logoer i toppen av arket, og det kan det velges mellom tre forsider: med foto, med illustrasjon eller kun med typografi. 
-Under vises de ulike oppsettene, med mulighet for nedlasting av maler nederst på siden.
+## Forsidemal med bilde
+For rapporter med bilde på forsiden skal bildet dekke 2/3 av høyden på omslaget og ha en 24 mm avrunding nederst i høyre hjørne. Avrundingen hinter til frøformen i logoen og er et visuelt grep som går igjen på flere av Mattilsynets flater. Forsidemal med bilde finnes i to lyse og én mørk variant:
+- lysegrønn
+- lyseblå
+- mørkegrønn
 
-## Forside med bilde
-For rapporter med foto på forsiden, skal fotoets høyde dekke 2/3 av høyden på omslaget og ha en 24 mm avrunding i nedre høyre hjørne. Avrundingen hinter til frøformen i logoen, og er et visuelt grep som går igjen på flere av Mattilsynets flater. Rapportforside med foto finnes i to lyse og én mørk versjon:
-- «Lav» (lysegrønn)
-- «Bakgrunnsblå»
-- «Granskog» (mørkegrønn)
+<figure>
+<Grid style={{
+            gridTemplateColumns: "1fr 1fr"
+          }}>
+<img src={rapportomslagKatt} alt="" />
+<img src={rapportomslagAkva} alt="" />
+<img src={rapportomslagSau} alt="" />
+</Grid>
+</figure>
+## Forsidemal med illustrasjon
+Rapportforsider med illustrasjon finnes i tre lyse og én mørk versjon:
 
-[GRAFIKK]
+- lys beige
+- lysegrønn
+- lyseblå
+- mørkegrønn
 
-## Forside med illustrasjon
-Rapportforside med illustrasjon finnes i tre lyse og én mørk versjon:
+Illustrasjonene kan brukes alene eller i grupper og skal ligge innenfor det samme området som bildet i rapportmalen over gjør.
+<figure>
+<Grid style={{
+            gridTemplateColumns: "1fr 1fr"
+          }}>
+<img src={rapportomslagIllustrasjonLysBeige} alt="" />
+<img src={rapportomslagIllustrasjonLysegronn} alt="" />
+<img src={rapportomslagIllustrasjonLysebla} alt="" />
+<img src={rapportomslagIllustrasjonMorkegronn} alt="" />
+</Grid>
+</figure>
+## Forsidemal med typografi
+Rapporter med kun typografi på forsiden har mørkegrønn bakgrunn. Teksten vokser ned fra midtlinjen, og typografifargen kan varieres etter rapportens tema. Teksten kan være i disse fargene:
+- lysegrønn
+- rosa
+- blå
+- gul
 
-- «Gåsunge» (lys beige)
-- «Lav» (lysegrønn)
-- «Bakgrunn, blå»
-- «Granskog» (mørkegrønn)
+Du kan se eksempler på forsider med de fire ulike typografifargene under.
+<figure>
+<Grid style={{
+            gridTemplateColumns: "1fr 1fr"
+          }}>
+<img src={rapportomslagTypografiLysegronn} alt="" />
+<img src={rapportomslagTypografiRosa} alt="" />
+<img src={rapportomslagTypografiBla} alt="" />
+<img src={rapportomslagTypografiGul} alt="" />
+</Grid>
+</figure>
+## Baksidemal
+Baksidemalen har mørk eller lys bakgrunnsfarge avhengig av om forsiden er lys eller mørk. For- og bakside skal alltid ha samme bakgrunnsfarge.
+<figure>
+<Grid style={{
+            gridTemplateColumns: "1fr 1fr"
+          }}>
+<img src={baksidemalLysBeige} alt="" />
+<img src={baksidemalLysegronn} alt="" />
+<img src={baksidemalLysebla} alt="" />
+<img src={baksidemalMorkegronn} alt="" />
+</Grid>
+</figure>
 
-Illustrasjonene kan brukes alene eller i pre-komponerte grupper, og skal ligge innenfor det samme området som fotoet dekker i rapportmalen over.
-
-[GRAFIKK]
-
-## Forside med kun typografi
-Typografiforsidene skal ha mørkegrønn bakgrunn («Granskog»), og teksten vokser nedover fra midtlinjen. Typografifargen kan varieres etter rapportens tema, og kan ha følgende verdier:• «Lav» (#E2F1DF)
-- «Nype» (#F9C4AA)
-- «Himmel» (#9ECCED)
-- «Solstreif» (#F8DE9C)
-
-Eksempler på oppsett med de fire ulike typografifargene sees under.
-
-[GRAFIKK]
-
-## Bakside
-Baksiden har mørk eller lys bakgrunnsfarge avhengig av om forsiden er lys eller mørk. For- og bakside skal alltid ha samme bakgrunnsfarge.
-
-[GRAFIKK]
-
-## Samarbeidsrapporter
-Rapporter laget i fellesskap med andre organisasjoner krever flere avsenderlogoer på forsiden. Disse er plassert øverst til venstre, med Mattilsynet-logoen som den første av dem. For- og baksiden er alltid hvit for å sikre at det ikke titter fram hvite bokser bak logoen - i tilfelle man har en jpg, og ikke png-versjon av de ulike logoene. Det finnes tre ulike forsideoppsett:
-
+## Mal for samarbeidsrapporter
+Rapporter laget i fellesskap med andre organisasjoner har flere avsenderlogoer på forsiden. Disse er plassert øverst til venstre, med Mattilsynet-logoen som den første av dem. For- og baksiden er alltid hvit for å sikre at det ikke oppstår hvite områder bak logoene. Det finnes tre ulike maler:
 - Forside med foto
 - Forside med illustrasjon
 - Forside med kun typografi
 
-[GRAFIKK]
+<figure>
+<Grid style={{
+            gridTemplateColumns: "1fr 1fr"
+          }}>
+<img src={forsidemalSamarbeidBilde} alt="" />
+<img src={forsidemalSamarbeidIllustrasjon} alt="" />
+<img src={forsidemalSamarbeidTypografi} alt="" />
+<img src={baksidemalSamarbeid} alt="" />
+</Grid>
+</figure>
