@@ -263,6 +263,17 @@ const deprecatePopoverPosition = () => {
 		}
 };
 
+const DEL_AS_RESET = document.querySelectorAll(
+	"ds-suggestion > input[type='text'] + del",
+);
+const deprecateDelElementAsReset = () => {
+	for (const el of DEL_AS_RESET) {
+		if (deprecate(el)) {
+			warn("<del> inside <ds-suggestion>", "<button type='reset'>", el);
+		}
+	}
+};
+
 const handleDeprecations = debounce(() => {
 	if (!isBrowser()) return; // Check if document is still available, since this can run in test environments after document is destroyed
 	deprecateCounter();
@@ -278,6 +289,7 @@ const handleDeprecations = debounce(() => {
 	deprecateUCombobox();
 	deprecateUTabs();
 	deprecateUDetails();
+	deprecateDelElementAsReset();
 }, 200);
 
 onHotReload("deprecations", () => [
