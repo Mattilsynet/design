@@ -308,7 +308,7 @@ const FieldSuggestion = forwardRef<DSSuggestionElement, FieldSuggestionProps>(
 							readOnly={readOnly}
 							type={type}
 						/>
-						<del aria-label="Fjern tekst" suppressHydrationWarning />
+						<button type="reset" aria-label="Fjern tekst" suppressHydrationWarning />
 					</>
 				)}
 				{!!options && (

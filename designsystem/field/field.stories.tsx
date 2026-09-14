@@ -319,7 +319,7 @@ export const WithValidationForm: Story = {
 					<ds-suggestion className={styles.suggestion}>
 						<select hidden></select>
 						<input type="text" className={styles.input} aria-required="true" />
-						<del role="img" aria-label="Fjern tekst"></del>
+						<button type="reset" aria-label="Fjern tekst" />
 						<u-datalist>
 							<u-option value="Sogndal">Sogndal</u-option>
 							<u-option value="Oslo">Oslo</u-option>
@@ -418,7 +418,7 @@ export const WithSuggestion: Story = {
 			<label>Med forslag</label>
 			<ds-suggestion className={styles.suggestion}>
 				<input type="text" className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
+				<button type="reset" aria-label="Fjern tekst" />
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -444,7 +444,7 @@ export const WithSuggestionMultiple: Story = {
 			<ds-suggestion className={styles.suggestion} data-multiple>
 				<data value="Sogndal">Sogndal</data>
 				<input type="text" className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
+				<button type="reset" aria-label="Fjern tekst" />
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -473,7 +473,7 @@ export const WithSuggestionMultipleInside: Story = {
 			>
 				<data value="Sogndal">Sogndal</data>
 				<input type="text" className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
+				<button type="reset" aria-label="Fjern tekst" />
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -498,7 +498,7 @@ export const WithSuggestionCreatable: Story = {
 			<ds-suggestion className={styles.suggestion} data-multiple data-creatable>
 				<data value="Sogndal">Sogndal</data>
 				<input type="text" className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
+				<button type="reset" aria-label="Fjern tekst" />
 				<u-datalist>
 					<u-option value="Sogndal">Sogndal</u-option>
 					<u-option value="Oslo">Oslo</u-option>
@@ -522,7 +522,7 @@ export const WithSuggestionNoResults: Story = {
 			<label>Med "ingen treff"</label>
 			<ds-suggestion className={styles.suggestion}>
 				<input type="text" className={styles.input} />
-				<del role="img" aria-label="Fjern tekst"></del>
+				<button type="reset" aria-label="Fjern tekst" />
 				<u-datalist>
 					<u-option role="none" value="">
 						Ingen treff
@@ -577,7 +577,7 @@ export const WithSuggestionAPI: Story = {
 						className={styles.input}
 						onInput={handleInput} // Note: using onInput, not onChange
 					/>
-					<del role="img" aria-label="Fjern tekst"></del>
+					<button type="reset" aria-label="Fjern tekst" />
 					<u-datalist data-nofilter>
 						{Array.isArray(options) ? (
 							options.map((option) => (
@@ -618,7 +618,7 @@ export const WithSuggestionCustomFilter: Story = {
 						className={styles.input}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
-					<del role="img" aria-label="Fjern tekst"></del>
+					<button type="reset" aria-label="Fjern tekst" />
 					<u-datalist data-nofilter>
 						{options
 							.filter((option) =>
@@ -692,7 +692,7 @@ export const ReactWithSuggestionWithChildren: Story = {
 					onSelectedChange={setSelected}
 				>
 					<Input />
-					<del role="img" aria-label="Fjern tekst"></del>
+					<button type="reset" aria-label="Fjern tekst" />
 					<Field.Datalist>
 						<Field.Option value="saft" label="Saft">
 							<Flex data-align="center">
@@ -815,7 +815,7 @@ export const ReactWithSuggestionLong: Story = {
 					<Field.Description>Beskrivelse</Field.Description>
 					<Field.Suggestion selected={selected} onSelectedChange={setSelected}>
 						<Input />
-						<del role="img" aria-label="Fjern tekst"></del>
+						<button type="reset" aria-label="Fjern tekst" />
 						<Field.Datalist data-nofilter data-placement="top">
 							<Field.Option>
 								Thunder Thunder Thunder Thunder Thunder Thunder Thunder Thunder
@@ -882,7 +882,7 @@ export const ReactWithSuggestionCustomFilter: Story = {
 						value={value}
 						onInput={({ currentTarget }) => setValue(currentTarget.value)}
 					/>
-					<del role="img" aria-label="Fjern tekst"></del>
+					<button type="reset" aria-label="Fjern tekst" />
 				</Field.Suggestion>
 			</Field>
 		);
