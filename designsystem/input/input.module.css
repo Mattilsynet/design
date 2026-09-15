@@ -25,15 +25,6 @@
 		border-radius: var(--ds-border-radius-md);
 	}
 
-	/* If list attribute exits, allow rendering dropdown chevron instead */
-	.input[type="search"]:not([data-icon="none"]) {
-		background-image: var(--mtds-icon-search);
-		background-position: var(--ds-size-3) center;
-		background-repeat: no-repeat;
-		background-size: var(--ds-size-6);
-		padding-left: var(--ds-size-12);
-	}
-
 	/* Adjust background-size for input switch */
 	.input[type="checkbox"][role="switch"] {
 		background-size: calc(var(--dsc-input-size--toggle) - var(--ds-size-1) / 2)
@@ -86,9 +77,9 @@
 		}
 
 		@supports not selector(::-webkit-calendar-picker-indicator) {
-            .input[type="date"] {
-                background-image: none;
-            }
+			.input[type="date"] {
+				background-image: none;
+			}
 		}
 	}
 

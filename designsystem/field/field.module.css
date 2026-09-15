@@ -85,6 +85,7 @@
 
 	.suggestion {
 		composes: ds-suggestion from "@digdir/designsystemet-css";
+		--dsc-suggestion-search-icon-url: var(--mtds-icon-search);
 		--dsc-suggestion-arrow-size: 0;
 		--dsc-suggestion-border-color: var(--ds-color-border-subtle);
 		--dsc-suggestion-chip-background--hover: var(--ds-color-surface-hover);
