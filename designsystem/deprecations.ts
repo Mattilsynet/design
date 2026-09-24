@@ -263,11 +263,10 @@ const deprecatePopoverPosition = () => {
 		}
 };
 
-const DEL_AS_RESET = document.querySelectorAll(
-	"ds-suggestion > input[type='text'] + del",
-);
 const deprecateDelElementAsReset = () => {
-	for (const el of DEL_AS_RESET) {
+	for (const el of document.querySelectorAll(
+		"ds-suggestion > input[type='text'] + del",
+	)) {
 		if (deprecate(el)) {
 			warn("<del> inside <ds-suggestion>", "<button type='reset'>", el);
 		}
