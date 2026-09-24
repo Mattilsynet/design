@@ -64,7 +64,11 @@ export const Default: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
@@ -209,7 +213,11 @@ export const WithFooter: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
@@ -282,7 +290,12 @@ export const WithFooter: Story = {
 				<div className={styles.card}>{Image}</div>
 			</main>
 			<footer style={{ height: 300 }}>
-				<a href="/" className={styles.logo}></a>
+				{/* Overwrite Autoprefixer */}
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }}
+				></a>
 			</footer>
 		</div>
 	),
@@ -292,7 +305,11 @@ export const WithComplexContent: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
@@ -512,7 +529,12 @@ export const WithComplexContent: Story = {
 				</div>
 			</main>
 			<footer style={{ height: 300 }}>
-				<a href="/" className={styles.logo}></a>
+				{/* Overwrite Autoprefixer */}
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }}
+				></a>
 			</footer>
 		</div>
 	),
@@ -522,7 +544,11 @@ export const WithCustomToggle: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
@@ -616,7 +642,11 @@ export const WithMobileBar: Story = {
 	render: () => (
 		<div className={styles.app} data-variant="mobilebar">
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
@@ -809,7 +839,12 @@ export const WithMobileBar: Story = {
 				<div className={styles.card}>{Image}</div>
 			</main>
 			<footer style={{ height: 300 }} hidden>
-				<a href="/" className={styles.logo}></a>
+				{/* Overwrite Autoprefixer */}
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }}
+				></a>
 			</footer>
 		</div>
 	),
@@ -821,7 +856,11 @@ export const DeprecatedDefault: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				<a href="/" className={styles.logo}>
+				<a
+					href="/"
+					className={styles.logo}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+				>
 					<PlantIcon weight="fill" />
 					Digiplant
 				</a>
