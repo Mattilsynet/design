@@ -46,7 +46,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => <a className={styles.logo} href="https://mattilsynet.no"></a>,
+	render: () => (
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="https://mattilsynet.no"
+				style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+			></a>
+		</>
+	),
 };
 
 export const React: Story = {
@@ -71,77 +80,149 @@ export const React: Story = {
 };
 
 export const WithEnvironment: Story = {
-	render: () => <a className={styles.logo} href="/" data-env="test"></a>,
+	render: () => (
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				data-env="test"
+				style={{ WebkitMaskBoxImage: "none" }}
+			></a>
+			,
+		</>
+	),
 };
 
 export const WithEnvironmentBlue: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="dev" data-color="info"></a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				data-env="dev"
+				data-color="info"
+				style={{ WebkitMaskBoxImage: "none" }}
+			></a>
+		</>
 	),
 };
 
 export const WithSubbrand: Story = {
 	render: () => (
-		<a className={styles.logo} href="/">
-			Helse
-			<wbr />
-			sertifikat
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				Helse
+				<wbr />
+				sertifikat
+			</a>
+		</>
 	),
 };
 
 export const WithSubbrandEnglish: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" lang="en">
-			Sanitary certificate status
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				lang="en"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				Sanitary certificate status
+			</a>
+		</>
 	),
 };
 
 export const WithSubbrandEnvironment: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" lang="en" data-env="test">
-			Servering
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				lang="en"
+				data-env="test"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				Servering
+			</a>
+		</>
 	),
 };
 
 export const WithSubbrandEnvironmentBlue: Story = {
 	render: () => (
-		<a
-			className={styles.logo}
-			href="/"
-			lang="en"
-			data-env="dev"
-			data-color="info"
-		>
-			Sanitary certificate status
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				lang="en"
+				data-env="dev"
+				data-color="info"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				Sanitary certificate status
+			</a>
+		</>
 	),
 };
 
 export const WithAppIcon: Story = {
 	render: () => (
-		<a className={styles.logo} href="/">
-			<PlantIcon weight="fill" />
-			Digiplant
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				<PlantIcon weight="fill" />
+				Digiplant
+			</a>
+		</>
 	),
 };
 
 export const WithAppIconEnvironment: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="test">
-			<PlantIcon weight="fill" />
-			Digiplant
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				data-env="test"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				<PlantIcon weight="fill" />
+				Digiplant
+			</a>
+		</>
 	),
 };
 export const WithAppIconEnvironmentBlue: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="dev" data-color="info">
-			<PlantIcon weight="fill" />
-			Digiplant
-		</a>
+		<>
+			{/* Overwrite Autoprefixer */}
+			<a
+				className={styles.logo}
+				href="/"
+				data-env="dev"
+				data-color="info"
+				style={{ WebkitMaskBoxImage: "none" }}
+			>
+				<PlantIcon weight="fill" />
+				Digiplant
+			</a>
+		</>
 	),
 };

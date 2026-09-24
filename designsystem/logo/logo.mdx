@@ -36,15 +36,17 @@ style="-webkit-mask-box-image: none"
 
    {/* Logofarger */}
   <Example data-color="success" text="Logo skal kun brukes i fargene som er definert i designsystemet." zoom="100%">
-    
-    <a className={styles.logo} href="https://mattilsynet.no"></a>
+
+    {/* Overwrite Autoprefixer */}
+    <a className={styles.logo} href="https://mattilsynet.no" style={{ WebkitMaskBoxImage: "none" }} ></a>
   
   
   </Example>
 
   <Example data-color="danger" text="Ikke bruk Mattilsynets logo med andre farger enn definert i designsystemet." zoom="100%">
-      
-    <a style={{ color: 'purple' }} className={styles.logo} href="https://mattilsynet.no"></a>
+
+    {/* Overwrite Autoprefixer */}
+    <a style={{ color: 'purple' }} className={styles.logo} href="https://mattilsynet.no" style={{ WebkitMaskBoxImage: "none" }}></a>
 
   </Example>
 
