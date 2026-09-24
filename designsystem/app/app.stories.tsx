@@ -64,11 +64,10 @@ export const Default: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
@@ -214,11 +213,10 @@ export const WithFooter: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
@@ -307,11 +305,10 @@ export const WithComplexContent: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
@@ -547,11 +544,10 @@ export const WithCustomToggle: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
@@ -646,11 +642,10 @@ export const WithMobileBar: Story = {
 	render: () => (
 		<div className={styles.app} data-variant="mobilebar">
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
@@ -861,11 +856,10 @@ export const DeprecatedDefault: Story = {
 	render: () => (
 		<div className={styles.app}>
 			<header>
-				{/* Overwrite Autoprefixer */}
 				<a
 					href="/"
 					className={styles.logo}
-					style={{ WebkitMaskBoxImage: "none" }}
+					style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 				>
 					<PlantIcon weight="fill" />
 					Digiplant
