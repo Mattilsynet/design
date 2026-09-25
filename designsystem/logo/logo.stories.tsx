@@ -46,7 +46,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => <a className={styles.logo} href="https://mattilsynet.no"></a>,
+	render: () => (
+		<a
+			className={styles.logo}
+			href="https://mattilsynet.no"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		></a>
+	),
 };
 
 export const React: Story = {
@@ -71,18 +77,35 @@ export const React: Story = {
 };
 
 export const WithEnvironment: Story = {
-	render: () => <a className={styles.logo} href="/" data-env="test"></a>,
+	render: () => (
+		<a
+			className={styles.logo}
+			href="/"
+			data-env="test"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		></a>
+	),
 };
 
 export const WithEnvironmentBlue: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="dev" data-color="info"></a>
+		<a
+			className={styles.logo}
+			href="/"
+			data-env="dev"
+			data-color="info"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		></a>
 	),
 };
 
 export const WithSubbrand: Story = {
 	render: () => (
-		<a className={styles.logo} href="/">
+		<a
+			className={styles.logo}
+			href="/"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		>
 			Helse
 			<wbr />
 			sertifikat
@@ -92,7 +115,12 @@ export const WithSubbrand: Story = {
 
 export const WithSubbrandEnglish: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" lang="en">
+		<a
+			className={styles.logo}
+			href="/"
+			lang="en"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		>
 			Sanitary certificate status
 		</a>
 	),
@@ -100,7 +128,13 @@ export const WithSubbrandEnglish: Story = {
 
 export const WithSubbrandEnvironment: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" lang="en" data-env="test">
+		<a
+			className={styles.logo}
+			href="/"
+			lang="en"
+			data-env="test"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		>
 			Servering
 		</a>
 	),
@@ -114,6 +148,7 @@ export const WithSubbrandEnvironmentBlue: Story = {
 			lang="en"
 			data-env="dev"
 			data-color="info"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 		>
 			Sanitary certificate status
 		</a>
@@ -122,7 +157,11 @@ export const WithSubbrandEnvironmentBlue: Story = {
 
 export const WithAppIcon: Story = {
 	render: () => (
-		<a className={styles.logo} href="/">
+		<a
+			className={styles.logo}
+			href="/"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		>
 			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
@@ -131,7 +170,12 @@ export const WithAppIcon: Story = {
 
 export const WithAppIconEnvironment: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="test">
+		<a
+			className={styles.logo}
+			href="/"
+			data-env="test"
+			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
+		>
 			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
@@ -139,7 +183,13 @@ export const WithAppIconEnvironment: Story = {
 };
 export const WithAppIconEnvironmentBlue: Story = {
 	render: () => (
-		<a className={styles.logo} href="/" data-env="dev" data-color="info">
+		<a
+			className={styles.logo}
+			href="/"
+			data-env="dev"
+			data-color="info"
+			style={{ WebkitMaskBoxImage: "none" }}
+		>
 			<PlantIcon weight="fill" />
 			Digiplant
 		</a>
