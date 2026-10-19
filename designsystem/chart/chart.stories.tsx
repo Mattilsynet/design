@@ -476,7 +476,7 @@ export const WithHiddenSteps: Story = {
 	),
 };
 
-export const WithHiddeLabels: Story = {
+export const WithHiddenLabels: Story = {
 	render: () => (
 		<mtds-chart data-variant="bar" data-labels="false">
 			{table}
@@ -484,7 +484,7 @@ export const WithHiddeLabels: Story = {
 	),
 };
 
-export const WithHiddeLabelsLine: Story = {
+export const WithHiddenLabelsLine: Story = {
 	render: () => (
 		<mtds-chart data-variant="line" data-labels="false">
 			<table>

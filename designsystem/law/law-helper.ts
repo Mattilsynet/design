@@ -200,7 +200,7 @@ const LABELS: Record<string, typeof getLabel> = {
 		let unit = "punkt";
 		if (type === "1") unit = "tall";
 		if (type === "a") unit = "bokstav";
-		if (type === "i") unit = "romtertall";
+		if (type === "i") unit = "romertall";
 		return `${unit} ${name === "-" ? path.pop() : name.replace(REGEX_STRIP_TAGS, "")}`;
 	},
 	marginIdArticle: (_tag, _id, idx, html) => {
