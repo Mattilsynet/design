@@ -104,6 +104,7 @@ export const WithSubbrand: Story = {
 		<a
 			className={styles.logo}
 			href="/"
+			lang="no"
 			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 		>
 			Helse
@@ -131,7 +132,6 @@ export const WithSubbrandEnvironment: Story = {
 		<a
 			className={styles.logo}
 			href="/"
-			lang="en"
 			data-env="test"
 			style={{ WebkitMaskBoxImage: "none" }} // Overwrite Autoprefixer
 		>

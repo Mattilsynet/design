@@ -34,6 +34,24 @@
 	"person-fish-seaweed.svg": {
 		"categories": ["Mennesker", "Akvakultur"]
 	},
+	"from-fjord-and-earth-to-table.svg": {
+		"categories": ["Mennesker", "Akvakultur", "Mat", "Dyr", "Natur", "Visjon"],
+		"tags": [
+			"menneske",
+			"person",
+			"fisk",
+			"gris",
+			"svin",
+			"fugl",
+			"landskap",
+			"samling",
+			"visjon",
+			"fjord",
+			"jord",
+			"bord",
+			"mattilsynet"
+		]
+	},
 	"person-fish.svg": {
 		"categories": ["Mennesker", "Akvakultur"],
 		"tags": [

@@ -37,7 +37,7 @@ For rapporter med bilde på forsiden skal bildet dekke 2/3 av høyden på omslag
 
 <figure>
 <Grid style={{
-            gridTemplateColumns: "1fr 1fr"
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))"
           }}>
 <img src={rapportomslagKatt} alt="" />
 <img src={rapportomslagAkva} alt="" />
@@ -55,7 +55,7 @@ Rapportforsider med illustrasjon finnes i tre lyse og én mørk versjon:
 Illustrasjonene kan brukes alene eller i grupper og skal ligge innenfor det samme området som bildet i rapportmalen over gjør.
 <figure>
 <Grid style={{
-            gridTemplateColumns: "1fr 1fr"
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))"
           }}>
 <img src={rapportomslagIllustrasjonLysBeige} alt="" />
 <img src={rapportomslagIllustrasjonLysegronn} alt="" />
@@ -73,7 +73,7 @@ Rapporter med kun typografi på forsiden har mørkegrønn bakgrunn. Teksten voks
 Du kan se eksempler på forsider med de fire ulike typografifargene under.
 <figure>
 <Grid style={{
-            gridTemplateColumns: "1fr 1fr"
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))"
           }}>
 <img src={rapportomslagTypografiLysegronn} alt="" />
 <img src={rapportomslagTypografiRosa} alt="" />
@@ -85,7 +85,7 @@ Du kan se eksempler på forsider med de fire ulike typografifargene under.
 Baksidemalen har mørk eller lys bakgrunnsfarge avhengig av om forsiden er lys eller mørk. For- og bakside skal alltid ha samme bakgrunnsfarge.
 <figure>
 <Grid style={{
-            gridTemplateColumns: "1fr 1fr"
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))"
           }}>
 <img src={baksidemalLysBeige} alt="" />
 <img src={baksidemalLysegronn} alt="" />
@@ -102,11 +102,11 @@ Rapporter laget i fellesskap med andre organisasjoner har flere avsenderlogoer p
 
 <figure>
 <Grid style={{
-            gridTemplateColumns: "1fr 1fr"
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           }}>
-<img src={forsidemalSamarbeidBilde} alt="" />
-<img src={forsidemalSamarbeidIllustrasjon} alt="" />
-<img src={forsidemalSamarbeidTypografi} alt="" />
-<img src={baksidemalSamarbeid} alt="" />
+<img style={{boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)"}} src={forsidemalSamarbeidBilde} alt="" />
+<img  style ={{boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)"}} src={forsidemalSamarbeidIllustrasjon} alt="" />
+<img  style ={{boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)"}} src={forsidemalSamarbeidTypografi} alt="" />
+<img  style ={{boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)"}} src={baksidemalSamarbeid} alt="" />
 </Grid>
 </figure>
