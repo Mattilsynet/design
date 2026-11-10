@@ -158,6 +158,15 @@
 		--mtds-text-required: "Required";
 	}
 
+	[lang="nn"] {
+		--mtds-text-close: "Lukk";
+		--mtds-text-loading: "Lastar...";
+		--mtds-text-logo: "Mattilsynet";
+		--mtds-text-next: "Neste";
+		--mtds-text-previous: "Førre";
+		--mtds-text-required: "Må fyllast ut";
+	}
+
 	/* Using :where to allow overwrites */
 	:where([data-color-scheme], body, .body) {
 		background: var(--ds-color-background-default);
