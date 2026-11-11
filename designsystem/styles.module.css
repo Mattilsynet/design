@@ -151,7 +151,7 @@
 	/* Change language */
 	[lang="en"] {
 		--mtds-text-close: "Close";
-		--mtds-text-loading: "Loading…";
+		--mtds-text-loading: "Loading ……";
 		--mtds-text-logo: "Norwegian Food Safety Authority";
 		--mtds-text-next: "Next";
 		--mtds-text-previous: "Previous";
