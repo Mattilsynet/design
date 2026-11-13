@@ -7,14 +7,18 @@ const gaasunge = "#faf6f3";
 const white = "#ffffff";
 
 addons.setConfig({
-	enableShortcuts: false,
-	initialActive: "sidebar",
 	isFullscreen: false,
-	panelPosition: "bottom",
 	selectedPanel: "storybook/source-loader/panel",
-	showNav: true,
-	showPanel: true,
-	showToolbar: true,
+	layout: {
+	panelPosition: "bottom",
+		initialActive: "sidebar",
+		showNav: true,
+		showPanel: true,
+		showToolbar: true,
+	},
+	ui: {
+	    enableShortcuts: false,
+	},
 	theme: create({
 		base: "light",
 		fontBase: "Mattilsynet Sans, sans-serif",
