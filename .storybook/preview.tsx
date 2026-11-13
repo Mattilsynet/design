@@ -17,13 +17,13 @@ function urlTheme() {
 	const globals = new URLSearchParams(
 		url.searchParams.get("globals")?.replace(/;/g, "&").replace(/:/g, "="),
 	);
-	const theme = globals.get("theme") || "Auto medium";
-	const store = window.localStorage.getItem("theme") || "Auto medium";
+	const store = window.localStorage.getItem("theme");
+	const theme = globals.get("theme") ?? store ?? "Auto medium";
 	window.localStorage.setItem("theme", theme);
 
 	// If no theme is set in URL, but one is stored, update URL
 	if (globals.toString() && !globals.get("theme") && theme !== store) {
-		globals.set("theme", store);
+		globals.set("theme", theme);
 		url.searchParams.set(
 			"globals",
 			globals.toString().replace(/&/g, ";").replace(/=/g, ":"),
