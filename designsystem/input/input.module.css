@@ -100,4 +100,8 @@
 			--mtdsc-input-background: var(--mtds-color-surface-default);
 		}
 	}
+
+	.input[type="time"], .input[type="date"] {
+		-webkit-text-fill-color: var(--dsc-input-color);
+	}
 }
