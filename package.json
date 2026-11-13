@@ -55,7 +55,7 @@
 		"storybook:build": "npm run build && storybook build"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.6",
+		"@biomejs/biome": "2.6.7",
 		"@digdir/designsystemet-css": "^1.24.0",
 		"@digdir/designsystemet-types": "^1.24.0",
 		"@handsontable/react-wrapper": "18.1.2",
