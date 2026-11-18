@@ -3,6 +3,7 @@ package io.mattilsynet.design
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class MtdsTest {
@@ -35,5 +36,16 @@ class MtdsTest {
     fun `klassekonstanter inneholder ikke ubehandlede plassholdere`() {
         assertFalse(Mtds.button.contains("$"), "Uinterpolert plassholder i generert kode")
         assertFalse(Mtds.button.contains("\""), "Uescapet hermetegn i generert kode")
+    }
+
+    @Test
+    fun `styles css ligger paa classpath og matcher klassekonstantene`() {
+        val path = "${Mtds.RESOURCE_BASE}/styles.css"
+        val css = Mtds::class.java.classLoader.getResource(path)?.readText()
+        assertNotNull(css, "Fant ikke $path på classpath")
+        // Klassekonstantene og stilarket må komme fra samme bygg, ellers matcher ikke hashene.
+        Mtds.button.split(" ").forEach { cls ->
+            assertTrue(css.contains(".$cls"), "styles.css mangler klassen '$cls' fra Mtds.button")
+        }
     }
 }

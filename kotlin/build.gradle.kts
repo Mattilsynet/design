@@ -27,6 +27,11 @@ dependencies {
 val designRoot = layout.projectDirectory.dir("..")
 val packageJsonFile = designRoot.file("package.json")
 val stylesJsonFile = designRoot.file("mtds/styles.json")
+val stylesCssFile = designRoot.file("mtds/styles.css")
+
+// Classpath-sti (uten ledende /) der assets legges i JAR-en. Speiler CDN-ens mtds/-mappe,
+// så samme filnavn fungerer mot både Mtds.CDN_BASE og en lokal mount av Mtds.RESOURCE_BASE.
+val mtdsResourceBase = "io/mattilsynet/design/mtds"
 
 val designNpmVersion: String = run {
     val f = packageJsonFile.asFile
@@ -57,6 +62,9 @@ abstract class GenerateMtds : DefaultTask() {
 
     @get:Input
     abstract val npmVersion: Property<String>
+
+    @get:Input
+    abstract val resourceBase: Property<String>
 
     @get:OutputDirectory
     abstract val outputDir: DirectoryProperty
@@ -131,6 +139,12 @@ abstract class GenerateMtds : DefaultTask() {
             |    /** Base-URL for å laste assets fra CDN for samme versjon. */
             |    public val CDN_BASE: String = "https://cdn.jsdelivr.net/npm/@mattilsynet/design@${'$'}NPM_VERSION/mtds"
             |
+            |    /**
+            |     * Classpath-sti (uten ledende `/`) til assets som ligger i JAR-en, for å serve dem
+            |     * lokalt i stedet for fra CDN. Inneholder `styles.css` for samme versjon.
+            |     */
+            |    public val RESOURCE_BASE: String = "${escape(resourceBase.get())}"
+            |
             |$consts
             |}
             |
@@ -154,11 +168,38 @@ val generateMtds by tasks.registering(GenerateMtds::class) {
         },
     )
     npmVersion.set(designNpmVersion)
+    resourceBase.set(mtdsResourceBase)
     outputDir.set(layout.buildDirectory.dir("generated/mtds/kotlin"))
+}
+
+val copyMtdsAssets by tasks.registering(Sync::class) {
+    group = "build"
+    description = "Kopierer designsystemets styles.css inn som classpath-ressurs."
+    from(
+        providers.provider {
+            stylesCssFile.asFile.also {
+                require(it.isFile) {
+                    "Fant ikke ${it.path}. Kjør 'npm ci && npm run build' i repo-rota først."
+                }
+            }
+        },
+    ) {
+        into(mtdsResourceBase)
+    }
+    into(layout.buildDirectory.dir("generated/mtds/resources"))
 }
 
 kotlin.sourceSets.named("main") {
     kotlin.srcDir(generateMtds)
+}
+
+sourceSets.named("main") {
+    resources.srcDir(copyMtdsAssets)
+}
+
+// Sources-JAR-en skal ha kildekode, ikke en kopi av stilarket på ~400 KB.
+tasks.named<Jar>("sourcesJar") {
+    exclude("$mtdsResourceBase/**")
 }
 
 // Uten denne kjører ikke genereringen under IDE-sync, og io.mattilsynet.design
@@ -180,7 +221,7 @@ publishing {
             artifactId = "design-kotlin"
             pom {
                 name.set("Mattilsynet designsystem - Kotlin")
-                description.set("Typesikre CSS-klassekonstanter for Mattilsynets designsystem")
+                description.set("Typesikre CSS-klassekonstanter og stilark for Mattilsynets designsystem")
                 url.set("https://github.com/Mattilsynet/design/tree/main/kotlin")
                 licenses {
                     // Clojars avviser deploys uten lisens.
