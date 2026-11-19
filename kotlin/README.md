@@ -74,9 +74,14 @@ button(classes = Mtds.button) {
 
 ### Assets
 
-Pakken inneholder **ingen** assets — kun klassekonstanter (~4 KB). CSS, web components
-og ikoner lastes fra [jsDelivr](https://www.jsdelivr.com/). `Mtds.CDN_BASE` peker på samme
-versjon som konstantene, så klasser og stilark aldri kommer i utakt:
+Web components og ikoner lastes fra [jsDelivr](https://www.jsdelivr.com/). Stilarket
+(`styles.css`, ~430 KB) kan enten lastes fra CDN eller serves lokalt fra JAR-en — begge
+variantene er alltid samme versjon som klassekonstantene, så klasser og stilark aldri
+kommer i utakt.
+
+#### Fra CDN
+
+`Mtds.CDN_BASE` peker på samme versjon som konstantene:
 
 ```kotlin
 link(rel = "stylesheet", href = "${Mtds.CDN_BASE}/styles.css")
@@ -86,6 +91,44 @@ link(rel = "icon", href = "${Mtds.CDN_BASE}/favicon.svg", type = "image/svg+xml"
 
 `Mtds.NPM_VERSION` gir npm-versjonen alene om du trenger den (f.eks. mot en intern speiling
 av CDN-en).
+
+#### Lokalt fra JAR-en
+
+`styles.css` ligger på classpath under `Mtds.RESOURCE_BASE`
+(`io/mattilsynet/design/mtds/styles.css`). Stilarket er selvstendig — alle `url()`-er er
+inlinet som data-URI-er — så det kan mountes hvor som helst. Ha med `Mtds.NPM_VERSION` i
+URL-en, så brytes nettleser-cachen når du oppgraderer (hashene i klassenavnene endres):
+
+```kotlin
+// Ktor
+val mtdsPath = "/assets/mtds/${Mtds.NPM_VERSION}"
+
+routing {
+    staticResources(mtdsPath, Mtds.RESOURCE_BASE)
+}
+
+link(rel = "stylesheet", href = "$mtdsPath/styles.css")
+```
+
+<details>
+<summary>Spring</summary>
+
+```kotlin
+override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
+    registry.addResourceHandler("/assets/mtds/${Mtds.NPM_VERSION}/**")
+        .addResourceLocations("classpath:/${Mtds.RESOURCE_BASE}/")
+}
+```
+
+</details>
+
+Trenger du innholdet direkte (f.eks. for å inline det):
+
+```kotlin
+val css = Mtds::class.java.classLoader
+    .getResource("${Mtds.RESOURCE_BASE}/styles.css")!!
+    .readText()
+```
 
 > `@mattilsynet/design/react` er React-komponenter og kan ikke brukes i server-rendret
 > kotlinx.html — bruk CSS- og web-components-laget.
@@ -123,9 +166,12 @@ cd kotlin && ./gradlew build
 
 Ingen nettverkstilgang og ingen Clojure-verktøykjede kreves. `clojure/`-modulen er en
 separat pakking av det samme designsystemet, publisert til samme Clojars-gruppe, men den
-pakker med seg CSS og SVG-ressurser og bygges med Clojure-verktøy.
+pakker med seg SVG-ressurser i tillegg og bygges med Clojure-verktøy.
 
 `:generateMtds` skriver `build/generated/mtds/kotlin/io/mattilsynet/design/Mtds.kt`.
+`:copyMtdsAssets` kopierer `mtds/styles.css` til
+`build/generated/mtds/resources/io/mattilsynet/design/mtds/`, som pakkes i JAR-en (men ikke
+i sources-JAR-en).
 Modulen har ingen håndskrevne hovedkilder; alt under `io.mattilsynet.design` er generert.
 
 ### I IntelliJ
