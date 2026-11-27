@@ -1,12 +1,27 @@
 {
-	"$schema": "https://designsystemet.no/schemas/cli/1.8.0.json",
-	"outDir": "./design-tokens",
-	"clean": true,
+	"$schema": "https://designsystemet.no/schemas/cli/1.24.1.json",
+	"output": [
+		{
+			"type": "design-tokens",
+			"dir": "./design-tokens",
+			"cleanDir": true
+		},
+		{
+			"type": "css",
+			"dir": "./design-tokens-build",
+			"tokensDir": "./design-tokens"
+		},
+		{
+			"type": "types",
+			"dir": "./design-tokens-build",
+			"tokensDir": "./design-tokens"
+		}
+	],
 	"themes": {
 		"mattilsynet": {
 			"colors": {
-				"main": { "primary": "#116E6B" },
-				"support": { "inverted": "#E2F1DF" },
+				"primary": "#116E6B",
+				"inverted": "#E2F1DF",
 				"neutral": "#5F5F5F"
 			},
 			"borderRadius": 5,
